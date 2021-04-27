@@ -3,21 +3,14 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-const constantRoutes = [
-  {
-    path: '/',
-    redirect: '/home'
-  },
-  {
-    path: '/home',
-    component: () => import('@/views/home/index.vue')
-  },
-  {
-    path: '/travel-itinerary',
-    component: () => import('@/views/home/TravelItinerary.vue')
-  }
-
-]
+// 动态读取 modules 中文件
+let configRouters = []
+const modulesFiles = require.context('./modules', true, /\.js$/)
+modulesFiles.keys().forEach(key => {
+  const temRouters = modulesFiles(key).default
+  configRouters = configRouters.concat(temRouters)
+})
+const constantRoutes = configRouters
 
 const originalPush = Router.prototype.push
 Router.prototype.push = function push (location) {

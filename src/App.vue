@@ -1,14 +1,6 @@
 <template>
   <div id="app">
     <router-view />
-    <div class="sc-app-back"
-         v-if="isShowBack === 'true'">
-      <div class="sc-bounced-alert tc">
-        <div class="sc-tip ft32 bold color-333">登录失效，请重新登录再扫码</div>
-        <div class="sc-know color-666 ft28"
-             @click="closeBack">我知道了</div>
-      </div>
-    </div>
   </div>
 </template>
 

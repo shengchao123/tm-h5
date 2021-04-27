@@ -1,6 +1,8 @@
 <template>
   <div class='map-wrap'>
     <div id="map"></div>
+    <div class="handler"
+         @click.stop="click">复原</div>
   </div>
 </template>
 
@@ -18,13 +20,17 @@ const mapInitObj = {
 export default {
   name: 'index',
   methods: {
+    click () {
+      console.log(11111)
+    },
     // 绘制图中标记点
     drawMarker () {
       this.paths.forEach((item, index) => {
         const marker = new AMap.Marker({
           position: new AMap.LngLat(item[0], item[1]),
           title: '标题' + index,
-          map: this.$amap
+          map: this.$amap,
+          touchZoom: false
         })
         // 设置 marker 绑定的数据
         marker.setExtData(item)
@@ -134,9 +140,16 @@ export default {
 
 <style lang='scss' scoped>
 .map-wrap {
+  position: relative;
   #map {
     width: 375px;
-    height: 600px;
+    height: 400px;
+  }
+  .handler {
+    top: 0;
+    color: #ffffff;
+    z-index: 100;
+    position: absolute;
   }
 }
 </style>
