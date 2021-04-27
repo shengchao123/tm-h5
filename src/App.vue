@@ -1,6 +1,11 @@
 <template>
   <div id="app">
-    <router-view />
+    <keep-alive>
+      <router-view :key="key"
+                   v-if="keepAlive" />
+    </keep-alive>
+    <router-view :key="key"
+                 v-if="!keepAlive" />
   </div>
 </template>
 
@@ -8,28 +13,19 @@
 
 export default {
   name: 'App',
-  data () {
-    return {
-      isShowBack: false
-    }
-  },
-  methods: {
-    closeBack () {
-      this.isShowBack = true
-      localStorage.setItem('isShowBack', false)
-    }
-  },
-  watch: {
-    isShowBack: {
-      handler () {
-        setTimeout(() => {
-          this.isShowBack = localStorage.getItem('isShowBack')
-        }, 300)
-      },
-      immediate: true
+  computed: {
+    key () {
+      return this.$route.path
+    },
+    keepAlive () {
+      return this.$route.meta.keepAlive
     }
   },
   created () {
+    if (!localStorage.getItem('access_token')) {
+      console.log(111)
+      this.$router.push('/login')
+    }
   }
 }
 </script>

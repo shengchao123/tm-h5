@@ -39,13 +39,13 @@ export default {
       ])
     }
   },
-  // 通过路由跳转判断选中的样式
-  created () {
-    if (this.$route.path === '/original-travel') {
+  activated () {
+    const { path } = this.$route
+    if (path === '/original-travel') {
       this.active = 0
-    } else if (this.$route.path === '/party-league') {
+    } else if (path === '/party-league') {
       this.active = 1
-    } else if (this.$route.path === '/mine') {
+    } else if (path === '/mine') {
       this.active = 2
     }
   }

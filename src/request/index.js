@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { getGlobalParams } from '@u/login'
+import router from '@/router/index.js'
 
 const service = axios.create({
   withCredentials: true,
@@ -39,7 +40,6 @@ service.interceptors.response.use(
     const res = response.data
     if (response.config.responseType === 'blob' || response.config.responseType === 'arraybuffer') return response
     if (res.code === 10000) {
-      localStorage.setItem('isShowBack', false)
       return res
     } else {
       return {
@@ -55,7 +55,7 @@ service.interceptors.response.use(
     }
     if (error.response && error.response.data) {
       if (error.response.data.subCode === 'TOKEN_EXPIRED' || error.response.data.subCode === 'TOKEN_NULL') {
-        localStorage.setItem('isShowBack', true)
+        router.push('/login')
         errorLock = true
       }
     } else {

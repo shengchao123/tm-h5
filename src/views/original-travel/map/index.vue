@@ -9,7 +9,7 @@
 <script>
 import AMap from 'AMap'
 
-const poiSearchType = '餐饮服务|购物服务|生活服务|体育休闲服务|医疗保健服务|住宿服务|风景名胜|公共设施'
+const poiSearchType = '停车场|公共厕所|餐饮美食'
 const mapInitObj = {
   resizeEnable: true,
   zoom: 9, // 级别
@@ -52,7 +52,7 @@ export default {
           type: poiSearchType
         }
         var placeSearch = new AMap.PlaceSearch(autoOptions)
-        placeSearch.searchNearBy('', point, 1000, function (status, result) {
+        placeSearch.searchNearBy('', point, 5000, function (status, result) {
           console.log(result.poiList.pois)
           // 搜索成功时，result即是对应的匹配数据
         })
@@ -95,10 +95,10 @@ export default {
           pathArray.push.apply(pathArray, holes)
           var polygon = new AMap.Polygon({
             pathL: pathArray,
-            strokeColor: 'rgb(20,164,173)',
+            strokeColor: 'rgb(20, 164, 173)',
             strokeWeight: 4,
             strokeOpacity: 0.5,
-            fillColor: 'rgba(2,2,2)',
+            fillColor: 'rgba(2, 2, 2, 0.4)',
             fillOpacity: 0.8,
             strokeStyle: 'dashed',
             strokeDasharray: [10, 2, 10]
