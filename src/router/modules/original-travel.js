@@ -11,5 +11,10 @@ export default [
     path: '/travel-form',
     name: 'TravelForm',
     component: () => import('@/views/original-travel/TravelForm.vue')
+  },
+  {
+    path: '/point-guide',
+    name: 'PointGuide',
+    component: () => import('@/views/original-travel/point-guide/index.vue')
   }
 ]

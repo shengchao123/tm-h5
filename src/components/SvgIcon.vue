@@ -10,7 +10,7 @@
 export default {
   name: 'icon-svg',
   props: {
-    iconClass: {
+    icon: {
       type: String,
       required: true
     },
@@ -23,7 +23,7 @@ export default {
   },
   computed: {
     iconName () {
-      return `#${this.iconClass}`
+      return `#${this.icon}`
     }
   }
 }

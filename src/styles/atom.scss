@@ -8,11 +8,25 @@
 .bold {
   font-weight: bold;
 }
-.pointer {
-  cursor: pointer;
-}
+
 .i-block {
   display: inline-block;
+}
+
+.b {
+  border: 1px solid #e6e6e6;
+}
+.tb {
+  border-top: 1px solid #e6e6e6;
+}
+.bb {
+  border-bottom: 1px solid #e6e6e6;
+}
+.rb {
+  border-right: 1px solid #e6e6e6;
+}
+.lb {
+  border-left: 1px solid #e6e6e6;
 }
 
 .mt4 {
@@ -309,6 +323,14 @@
   padding-right: 48px;
 }
 
+
+.ft8 {
+  font-size: 8px;
+}
+
+.ft10 {
+  font-size: 10px;
+}
 
 .ft12 {
   font-size: 12px;

@@ -23,8 +23,7 @@ export default {
   },
   created () {
     if (!localStorage.getItem('access_token')) {
-      console.log(111)
-      this.$router.push('/login')
+      // this.$router.push('/login')
     }
   }
 }

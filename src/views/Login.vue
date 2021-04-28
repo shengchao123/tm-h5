@@ -15,6 +15,7 @@ export default {
         this.redirectToOAuth()
       }
     },
+
     // 第一步：获取微信授权地址
     redirectToOAuth () {
       this.$api.redirectToOAuth().then(res => {
@@ -22,6 +23,7 @@ export default {
         location.replace(res.content.redirectUrl)
       })
     },
+
     // 第二步：使用微信返回 code 换取登录所需信息
     getLoginParams (option) {
       const params = {

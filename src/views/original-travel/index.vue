@@ -1,13 +1,12 @@
 <template>
   <div class='home-wrap'>
     <Map :paths="paths"></Map>
-    <button @click="beginGuide">导航</button>
     <Tabbar></Tabbar>
   </div>
 </template>
 
 <script>
-import Map from './map/index.vue'
+import Map from './components/map/index.vue'
 import Tabbar from '@/views/components/Tabbar'
 
 export default {
