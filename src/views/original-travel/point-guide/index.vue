@@ -1,7 +1,8 @@
 <template>
-  <div class='point-guide-wrap'>
+  <div class='point-guide-wrap relative'>
     <div id="map"></div>
     <PoiKeywords class="poi-keywords"></PoiKeywords>
+    <DragPopover></DragPopover>
   </div>
 </template>
 
@@ -9,12 +10,25 @@
 import mapMixin from '@/mixins/map.js'
 import PoiKeywords from '@/views/original-travel/components/PoiKeywords'
 import AMap from 'AMap'
+import DragPopover from '@/components/DragPopover'
 
 const poiSearchType = '停车场|公共厕所|餐饮美食'
 
 export default {
   name: 'index',
   methods: {
+    drawMarker () {
+      const center = JSON.parse(sessionStorage.getItem('pointData'))
+      // eslint-disable-next-line no-new
+      new AMap.Marker({
+        position: new AMap.LngLat(center[0], center[1]),
+        map: this.$amap,
+        touchZoom: false
+      })
+
+      this.getPoisWithLngLat(center)
+    },
+    // 根据选择点，搜索 poi 点
     getPoisWithLngLat (point) {
       const that = this
       AMap.plugin('AMap.PlaceSearch', function () {
@@ -33,13 +47,16 @@ export default {
       })
     }
   },
-  components: { PoiKeywords },
+  mounted () {
+    this.drawMarker()
+  },
+  components: { PoiKeywords, DragPopover },
   data () {
     return {
       mapInitObj: Object.freeze({
         resizeEnable: true,
         zoom: 12, // 级别
-        center: [119.365056, 30.204302]
+        center: JSON.parse(sessionStorage.getItem('pointData'))
       })
     }
   },
@@ -49,7 +66,7 @@ export default {
 
 <style lang='scss' scoped>
 .point-guide-wrap {
-  position: relative;
+  height: 100vh;
 
   #map {
     width: 375px;

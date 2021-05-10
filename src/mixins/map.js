@@ -48,7 +48,6 @@ const map = {
     this.drawDistrict()
   },
   beforeDestory () {
-    this.$amap && this.$amap.destory()
   }
 }
 

@@ -13,16 +13,33 @@ export default {
   methods: {
     // 绘制图中标记点
     drawMarker () {
+      // 绘制图标
+      const Icon = new AMap.Icon({
+        size: new AMap.Size(23, 38),
+        image: require('@/assets/map/travel_mark.png'),
+        imageSize: new AMap.Size(23, 38)
+      })
       this.paths.forEach((item, index) => {
+        // 绘制标记气球
         const marker = new AMap.Marker({
           position: new AMap.LngLat(item[0], item[1]),
           map: this.$amap,
+          icon: Icon,
+          touchZoom: false
+        })
+        // 绘制气球上数字文字
+        const indexText = `<div style="color:#ffffff;width:22px;text-align:center;margin-top:4px;font-size:11px">${index + 1}</div>`
+        // eslint-disable-next-line no-new
+        new AMap.Marker({
+          position: new AMap.LngLat(item[0], item[1]),
+          map: this.$amap,
+          content: indexText,
           touchZoom: false
         })
         // 设置 marker 绑定的数据
         marker.setExtData(item)
         // 点击方法绑定
-        marker.on('click', this.markerClick)
+        AMap.event.addListener(marker, 'click', this.markerClick)
       })
     },
     markerClick (e) {
@@ -55,22 +72,19 @@ export default {
     }
   },
   watch: {
-    paths: {
-      handler (n, o) {
-        if (n) {
-          this.drawPath()
-        }
-      }
+    paths () {
+      this.drawPath()
+      this.drawMarker()
     }
   },
   props: {
     paths: Array
   },
-  mixins: [mapMixin],
   mounted () {
     this.drawPath()
     this.drawMarker()
-  }
+  },
+  mixins: [mapMixin]
 }
 </script>
 
