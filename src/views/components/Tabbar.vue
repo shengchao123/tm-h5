@@ -1,6 +1,7 @@
 <template>
   <van-tabbar v-model="active"
-              active-color="#30A3F8">
+              inactive-color="#999999"
+              active-color="#e32417">
     <van-tabbar-item v-for="(item,index) in tabbars"
                      :key="index"
                      :to="(item.path)">
@@ -21,20 +22,20 @@ export default {
         {
           path: 'original-travel',
           title: '初心之旅',
-          normal: require('@/assets/tabbar/home.png'),
-          active: require('@/assets/tabbar/home_l.png')
+          normal: require('@/assets/tabbar/original.png'),
+          active: require('@/assets/tabbar/original_l.png')
         },
         {
           path: 'party-league',
           title: '党建联盟',
-          normal: require('@/assets/tabbar/home.png'),
-          active: require('@/assets/tabbar/home_l.png')
+          normal: require('@/assets/tabbar/party.png'),
+          active: require('@/assets/tabbar/party_l.png')
         },
         {
           path: 'mine',
           title: '我的',
-          normal: require('@/assets/tabbar/home.png'),
-          active: require('@/assets/tabbar/home_l.png')
+          normal: require('@/assets/tabbar/mine.png'),
+          active: require('@/assets/tabbar/mine_l.png')
         }
       ])
     }

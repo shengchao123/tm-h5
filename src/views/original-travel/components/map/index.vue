@@ -38,8 +38,9 @@ export default {
       // 创建折线实例
       const polyline = new AMap.Polyline({
         path: path,
-        borderWeight: 2, // 线条宽度，默认为 1
-        strokeColor: 'red', // 线条颜色
+        showDir: true,
+        strokeWeight: 5,
+        strokeColor: '#FC5E51', // 线条颜色
         lineJoin: 'round', // 折线拐点连接处样式
         map: this.$amap
       })
