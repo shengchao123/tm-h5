@@ -1,6 +1,7 @@
 <template>
   <div class='home-wrap'>
-    <Map :paths="paths"></Map>
+    <Map :points="points"></Map>
+    <DragPopover bottom="62"></DragPopover>
     <Tabbar></Tabbar>
   </div>
 </template>
@@ -8,10 +9,29 @@
 <script>
 import Map from './components/map/index.vue'
 import Tabbar from '@/views/components/Tabbar'
+import DragPopover from '@/components/DragPopover'
 
 export default {
   name: 'index',
   methods: {
+
+    // 根据 orgId 获取路线
+    getJourneyLineListByOrgId () {
+      this.$api.getJourneyLineListByOrgId().then(res => {
+        if (res.isError) return
+        this.paths = res.content
+      })
+    },
+    // 根据路线 id 获取点位
+    getJourneyPointListByJourneyId (journeyLineId) {
+      const params = {
+        journeyLineId: journeyLineId
+      }
+      this.$api.getJourneyPointListByJourneyId(params).then(res => {
+        if (res.isError) return
+        this.points = res.content
+      })
+    },
     // 开始导航
     beginGuide () {
       switch (this.type) {
@@ -27,20 +47,68 @@ export default {
       }
     }
   },
+  created () {
+
+  },
   data () {
     return {
-      paths: [
-        [119.005056, 30.224302],
-        [119.165056, 30.124302],
-        [119.365056, 30.224302],
-        [119.505056, 30.204302],
-        [119.765056, 30.274302]
+      paths: [],
+      points: [
+        {
+          code: '',
+          journeyPointId: 0,
+          lat: 119.005056,
+          lng: 30.224302,
+          name: '第一个',
+          regionsCode: '',
+          regionsName: '',
+          type: '01',
+          typeName: '景区',
+          url: ''
+        },
+        {
+          code: '',
+          journeyPointId: 0,
+          lat: 119.165056,
+          lng: 30.124302,
+          name: '第2个',
+          regionsCode: '',
+          regionsName: '',
+          type: '',
+          typeName: '',
+          url: ''
+        },
+        {
+          code: '',
+          journeyPointId: 0,
+          lat: 119.365056,
+          lng: 30.224302,
+          name: '第3个',
+          regionsCode: '',
+          regionsName: '',
+          type: '',
+          typeName: '',
+          url: ''
+        },
+        {
+          code: '',
+          journeyPointId: 0,
+          lat: 119.765056,
+          lng: 30.274302,
+          name: '第4个',
+          regionsCode: '',
+          regionsName: '',
+          type: '',
+          typeName: '',
+          url: ''
+        }
       ]
     }
   },
   components: {
     Map,
-    Tabbar
+    Tabbar,
+    DragPopover
   },
   mounted () {
 

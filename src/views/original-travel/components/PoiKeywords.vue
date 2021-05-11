@@ -2,43 +2,55 @@
   <div class='poi-keywords-wrap'>
     <template v-for="(item, index) in keywords">
       <div :key="item.name"
+           @click="onSelectKeyword(item, index)"
            class="item column center-align"
+           :style="{color: selectedIndex === index ? '#F13042' : '#666666'}"
            :class="index !== 0 && 'tb'">
         <SvgIcon :icon="item.icon"
-                 class="ft20"></SvgIcon>
-        <div class="ft12 mt4">{{item.name}}</div>
+                 class="ft16"></SvgIcon>
+        <div class="ft10 mt4">{{item.name}}</div>
       </div>
     </template>
   </div>
 </template>
 
 <script>
+
 export default {
   name: 'PoiKeywords',
+  methods: {
+    onSelectKeyword (item, index) {
+      this.selectedIndex = index
+      this.$emit('changePois', item)
+    }
+  },
   data () {
     return {
-      keywords: [
+      selectedIndex: 0,
+      keywords: Object.freeze([
         {
-          icon: 'icon_fangkeshu',
+          icon: 'icon_dibiao',
+          type: 'system',
           name: '红色地标'
         },
         {
-          icon: 'icon_fangkeshu',
+          icon: 'icon_dangjianlianmeng_mian',
+          type: 'system',
           name: '党群服务'
         },
         {
-          icon: 'icon_fangkeshu',
+          icon: 'icon_tingchechang',
           name: '停车场'
         },
         {
-          icon: 'icon_fangkeshu',
+          icon: 'icon_gonggongcesuo',
           name: '公共厕所'
         },
         {
-          icon: 'icon_fangkeshu',
+          icon: 'icon_meishi',
           name: '餐饮美食'
         }
-      ]
+      ])
     }
   }
 }
@@ -52,7 +64,7 @@ export default {
   border-radius: 20px;
 
   .item {
-    padding: 4px 6px;
+    padding: 8px 4px;
   }
 }
 </style>

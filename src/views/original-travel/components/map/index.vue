@@ -19,10 +19,10 @@ export default {
         image: require('@/assets/map/travel_mark.png'),
         imageSize: new AMap.Size(23, 38)
       })
-      this.paths.forEach((item, index) => {
+      this.points.forEach((item, index) => {
         // 绘制标记气球
         const marker = new AMap.Marker({
-          position: new AMap.LngLat(item[0], item[1]),
+          position: new AMap.LngLat(item.lat, item.lng),
           map: this.$amap,
           icon: Icon,
           touchZoom: false
@@ -31,7 +31,7 @@ export default {
         const indexText = `<div style="color:#ffffff;width:22px;text-align:center;margin-top:4px;font-size:11px">${index + 1}</div>`
         // eslint-disable-next-line no-new
         new AMap.Marker({
-          position: new AMap.LngLat(item[0], item[1]),
+          position: new AMap.LngLat(item.lat, item.lng),
           map: this.$amap,
           content: indexText,
           touchZoom: false
@@ -39,9 +39,11 @@ export default {
         // 设置 marker 绑定的数据
         marker.setExtData(item)
         // 点击方法绑定
-        AMap.event.addListener(marker, 'click', this.markerClick)
+        marker.on('click', this.markerClick)
+        // AMap.event.addListener(marker, 'click', this.markerClick)
       })
     },
+
     markerClick (e) {
       const point = e.target.getExtData()
       sessionStorage.setItem('pointData', JSON.stringify(point))
@@ -51,7 +53,7 @@ export default {
     // 绘制折线图
     drawPath () {
       // 折线的节点坐标数组，每个元素为 AMap.LngLat 对象
-      const path = this.paths.map(item => new AMap.LngLat(item[0], item[1]))
+      const path = this.points.map(item => new AMap.LngLat(item.lat, item.lng))
       // 创建折线实例
       const polyline = new AMap.Polyline({
         path: path,
@@ -64,7 +66,6 @@ export default {
       // 将折线添加至地图实例
       this.$amap.add(polyline)
     }
-
   },
   data () {
     return {
@@ -72,13 +73,13 @@ export default {
     }
   },
   watch: {
-    paths () {
+    points () {
       this.drawPath()
       this.drawMarker()
     }
   },
   props: {
-    paths: Array
+    points: Array
   },
   mounted () {
     this.drawPath()
@@ -93,7 +94,7 @@ export default {
   position: relative;
   #map {
     width: 100vw;
-    height: 262px;
+    height: 600px;
   }
 }
 </style>
