@@ -3,7 +3,8 @@
     <div id="map"></div>
     <PoiKeywords class="poi-keywords"
                  @changePois="changePois"></PoiKeywords>
-    <DragPopover>
+    <DragPopover showLocation="true"
+                 @onLocation="onLocation">
       <div>
         <PointGuideItem v-for="(item, index) in pois"
                         @onGuide="showGuideActionSheet"
@@ -46,16 +47,23 @@ const location = new AMap.LngLat(point.lat, point.lng)
 export default {
   name: 'index',
   methods: {
-    onSelect (act, index) {
-      this.beginGuide(act)
+    // 点击重新定位按钮
+    onLocation () {
+      this.$amap.setCenter(new AMap.LngLat(center[0], center[1]))
     },
+    // 显示导航选择框
     showGuideActionSheet (item) {
       this.showGuide = true
       this.guidePoint = item
     },
+    // 选择地图导航回调
+    onSelect (act, index) {
+      this.beginGuide(act)
+    },
     // 开始导航
     beginGuide (act) {
       let _location = []
+      // 根据数据判断是系统位置，还是地图导航位置，取出经纬度
       const _guidePoint = this.guidePoint
       if (_guidePoint.lat) {
         const { lat, lng } = _guidePoint
@@ -78,6 +86,7 @@ export default {
       }
     },
 
+    // 绘制主要旅游点
     drawMainMarker () {
       this.$amap.clearMap()
       this.$amap.setCenter(new AMap.LngLat(center[0], center[1]))
