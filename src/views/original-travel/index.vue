@@ -31,21 +31,8 @@ export default {
         if (res.isError) return
         this.points = res.content
       })
-    },
-    // 开始导航
-    beginGuide () {
-      switch (this.type) {
-        case '百度地图':
-          window.location.href = `http://api.map.baidu.com/direction?origin=latlng:${this.curP[1]},${this.curP[0]}|name:我的位置&destination=${this.bdPosition[1]},${this.bdPosition[0]}&mode=driving&region=上海&output=html`
-          break
-        case '腾讯地图':
-          window.location.href = `https://apis.map.qq.com/uri/v1/routeplan?type=bus&to=终点&tocoord=${this.position[1]},${this.position[0]}&referer=PGCBZ-7XVC3-XKO36-3CEGN-B2L63-XYBHT`
-          break
-        case '高德地图':
-          window.location.href = `http://uri.amap.com/marker?position=${this.position[0]},${this.position[1]}&coordinate=gaode&callnative=1`
-          break
-      }
     }
+
   },
   created () {
 
@@ -61,7 +48,7 @@ export default {
           lng: 30.224302,
           name: '第一个',
           regionsCode: '',
-          regionsName: '',
+          regionsName: '临安区喜欢睡了看都就方老师',
           type: '01',
           typeName: '景区',
           url: ''

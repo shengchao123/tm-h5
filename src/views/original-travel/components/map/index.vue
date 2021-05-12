@@ -33,6 +33,7 @@ export default {
         new AMap.Marker({
           position: new AMap.LngLat(item.lat, item.lng),
           map: this.$amap,
+          animation: 'AMAP_ANIMATION_DROP',
           content: indexText,
           touchZoom: false
         })

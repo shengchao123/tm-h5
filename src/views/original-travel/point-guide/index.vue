@@ -3,7 +3,16 @@
     <div id="map"></div>
     <PoiKeywords class="poi-keywords"
                  @changePois="changePois"></PoiKeywords>
-    <DragPopover></DragPopover>
+    <DragPopover>
+      <div>
+        <PointGuideItem v-for="(item, index) in pois"
+                        @onGuide="beginGuide"
+                        :key="index"
+                        :info="item"
+                        :main="index === 0"></PointGuideItem>
+      </div>
+
+    </DragPopover>
   </div>
 </template>
 
@@ -13,6 +22,8 @@ import PoiKeywords from '@/views/original-travel/components/PoiKeywords'
 import AMap from 'AMap'
 import DragPopover from '@/components/DragPopover'
 import { subStringWithStrlen } from '@/utils/tool.js'
+import Vue from 'vue'
+import PointGuideItem from '@/views/original-travel/components/PointGuideItem'
 
 // 兴趣搜索点关键词
 let poiSearchType = ''
@@ -28,11 +39,27 @@ const location = new AMap.LngLat(point.lat, point.lng)
 export default {
   name: 'index',
   methods: {
-    onOpenGuide () {
-      console.log(111)
+
+    // 开始导航
+    beginGuide (marker) {
+      console.log(marker)
+      switch (this.type) {
+        case '百度地图':
+          window.location.href = `http://api.map.baidu.com/direction?origin=latlng:${this.curP[1]},${this.curP[0]}|name:我的位置&destination=${this.bdPosition[1]},${this.bdPosition[0]}&mode=driving&region=上海&output=html`
+          break
+        case '腾讯地图':
+          window.location.href = `https://apis.map.qq.com/uri/v1/routeplan?type=bus&to=终点&tocoord=${this.position[1]},${this.position[0]}&referer=PGCBZ-7XVC3-XKO36-3CEGN-B2L63-XYBHT`
+          break
+        case '高德地图':
+          window.location.href = `http://uri.amap.com/marker?position=${this.position[0]},${this.position[1]}&coordinate=gaode&callnative=1`
+          break
+      }
     },
+
     drawMainMarker () {
       this.$amap.clearMap()
+      this.$amap.setCenter(new AMap.LngLat(center[0], center[1]))
+
       // 绘制主要地标点
       const marker = this.getMarkder({ location: location, w: 38, h: 47 })
       marker.setExtData(point)
@@ -48,25 +75,26 @@ export default {
         return
       }
       poiSearchType = poi.name
-      this.$amap.setCenter(new AMap.LngLat(center[0], center[1]))
       this.getPoisWithLngLat()
     },
 
     // 根据选择点，搜索 poi 点
     getPoisWithLngLat () {
+      this.pois = [{ name: point.name, address: point.regionsName }]
       const that = this
       AMap.plugin('AMap.PlaceSearch', function () {
         var autoOptions = {
           city: '杭州市',
+          pageSize: 50,
           citylimit: true, // 是否强制限制在设置的城市内搜索
-          autoFitView: true, // 是否自动调整地图视野使绘制的 Marker点都处于视口的可见范围
-          type: poiSearchType
+          autoFitView: true // 是否自动调整地图视野使绘制的 Marker点都处于视口的可见范围
         }
         var placeSearch = new AMap.PlaceSearch(autoOptions)
-        placeSearch.searchNearBy('', location, 5000, function (status, result) {
+        placeSearch.searchNearBy(poiSearchType, location, 5000, function (status, result) {
           if (!result || !result.poiList) return
-          const pois = result.poiList.pois
-          pois.forEach(poi => {
+          const _pois = result.poiList.pois
+          that.pois = that.pois.concat(_pois)
+          _pois.forEach(poi => {
             const marker = that.getMarkder({ location: poi.location, w: 25, h: 31 })
             // 设置 marker 绑定的数据
             marker.setExtData(poi)
@@ -86,6 +114,7 @@ export default {
       return new AMap.Marker({
         position: location,
         map: this.$amap,
+        animation: 'AMAP_ANIMATION_DROP',
         offset: new AMap.Pixel(-w / 2, -h),
         icon: this.getMarkderIcon(w, h),
         touchZoom: false
@@ -111,41 +140,46 @@ export default {
 
       windowOffset.y -= 10 // 在 marker 基础上获取偏移量上调
       windowOffset.x = point.address ? 3 : 5 // 根据是否有地址，判断是系统的 poi，还是地图搜索出来的，图标大小不同
-      console.log(windowOffset)
 
       const title = subStringWithStrlen(point.name, 18)
       const address = point.address ? subStringWithStrlen(point.address, 18) : point.typeName
 
-      var content = [
-        "<div class='map-info-wrap'>",
-        '<div>',
-        `<div class='title'>${title}</div>`,
-        `<div class='address'>${address}</div>`,
-        '</div>',
-        '<div class="guide-btn" id="btn">到这里去</div>',
-        '</div>'
-      ]
-
+      var _this = this
+      var MyComponent = Vue.extend({
+        template: "<div class='map-info-wrap'>" +
+          '<div>' +
+          `<div class='title'>${title}</div>` +
+          `<div class='address'>${address}</div>` +
+          '</div>' +
+          '<div class="guide-btn center" v-on:click="onOpenGuide">' +
+          '<SvgIcon icon="icon_daohang" style="color:#518CFC "class="ft10 mr4"></SvgIcon>' +
+          '<span>到这里去</span></div>' +
+          '</div>',
+        methods: {
+          onOpenGuide () {
+            _this.beginGuide(point)
+          }
+        }
+      })
+      // 将新创建的子组件进行挂载
+      var component = new MyComponent().$mount()
+      // 将窗体内容添加到infoWindow中
       var infoWindow = new AMap.InfoWindow({
         isCustom: true, // 使用自定义窗体
-        content: content.join(''), // 传入 dom 对象，或者 html 字符串
+        content: component.$el, // 传入 dom 对象，或者 html 字符串
         offset: windowOffset
       })
+      // 打开窗体
       infoWindow.open(this.$amap, windowPosition)
-
-      // 添加点击事件
-      var btn = document.getElementById('btn')
-      console.log(btn)
-      // 第一种 通过点击事件
-      btn.onclick = this.onOpenGuide
     }
   },
   mounted () {
     this.drawMainMarker()
   },
-  components: { PoiKeywords, DragPopover },
+  components: { PoiKeywords, DragPopover, PointGuideItem },
   data () {
     return {
+      pois: [{ name: point.name, address: point.regionsName }],
       mapInitObj: Object.freeze({
         resizeEnable: true,
         zoom: 12, // 级别
