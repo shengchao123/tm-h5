@@ -26,8 +26,8 @@ export default {
       this.top = _clientY
     },
     getContentHeight () {
-      const _rects = this.$refs.wrap.getBoundingClientRect()
-      this.slotHeight = _rects.height - 15
+      const _rect = this.$refs.wrap.getBoundingClientRect()
+      this.slotHeight = _rect.height - 15
     }
   },
   props: {
@@ -56,7 +56,7 @@ export default {
   background: #ffffff;
   box-shadow: 0 -6px 17px 0 rgba(0, 0, 0, 0.1);
   border-radius: 15px 15px 0 0;
-  z-index: 9999;
+  z-index: 999;
   .drag_control {
     background: #eaeaea;
     border-radius: 1.5px;

@@ -6,13 +6,20 @@
     <DragPopover>
       <div>
         <PointGuideItem v-for="(item, index) in pois"
-                        @onGuide="beginGuide"
+                        @onGuide="showGuideActionSheet"
                         :key="index"
                         :info="item"
                         :main="index === 0"></PointGuideItem>
       </div>
-
     </DragPopover>
+
+    <van-action-sheet v-model="showGuide"
+                      @select="onSelect"
+                      :actions="actions"
+                      cancel-text="取消"
+                      close-on-click-action />
+    <!-- 开启底部安全区适配 -->
+    <van-number-keyboard safe-area-inset-bottom />
   </div>
 </template>
 
@@ -39,19 +46,34 @@ const location = new AMap.LngLat(point.lat, point.lng)
 export default {
   name: 'index',
   methods: {
-
+    onSelect (act, index) {
+      this.beginGuide(act)
+    },
+    showGuideActionSheet (item) {
+      this.showGuide = true
+      this.guidePoint = item
+    },
     // 开始导航
-    beginGuide (marker) {
-      console.log(marker)
-      switch (this.type) {
+    beginGuide (act) {
+      let _location = []
+      const _guidePoint = this.guidePoint
+      if (_guidePoint.lat) {
+        const { lat, lng } = _guidePoint
+        _location = [lat, lng]
+      } else {
+        const { lat, lng } = _guidePoint.location
+        _location = [lat, lng]
+      }
+
+      switch (act.name) {
         case '百度地图':
-          window.location.href = `http://api.map.baidu.com/direction?origin=latlng:${this.curP[1]},${this.curP[0]}|name:我的位置&destination=${this.bdPosition[1]},${this.bdPosition[0]}&mode=driving&region=上海&output=html`
+          window.location.href = `http://api.map.baidu.com/direction?origin=latlng:${point.lng},${point.lat}|name:${point.name}&destination=name:${_guidePoint.name}|latlng:${_guidePoint.lng},${_guidePoint.lat}&output=html&mode=walking&region=杭州市`
           break
         case '腾讯地图':
-          window.location.href = `https://apis.map.qq.com/uri/v1/routeplan?type=bus&to=终点&tocoord=${this.position[1]},${this.position[0]}&referer=PGCBZ-7XVC3-XKO36-3CEGN-B2L63-XYBHT`
+          window.location.href = `https://apis.map.qq.com/uri/v1/routeplan?type=walk&to=${_guidePoint.name}&tocoord=${_location.lng},${_location.lat}&policy=1&coord_type=1&referer=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77`
           break
         case '高德地图':
-          window.location.href = `http://uri.amap.com/marker?position=${this.position[0]},${this.position[1]}&coordinate=gaode&callnative=1`
+          window.location.href = `http://uri.amap.com/navigation?to=${_location.lng},${_location.lat},${_guidePoint.name}&mode=walk&policy=1&callnative=1`
           break
       }
     },
@@ -80,7 +102,7 @@ export default {
 
     // 根据选择点，搜索 poi 点
     getPoisWithLngLat () {
-      this.pois = [{ name: point.name, address: point.regionsName }]
+      this.pois = [{ address: point.regionsName, ...point }]
       const that = this
       AMap.plugin('AMap.PlaceSearch', function () {
         var autoOptions = {
@@ -133,16 +155,16 @@ export default {
     // 信息窗体
     showInfoWindow (e) {
       const marker = e.target
-      const point = marker.getExtData()
+      const _point = marker.getExtData()
 
       const windowPosition = { ...marker.getPosition() }
       const windowOffset = { ...marker.getOffset() }
 
       windowOffset.y -= 10 // 在 marker 基础上获取偏移量上调
-      windowOffset.x = point.address ? 3 : 5 // 根据是否有地址，判断是系统的 poi，还是地图搜索出来的，图标大小不同
+      windowOffset.x = _point.address ? 3 : 5 // 根据是否有地址，判断是系统的 poi，还是地图搜索出来的，图标大小不同
 
-      const title = subStringWithStrlen(point.name, 18)
-      const address = point.address ? subStringWithStrlen(point.address, 18) : point.typeName
+      const title = subStringWithStrlen(_point.name, 18)
+      const address = _point.address ? subStringWithStrlen(_point.address, 18) : _point.typeName
 
       var _this = this
       var MyComponent = Vue.extend({
@@ -157,7 +179,7 @@ export default {
           '</div>',
         methods: {
           onOpenGuide () {
-            _this.beginGuide(point)
+            _this.showGuideActionSheet(_point)
           }
         }
       })
@@ -179,7 +201,10 @@ export default {
   components: { PoiKeywords, DragPopover, PointGuideItem },
   data () {
     return {
-      pois: [{ name: point.name, address: point.regionsName }],
+      showGuide: false,
+      guidePoint: {},
+      actions: Object.freeze([{ name: '高德地图' }, { name: '腾讯地图' }]),
+      pois: [{ address: point.regionsName, ...point }],
       mapInitObj: Object.freeze({
         resizeEnable: true,
         zoom: 12, // 级别
