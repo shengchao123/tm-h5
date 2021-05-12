@@ -1,0 +1,68 @@
+<template>
+  <div class='introduction-wrap'>
+    <head-swiper></head-swiper>
+    <div class="title">
+      <div class="between-row">
+        <span class="ft20 bold flex1 color-333">新四军历史纪念馆</span>
+        <div class="ml12 center-align"
+             style="color: #F87F00"
+             @click="onPeriphery">
+          <svg-icon icon="icon_dingwei"
+                    class="ft14 mb2"></svg-icon>
+          <span class="ft12 ml4">周边</span>
+        </div>
+      </div>
+      <div class="between-row mt12">
+        <span class="ft14 color-999 flex1">临安区高虹镇龙上村龙上自然村72号</span>
+        <div class="ml12 center-align"
+             style="color: #0084F6"
+             @click="onNavigation">
+          <svg-icon icon="icon_ditu"
+                    class="ft14 mb2"></svg-icon>
+          <span class="ft12 ml4">导航</span>
+        </div>
+      </div>
+    </div>
+    <div style="margin: 0 15px">
+      <audio-module></audio-module>
+    </div>
+    <div class="color-333"
+         style="padding: 15px">
+      <p class="medium ft16 mb12">简介</p>
+      <div class="ft14"
+           style="line-height: 21px">
+        1945年3月起，新四军苏浙军区第一支队刘别生部队与国民党108师在天目山交战获取胜利，新四军在此休整近2月，村里大多数人家都驻有新四军，四军在此休整近2月，村里大多数人家都驻有新四军，新四军四军在此休整近2月，村里大多数人家都驻有新四军，新四军四军在此休整近2月，村里大多数人家都驻有新四军，新四军四军在此休整近2月，村里大多数人家都驻有新四军，新四军四军在此休整近2月，村里大多数人家都驻有新四军，新四军新四军在村里加工粮食、被服，救治伤员。新四军驻军旧址是现存最完好的一幢民居。此外，村里还存有新四军48团（“老虎团”）团长刘别生和爱人苏迪1945年3月—5月在驻地修整时居住的旧址遗迹。
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+import AudioModule from './components/AudioModule.vue'
+import HeadSwiper from './components/HeadSwiper.vue'
+
+export default {
+  name: 'introduction',
+  methods: {
+    onPeriphery () {
+
+    },
+    onNavigation () {
+
+    }
+  },
+  data () {
+    return {}
+  },
+  components: { HeadSwiper, AudioModule }
+}
+</script>
+<style lang='scss' scoped>
+.introduction-wrap {
+  .title {
+    padding: 15px;
+  }
+  .mb2 {
+    margin-bottom: 2px;
+  }
+}
+</style>

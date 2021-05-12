@@ -13,5 +13,10 @@ export default [
     path: '/point-guide',
     name: 'PointGuide',
     component: () => import('@/views/original-travel/point-guide/index.vue')
+  },
+  {
+    path: '/introduction',
+    name: 'Introduction',
+    component: () => import('@/views/original-travel/introduction/index.vue')
   }
 ]

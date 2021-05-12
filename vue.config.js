@@ -61,7 +61,8 @@ module.exports = {
       'vue-router': 'VueRouter',
       moment: 'moment',
       axios: 'axios',
-      AMap: 'AMap'
+      AMap: 'AMap',
+      Swiper: 'Swiper'
     }
   },
 
