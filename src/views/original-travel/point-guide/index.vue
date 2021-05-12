@@ -33,23 +33,21 @@ import { subStringWithStrlen } from '@/utils/tool.js'
 import Vue from 'vue'
 import PointGuideItem from '@/views/original-travel/components/PointGuideItem'
 
-// 兴趣搜索点关键词
-let poiSearchType = ''
 // 地图中心点上下纬度偏移量
 const centerLngOffset = 0.04
 // 主要地标点
-const point = JSON.parse(sessionStorage.getItem('pointData'))
+let scenicSpot = null
 // 地图中心点
-const center = [point.lat, point.lng - centerLngOffset]
+let mapCenter = null
 // 经纬度转换地图需要对象
-const location = new AMap.LngLat(point.lat, point.lng)
+let mapLocation = null
 
 export default {
   name: 'index',
   methods: {
     // 点击重新定位按钮
     onLocation () {
-      this.$amap.setCenter(new AMap.LngLat(center[0], center[1]))
+      this.$amap.setCenter(new AMap.LngLat(mapCenter[0], mapCenter[1]))
     },
     // 显示导航选择框
     showGuideActionSheet (item) {
@@ -75,7 +73,7 @@ export default {
 
       switch (act.name) {
         case '百度地图':
-          window.location.href = `http://api.map.baidu.com/direction?origin=latlng:${point.lng},${point.lat}|name:${point.name}&destination=name:${_guidePoint.name}|latlng:${_guidePoint.lng},${_guidePoint.lat}&output=html&mode=walking&region=杭州市`
+          window.location.href = `http://api.map.baidu.com/direction?origin=latlng:${scenicSpot.lng},${scenicSpot.lat}|name:${scenicSpot.name}&destination=name:${_guidePoint.name}|latlng:${_guidePoint.lng},${_guidePoint.lat}&output=html&mode=walking&region=杭州市`
           break
         case '腾讯地图':
           window.location.href = `https://apis.map.qq.com/uri/v1/routeplan?type=walk&to=${_guidePoint.name}&tocoord=${_location.lng},${_location.lat}&policy=1&coord_type=1&referer=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77`
@@ -89,11 +87,11 @@ export default {
     // 绘制主要旅游点
     drawMainMarker () {
       this.$amap.clearMap()
-      this.$amap.setCenter(new AMap.LngLat(center[0], center[1]))
+      this.$amap.setCenter(new AMap.LngLat(mapCenter[0], mapCenter[1]))
 
       // 绘制主要地标点
-      const marker = this.getMarkder({ location: location, w: 38, h: 47 })
-      marker.setExtData(point)
+      const marker = this.getMarkder({ location: mapLocation, w: 38, h: 47 })
+      marker.setExtData(scenicSpot)
       // 点击方法绑定
       marker.on('click', this.markerClick)
     },
@@ -105,13 +103,12 @@ export default {
       if (poi.type === 'system') {
         return
       }
-      poiSearchType = poi.name
-      this.getPoisWithLngLat()
+      this.getPoisWithLngLat(poi.name)
     },
 
     // 根据选择点，搜索 poi 点
-    getPoisWithLngLat () {
-      this.pois = [{ address: point.regionsName, ...point }]
+    getPoisWithLngLat (poiSearchType) {
+      this.pois = [{ address: scenicSpot.regionsName, ...scenicSpot }]
       const that = this
       AMap.plugin('AMap.PlaceSearch', function () {
         var autoOptions = {
@@ -121,7 +118,7 @@ export default {
           autoFitView: true // 是否自动调整地图视野使绘制的 Marker点都处于视口的可见范围
         }
         var placeSearch = new AMap.PlaceSearch(autoOptions)
-        placeSearch.searchNearBy(poiSearchType, location, 5000, function (status, result) {
+        placeSearch.searchNearBy(poiSearchType, mapLocation, 5000, function (status, result) {
           if (!result || !result.poiList) return
           const _pois = result.poiList.pois
           that.pois = that.pois.concat(_pois)
@@ -204,6 +201,15 @@ export default {
       infoWindow.open(this.$amap, windowPosition)
     }
   },
+  created () {
+    // 主要地标点
+    scenicSpot = JSON.parse(sessionStorage.getItem('pointData'))
+    // 地图中心点
+    mapCenter = [scenicSpot.lat, scenicSpot.lng - centerLngOffset]
+    // 经纬度转换地图需要对象
+    mapLocation = new AMap.LngLat(scenicSpot.lat, scenicSpot.lng)
+    this.pois = [{ address: scenicSpot.regionsName, ...scenicSpot }]
+  },
   mounted () {
     this.drawMainMarker()
   },
@@ -213,11 +219,11 @@ export default {
       showGuide: false,
       guidePoint: {},
       actions: Object.freeze([{ name: '高德地图' }, { name: '腾讯地图' }]),
-      pois: [{ address: point.regionsName, ...point }],
+      pois: [],
       mapInitObj: Object.freeze({
         resizeEnable: true,
         zoom: 12, // 级别
-        center: center
+        center: mapCenter
       })
     }
   },

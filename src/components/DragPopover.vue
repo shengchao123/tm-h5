@@ -3,7 +3,7 @@
        ref="wrap"
        :style="{top: top + 'px', bottom: bottom + 'px'}">
     <div class="relative">
-      <div class="location center"
+      <div class="location center color-333 ft24"
            @click="onLocation"
            v-if="showLocation">
         <SvgIcon icon='icon_suoding'></SvgIcon>
@@ -75,7 +75,7 @@ export default {
     position: absolute;
     top: -60px;
     right: 5px;
-    border-radius: 5px;
+    border-radius: 10px;
     height: 44px;
     width: 44px;
     background: #ffffff;

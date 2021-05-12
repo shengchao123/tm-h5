@@ -30,12 +30,12 @@ export default {
       keywords: Object.freeze([
         {
           icon: 'icon_dibiao',
-          type: 'system',
+          type: '01',
           name: '红色地标'
         },
         {
           icon: 'icon_dangjianlianmeng_mian',
-          type: 'system',
+          type: '02',
           name: '党群服务'
         },
         {
