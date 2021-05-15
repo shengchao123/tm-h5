@@ -12,7 +12,9 @@
                   class="ft20 ml16"
                   style="color:  #C4C4C4"></svg-icon>
       </div>
-      <div style="width: 689rpx; height: 300rpx; background: red">地图组件</div>
+
+      <Map :points="points"></Map>
+
       <div class="pt20 pb20 ft26 color-666">石门老街 - 新四军历史纪念馆 - 攀岩小镇 - 党史学习体验</div>
       <div class="tb pt30 pb30 center-align">
         <div class="ft30 mr24">预估时长</div>
@@ -24,15 +26,66 @@
   </div>
 </template>
 <script>
+import Map from '@/pages/home/stroke-order/components/Map'
 export default {
   methods: {
     onShowRouteSelect () {
 
     }
   },
+  components: { Map },
   data () {
     return {
-
+      points: [
+        {
+          code: '',
+          journeyPointId: 0,
+          lat: 30.224302,
+          lng: 119.005056,
+          name: '第一个',
+          regionsCode: '',
+          regionsName: '临安区喜欢睡了看都就方老师',
+          type: '01',
+          typeName: '景区',
+          url: 'http://downsc.chinaz.net/Files/DownLoad/sound1/201906/11582.mp3'
+        },
+        {
+          code: '',
+          journeyPointId: 0,
+          lat: 30.124302,
+          lng: 119.165056,
+          name: '第2个',
+          regionsCode: '',
+          regionsName: '',
+          type: '',
+          typeName: '',
+          url: 'http://downsc.chinaz.net/Files/DownLoad/sound1/201906/11582.mp3'
+        },
+        {
+          code: '',
+          journeyPointId: 0,
+          lat: 30.224302,
+          lng: 119.365056,
+          name: '第3个',
+          regionsCode: '',
+          regionsName: '',
+          type: '',
+          typeName: '',
+          url: 'http://downsc.chinaz.net/Files/DownLoad/sound1/201906/11582.mp3'
+        },
+        {
+          code: '',
+          journeyPointId: 0,
+          lat: 30.274302,
+          lng: 119.765056,
+          name: '第4个',
+          regionsCode: '',
+          regionsName: '',
+          type: '',
+          typeName: '',
+          url: 'http://downsc.chinaz.net/Files/DownLoad/sound1/201906/11582.mp3'
+        }
+      ]
     }
   }
 }

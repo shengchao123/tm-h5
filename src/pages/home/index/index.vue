@@ -15,14 +15,16 @@
 </template>
 
 <script>
-import Map from './components/map/index.vue'
+import Map from './components/Map.vue'
 import DragPopover from '@/components/DragPopover'
 import PathsList from './components/PathsList'
 import ScenicSpot from './components/ScenicSpot'
 export default {
   name: 'index',
   methods: {
-    onCreateTravel () { },
+    onCreateTravel () {
+      uni.navigateTo({ url: '/pages/home/stroke-order/index' })
+    },
     // 根据路线 id 获取点位
     getJourneyPointListByJourneyId (journeyLineId) {
       const params = {
@@ -86,7 +88,8 @@ export default {
           typeName: '',
           url: 'http://downsc.chinaz.net/Files/DownLoad/sound1/201906/11582.mp3'
         }
-      ]
+      ],
+
     }
   },
   components: {
