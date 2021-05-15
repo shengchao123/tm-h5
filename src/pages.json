@@ -22,6 +22,12 @@
 			}
 		},
 		{
+			"path": "pages/home/stroke-order/CustomPath",
+			"style": {
+				"navigationBarTitleText": "自定义路线"
+			}
+		},
+		{
 			"path": "pages/party/index/index",
 			"style": {
 				"navigationBarTitleText": "党建联盟"
