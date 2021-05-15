@@ -18,7 +18,7 @@
 		{
 			"path": "pages/home/stroke-order/index",
 			"style": {
-				"navigationBarTitleText": "行程单"
+				"navigationBarTitleText": "创建行程单"
 			}
 		},
 		{
