@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { calcPxFit, calcPx2Vh } from '@u/tools'
+import { calcPx2Vh } from '@u/tools'
 const minTop = 10
 
 export default {

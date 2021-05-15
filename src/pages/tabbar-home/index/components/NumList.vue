@@ -3,7 +3,7 @@
     <div class="flex1 center-align">
       <div class="column center-align">
         <div class="line"></div>
-        <div class="circle"></div>
+        <div class="circle center ft22">{{config.index}}</div>
         <div class="line"></div>
       </div>
 
@@ -11,29 +11,29 @@
     </div>
 
     <div class="center-align">
-      <div class="btn center ml8"
+      <div class="btn center ml16"
            :style="{borderColor: config.item.isPlayed ? '#FF9204' : '#dcdcdc'}"
-           @click="onPlayer(config.item, index)">
+           @click="onPlayer">
         <SvgIcon :icon="config.item.isPlayed ? 'icon_zanting': 'icon_bofang'"
                  :style="{color: '#FF9204'}"
                  class="icon"></SvgIcon>
-        <span class="ml4 color-666">语音</span>
+        <span class="ml8 color-666">语音</span>
       </div>
 
-      <div class="btn center ml8"
+      <div class="btn center ml16"
            @click="onGuideVisit">
         <SvgIcon icon="icon_daolan"
                  style="color: #4CBF00"
                  class="icon"></SvgIcon>
-        <span class="ml4 color-666">导览</span>
+        <span class="ml8 color-666">导览</span>
       </div>
 
-      <div class="btn center ml8"
+      <div class="btn center ml16"
            @click="onGuide">
         <SvgIcon icon="icon_daohang"
                  style="color: #518CFC "
                  class="icon"></SvgIcon>
-        <span class="ml4 color-666">导航</span>
+        <span class="ml8 color-666">导航</span>
       </div>
     </div>
 
@@ -44,26 +44,8 @@
 export default {
   name: 'NumList',
   methods: {
-    onPlayer (item, index) {
-      const { isPlayed, mp3 } = item
-      this.pagePoints.forEach(point => {
-        point.isPlayed = false
-        if (point.mp3) point.mp3.pause()
-        return point
-      })
-      if (isPlayed && mp3) {
-        item.mp3.pause()
-        item.isPlayed = false
-      } else {
-        const mp3 = new Audio(item.url)
-        mp3.play() // 播放 mp3这个音频对象
-        item.isPlayed = true
-        item.mp3 = mp3
-      }
-
-      const _points = [...this.pagePoints]
-      _points[index] = item
-      this.pagePoints = _points
+    onPlayer () {
+      this.$emit('onPlayer', this.config)
     },
     onGuideVisit () {
 
@@ -89,7 +71,7 @@ export default {
   .line {
     border-left: 1px solid #ffd53d;
     width: 1px;
-    height: 40px;
+    height: 40rpx;
   }
   .circle {
     background: #feffff;
@@ -106,7 +88,7 @@ export default {
     height: 56rpx;
     font-size: 26rpx;
     .icon {
-      font-size: 16rpx;
+      font-size: 18rpx;
     }
   }
 }

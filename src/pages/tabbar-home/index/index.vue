@@ -5,7 +5,7 @@
       <div class="box relative">
         <PathsList @onSelectPath="getJourneyPointListByJourneyId"></PathsList>
         <ScenicSpot :points="points"></ScenicSpot>
-        <div class="center pb32 pt32 create-btn-wrap">
+        <div class="center pb32 pt16 create-btn-wrap">
           <div class="create-btn center bold"
                @click="onCreateTravel">创建我的行程</div>
         </div>
@@ -114,7 +114,7 @@ export default {
         height: 80rpx;
         border-radius: 40rpx;
         border: 1px solid #e32417;
-        font-size: 38rpx;
+        font-size: 32rpx;
         color: #e32417;
       }
     }
