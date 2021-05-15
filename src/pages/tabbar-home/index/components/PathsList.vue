@@ -1,15 +1,15 @@
 <template>
   <div class='paths-list-wrap'>
     <div class="title ft17 bold">路线推荐</div>
-    <div class="path-container mt16">
+    <div class="path-container mt32">
       <div v-for="(item, index) in paths"
            @click="onSelectPath(item, index)"
            :ref="'item' + index"
-           class="path-item mr8"
+           class="path-item mr32"
            :class="currentIndex === index ? 'item-active' : 'item-normal'"
            :key="index">
-        <div class="bold ft16 tc mt8">{{item.name}}</div>
-        <div class="ft12 mt8 tc">{{item.scenicSpotQuantity}}个红色地标 {{item.playTimeName}}天</div>
+        <div class="bold ft32 tc mt16">{{item.name}}</div>
+        <div class="ft22 mt8 tc">{{item.scenicSpotQuantity}}个红色地标 {{item.playTimeName}}天</div>
       </div>
     </div>
   </div>
@@ -79,7 +79,7 @@ export default {
 
 <style lang='scss' scoped>
 .paths-list-wrap {
-  padding: 8px 16px 0 16px;
+  padding: 16rpx 32rpx 0 32rpx;
   overflow-x: hidden;
   .path-container {
     overflow: scroll;
@@ -102,8 +102,8 @@ export default {
 
   .path-item {
     border-radius: 8rpx;
-    height: 60rpx;
-    width: 136rpx;
+    height: 124rpx;
+    width: 272rpx;
     display: inline-block;
   }
 }

@@ -20,18 +20,5 @@ module.exports = {
       moment: 'moment',
       AMap: 'AMap'
     }
-  },
-
-  css: {
-    loaderOptions: {
-      sass: {
-        prependData: `
-          @import "@/styles/atom.scss";
-          @import "@/styles/flex.scss";
-          @import "@/styles/global.scss";
-          @import "@/styles/init.scss";
-        `
-      }
-    }
   }
 }

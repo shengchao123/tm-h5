@@ -1,6 +1,8 @@
 <template>
-  <div class='scenic-spot-wrap pl12 mt16'
-       :style="{height: comHeight + 'px'}">
+  <div class='scenic-spot-wrap pl12 mt16 flex1'>
+
+    <u-steps :list="numList"
+             :current="1"></u-steps>
 
     <!-- <div slot="finish-icon"
          class="finsih-icon bold center">{{index}}</div>
@@ -70,7 +72,6 @@ export default {
   },
   data () {
     return {
-      comHeight: 200,
       pagePoints: []
     }
   },
@@ -94,21 +95,6 @@ export default {
 <style lang='scss' scoped>
 .scenic-spot-wrap {
   overflow: scroll;
-  /deep/.van-step--vertical {
-    padding: 16px 16px 0 8px;
-  }
-
-  /deep/ .van-step--vertical .van-step__circle-container {
-    top: 31px;
-  }
-  /deep/ .van-step--vertical .van-step__line {
-    top: 31px;
-  }
-
-  /deep/ .van-step--vertical:not(:last-child)::after {
-    border: none;
-  }
-
   .finsih-icon {
     background: #feffff;
     border: 1px solid #e1b406;

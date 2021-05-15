@@ -1,25 +1,26 @@
 <template>
   <div class='drag-popover-wrap'
        ref="wrap"
-       :style="{top: top + 'px', bottom: bottom + 'px'}">
-    <div class="relative">
+       :style="{top}">
+    <div class="relative column between-row"
+         style="height:100%">
       <div class="location center color-333 ft24"
            @click="onLocation"
            v-if="showLocation">
         <SvgIcon icon='icon_suoding'></SvgIcon>
       </div>
-      <div class="drag_control"
-           v-pressMove="{methods: pressMove }"></div>
-      <div :style="{ height: '100%', 'overflow-y': 'scroll'}">
-        <slot class="slot"></slot>
+      <div @touchmove.prevent="move"
+           class="drag_control_wrap center">
+        <div class="drag_control"></div>
       </div>
+      <slot class="slot"></slot>
     </div>
   </div>
 </template>
 
 <script>
-
-const minTop = 100
+import { calcPxFit, calcPx2Vh } from '@u/tools'
+const minTop = 10
 
 export default {
   name: 'DragPopover',
@@ -27,30 +28,25 @@ export default {
     onLocation () {
       this.$emit('onLocation')
     },
-    pressMove (e) {
-      const _touch = e.changedTouches[0]
-      const _clientY = _touch.clientY
-      if (_clientY <= minTop || _clientY >= +this.maxTop) return
+    move (e) {
+      const _touch = e.touches[0]
+      const _clientY = calcPx2Vh(_touch.clientY)
+      if (_clientY <= minTop || _clientY >= + this.maxTop) return
       this.getContentHeight()
-      this.top = _clientY
+      this.top = _clientY + 'vh'
     },
     getContentHeight () {
       const _rect = this.$refs.wrap.getBoundingClientRect()
-      this.slotHeight = _rect.height - 15
     }
   },
   props: {
-    bottom: {
-      type: [String, Number],
-      default: 0
-    },
     showLocation: {
       type: [String, Boolean],
       default: false
     },
     maxTop: {
       type: [Number, String],
-      default: 600
+      default: 50
     }
   },
   mounted () {
@@ -59,7 +55,7 @@ export default {
   data () {
     return {
       slotHeight: 0,
-      top: 400
+      top: '50vh'
     }
   }
 }
@@ -70,30 +66,34 @@ export default {
   position: absolute;
   left: 0;
   right: 0;
+  bottom: 0;
   background: #ffffff;
-  box-shadow: 0 -6px 17px 0 rgba(0, 0, 0, 0.1);
-  border-radius: 15px 15px 0 0;
-  z-index: 999;
+  box-shadow: 0 -6rpx 17rpx 0 rgba(0, 0, 0, 0.1);
+  border-radius: 30rpx 30rpx 0 0;
+  z-index: 99;
   .location {
     position: absolute;
-    top: -60px;
-    right: 5px;
-    border-radius: 10px;
-    height: 44px;
-    width: 44px;
+    top: -120rpx;
+    right: 10rpx;
+    border-radius: 20rpx;
+    height: 88rpx;
+    width: 88rpx;
     background: #ffffff;
-    box-shadow: 0 -6px 17px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 -12rpx 34rpx 0 rgba(0, 0, 0, 0.1);
   }
-  .drag_control {
-    background: #eaeaea;
-    border-radius: 1.5px;
-    height: 3px;
-    width: 24px;
-    margin: 6px auto 0;
+  .drag_control_wrap {
+    height: 38rpx;
+    .drag_control {
+      background: #eaeaea;
+      border-radius: 3rpx;
+      height: 6rpx;
+      width: 48rpx;
+    }
   }
+
   .container {
     position: absolute;
-    top: 20px;
+    top: 40rpx;
   }
 }
 </style>

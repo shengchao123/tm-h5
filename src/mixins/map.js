@@ -6,7 +6,7 @@ const map = {
       mapInitObj: Object.freeze({
         resizeEnable: true,
         zoom: 9, // 级别
-        center: [119.365056, 29.824302]
+        center: [119.365056, 30.034302]
       })
     }
   },

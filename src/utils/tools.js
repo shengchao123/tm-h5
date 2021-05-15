@@ -1,6 +1,15 @@
 import { fileHost, imgHost } from '@/api/urls'
 
 
+export const calcPxFit = function (num) {
+  return num * (750 / uni.getSystemInfoSync().screenHeight)
+}
+
+export const calcPx2Vh = function (num) {
+  return num / uni.getSystemInfoSync().screenHeight * 100
+}
+
+
 export const getFullUrl = function (url) {
   /* #ifdef H5 */
   const host = '/api'

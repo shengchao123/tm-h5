@@ -1,13 +1,15 @@
 <template>
   <div class='tabbar-home-wrap'>
     <Map :points="points"></Map>
-    <DragPopover bottom="62"
-                 minTop="300">
-      <PathsList @onSelectPath="getJourneyPointListByJourneyId"></PathsList>
-      <ScenicSpot :points="points"></ScenicSpot>
-      <div class="center">
-        <div class="create-btn center bold"
-             @click="onCreateTravel">创建我的行程</div>
+    <DragPopover>
+      <div class="column between-row "
+           style="height:100%">
+        <PathsList @onSelectPath="getJourneyPointListByJourneyId"></PathsList>
+        <ScenicSpot :points="points"></ScenicSpot>
+        <div class="center pb16 pt16">
+          <div class="create-btn center bold"
+               @click="onCreateTravel">创建我的行程</div>
+        </div>
       </div>
     </DragPopover>
   </div>
@@ -100,12 +102,12 @@ export default {
 <style lang='scss' scoped>
 .tabbar-home-wrap {
   .create-btn {
-    width: 240rpx;
-    height: 40rpx;
-    border-radius: 20rpx;
+    width: 480rpx;
+    height: 80rpx;
+    border-radius: 40rpx;
     background: #ffffff;
     border: 1px solid #e32417;
-    font-size: 16rpx;
+    font-size: 38rpx;
     color: #e32417;
   }
 }

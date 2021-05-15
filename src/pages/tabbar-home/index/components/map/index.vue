@@ -68,11 +68,6 @@ export default {
       this.$amap.add(polyline)
     }
   },
-  data () {
-    return {
-
-    }
-  },
   watch: {
     points () {
       this.drawPath()
@@ -83,7 +78,6 @@ export default {
     points: Array
   },
   mounted () {
-    console.log(this.$amap)
     this.drawPath()
     this.drawMarker()
   },
@@ -96,7 +90,7 @@ export default {
   position: relative;
   #map {
     width: 100vw;
-    height: 600px;
+    height: 60vh;
   }
 }
 </style>
