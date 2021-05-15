@@ -7,6 +7,12 @@
 			}
 		},
 		{
+			"path": "pages/tabbar-home/introduction/index",
+			"style": {
+				"navigationBarTitleText": "地标简介"
+			}
+		},
+		{
 			"path": "pages/tabbar-party/index/index",
 			"style": {
 				"navigationBarTitleText": "党建联盟"
