@@ -9,6 +9,7 @@ function resolve (dir) {
 const name = defaultSettings.title // page title
 
 module.exports = {
+  runtimeCompiler: true,
   // 在开发环境下，如果想把开发服务器架设在根路径，设置一个条件的值
   publicPath: './',
   // 打包输入的路径

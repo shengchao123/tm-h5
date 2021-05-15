@@ -1,26 +1,48 @@
 <template>
   <div class='drag-popover-wrap'
-       :style="style">
+       ref="wrap"
+       :style="{top: top + 'px', bottom: bottom + 'px'}">
     <div class="drag_control"
          v-pressMove="{methods: pressMove }"></div>
-    <slot></slot>
+    <div :style="{ height: slotHeight + 'px', 'overflow-y': 'scroll'}">
+      <slot class="slot"></slot>
+    </div>
   </div>
 </template>
 
 <script>
+
+const minTop = 100
+const maxTop = 600
+
 export default {
   name: 'DragPopover',
   methods: {
     pressMove (e) {
-      const touch = e.changedTouches[0]
-      const clientY = touch.clientY
-      if (clientY <= 300 || clientY >= 600) return
-      this.style = `top:${clientY}px`
+      const _touch = e.changedTouches[0]
+      const _clientY = _touch.clientY
+      if (_clientY <= minTop || _clientY >= maxTop) return
+      this.getContentHeight()
+      this.top = _clientY
+    },
+    getContentHeight () {
+      const _rects = this.$refs.wrap.getBoundingClientRect()
+      this.slotHeight = _rects.height - 15
     }
+  },
+  props: {
+    bottom: {
+      type: [String, Number],
+      default: 0
+    }
+  },
+  mounted () {
+    this.getContentHeight()
   },
   data () {
     return {
-      style: 'top:400px'
+      slotHeight: 0,
+      top: 400
     }
   }
 }
@@ -29,16 +51,22 @@ export default {
 <style lang='scss' scoped>
 .drag-popover-wrap {
   position: absolute;
-  bottom: 0;
   left: 0;
   right: 0;
-  background: rebeccapurple;
+  background: #ffffff;
+  box-shadow: 0 -6px 17px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 15px 15px 0 0;
   z-index: 9999;
   .drag_control {
-    background: #666666;
-    height: 10px;
-    width: 100px;
-    margin: 10px auto 0;
+    background: #eaeaea;
+    border-radius: 1.5px;
+    height: 3px;
+    width: 24px;
+    margin: 6px auto 0;
+  }
+  .container {
+    position: absolute;
+    top: 20px;
   }
 }
 </style>
