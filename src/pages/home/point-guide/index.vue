@@ -4,7 +4,7 @@
     <PoiKeywords class="poi-keywords"
                  @changePois="changePois"></PoiKeywords>
     <DragPopover showLocation="true"
-                 max-top="81"
+                 max-top="79.3"
                  @onLocation="onLocation">
       <div class="content-box">
         <PointGuideItem v-for="(item, index) in pois"
@@ -33,7 +33,7 @@ import PointGuideItem from './components/PointGuideItem'
 import { getAMapLngLat, getLngLat, beginGuide } from '@/utils/map.js'
 
 // 地图中心点上下纬度偏移量
-const centerLngOffset = 0
+const centerLngOffset = 0.04
 // 主要地标点
 let scenicSpot = null
 
@@ -109,6 +109,7 @@ export default {
     },
     // 点击显示信息框
     markerClick (e) {
+      console.log(e)
       const _point = e.target.getExtData()
       this.pois.forEach((item, index) => {
         if (item.name === _point.name) this.currentIndex = index
@@ -287,18 +288,20 @@ export default {
 
 <style lang='scss' scoped>
 .point-guide-wrap {
-  height: 100vh;
-
   #map {
     width: 100vw;
-    height: 88vh;
+    height: 93vh;
   }
 
   .poi-keywords {
     position: absolute;
-    z-index: 999;
+    z-index: 98;
     left: 12px;
     top: 12px;
+  }
+  .content-box {
+    height: 100%;
+    overflow: scroll;
   }
 }
 </style>

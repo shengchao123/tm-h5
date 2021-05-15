@@ -1,11 +1,11 @@
 <template>
   <div class='point-guide-item-wrap'>
     <div class="bb center-align between-row"
-         style="height: 76px;">
+         style="height: 148rpx;">
       <div class="flex1"
            @click="onPoi">
-        <div :class="main ? 'bold ft30' : 'ft26'">{{info.item.name}}</div>
-        <div class="ft24 color-666"
+        <div :class="main ? 'bold ft36' : 'ft30'">{{info.item.name}}</div>
+        <div class="ft26 color-666"
              :class="info.item.address && 'mt8'">{{info.item.address}}</div>
       </div>
 
@@ -13,7 +13,7 @@
            @click="onGuide">
         <SvgIcon icon="icon_daohang"
                  style="color:#518CFC "
-                 class="ft20"></SvgIcon>
+                 class="ft18"></SvgIcon>
         <span class="ft26 ml8 color-666">导航</span>
       </div>
     </div>
