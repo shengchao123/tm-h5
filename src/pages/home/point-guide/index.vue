@@ -14,14 +14,9 @@
                         :main="index === currentIndex"></PointGuideItem>
       </div>
     </DragPopover>
-
-    <van-action-sheet v-model="showGuide"
-                      @select="onSelectGuide"
-                      :actions="actions"
-                      cancel-text="取消"
-                      close-on-click-action />
-    <!-- 开启底部安全区适配 -->
-    <van-number-keyboard safe-area-inset-bottom />
+    <u-action-sheet :list="actions"
+                    @click="onSelectGuide"
+                    v-model="showGuide"></u-action-sheet>
   </div>
 </template>
 
@@ -227,7 +222,7 @@ export default {
       currentIndex: 0,
       showGuide: false,
       guidePoint: {},
-      actions: Object.freeze([{ name: '高德地图' }, { name: '腾讯地图' }]),
+      actions: Object.freeze([{ text: '高德地图' }, { text: '腾讯地图' }]),
       pois: [],
       mapInitObj: Object.freeze({
         resizeEnable: true,
