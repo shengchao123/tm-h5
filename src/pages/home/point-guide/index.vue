@@ -4,6 +4,7 @@
     <PoiKeywords class="poi-keywords"
                  @changePois="changePois"></PoiKeywords>
     <DragPopover showLocation="true"
+                 max-top="81"
                  @onLocation="onLocation">
       <div class="content-box">
         <PointGuideItem v-for="(item, index) in pois"
@@ -32,7 +33,7 @@ import PointGuideItem from './components/PointGuideItem'
 import { getAMapLngLat, getLngLat, beginGuide } from '@/utils/map.js'
 
 // 地图中心点上下纬度偏移量
-const centerLngOffset = 0.04
+const centerLngOffset = 0
 // 主要地标点
 let scenicSpot = null
 
@@ -238,46 +239,46 @@ export default {
 <style lang="scss">
 .map-info-wrap {
   position: relative;
-  padding: 12px;
+  padding: 24rpx;
   background: #fff;
-  box-shadow: 0px 10px 24px 0px rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
+  box-shadow: 0px 10rpx 24rpx 0px rgba(0, 0, 0, 0.1);
+  border-radius: 8rpx;
   display: flex;
   flex-direction: row;
   .title {
     font-family: PingFangSC-Medium;
-    font-size: 14px;
+    font-size: 28rpx;
     color: #333333;
   }
   .address {
-    margin-top: 8px;
-    margin-bottom: 8px;
+    margin-top: 16rpx;
+    margin-bottom: 16rpx;
     font-family: PingFangSC-Regular;
-    font-size: 10px;
+    font-size: 20rpx;
     color: #999999;
   }
   .guide-btn {
-    margin-left: 8px;
-    font-size: 12px;
-    height: 28px;
-    width: 80px;
-    line-height: 28px;
+    margin-left: 16rpx;
+    font-size: 24rpx;
+    height: 56rpx;
+    width: 160rpx;
+    line-height: 56rpx;
     text-align: center;
     color: #518cfc;
     border: 1px solid #518cfc;
-    border-radius: 14px;
+    border-radius: 28rpx;
   }
 }
 .map-info-wrap::after {
   content: "";
   position: absolute;
-  bottom: -7px;
+  bottom: -14rpx;
   right: calc(48%);
   display: block;
   width: 0;
   height: 0;
   border-radius: 4px;
-  border: 8px solid transparent;
+  border: 16rpx solid transparent;
   border-right-color: #fff;
   border-bottom-color: #fff;
   transform: scaleX(0.8) rotate(45deg);
@@ -289,8 +290,8 @@ export default {
   height: 100vh;
 
   #map {
-    width: 375px;
-    height: 600px;
+    width: 100vw;
+    height: 88vh;
   }
 
   .poi-keywords {

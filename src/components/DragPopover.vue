@@ -4,7 +4,7 @@
        :style="{top}">
     <div class="relative column"
          style="height:100%">
-      <div class="location center color-333 ft24"
+      <div class="location center color-333 ft48"
            @click="onLocation"
            v-if="showLocation">
         <SvgIcon icon='icon_suoding'></SvgIcon>
@@ -76,7 +76,7 @@ export default {
   .location {
     position: absolute;
     top: -120rpx;
-    right: 10rpx;
+    right: 20rpx;
     border-radius: 20rpx;
     height: 88rpx;
     width: 88rpx;

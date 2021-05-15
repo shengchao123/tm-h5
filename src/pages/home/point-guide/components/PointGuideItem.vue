@@ -4,18 +4,17 @@
          style="height: 76px;">
       <div class="flex1"
            @click="onPoi">
-        <div class="ft15"
-             :class="main && 'bold ft18'">{{info.item.name}}</div>
-        <div class="ft12 color-666"
-             :class="info.item.address &&'mt8'">{{info.item.address}}</div>
+        <div :class="main ? 'bold ft30' : 'ft26'">{{info.item.name}}</div>
+        <div class="ft24 color-666"
+             :class="info.item.address && 'mt8'">{{info.item.address}}</div>
       </div>
 
       <div class="btn center"
            @click="onGuide">
         <SvgIcon icon="icon_daohang"
                  style="color:#518CFC "
-                 class="ft10"></SvgIcon>
-        <span class="ft13 ml4 color-666">导航</span>
+                 class="ft20"></SvgIcon>
+        <span class="ft26 ml8 color-666">导航</span>
       </div>
     </div>
   </div>
@@ -25,7 +24,7 @@
 export default {
   name: 'PointGuideItem',
   methods: {
-    onPoi() {
+    onPoi () {
       this.$emit('onPoi', this.info)
     },
     onGuide () {
@@ -44,10 +43,10 @@ export default {
   padding: 0 16px;
 
   .btn {
-    height: 28px;
-    width: 60px;
+    height: 56rpx;
+    width: 120rpx;
     border: 1px solid #dcdcdc;
-    border-radius: 14px;
+    border-radius: 28rpx;
   }
 }
 </style>

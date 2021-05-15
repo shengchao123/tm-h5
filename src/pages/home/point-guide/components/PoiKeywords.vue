@@ -7,8 +7,8 @@
            :style="{color: selectedIndex === index ? '#F13042' : '#666666'}"
            :class="index !== 0 && 'tb'">
         <SvgIcon :icon="item.icon"
-                 class="ft16"></SvgIcon>
-        <div class="ft10 mt4">{{item.name}}</div>
+                 class="ft32"></SvgIcon>
+        <div class="ft20 mt8">{{item.name}}</div>
       </div>
     </template>
   </div>
@@ -64,12 +64,11 @@ export default {
 <style lang='scss' scoped>
 .poi-keywords-wrap {
   background: #ffffff;
-  box-shadow: 0 -6px 17px 0 rgba(0, 0, 0, 0.1);
-  border-radius: 20px;
-  border-radius: 20px;
+  box-shadow: 0 -6rpx 17rpx 0 rgba(0, 0, 0, 0.1);
+  border-radius: 40rpx;
 
   .item {
-    padding: 8px 4px;
+    padding: 16rpx 8rpx;
   }
 }
 </style>
