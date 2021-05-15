@@ -1,14 +1,13 @@
 <template>
   <div class='audio-wrap center-align'>
-    <div class="play-btn center mr8"
+    <div class="play-btn center mr16"
          @click="onPlayBtn">
-      <svg-icon :icon="isPlay ? 'icon_zanting' : 'icon_bofang'"
-                class="ft12"></svg-icon>
+      <svg-icon :icon="isPlay ? 'icon_zanting' : 'icon_bofang'" class="ft24"></svg-icon>
     </div>
     <div class="flex1">
-      <div class="between-row mb8">
-        <span class="ft12 color-333">语音播报</span>
-        <span class="ft10 color-999">{{audioTime}}</span>
+      <div class="between-row mb16">
+        <span class="ft24 color-333">语音播报</span>
+        <span class="ft20 color-999">{{audioTime}}</span>
       </div>
       <div class="progress-bar flex1">
         <div class="progress"
@@ -105,28 +104,28 @@ export default {
 <style lang='scss' scoped>
 .audio-wrap {
   width: 100%;
-  height: 49px;
-  border-radius: 25px;
+  height: 98rpx;
+  border-radius: 50rpx;
   background: #eee;
-  padding: 10px 16px;
+  padding: 20rpx 32rpx;
   box-sizing: border-box;
   .play-btn {
-    width: 28px;
-    height: 28px;
-    border-radius: 14px;
+    width: 56rpx;
+    height: 56rpx;
+    border-radius: 28rpx;
     background: #ff9204;
     color: #fff;
   }
   .progress-bar {
-    height: 2px;
+    height: 4rpx;
     background: #dedede;
-    border-radius: 3px;
+    border-radius: 6rpx;
     overflow: hidden;
     .progress {
       background: #ff9204;
       width: 10%;
-      height: 2px;
-      border-radius: 3px;
+      height: 4rpx;
+      border-radius: 6rpx;
     }
   }
 }
