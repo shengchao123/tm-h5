@@ -1,25 +1,31 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/tabbar-home/index/index",
+			"path": "pages/home/index/index",
 			"style": {
 				"navigationBarTitleText": "天目红盟"
 			}
 		},
 		{
-			"path": "pages/tabbar-home/introduction/index",
+			"path": "pages/home/introduction/index",
 			"style": {
 				"navigationBarTitleText": "地标简介"
 			}
 		},
 		{
-			"path": "pages/tabbar-party/index/index",
+			"path": "pages/home/point-guide/index",
+			"style": {
+				"navigationBarTitleText": "地标导览"
+			}
+		},
+		{
+			"path": "pages/party/index/index",
 			"style": {
 				"navigationBarTitleText": "党建联盟"
 			}
 		},
 		{
-			"path": "pages/tabbar-mine/index/index",
+			"path": "pages/mine/index/index",
 			"style": {
 				"navigationBarTitleText": "我的"
 			}
@@ -40,19 +46,19 @@
 		"backgroundColor": "#ffffff",
 		"list": [
 			{
-				"pagePath": "pages/tabbar-home/index/index",
+				"pagePath": "pages/home/index/index",
 				"iconPath": "static/tabbar/original.png",
 				"selectedIconPath": "static/tabbar/original_l.png",
 				"text": "初心之旅"
 			},
 			{
-				"pagePath": "pages/tabbar-party/index/index",
+				"pagePath": "pages/party/index/index",
 				"iconPath": "static/tabbar/party.png",
 				"selectedIconPath": "static/tabbar/party_l.png",
 				"text": "党建联盟"
 			},
 			{
-				"pagePath": "pages/tabbar-mine/index/index",
+				"pagePath": "pages/mine/index/index",
 				"iconPath": "static/tabbar/mine.png",
 				"selectedIconPath": "static/tabbar/mine_l.png",
 				"text": "我的"
