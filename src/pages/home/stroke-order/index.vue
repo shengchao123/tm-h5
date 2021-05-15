@@ -13,7 +13,9 @@
                   style="color:  #C4C4C4"></svg-icon>
       </div>
 
-      <Map :points="points"></Map>
+      <Map :mapInitObj="mapInitObj"
+           mapClass="mapH400"
+           :points="points"></Map>
 
       <div class="pt20 pb20 ft26 color-666">石门老街 - 新四军历史纪念馆 - 攀岩小镇 - 党史学习体验</div>
       <div class="tb pt30 pb30 center-align">
@@ -26,7 +28,7 @@
   </div>
 </template>
 <script>
-import Map from '@/pages/home/stroke-order/components/Map'
+import Map from '@/pages/components/Map.vue'
 export default {
   methods: {
     onShowRouteSelect () {
@@ -85,7 +87,12 @@ export default {
           typeName: '',
           url: 'http://downsc.chinaz.net/Files/DownLoad/sound1/201906/11582.mp3'
         }
-      ]
+      ],
+      mapInitObj: Object.freeze({
+        resizeEnable: true,
+        zoom: 9, // 级别
+        center: [119.365056, 30.194302]
+      })
     }
   }
 }

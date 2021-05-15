@@ -1,6 +1,9 @@
 <template>
   <div class='tabbar-home-wrap'>
-    <Map :points="points"></Map>
+    <Map needClick
+         :mapInitObj="mapInitObj"
+         mapClass="mapVH60"
+         :points="points"></Map>
     <DragPopover>
       <div class="box relative">
         <PathsList @onSelectPath="getJourneyPointListByJourneyId"></PathsList>
@@ -15,7 +18,7 @@
 </template>
 
 <script>
-import Map from './components/Map.vue'
+import Map from '@/pages/components/Map.vue'
 import DragPopover from '@/components/DragPopover'
 import PathsList from './components/PathsList'
 import ScenicSpot from './components/ScenicSpot'
@@ -89,7 +92,11 @@ export default {
           url: 'http://downsc.chinaz.net/Files/DownLoad/sound1/201906/11582.mp3'
         }
       ],
-
+      mapInitObj: Object.freeze({
+        resizeEnable: true,
+        zoom: 9, // 级别
+        center: [119.365056, 30.034302]
+      })
     }
   },
   components: {

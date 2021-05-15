@@ -22,7 +22,7 @@
 			}
 		},
 		{
-			"path": "pages/home/stroke-order/CustomPath.vue",
+			"path": "pages/home/stroke-order/CustomPath",
 			"style": {
 				"navigationBarTitleText": "自定义路线"
 			}

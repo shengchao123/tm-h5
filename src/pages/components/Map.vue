@@ -1,12 +1,14 @@
 <template>
   <div class='map-wrap'>
-    <div id="map"></div>
+    <div id="map"
+         :class="mapClass"></div>
   </div>
 </template>
 
 <script>
 import mapMixin from '@/mixins/map.js'
 import AMap from 'AMap'
+
 export default {
   name: 'index',
   methods: {
@@ -45,6 +47,7 @@ export default {
     },
 
     markerClick (e) {
+      if (!this.needClick) return
       const point = e.target.getExtData()
       sessionStorage.setItem('pointData', JSON.stringify(point))
       uni.navigateTo({ url: '/pages/home/point-guide/index' })
@@ -73,17 +76,18 @@ export default {
       this.drawMarker()
     }
   },
-  data () {
-    return {
-      mapInitObj: Object.freeze({
-        resizeEnable: true,
-        zoom: 9, // 级别
-        center: [119.365056, 30.194302]
-      })
-    }
-  },
   props: {
-    points: Array
+    points: Array,
+    needClick: {
+      type: [Boolean, String],
+      default: false
+    },
+    mapClass: {
+      type: String
+    },
+    mapInitObj: {
+      type: Object
+    }
   },
   mounted () {
     this.drawPath()
@@ -96,8 +100,16 @@ export default {
 <style lang='scss' scoped>
 .map-wrap {
   position: relative;
-  #map {
+  .mapVH60 {
+    width: 100vw;
+    height: 60vh;
+  }
+  .mapH400 {
     width: 92vw;
+    height: 400rpx;
+  }
+  .mapVH50 {
+    width: 100vw;
     height: 400rpx;
   }
 }
