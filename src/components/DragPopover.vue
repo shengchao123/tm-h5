@@ -2,9 +2,9 @@
   <div class='drag-popover-wrap'
        ref="wrap"
        :style="{top}">
-    <div class="relative column between-row"
+    <div class="relative column"
          style="height:100%">
-      <div class="location center color-333 ft24"
+      <div class="location center color-333 ft48"
            @click="onLocation"
            v-if="showLocation">
         <SvgIcon icon='icon_suoding'></SvgIcon>
@@ -13,13 +13,15 @@
            class="drag_control_wrap center">
         <div class="drag_control"></div>
       </div>
-      <slot class="slot"></slot>
+      <div class="content">
+        <slot class="slot"></slot>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { calcPxFit, calcPx2Vh } from '@u/tools'
+import { calcPx2Vh } from '@u/tools'
 const minTop = 10
 
 export default {
@@ -74,7 +76,7 @@ export default {
   .location {
     position: absolute;
     top: -120rpx;
-    right: 10rpx;
+    right: 20rpx;
     border-radius: 20rpx;
     height: 88rpx;
     width: 88rpx;
@@ -82,6 +84,10 @@ export default {
     box-shadow: 0 -12rpx 34rpx 0 rgba(0, 0, 0, 0.1);
   }
   .drag_control_wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
     height: 38rpx;
     .drag_control {
       background: #eaeaea;
@@ -94,6 +100,13 @@ export default {
   .container {
     position: absolute;
     top: 40rpx;
+  }
+  .content {
+    position: absolute;
+    top: 40rpx;
+    left: 0;
+    right: 0;
+    bottom: 0;
   }
 }
 </style>

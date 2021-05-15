@@ -6,6 +6,7 @@ import store from './store'
 import './utils/index'
 import './api/index'
 import './plugins/index'
+import '@/components/index.js'
 
 Vue.prototype.$store = store;
 
