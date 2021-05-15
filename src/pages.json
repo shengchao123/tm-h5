@@ -16,6 +16,12 @@
 			}
 		},
 		{
+			"path": "pages/home/stroke-order/index",
+			"style": {
+				"navigationBarTitleText": "行程单"
+			}
+		},
+		{
 			"path": "pages/party/index/index",
 			"style": {
 				"navigationBarTitleText": "党建联盟"
