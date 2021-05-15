@@ -1,12 +1,11 @@
 <template>
   <div class='point-guide-item-wrap'>
-    <div class="bb center-align between-row"
-         style="height: 148rpx;">
+    <div class="bb center-align between-row item">
       <div class="flex1"
            @click="onPoi">
         <div :class="main ? 'bold ft36' : 'ft30'">{{info.item.name}}</div>
         <div class="ft26 color-666"
-             :class="info.item.address && 'mt8'">{{info.item.address}}</div>
+             :class="info.item.address && 'mt16'">{{info.item.address}}</div>
       </div>
 
       <div class="btn center"
@@ -47,6 +46,9 @@ export default {
     width: 120rpx;
     border: 1px solid #dcdcdc;
     border-radius: 28rpx;
+  }
+  .item {
+    height: 148rpx;
   }
 }
 </style>

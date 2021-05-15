@@ -8,13 +8,14 @@ import './api/index'
 import './plugins/index'
 import '@/components/index.js'
 
+Vue.prototype.$store = store;
+
 
 Vue.config.productionTip = false
 
 App.mpType = 'app'
 
-
-new Vue({
-  store,
-  render: h => h(App)
-}).$mount("#app")
+const app = new Vue({
+  ...App
+})
+app.$mount()

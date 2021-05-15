@@ -29,7 +29,6 @@ import DragPopover from '@/components/DragPopover'
 import { subStringWithStrlen } from '@/utils/tools.js'
 import Vue from 'vue'
 import PointGuideItem from './components/PointGuideItem'
-
 import { getAMapLngLat, getLngLat, beginGuide } from '@/utils/map.js'
 
 // 地图中心点上下纬度偏移量
@@ -139,7 +138,7 @@ export default {
           `<div class='address'>${address}</div>` +
           '</div>' +
           '<div class="guide-btn center" v-on:click="onOpenGuide">' +
-          '<SvgIcon icon="icon_daohang" style="color:#518CFC "class="ft10 mr4"></SvgIcon>' +
+          '<SvgIcon icon="icon_daohang" style="color:#518CFC "class="ft20 mr8"></SvgIcon>' +
           '<span>到这里去</span></div>' +
           '</div>',
         methods: {
@@ -150,6 +149,7 @@ export default {
       })
       // 将新创建的子组件进行挂载
       var component = new MyComponent().$mount()
+      console.log(component)
       // 将窗体内容添加到infoWindow中
       var infoWindow = new AMap.InfoWindow({
         isCustom: true, // 使用自定义窗体
@@ -236,55 +236,6 @@ export default {
   mixins: [mapMixin]
 }
 </script>
-
-<style lang="scss">
-.map-info-wrap {
-  position: relative;
-  padding: 24rpx;
-  background: #fff;
-  box-shadow: 0px 10rpx 24rpx 0px rgba(0, 0, 0, 0.1);
-  border-radius: 8rpx;
-  display: flex;
-  flex-direction: row;
-  .title {
-    font-family: PingFangSC-Medium;
-    font-size: 28rpx;
-    color: #333333;
-  }
-  .address {
-    margin-top: 16rpx;
-    margin-bottom: 16rpx;
-    font-family: PingFangSC-Regular;
-    font-size: 20rpx;
-    color: #999999;
-  }
-  .guide-btn {
-    margin-left: 16rpx;
-    font-size: 24rpx;
-    height: 56rpx;
-    width: 160rpx;
-    line-height: 56rpx;
-    text-align: center;
-    color: #518cfc;
-    border: 1px solid #518cfc;
-    border-radius: 28rpx;
-  }
-}
-.map-info-wrap::after {
-  content: "";
-  position: absolute;
-  bottom: -14rpx;
-  right: calc(48%);
-  display: block;
-  width: 0;
-  height: 0;
-  border-radius: 4px;
-  border: 16rpx solid transparent;
-  border-right-color: #fff;
-  border-bottom-color: #fff;
-  transform: scaleX(0.8) rotate(45deg);
-}
-</style>
 
 <style lang='scss' scoped>
 .point-guide-wrap {
