@@ -1,39 +1,127 @@
-import config from '@/config.js'
+import store from '@/store'
+import { api } from '@/api/index.js'
 
-// 获取后台存在本地的参数
-export function getGlobalParams (args) {
-  const ciphertext = localStorage.getItem(config.localStorageKey)
-  if (!ciphertext) return
-  const temData = window.atob(ciphertext)
-  const params = JSON.parse(temData)
-  const returnData = {}
-  if (args instanceof Array) {
-    args.forEach(item => {
-      returnData[item] = params[item]
+
+export const memberLogin = (e, needBindInfo = false) => {
+
+  const { encryptedData, iv } = e
+  if (!encryptedData) return
+  const params = {
+    encryptedData
+  }
+  if (iv) params.iv = iv
+  api.getMinDecryptionData(params).then(res => {
+    if (res.isError) return
+    let content = JSON.parse(res.content)
+    // 绑定会员手机号
+    const params = {
+      phone: content.phoneNumber,
+    }
+    api.bindPhone(params).then(res => {
+      if (res.memberId) uni.setStorageSync('memberId', res.memberId)
+      if (needBindInfo) {
+        uni.navigateTo({
+          url: "/pages/public/bind-info/BindInfo"
+        })
+        return
+      }
+      uni.$emit('memberLogin')
     })
-    return returnData
-  }
-  if (typeof args === 'string') {
-    return params[args]
-  }
-  return params
+  })
 }
 
-// 存储修改全局参数
-export function setGlobalParams (key, value) {
-  const temData = window.atob(localStorage.getItem(config.localStorageKey))
-  const params = JSON.parse(temData)
-  params[key] = value
-  const ciphertext = window.btoa(JSON.stringify(params))
-  localStorage.setItem(config.localStorageKey, ciphertext)
+export const notMember = () => {
+  const res = uni.getStorageSync('memberId')
+  return !res || res === '0'
 }
-// 存储请求所需要的值
-export function setCiphertext (res) {
-  const params = {}
-  config.localKeys.forEach(key => {
-    params[key] = res[key]
+
+
+export const login = () => {
+  return new Promise((resolve, reject) => {
+    if (uni.getStorageSync('access_token')) {
+      resolve()
+      return
+    }
+    uni.login({
+      success: (res) => {
+        api.getThirdUserIdByMiniProgram({ code: res.code }).then(res => {
+          getThirdUserIdAndOpenId(res, resolve, reject)
+        })
+      },
+      fail: (error) => {
+        login(resolve, reject)
+      }
+    })
   })
-  window.localStorage.setItem('loginTime', new Date().getTime())
-  const ciphertext = window.btoa(JSON.stringify(params))
-  localStorage.setItem(config.localStorageKey, ciphertext)
 }
+
+
+// 小程序登录，没有信息
+function getThirdUserIdAndOpenId (res, resolve, reject) {
+  const { masterOrgId, thirdUserId, openId, appletType, orgId } = res.content
+  uni.setStorageSync('masterOrgId', masterOrgId)
+  uni.setStorageSync('memberLevelOrgId', orgId)
+  uni.setStorageSync('thirdUserId', thirdUserId)
+  uni.setStorageSync('openId', openId)
+  // 01 定制小程序，02 全局小程序
+  if (appletType === '01') {
+    if (!uni.getStorageSync('fromChangeStore')) {
+      uni.setStorageSync('orgId', orgId)
+      uni.setStorageSync('memberLevelOrgId', orgId)
+    }
+    uni.removeStorageSync('fromChangeStore')
+
+    getUserInfo(resolve, reject)
+    return
+  }
+  getLocation(resolve, reject)
+}
+
+
+// 登录获取所有信息
+function getUserInfo (resolve, reject) {
+  api.login().then(res => {
+    if (res.isError) {
+      getUserInfo()
+      return
+    }
+    // 保存登录后的信息
+    saveLoginInfo(res.content)
+    resolve(res.content)
+  })
+}
+
+// 获取定位信息
+function getLocation (resolve, reject) {
+  uni.getLocation({
+    type: 'wgs84',
+    success: function (res) {
+      findOrgInfoByOrgId(resolve, reject)
+    }
+  })
+}
+function findOrgInfoByOrgId (resolve, reject) {
+  const { longitude, latitude } = store.state.app.coordinate
+  const params = {
+    longitude,
+    latitude,
+    appid: getAppid()
+  }
+  api.findOrgInfoByOrgId(params).then(res => {
+    if (res.isError) return
+    uni.setStorageSync('orgId', res.content.orgId)
+    store.commit('home/COMMIT_STORE', res.content)
+    getUserInfo(resolve, reject)
+  })
+}
+
+
+// 保存登录信息
+const needSaveKeys = ['memberId', 'access_token', 'masterOrgId']
+export const saveLoginInfo = function (res) {
+  needSaveKeys.forEach(key => {
+    uni.setStorageSync(key, res[key] || '')
+  })
+}
+
+

@@ -1,16 +1,20 @@
 import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
+import App from './App'
+
 import store from './store'
-import '@/router/filter.js'
-import '@/components/index.js'
-import '@/plugins'
-import '@u/index'
-import '@/request/api.js'
+
+import './utils/index'
+import './api/index'
+import './plugins/index'
+
+Vue.prototype.$store = store;
+
+
 Vue.config.productionTip = false
 
-new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app')
+App.mpType = 'app'
+
+const app = new Vue({
+  ...App
+})
+app.$mount()

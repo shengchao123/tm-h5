@@ -1,38 +1,22 @@
-<template>
-  <div id="app">
-    <keep-alive>
-      <router-view :key="key"
-                   v-if="keepAlive" />
-    </keep-alive>
-    <router-view :key="key"
-                 v-if="!keepAlive" />
-  </div>
-</template>
-
 <script>
-
 export default {
-  name: 'App',
-  computed: {
-    key () {
-      return this.$route.path
-    },
-    keepAlive () {
-      return this.$route.meta.keepAlive
-    }
+  onLaunch: function () {
+    console.log('App Launch')
   },
-  created () {
-    if (!localStorage.getItem('access_token')) {
-      // this.$router.push('/login')
-    }
+  onShow: function () {
+    console.log('App Show')
+  },
+  onHide: function () {
+    console.log('App Hide')
   }
 }
 </script>
 
-<style lang="scss">
-@import "./styles/init.scss";
-
+<style lang='scss'>
+/* 注意要写在第一行，同时给style标签加入lang="scss"属性 */
 @import "./styles/atom.scss";
 @import "./styles/flex.scss";
 @import "./styles/global.scss";
+@import "./styles/init.scss";
+/*每个页面公共css */
 </style>

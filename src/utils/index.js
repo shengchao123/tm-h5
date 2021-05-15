@@ -1,7 +1,9 @@
 import Vue from 'vue'
-import bus from '@u/bus.js'
-import { isEmpty, numSeparate } from './tool'
+import { isEmpty } from './validate'
+import { msg, calcPxFit } from './tools'
+import { login } from './login'
 
-Vue.use(bus)
 Vue.prototype.$isEmpty = isEmpty
-Vue.prototype.$numSeparate = numSeparate
+Vue.prototype.$calcPxFit = calcPxFit
+Vue.prototype.$msg = msg
+Vue.prototype.$login = login

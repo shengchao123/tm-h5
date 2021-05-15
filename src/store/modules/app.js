@@ -1,6 +1,6 @@
-import { api } from '@/request/api.js'
-
+import { api } from '@/api/index.js'
 const state = {
+
 }
 
 const mutations = {
@@ -8,6 +8,7 @@ const mutations = {
 }
 
 const actions = {
+
 }
 
 export default {

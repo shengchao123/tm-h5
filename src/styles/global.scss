@@ -1,0 +1,30 @@
+.tc {
+  text-align: center;
+}
+.tr {
+  text-align: right;
+}
+
+.width100 {
+  width: 100%;
+}
+.placeholder-class {
+  color: #999999;
+}
+.submit-btn  {
+  color: white;
+  line-height: 100rpx;
+  background: $uni-color-primary;
+  height: 100rpx;
+  border-radius: 50rpx;
+  font-size: 34rpx;
+}
+.text-hidden {
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.word-break{
+  word-break: break-all;
+}
+
