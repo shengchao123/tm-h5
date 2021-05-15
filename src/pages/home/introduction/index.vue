@@ -8,7 +8,7 @@
              style="color: #F87F00"
              @click="onPeriphery">
           <svg-icon icon="icon_dingwei"
-                    class="ft24 mb4"></svg-icon>
+                    class="ft24"></svg-icon>
           <span class="ft24 ml8">周边</span>
         </div>
       </div>
@@ -18,7 +18,7 @@
              style="color: #0084F6"
              @click="onNavigation">
           <svg-icon icon="icon_ditu"
-                    class="ft24 mb4"></svg-icon>
+                    class="ft24"></svg-icon>
           <span class="ft24 ml8">导航</span>
         </div>
       </div>
@@ -60,9 +60,6 @@ export default {
 .introduction-wrap {
   .title {
     padding: 30rpx;
-  }
-  .mb2 {
-    margin-bottom: 4rpx;
   }
 }
 </style>

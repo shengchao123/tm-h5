@@ -1,7 +1,5 @@
 
-/* #ifndef H5 */
 export const fileHost = 'https://hzslzx.oss-cn-hangzhou.aliyuncs.com/' // 文件显示地址
-/* #endif */
 export const imgHost = 'https://hzslzx.oss-cn-hangzhou.aliyuncs.com/system/h5-mall/images/' // 图片路径
 
 

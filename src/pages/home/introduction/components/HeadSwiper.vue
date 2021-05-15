@@ -1,5 +1,5 @@
 <template>
-  <div class='swiper-wrap relative'>
+  <div class='swiper-wrap relative' :style="{height: swiperHeight + 'px'}">
     <div class="module-switch center-align">
       <div v-for="(item, index) in moduleList"
            :key="index"
@@ -9,33 +9,15 @@
       <div class="slider-bg"
            :class="moduleType === '02' && 'slider-bg-right'"></div>
     </div>
-    <!-- 轮播图 -->
-    <!-- <div v-show="moduleType === '01'"
-         class="swiper-container">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide"
-             v-for="(item, index) in carouselList"
-             :key="index">
-          <img :src="item.mediaUrl ? $fileHost + item.mediaUrl : ''" />
-        </div>
-      </div>
-      <div class="pagination center-align">
-        <div v-for="(item, index) in carouselList"
-             :key="index"
-             class="bullet ml12"
-             :class="paginationClass(index)"></div>
-      </div>
-    </div> -->
+
     <div class="swiper" v-show="moduleType === '01'">
       <swiper
-        :style="{height: '560rpx'}"
-        :indicator-dots="false"
-        :autoplay="false"
-        circular>
+        :style="{height: swiperHeight + 'px'}"
+        @change="swiperChange">
         <swiper-item  v-for="(item, index) in carouselList"
               :key="index">
           <div class="swiper-item">
-            <img :src="item.mediaUrl ? $fileHost + item.mediaUrl : ''" />
+            <img :src="$fileHost + item.mediaUrl" />
           </div>
         </swiper-item>
       </swiper>
@@ -49,7 +31,7 @@
     <!-- VR -->
     <div v-show="moduleType === '02'"
          class="vr relative">
-      <img :src=" $fileHost + carouselList[1].mediaUrl" />
+      <img :src="$fileHost + carouselList[1].mediaUrl" />
       <div class="center vr-icon">
         <svg-icon icon="icon_VR" class="ft24"></svg-icon>
       </div>
@@ -59,6 +41,9 @@
 <script>
 export default {
   methods: {
+    swiperChange (e) {
+     this.activeIndex = e.detail.current
+    },
     onModuleSwitch (id) {
       this.moduleType = id
     },
@@ -76,12 +61,9 @@ export default {
     }
   },
   computed: {
-    // swiperHeight () {
-    //   const winWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth
-    //   return winWidth * 3 / 4
-    // },
-    fileHost () {
-
+    swiperHeight () {
+      const winWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth
+      return winWidth * 3 / 4
     },
     paginationClass () {
       return (index) => {
@@ -105,11 +87,14 @@ export default {
 <style lang='scss' scoped>
 .swiper-wrap {
   width: 100%;
-  height: 560rpx;
   .swiper {
-    img {
+    .swiper-item {
       width: 100%;
       height: 100%;
+      img {
+        width: 100%;
+        height: 100%;
+      }
     }
     .pagination {
       position: absolute;
@@ -131,35 +116,6 @@ export default {
       }
     }
   }
-  // .swiper-container {
-  //   height: 100%;
-  //   .swiper-wrapper {
-  //     height: 100%;
-  //     img {
-  //       width: 100%;
-  //       height: 100%;
-  //     }
-  //   }
-  //   .pagination {
-  //     position: absolute;
-  //     right: 12px;
-  //     bottom: 10px;
-  //     background: rgba(0, 0, 0, 0.3);
-  //     height: 18px;
-  //     border-radius: 9px;
-  //     z-index: 1;
-  //     padding: 0 10px;
-  //     .bullet {
-  //       width: 6px;
-  //       height: 6px;
-  //       border-radius: 6px;
-  //       background: #b2b2b2;
-  //     }
-  //     .bullet-active {
-  //       background: #fff;
-  //     }
-  //   }
-  // }
   .vr {
     width: 100%;
     height: 100%;
