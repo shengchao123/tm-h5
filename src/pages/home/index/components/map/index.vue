@@ -48,7 +48,7 @@ export default {
     markerClick (e) {
       const point = e.target.getExtData()
       sessionStorage.setItem('pointData', JSON.stringify(point))
-      this.$router.push('/point-guide')
+      uni.navigateTo({ url: '/pages/home/point-guide/index' })
     },
 
     // 绘制折线图

@@ -2,13 +2,13 @@
   <div class='scenic-spot-wrap flex1'>
     <NumList v-for="(item, index) in pagePoints"
              @onPlayer="onPlayer"
-             :config="{item, index}"
+             :pointData="{item, index}"
              :key="index"></NumList>
   </div>
 </template>
 
 <script>
-import NumList from '@/pages/tabbar-home/index/components/NumList'
+import NumList from '@/pages/home/index/components/NumList'
 export default {
   name: 'ScenicSpot',
   methods: {

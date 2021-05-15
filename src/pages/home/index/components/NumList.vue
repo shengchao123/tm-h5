@@ -3,18 +3,18 @@
     <div class="flex1 center-align">
       <div class="column center-align">
         <div class="line"></div>
-        <div class="circle center ft22">{{config.index}}</div>
+        <div class="circle center ft22">{{pointData.index}}</div>
         <div class="line"></div>
       </div>
 
-      <div class="ft32 ml16">{{config.item.name}}</div>
+      <div class="ft32 ml16">{{pointData.item.name}}</div>
     </div>
 
     <div class="center-align">
       <div class="btn center ml16"
-           :style="{borderColor: config.item.isPlayed ? '#FF9204' : '#dcdcdc'}"
+           :style="{borderColor: pointData.item.isPlayed ? '#FF9204' : '#dcdcdc'}"
            @click="onPlayer">
-        <SvgIcon :icon="config.item.isPlayed ? 'icon_zanting': 'icon_bofang'"
+        <SvgIcon :icon="pointData.item.isPlayed ? 'icon_zanting': 'icon_bofang'"
                  :style="{color: '#FF9204'}"
                  class="icon"></SvgIcon>
         <span class="ml8 color-666">语音</span>
@@ -45,10 +45,11 @@ export default {
   name: 'NumList',
   methods: {
     onPlayer () {
-      this.$emit('onPlayer', this.config)
+      this.$emit('onPlayer', this.pointData)
     },
     onGuideVisit () {
-
+      sessionStorage.setItem('pointData', JSON.stringify(this.pointData.item))
+      uni.navigateTo({ url: '/pages/home/point-guide/index' })
     },
     onGuide () {
 
@@ -60,7 +61,7 @@ export default {
     }
   },
   props: {
-    config: Object
+    pointData: Object
   }
 }
 </script>
