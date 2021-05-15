@@ -1,12 +1,13 @@
 <template>
   <div class='custom-path-wrap'>
-    <Map :options="mapOptions"
+    <Map :mapInitObj="mapInitObj"
+         mapClass="mapH400"
          :points="points"></Map>
   </div>
 </template>
 
 <script>
-import Map from './components/Map'
+import Map from '@/pages/components/Map.vue'
 export default {
   name: 'CustomPath',
   data () {
@@ -61,14 +62,11 @@ export default {
           url: 'http://downsc.chinaz.net/Files/DownLoad/sound1/201906/11582.mp3'
         }
       ],
-      mapOptions: Object.freeze({
-        mapInitObj: {
-          resizeEnable: true,
-          zoom: 9, // 级别
-          center: [119.365056, 30.034302]
-        },
-        mapClass: "mapVH50"
-      })
+      mapInitObj: {
+        resizeEnable: true,
+        zoom: 9, // 级别
+        center: [119.365056, 30.034302]
+      },
     }
   },
   components: { Map }
