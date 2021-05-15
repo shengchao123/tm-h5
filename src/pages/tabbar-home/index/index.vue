@@ -1,0 +1,112 @@
+<template>
+  <div class='tabbar-home-wrap'>
+    <Map :points="points"></Map>
+    <DragPopover bottom="62"
+                 minTop="300">
+      <PathsList @onSelectPath="getJourneyPointListByJourneyId"></PathsList>
+      <ScenicSpot :points="points"></ScenicSpot>
+      <div class="center">
+        <div class="create-btn center bold"
+             @click="onCreateTravel">创建我的行程</div>
+      </div>
+    </DragPopover>
+  </div>
+</template>
+
+<script>
+import Map from './components/map/index.vue'
+import DragPopover from '@/components/DragPopover'
+import PathsList from './components/PathsList'
+import ScenicSpot from './components/ScenicSpot'
+export default {
+  name: 'index',
+  methods: {
+    onCreateTravel () { },
+    // 根据路线 id 获取点位
+    getJourneyPointListByJourneyId (journeyLineId) {
+      const params = {
+        journeyLineId: journeyLineId
+      }
+      this.$api.getJourneyPointListByJourneyId(params).then(res => {
+        if (res.isError) return
+        this.points = res.content
+      })
+    }
+
+  },
+  data () {
+    return {
+      points: [
+        {
+          code: '',
+          journeyPointId: 0,
+          lat: 30.224302,
+          lng: 119.005056,
+          name: '第一个',
+          regionsCode: '',
+          regionsName: '临安区喜欢睡了看都就方老师',
+          type: '01',
+          typeName: '景区',
+          url: 'http://downsc.chinaz.net/Files/DownLoad/sound1/201906/11582.mp3'
+        },
+        {
+          code: '',
+          journeyPointId: 0,
+          lat: 30.124302,
+          lng: 119.165056,
+          name: '第2个',
+          regionsCode: '',
+          regionsName: '',
+          type: '',
+          typeName: '',
+          url: 'http://downsc.chinaz.net/Files/DownLoad/sound1/201906/11582.mp3'
+        },
+        {
+          code: '',
+          journeyPointId: 0,
+          lat: 30.224302,
+          lng: 119.365056,
+          name: '第3个',
+          regionsCode: '',
+          regionsName: '',
+          type: '',
+          typeName: '',
+          url: 'http://downsc.chinaz.net/Files/DownLoad/sound1/201906/11582.mp3'
+        },
+        {
+          code: '',
+          journeyPointId: 0,
+          lat: 30.274302,
+          lng: 119.765056,
+          name: '第4个',
+          regionsCode: '',
+          regionsName: '',
+          type: '',
+          typeName: '',
+          url: 'http://downsc.chinaz.net/Files/DownLoad/sound1/201906/11582.mp3'
+        }
+      ]
+    }
+  },
+  components: {
+    Map,
+    DragPopover,
+    PathsList,
+    ScenicSpot
+  },
+}
+</script>
+
+<style lang='scss' scoped>
+.tabbar-home-wrap {
+  .create-btn {
+    width: 240rpx;
+    height: 40rpx;
+    border-radius: 20rpx;
+    background: #ffffff;
+    border: 1px solid #e32417;
+    font-size: 16rpx;
+    color: #e32417;
+  }
+}
+</style>

@@ -1,10 +1,37 @@
+'use strict'
+const path = require('path')
+
+function resolve (dir) {
+  return path.join(__dirname, dir)
+}
+
 module.exports = {
-	// 配置路径别名
-	configureWebpack: {
-		devServer: {
-			// 调试时允许内网穿透，让外网的人访问到本地调试的H5页面
-			disableHostCheck: true
-		}
-	},
-	//productionSourceMap: false,
+  configureWebpack: {
+    resolve: {
+      alias: {
+        '@': resolve('src'),
+        '@c': resolve('src/components'),
+        '@u': resolve('src/utils'),
+        '@v': resolve('src/views'),
+        '@m': resolve('src/mixins')
+      }
+    },
+    externals: {
+      moment: 'moment',
+      AMap: 'AMap'
+    }
+  },
+
+  css: {
+    loaderOptions: {
+      sass: {
+        prependData: `
+          @import "@/styles/atom.scss";
+          @import "@/styles/flex.scss";
+          @import "@/styles/global.scss";
+          @import "@/styles/init.scss";
+        `
+      }
+    }
+  }
 }
