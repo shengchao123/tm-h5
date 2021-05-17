@@ -4,7 +4,7 @@
     <div v-for="(item, index) in options"
          :key="index"
          class="center-align"
-         :style="{marginRight: spacing + 'rpx'}"
+         :style="{marginRight: spacing / 2 + 'px'}"
          @click="onSelect(item.id)">
       <my-radio :selected="value === item.id">
         <span class="ft30 ml16"
