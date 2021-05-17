@@ -29,12 +29,11 @@ export default {
           touchZoom: false
         })
         // 绘制气球上数字文字
-        const indexText = `<div style="color:#ffffff;width:22px;text-align:center;margin-top:4px;font-size:11px">${index + 1}</div>`
+        const indexText = `<div style="color:#ffffff;width:22px;text-align:center;margin-top:2px;font-size:11px">${index + 1}</div>`
         // eslint-disable-next-line no-new
         new AMap.Marker({
           position: new AMap.LngLat(item.lng, item.lat),
           map: this.$amap,
-          animation: 'AMAP_ANIMATION_DROP',
           content: indexText,
           touchZoom: false
         })
@@ -110,7 +109,7 @@ export default {
   }
   .mapVH50 {
     width: 100vw;
-    height: 400rpx;
+    height: 50vh;
   }
 }
 </style>

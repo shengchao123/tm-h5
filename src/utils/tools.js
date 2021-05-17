@@ -120,3 +120,9 @@ export function replaceString (any, keyValues) {
   })
   return JSON.parse(_any)
 }
+
+export function swapArr (arr, index1, index2) {
+  const _arr = JSON.parse(JSON.stringify(arr))
+  _arr[index1] = _arr.splice(index2, 1, _arr[index1])[0];
+  return _arr;
+}

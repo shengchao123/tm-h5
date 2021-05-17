@@ -28,6 +28,12 @@
 			}
 		},
 		{
+			"path": "pages/home/stroke-order/GetRedPoints",
+			"style": {
+				"navigationBarTitleText": "添加红色地标"
+			}
+		},
+		{
 			"path": "pages/party/index/index",
 			"style": {
 				"navigationBarTitleText": "党建联盟"

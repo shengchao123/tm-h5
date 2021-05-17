@@ -7,10 +7,12 @@
     <DragPopover>
       <div class="box relative">
         <PathsList @onSelectPath="getJourneyPointListByJourneyId"></PathsList>
-        <ScenicSpot :points="points"></ScenicSpot>
-        <div class="center pb32 pt16 create-btn-wrap">
-          <div class="create-btn center bold"
-               @click="onCreateTravel">创建我的行程</div>
+        <div class="content">
+          <ScenicSpot :points="points"></ScenicSpot>
+          <div class="center pb32 pt16 create-btn-wrap">
+            <div class="create-btn center bold"
+                 @click="onCreateTravel">创建我的行程</div>
+          </div>
         </div>
       </div>
     </DragPopover>
@@ -114,10 +116,6 @@ export default {
     height: 100%;
     position: relative;
     .create-btn-wrap {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
       background: #ffffff;
       .create-btn {
         width: 480rpx;
@@ -128,6 +126,16 @@ export default {
         color: #e32417;
       }
     }
+  }
+  .content {
+    position: absolute;
+    top: 240rpx;
+    bottom: 24rpx;
+    left: 0;
+    right: 0;
+    box-sizing: border-box;
+    overflow: scroll;
+    white-space: nowrap;
   }
 }
 </style>
