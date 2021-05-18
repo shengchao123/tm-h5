@@ -1,10 +1,18 @@
 <template>
   <div class='login-wrap relative'>
-    <div class="skip-btn">跳过</div>
+    <div class="skip-btn ft26"
+         style="color:#FF8E00"
+         @click="onJump">跳过</div>
 
     <div class="content">
-      <div class="box bb">
-        <div>手机号</div>
+
+      <div>
+        <div class="ft48 bold">注册登录</div>
+        <div class="ft26 color-999 mt8">请填写以下注册信息</div>
+      </div>
+
+      <div class="box bb row mt54">
+        <div class="mr48">手机号</div>
         <u-input v-model="submitData.phone"
                  placeholder="请输入手机号"
                  maxlength="11"
@@ -13,26 +21,32 @@
                  type="number" />
       </div>
 
-      <div class="box bb">
-        <div>验证码</div>
+      <div class="box bb row">
+        <div class="mr48">验证码</div>
         <u-input v-model="submitData.code"
+                 class="mr32"
                  placeholder="请输入验证码"
                  maxlength="4"
                  :focus="true"
                  :trim="true"
                  type="number" />
 
-        <text class="primary-color"
-              @click="onGetVerifyCode">{{codeText}}</text>
+        <div style="color: #518CFC"
+             class="lb pl24"
+             @click="onGetVerifyCode">{{codeText}}</div>
       </div>
 
-      <div class="tc color-999">未注册的手机号验证后自动注册</div>
+      <div class="color-999 ft24 mt16 center-align">
+        <SvgIcon icon="icon_zhuyi"></SvgIcon>
+        <div class="ml8">未注册的手机号验证后自动注册</div>
+      </div>
 
-      <div class="login-btn">登录</div>
+      <div class="login-btn ft32 bold center "
+           :class="isVerified ? 'active' : 'disabled'">登录</div>
 
-      <div class="center">
-        <div>登录即同意</div>
-        <div>《用户注册协议》</div>
+      <div class="center agreement ft22">
+        <div class="color-999">登录即同意</div>
+        <div style="color: #518CFC">《用户注册协议》</div>
       </div>
 
     </div>
@@ -45,6 +59,9 @@ import { checkInput } from '@/utils/validate.js'
 export default {
   name: 'Login',
   methods: {
+    onJump () {
+      uni.navigateBack({ delta: 1 })
+    },
     onGetVerifyCode () {
       if (this.timer) return
       if (!checkInput(this.submitData.phone, 'phone')) {
@@ -56,7 +73,7 @@ export default {
     },
     // 验证提交信息
     verifySubmitData () {
-      if (!this.$checkInput(this.submitData.phone, 'phone')) {
+      if (!checkInput(this.submitData.phone, 'phone')) {
         this.$msg('请输入正确手机号')
         return
       }
@@ -104,6 +121,12 @@ export default {
       this.codeText = '获取验证码'
     }
   },
+  computed: {
+    isVerified () {
+      const { phone, code } = this.submitData
+      return checkInput(phone, 'phone') && code.length === 4
+    }
+  },
   data () {
     this.time = 60
     this.timer = null
@@ -119,8 +142,11 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+.mt54 {
+  margin-top: 54rpx;
+}
 .login-wrap {
-  padding-top: 200rpx;
+  padding-top: 120rpx;
   .skip-btn {
     position: absolute;
     right: 32rpx;
@@ -129,8 +155,29 @@ export default {
   .content {
     padding: 0 32rpx;
     .box {
-      padding: 16rpx;
+      font-size: 30rpx;
+      padding: 30rpx 0;
     }
+  }
+
+  .login-btn {
+    margin-top: 120rpx;
+    height: 88rpx;
+    border-radius: 44rpx;
+    color: #ffffff;
+  }
+  .active {
+    background: #e32417;
+  }
+  .disabled {
+    background: #cccccc;
+  }
+
+  .agreement {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 60rpx;
   }
 }
 </style>

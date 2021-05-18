@@ -1,25 +1,11 @@
 import request from '../request'
 import { urls } from '../urls'
-import { getAppid } from '@/utils/tools.js'
 
-// 通过 code 获取顶级组织，三方用户 id
-// /third/authorization/getThirdUserIdByMiniProgram
-
-/* #ifdef MP-WEIXIN */
-const sourceType = '01'
-/* #endif */
-
-/* #ifdef MP-ALIPAY */
-const sourceType = '02'
-/* #endif */
-
-export function getThirdUserIdByMiniProgram (params) {
+export function sendVerificationCode (params) {
   return request({
-    url: urls.getThirdUserIdByMiniProgram,
+    url: urls.sendVerificationCode,
     needlessToken: true,
     data: {
-      appId: getAppid(),
-      sourceType,
       ...params
     }
   })
@@ -32,7 +18,6 @@ export function getMinDecryptionData (params) { // 获取授权 url
     data: {
       ...params,
       thirdUserId: uni.getStorageSync('thirdUserId'),
-      appId: getAppid(),
       sourceType,
     }
   })

@@ -63,6 +63,8 @@ export default {
     },
     // 兴趣点名字
     changePois (poi) {
+      this.currentPoi = poi
+      console.log(this.currentPoi)
       this.currentIndex = 0
       this.pois = [{ address: scenicSpot.regionsName, ...scenicSpot }]
       this.$amap.clearMap()
@@ -86,7 +88,7 @@ export default {
       })
     },
     // 根据选择点，搜索 poi 点
-    getPoisWithLngLat (poiSearchType) {
+    getPoisWithLngLat () {
       const that = this
       AMap.plugin('AMap.PlaceSearch', function () {
         var autoOptions = {
@@ -96,12 +98,12 @@ export default {
           autoFitView: true // 是否自动调整地图视野使绘制的 Marker点都处于视口的可见范围
         }
         var placeSearch = new AMap.PlaceSearch(autoOptions)
-        placeSearch.searchNearBy(poiSearchType, getAMapLngLat(scenicSpot), 5000, function (status, result) {
+        placeSearch.searchNearBy(that.currentPoi.name, getAMapLngLat(scenicSpot), 5000, function (status, result) {
           if (!result || !result.poiList) return
           const _pois = result.poiList.pois
           that.pois = [{ address: scenicSpot.regionsName, ...scenicSpot }].concat(_pois)
           _pois.forEach(poi => {
-            that.drawMarkder({ ...MWH }, poi)
+            that.drawMarkder({ ...MWH }, poi, that.currentPoi.marker)
           })
         })
       })
@@ -162,17 +164,17 @@ export default {
     },
 
     // 绘制 marker
-    drawMarkder ({ w, h }, scenicSpot) {
+    drawMarkder ({ w, h }, _spot, markerImg) {
       const marker = new AMap.Marker({
-        position: getAMapLngLat(scenicSpot),
+        position: getAMapLngLat(_spot),
         map: this.$amap,
         // animation: 'AMAP_ANIMATION_DROP',
         offset: new AMap.Pixel(-w / 2, -h),
-        icon: this.getMarkderIcon(w, h),
+        icon: this.getMarkderIcon(w, h, markerImg),
         touchZoom: false
       })
 
-      marker.setExtData(scenicSpot)
+      marker.setExtData(_spot)
       // 点击方法绑定
       marker.on('click', this.markerClick)
 
@@ -180,10 +182,10 @@ export default {
     },
 
     // 绘制坐标 icon
-    getMarkderIcon (w, h) {
+    getMarkderIcon (w, h, markerImg = "guide_mark_red.png") {
       return new AMap.Icon({
         size: new AMap.Size(w, h),
-        image: require('@/static/map/poi_mark.png'),
+        image: require(`@/static/map/${markerImg}`),
         imageSize: new AMap.Size(w, h)
       })
     },
@@ -202,11 +204,11 @@ export default {
       let _pois = JSON.parse(JSON.stringify(this.pois))
       _pois = _pois.filter((item, index) => index !== this.currentIndex)
       _pois.forEach(poi => {
-        this.drawMarkder({ ...MWH }, poi)
+        this.drawMarkder({ ...MWH }, poi, poi.typeName ? "guide_mark_red.png" : this.currentPoi.marker)
       })
 
       this.setMapCenter(_poi)
-      this.drawMarkder({ ...LWH }, _poi)
+      this.drawMarkder({ ...LWH }, _poi, _poi.typeName ? "guide_mark_red.png" : this.currentPoi.marker)
     }
   },
   created () {
@@ -220,6 +222,7 @@ export default {
   },
   components: { PoiKeywords, DragPopover, PointGuideItem },
   data () {
+    this.currentPoi = {}
     return {
       currentIndex: 0,
       showGuide: false,
