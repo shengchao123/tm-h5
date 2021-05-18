@@ -135,7 +135,7 @@ export default {
         template: "<div class='map-info-wrap'>" +
           '<div>' +
           `<div class='title'>${title}</div>` +
-          `<div class='address'>${address}</div>` +
+          `<div class='address'>${address || ''}</div>` +
           '</div>' +
           '<div class="guide-btn center" v-on:click="onOpenGuide">' +
           '<SvgIcon icon="icon_daohang" style="color:#518CFC "class="ft20 mr8"></SvgIcon>' +
@@ -199,14 +199,14 @@ export default {
     resetDrawMarkders (_poi) {
       this.$amap.clearMap()
 
-      this.setMapCenter(_poi)
-      this.drawMarkder({ ...LWH }, _poi)
-
       let _pois = JSON.parse(JSON.stringify(this.pois))
       _pois = _pois.filter((item, index) => index !== this.currentIndex)
       _pois.forEach(poi => {
         this.drawMarkder({ ...MWH }, poi)
       })
+
+      this.setMapCenter(_poi)
+      this.drawMarkder({ ...LWH }, _poi)
     }
   },
   created () {
