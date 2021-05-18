@@ -34,6 +34,12 @@
 			}
 		},
 		{
+			"path": "pages/Login",
+			"style": {
+				"navigationBarTitleText": "注册登录"
+			}
+		},
+		{
 			"path": "pages/party/index/index",
 			"style": {
 				"navigationBarTitleText": "党建联盟"

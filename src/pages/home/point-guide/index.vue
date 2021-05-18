@@ -210,11 +210,11 @@ export default {
     }
   },
   created () {
-    // 主要地标点
-    scenicSpot = JSON.parse(sessionStorage.getItem('pointData'))
-    this.pois = [{ address: scenicSpot.regionsName, ...scenicSpot }]
+
   },
   mounted () {
+    scenicSpot = JSON.parse(sessionStorage.getItem('pointData'))
+    this.pois = [{ address: scenicSpot.regionsName, ...scenicSpot }]
     this.drawMarkder({ ...LWH }, scenicSpot)
     this.setMapCenter(scenicSpot)
   },
@@ -228,8 +228,7 @@ export default {
       pois: [],
       mapInitObj: Object.freeze({
         resizeEnable: true,
-        zoom: 12, // 级别
-        center: getLngLat(scenicSpot)
+        zoom: 12
       })
     }
   },

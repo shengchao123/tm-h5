@@ -1,17 +1,12 @@
 <template>
-  <div class='tabbar-mine'>
-
-    <div class="relative">
-      <img src=""
-           class="avatar">
-    </div>
-
+  <div class='journey-item-wrap'>
+    <div class="date">日期</div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'index',
+  name: 'MyJourneyItem',
   data () {
     return {
 
@@ -21,6 +16,6 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-.tabbar-mine {
+.journey-item-wrap {
 }
 </style>
