@@ -18,5 +18,6 @@ export default {
 @import "./styles/flex.scss";
 @import "./styles/global.scss";
 @import "./styles/init.scss";
+@import "./styles/u-view.scss";
 /*每个页面公共css */
 </style>

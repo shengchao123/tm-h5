@@ -28,3 +28,13 @@ export function getJourneyPointListByOrgId (params) { // 路线获取点位 '/li
     }
   })
 }
+
+export function createJourneyItinerary (params) { // 创建行程单
+  return request({
+    url: urls.createJourneyItinerary,
+    data: {
+      orgId: localStorage.getItem('orgId'),
+      ...params
+    }
+  })
+}
