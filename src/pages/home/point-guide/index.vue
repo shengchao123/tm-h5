@@ -110,7 +110,6 @@ export default {
     },
     // 点击显示信息框
     markerClick (e) {
-      console.log(e)
       const _point = e.target.getExtData()
       this.pois.forEach((item, index) => {
         if (item.name === _point.name) this.currentIndex = index
@@ -210,9 +209,6 @@ export default {
       this.setMapCenter(_poi)
       this.drawMarkder({ ...LWH }, _poi, _poi.typeName ? "guide_mark_red.png" : this.currentPoi.marker)
     }
-  },
-  created () {
-
   },
   mounted () {
     scenicSpot = JSON.parse(sessionStorage.getItem('pointData'))

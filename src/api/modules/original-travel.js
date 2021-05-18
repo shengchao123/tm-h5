@@ -1,6 +1,24 @@
 import request from '../request'
 import { urls } from '../urls'
 
+export function getJourneyRegionsList () { // 获取行政区域列表 '/linanJourney/journeyLine/getJourneyRegionsList'
+  return request({
+    url: urls.getJourneyRegionsList,
+    data: {
+      orgId: localStorage.getItem('orgId')
+    }
+  })
+}
+
+export function getJourneyPointListByRegionsCode () { // 获取点位列表 '/linanJourney/journeyLine/getJourneyPointListByRegionsCode'
+  return request({
+    url: urls.getJourneyPointListByRegionsCode,
+    data: {
+      orgId: localStorage.getItem('orgId')
+    }
+  })
+}
+
 export function getJourneyLineListByOrgId () { // 推荐路线 '/linanJourney/journeyLine/getJourneyLineListByOrgId'
   return request({
     url: urls.getJourneyLineListByOrgId,

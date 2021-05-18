@@ -22,6 +22,12 @@
 			}
 		},
 		{
+			"path": "pages/home/stroke-order/VenueMap",
+			"style": {
+				"navigationBarTitleText": "选择集合点"
+			}
+		},
+		{
 			"path": "pages/home/stroke-order/CustomPath",
 			"style": {
 				"navigationBarTitleText": "自定义路线"

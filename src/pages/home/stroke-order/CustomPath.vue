@@ -35,43 +35,33 @@ export default {
     onHandlePoints (type, index) {
       if (type === 'del') {
         this.points.splice(index, 1)
+        this.$store.commit('travel/CUSTOM_PATH_POINTS', this.points)
         return
       }
+
       const _targetIndex = type === 'up' ? index - 1 : index + 1
       this.points = swapArr(this.points, index, _targetIndex)
+
+      this.$store.commit('travel/CUSTOM_PATH_POINTS', this.points)
     },
     onAddRedPoints () {
       uni.navigateTo({ url: '/pages/home/stroke-order/GetRedPoints' })
     }
   },
+  watch: {
+    '$store.state.travel.customPathPoints': {
+      handler: function (n, o) {
+        console.log(n, o)
+        if (n) {
+          this.points = JSON.parse(JSON.stringify(n))
+        }
+      },
+      immediate: true
+    }
+  },
   data () {
     return {
-      points: [
-        {
-          code: '',
-          journeyPointId: 0,
-          lat: 30.224302,
-          lng: 119.005056,
-          name: '第一个',
-          regionsCode: '',
-          regionsName: '临安区喜欢睡了看都就方老师',
-          type: '01',
-          typeName: '景区',
-          url: 'http://downsc.chinaz.net/Files/DownLoad/sound1/201906/11582.mp3'
-        },
-        {
-          code: '',
-          journeyPointId: 0,
-          lat: 30.274302,
-          lng: 119.765056,
-          name: '第4个',
-          regionsCode: '',
-          regionsName: '',
-          type: '',
-          typeName: '',
-          url: 'http://downsc.chinaz.net/Files/DownLoad/sound1/201906/11582.mp3'
-        }
-      ],
+      points: [],
       mapInitObj: {
         resizeEnable: true,
         zoom: 9, // 级别

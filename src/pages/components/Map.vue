@@ -71,6 +71,7 @@ export default {
   },
   watch: {
     points () {
+      this.$amap.clearMap()
       this.drawPath()
       this.drawMarker()
     }
