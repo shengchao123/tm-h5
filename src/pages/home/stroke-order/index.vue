@@ -1,25 +1,8 @@
 <template>
   <div class='stroke-order-wrap'>
-    <div class="head-map-from mt20 pl30 pr30">
-      <div class="route-select between-row center-align"
-           @click="onShowRouteSelect">
-        <div class="flex1 center-align">
-          <div class="ft30 mr24 medium">行程路线</div>
-          <div class="flex1 color-666 ellipsis-text"
-               style="width: 480rpx">“龙门秘境”乡村振兴之振兴之</div>
-        </div>
-        <svg-icon icon="icon_xiangyoujiantou"
-                  class="ft20 ml16"
-                  style="color:  #C4C4C4"></svg-icon>
-      </div>
-      <div class="map">
-        <Map :mapInitObj="mapInitObj"
-             mapClass="mapH400"
-             :points="points"></Map>
-      </div>
-      <div class="pt20 pb20 ft26 color-666">石门老街 - 新四军历史纪念馆 - 攀岩小镇 - 党史学习体验</div>
-    </div>
-    <u-form :model="form.data"
+    <head-map :journeyLineId.sync="form.data.journeyLineId"></head-map>
+    <u-form ref="form"
+            :model="form.data"
             class="bg-white">
       <div class="pl30 pr30">
         <u-form-item label="预估时长"
@@ -33,7 +16,8 @@
                         :value.sync="form.data.activityType"></my-radio-box>
         </u-form-item>
         <u-form-item label="组织生活记录"
-                     label-width="204">
+                     label-width="204"
+                     :border-bottom="false">
           <my-radio-box :options="needLifeDocumentaryOptions"
                         :value.sync="form.data.needLifeDocumentary"></my-radio-box>
         </u-form-item>
@@ -70,11 +54,13 @@
                      label-width="144">
           <div class="center-align flex1"
                @click="onShowDateSelect">
-            <u-input v-model="form.data.setOutTime"
+            <!-- <u-input v-model="form.data.setOutTime"
                      class="flex1"
                      :disabled="true"
                      @click="onShowDateSelect"
-                     placeholder="选择时间" />
+                     placeholder="选择时间" /> -->
+            <span class="flex1"
+                  :class="form.data.setOutTime ? 'color-333' : 'color-placeholder'">{{form.data.setOutTime || '选择时间'}}</span>
             <svg-icon icon="icon_riqi"
                       class="ft30 ml16"
                       style="color: #878787"></svg-icon>
@@ -86,34 +72,33 @@
                         :value.sync="form.data.transportation"></my-radio-box>
         </u-form-item>
         <u-form-item label="温馨提示"
-                     label-width="144">
+                     label-width="144"
+                     :border-bottom="false">
           <u-input v-model="form.data.tip"
                    placeholder="输入其他注意事项（选填）" />
         </u-form-item>
       </div>
     </u-form>
-    <u-select v-model="showDateSelect"
-              mode="mutil-column-auto"
-              :list="dateTimeOptions"
-              :default-value="defaultValueOfDate"
-              @confirm="confirmDateSelect"></u-select>
     <div class="footer pl30 pr30 center-align">
       <div class="confirm-btn ft32 tc"
            @click="onConfirm">确定</div>
     </div>
+    <u-select v-model="showDateSelect"
+              title="日期"
+              mode="mutil-column-auto"
+              :list="dateTimeOptions"
+              :default-value="defaultValueOfDate"
+              @confirm="confirmDateSelect"></u-select>
   </div>
 </template>
 <script>
 import { playTimeOptions, activityTypeOptions, needLifeDocumentaryOptions, transportationOptions } from '@/utils/enum'
 import MyRadio from './components/MyRadio'
 import MyRadioBox from './components/MyRadioBox.vue'
-import Map from '@/pages/components/Map.vue'
 import { dateTimeOptions } from '@/utils/tools.js'
+import HeadMap from './components/HeadMap.vue'
 export default {
   methods: {
-    onShowRouteSelect () {
-
-    },
     onShowDateSelect () {
       this.showDateSelect = true
     },
@@ -144,6 +129,17 @@ export default {
       })
     },
     onConfirm () {
+      this.$refs.uForm.validate(valid => {
+        if (valid) {
+          this.createJourneyItinerary()
+        } else {
+          this.$msg('还有信息未填写')
+        }
+      });
+      console.log(this.form.data)
+
+    },
+    createJourneyItinerary () {
       // const params = {}
       // this.$api.createJourneyItinerary(params).then(res => {
       //   if (res.isError) return this.$msg(res.message)
@@ -158,6 +154,11 @@ export default {
   },
   components: { Map },
   data () {
+    const contactDetailsVal = (rule, value, callback) => {
+      if (!value) return callback(new Error('请输入组织员手机号'))
+      if (!this.$u.test.mobile(value)) return callback(new Error('手机号不正确'))
+      callback()
+    }
     return {
       showDateSelect: false,
       form: {
@@ -172,8 +173,16 @@ export default {
           setOutTime: '',
           transportation: '01',
           tip: '',
+          journeyLineId: null,
+          type: '01'
         },
-        rules: {}
+        rules: {
+          name: [{ required: true, message: '请输入行程名称', trigger: ['change', 'blur'] }],
+          organizer: [{ required: true, message: '请输入组织员姓名', trigger: ['change', 'blur'] }],
+          contactDetails: [{ required: true, trigger: ['change', 'blur'], validator: contactDetailsVal }],
+          meetingPlace: [{ required: true, message: '请输入集合地点', trigger: ['change', 'blur'] }],
+          setOutTime: [{ required: true, message: '请选择出发时间', trigger: ['change', 'blur'] }],
+        }
       },
       defaultValueOfDate: [],
       playTimeOptions,
@@ -181,66 +190,15 @@ export default {
       needLifeDocumentaryOptions,
       transportationOptions,
       dateTimeOptions: dateTimeOptions(),
-      points: [
-        {
-          code: '',
-          journeyPointId: 0,
-          lat: 30.224302,
-          lng: 119.005056,
-          name: '第一个',
-          regionsCode: '',
-          regionsName: '临安区喜欢睡了看都就方老师',
-          type: '01',
-          typeName: '景区',
-          url: 'http://downsc.chinaz.net/Files/DownLoad/sound1/201906/11582.mp3'
-        },
-        {
-          code: '',
-          journeyPointId: 0,
-          lat: 30.124302,
-          lng: 119.165056,
-          name: '第2个',
-          regionsCode: '',
-          regionsName: '',
-          type: '',
-          typeName: '',
-          url: 'http://downsc.chinaz.net/Files/DownLoad/sound1/201906/11582.mp3'
-        },
-        {
-          code: '',
-          journeyPointId: 0,
-          lat: 30.224302,
-          lng: 119.365056,
-          name: '第3个',
-          regionsCode: '',
-          regionsName: '',
-          type: '',
-          typeName: '',
-          url: 'http://downsc.chinaz.net/Files/DownLoad/sound1/201906/11582.mp3'
-        },
-        {
-          code: '',
-          journeyPointId: 0,
-          lat: 30.274302,
-          lng: 119.765056,
-          name: '第4个',
-          regionsCode: '',
-          regionsName: '',
-          type: '',
-          typeName: '',
-          url: 'http://downsc.chinaz.net/Files/DownLoad/sound1/201906/11582.mp3'
-        }
-      ],
-      mapInitObj: Object.freeze({
-        resizeEnable: true,
-        zoom: 9, // 级别
-        center: [119.365056, 30.194302]
-      })
     }
+  },
+
+  onReady () {
+    this.$refs.form.setRules(this.form.rules);
   },
   created () {
   },
-  components: { MyRadio, MyRadioBox }
+  components: { MyRadio, MyRadioBox, HeadMap }
 }
 </script>
 <style>
@@ -291,6 +249,9 @@ page {
       border-radius: 44rpx;
       color: #fff;
     }
+  }
+  .color-placeholder {
+    color: rgb(192, 196, 204);
   }
   /deep/.u-form-item--left {
     align-items: flex-start;

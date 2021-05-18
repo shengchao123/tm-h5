@@ -3,8 +3,8 @@
        :class="boxClass">
     <div v-for="(item, index) in options"
          :key="index"
-         class="center-align"
-         :style="{marginRight: spacing / 2 + 'px'}"
+         class="center-align mr32"
+         :style="{marginRight: ' ' + spacing + 'rpx'}"
          @click="onSelect(item.id)">
       <my-radio :selected="value === item.id">
         <span class="ft30 ml16"
