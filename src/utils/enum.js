@@ -25,3 +25,26 @@ export const transportationOptions = Object.freeze([
   { id: '05', name: '骑行' },
   { id: '06', name: '步行' },
 ])
+
+export const playTimeNameMap = new Map([
+  ['01', '半天'],
+  ['02', '1天'],
+  ['03', '2天'],
+  ['04', '3天'],
+])
+
+export const activityNameMap = new Map([
+  ['01', '党组活动'],
+  ['02', '学习教育'],
+  ['03', '观光游览'],
+  ['04', '其他'],
+])
+
+export const transportationNameMap = new Map([
+  ['01', '包车'],
+  ['02', '公共交通'],
+  ['03', '自行前往'],
+  ['04', '自驾'],
+  ['05', '骑行'],
+  ['06', '步行'],
+])
