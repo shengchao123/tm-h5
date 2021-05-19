@@ -1,6 +1,5 @@
 import { fileHost, imgHost } from '@/api/urls'
 
-
 export const calcRpx2px = function (size) {
   const info = uni.getSystemInfoSync()
   const scale = 750 / info.windowWidth;
@@ -19,12 +18,15 @@ export const calcRpx2px = function (size) {
   return s + u
 }
 
+export const calcPx2Vh = function (num) {
+  return num / uni.getSystemInfoSync().screenHeight * 100
+}
+
 export const getFullUrl = function (url) {
   /* #ifdef H5 */
   const host = '/api'
   /* #endif */
   return host + url
-
 }
 
 
