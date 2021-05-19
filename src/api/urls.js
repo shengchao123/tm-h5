@@ -17,4 +17,9 @@ export const urls = {
   getJourneyRegionsList: '/linanJourney/journeyRegionsManagement/getJourneyRegionsList', //   
   createJourneyItinerary: '/linanJourney/journeyItinerary/createJourneyItinerary', // 创建行程单
 
+
+  // 我的页面
+  getMemberPersonalInfo: '/crm/member/getMemberPersonalInfo', // 我的信息获取
+  getMyJourneyItineraryPage: '/linanJourney/journeyItinerary/getMyJourneyItineraryPage', // 我的行程单
+
 }

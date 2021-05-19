@@ -82,7 +82,6 @@ export default {
   padding: 16rpx 32rpx 0 32rpx;
   overflow-x: hidden;
   .path-container {
-    overflow: scroll;
     box-sizing: border-box;
     overflow: scroll;
     white-space: nowrap;
