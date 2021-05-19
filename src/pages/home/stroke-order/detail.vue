@@ -75,7 +75,7 @@
              title="要删除该行程单？"
              content="删除后不可恢复"
              :title-style="{fontSize: '32rpx', color: '#333', fontWeight: 600}"
-             :content-style="{fontSize: '26rpx', color: '#999'}"
+             :content-style="{fontSize: '26rpx', color: '#999', paddingTop: '28rpx'}"
              :show-cancel-button="true"
              confirm-text="删除"
              cancel-text="先留着"
