@@ -64,13 +64,15 @@ export default {
     // 兴趣点名字
     changePois (poi) {
       this.currentPoi = poi
-      console.log(this.currentPoi)
       this.currentIndex = 0
       this.pois = [{ address: scenicSpot.regionsName, ...scenicSpot }]
+
       this.$amap.clearMap()
       this.setMapCenter(scenicSpot)
       this.drawMarkder({ ...LWH }, scenicSpot)
+
       if (poi.type) return this.getJourneyPointListByOrgId(poi.type)
+
       this.getPoisWithLngLat(poi.name)
     },
     getJourneyPointListByOrgId (type) {
