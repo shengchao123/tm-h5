@@ -7,14 +7,15 @@
           <div class="ft30 mr24 medium">行程路线</div>
           <div class="flex1 color-666 ellipsis-text name">{{selectRouteItem.name}}</div>
         </div>
-        <svg-icon icon="icon_xiangyoujiantou"
+        <svg-icon v-if="!isDetail"
+                  icon="icon_xiangyoujiantou"
                   class="ft20 ml16"
                   style="color:  #C4C4C4"></svg-icon>
       </div>
       <div class="map">
         <Map :mapInitObj="mapInitObj"
              mapClass="mapH400"
-             :points="points"></Map>
+             :points="usePoints"></Map>
       </div>
       <div class="pt20 pb20 ft26 color-666 bb">{{pointsName}}</div>
     </div>
@@ -31,6 +32,7 @@ import SelectRoutePop from './SelectRoutePop.vue'
 export default {
   methods: {
     onShowRouteSelect () {
+      if (this.isDetail) return
       this.$refs.selectRoutePop.show()
     },
     onRouteItem (routeItem) {
@@ -56,7 +58,8 @@ export default {
   },
   props: {
     isDetail: Boolean,
-    journeyLineId: [String, Number]
+    journeyLineId: [String, Number],
+    journeyPointList: Array
   },
   data () {
     return {
@@ -122,6 +125,9 @@ export default {
   computed: {
     pointsName () {
       return this.points.map(el => el.name).join(' - ')
+    },
+    usePoints () {
+      return this.journeyPointList || this.points
     }
   },
   components: { Map, SelectRoutePop }

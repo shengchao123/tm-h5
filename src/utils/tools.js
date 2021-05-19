@@ -1,14 +1,23 @@
 import { fileHost, imgHost } from '@/api/urls'
 
 
-export const calcPxFit = function (num) {
-  return num * (750 / uni.getSystemInfoSync().screenHeight)
+export const calcRpx2px = function (size) {
+  const info = uni.getSystemInfoSync()
+  const scale = 750 / info.windowWidth;
+  console.log(scale)
+  let s = Number.isNaN(parseFloat(size)) ? 0 : parseFloat(size)
+  let u = size.toString().replace(/[0-9]/g, '').replace('-', '')
+  if (u == 'rpx') {
+    s /= scale
+    u = 'px'
+  } else if (u == '') {
+    u = 'px'
+  } else if (u == 'vw') {
+    u = 'px'
+    s = s / 100 * 750 / scale
+  }
+  return s + u
 }
-
-export const calcPx2Vh = function (num) {
-  return num / uni.getSystemInfoSync().screenHeight * 100
-}
-
 
 export const getFullUrl = function (url) {
   /* #ifdef H5 */

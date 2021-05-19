@@ -56,3 +56,13 @@ export function createJourneyItinerary (params) { // 创建行程单
     }
   })
 }
+
+export function getJourneyItineraryById (params) { // 根据id获取行程单
+  return request({
+    url: urls.getJourneyItineraryById,
+    data: {
+      orgId: localStorage.getItem('orgId'),
+      ...params
+    }
+  })
+}

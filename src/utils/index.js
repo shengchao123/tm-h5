@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import { isEmpty } from './validate'
-import { msg, calcPxFit } from './tools'
+import { msg, calcRpx2px } from './tools'
 import { login } from './login'
 
 Vue.prototype.$isEmpty = isEmpty
-Vue.prototype.$calcPxFit = calcPxFit
+Vue.prototype.$calcRpx2px = calcRpx2px
 Vue.prototype.$msg = msg
 Vue.prototype.$login = login
