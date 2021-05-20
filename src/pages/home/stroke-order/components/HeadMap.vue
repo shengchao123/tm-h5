@@ -16,7 +16,7 @@
         </div>
         <span v-else></span>
       </div>
-      <div class="flex1 ft30 ellipsis-text name">{{journeyLineName || selectRouteItem.name}}</div>
+      <div class="flex1 ft30 ellipsis-text name">{{selectRouteItem.name || journeyLineName}}</div>
       <div class="pt14 pb20 ft26 color-666 bb">{{pointsName}}</div>
       <div class="map">
         <Map :mapInitObj="mapInitObj"

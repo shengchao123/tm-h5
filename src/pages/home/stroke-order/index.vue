@@ -1,6 +1,7 @@
 <template>
   <div class='stroke-order-wrap'>
     <head-map :journeyLineId.sync="form.data.journeyLineId"
+              :journeyLineName="journeyLineName"
               :journeyPointList="journeyPointList"></head-map>
     <u-form ref="form"
             :model="form.data"
@@ -52,27 +53,24 @@
         </u-form-item>
         <u-form-item label="集合地点"
                      label-width="144"
-                     prop="meetingPlace">
-          <u-input v-model="form.data.meetingPlace"
-                   class="flex1"
-                   :disabled="true"
-                   placeholder="输入集合地点" />
-          <input-length-word :modelData="form.data.meetingPlace"
-                             maxLength="30"></input-length-word>
-          <svg-icon icon="icon_dingwei"
-                    class="ft30 ml16"
-                    style="color: #518CFC"></svg-icon>
+                     prop="meetingPlace"
+                     @click="onVenueMap">
+          <div class="center-align flex1"
+               @click="onShowDateSelect">
+            <span class="flex1"
+                  :class="form.data.meetingPlace ? 'color-333' : 'color-placeholder'">{{meetingPlaceText}}</span>
+            <input-length-word :modelData="form.data.meetingPlace"
+                               maxLength="30"></input-length-word>
+            <svg-icon icon="icon_dingwei"
+                      class="ft30 ml16"
+                      style="color: #518CFC"></svg-icon>
+          </div>
         </u-form-item>
         <u-form-item label="出发日期"
                      label-width="144"
                      prop="setOutTime">
           <div class="center-align flex1"
                @click="onShowDateSelect">
-            <!-- <u-input v-model="form.data.setOutTime"
-                     class="flex1"
-                     :disabled="true"
-                     @click="onShowDateSelect"
-                     placeholder="选择时间" /> -->
             <span class="flex1"
                   :class="form.data.setOutTime ? 'color-333' : 'color-placeholder'">{{setOutTimeText}}</span>
             <svg-icon icon="icon_riqi"
@@ -119,6 +117,12 @@ export default {
     onShowDateSelect () {
       this.showDateSelect = true
     },
+    // 选择集合点
+    onVenueMap () {
+      uni.navigateTo({
+        url: '/pages/home/stroke-order/VenueMap'
+      })
+    },
     confirmDateSelect (params) {
       const Y = params[0].value
       const M = this.makeUpZero(params[1].value)
@@ -154,10 +158,35 @@ export default {
         }
       })
       console.log(this.form.data)
-
     },
     createJourneyItinerary () {
-      const params = {}
+      const {
+        name, playTime, activityType,
+        needLifeDocumentary, organizer, contactDetails,
+        meetingPlace, meetingPlaceLat, meetingPlaceLng,
+        setOutTime, transportation, journeyLineId,
+        precautions
+      } = this.form.data
+      const params = {
+        activityType,
+        contactDetails,
+        meetingPlace,
+        meetingPlaceLat,
+        meetingPlaceLng,
+        name,
+        needLifeDocumentary,
+        organizer,
+        playTime,
+        precautions,
+        setOutTime,
+        transportation,
+        type: journeyLineId ? '01' : '02' // 是否自定义路线
+      }
+      if (journeyLineId) {
+        params.journeyLineId = journeyLineId
+      } else {
+        params.journeyPointIds = this.journeyPointList.map(el => el.id)
+      }
       this.$api.createJourneyItinerary(params).then(res => {
         if (res.isError) return this.$msg(res.message)
         uni.redirectTo({
@@ -184,22 +213,23 @@ export default {
           precautions
         } = res.content
         this.journeyPointList = journeyPointList
-        this.form.data = {
-          name,
-          playTime,
-          activityType,
-          needLifeDocumentary,
-          organizer,
-          contactDetails,
-          meetingPlace,
-          meetingPlaceLat,
-          meetingPlaceLng,
-          setOutTime,
-          transportation,
-          precautions,
-          journeyLineId,
-          type,
-        }
+        this.form.data = { ...res.content }
+        // {
+        //   name,
+        //   playTime,
+        //   activityType,
+        //   needLifeDocumentary,
+        //   organizer,
+        //   contactDetails,
+        //   meetingPlace,
+        //   meetingPlaceLat,
+        //   meetingPlaceLng,
+        //   setOutTime,
+        //   transportation,
+        //   precautions,
+        //   journeyLineId,
+        //   type,
+        // }
         // 需要配置 defaultValueOfDate 回显 不然要从第一项选起
       })
     },
@@ -207,9 +237,20 @@ export default {
       uni.$on('setJourneyPointListEvent', (list) => {
         this.journeyPointList = list
       })
+      uni.$on('setMeetingPlaceEvent', (data) => {
+        const { meetingPlace, meetingPlaceLat, meetingPlaceLng } = data
+        const formData = this.form.data
+        this.form.data = {
+          ...formData,
+          meetingPlace,
+          meetingPlaceLat,
+          meetingPlaceLng
+        }
+      })
     },
     clearEvent () {
       uni.$off('setJourneyPointListEvent')
+      uni.$off('setMeetingPlaceEvent')
     },
     makeUpZero (num) {
       if (+num < 10) {
@@ -240,8 +281,7 @@ export default {
           setOutTime: '',
           transportation: '01',
           precautions: '',
-          journeyLineId: null,
-          type: '01'
+          journeyLineId: null
         },
         rules: {
           name: [{ required: true, message: '输入行程名称', trigger: ['change', 'blur'] }],
@@ -265,6 +305,11 @@ export default {
       const setOutTime = this.form.data.setOutTime
       if (!setOutTime) return '选择时间'
       return this.$moment(setOutTime).format('YYYY-MM-DD HH:mm')
+    },
+    meetingPlaceText () {
+      const meetingPlace = this.form.data.meetingPlace
+      if (!meetingPlace) return '选择集合点'
+      return meetingPlace
     }
   },
   destroyed () {

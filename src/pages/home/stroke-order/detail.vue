@@ -153,7 +153,10 @@ export default {
       }
       this.$api.getJourneyItineraryById(params).then(res => {
         if (res.isError) return this.$msg(res.message)
-        const { journeyPointList, signUpList } = res.content
+        const { journeyPointList, signUpList, journeyLineId } = res.content
+        if (!journeyLineId) {
+          res.content.journeyLineName = '自定义路线'
+        }
         this.baseInfo = res.content
         this.journeyPointList = journeyPointList
         this.signUpList = signUpList
