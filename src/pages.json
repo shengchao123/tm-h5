@@ -52,7 +52,13 @@
 			}
 		},
 		{
-			"path": "pages/Login",
+			"path": "pages/public/Login",
+			"style": {
+				"navigationBarTitleText": "授权"
+			}
+		},
+		{
+			"path": "pages/public/Bind",
 			"style": {
 				"navigationBarTitleText": "注册登录"
 			}

@@ -9,8 +9,6 @@ module.exports = {
   configureWebpack: {
     resolve: {
       alias: {
-        // 别名
-        vue$: "vue/dist/vue.esm.js", //加上这一句
         '@': resolve('src'),
         '@c': resolve('src/components'),
         '@u': resolve('src/utils'),

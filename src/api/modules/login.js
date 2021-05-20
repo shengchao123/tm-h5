@@ -11,60 +11,47 @@ export function sendVerificationCode (params) {
   })
 }
 
-export function getMinDecryptionData (params) { // 获取授权 url
-  return request({
-    url: urls.getMinDecryptionData,
-    needlessToken: true,
-    data: {
-      ...params,
-      thirdUserId: uni.getStorageSync('thirdUserId'),
-      sourceType,
-    }
-  })
-}
 
-export function redirectToOAuth (params) { // 获取授权 url
+// 第一步：获取微信授权
+export function redirectToOAuth (params) {
   return request({
     url: urls.redirectToOAuth,
     needlessToken: true,
     data: {
-      orgId: uni.getStorageSync('orgId'),
       scope: 'snsapi_userinfo'
     }
   })
 }
 
-export function getUserInfo (params) { // 获取第三方用户 id
+// 第二步：接受微信公众号授权后的code获取thirdUserId及登陆
+export function getUserInfoAndToken (params) {
   return request({
-    url: urls.getUserInfo,
+    url: urls.getUserInfoAndToken,
     needlessToken: true,
     data: {
-      orgId: uni.getStorageSync('orgId'),
       ...params
     }
   })
 }
 
-export function login () { // 获取 token
+
+// 第三步：获取三方用户信息
+export function getMemberLoginInfo () {
   return request({
-    url: urls.login,
+    url: urls.getMemberLoginInfo,
     needlessToken: true,
-    formData: true,
     data: {
-      'loginName': uni.getStorageSync('thirdUserId'),
-      'orgId': uni.getStorageSync('orgId'),
-      'grant_type': 'password',
-      'appid': 'mobileWCOA',
+      thirdUserId: uni.getStorageSync('thirdUserId')
     }
   })
 }
 
-export function bindPhone (params) { // 绑定手机号
+
+export function bindPhone (params) {
   return request({
     url: urls.bindPhone,
     data: {
-      ...params,
-      orgId: uni.getStorageSync('orgId')
+      ...params
     }
   })
 }
