@@ -204,12 +204,12 @@ export default {
       })
     },
     setEvent () {
-      uni.$on('serJourneyPointListEvent', (list) => {
+      uni.$on('setJourneyPointListEvent', (list) => {
         this.journeyPointList = list
       })
     },
     clearEvent () {
-      uni.$off('serJourneyPointListEvent')
+      uni.$off('setJourneyPointListEvent')
     },
     makeUpZero (num) {
       if (+num < 10) {
