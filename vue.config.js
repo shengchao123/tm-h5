@@ -12,7 +12,6 @@ module.exports = {
         '@': resolve('src'),
         '@c': resolve('src/components'),
         '@u': resolve('src/utils'),
-        '@v': resolve('src/views'),
         '@m': resolve('src/mixins')
       }
     },

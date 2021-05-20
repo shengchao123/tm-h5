@@ -19,9 +19,9 @@ export function getJourneyPointListByRegionsCode () { // 获取点位列表 '/li
   })
 }
 
-export function getJourneyLineListByOrgId () { // 推荐路线 '/linanJourney/journeyLine/getJourneyLineListByOrgId'
+export function getRecommendJourneyLineList () { // 推荐路线 '/linanJourney/journeyLine/getJourneyLineListByOrgId'
   return request({
-    url: urls.getJourneyLineListByOrgId,
+    url: urls.getRecommendJourneyLineList,
     data: {
       orgId: localStorage.getItem('orgId')
     }

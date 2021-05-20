@@ -11,7 +11,7 @@
         <div class="ft26 color-999 mt8">请填写以下注册信息</div>
       </div>
 
-      <div class="box bb row mt54">
+      <div class="box bb center-align mt54">
         <div class="mr48">手机号</div>
         <u-input v-model="submitData.phone"
                  placeholder="请输入手机号"
@@ -21,12 +21,12 @@
                  type="number" />
       </div>
 
-      <div class="box bb row">
+      <div class="box bb center-align">
         <div class="mr48">验证码</div>
-        <u-input v-model="submitData.code"
+        <u-input v-model="submitData.verifyCode"
                  class="mr32"
                  placeholder="请输入验证码"
-                 maxlength="4"
+                 maxlength="6"
                  :focus="true"
                  :trim="true"
                  type="number" />
@@ -42,7 +42,8 @@
       </div>
 
       <div class="login-btn ft32 bold center "
-           :class="isVerified ? 'active' : 'disabled'">登录</div>
+           :class="isVerified ? 'active' : 'disabled'"
+           @click="verifySubmitData">登录</div>
 
       <div class="center agreement ft22">
         <div class="color-999">登录即同意</div>
@@ -54,7 +55,9 @@
 </template>
 
 <script>
+
 import { checkInput } from '@/utils/validate.js'
+import { saveLoginInfo } from '@/utils/login.js'
 
 export default {
   name: 'Login',
@@ -81,21 +84,23 @@ export default {
         this.$msg('请输入验证码')
         return
       }
+
       this.bindPhone()
     },
     // 绑定会员手机号
     bindPhone () {
       const params = {
-        phone: this.submitData.phone,
-        verifyCode: this.submitData.verifyCode,
-        luckyAttendId: uni.getStorageSync('luckyAttendId')
+        ...this.submitData
       }
       this.$api.bindPhone(params).then(res => {
         if (res.isError) {
           if (res.subCode === 'ERROR') return this.$msg('验证码不正确')
           return
         }
-
+        saveLoginInfo(res.content)
+        uni.setStorageSync('status', 3)
+        this.$msg.success('登录成功')
+        uni.navigateBack({ delta: 1 })
       })
     },
     // 发送验证码
@@ -123,8 +128,8 @@ export default {
   },
   computed: {
     isVerified () {
-      const { phone, code } = this.submitData
-      return checkInput(phone, 'phone') && code.length === 4
+      const { phone, verifyCode } = this.submitData
+      return checkInput(phone, 'phone') && verifyCode.length === 6
     }
   },
   data () {
@@ -134,7 +139,7 @@ export default {
       codeText: '获取验证码',
       submitData: {
         phone: '',
-        code: ''
+        verifyCode: ''
       }
     }
   }
