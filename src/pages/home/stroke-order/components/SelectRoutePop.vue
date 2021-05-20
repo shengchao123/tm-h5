@@ -103,7 +103,7 @@ export default {
     }
   },
   created () {
-    this.getJourneyLineListByOrgId()
+    this.getRecommendJourneyLineList()
   }
 }
 </script>
