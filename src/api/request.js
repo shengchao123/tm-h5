@@ -2,17 +2,25 @@ import store from '@/store'
 import { getFullUrl } from '@/utils/tools.js'
 const loginErrorSubCode = ['TOKEN_EXPIRED', 'TOKEN_NULL', 'SESSION_KEY_FAIL']
 // 报错锁
+let LOGIN_LOCK = false
+
 export default function (obj) {
   return new Promise((resolve, reject) => {
     // 无效请求
     if (!obj.url) return reject('无效请求，没有 url')
     // 没有 token，并且不在白名单，不允许请求
-    if (!uni.getStorageSync('access_token') && !obj.needlessToken) return
+    if (!uni.getStorageSync('token') && !obj.needlessToken) {
+      if (LOGIN_LOCK) return
+      LOGIN_LOCK = true
+      uni.navigateTo({ url: '/pages/public/login' })
+      return
+    }
+
+    LOGIN_LOCK = false
 
     let headers = {
-      'authToken': uni.getStorageSync('access_token') || '',
-      'masterOrgId': uni.getStorageSync('masterOrgId') || '',
-      'memberId': uni.getStorageSync('memberId') || '',
+      'authToken': uni.getStorageSync('token') || '',
+      'masterOrgId': uni.getStorageSync('masterOrgId') || ''
     }
     if (obj.formData) {
       headers['Content-type'] = "application/x-www-form-urlencoded"
@@ -31,11 +39,13 @@ export default function (obj) {
 
         const res = response.data
         if (res.code === 40004 && loginErrorSubCode.includes(res.subCode)) {
-          const page = getCurrentPages()[0]
-          uni.removeStorageSync('access_token')
-          // login()
+          uni.navigateTo({ url: '/pages/public/login' })
+          if (LOGIN_LOCK) return
+          LOGIN_LOCK = true
           return
         }
+
+        LOGIN_LOCK = false
 
         if (res.code === 10000) {
           resolve(res)
@@ -49,8 +59,9 @@ export default function (obj) {
       },
       fail: (e) => {
         if (e.data && loginErrorSubCode.includes(e.data.subCode)) {
-          uni.removeStorageSync('access_token')
-          // login()
+          if (LOGIN_LOCK) return
+          LOGIN_LOCK = true
+          uni.navigateTo({ url: '/pages/public/login' })
           return
         }
         console.log(" fail:" + JSON.stringify(e.data));

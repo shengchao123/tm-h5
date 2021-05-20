@@ -11,19 +11,18 @@ import { saveLoginInfo } from '@/utils/login'
 export default {
   name: 'Login',
   methods: {
+    /**
+     * 1. 如果有 thridUserId，证明登录过，直接去获取用户信息之类的
+     * 2. 如果没有 thirdUserId，走微信授权获取id，然后换取用户信息
+     * 3. 用户信息状态 status  (1:未找到该用户; 2:未成为会员; 3:未完善资料; 4:已完善资料; 5:登录失败; 6:冻结)
+     */
     h5Login (option) {
-      // 本地登录可以直接调用登录
-      if (uni.getStorageSync('env') === 'test') {
+      if (uni.getStorageSync('thirdUserId')) {
         this.getMemberLoginInfo()
         return
       }
       // 微信授权登录
       if (option.code) {
-        // let temState = decodeURIComponent(option.state)
-        // let state = JSON.parse(temState)
-        // uni.setStorageSync('orgId', state.orgId)
-        // uni.setStorageSync('masterOrgId', state.masterOrgId)
-        // uni.setStorageSync('memberLevelOrgId', state.orgId)
         this.getUserInfoAndToken(option)
       } else {
         this.redirectToOAuth()
@@ -36,6 +35,7 @@ export default {
         location.replace(res.content.redirectUrl)
       })
     },
+
     // 第二步：使用微信返回 code 换取登录所需信息
     getUserInfoAndToken (option) {
       let params = {
@@ -45,7 +45,6 @@ export default {
       this.$api.getUserInfo(params).then(res => {
         if (res.isError) return
         const { openId, thirdUserId } = res.content
-        uni.setStorageSync('openId', openId)
         uni.setStorageSync('thirdUserId', thirdUserId)
       })
     },
@@ -55,10 +54,34 @@ export default {
       this.$api.getMemberLoginInfo().then(res => {
         if (res.isError) return
         saveLoginInfo(res.content)
+        const { status } = res.content
+
+        // 不是会员，需要绑定手机号
+        if (status === 1 || status === 2) {
+          uni.redirectTo({ url: '/pages/public/Bind' })
+          return
+        }
+
+        // 是会员直接成功
+        if (status === 3 || status === 4) {
+          uni.navigateBack({ delta: 1 })
+          return
+        }
+
+        // 登录报错的
+        if (status === 5 || status === 6) {
+          uni.removeStorageSync('thirdUserId')
+          this.redirectToOAuth()
+        }
       })
     }
   },
   onLoad (option) {
+    // uni.redirectTo({ url: '/pages/public/Bind' })
+    // return
+
+    uni.setStorageSync('masterOrgId', option.masterOrgId)
+    uni.setStorageSync('thirdUserId', option.thirdUserId)
     this.h5Login(option)
   },
 }

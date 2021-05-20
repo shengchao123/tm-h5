@@ -5,23 +5,22 @@ export function getJourneyRegionsList () { // 获取行政区域列表 '/linanJo
   return request({
     url: urls.getJourneyRegionsList,
     data: {
-      orgId: localStorage.getItem('orgId')
     }
   })
 }
 
-export function getJourneyPointListByRegionsCode () { // 获取点位列表 '/linanJourney/journeyLine/getJourneyPointListByRegionsCode'
+export function getJourneyPointListByRegionsCode (params) { // 获取点位列表 '/linanJourney/journeyLine/getJourneyPointListByRegionsCode'
   return request({
     url: urls.getJourneyPointListByRegionsCode,
     data: {
-      orgId: localStorage.getItem('orgId')
+      ...params
     }
   })
 }
 
-export function getJourneyLineListByOrgId () { // 推荐路线 '/linanJourney/journeyLine/getJourneyLineListByOrgId'
+export function getRecommendJourneyLineList () { // 推荐路线 '/linanJourney/journeyLine/getJourneyLineListByOrgId'
   return request({
-    url: urls.getJourneyLineListByOrgId,
+    url: urls.getRecommendJourneyLineList,
     data: {
       orgId: localStorage.getItem('orgId')
     }
