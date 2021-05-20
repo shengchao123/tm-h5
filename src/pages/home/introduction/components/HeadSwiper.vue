@@ -63,6 +63,9 @@ export default {
     // 去看VR
     onVR () {
       // this.vrLink
+      uni.navigateTo({
+        url: '/pages/webView?webUrl=https://uniapp.dcloud.io/component/web-view'
+      })
     },
     videoStartPlayEvent () {
       this.$emit('videoStartPlayEvent')
