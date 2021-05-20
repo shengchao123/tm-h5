@@ -22,6 +22,12 @@
 			}
 		},
 		{
+			"path": "pages/home/stroke-order/VenueMap",
+			"style": {
+				"navigationBarTitleText": "选择集合点"
+			}
+		},
+		{
 			"path": "pages/home/stroke-order/createSuccess",
 			"style": {
 				"navigationBarTitleText": "创建成功"
@@ -40,6 +46,24 @@
 			}
 		},
 		{
+			"path": "pages/home/stroke-order/GetRedPoints",
+			"style": {
+				"navigationBarTitleText": "添加红色地标"
+			}
+		},
+		{
+			"path": "pages/public/Login",
+			"style": {
+				"navigationBarTitleText": "授权"
+			}
+		},
+		{
+			"path": "pages/public/Bind",
+			"style": {
+				"navigationBarTitleText": "注册登录"
+			}
+		},
+		{
 			"path": "pages/party/index/index",
 			"style": {
 				"navigationBarTitleText": "党建联盟"
@@ -49,6 +73,12 @@
 			"path": "pages/mine/index/index",
 			"style": {
 				"navigationBarTitleText": "我的"
+			}
+		},
+		{
+			"path": "pages/webView",
+			"style": {
+				"navigationBarTitleText": ""
 			}
 		}
 	],

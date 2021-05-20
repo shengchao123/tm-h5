@@ -1,10 +1,8 @@
 import { fileHost, imgHost } from '@/api/urls'
 
-
 export const calcRpx2px = function (size) {
   const info = uni.getSystemInfoSync()
   const scale = 750 / info.windowWidth;
-  console.log(scale)
   let s = Number.isNaN(parseFloat(size)) ? 0 : parseFloat(size)
   let u = size.toString().replace(/[0-9]/g, '').replace('-', '')
   if (u == 'rpx') {
@@ -19,12 +17,15 @@ export const calcRpx2px = function (size) {
   return s + u
 }
 
+export const calcPx2Vh = function (num) {
+  return num / uni.getSystemInfoSync().screenHeight * 100
+}
+
 export const getFullUrl = function (url) {
   /* #ifdef H5 */
   const host = '/api'
   /* #endif */
   return host + url
-
 }
 
 
@@ -130,6 +131,11 @@ export function replaceString (any, keyValues) {
   return JSON.parse(_any)
 }
 
+export function swapArr (arr, index1, index2) {
+  const _arr = JSON.parse(JSON.stringify(arr))
+  _arr[index1] = _arr.splice(index2, 1, _arr[index1])[0];
+  return _arr;
+}
 export function dateTimeOptions () {
   const nowDate = new Date()
   const nowYear = nowDate.getFullYear()

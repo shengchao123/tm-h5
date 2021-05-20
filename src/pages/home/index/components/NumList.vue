@@ -3,7 +3,7 @@
     <div class="flex1 center-align">
       <div class="column center-align">
         <div class="line"></div>
-        <div class="circle center ft22">{{pointData.index}}</div>
+        <div class="circle center ft22">{{pointData.index + 1}}</div>
         <div class="line"></div>
       </div>
 
