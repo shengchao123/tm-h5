@@ -57,7 +57,7 @@ export default {
       }
       this.$api.getJourneyPointListByJourneyId(params).then(res => {
         if (res.isError) return this.$msg(res.message)
-        this.points = res.content
+        this.points = res.content || []
       })
     },
   },
@@ -72,7 +72,7 @@ export default {
   },
   data () {
     return {
-      journeyLineIdCache: null,
+      journeyLineIdCache: '',
       selectRouteItem: {},
       mapInitObj: Object.freeze({
         resizeEnable: true,

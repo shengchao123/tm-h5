@@ -93,6 +93,11 @@ export default {
           "journeyLineId": '62340',
           "name": "“琴山蓝湾”党建联盟",
           "playTime": "01",
+        },
+        {
+          "journeyLineId": null,
+          "name": '自定义路线',
+          "playTime": "01",
         }
       ]
     }

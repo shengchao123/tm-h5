@@ -53,10 +53,9 @@
         </u-form-item>
         <u-form-item label="集合地点"
                      label-width="144"
-                     prop="meetingPlace"
-                     @click="onVenueMap">
+                     prop="meetingPlace">
           <div class="center-align flex1"
-               @click="onShowDateSelect">
+               @click="onVenueMap">
             <span class="flex1"
                   :class="form.data.meetingPlace ? 'color-333' : 'color-placeholder'">{{meetingPlaceText}}</span>
             <input-length-word :modelData="form.data.meetingPlace"
@@ -206,12 +205,13 @@ export default {
       this.$api.getJourneyItineraryById(params).then(res => {
         if (res.isError) return this.$msg(res.message)
         const {
-          journeyPointList, name, playTime, activityType,
+          journeyLineName, journeyPointList, name, playTime, activityType,
           needLifeDocumentary, organizer, contactDetails,
           meetingPlace, meetingPlaceLat, meetingPlaceLng,
           setOutTime, transportation, journeyLineId, type,
-          precautions
+          precautions,
         } = res.content
+        this.journeyLineName = journeyLineName
         this.journeyPointList = journeyPointList
         this.form.data = { ...res.content }
         // {
@@ -235,6 +235,7 @@ export default {
     },
     setEvent () {
       uni.$on('setJourneyPointListEvent', (list) => {
+        console.log(list)
         this.journeyPointList = list
       })
       uni.$on('setMeetingPlaceEvent', (data) => {
@@ -297,6 +298,7 @@ export default {
       transportationOptions,
       defaultValueOfDate: [], // 日期选择回显
       dateTimeOptions: dateTimeOptions(),
+      journeyLineName: null,
       journeyPointList: null
     }
   },
