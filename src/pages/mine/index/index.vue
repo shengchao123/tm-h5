@@ -3,7 +3,8 @@
 
     <div class="info-wrap">
       <div class="top-info between-row">
-        <img :src="$fileHost + userInfo.avatar">
+        <img :src="$fileHost + userInfo.avatar"
+             v-if="userInfo.avatar">
 
         <div class="name-wrap ml20 column between-row flex1">
           <div class="center-align">
@@ -48,12 +49,17 @@
 
     <div class="my-journey flex1 column">
       <div class="ft28 bold mb24">我的行程</div>
+
       <scroll-view scroll-y="true"
+                   v-if="journeies.length > 0"
                    class="scroll-Y">
         <MyJourneyItem v-for="(item, index) in journeies"
                        :key="index"
                        :item="item"></MyJourneyItem>
       </scroll-view>
+
+      <u-empty v-else
+               src="@/static/empty/no-journey.png"></u-empty>
 
     </div>
 

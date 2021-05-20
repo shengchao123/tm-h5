@@ -70,6 +70,12 @@
 			}
 		},
 		{
+			"path": "pages/league-interact/index/index",
+			"style": {
+				"navigationBarTitleText": "联盟互动"
+			}
+		},
+		{
 			"path": "pages/mine/index/index",
 			"style": {
 				"navigationBarTitleText": "我的"
@@ -114,6 +120,12 @@
 				"iconPath": "static/tabbar/party.png",
 				"selectedIconPath": "static/tabbar/party_l.png",
 				"text": "党建联盟"
+			},
+			{
+				"pagePath": "pages/league-interact/index/index",
+				"iconPath": "static/tabbar/interact.png",
+				"selectedIconPath": "static/tabbar/interact_l.png",
+				"text": "联盟互动"
 			},
 			{
 				"pagePath": "pages/mine/index/index",
