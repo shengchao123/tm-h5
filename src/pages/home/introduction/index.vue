@@ -74,7 +74,17 @@ export default {
 
     },
     onCall () {
-
+      uni.showModal({
+        title: '即将拨打电话',
+        content: '0571-86323568',
+        success: function (res) {
+          if (res.confirm) {
+            uni.makePhoneCall({
+              phoneNumber: '0571-86323568'
+            })
+          }
+        }
+      })
     },
     videoStartPlayEvent () {
       this.$refs.audioModule.pause()

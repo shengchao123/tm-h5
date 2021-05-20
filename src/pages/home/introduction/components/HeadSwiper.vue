@@ -38,10 +38,10 @@
     <!-- VR -->
     <div v-show="moduleType === '02'"
          class="vr relative">
-      <img :src="$fileHost + carouselList[1].mediaUrl" />
+      <img :src="$fileHost + carouselList[1].url" />
       <div class="center vr-icon">
         <svg-icon icon="icon_VR"
-                  class="ft24"></svg-icon>
+                  class="ft48"></svg-icon>
       </div>
     </div>
   </div>
