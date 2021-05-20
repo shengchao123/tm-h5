@@ -1,13 +1,18 @@
 <template>
   <div class='tabbar-home-wrap'>
-    <Map :points="points"></Map>
+    <Map needClick
+         :mapInitObj="mapInitObj"
+         mapClass="mapVH60"
+         :points="points"></Map>
     <DragPopover>
       <div class="box relative">
         <PathsList @onSelectPath="getJourneyPointListByJourneyId"></PathsList>
-        <ScenicSpot :points="points"></ScenicSpot>
-        <div class="center pb32 pt16 create-btn-wrap">
-          <div class="create-btn center bold"
-               @click="onCreateTravel">创建我的行程</div>
+        <div class="content">
+          <ScenicSpot :points="points"></ScenicSpot>
+          <div class="center pb32 pt16 create-btn-wrap">
+            <div class="create-btn center bold"
+                 @click="onCreateTravel">创建我的行程</div>
+          </div>
         </div>
       </div>
     </DragPopover>
@@ -15,14 +20,16 @@
 </template>
 
 <script>
-import Map from './components/map/index.vue'
+import Map from '@/pages/components/Map.vue'
 import DragPopover from '@/components/DragPopover'
 import PathsList from './components/PathsList'
 import ScenicSpot from './components/ScenicSpot'
 export default {
   name: 'index',
   methods: {
-    onCreateTravel () { },
+    onCreateTravel () {
+      uni.navigateTo({ url: '/pages/home/stroke-order/index' })
+    },
     // 根据路线 id 获取点位
     getJourneyPointListByJourneyId (journeyLineId) {
       const params = {
@@ -86,7 +93,12 @@ export default {
           typeName: '',
           url: 'http://downsc.chinaz.net/Files/DownLoad/sound1/201906/11582.mp3'
         }
-      ]
+      ],
+      mapInitObj: Object.freeze({
+        resizeEnable: true,
+        zoom: 9, // 级别
+        center: [119.365056, 30.034302]
+      })
     }
   },
   components: {
@@ -104,10 +116,6 @@ export default {
     height: 100%;
     position: relative;
     .create-btn-wrap {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
       background: #ffffff;
       .create-btn {
         width: 480rpx;
@@ -118,6 +126,16 @@ export default {
         color: #e32417;
       }
     }
+  }
+  .content {
+    position: absolute;
+    top: 240rpx;
+    bottom: 24rpx;
+    left: 0;
+    right: 0;
+    box-sizing: border-box;
+    overflow: scroll;
+    white-space: nowrap;
   }
 }
 </style>

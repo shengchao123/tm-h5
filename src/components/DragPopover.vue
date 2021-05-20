@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { calcPx2Vh } from '@u/tools'
+import { calcPx2Vh } from '@/utils/tools'
 const minTop = 10
 
 export default {

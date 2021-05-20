@@ -3,11 +3,6 @@ const map = {
   data () {
     return {
       $amap: null,
-      mapInitObj: Object.freeze({
-        resizeEnable: true,
-        zoom: 9, // 级别
-        center: [119.365056, 30.034302]
-      })
     }
   },
   methods: {
@@ -46,8 +41,6 @@ const map = {
   mounted () {
     this.$amap = new AMap.Map('map', this.mapInitObj)
     this.drawDistrict()
-  },
-  beforeDestory () {
   }
 }
 

@@ -30,29 +30,28 @@ export default {
       keywords: Object.freeze([
         {
           icon: 'icon_dibiao',
-          marker: 'guide_mark_1',
+          marker: 'guide_mark_1.png',
           type: '01',
           name: '红色地标'
         },
         {
           icon: 'icon_dangjianlianmeng_mian',
-          marker: 'guide_mark_2',
-          type: '02',
-          name: '党群服务'
+          marker: 'guide_mark_2.png',
+          name: '风景'
         },
         {
           icon: 'icon_tingchechang',
-          marker: 'guide_mark_3',
+          marker: 'guide_mark_3.png',
           name: '停车场'
         },
         {
           icon: 'icon_gonggongcesuo',
-          marker: 'guide_mark_4',
+          marker: 'guide_mark_4.png',
           name: '公共厕所'
         },
         {
           icon: 'icon_meishi',
-          marker: 'guide_mark_5',
+          marker: 'guide_mark_5.png',
           name: '餐饮美食'
         }
       ])

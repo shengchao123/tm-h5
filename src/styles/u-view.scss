@@ -1,0 +1,10 @@
+.u-form-item {
+  &::after {
+    border: 0 solid #EAEAEA;
+    border-bottom-width: 1rpx;
+  }
+  .u-form-item--left {
+    font-size: 30rpx;
+    font-weight: bold;
+  }
+}

@@ -1,6 +1,7 @@
 <template>
   <div class='map-wrap'>
-    <div id="map"></div>
+    <div id="map"
+         :class="mapClass"></div>
   </div>
 </template>
 
@@ -28,12 +29,11 @@ export default {
           touchZoom: false
         })
         // 绘制气球上数字文字
-        const indexText = `<div style="color:#ffffff;width:22px;text-align:center;margin-top:4px;font-size:11px">${index + 1}</div>`
+        const indexText = `<div style="color:#ffffff;width:22px;text-align:center;margin-top:2px;font-size:11px">${index + 1}</div>`
         // eslint-disable-next-line no-new
         new AMap.Marker({
           position: new AMap.LngLat(item.lng, item.lat),
           map: this.$amap,
-          animation: 'AMAP_ANIMATION_DROP',
           content: indexText,
           touchZoom: false
         })
@@ -46,6 +46,7 @@ export default {
     },
 
     markerClick (e) {
+      if (!this.needClick) return
       const point = e.target.getExtData()
       sessionStorage.setItem('pointData', JSON.stringify(point))
       uni.navigateTo({ url: '/pages/home/point-guide/index' })
@@ -70,12 +71,23 @@ export default {
   },
   watch: {
     points () {
+      this.$amap.clearMap()
       this.drawPath()
       this.drawMarker()
     }
   },
   props: {
-    points: Array
+    points: Array,
+    needClick: {
+      type: [Boolean, String],
+      default: false
+    },
+    mapClass: {
+      type: String
+    },
+    mapInitObj: {
+      type: Object
+    }
   },
   mounted () {
     this.drawPath()
@@ -88,9 +100,17 @@ export default {
 <style lang='scss' scoped>
 .map-wrap {
   position: relative;
-  #map {
+  .mapVH60 {
     width: 100vw;
     height: 60vh;
+  }
+  .mapH400 {
+    width: 92vw;
+    height: 400rpx;
+  }
+  .mapVH50 {
+    width: 100vw;
+    height: 50vh;
   }
 }
 </style>

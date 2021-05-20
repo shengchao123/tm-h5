@@ -60,14 +60,5 @@ export default {
 
 <style lang='scss' scoped>
 .scenic-spot-wrap {
-  position: absolute;
-  top: 240rpx;
-  bottom: 112rpx;
-  left: 0;
-  right: 0;
-  overflow: scroll;
-  box-sizing: border-box;
-  overflow: scroll;
-  white-space: nowrap;
 }
 </style>
