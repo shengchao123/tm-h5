@@ -13,10 +13,11 @@ export const urls = {
   getJourneyLineListByOrgId: '/linanJourney/journeyLine/getJourneyLineListByOrgId', // 推荐路线
   getJourneyPointListByJourneyId: '/linanJourney/journeyLine/getJourneyPointListByJourneyId', // 路线点位信息
   getJourneyPointListByOrgId: '/linanJourney/journeyPoint/getJourneyPointListByOrgId', // 获取点位列表
+  getJourneyPointInfoById: '/linanJourney/journeyPoint/getJourneyPointInfoById', // 根据点位id获取点位信息
 
   sendVerificationCode: '/crm/member/sendVerificationCode', // 发送验证码
   getJourneyPointListByRegionsCode: '/linanJourney/journeyPoint/getJourneyPointListByRegionsCode', // 获取点位列表
-  getJourneyRegionsList: '/linanJourney/journeyRegionsManagement/getJourneyRegionsList', //   
+  getJourneyRegionsList: '/linanJourney/journeyRegionsManagement/getJourneyRegionsList', //
   createJourneyItinerary: '/linanJourney/journeyItinerary/createJourneyItinerary', // 创建行程单
   getJourneyItineraryById: '/linanJourney/journeyItinerary/getJourneyItineraryById', // 根据id获取行程单
 

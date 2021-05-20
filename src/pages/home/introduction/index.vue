@@ -1,9 +1,13 @@
 <template>
-  <div class='introduction-wrap'>
-    <head-swiper @videoStartPlayEvent="videoStartPlayEvent"></head-swiper>
+  <div class='introduction-wrap'
+       v-if="baseInfo">
+    <head-swiper :vrLink="vrLink"
+                 :imagesList="imagesList"
+                 :videoList="videoList"
+                 @videoStartPlayEvent="videoStartPlayEvent"></head-swiper>
     <div class="title">
       <div class="between-row">
-        <span class="ft40 bold flex1 color-333">新四军历史纪念馆</span>
+        <span class="ft40 bold flex1 color-333">{{baseInfo.name}}</span>
         <div class="ml24 center-align"
              style="color: #F87F00"
              @click="onPeriphery">
@@ -13,7 +17,7 @@
         </div>
       </div>
       <div class="between-row mt24">
-        <span class="ft28 color-999 flex1">临安区高虹镇龙上村龙上自然村72号</span>
+        <span class="ft28 color-999 flex1">{{baseInfo.address}}</span>
         <div class="ml24 center-align"
              style="color: #0084F6"
              @click="onNavigation">
@@ -23,7 +27,7 @@
         </div>
       </div>
       <div class="mt24 center-align">
-        <span class="ft28 color-999">0571-86789876</span>
+        <span class="ft28 color-999">{{baseInfo.phone}}</span>
         <div class="ml8 center-align"
              style="color: #0084F6"
              @click="onCall">
@@ -54,9 +58,7 @@
     </div>
     <div class="color-333 pr30 pl30 mt24">
       <p class="medium ft32 mb24">简介</p>
-      <div class="ft28 content">
-        1945年3月起，新四军苏浙军区第一支队刘别生部队与国民党108师在天目山交战获取胜利，新四军在此休整近2月，村里大多数人家都驻有新四军，四军在此休整近2月，村里大多数人家都驻有新四军，新四军四军在此休整近2月，村里大多数人家都驻有新四军，新四军四军在此休整近2月，村里大多数人家都驻有新四军，新四军四军在此休整近2月，村里大多数人家都驻有新四军，新四军四军在此休整近2月，村里大多数人家都驻有新四军，新四军新四军在村里加工粮食、被服，救治伤员。新四军驻军旧址是现存最完好的一幢民居。此外，村里还存有新四军48团（“老虎团”）团长刘别生和爱人苏迪1945年3月—5月在驻地修整时居住的旧址遗迹。
-      </div>
+      <div class="ft28 content">{{baseInfo.introduction}}</div>
     </div>
   </div>
 </template>
@@ -74,24 +76,46 @@ export default {
 
     },
     onCall () {
+      const { phone } = this.baseInfo
       uni.showModal({
         title: '即将拨打电话',
-        content: '0571-86323568',
+        content: phone,
         success: function (res) {
           if (res.confirm) {
             uni.makePhoneCall({
-              phoneNumber: '0571-86323568'
+              phoneNumber: phone
             })
           }
         }
       })
     },
+    // 视频开始播放事件
     videoStartPlayEvent () {
+      // 暂停音频播放
       this.$refs.audioModule.pause()
+    },
+    getJourneyPointInfoById (journeyPointId) {
+      const params = {
+        journeyPointId,
+      }
+      this.$api.getJourneyPointInfoById(params).then(res => {
+        if (res.isError) return this.$msg(res.message)
+        this.baseInfo = res.content
+        const { journeyScenicSpotAttachmentImagesList, journeyScenicSpotAttachmentVR, journeyScenicSpotAttachmentVideo, journeyScenicSpotAttachmentVoice } = res.content
+        this.vrLink = journeyScenicSpotAttachmentVR.url
+        this.videoList = journeyScenicSpotAttachmentVideo
+        this.imagesList = journeyScenicSpotAttachmentImagesList
+        // 初始化音频
+        this.$refs.audioModule.initAudio(journeyScenicSpotAttachmentVoice.url)
+      })
     }
   },
   data () {
     return {
+      baseInfo: {},
+      vrLink: '',
+      imagesList: [],
+      videoList: [],
       users: [
         'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic4.zhimg.com%2F50%2Fv2-70443a5d7df7eae0c7e25dacc6e983fb_hd.jpg&refer=http%3A%2F%2Fpic4.zhimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1624071402&t=1cb4f4fd6c0e1fd28d0636e24f5220c9',
         'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fi0.hdslb.com%2Fbfs%2Farticle%2F878a6c57bed136d9d176a6eb8289a04787b126bf.jpg&refer=http%3A%2F%2Fi0.hdslb.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1624071427&t=de472274e77488dc548dd63a22679f62',
@@ -99,8 +123,9 @@ export default {
       ]
     }
   },
-  onLoad () {
-    console.log(123123123123)
+  onLoad (option) {
+    const journeyPointId = option.id
+    this.getJourneyPointInfoById(journeyPointId)
   },
   components: { HeadSwiper, AudioModule }
 }

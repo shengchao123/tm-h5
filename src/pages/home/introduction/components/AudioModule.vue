@@ -60,9 +60,9 @@ export default {
       this.isPlay = false
       this.audio.load()
     },
-    initAudio () {
+    initAudio (src) {
       this.audio = new Audio()
-      this.audio.src = 'http://downsc.chinaz.net/Files/DownLoad/sound1/201906/11582.mp3'
+      this.audio.src = src
       this.audio.addEventListener('loadeddata', () => {
         const { duration } = this.audio
         this.duration = duration
@@ -98,7 +98,6 @@ export default {
     }
   },
   created () {
-    this.initAudio()
   }
 }
 </script>

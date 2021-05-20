@@ -29,7 +29,7 @@
       </swiper>
       <div class="pagination-1 ft24">{{activeIndex + 1}}/{{swiperList.length}}</div>
       <!-- <div class="pagination center-align">
-        <div v-for="(item, index) in carouselList"
+        <div v-for="(item, index) in imagesList"
              :key="index"
              class="bullet ml24"
              :class="paginationClass(index)"></div>
@@ -37,8 +37,10 @@
     </div>
     <!-- VR -->
     <div v-show="moduleType === '02'"
-         class="vr relative">
-      <img :src="$fileHost + carouselList[1].url" />
+         class="vr relative"
+         @click="onVR">
+      <img v-if="imagesList[0]"
+           :src="$fileHost + imagesList[0].url" />
       <div class="center vr-icon">
         <svg-icon icon="icon_VR"
                   class="ft48"></svg-icon>
@@ -54,29 +56,28 @@ export default {
       this.activeIndex = e.detail.current
       this.$refs.videoModule[0].pause()
     },
+    // 切换模块
     onModuleSwitch (id) {
       this.moduleType = id
+    },
+    // 去看VR
+    onVR () {
+      // this.vrLink
     },
     videoStartPlayEvent () {
       this.$emit('videoStartPlayEvent')
     }
+  },
+  props: {
+    vrLink: String,
+    imagesList: Array,
+    videoList: Array
   },
   data () {
     return {
       activeIndex: 0,
       moduleType: '01',
       moduleList: [{ id: '01', name: '图片' }, { id: '02', name: 'VR' }],
-      video: [
-        {
-          type: '05',
-          url: 'https://img.cdn.aliyun.dcloud.net.cn/guide/uniapp/%E7%AC%AC1%E8%AE%B2%EF%BC%88uni-app%E4%BA%A7%E5%93%81%E4%BB%8B%E7%BB%8D%EF%BC%89-%20DCloud%E5%AE%98%E6%96%B9%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B@20200317.mp4'
-        }
-      ],
-      carouselList: [
-        { type: '01', url: 'material/image/2021042811231940992819898428416.jpg' },
-        { type: '01', url: 'material/image/2021042115395740374787088002048.jpg' },
-        { type: '01', url: 'material/image/2021042115395740374787088002048.jpg' }
-      ]
     }
   },
   computed: {
@@ -85,7 +86,7 @@ export default {
       return winWidth * 3 / 4
     },
     swiperList () {
-      return this.video.concat(this.carouselList)
+      return this.videoList.concat(this.imagesList)
     },
     paginationClass () {
       return (index) => {
