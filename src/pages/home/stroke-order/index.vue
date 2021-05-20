@@ -235,8 +235,7 @@ export default {
     },
     setEvent () {
       uni.$on('setJourneyPointListEvent', (list) => {
-        console.log(list)
-        this.journeyPointList = list
+        this.journeyPointList = [...list]
       })
       uni.$on('setMeetingPlaceEvent', (data) => {
         const { meetingPlace, meetingPlaceLat, meetingPlaceLng } = data
@@ -298,8 +297,8 @@ export default {
       transportationOptions,
       defaultValueOfDate: [], // 日期选择回显
       dateTimeOptions: dateTimeOptions(),
-      journeyLineName: null,
-      journeyPointList: null
+      journeyLineName: '',
+      journeyPointList: []
     }
   },
   computed: {

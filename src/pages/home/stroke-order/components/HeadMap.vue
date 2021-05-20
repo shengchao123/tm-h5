@@ -66,7 +66,7 @@ export default {
     journeyLineName: String,
     journeyLineId: [String, Number],
     journeyPointList: {
-      type: 'Array',
+      type: Array,
       default: () => []
     }
   },

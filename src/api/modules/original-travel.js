@@ -18,7 +18,7 @@ export function getJourneyPointListByRegionsCode (params) { // 获取点位列�
   })
 }
 
-export function getRecommendJourneyLineList () { // 推荐路线 '/linanJourney/journeyLine/getJourneyLineListByOrgId'
+export function getRecommendJourneyLineList () { // 推荐路线 '/linanJourney/journeyLine/getRecommendJourneyLineList'
   return request({
     url: urls.getRecommendJourneyLineList,
     data: {

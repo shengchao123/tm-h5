@@ -74,9 +74,7 @@ export default {
       },
     }
   },
-  deactivated () {
-    uni.$off('setJourneyPointListEvent')
-  },
+
   components: { Map, NumList }
 }
 </script>

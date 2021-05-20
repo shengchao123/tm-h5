@@ -41,8 +41,8 @@ export default {
       this.$emit('onRouteItem', item)
       this.hide()
     },
-    getJourneyLineListByOrgId () {
-      this.$api.getJourneyLineListByOrgId().then(res => {
+    getRecommendJourneyLineList () {
+      this.$api.getRecommendJourneyLineList().then(res => {
         if (res.isError) return this.$msg(res.message)
         const list = res.content
         if (this.needCustomize) {
