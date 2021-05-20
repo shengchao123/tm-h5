@@ -28,50 +28,20 @@ export default {
       this.currentIndex = index
     },
     // 根据 orgId 获取路线
-    getJourneyLineListByOrgId () {
-      this.$api.getJourneyLineListByOrgId().then(res => {
+    getRecommendJourneyLineList () {
+      this.$api.getRecommendJourneyLineList().then(res => {
         if (res.isError) return
         this.paths = res.content
       })
     }
   },
   created () {
-    this.getJourneyLineListByOrgId()
+    this.getRecommendJourneyLineList()
   },
   data () {
     return {
       currentIndex: 0,
-      paths: [
-        {
-          journeyLineId: 1,
-          name: '高虹镇',
-          playTime: '',
-          playTimeName: '1天',
-          scenicSpotQuantity: 4
-        },
-        {
-          journeyLineId: 2,
-          name: '太原胡',
-          playTime: '',
-          playTimeName: '半天',
-          scenicSpotQuantity: 3
-        },
-        {
-          journeyLineId: 3,
-          name: '天目山镇',
-          playTime: '',
-          playTimeName: ' 6',
-          scenicSpotQuantity: 6
-        },
-        {
-          journeyLineId: 4,
-          name: '希望工程',
-          playTime: '',
-          playTimeName: '7',
-          scenicSpotQuantity: 8
-        }
-
-      ]
+      paths: []
     }
   }
 }

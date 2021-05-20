@@ -10,9 +10,9 @@ export const urls = {
   bindPhone: '/crm/member/bindPhone', // 获取三方用户信息
 
   // 初心之旅
-  getJourneyLineListByOrgId: '/linanJourney/journeyLine/getJourneyLineListByOrgId', // 推荐路线
+  getRecommendJourneyLineList: '/linanJourney/journeyLine/getRecommendJourneyLineList', // 推荐路线
   getJourneyPointListByJourneyId: '/linanJourney/journeyLine/getJourneyPointListByJourneyId', // 路线点位信息
-  getJourneyPointListByOrgId: '/linanJourney/journeyPoint/getJourneyPointListByOrgId', // 获取点位列表
+  getJourneyPointListByRegionsCode: '/linanJourney/journeyPoint/getJourneyPointListByRegionsCode', // 获取点位列表
 
   sendVerificationCode: '/crm/member/sendVerificationCode', // 发送验证码
   getJourneyPointListByRegionsCode: '/linanJourney/journeyPoint/getJourneyPointListByRegionsCode', // 获取点位列表
