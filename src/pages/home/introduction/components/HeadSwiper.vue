@@ -62,9 +62,8 @@ export default {
     },
     // 去看VR
     onVR () {
-      // this.vrLink
       uni.navigateTo({
-        url: '/pages/webView?webUrl=https://uniapp.dcloud.io/component/web-view'
+        url: `/pages/webView?title=地标简介&&webUrl=${this.vrLink}`
       })
     },
     videoStartPlayEvent () {
