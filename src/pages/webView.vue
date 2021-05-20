@@ -9,8 +9,11 @@ export default {
       webUrl: ''
     }
   },
-  onLoad ({ webUrl }) {
+  onLoad ({ title, webUrl }) {
     this.webUrl = webUrl
+    uni.setNavigationBarTitle({
+      title
+    })
   },
 }
 </script>
