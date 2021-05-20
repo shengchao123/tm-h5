@@ -203,3 +203,8 @@ export function dateTimeOptions () {
     }
   })
 }
+
+// 网络图片和阿里云素材库判断
+export function imgUrlDeal (url) {
+  return url.includes('http://') || url.includes('https://') ? url : fileHost + url
+}

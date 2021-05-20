@@ -5,12 +5,14 @@ import * as app from './modules/app'
 import * as login from './modules/login'
 import * as mine from './modules/mine'
 import * as originalTravel from './modules/original-travel'
+import * as evaluateDetail from './modules/evaluate-detail'
 
 export const api = {
   ...originalTravel,
   ...app,
   ...mine,
-  ...login
+  ...login,
+  ...evaluateDetail
 }
 
 Vue.prototype.$fileHost = fileHost

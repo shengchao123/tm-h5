@@ -52,6 +52,12 @@
 			}
 		},
 		{
+			"path": "pages/home/evaluate-detail/index",
+			"style": {
+				"navigationBarTitleText": "评价详情"
+			}
+		},
+		{
 			"path": "pages/public/Login",
 			"style": {
 				"navigationBarTitleText": "授权"
