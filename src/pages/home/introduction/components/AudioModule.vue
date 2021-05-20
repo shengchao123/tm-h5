@@ -2,7 +2,8 @@
   <div class='audio-wrap center-align'>
     <div class="play-btn center mr16"
          @click="onPlayBtn">
-      <svg-icon :icon="isPlay ? 'icon_zanting' : 'icon_bofang'" class="ft24"></svg-icon>
+      <svg-icon :icon="isPlay ? 'icon_zanting' : 'icon_bofang'"
+                class="ft24"></svg-icon>
     </div>
     <div class="flex1">
       <div class="between-row mb16">
@@ -22,13 +23,13 @@ export default {
   methods: {
     onPlayBtn () {
       if (this.isPlay) {
-        this.audioPause()
+        this.pause()
       } else {
-        this.audioPlay()
+        this.play()
       }
       this.isPlay = !this.isPlay
     },
-    audioPlay () {
+    play () {
       const audio = this.audio
       const { currentTime, duration } = audio
       this.currentTime = duration - currentTime
@@ -42,7 +43,7 @@ export default {
               setTimeout(() => {
                 this.onPlayEnd()
               }, 500)
-              this.audioPause()
+              this.pause()
             }
           }, 1000)
         }).catch((e) => {
@@ -50,7 +51,7 @@ export default {
         })
       }
     },
-    audioPause () {
+    pause () {
       tiemr && clearInterval(tiemr)
       this.audio.pause()
     },
