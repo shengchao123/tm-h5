@@ -4,7 +4,7 @@
     <PoiKeywords class="poi-keywords"
                  @changePois="changePois"></PoiKeywords>
     <DragPopover showLocation="true"
-                 max-top="81"
+                 max-top="79.3"
                  @onLocation="onLocation">
       <div class="content-box">
         <PointGuideItem v-for="(item, index) in pois"
@@ -29,11 +29,10 @@ import DragPopover from '@/components/DragPopover'
 import { subStringWithStrlen } from '@/utils/tools.js'
 import Vue from 'vue'
 import PointGuideItem from './components/PointGuideItem'
-
 import { getAMapLngLat, getLngLat, beginGuide } from '@/utils/map.js'
 
 // 地图中心点上下纬度偏移量
-const centerLngOffset = 0
+const centerLngOffset = 0.04
 // 主要地标点
 let scenicSpot = null
 
@@ -64,12 +63,16 @@ export default {
     },
     // 兴趣点名字
     changePois (poi) {
+      this.currentPoi = poi
       this.currentIndex = 0
       this.pois = [{ address: scenicSpot.regionsName, ...scenicSpot }]
+
       this.$amap.clearMap()
       this.setMapCenter(scenicSpot)
       this.drawMarkder({ ...LWH }, scenicSpot)
+
       if (poi.type) return this.getJourneyPointListByOrgId(poi.type)
+
       this.getPoisWithLngLat(poi.name)
     },
     getJourneyPointListByOrgId (type) {
@@ -87,7 +90,7 @@ export default {
       })
     },
     // 根据选择点，搜索 poi 点
-    getPoisWithLngLat (poiSearchType) {
+    getPoisWithLngLat () {
       const that = this
       AMap.plugin('AMap.PlaceSearch', function () {
         var autoOptions = {
@@ -97,12 +100,12 @@ export default {
           autoFitView: true // 是否自动调整地图视野使绘制的 Marker点都处于视口的可见范围
         }
         var placeSearch = new AMap.PlaceSearch(autoOptions)
-        placeSearch.searchNearBy(poiSearchType, getAMapLngLat(scenicSpot), 5000, function (status, result) {
+        placeSearch.searchNearBy(that.currentPoi.name, getAMapLngLat(scenicSpot), 5000, function (status, result) {
           if (!result || !result.poiList) return
           const _pois = result.poiList.pois
           that.pois = [{ address: scenicSpot.regionsName, ...scenicSpot }].concat(_pois)
           _pois.forEach(poi => {
-            that.drawMarkder({ ...MWH }, poi)
+            that.drawMarkder({ ...MWH }, poi, that.currentPoi.marker)
           })
         })
       })
@@ -135,10 +138,10 @@ export default {
         template: "<div class='map-info-wrap'>" +
           '<div>' +
           `<div class='title'>${title}</div>` +
-          `<div class='address'>${address}</div>` +
+          `<div class='address'>${address || ''}</div>` +
           '</div>' +
           '<div class="guide-btn center" v-on:click="onOpenGuide">' +
-          '<SvgIcon icon="icon_daohang" style="color:#518CFC "class="ft10 mr4"></SvgIcon>' +
+          '<SvgIcon icon="icon_daohang" style="color:#518CFC "class="ft20 mr8"></SvgIcon>' +
           '<span>到这里去</span></div>' +
           '</div>',
         methods: {
@@ -149,6 +152,7 @@ export default {
       })
       // 将新创建的子组件进行挂载
       var component = new MyComponent().$mount()
+      console.log(component)
       // 将窗体内容添加到infoWindow中
       var infoWindow = new AMap.InfoWindow({
         isCustom: true, // 使用自定义窗体
@@ -161,17 +165,17 @@ export default {
     },
 
     // 绘制 marker
-    drawMarkder ({ w, h }, scenicSpot) {
+    drawMarkder ({ w, h }, _spot, markerImg) {
       const marker = new AMap.Marker({
-        position: getAMapLngLat(scenicSpot),
+        position: getAMapLngLat(_spot),
         map: this.$amap,
         // animation: 'AMAP_ANIMATION_DROP',
         offset: new AMap.Pixel(-w / 2, -h),
-        icon: this.getMarkderIcon(w, h),
+        icon: this.getMarkderIcon(w, h, markerImg),
         touchZoom: false
       })
 
-      marker.setExtData(scenicSpot)
+      marker.setExtData(_spot)
       // 点击方法绑定
       marker.on('click', this.markerClick)
 
@@ -179,10 +183,10 @@ export default {
     },
 
     // 绘制坐标 icon
-    getMarkderIcon (w, h) {
+    getMarkderIcon (w, h, markerImg = "guide_mark_red.png") {
       return new AMap.Icon({
         size: new AMap.Size(w, h),
-        image: require('@/static/map/poi_mark.png'),
+        image: require(`@/static/map/${markerImg}`),
         imageSize: new AMap.Size(w, h)
       })
     },
@@ -198,27 +202,25 @@ export default {
     resetDrawMarkders (_poi) {
       this.$amap.clearMap()
 
-      this.setMapCenter(_poi)
-      this.drawMarkder({ ...LWH }, _poi)
-
       let _pois = JSON.parse(JSON.stringify(this.pois))
       _pois = _pois.filter((item, index) => index !== this.currentIndex)
       _pois.forEach(poi => {
-        this.drawMarkder({ ...MWH }, poi)
+        this.drawMarkder({ ...MWH }, poi, poi.typeName ? "guide_mark_red.png" : this.currentPoi.marker)
       })
+
+      this.setMapCenter(_poi)
+      this.drawMarkder({ ...LWH }, _poi, _poi.typeName ? "guide_mark_red.png" : this.currentPoi.marker)
     }
   },
-  created () {
-    // 主要地标点
+  mounted () {
     scenicSpot = JSON.parse(sessionStorage.getItem('pointData'))
     this.pois = [{ address: scenicSpot.regionsName, ...scenicSpot }]
-  },
-  mounted () {
     this.drawMarkder({ ...LWH }, scenicSpot)
     this.setMapCenter(scenicSpot)
   },
   components: { PoiKeywords, DragPopover, PointGuideItem },
   data () {
+    this.currentPoi = {}
     return {
       currentIndex: 0,
       showGuide: false,
@@ -227,8 +229,7 @@ export default {
       pois: [],
       mapInitObj: Object.freeze({
         resizeEnable: true,
-        zoom: 12, // 级别
-        center: getLngLat(scenicSpot)
+        zoom: 12
       })
     }
   },
@@ -236,69 +237,22 @@ export default {
 }
 </script>
 
-<style lang="scss">
-.map-info-wrap {
-  position: relative;
-  padding: 24rpx;
-  background: #fff;
-  box-shadow: 0px 10rpx 24rpx 0px rgba(0, 0, 0, 0.1);
-  border-radius: 8rpx;
-  display: flex;
-  flex-direction: row;
-  .title {
-    font-family: PingFangSC-Medium;
-    font-size: 28rpx;
-    color: #333333;
-  }
-  .address {
-    margin-top: 16rpx;
-    margin-bottom: 16rpx;
-    font-family: PingFangSC-Regular;
-    font-size: 20rpx;
-    color: #999999;
-  }
-  .guide-btn {
-    margin-left: 16rpx;
-    font-size: 24rpx;
-    height: 56rpx;
-    width: 160rpx;
-    line-height: 56rpx;
-    text-align: center;
-    color: #518cfc;
-    border: 1px solid #518cfc;
-    border-radius: 28rpx;
-  }
-}
-.map-info-wrap::after {
-  content: "";
-  position: absolute;
-  bottom: -14rpx;
-  right: calc(48%);
-  display: block;
-  width: 0;
-  height: 0;
-  border-radius: 4px;
-  border: 16rpx solid transparent;
-  border-right-color: #fff;
-  border-bottom-color: #fff;
-  transform: scaleX(0.8) rotate(45deg);
-}
-</style>
-
 <style lang='scss' scoped>
 .point-guide-wrap {
-  height: 100vh;
-
   #map {
     width: 100vw;
-    height: 88vh;
+    height: 93vh;
   }
 
   .poi-keywords {
     position: absolute;
-    z-index: 999;
+    z-index: 98;
     left: 12px;
     top: 12px;
+  }
+  .content-box {
+    height: 100%;
+    overflow: scroll;
   }
 }
 </style>
