@@ -25,4 +25,10 @@ export const urls = {
   getMemberPersonalInfo: '/crm/member/getMemberPersonalInfo', // 我的信息获取
   getMyJourneyItineraryPage: '/linanJourney/journeyItinerary/getMyJourneyItineraryPage', // 我的行程单
 
+
+  findOrgList: '/organization/orgConsumer/findOrgList', // 获取联盟组织列表
+  verifiedRealName: '/crm/member/verifiedRealName', // 实名认证
+
+
+
 }
