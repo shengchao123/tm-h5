@@ -25,7 +25,7 @@
              :key="index"
              class="point-item between-row bb">
 
-          <img src="">
+          <img :src="$fileHost + item.imageUrl">
           <div class="title-wrap flex1 ml16 mr16 column between-row">
             <div class="ft30 bold">{{item.name}}</div>
             <div class="ft22 color-999">{{item.regionsName}}</div>
@@ -67,6 +67,7 @@ export default {
 
     onRegion (item) {
       this.search.regionsCode = item.code
+      this.getJourneyPointListByRegionsCode()
     },
 
     checkboxChange (e) {
@@ -81,13 +82,14 @@ export default {
       }
     },
 
+    // 根据区域获取点位
     getJourneyPointListByRegionsCode () {
       const params = {
         ...this.search
       }
       this.$api.getJourneyPointListByRegionsCode(params).then(res => {
         if (res.isError) return
-        this.regions = res.content
+        this.points = res.content
       })
     },
 
@@ -97,6 +99,7 @@ export default {
       this.$api.getJourneyRegionsList(params).then(res => {
         if (res.isError) return
         this.search.regionsCode = res.content[0].code
+        this.getJourneyPointListByRegionsCode()
         this.regions = res.content
       })
     },
@@ -119,82 +122,8 @@ export default {
         keyword: '',
         regionsCode: ''
       },
-      regions: [
-        {
-          code: '432',
-          name: '青苗镇'
-        },
-        {
-          code: '430',
-          name: '西镇'
-        },
-        {
-          code: '428',
-          name: '东镇'
-        },
-        {
-          code: '412',
-          name: '西方镇'
-        },
-        {
-          code: '234',
-          name: '北房镇'
-        },
-        {
-          code: '123',
-          name: '三年低中山东路口'
-        },
-      ],
-      points: [
-        {
-          code: '123',
-          journeyPointId: 0,
-          lat: 30.224302,
-          lng: 119.005056,
-          name: '第一个',
-          regionsCode: '',
-          regionsName: '临安区喜欢睡了看都就方老师',
-          type: '01',
-          typeName: '景区',
-          url: 'http://downsc.chinaz.net/Files/DownLoad/sound1/201906/11582.mp3'
-        },
-        {
-          code: '2',
-          journeyPointId: 0,
-          lat: 30.124302,
-          lng: 119.165056,
-          name: '第2个',
-          regionsCode: '',
-          regionsName: '',
-          type: '',
-          typeName: '',
-          url: 'http://downsc.chinaz.net/Files/DownLoad/sound1/201906/11582.mp3'
-        },
-        {
-          code: '56',
-          journeyPointId: 0,
-          lat: 30.224302,
-          lng: 119.365056,
-          name: '第3个',
-          regionsCode: '',
-          regionsName: '',
-          type: '',
-          typeName: '',
-          url: 'http://downsc.chinaz.net/Files/DownLoad/sound1/201906/11582.mp3'
-        },
-        {
-          code: '33',
-          journeyPointId: 0,
-          lat: 30.274302,
-          lng: 119.765056,
-          name: '第4个',
-          regionsCode: '',
-          regionsName: '',
-          type: '',
-          typeName: '',
-          url: 'http://downsc.chinaz.net/Files/DownLoad/sound1/201906/11582.mp3'
-        }
-      ],
+      regions: [],
+      points: [],
       pointIds: [],
       selectPoints: []
     }
@@ -207,7 +136,8 @@ export default {
 
 <style lang='scss' scoped>
 .get-red-wrap {
-  height: calc(100vh - 44px);
+  height: calc(100vh);
+  position: relative;
   .search-wrap {
     padding: 24rpx 30rpx;
     .search {
