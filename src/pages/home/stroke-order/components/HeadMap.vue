@@ -1,23 +1,28 @@
 <template>
   <div>
     <div class="head-map-from mt20 pl30 pr30">
-      <div class="route-select between-row center-align"
+      <div class="route-select between-row center-align mb4"
            @click="onShowRouteSelect">
         <div class="flex1 center-align">
-          <div class="ft30 mr24 medium">行程路线</div>
-          <div class="flex1 color-666 ellipsis-text name">{{selectRouteItem.name}}</div>
+          <div class="ft30 mr24 bold">行程路线</div>
         </div>
-        <svg-icon v-if="!isDetail"
-                  icon="icon_xiangyoujiantou"
-                  class="ft20 ml16"
-                  style="color:  #C4C4C4"></svg-icon>
+        <div v-if="!isDetail"
+             class="center-align">
+          <span class="ft24"
+                style="color: #518CFC;">切换行程</span>
+          <svg-icon icon="icon_xiangyoujiantou"
+                    class="ft20 ml8"
+                    style="color:  #C4C4C4"></svg-icon>
+        </div>
+        <span v-else></span>
       </div>
+      <div class="flex1 ft30 ellipsis-text name">{{journeyLineName || selectRouteItem.name}}</div>
+      <div class="pt14 pb20 ft26 color-666 bb">{{pointsName}}</div>
       <div class="map">
         <Map :mapInitObj="mapInitObj"
              mapClass="mapH400"
              :points="usePoints"></Map>
       </div>
-      <div class="pt20 pb20 ft26 color-666 bb">{{pointsName}}</div>
     </div>
     <select-route-pop ref="selectRoutePop"
                       :needCustomize="true"
@@ -58,6 +63,7 @@ export default {
   },
   props: {
     isDetail: Boolean,
+    journeyLineName: String,
     journeyLineId: [String, Number],
     journeyPointList: Array
   },

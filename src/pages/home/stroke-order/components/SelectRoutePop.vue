@@ -1,7 +1,7 @@
 <template>
   <u-popup v-model="isShow"
            border-radius="30"
-           height="834"
+           maxHeight="834"
            mode="bottom">
     <view class="popup">
       <view class="tc title">

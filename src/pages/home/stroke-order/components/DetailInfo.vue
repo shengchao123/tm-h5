@@ -5,7 +5,7 @@
            :key="index"
            class="info-item pt24 pb24 flex"
            :class="index === (list.length - 1) && 'no-border'">
-        <div class="label ft30 medium">{{item.label}}</div>
+        <div class="label ft30 bold">{{item.label}}</div>
         <div class="content ft30 flex1">{{item.content}}</div>
       </div>
     </template>

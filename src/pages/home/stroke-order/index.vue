@@ -25,33 +25,46 @@
       <div class="line-bold"></div>
       <div class="pl30 pr30">
         <u-form-item label="名称"
-                     label-width="144">
+                     label-width="144"
+                     prop="name">
           <u-input v-model="form.data.name"
+                   maxlength="15"
                    placeholder="命名你的行程，如临安红色一日游" />
+          <input-length-word :modelData="form.data.name"
+                             maxLength="15"></input-length-word>
         </u-form-item>
         <u-form-item label="组织员"
-                     label-width="144">
+                     label-width="144"
+                     prop="organizer">
           <u-input v-model="form.data.organizer"
+                   maxlength="10"
                    placeholder="输入组织员姓名" />
+          <input-length-word :modelData="form.data.organizer"
+                             maxLength="10"></input-length-word>
         </u-form-item>
         <u-form-item label="手机号"
-                     label-width="144">
+                     label-width="144"
+                     prop="contactDetails">
           <u-input v-model="form.data.contactDetails"
                    type="number"
                    placeholder="输入组织员手机号" />
         </u-form-item>
         <u-form-item label="集合地点"
-                     label-width="144">
+                     label-width="144"
+                     prop="meetingPlace">
           <u-input v-model="form.data.meetingPlace"
                    class="flex1"
                    :disabled="true"
                    placeholder="输入集合地点" />
+          <input-length-word :modelData="form.data.meetingPlace"
+                             maxLength="30"></input-length-word>
           <svg-icon icon="icon_dingwei"
                     class="ft30 ml16"
                     style="color: #518CFC"></svg-icon>
         </u-form-item>
         <u-form-item label="出发日期"
-                     label-width="144">
+                     label-width="144"
+                     prop="setOutTime">
           <div class="center-align flex1"
                @click="onShowDateSelect">
             <!-- <u-input v-model="form.data.setOutTime"
@@ -88,6 +101,7 @@
               mode="mutil-column-auto"
               :list="dateTimeOptions"
               :default-value="defaultValueOfDate"
+              confirm-color="#E32417 "
               @confirm="confirmDateSelect"></u-select>
   </div>
 </template>
@@ -97,6 +111,7 @@ import MyRadio from './components/MyRadio'
 import MyRadioBox from './components/MyRadioBox.vue'
 import { dateTimeOptions } from '@/utils/tools.js'
 import HeadMap from './components/HeadMap.vue'
+import InputLengthWord from './components/InputLengthWord.vue'
 export default {
   methods: {
     onShowDateSelect () {
@@ -129,7 +144,7 @@ export default {
       })
     },
     onConfirm () {
-      this.$refs.uForm.validate(valid => {
+      this.$refs.form.validate(valid => {
         if (valid) {
           this.createJourneyItinerary()
         } else {
@@ -140,10 +155,17 @@ export default {
 
     },
     createJourneyItinerary () {
-      // const params = {}
-      // this.$api.createJourneyItinerary(params).then(res => {
-      //   if (res.isError) return this.$msg(res.message)
-      // })
+      const params = {}
+      this.$api.createJourneyItinerary(params).then(res => {
+        if (res.isError) return this.$msg(res.message)
+        uni.redirectTo({
+          url: `/pages/home/stroke-order/createSuccess?id=${res.content.id}`
+        })
+      })
+    },
+    // 编辑设置
+    setEditConfig () {
+
     },
     makeUpZero (num) {
       if (+num < 10) {
@@ -184,7 +206,7 @@ export default {
           setOutTime: [{ required: true, message: '请选择出发时间', trigger: ['change', 'blur'] }],
         }
       },
-      defaultValueOfDate: [],
+      defaultValueOfDate: [], // 日期选择回显
       playTimeOptions,
       activityTypeOptions,
       needLifeDocumentaryOptions,
@@ -196,9 +218,11 @@ export default {
   onReady () {
     this.$refs.form.setRules(this.form.rules);
   },
-  created () {
+  onLoad (option) {
+    const { isEdit, id } = option
+    if (isEdit) this.setEditConfig(id)
   },
-  components: { MyRadio, MyRadioBox, HeadMap }
+  components: { MyRadio, MyRadioBox, HeadMap, InputLengthWord }
 }
 </script>
 <style>

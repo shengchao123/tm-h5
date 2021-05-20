@@ -48,3 +48,13 @@ export function getJourneyItineraryById (params) { // 根据id获取行程单
     }
   })
 }
+
+export function removeJourneyItinerary (params) { // 删除行程单
+  return request({
+    url: urls.removeJourneyItinerary,
+    data: {
+      orgId: localStorage.getItem('orgId'),
+      ...params
+    }
+  })
+}

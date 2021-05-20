@@ -1,6 +1,7 @@
 <template>
   <div class='detail-wrap'>
-    <head-map :journeyPointList="journeyPointList"
+    <head-map :journeyLineName="baseInfo.journeyLineName"
+              :journeyPointList="journeyPointList"
               :isDetail="true"></head-map>
     <div class="mb20">
       <detail-info :list="topList"></detail-info>
@@ -80,7 +81,8 @@
              confirm-text="删除"
              cancel-text="先留着"
              confirm-color="#F44000"
-             cancel-color="#333333"></u-modal>
+             cancel-color="#333333"
+             @confirm="onDelete(true)"></u-modal>
   </div>
 </template>
 <script>
@@ -96,8 +98,22 @@ export default {
 
     },
     // 删除
-    onDelete () {
-      this.showDeleteTip = true
+    onDelete (isDelete) {
+      if (!isDelete) {
+        this.showDeleteTip = true
+        return
+      }
+      const params = {
+        id: this.id
+      }
+      this.$api.removeJourneyItinerary(params).then(res => {
+        if (res.isError) return this.$mmsg(res.message)
+        this.$mmsg('删除成功')
+        setTimeout(() => {
+          uni.navigateBack()
+        }, 500)
+      })
+
     },
     // 分享
     onShare () {
@@ -198,9 +214,11 @@ export default {
       ]
     }
   },
+  onShow () {
+    this.getJourneyItineraryById()
+  },
   onLoad (option) {
     this.id = option.id
-    this.getJourneyItineraryById()
   },
   components: { HeadMap, DetailInfo }
 }
