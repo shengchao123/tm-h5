@@ -5,7 +5,9 @@ export const imgHost = 'https://hzslzx.oss-cn-hangzhou.aliyuncs.com/system/h5-ma
 
 export const urls = {
   redirectToOAuth: '/third/authorization/redirectToOAuth', // 获取授权 url
-  getUserInfo: '/third/authorization/getUserInfoAndToken', // 获取三方用户信息
+  getUserInfoAndToken: '/third/authorization/getUserInfoAndToken', // 接受微信公众号授权后的code获取thirdUserId及登陆
+  getMemberLoginInfo: '/crm/member/getMemberLoginInfo', // 获取三方用户信息
+  bindPhone: '/crm/member/bindPhone', // 获取三方用户信息
 
   // 初心之旅
   getJourneyLineListByOrgId: '/linanJourney/journeyLine/getJourneyLineListByOrgId', // 推荐路线

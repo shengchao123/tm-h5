@@ -6,8 +6,13 @@
         <img src="">
 
         <div class="name-wrap ml20 column between-row flex1">
-          <div class="row">
+          <div class="center-align">
             <div class="ft32 bold">{{userInfo.name}}</div>
+            <template v-for="(item, index) in userInfo.labelList">
+              <div class="label ft22 center ml16"
+                   v-if="index < 3"
+                   :key="index">{{item}}</div>
+            </template>
           </div>
           <div class="ft24 color-999">{{userInfo.orgName}}</div>
         </div>
@@ -68,7 +73,7 @@ export default {
     getMyJourneyItineraryPage () {
       this.$api.getMyJourneyItineraryPage().then(res => {
         if (res.isError) return
-        this.userInfo = res.content
+        this.journeies = res.content
       })
     }
   },
@@ -78,6 +83,7 @@ export default {
       userInfo: {
         "activeQuantity": 200,
         "avatar": "",
+        "labelList": ['天行者', '管理员'],
         "id": 0,
         "messageQuantity": 300,
         "name": "我是姓名",
@@ -91,8 +97,10 @@ export default {
           "hasLifeRecord": true,
           "id": 1,
           "isOrganizer": true,
-          "name": "",
+          "name": "我的形成 1",
           "needLifeDocumentary": false,
+          "pointQuantity": 4,
+          "playTimeName": '1天',
           "setOutTime": 1621339394573,
           "setOutTimeString": ""
         },
@@ -100,7 +108,9 @@ export default {
           "hasLifeRecord": false,
           "id": 1,
           "isOrganizer": false,
-          "name": "",
+          "name": "我的形成 1",
+          "pointQuantity": 2,
+          "playTimeName": '2 天',
           "needLifeDocumentary": true,
           "setOutTime": 1621339394573,
           "setOutTimeString": ""
@@ -109,7 +119,9 @@ export default {
           "hasLifeRecord": false,
           "id": 1,
           "isOrganizer": false,
-          "name": "",
+          "name": "我的形成23",
+          "pointQuantity": 3,
+          "playTimeName": '2 天',
           "needLifeDocumentary": false,
           "setOutTime": 1621339394573,
           "setOutTimeString": ""
@@ -119,6 +131,7 @@ export default {
           "id": 1,
           "isOrganizer": false,
           "name": "",
+          "pointQuantity": 2,
           "needLifeDocumentary": false,
           "setOutTime": 1621339394573,
           "setOutTimeString": ""
@@ -136,6 +149,10 @@ export default {
     }
   },
   onShow () {
+    console.log(22222)
+  },
+  created () {
+    console.log(111)
     this.getMemberPersonalInfo()
     this.getMyJourneyItineraryPage()
   }
@@ -160,6 +177,14 @@ export default {
   }
   .my-journey {
     padding: 32rpx 32rpx 0;
+  }
+
+  .label {
+    height: 36rpx;
+    padding: 0 16rpx;
+    border: 1px solid #518cfc;
+    color: #518cfc;
+    border-radius: 18rpx;
   }
 
   .scroll-Y {

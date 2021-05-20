@@ -3,7 +3,6 @@ import { fileHost, imgHost } from '@/api/urls'
 export const calcRpx2px = function (size) {
   const info = uni.getSystemInfoSync()
   const scale = 750 / info.windowWidth;
-  console.log(scale)
   let s = Number.isNaN(parseFloat(size)) ? 0 : parseFloat(size)
   let u = size.toString().replace(/[0-9]/g, '').replace('-', '')
   if (u == 'rpx') {

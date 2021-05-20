@@ -1,22 +1,25 @@
 <template>
   <div class='journey-item-wrap bb mb24'>
-    <div class="between-row">
+    <div class="between-row"
+         @click="onJourney">
       <div class="date center column">
         <div class="ft28 bold">{{md}}</div>
         <div class="ft22 color-666 mt8">{{year}}</div>
       </div>
 
-      <div class="ml24 column between-row flex1">
-        <div class="ft30 bold">{{item.name}}</div>
-        <div class="row ft24 color-999">
-          <div>{{item.orgName}}</div>
-          <div>{{item.orgName}}</div>
+      <div class="ml24 column flex1 name-wrap">
+        <div class="between-row center-align">
+          <div class="ft30 bold">{{item.name}}</div>
+          <SvgIcon icon="icon_xiangyoujiantou"
+                   class="ft24"
+                   style="color:#c4c4c4"></SvgIcon>
+        </div>
+        <div class="row ft24 color-999 mt24">
+          <div>{{item.pointQuantity || 0}}个地标</div>
+          <div class="ml24">{{item.playTimeName}}</div>
         </div>
       </div>
 
-      <SvgIcon icon="icon_xiangyoujiantou"
-               class="ft20"
-               style="color:#c4c4c4"></SvgIcon>
     </div>
 
     <div class="buttons ft24 center-align">
@@ -35,6 +38,11 @@
 <script>
 export default {
   name: 'MyJourneyItem',
+  methods: {
+    onJourney () {
+
+    }
+  },
   data () {
     return {
 
@@ -60,6 +68,9 @@ export default {
     background-image: linear-gradient(90deg, #ffe06f 21%, #ffd533 96%);
     border-radius: 8px;
     padding: 24rpx 20rpx;
+  }
+  .name-wrap {
+    justify-content: center;
   }
 
   .buttons {

@@ -52,7 +52,13 @@
 			}
 		},
 		{
-			"path": "pages/Login",
+			"path": "pages/public/Login",
+			"style": {
+				"navigationBarTitleText": "授权"
+			}
+		},
+		{
+			"path": "pages/public/Bind",
 			"style": {
 				"navigationBarTitleText": "注册登录"
 			}
@@ -73,6 +79,12 @@
 			"path": "pages/mine/real-name/index",
 			"style": {
 				"navigationBarTitleText": "实名认证"
+			}
+		},
+		{
+			"path": "pages/webView",
+			"style": {
+				"navigationBarTitleText": ""
 			}
 		}
 	],

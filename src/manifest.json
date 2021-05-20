@@ -6,7 +6,36 @@
 	"versionCode": "100",
 	"transformPx": false,
 
-	"h5": {},
+	"h5": {
+		"title": "商城",
+        "router": {
+            "mode": "history",
+            "base": "/"
+        },
+        "devServer": {
+            "proxy": {
+                "/api/": {
+                    "target": "http://172.168.102.3:8001",
+                    "pathRewrite": {
+                        "^/api": ""
+                    }
+                },
+                "/geocode-api/": {
+                    "target": "https://restapi.amap.com/",
+                    "pathRewrite": {
+                        "^/geocode-api": "/"
+                    }
+                },
+                "/ali-oss": {
+                    "target": "https://hzslzx.oss-cn-hangzhou.aliyuncs.com/",
+                    "pathRewrite": {
+                        "^/ali-oss": "/"
+                    }
+                }
+            },
+            "https": false
+        }
+  },
 	"mp-weixin": { /* 微信小程序特有相关 */
 		"appid": "",
 		"setting": {
