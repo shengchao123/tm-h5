@@ -46,7 +46,7 @@ export default {
       this.$emit('update:journeyLineId', journeyLineId)
       if (!routeItem.journeyLineId) {
         return uni.navigateTo({ // 去自定义线路
-          url: ''
+          url: '/pages/home/stroke-order/CustomPath'
         })
       }
       this.getJourneyPointListByJourneyId(routeItem.journeyLineId)
@@ -65,7 +65,10 @@ export default {
     isDetail: Boolean,
     journeyLineName: String,
     journeyLineId: [String, Number],
-    journeyPointList: Array
+    journeyPointList: {
+      type: 'Array',
+      default: () => []
+    }
   },
   data () {
     return {
@@ -76,56 +79,7 @@ export default {
         zoom: 9, // 级别
         center: [119.365056, 30.194302]
       }),
-      points: [
-        {
-          code: '',
-          journeyPointId: 0,
-          lat: 30.224302,
-          lng: 119.005056,
-          name: '第一个',
-          regionsCode: '',
-          regionsName: '临安区喜欢睡了看都就方老师',
-          type: '01',
-          typeName: '景区',
-          url: 'http://downsc.chinaz.net/Files/DownLoad/sound1/201906/11582.mp3'
-        },
-        {
-          code: '',
-          journeyPointId: 0,
-          lat: 30.124302,
-          lng: 119.165056,
-          name: '第2个',
-          regionsCode: '',
-          regionsName: '',
-          type: '',
-          typeName: '',
-          url: 'http://downsc.chinaz.net/Files/DownLoad/sound1/201906/11582.mp3'
-        },
-        {
-          code: '',
-          journeyPointId: 0,
-          lat: 30.224302,
-          lng: 119.365056,
-          name: '第3个',
-          regionsCode: '',
-          regionsName: '',
-          type: '',
-          typeName: '',
-          url: 'http://downsc.chinaz.net/Files/DownLoad/sound1/201906/11582.mp3'
-        },
-        {
-          code: '',
-          journeyPointId: 0,
-          lat: 30.274302,
-          lng: 119.765056,
-          name: '第4个',
-          regionsCode: '',
-          regionsName: '',
-          type: '',
-          typeName: '',
-          url: 'http://downsc.chinaz.net/Files/DownLoad/sound1/201906/11582.mp3'
-        }
-      ]
+      points: []
     }
   },
   computed: {
@@ -133,7 +87,8 @@ export default {
       return this.points.map(el => el.name).join(' - ')
     },
     usePoints () {
-      return this.journeyPointList || this.points
+      if (!this.$isEmpty(this.points)) return this.points
+      return this.journeyPointList
     }
   },
   components: { Map, SelectRoutePop }

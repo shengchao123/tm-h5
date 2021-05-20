@@ -1,6 +1,7 @@
 <template>
   <div class='stroke-order-wrap'>
-    <head-map :journeyLineId.sync="form.data.journeyLineId"></head-map>
+    <head-map :journeyLineId.sync="form.data.journeyLineId"
+              :journeyPointList="journeyPointList"></head-map>
     <u-form ref="form"
             :model="form.data"
             class="bg-white">
@@ -73,7 +74,7 @@
                      @click="onShowDateSelect"
                      placeholder="选择时间" /> -->
             <span class="flex1"
-                  :class="form.data.setOutTime ? 'color-333' : 'color-placeholder'">{{form.data.setOutTime || '选择时间'}}</span>
+                  :class="form.data.setOutTime ? 'color-333' : 'color-placeholder'">{{setOutTimeText}}</span>
             <svg-icon icon="icon_riqi"
                       class="ft30 ml16"
                       style="color: #878787"></svg-icon>
@@ -87,7 +88,7 @@
         <u-form-item label="温馨提示"
                      label-width="144"
                      :border-bottom="false">
-          <u-input v-model="form.data.tip"
+          <u-input v-model="form.data.precautions"
                    placeholder="输入其他注意事项（选填）" />
         </u-form-item>
       </div>
@@ -112,6 +113,7 @@ import MyRadioBox from './components/MyRadioBox.vue'
 import { dateTimeOptions } from '@/utils/tools.js'
 import HeadMap from './components/HeadMap.vue'
 import InputLengthWord from './components/InputLengthWord.vue'
+
 export default {
   methods: {
     onShowDateSelect () {
@@ -123,7 +125,7 @@ export default {
       const D = this.makeUpZero(params[2].value)
       const h = this.makeUpZero(params[3].value)
       const m = this.makeUpZero(params[4].value)
-      this.form.data.setOutTime = `${Y}-${M}-${D} ${h}:${m}`
+      this.form.data.setOutTime = new Date(`${Y}-${M}-${D} ${h}:${m}`).getTime()
       this.setDefaultValueOfDate(params)
     },
     setDefaultValueOfDate (list) {
@@ -150,7 +152,7 @@ export default {
         } else {
           this.$msg('还有信息未填写')
         }
-      });
+      })
       console.log(this.form.data)
 
     },
@@ -164,8 +166,50 @@ export default {
       })
     },
     // 编辑设置
-    setEditConfig () {
-
+    setEditConfig (id) {
+      uni.setNavigationBarTitle({
+        title: '编辑行程单'
+      })
+      this.getJourneyItineraryById(id)
+    },
+    getJourneyItineraryById (id) {
+      const params = { id }
+      this.$api.getJourneyItineraryById(params).then(res => {
+        if (res.isError) return this.$msg(res.message)
+        const {
+          journeyPointList, name, playTime, activityType,
+          needLifeDocumentary, organizer, contactDetails,
+          meetingPlace, meetingPlaceLat, meetingPlaceLng,
+          setOutTime, transportation, journeyLineId, type,
+          precautions
+        } = res.content
+        this.journeyPointList = journeyPointList
+        this.form.data = {
+          name,
+          playTime,
+          activityType,
+          needLifeDocumentary,
+          organizer,
+          contactDetails,
+          meetingPlace,
+          meetingPlaceLat,
+          meetingPlaceLng,
+          setOutTime,
+          transportation,
+          precautions,
+          journeyLineId,
+          type,
+        }
+        // 需要配置 defaultValueOfDate 回显 不然要从第一项选起
+      })
+    },
+    setEvent () {
+      uni.$on('serJourneyPointListEvent', (list) => {
+        this.journeyPointList = list
+      })
+    },
+    clearEvent () {
+      uni.$off('serJourneyPointListEvent')
     },
     makeUpZero (num) {
       if (+num < 10) {
@@ -174,10 +218,9 @@ export default {
       return num
     }
   },
-  components: { Map },
   data () {
     const contactDetailsVal = (rule, value, callback) => {
-      if (!value) return callback(new Error('请输入组织员手机号'))
+      if (!value) return callback(new Error('输入组织员手机号'))
       if (!this.$u.test.mobile(value)) return callback(new Error('手机号不正确'))
       callback()
     }
@@ -192,35 +235,49 @@ export default {
           organizer: '',
           contactDetails: '',
           meetingPlace: '',
+          eetingPlaceLat: '',
+          meetingPlaceLng: '',
           setOutTime: '',
           transportation: '01',
-          tip: '',
+          precautions: '',
           journeyLineId: null,
           type: '01'
         },
         rules: {
-          name: [{ required: true, message: '请输入行程名称', trigger: ['change', 'blur'] }],
-          organizer: [{ required: true, message: '请输入组织员姓名', trigger: ['change', 'blur'] }],
+          name: [{ required: true, message: '输入行程名称', trigger: ['change', 'blur'] }],
+          organizer: [{ required: true, message: '输入组织员姓名', trigger: ['change', 'blur'] }],
           contactDetails: [{ required: true, trigger: ['change', 'blur'], validator: contactDetailsVal }],
-          meetingPlace: [{ required: true, message: '请输入集合地点', trigger: ['change', 'blur'] }],
-          setOutTime: [{ required: true, message: '请选择出发时间', trigger: ['change', 'blur'] }],
+          meetingPlace: [{ required: true, message: '输入集合地点', trigger: ['change', 'blur'] }],
+          setOutTime: [{ required: true, message: '选择出发时间', trigger: ['change', 'blur'] }],
         }
       },
-      defaultValueOfDate: [], // 日期选择回显
       playTimeOptions,
       activityTypeOptions,
       needLifeDocumentaryOptions,
       transportationOptions,
+      defaultValueOfDate: [], // 日期选择回显
       dateTimeOptions: dateTimeOptions(),
+      journeyPointList: null
     }
   },
-
+  computed: {
+    setOutTimeText () {
+      const setOutTime = this.form.data.setOutTime
+      if (!setOutTime) return '选择时间'
+      return this.$moment(setOutTime).format('YYYY-MM-DD HH:mm')
+    }
+  },
+  destroyed () {
+    this.clearEvent()
+  },
   onReady () {
     this.$refs.form.setRules(this.form.rules);
   },
   onLoad (option) {
-    const { isEdit, id } = option
+    const { isEdit, id, journeyLineId } = option
+    this.form.data.journeyLineId = journeyLineId
     if (isEdit) this.setEditConfig(id)
+    this.setEvent()
   },
   components: { MyRadio, MyRadioBox, HeadMap, InputLengthWord }
 }

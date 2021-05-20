@@ -1,0 +1,84 @@
+<template>
+  <div class='sign-up-wrap'>
+    <div class="pl30 pr30">
+      <p class="ft48 medium mb16">报名信息</p>
+      <p class="ft26 color-999">请填写以下报名信息</p>
+    </div>
+    <u-form ref="form"
+            :model="form.data"
+            class="mt32">
+      <div class="pl30 pr30">
+        <u-form-item label="姓名"
+                     label-width="160"
+                     prop="name">
+          <u-input v-model="form.data.name"
+                   maxlength="10"
+                   placeholder="输入姓名" />
+        </u-form-item>
+        <u-form-item label="手机号"
+                     label-width="160"
+                     prop="contactDetails">
+          <u-input v-model="form.data.contactDetails"
+                   type="number"
+                   placeholder="输入手机号" />
+        </u-form-item>
+      </div>
+    </u-form>
+    <div class="confirm-btn ml30 mr30 tc ft32"
+         @click="onConfirm">确定</div>
+  </div>
+</template>
+<script>
+export default {
+  methods: {
+    onConfirm () {
+      this.$refs.form.validate(valid => {
+        if (valid) {
+          this.createJourneyItinerary()
+        } else {
+          this.$msg('还有信息未填写')
+        }
+      });
+    }
+  },
+  data () {
+    const phoneVal = (rule, value, callback) => {
+      if (!value) return callback(new Error('输入手机号'))
+      if (!this.$u.test.mobile(value)) return callback(new Error('手机号不正确'))
+      callback()
+    }
+    return {
+      form: {
+        data: {
+          name: '',
+          playTime: '01',
+        },
+        rules: {
+          name: [{ required: true, message: '输入名称', trigger: ['change', 'blur'] }],
+          phone: [{ required: true, trigger: ['change', 'blur'], validator: phoneVal }],
+        }
+      }
+    }
+  },
+  onReady () {
+    this.$refs.form.setRules(this.form.rules);
+  },
+  onLoad (option) {
+
+  }
+}
+</script>
+<style lang='scss' scoped>
+.sign-up-wrap {
+  color: #333;
+  padding-top: 48rpx;
+  .confirm-btn {
+    height: 98rpx;
+    line-height: 98rpx;
+    border-radius: 49rpx;
+    background: #e32417;
+    color: #fff;
+    margin-top: 128rpx;
+  }
+}
+</style>

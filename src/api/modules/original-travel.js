@@ -76,3 +76,23 @@ export function removeJourneyItinerary (params) { // 删除行程单
     }
   })
 }
+
+export function signUpJourneyItinerary (params) { // 报名行程单
+  return request({
+    url: urls.signUpJourneyItinerary,
+    data: {
+      orgId: localStorage.getItem('orgId'),
+      ...params
+    }
+  })
+}
+
+export function cancelSignUpJourneyItinerary (params) { // 取消报名行程单
+  return request({
+    url: urls.cancelSignUpJourneyItinerary,
+    data: {
+      orgId: localStorage.getItem('orgId'),
+      ...params
+    }
+  })
+}
