@@ -119,7 +119,7 @@ export function formatDecimal (num, decimal) {
 
 export function avatarUrl (url) {
   if (!url) return imgHost + 'user/img_avatar.png'
-  return url.includes('http://') || url.includes('https://') ? url : fileHost + url
+  return imgUrlDeal(url)
 }
 
 export function replaceString (any, keyValues) {

@@ -11,19 +11,20 @@
              :key="index">
         <swiper-item>
           <view class="swiper-item">
-            <img mode="aspectFill"
-                 class="swiper-item-img"
-                 :src="$imgUrlDeal(item)"
-                 alt="">
+            <image mode="aspectFill"
+                   class="swiper-item-img"
+                   :src="$imgUrlDeal(item)">
+            </image>
           </view>
         </swiper-item>
       </block>
     </swiper>
     <view v-if="imgList.length > 1"
-          class="swiper-dots pl20 pr20 center-align">
-      <view v-for="(item,index) in imgList"
+          class="swiper-dots pl20 pr20 center-align white-color ft24">
+      <text>{{currentIndex + 1}}</text>/<text>{{imgList.length}}</text>
+      <!-- <view v-for="(item,index) in imgList"
             :key="index"
-            :class="[index === currentIndex ? 'swiper-dots-active' : '' ,'swiper-dots-item']"></view>
+            :class="[index === currentIndex ? 'swiper-dots-active' : '' ,'swiper-dots-item']"></view> -->
     </view>
   </view>
 </template>
@@ -48,11 +49,14 @@ export default {
   },
   props: ['imgList', 'indicatorDots'],
   watch: {
-    imgList (val) {
-      if (this.$isEmpty(val)) return
-      this.$nextTick(() => {
-        this.getImgInfo()
-      })
+    imgList: {
+      handler: function (val) {
+        if (this.$isEmpty(val)) return
+        this.$nextTick(() => {
+          this.getImgInfo()
+        })
+      },
+      immediate: true
     }
   },
   data () {
@@ -80,24 +84,25 @@ export default {
     height: 100%;
   }
   .swiper-dots {
+    width: 80rpx;
     position: absolute;
-    bottom: 10rpx;
+    bottom: 16rpx;
     right: 24rpx;
     height: 36rpx;
     border-radius: 18rpx;
-    background: rgba($color: #000000, $alpha: 0.5);
-    .swiper-dots-item + .swiper-dots-item {
-      margin-left: 24rpx;
-    }
-    .swiper-dots-item {
-      width: 12rpx;
-      height: 12rpx;
-      background: #484848;
-      border-radius: 50%;
-    }
-    .swiper-dots-active {
-      background: #ffffff;
-    }
+    background: rgba($color: #000000, $alpha: 0.8);
+    // .swiper-dots-item + .swiper-dots-item {
+    //   margin-left: 24rpx;
+    // }
+    // .swiper-dots-item {
+    //   width: 12rpx;
+    //   height: 12rpx;
+    //   background: #484848;
+    //   border-radius: 50%;
+    // }
+    // .swiper-dots-active {
+    //   background: #ffffff;
+    // }
   }
 }
 </style>
