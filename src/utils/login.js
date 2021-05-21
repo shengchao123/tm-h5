@@ -15,8 +15,17 @@ export const goLogin = function () {
 
 export const notMember = function () {
   const status = +uni.getStorageSync('status')
-  if (status === 1 || status === 2) {
+  if (!status || status === 1 || status === 2) {
     return true
   }
   return false
+}
+
+export const slzxNavigateBack = function () {
+  const pages = getCurrentPages()
+  if (pages.length >= 2) {
+    uni.navigateBack()
+  } else {
+    uni.switchTab({ url: '/pages/home/index/index' })
+  }
 }

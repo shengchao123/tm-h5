@@ -6,12 +6,11 @@
 </template>
 
 <script>
-import { saveLoginInfo } from '@/utils/login'
+import { saveLoginInfo, slzxNavigateBack } from '@/utils/login'
 
 export default {
   name: 'Login',
   methods: {
-
     /**
      * 1. 如果有 thridUserId，证明登录过，直接去获取用户信息之类的
      * 2. 如果没有 thirdUserId，走微信授权获取id，然后换取用户信息
@@ -65,7 +64,7 @@ export default {
 
         // 是会员直接成功
         if (status === 3 || status === 4) {
-          uni.navigateBack({ delta: 1 })
+          slzxNavigateBack()
           return
         }
 
@@ -78,9 +77,8 @@ export default {
     }
   },
   onLoad (option) {
-    uni.redirectTo({ url: '/pages/public/Bind' })
-
-    return
+    // uni.redirectTo({ url: '/pages/public/Bind' })
+    // return
 
     uni.setStorageSync('masterOrgId', option.masterOrgId)
     uni.setStorageSync('thirdUserId', option.thirdUserId)

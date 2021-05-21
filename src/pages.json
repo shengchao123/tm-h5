@@ -70,6 +70,24 @@
 			}
 		},
 		{
+			"path": "pages/party/graphic/index",
+			"style": {
+				"navigationBarTitleText": "联盟风采"
+			}
+		},
+		{
+			"path": "pages/party/graphic/detail",
+			"style": {
+				"navigationBarTitleText": "联盟风采详情"
+			}
+		},
+		{
+			"path": "pages/league-interact/index/index",
+			"style": {
+				"navigationBarTitleText": "联盟互动"
+			}
+		},
+		{
 			"path": "pages/mine/index/index",
 			"style": {
 				"navigationBarTitleText": "我的"
@@ -88,6 +106,24 @@
 			}
 		},
 		{
+			"path": "pages/mine/my-hearts/index",
+			"style": {
+				"navigationBarTitleText": "我的红心"
+			}
+		},
+		{
+			"path": "pages/mine/personal-settings/index",
+			"style": {
+				"navigationBarTitleText": "个人信息设置"
+			}
+		},
+		{
+			"path": "pages/mine/personal-settings/EditNick",
+			"style": {
+				"navigationBarTitleText": "修改昵称"
+			}
+		},
+		{
 			"path": "pages/webView",
 			"style": {
 				"navigationBarTitleText": ""
@@ -99,7 +135,9 @@
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8",
-		"app-plus": {"titleNView": false}
+		"app-plus": {
+			"titleNView": false
+		}
 	},
 	"tabBar": {
 		"color": "#666666",
@@ -120,6 +158,12 @@
 				"iconPath": "static/tabbar/party.png",
 				"selectedIconPath": "static/tabbar/party_l.png",
 				"text": "党建联盟"
+			},
+			{
+				"pagePath": "pages/league-interact/index/index",
+				"iconPath": "static/tabbar/interact.png",
+				"selectedIconPath": "static/tabbar/interact_l.png",
+				"text": "联盟互动"
 			},
 			{
 				"pagePath": "pages/mine/index/index",
