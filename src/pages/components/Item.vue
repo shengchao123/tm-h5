@@ -26,10 +26,18 @@
               class="color-333">{{item[formItem.keyName]}}{{formItem.keyName === 'numberLimit' ? '人' : ''}}</text>
       </view>
     </view>
-    <view class="btn center"
-          v-if="item.status !== '02'"
-          @click.stop="onToRoute(item)">
-      {{item.status === '03' && !$isEmpty(item.styleDescription) ?  '查看活动风采': getStatusInfo.btnText}}
+    <!-- 活动进行中的没有操作 -->
+    <view v-if="item.status !== '02'">
+      <!-- 我的活动中活动报名中的 可以执行取消报名操作 -->
+      <view class="btn center cancel-btn"
+            v-if="item.status === '01' && isMay">
+        取消报名
+      </view>
+      <view v-else
+            class="btn center"
+            @click.stop="onToRoute(item)">
+        {{item.status === '03' && !$isEmpty(item.styleDescription) ?  '查看活动风采': getStatusInfo.btnText}}
+      </view>
     </view>
   </view>
 </template>
@@ -47,10 +55,13 @@ export default {
     }
   },
   props: {
-    item: Object
+    item: Object,
+    isMay: Boolean
   },
   data () {
     return {
+      // 状态 (01:报名中; 02:进行中; 03:已结束)
+      statusMap,
       formList: Object.freeze([
         {
           icon: 'icon_shijian',
@@ -68,8 +79,6 @@ export default {
           keyName: 'numberLimit'
         }
       ]),
-      // 状态 (01:报名中; 02:进行中; 03:已结束)
-      statusMap
     }
   },
   computed: {
@@ -89,7 +98,6 @@ export default {
       return this.statusMap.get(this.item.status)
     }
   },
-  created () { },
 }
 </script>
 <style lang='scss' scoped>
@@ -129,6 +137,10 @@ export default {
     border-radius: 44rpx;
     color: #e32417;
     line-height: 56rpx;
+  }
+  .cancel-btn {
+    border: 1rpx solid #d2d2d2;
+    color: #666666;
   }
 }
 </style>

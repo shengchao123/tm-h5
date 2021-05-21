@@ -11,22 +11,46 @@
       </div>
     </div>
     <forum v-if="subsection.curNow === 0"></forum>
-    <activity ref="activity"
-              v-else></activity>
+    <activity v-else
+              class="activity-wrap"
+              :dataList="dataList"
+              :current.sync="current"
+              :height="100"
+              @getListData="getListData"></activity>
   </div>
 </template>
 <script>
-import Activity from '@/pages/league-interact/Activity'
+import Activity from '@/pages/components/Activity.vue'
 import Forum from '@/pages/league-interact/Forum'
 export default {
   name: 'index',
   methods: {
+    getListData () {
+      const params = {
+        status: this.current !== 0 ? "0" + this.current : '',
+        ...this.search
+      }
+      this.$api.getJourneyActivityPage(params).then(res => {
+        if (res.isError) {
+          this.$msg(res.message)
+          return
+        }
+        const { items, count } = res.content
+        this.dataList = items
+      })
+    },
     subsectionChange (e) {
       this.subsection.curNow = e
     }
   },
   data () {
     return {
+      dataList: [],
+      search: {
+        pageNumber: 1,
+        pageSize: 10
+      },
+      current: 0,
       subsection: {
         list: Object.freeze([
           {
@@ -41,7 +65,7 @@ export default {
     }
   },
   onShow () {
-    this.$refs.activity && this.$refs.activity.getJourneyActivityPage()
+    this.getListData()
   },
   components: { Activity, Forum },
 }
@@ -58,6 +82,9 @@ page {
     .top-tabs {
       width: 272rpx;
     }
+  }
+  .activity-wrap {
+    margin-top: -30rpx;
   }
 }
 </style>
