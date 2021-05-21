@@ -13,18 +13,58 @@
 <script>
 
 import AMap from 'AMap'
-import Vue from 'vue/dist/vue.esm.js'
+
+const MARKER_W_H = { W: 30, H: 50 }
+
 export default {
   name: 'VenueMap',
   methods: {
+
+    // 地图绘制
+    drawMap () {
+      const that = this
+      AMap.plugin('AMap.Geolocation', function () {
+        var geolocation = new AMap.Geolocation({
+          enableHighAccuracy: true,//是否使用高精度定位，默认:true
+          timeout: 1000,          //超过10秒后停止定位，默认：5s
+        });
+        geolocation.getCurrentPosition(function (status, result) {
+          if (status == 'complete') {
+            that.$amap.setCenter(result.position)
+            that.onEvent()
+            that.drawLocationMarkder()
+            that.drawLocation()
+          } else {
+          }
+        })
+      })
+    },
+
+    // 地图事件监听
+    onEvent () {
+      this.$amap.on('dragging', this.mapDragging)
+      this.$amap.on('moveend', this.mapMoveend)
+    },
+    // 绘制进来定位点 marker
+    drawLocationMarkder () {
+      this.$marker = new AMap.Marker({
+        position: this.$amap.getCenter(),
+        map: this.$amap,
+        offset: new AMap.Pixel(-MARKER_W_H.W / 2, -MARKER_W_H.H),
+        icon: this.getMarkderIcon('drag_location')
+      })
+    },
+
+    // 地图拖动，定位点更换定位位置
     mapDragging (e) {
       const _lnglat = this.$amap.getCenter()
       this.$marker.setPosition(_lnglat)
     },
+    // 地图拖动完成，重新绘制定位点
     mapMoveend (e) {
       const _lnglat = this.$amap.getCenter()
       this.$amap.clearMap()
-      this.$marker = this.drawMarkder()
+      this.$marker = this.drawLocationMarkder()
 
       AMap.plugin('AMap.Geocoder', function () {
         var geocoder = new AMap.Geocoder({})
@@ -35,25 +75,15 @@ export default {
         })
       })
     },
-    // 绘制 marker
-    drawMarkder () {
-      const marker = new AMap.Marker({
-        position: this.$amap.getCenter(),
-        map: this.$amap,
-        animation: 'AMAP_ANIMATION_DROP',
-        offset: new AMap.Pixel(-26 / 2, -31),
-        icon: this.getMarkderIcon(),
-        touchZoom: false
-      })
-      marker.on('dragend', this.markDragend)
-      return marker
-    },
+
+    drawLocation () { },
+
     // 绘制坐标 icon
-    getMarkderIcon () {
+    getMarkderIcon (img) {
       return new AMap.Icon({
-        size: new AMap.Size(40, 67),
-        image: require('@/static/map/drag_location.png'),
-        imageSize: new AMap.Size(40, 67)
+        size: new AMap.Size(MARKER_W_H.W, MARKER_W_H.H),
+        image: require(`@/static/map/${img}.png`),
+        imageSize: new AMap.Size(MARKER_W_H.W, MARKER_W_H.H)
       })
     },
   },
@@ -66,13 +96,10 @@ export default {
   mounted () {
     const mapInitObj = Object.freeze({
       resizeEnable: true,
-      zoom: 10,
-      center: [119.365056, 30.034302]
+      zoom: 10
     })
     this.$amap = new AMap.Map('map', mapInitObj)
-    this.$amap.on('dragging', this.mapDragging)
-    this.$amap.on('moveend', this.mapMoveend)
-    this.$marker = this.drawMarkder()
+    this.drawMap()
   }
 }
 </script>
