@@ -57,12 +57,12 @@ export default {
   name: 'GetRedPoints',
   methods: {
     onCancel () {
-      uni.navigateBack({ delta: 1 })
+      uni.navigateBack()
     },
 
     onAdd () {
       this.$store.commit('travel/CUSTOM_PATH_POINTS', this.selectPoints)
-      uni.navigateBack({ delta: 1 })
+      uni.navigateBack()
     },
 
     onRegion (item) {

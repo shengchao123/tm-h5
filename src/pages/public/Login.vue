@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { saveLoginInfo } from '@/utils/login'
+import { saveLoginInfo, slzxNavigateBack } from '@/utils/login'
 
 export default {
   name: 'Login',
@@ -64,7 +64,7 @@ export default {
 
         // 是会员直接成功
         if (status === 3 || status === 4) {
-          uni.navigateBack({ delta: 1 })
+          slzxNavigateBack()
           return
         }
 
