@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "地标导览",
+  "usingComponents": {
+    "u-action-sheet": "/node-modules/uview-ui/components/u-action-sheet/u-action-sheet",
+    "poi-keywords": "/pages/home/point-guide/components/PoiKeywords",
+    "drag-popover": "/components/DragPopover",
+    "point-guide-item": "/pages/home/point-guide/components/PointGuideItem"
+  }
+}

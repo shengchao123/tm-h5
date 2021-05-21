@@ -42,10 +42,11 @@ export default {
         code: option.code,
         appid: option.appid
       }
-      this.$api.getUserInfo(params).then(res => {
+      this.$api.getUserInfoAndToken(params).then(res => {
         if (res.isError) return
         const { openId, thirdUserId } = res.content
         uni.setStorageSync('thirdUserId', thirdUserId)
+        this.getMemberLoginInfo()
       })
     },
 
@@ -76,12 +77,9 @@ export default {
       })
     }
   },
-  onLoad (option) {
-    // uni.redirectTo({ url: '/pages/public/Bind' })
-    // return
 
-    uni.setStorageSync('masterOrgId', option.masterOrgId)
-    uni.setStorageSync('thirdUserId', option.thirdUserId)
+  onLoad (option) {
+    if (option.masterOrgId) uni.setStorageSync('masterOrgId', option.masterOrgId)
     this.h5Login(option)
   },
 }

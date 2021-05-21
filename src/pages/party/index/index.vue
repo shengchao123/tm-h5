@@ -1,7 +1,9 @@
 <template>
   <div class='party-wrap'>
     <div class="map">
-
+      <Map :points="partyList"
+           :currentIndex="selectPoint"
+           @changeIndex="changeIndex"></Map>
     </div>
     <div class="pt24 pl30 pr30 bg-white pb20">
       <div class="title center-align">
@@ -69,6 +71,7 @@
 <script>
 import ContactPerson from '../components/ContactPerson.vue'
 import OrgTree from './components/OrgTree.vue'
+import Map from './components/Map'
 export default {
   methods: {
     onGraphic () {
@@ -81,6 +84,10 @@ export default {
       uni.switchTab({
         url: '/pages/home/index/index'
       })
+    },
+    changeIndex (index) {
+      console.log(index)
+      this.selectPoint = index
     },
     findOrgTreeByOrgId () {
       const params = {
@@ -137,8 +144,36 @@ export default {
               "year": 2
             }
           ],
-          "lat": 0,
-          "lng": 0,
+          "lat": 30.204302,
+          "lng": 119.365056,
+          "name": "发的回复哈",
+          "pointNameList": [],
+          "regionsCode": "",
+          "regionsName": "大撒大"
+        },
+        {
+          "addressBookList": [
+            {
+              "contactPerson": "大撒大撒",
+              "orgName": "阿大撒发",
+              "tel": "21312412451"
+            }
+          ],
+          "id": 0,
+          "introduction": "建立“1+3+X”组织框架，由镇党建办牵头，“龙门秘境”村落景区区域内3个村级党组织及景区运营商、村集体经济发展有限公司、中国美院等成员单位联合组建，整合基层党建资源，组建“五彩党建管家”。",
+          "journeyLineId": 0,
+          "journeyLineName": "发哈算法国际爱护发时间按时间发",
+          "keyWorkDTOList": [
+            {
+              "content": "xxx西安市擦拭擦拭的暗时大",
+              "endDate": 12412341243154,
+              "startDate": 5134134141233412,
+              "workStatus": 0,
+              "year": 2
+            }
+          ],
+          "lat": 30.104302,
+          "lng": 119.195056,
           "name": "发的回复哈",
           "pointNameList": ['石门老街', '新四军纪念馆', '攀岩小镇（龙上村）', '党史学'],
           "regionsCode": "",
@@ -177,7 +212,7 @@ export default {
   onLoad () {
     this.getJourneyAllianceDetailList()
   },
-  components: { ContactPerson, OrgTree }
+  components: { ContactPerson, OrgTree, Map }
 }
 </script>
 <style>

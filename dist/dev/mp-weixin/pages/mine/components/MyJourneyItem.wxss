@@ -1,0 +1,80 @@
+@charset "UTF-8";
+/* uni.scss */
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+/* 边框颜色 */
+.color-333.data-v-16116c3e {
+  color: #333333;
+}
+.color-666.data-v-16116c3e {
+  color: #666666;
+}
+.color-999.data-v-16116c3e {
+  color: #999999;
+}
+.bg-color.data-v-16116c3e {
+  background-color: #f7f7f7;
+}
+.bg-white.data-v-16116c3e {
+  background-color: #ffffff;
+}
+.white-color.data-v-16116c3e {
+  color: #ffffff;
+}
+.primary-color.data-v-16116c3e {
+  color: #F54400;
+}
+.success-color.data-v-16116c3e {
+  color: #0e130f;
+}
+.warning-color.data-v-16116c3e {
+  color: #f0ad4e;
+}
+.error-color.data-v-16116c3e {
+  color: #dd524d;
+}
+.primary-text.data-v-16116c3e {
+  color: #333333;
+}
+.secondary-text.data-v-16116c3e {
+  color: #666666;
+}
+.tip-text.data-v-16116c3e {
+  color: #999999;
+}
+.journey-item-wrap .date.data-v-16116c3e {
+  background-image: -webkit-linear-gradient(left, #ffe06f 21%, #ffd533 96%);
+  background-image: linear-gradient(90deg, #ffe06f 21%, #ffd533 96%);
+  border-radius: 8px;
+  padding: 24rpx 20rpx;
+}
+.journey-item-wrap .name-wrap.data-v-16116c3e {
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+}
+.journey-item-wrap .buttons.data-v-16116c3e {
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+          justify-content: flex-end;
+  margin: 16rpx 0 24rpx;
+}
+.journey-item-wrap .buttons .btn-common.data-v-16116c3e, .journey-item-wrap .buttons .primary-btn.data-v-16116c3e, .journey-item-wrap .buttons .btn.data-v-16116c3e {
+  padding: 0 16rpx;
+  height: 56rpx;
+  border-radius: 28rpx;
+  line-height: 56rpx;
+  margin-left: 16rpx;
+}
+.journey-item-wrap .buttons .primary-btn.data-v-16116c3e {
+  border: 1px solid #f54400;
+  color: #f54400;
+}
+.journey-item-wrap .buttons .btn.data-v-16116c3e {
+  color: #666666;
+  border: 1px solid #d2d2d2;
+}
+
