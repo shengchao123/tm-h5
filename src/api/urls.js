@@ -25,6 +25,10 @@ export const urls = {
   // 活动
   getJourneyActivityPage:'/linanJourney/journeyActivity/getJourneyActivityPage', // 获取活动分页
   getJourneyActivityDetail:'/linanJourney/journeyActivity/getJourneyActivityDetail', // 获取活动详情
+  signUpJourneyActivity:'/linanJourney/journeyActivity/signUpJourneyActivity', // 报名活动
+  cancelSignUpJourneyActivity:'/linanJourney/journeyActivity/cancelSignUpJourneyActivity', // 取消报名活动
+  publishJourneyActivityStyle:'/linanJourney/journeyActivity/publishJourneyActivityStyle', // 发布活动风采
+  getJourneyActivityList:'/linanJourney/journeyActivity/getJourneyActivityList', // 获取活动列表
 
   // 我的页面
   getMemberPersonalInfo: '/crm/member/getMemberPersonalInfo', // 我的信息获取

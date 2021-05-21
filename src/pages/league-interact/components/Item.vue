@@ -1,10 +1,16 @@
 <template>
   <view class="item-wrap bg-white relative">
-    <view class="top center-align">
-      <text class="title ft32 color-333 medium pr16">{{item.name}}</text>
-      <svg-icon :icon="getStatusInfo.iconClass"
-                :style="{color:getStatusInfo.color}"
-                class="status-icon"></svg-icon>
+    <view class="top center-align between-row">
+      <view class="center-align">
+        <span class="title ft32 color-333 medium pr16">{{item.name}}</span>
+        <svg-icon :icon="getStatusInfo.iconClass"
+                  :style="{color:getStatusInfo.color}"
+                  class="status-icon"></svg-icon>
+      </view>
+      <view>
+        <svg-icon class="ft20 color-999"
+                  icon="icon_xiangyoujiantou"></svg-icon>
+      </view>
     </view>
     <view class="form-list mt32">
       <view v-for="(formItem,index) in formList"
@@ -97,7 +103,8 @@ export default {
     height: 32rpx;
     line-height: 1.5;
     .title {
-      width: calc(100% - 88rpx);
+      max-width: 482rpx;
+      display: inline-block;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;

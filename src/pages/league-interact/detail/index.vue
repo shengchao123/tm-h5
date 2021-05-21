@@ -22,8 +22,10 @@
             <view v-else-if="item.keyName ==='address'"
                   class="between-row">
               <text class="color-666">{{detailInfo[item.keyName]}}</text>
-              <svg-icon class="ding-wei"
-                        icon="icon_dingwei"></svg-icon>
+              <view @click="onToMap">
+                <svg-icon class="ding-wei"
+                          icon="icon_dingwei"></svg-icon>
+              </view>
             </view>
             <text v-else
                   class="color-666">{{detailInfo[item.keyName]}}</text>
@@ -60,6 +62,24 @@ export default {
   name: 'Detail',
   methods: {
     moment,
+    // 调用第三方地图
+    onToMap () {
+      uni.getLocation({
+        type: 'gcj02', //返回可以用于uni.openLocation的经纬度
+        success: function (res) {
+          console.log(res);
+          const latitude = res.latitude;
+          const longitude = res.longitude;
+          uni.openLocation({
+            latitude: latitude,
+            longitude: longitude,
+            success: function () {
+              console.log('success');
+            }
+          });
+        }
+      });
+    },
     onToRoute () {
       const { status, id } = this.detailInfo
       const url = status === '01' ? `/pages/home/stroke-order/signUp?id=${id}&type=activity` : ''
