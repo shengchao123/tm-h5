@@ -81,6 +81,7 @@ export default {
     // return
 
     uni.setStorageSync('masterOrgId', option.masterOrgId)
+    // pages/public/Login?masterOrgId=21332293952180224
     uni.setStorageSync('thirdUserId', option.thirdUserId)
     this.h5Login(option)
   },
