@@ -44,7 +44,12 @@ export default {
     },
 
     markerClick (e) {
+
+
       const index = e.target.getExtData()
+
+      if (this.currentIndex === index) return
+
       this.$emit('changeIndex', index)
 
       this.$nextTick(() => {
