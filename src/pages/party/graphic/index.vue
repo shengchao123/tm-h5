@@ -33,7 +33,7 @@
               <div class="content ft26 mb14">{{item.digest}}</div>
               <div class="ft24 color-999">
                 <span class="mr40">{{$moment(item.createTime).format('YYYY-MM-DD')}}</span>
-                <span>{{'大家萨达撒'}}</span>
+                <span>{{item.orgName}}</span>
               </div>
             </div>
           </div>

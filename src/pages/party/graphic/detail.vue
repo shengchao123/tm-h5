@@ -4,16 +4,17 @@
       <div class="ft36 mb20 bold">{{baseInfo.title}}</div>
       <div class="ft26 color-666">
         <span class="mr40">{{$moment(baseInfo.createTime).format('YYYY-MM-DD')}}</span>
-        <span>大家萨达撒</span>
+        <span>{{baseInfo.orgName}}</span>
       </div>
     </div>
-    <div class="content mt30 pl30 pr30">
+    <div class="content mt30 pl30 pr30 pb30">
+      <div v-if="baseInfo.contentType === '03' || baseInfo.contentType === '04'"
+           class="ft30 mb20">{{baseInfo.digest}}</div>
       <div v-if="baseInfo.contentType === '01'"
            class="type-01"
            v-html="baseInfo.content"></div>
       <div v-if="baseInfo.contentType === '03'"
            class="type-03">
-        <div class="ft30 mb20">{{baseInfo.digest}}</div>
         <div class="img-list between-row">
           <div v-for="(item, index) in baseInfo.photoWallList"
                :key="index"
@@ -30,11 +31,18 @@
 export default {
   name: 'name',
   methods: {
-    getGraphicById () {
+    onShowBigImgView (index) {
+      const urls = this.baseInfo.photoWallList.map(el => this.$fileHost + el.imageUrl)
+      uni.previewImage({
+        urls: urls,
+        current: index,
+      })
+    },
+    getGraphicInfoById () {
       const params = {
         id: this.id
       }
-      this.$api.getGraphicById(params).then(res => {
+      this.$api.getGraphicInfoById(params).then(res => {
         if (res.isError) return this.$msg(res.message)
         this.baseInfo = res.content
       })
@@ -46,6 +54,7 @@ export default {
         "content": "<p>地方撒旦发生分解啊法慢法门寺法慢发</p>",
         "contentType": "03",
         "contentTypeName": "",
+        orgName: '小阿三大苏打',
         "digest": "发短发撒发顺丰安抚啊发放安抚啊发放啊啊啊",
         "hyperlinksUrl": "",
         "imageUrl": "",
@@ -79,7 +88,7 @@ export default {
   },
   onLoad (option) {
     this.id = option.id
-    // this.getGraphicById()
+    // this.getGraphicInfoById()
   }
 }
 </script>
