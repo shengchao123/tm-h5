@@ -94,20 +94,21 @@
       <div class="confirm-btn ft32 tc"
            @click="onConfirm">确定</div>
     </div>
-    <u-select v-model="showDateSelect"
+    <u-picker v-model="showDateSelect"
+              mode="time"
               title="日期"
-              mode="mutil-column-auto"
-              :list="dateTimeOptions"
-              :default-value="defaultValueOfDate"
-              confirm-color="#E32417 "
-              @confirm="confirmDateSelect"></u-select>
+              confirm-color="#E32417"
+              :params="timePickerConfig.params"
+              :start-year="timePickerConfig.startYear"
+              :end-year="timePickerConfig.endYear"
+              :default-time="timePickerConfig.defaultTime"
+              @confirm="confirmDateSelect"></u-picker>
   </div>
 </template>
 <script>
 import { playTimeOptions, activityTypeOptions, needLifeDocumentaryOptions, transportationOptions } from '@/utils/enum'
 import MyRadio from './components/MyRadio'
 import MyRadioBox from './components/MyRadioBox.vue'
-import { dateTimeOptions } from '@/utils/tools.js'
 import HeadMap from './components/HeadMap.vue'
 import InputLengthWord from './components/InputLengthWord.vue'
 
@@ -123,30 +124,10 @@ export default {
       })
     },
     confirmDateSelect (params) {
-      const Y = params[0].value
-      const M = this.makeUpZero(params[1].value)
-      const D = this.makeUpZero(params[2].value)
-      const h = this.makeUpZero(params[3].value)
-      const m = this.makeUpZero(params[4].value)
-      this.form.data.setOutTime = new Date(`${Y}-${M}-${D} ${h}:${m}`).getTime()
-      this.setDefaultValueOfDate(params)
-    },
-    setDefaultValueOfDate (list) {
-      const dateTimeOptions = this.dateTimeOptions
-      const differentIndex = [1, 2] // 月，日value是从1开始的
-      this.defaultValueOfDate = list.map(({ value }, index) => {
-        if (index === 0) {
-          for (let i = 0; i < dateTimeOptions.length; i++) {
-            if (value === dateTimeOptions[i].value) {
-              return i
-            }
-          }
-        }
-        if (differentIndex.includes(index)) {
-          return value - 1
-        }
-        return value
-      })
+      const { timestamp } = params
+      const setOutTime = timestamp * 1000
+      this.form.data.setOutTime = setOutTime
+      this.setTimePickerDefaultValue(setOutTime)
     },
     onConfirm () {
       this.$refs.form.validate(valid => {
@@ -193,13 +174,6 @@ export default {
         })
       })
     },
-    // 编辑设置
-    setEditConfig (id) {
-      uni.setNavigationBarTitle({
-        title: '编辑行程单'
-      })
-      this.getJourneyItineraryById(id)
-    },
     getJourneyItineraryById (id) {
       const params = { id }
       this.$api.getJourneyItineraryById(params).then(res => {
@@ -230,8 +204,27 @@ export default {
         //   journeyLineId,
         //   type,
         // }
-        // 需要配置 defaultValueOfDate 回显 不然要从第一项选起
+        this.setTimePickerDefaultValue(setOutTime)
       })
+    },
+    // 编辑设置
+    setEditConfig (id) {
+      uni.setNavigationBarTitle({
+        title: '编辑行程单'
+      })
+      this.getJourneyItineraryById(id)
+    },
+    setTimePickerDefaultValue (setOutTime) {
+      this.timePickerConfig.defaultTime = this.$moment(setOutTime).format('YYYY-MM-DD HH:mm')
+    },
+    setTimePickeConfig () {
+      const nowDate = new Date()
+      const nowYear = nowDate.getFullYear()
+      this.timePickerConfig = {
+        ...this.timePickerConfig,
+        startYear: nowYear,
+        endYear: nowYear + 4,
+      }
     },
     setEvent () {
       uni.$on('setJourneyPointListEvent', (list) => {
@@ -251,12 +244,6 @@ export default {
     clearEvent () {
       uni.$off('setJourneyPointListEvent')
       uni.$off('setMeetingPlaceEvent')
-    },
-    makeUpZero (num) {
-      if (+num < 10) {
-        return '0' + num
-      }
-      return num
     }
   },
   data () {
@@ -275,9 +262,9 @@ export default {
           needLifeDocumentary: true,
           organizer: '',
           contactDetails: '',
-          meetingPlace: '',
-          eetingPlaceLat: '',
-          meetingPlaceLng: '',
+          meetingPlace: '浙江省杭州市桐庐县合村乡寺家境',
+          eetingPlaceLat: 119.365056,
+          meetingPlaceLng: 30.194302,
           setOutTime: '',
           transportation: '01',
           precautions: '',
@@ -291,14 +278,25 @@ export default {
           setOutTime: [{ required: true, message: '选择出发时间', trigger: ['change', 'blur'] }],
         }
       },
+      timePickerConfig: {
+        params: {
+          year: true,
+          month: true,
+          day: true,
+          hour: true,
+          minute: true,
+          timestamp: true,
+        },
+        startYear: '',
+        endYear: '',
+        defaultTime: '',
+      },
+      journeyLineName: '',
+      journeyPointList: [],
       playTimeOptions,
       activityTypeOptions,
       needLifeDocumentaryOptions,
       transportationOptions,
-      defaultValueOfDate: [], // 日期选择回显
-      dateTimeOptions: dateTimeOptions(),
-      journeyLineName: '',
-      journeyPointList: []
     }
   },
   computed: {
@@ -323,6 +321,7 @@ export default {
     const { isEdit, id, journeyLineId } = option
     this.form.data.journeyLineId = journeyLineId
     if (isEdit) this.setEditConfig(id)
+    this.setTimePickeConfig()
     this.setEvent()
   },
   components: { MyRadio, MyRadioBox, HeadMap, InputLengthWord }
@@ -382,6 +381,10 @@ page {
   }
   /deep/.u-form-item--left {
     align-items: flex-start;
+  }
+  /deep/.u-datetime-picker {
+    border-radius: 30rpx 30rpx 0 0;
+    overflow: hidden;
   }
 }
 </style>
