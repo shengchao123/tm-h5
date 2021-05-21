@@ -99,7 +99,7 @@ export default {
         }
         saveLoginInfo(res.content)
         uni.setStorageSync('status', 3)
-        this.$msg.success('登录成功')
+        this.$msg('登录成功')
         uni.navigateBack()
       })
     },
