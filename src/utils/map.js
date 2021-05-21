@@ -36,3 +36,4 @@ export const beginGuide = function (act, guidePoint) {
       break
   }
 }
+

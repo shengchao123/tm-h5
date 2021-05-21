@@ -32,6 +32,9 @@ export default {
       this.$api.getRecommendJourneyLineList().then(res => {
         if (res.isError) return
         this.paths = res.content
+        if (res.content && res.content.length > 0) {
+          this.$emit('onSelectPath', res.content[0].journeyLineId)
+        }
       })
     }
   },

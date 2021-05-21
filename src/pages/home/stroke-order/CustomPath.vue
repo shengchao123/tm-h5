@@ -35,7 +35,7 @@ export default {
   methods: {
     onConfirmCreateCustomPath () {
       uni.$emit('setJourneyPointListEvent', this.points)
-      uni.navigateBack({ delta: 1 })
+      uni.navigateBack()
     },
     onHandlePoints (type, index) {
       if (type === 'del') {
