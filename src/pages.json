@@ -82,6 +82,12 @@
 			}
 		},
 		{
+			"path": "pages/mine/my-hearts/index",
+			"style": {
+				"navigationBarTitleText": "我的红心"
+			}
+		},
+		{
 			"path": "pages/webView",
 			"style": {
 				"navigationBarTitleText": ""
