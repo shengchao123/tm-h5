@@ -63,7 +63,7 @@ export default {
   name: 'Login',
   methods: {
     onJump () {
-      uni.navigateBack({ delta: 1 })
+      uni.navigateBack()
     },
     onGetVerifyCode () {
       if (this.timer) return
@@ -100,7 +100,7 @@ export default {
         saveLoginInfo(res.content)
         uni.setStorageSync('status', 3)
         this.$msg.success('登录成功')
-        uni.navigateBack({ delta: 1 })
+        uni.navigateBack()
       })
     },
     // 发送验证码

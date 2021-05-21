@@ -15,8 +15,7 @@ export const urls = {
   getJourneyPointListByRegionsCode: '/linanJourney/journeyPoint/getJourneyPointListByRegionsCode', // 获取点位列表
 
   sendVerificationCode: '/crm/member/sendVerificationCode', // 发送验证码
-  getJourneyPointListByRegionsCode: '/linanJourney/journeyPoint/getJourneyPointListByRegionsCode', // 获取点位列表
-  getJourneyRegionsList: '/linanJourney/journeyRegionsManagement/getJourneyRegionsList', //   
+  getJourneyRegionsList: '/linanJourney/journeyRegions/getJourneyRegionsList', //
   createJourneyItinerary: '/linanJourney/journeyItinerary/createJourneyItinerary', // 创建行程单
   getJourneyItineraryById: '/linanJourney/journeyItinerary/getJourneyItineraryById', // 根据id获取行程单
 

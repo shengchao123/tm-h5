@@ -17,7 +17,8 @@
     </div>
 
     <div class="btn-wrap bt center">
-      <div class="btn center bold">确定</div>
+      <div class="btn center bold"
+           @click="onConfirmCreateCustomPath">确定</div>
     </div>
 
   </div>
@@ -32,6 +33,10 @@ import { swapArr } from '@/utils/tools.js'
 export default {
   name: 'CustomPath',
   methods: {
+    onConfirmCreateCustomPath () {
+      uni.$emit('setJourneyPointListEvent', this.points)
+      uni.navigateBack()
+    },
     onHandlePoints (type, index) {
       if (type === 'del') {
         this.points.splice(index, 1)
@@ -69,13 +74,16 @@ export default {
       },
     }
   },
+  deactivated () {
+    uni.$off('setJourneyPointListEvent')
+  },
   components: { Map, NumList }
 }
 </script>
 
 <style lang='scss' scoped>
 .custom-path-wrap {
-  height: calc(100vh - 44px);
+  height: calc(100vh);
   .content {
     padding: 20rpx 0;
     overflow: scroll;
