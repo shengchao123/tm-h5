@@ -18,7 +18,8 @@
           </div>
         </div>
 
-        <div class="list">
+        <div class="list"
+             ref="list">
           <LocationItem v-for="(item, index) in poi.list"
                         :item="item"
                         @onSelectItem="onSelectLocation"
@@ -129,6 +130,7 @@ export default {
         placeSearch.search(that.poi.keyword, function (status, result) {
           if (result.info === 'OK') {
             that.poi.list = result.tips
+            that.selectPoi = result.tips[0]
           }
         })
       })
@@ -159,6 +161,8 @@ export default {
           if (!result || !result.poiList) return
           const _pois = result.poiList.pois
           that.poi.list = _pois
+          that.selectPoi = _pois[0]
+          that.$refs.list.scrollTop = 0
         })
       })
     },
