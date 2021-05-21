@@ -44,7 +44,9 @@ export default {
       const { journeyLineId } = routeItem
       this.selectRouteItem = routeItem
       this.$emit('update:journeyLineId', journeyLineId)
+      this.$emit('journeyLineChange', routeItem)
       if (!routeItem.journeyLineId) {
+        this.points = []
         return uni.navigateTo({ // 去自定义线路
           url: '/pages/home/stroke-order/CustomPath'
         })
@@ -84,7 +86,7 @@ export default {
   },
   computed: {
     pointsName () {
-      return this.points.map(el => el.name).join(' - ')
+      return this.usePoints.map(el => el.name).join(' - ')
     },
     usePoints () {
       if (!this.$isEmpty(this.points)) return this.points

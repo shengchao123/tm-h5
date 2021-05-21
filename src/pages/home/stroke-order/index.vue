@@ -2,7 +2,8 @@
   <div class='stroke-order-wrap'>
     <head-map :journeyLineId.sync="form.data.journeyLineId"
               :journeyLineName="journeyLineName"
-              :journeyPointList="journeyPointList"></head-map>
+              :journeyPointList="journeyPointList"
+              @journeyLineChange="journeyLineChange"></head-map>
     <u-form ref="form"
             :model="form.data"
             class="bg-white">
@@ -69,7 +70,7 @@
                      label-width="144"
                      prop="setOutTime">
           <div class="center-align flex1"
-               @click="onShowDateSelect">
+               @click="onShowTimePicker">
             <span class="flex1"
                   :class="form.data.setOutTime ? 'color-333' : 'color-placeholder'">{{setOutTimeText}}</span>
             <svg-icon icon="icon_riqi"
@@ -94,7 +95,7 @@
       <div class="confirm-btn ft32 tc"
            @click="onConfirm">确定</div>
     </div>
-    <u-picker v-model="showDateSelect"
+    <u-picker v-model="showTimePicker"
               mode="time"
               title="日期"
               confirm-color="#E32417"
@@ -102,7 +103,7 @@
               :start-year="timePickerConfig.startYear"
               :end-year="timePickerConfig.endYear"
               :default-time="timePickerConfig.defaultTime"
-              @confirm="confirmDateSelect"></u-picker>
+              @confirm="confirmTimePicker"></u-picker>
   </div>
 </template>
 <script>
@@ -114,30 +115,38 @@ import InputLengthWord from './components/InputLengthWord.vue'
 
 export default {
   methods: {
-    onShowDateSelect () {
-      this.showDateSelect = true
-    },
     // 选择集合点
     onVenueMap () {
       uni.navigateTo({
         url: '/pages/home/stroke-order/VenueMap'
       })
     },
-    confirmDateSelect (params) {
+    // 显示 日期选择 弹窗
+    onShowTimePicker () {
+      this.showTimePicker = true
+    },
+    // 日期选中回调
+    confirmTimePicker (params) {
       const { timestamp } = params
       const setOutTime = timestamp * 1000
       this.form.data.setOutTime = setOutTime
       this.setTimePickerDefaultValue(setOutTime)
     },
+    // 行程路线 切换 回调
+    journeyLineChange ({ playTime }) {
+      this.form.data.playTime = playTime
+    },
     onConfirm () {
       this.$refs.form.validate(valid => {
         if (valid) {
+          if (!this.form.data.journeyLineId && this.$isEmpty(this.journeyPointList)) {
+            return this.$msg('请选择行程路线')
+          }
           this.createJourneyItinerary()
         } else {
           this.$msg('还有信息未填写')
         }
       })
-      console.log(this.form.data)
     },
     createJourneyItinerary () {
       const {
@@ -165,13 +174,14 @@ export default {
       if (journeyLineId) {
         params.journeyLineId = journeyLineId
       } else {
-        params.journeyPointIds = this.journeyPointList.map(el => el.id)
+        params.journeyPointIds = this.journeyPointList.map(el => el.journeyPointId)
       }
       this.$api.createJourneyItinerary(params).then(res => {
         if (res.isError) return this.$msg(res.message)
-        uni.redirectTo({
-          url: `/pages/home/stroke-order/createSuccess?id=${res.content.id}`
-        })
+        this.$msg('创建成功')
+        // uni.redirectTo({
+        //   url: `/pages/home/stroke-order/createSuccess?id=${res.content.id}`
+        // })
       })
     },
     getJourneyItineraryById (id) {
@@ -214,9 +224,11 @@ export default {
       })
       this.getJourneyItineraryById(id)
     },
+    // 设置日期选择 默认时间
     setTimePickerDefaultValue (setOutTime) {
       this.timePickerConfig.defaultTime = this.$moment(setOutTime).format('YYYY-MM-DD HH:mm')
     },
+    // 设置 日期选择器配置
     setTimePickeConfig () {
       const nowDate = new Date()
       const nowYear = nowDate.getFullYear()
@@ -252,8 +264,12 @@ export default {
       if (!this.$u.test.mobile(value)) return callback(new Error('手机号不正确'))
       callback()
     }
+    const setOutTimeVal = (rule, value, callback) => {
+      if (!value) return callback(new Error('选择出发时间'))
+      callback()
+    }
     return {
-      showDateSelect: false,
+      showTimePicker: false,
       form: {
         data: {
           name: '',
@@ -263,7 +279,7 @@ export default {
           organizer: '',
           contactDetails: '',
           meetingPlace: '浙江省杭州市桐庐县合村乡寺家境',
-          eetingPlaceLat: 119.365056,
+          meetingPlaceLat: 119.365056,
           meetingPlaceLng: 30.194302,
           setOutTime: '',
           transportation: '01',
@@ -275,7 +291,7 @@ export default {
           organizer: [{ required: true, message: '输入组织员姓名', trigger: ['change', 'blur'] }],
           contactDetails: [{ required: true, trigger: ['change', 'blur'], validator: contactDetailsVal }],
           meetingPlace: [{ required: true, message: '输入集合地点', trigger: ['change', 'blur'] }],
-          setOutTime: [{ required: true, message: '选择出发时间', trigger: ['change', 'blur'] }],
+          setOutTime: [{ required: true, trigger: ['change', 'blur'], validator: setOutTimeVal }],
         }
       },
       timePickerConfig: {
