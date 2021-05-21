@@ -53,5 +53,6 @@ export const transportationNameMap = new Map([
 export const statusMap = Object.freeze(new Map([
   ['01', { iconClass: 'icon_baomingzhong', color: '#F54000', btnText: '我要报名' }],
   ['02', { iconClass: 'icon_jinhangzhong1', color: '#FFB319' }],
-  ['03', { iconClass: 'icon_yijieshu', color: '#999999', btnText: '上传活动风采' }],
+  // ['03', { iconClass: 'icon_yijieshu', color: '#999999', btnText: '上传活动风采' }],
+  ['03', { iconClass: 'icon_yijieshu', color: '#999999' }],
 ]))

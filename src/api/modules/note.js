@@ -1,0 +1,74 @@
+import request from '../request'
+import { urls } from '../urls'
+// 根据笔记id查询笔记详细信息
+export function getCommunityNoteInfoById (params) {
+  return request({
+    url: urls.getCommunityNoteInfoById,
+    data: {
+      ...params
+    }
+  })
+}
+// 根据分享id查询笔记详细信息
+export function getCommunityNoteInfoByShareId (params) {
+  return request({
+    url: urls.getCommunityNoteInfoByShareId,
+    data: {
+      ...params
+    }
+  })
+}
+// 新增社区笔记评论
+export function createCommunityNoteComment (params) {
+  return request({
+    url: urls.createCommunityNoteComment,
+    data: {
+      ...params
+    }
+  })
+}
+// 点赞笔记
+export function communityLikeNote (params) {
+  return request({
+    url: urls.communityLikeNote,
+    data: {
+      ...params
+    }
+  })
+}
+// 取消点赞笔记
+export function cancelCommunityLikeNote (params) {
+  return request({
+    url: urls.cancelCommunityLikeNote,
+    data: {
+      ...params
+    }
+  })
+}
+// 点赞评论
+export function communityLikeNoteComment (params) {
+  return request({
+    url: urls.communityLikeNoteComment,
+    data: {
+      ...params
+    }
+  })
+}
+// 取消点赞评论
+export function cancelCommunityLikeNoteComment (params) {
+  return request({
+    url: urls.cancelCommunityLikeNoteComment,
+    data: {
+      ...params
+    }
+  })
+}
+// 分享笔记
+export function shareCommunityNote (params) {
+  return request({
+    url: urls.shareCommunityNote,
+    data: {
+      ...params
+    }
+  })
+}

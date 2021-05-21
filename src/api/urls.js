@@ -43,4 +43,14 @@ export const urls = {
   getMyRedHeart: '/linanJourney/journeyMemberRedHeartRecordManagement/getMyRedHeart', // 获取我的红心值
   getMyRedHeartRecordPage: '/linanJourney/journeyMemberRedHeartRecordManagement/getMyRedHeartRecordPage', // 获取我的红心值记录分页
 
+  // 帖子详情
+  getCommunityNoteInfoById:'/community/communityNote/getCommunityNoteInfoById', // 根据笔记id查询笔记详细信息
+  getCommunityNoteInfoByShareId:'/community/communityNote/getCommunityNoteInfoByShareId', // 根据分享id查询笔记详细信息
+  createCommunityNoteComment: '/community/communityNoteComment/createCommunityNoteComment', // 新增社区笔记评论
+  communityLikeNote: '/community/communityLike/communityLikeNote', // 点赞笔记
+  cancelCommunityLikeNote: '/community/communityLike/cancelCommunityLikeNote', // 取消点赞笔记
+  communityLikeNoteComment: '/community/communityLike/communityLikeNoteComment', //点赞评论
+  cancelCommunityLikeNoteComment: '/community/communityLike/cancelCommunityLikeNoteComment', //取消点赞评论
+  shareCommunityNote: '/community/communityShare/shareCommunityNote', // 分享笔记
+
 }

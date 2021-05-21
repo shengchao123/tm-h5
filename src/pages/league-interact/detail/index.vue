@@ -49,9 +49,13 @@
     </view>
     <view v-if="detailInfo && detailInfo.status !== '02'"
           class="footer bg-white center">
-      <text class="btn center ft32 medium"
+      <!-- <text class="btn center ft32 medium"
             :style="{background: detailInfo.status === '01' ? '#E32417':'#fff',color:detailInfo.status === '01' ? '#fff':'#E32417'}"
-            @click="onToRoute">{{detailInfo.status === '03' && !$isEmpty(detailInfo.styleDescription) ?  '编辑活动风采': getStatusInfo.btnText}}</text>
+            @click="onToRoute">{{detailInfo.status === '03' && !$isEmpty(detailInfo.styleDescription) ?  '编辑活动风采': getStatusInfo.btnText}}</text> -->
+      <text v-if="detailInfo.status === '01'"
+            class="btn center ft32 medium"
+            :style="{background: detailInfo.status === '01' ? '#E32417':'#fff',color:detailInfo.status === '01' ? '#fff':'#E32417'}"
+            @click="onToRoute">我要报名</text>
     </view>
   </view>
 </template>
@@ -62,7 +66,7 @@ export default {
   name: 'Detail',
   methods: {
     moment,
-    // 调用第三方地图
+    // TODO: 调用第三方地图
     onToMap () {
       uni.getLocation({
         type: 'gcj02', //返回可以用于uni.openLocation的经纬度

@@ -8,6 +8,7 @@ import * as originalTravel from './modules/original-travel'
 import * as evaluateDetail from './modules/evaluate-detail'
 import * as activity from './modules/activity'
 import * as party from './modules/party'
+import * as note from './modules/note'
 
 export const api = {
   ...originalTravel,
@@ -16,7 +17,8 @@ export const api = {
   ...login,
   ...evaluateDetail,
   ...activity,
-  ...party
+  ...party,
+  ...note
 }
 
 Vue.prototype.$fileHost = fileHost

@@ -94,6 +94,12 @@
 			}
 		},
 		{
+			"path": "pages/league-interact/note-detail/index",
+			"style": {
+				"navigationBarTitleText": "帖子详情"
+			}
+		},
+		{
 			"path": "pages/mine/index/index",
 			"style": {
 				"navigationBarTitleText": "我的"

@@ -29,15 +29,17 @@
     <!-- 活动进行中的没有操作 -->
     <view v-if="item.status !== '02'">
       <!-- 我的活动中活动报名中的 可以执行取消报名操作 -->
+      <!-- TODO: 已报名状态添加 -->
       <view class="btn center cancel-btn"
-            v-if="item.status === '01' && isMay">
-        取消报名
+            v-if="item.status === '01' && isMay ">
+        <!-- 取消报名 -->
+        已报名
       </view>
-      <view v-else
+      <!-- <view v-else
             class="btn center"
             @click.stop="onToRoute(item)">
         {{item.status === '03' && !$isEmpty(item.styleDescription) ?  '查看活动风采': getStatusInfo.btnText}}
-      </view>
+      </view> -->
     </view>
   </view>
 </template>
