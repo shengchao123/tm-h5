@@ -58,52 +58,19 @@ export default {
   },
   props: {
     selectedId: String,
-    needCustomize: Boolean
+    needCustomize: Boolean,
+    isDetail: Boolean,
   },
   data () {
     return {
       isShow: false,
-      list: [
-        {
-          "journeyLineId": '23',
-          "name": "星创党建示范带",
-          "playTime": "01",
-        },
-        {
-          "journeyLineId": '123',
-          "name": "“龙门秘境”乡村振兴之路",
-          "playTime": "01",
-        },
-        {
-          "journeyLineId": '4321',
-          "name": "乡村蝶变·振兴之旅",
-          "playTime": "01",
-        },
-        {
-          "journeyLineId": '43210',
-          "name": "党建引领农村产业融合发展",
-          "playTime": "01",
-        },
-        {
-          "journeyLineId": '413210',
-          "name": "共同富裕践行区党建示范带",
-          "playTime": "01",
-        },
-        {
-          "journeyLineId": '62340',
-          "name": "“琴山蓝湾”党建联盟",
-          "playTime": "01",
-        },
-        {
-          "journeyLineId": null,
-          "name": '自定义路线',
-          "playTime": "01",
-        }
-      ]
+      list: []
     }
   },
   created () {
-    this.getRecommendJourneyLineList()
+    if (!this.isDetail) {
+      this.getRecommendJourneyLineList()
+    }
   }
 }
 </script>

@@ -25,6 +25,7 @@
       </div>
     </div>
     <select-route-pop ref="selectRoutePop"
+                      :isDetail="isDetail"
                       :needCustomize="true"
                       :selectedId.sync="journeyLineIdCache"
                       @onRouteItem="onRouteItem"></select-route-pop>

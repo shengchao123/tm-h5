@@ -56,6 +56,16 @@ export function createJourneyItinerary (params) { // 创建行程单
   })
 }
 
+export function modifyJourneyItinerary (params) { // 修改行程单
+  return request({
+    url: urls.modifyJourneyItinerary,
+    data: {
+      orgId: localStorage.getItem('orgId'),
+      ...params
+    }
+  })
+}
+
 export function getJourneyItineraryById (params) { // 根据id获取行程单
   return request({
     url: urls.getJourneyItineraryById,

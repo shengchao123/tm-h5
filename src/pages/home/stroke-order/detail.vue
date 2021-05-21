@@ -1,5 +1,6 @@
 <template>
-  <div class='detail-wrap'>
+  <div class='detail-wrap'
+       v-if="baseInfo.id">
     <head-map :journeyLineName="baseInfo.journeyLineName"
               :journeyPointList="journeyPointList"
               :isDetail="true"></head-map>
@@ -7,11 +8,12 @@
       <detail-info :list="topList"></detail-info>
     </div>
     <detail-info :list="bottomList"></detail-info>
-    <div class="mt20  pb40  bg-white">
-      <div class="between-row cenetr-align pt18 pb40 pl30 pr30">
+    <div class="mt20 pb20 bg-white"
+         @click="onSignUpList">
+      <div class="between-row cenetr-align pt18 pl30 pr30">
         <div class="ft28">参与人员</div>
         <div class="center-align">
-          <div class="ft22 color-666">20人</div>
+          <div class="ft22 color-666">{{signUpList.length}}人</div>
           <svg-icon icon="icon_xiangyoujiantou"
                     class="ft20 color-999 ml8"></svg-icon>
         </div>
@@ -93,6 +95,14 @@ import DetailInfo from './components/DetailInfo.vue'
 
 export default {
   methods: {
+    onSignUpList () {
+      const signUpList = this.signUpList
+      if (signUpList.length <= 0) return
+      uni.setStorageSync('signUpList', JSON.stringify(signUpList))
+      uni.navigateTo({
+        url: '/pages/home/stroke-order/signUpList'
+      })
+    },
     // 编辑
     onEdit () {
       uni.navigateTo({
@@ -159,7 +169,7 @@ export default {
         }
         this.baseInfo = res.content
         this.journeyPointList = journeyPointList
-        this.signUpList = signUpList
+        this.signUpList = signUpList || []
       })
     }
   },
@@ -167,35 +177,14 @@ export default {
     return {
       id: null,
       showDeleteTip: false,
-      baseInfo: {
-        isOrganizer: true,
-        isSignUp: true,
-        isHaveLifeDocumentary: true,
-        "activityType": "01",
-        "contactDetails": "13506578597",
-        "id": 3214123,
-        "journeyLineId": 413123154,
-        "journeyLineName": '“龙门秘境”乡村振兴之路',
-        "journeyPointList": [],
-        "meetingPlace": "浙江省 杭州市 大家安静的 就阿萨放大算法哈 安抚按军法啊安抚骄傲",
-        "meetingPlaceLat": 0,
-        "meetingPlaceLng": 0,
-        "name": "杭州一日游",
-        "needLifeDocumentary": true,
-        "organizer": "某某某",
-        "playTime": "04",
-        "precautions": "注意喝水",
-        "setOutTime": 2314122397412,
-        "transportation": "01",
-        "type": "01"
-      },
-      journeyPointList: null,
+      baseInfo: {},
+      journeyPointList: [],
       signUpList: []
     }
   },
   computed: {
     isShowJoinBtn () {
-      const { isOrganizer, setOutTime } = this.baseInfo
+      const { isOrganizer, setOutTime, isSignUp } = this.baseInfo
       const nowTime = new Date().getTime()
       const isAlreadyStarted = nowTime >= setOutTime
       if (isOrganizer || isAlreadyStarted) return false

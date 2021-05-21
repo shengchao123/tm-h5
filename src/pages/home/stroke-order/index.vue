@@ -1,6 +1,7 @@
 <template>
   <div class='stroke-order-wrap'>
-    <head-map :journeyLineId.sync="form.data.journeyLineId"
+    <head-map ref="headMap"
+              :journeyLineId.sync="form.data.journeyLineId"
               :journeyLineName="journeyLineName"
               :journeyPointList="journeyPointList"
               @journeyLineChange="journeyLineChange"></head-map>
@@ -93,7 +94,7 @@
     </u-form>
     <div class="footer pl30 pr30 center-align">
       <div class="confirm-btn ft32 tc"
-           @click="onConfirm">确定</div>
+           @click="onConfirm">{{isEdit ? '保存' : '确定'}}</div>
     </div>
     <u-picker v-model="showTimePicker"
               mode="time"
@@ -176,44 +177,35 @@ export default {
       } else {
         params.journeyPointIds = this.journeyPointList.map(el => el.journeyPointId)
       }
-      this.$api.createJourneyItinerary(params).then(res => {
+      if (this.isEdit) { // 编辑id
+        params.id = this.id
+      }
+      const apiName = this.isEdit ? 'modifyJourneyItinerary' : 'createJourneyItinerary'
+      this.$api[apiName](params).then(res => {
         if (res.isError) return this.$msg(res.message)
-        this.$msg('创建成功')
-        // uni.redirectTo({
-        //   url: `/pages/home/stroke-order/createSuccess?id=${res.content.id}`
-        // })
+        this.$msg(this.isEdit ? '修改成功' : '创建成功')
+        if (this.isEdit) {
+          uni.navigateBack()
+          return
+        }
+        uni.redirectTo({
+          url: `/pages/home/stroke-order/createSuccess?id=${res.content.id}`
+        })
       })
     },
     getJourneyItineraryById (id) {
       const params = { id }
       this.$api.getJourneyItineraryById(params).then(res => {
         if (res.isError) return this.$msg(res.message)
-        const {
-          journeyLineName, journeyPointList, name, playTime, activityType,
-          needLifeDocumentary, organizer, contactDetails,
-          meetingPlace, meetingPlaceLat, meetingPlaceLng,
-          setOutTime, transportation, journeyLineId, type,
-          precautions,
-        } = res.content
+        const { journeyLineName, journeyPointList, setOutTime, journeyLineId } = res.content
+        const journeyLineIdCache = journeyLineId && journeyLineId !== '0' ? journeyLineId : null
         this.journeyLineName = journeyLineName
         this.journeyPointList = journeyPointList
-        this.form.data = { ...res.content }
-        // {
-        //   name,
-        //   playTime,
-        //   activityType,
-        //   needLifeDocumentary,
-        //   organizer,
-        //   contactDetails,
-        //   meetingPlace,
-        //   meetingPlaceLat,
-        //   meetingPlaceLng,
-        //   setOutTime,
-        //   transportation,
-        //   precautions,
-        //   journeyLineId,
-        //   type,
-        // }
+        this.form.data = {
+          ...res.content,
+          journeyLineId: journeyLineIdCache
+        }
+        this.$refs.headMap.journeyLineIdCache = journeyLineIdCache
         this.setTimePickerDefaultValue(setOutTime)
       })
     },
@@ -269,6 +261,8 @@ export default {
       callback()
     }
     return {
+      id: null,
+      isEdit: false,
       showTimePicker: false,
       form: {
         data: {
@@ -336,7 +330,9 @@ export default {
   onLoad (option) {
     const { isEdit, id, journeyLineId } = option
     this.form.data.journeyLineId = journeyLineId
-    if (isEdit) this.setEditConfig(id)
+    this.id = id
+    this.isEdit = isEdit === '1'
+    if (this.isEdit) this.setEditConfig(id)
     this.setTimePickeConfig()
     this.setEvent()
   },

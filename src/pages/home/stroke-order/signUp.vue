@@ -17,8 +17,8 @@
         </u-form-item>
         <u-form-item label="手机号"
                      label-width="160"
-                     prop="contactDetails">
-          <u-input v-model="form.data.contactDetails"
+                     prop="phone">
+          <u-input v-model="form.data.phone"
                    type="number"
                    placeholder="输入手机号" />
         </u-form-item>
@@ -34,11 +34,28 @@ export default {
     onConfirm () {
       this.$refs.form.validate(valid => {
         if (valid) {
-          this.createJourneyItinerary()
+          this.signUpJourneyItinerary()
         } else {
           this.$msg('还有信息未填写')
         }
       });
+    },
+    signUpJourneyItinerary () {
+      const params = {
+        ...this.form.data,
+        id: this.id
+      }
+      const apiName = new Map([
+        ['stroke', 'signUpJourneyItinerary'],
+        ['activity', 'signUpJourneyActivity'],
+      ])
+      this.$api[apiName.get(this.type)](params).then(res => {
+        if (res.isError) return this.$msg(res.message)
+        this.$msg('报名成功')
+        setTimeout(() => {
+          uni.navigateBack()
+        }, 400)
+      })
     }
   },
   data () {
@@ -48,14 +65,16 @@ export default {
       callback()
     }
     return {
+      id: null,
+      type: '',
       form: {
         data: {
           name: '',
-          playTime: '01',
+          phone: '',
         },
         rules: {
-          name: [{ required: true, message: '输入名称', trigger: ['change', 'blur'] }],
-          phone: [{ required: true, trigger: ['change', 'blur'], validator: phoneVal }],
+          name: [{ required: true, message: '输入名称', trigger: 'change' }],
+          phone: [{ required: true, trigger: 'change', validator: phoneVal }],
         }
       }
     }
@@ -64,7 +83,9 @@ export default {
     this.$refs.form.setRules(this.form.rules);
   },
   onLoad (option) {
-
+    const { id, type } = option
+    this.id = id
+    this.type = type
   }
 }
 </script>
