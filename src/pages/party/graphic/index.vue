@@ -88,7 +88,7 @@ export default {
         const { items, count } = res.content
         this.mescroll.endBySize(items.length, count)
         this.count = count
-        // this.listData = params.pageNumber === 1 ? items : this.listData.concat(items)
+        this.listData = params.pageNumber === 1 ? items : this.listData.concat(items)
       })
     },
     getJourneyAllianceInfoList () {
@@ -111,18 +111,7 @@ export default {
         textNoMore: "没有更多数据",
         noMoreSize: 1, // 配置列表的总数量要大于等于5条才显示'-- END --'的提示
       },
-      listData: [
-        {
-          "contentType": "",
-          "createTime": 12312312412,
-          "digest": "发大水，发澳门反馈奥斯卡发放假啊是积分叫阿三的法撒旦噶士大夫结果大水噶地方河是德国地方公司大厦给v撒旦",
-          "hyperlinksUrl": "",
-          "id": 0,
-          "imageUrl": "material/image/2021051819245642835059756182528.jpg",
-          "title": "发噶十九分暗时你们发到付卡就发按实际发案件放假啊看",
-          "videoLinkUrl": ""
-        }
-      ],
+      listData: [],
       count: 0,
     }
   },
