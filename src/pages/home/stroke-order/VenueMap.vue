@@ -64,7 +64,6 @@ export default {
     },
     // 地图绘制
     drawMap () {
-
       const that = this
       AMap.plugin('AMap.Geolocation', function () {
         var geolocation = new AMap.Geolocation({
@@ -145,8 +144,24 @@ export default {
       this.$amap.clearMap()
       this.drawLocation()
       this.$marker = this.drawLocationMarkder()
+      this.getPoisByMoveend()
     },
-
+    // 根据选择点，搜索 poi 点
+    getPoisByMoveend () {
+      const that = this
+      const lnglat = this.$amap.getCenter()
+      AMap.plugin('AMap.PlaceSearch', function () {
+        var autoOptions = {
+          pageSize: 50,
+        }
+        var placeSearch = new AMap.PlaceSearch(autoOptions)
+        placeSearch.searchNearBy('', lnglat, 5000, function (status, result) {
+          if (!result || !result.poiList) return
+          const _pois = result.poiList.pois
+          that.poi.list = _pois
+        })
+      })
+    },
     onLocation () {
       this.poi.keyword = ''
       this.drawMap()
