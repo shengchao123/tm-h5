@@ -42,10 +42,11 @@ export default {
         code: option.code,
         appid: option.appid
       }
-      this.$api.getUserInfo(params).then(res => {
+      this.$api.getUserInfoAndToken(params).then(res => {
         if (res.isError) return
         const { openId, thirdUserId } = res.content
         uni.setStorageSync('thirdUserId', thirdUserId)
+        this.getMemberLoginInfo()
       })
     },
 
