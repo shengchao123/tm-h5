@@ -38,3 +38,12 @@ export function getMyRedHeartRecordPage (params) { // 获取我的红心值记�
     }
   })
 }
+
+export function modifyMemberPersonalInfo (params) { // 编辑会员个人信息 '/crm/member/modifyMemberPersonalInfo'
+  return request({
+    url: urls.modifyMemberPersonalInfo,
+    data: {
+      ...params
+    }
+  })
+}
