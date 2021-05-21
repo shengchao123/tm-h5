@@ -24,9 +24,10 @@
         <div class="list pt12">
           <div v-for="(item, index) in listData"
                :key="index"
-               class="item flex mb20 pt32 pb32 pl30 pr30">
+               class="item flex mb20 pt32 pb32 pl30 pr30"
+               @click="onDetail(item)">
             <img class="poster mr24"
-                 :src="item.imageUrl" />
+                 :src="$fileHost + item.imageUrl" />
             <div class="flex1">
               <div class="ft32 medium mb16">{{item.title}}</div>
               <div class="content ft26 mb14">{{item.digest}}</div>
@@ -45,11 +46,23 @@
 <script>
 import MescrollMixin from "@/components/mescroll-uni/mescroll-mixins.js";
 import MescrollUni from "@/components/mescroll-uni/mescroll-uni.vue";
-import ContactPerson from './components/ContactPerson.vue';
+import ContactPerson from '../components/ContactPerson.vue';
 export default {
   methods: {
     changeTab (index) {
       this.current = index
+    },
+    onDetail (item) {
+      const { id, contentType, hyperlinksUrl } = item
+      if (contentType === '02') {
+        uni.navigateTo({
+          url: `/pages/webView?title=联盟风采详情&webUrl=${hyperlinksUrl}`
+        })
+        return
+      }
+      uni.navigateTo({
+        url: `/pages/party/graphic/detail?id=${id}`
+      })
     },
     // 下拉刷新
     downCallback () {

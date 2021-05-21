@@ -27,7 +27,9 @@
 export default {
   methods: {
     onCall (phone) {
-
+      uni.makePhoneCall({
+        phoneNumber: phone
+      })
     }
   },
   props: {

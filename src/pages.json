@@ -70,9 +70,15 @@
 			}
 		},
 		{
-			"path": "pages/party/graphic",
+			"path": "pages/party/graphic/index",
 			"style": {
 				"navigationBarTitleText": "联盟风采"
+			}
+		},
+		{
+			"path": "pages/party/graphic/detail",
+			"style": {
+				"navigationBarTitleText": "联盟风采详情"
 			}
 		},
 		{
