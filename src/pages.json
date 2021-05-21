@@ -82,6 +82,12 @@
 			}
 		},
 		{
+			"path": "pages/league-interact/detail/index",
+			"style": {
+				"navigationBarTitleText": "活动详情"
+			}
+		},
+		{
 			"path": "pages/mine/index/index",
 			"style": {
 				"navigationBarTitleText": "我的"

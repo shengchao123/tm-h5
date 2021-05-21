@@ -22,6 +22,9 @@ export const urls = {
   // 评价详情
   getItineraryEvaluationInfoById:'/linanJourney/journeyItineraryEvaluation/getItineraryEvaluationInfoById', // 根据笔记id查询行程评价详细信息
 
+  // 活动
+  getJourneyActivityPage:'/linanJourney/journeyActivity/getJourneyActivityPage', // 获取活动分页
+  getJourneyActivityDetail:'/linanJourney/journeyActivity/getJourneyActivityDetail', // 获取活动详情
 
   // 我的页面
   getMemberPersonalInfo: '/crm/member/getMemberPersonalInfo', // 我的信息获取
