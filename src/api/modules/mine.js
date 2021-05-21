@@ -18,3 +18,23 @@ export function getMyJourneyItineraryPage (params) { // 我的信息获取 '/lin
     }
   })
 }
+
+
+export function getMyRedHeart (params) { // 获取我的红心值 '/linanJourney/journeyMemberRedHeartRecordManagement/getMyRedHeart'
+  return request({
+    url: urls.getMyRedHeart,
+    data: {
+      ...params
+    }
+  })
+}
+
+
+export function getMyRedHeartRecordPage (params) { // 获取我的红心值记录分页 '/linanJourney/journeyMemberRedHeartRecordManagement/getMyRedHeartRecordPage'
+  return request({
+    url: urls.getMyRedHeartRecordPage,
+    data: {
+      ...params
+    }
+  })
+}

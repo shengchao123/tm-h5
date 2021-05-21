@@ -8,21 +8,20 @@
 <script>
 
 import AMap from 'AMap'
-import Vue from 'vue'
+import Vue from 'vue/dist/vue.esm.js'
 export default {
   name: 'VenueMap',
   methods: {
     markDragend (e) {
+      this.$amap.setCenter(e.lnglat)
       const that = this
       AMap.plugin('AMap.Geocoder', function () {
         var geocoder = new AMap.Geocoder({})
         geocoder.getAddress(e.lnglat, function (status, result) {
           if (status === 'complete' && result.regeocode) {
             var address = result.regeocode.formattedAddress;
-            console.log(address)
             that.showInfoWindow(address)
           } else {
-            log.error('根据经纬度查询地址失败')
           }
         })
       })
@@ -62,6 +61,7 @@ export default {
         position: this.$amap.getCenter(),
         map: this.$amap,
         draggable: true,
+        offset: new AMap.Pixel(-26 / 2, -31),
         icon: this.getMarkderIcon(),
         touchZoom: false
       })
@@ -71,9 +71,9 @@ export default {
     // 绘制坐标 icon
     getMarkderIcon () {
       return new AMap.Icon({
-        size: new AMap.Size(31, 31),
+        size: new AMap.Size(26, 31),
         image: require('@/static/map/location_select.png'),
-        imageSize: new AMap.Size(31, 31)
+        imageSize: new AMap.Size(26, 31)
       })
     },
   },

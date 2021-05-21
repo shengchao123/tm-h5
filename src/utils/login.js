@@ -20,3 +20,12 @@ export const notMember = function () {
   }
   return false
 }
+
+export const slzxNavigateBack = function () {
+  const pages = getCurrentPages()
+  if (pages.length >= 2) {
+    uni.navigateBack()
+  } else {
+    uni.switchTab({ url: '/pages/home/index/index' })
+  }
+}
