@@ -51,7 +51,7 @@
           class="footer bg-white center">
       <text class="btn center ft32 medium"
             :style="{background: detailInfo.status === '01' ? '#E32417':'#fff',color:detailInfo.status === '01' ? '#fff':'#E32417'}"
-            @click="onToRoute">{{getStatusInfo.detailBtn}}</text>
+            @click="onToRoute">{{detailInfo.status === '03' && !$isEmpty(detailInfo.styleDescription) ?  '编辑活动风采': getStatusInfo.btnText}}</text>
     </view>
   </view>
 </template>

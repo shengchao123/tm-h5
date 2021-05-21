@@ -29,7 +29,7 @@
     <view class="btn center"
           v-if="item.status !== '02'"
           @click.stop="onToRoute(item)">
-      {{getStatusInfo.btnText}}
+      {{item.status === '03' && !$isEmpty(item.styleDescription) ?  '查看活动风采': getStatusInfo.btnText}}
     </view>
   </view>
 </template>
