@@ -76,6 +76,12 @@
 			}
 		},
 		{
+			"path": "pages/party/graphic",
+			"style": {
+				"navigationBarTitleText": "联盟风采"
+			}
+		},
+		{
 			"path": "pages/league-interact/index/index",
 			"style": {
 				"navigationBarTitleText": "联盟互动"
@@ -117,7 +123,9 @@
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8",
-		"app-plus": {"titleNView": false}
+		"app-plus": {
+			"titleNView": false
+		}
 	},
 	"tabBar": {
 		"color": "#666666",
