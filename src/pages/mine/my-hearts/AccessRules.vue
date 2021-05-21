@@ -11,7 +11,7 @@
         <view class="close-btn"
               @click="isRuleShow = false">
           <svg-icon icon="icon_cha"
-                    class="ft26 color-999 bold"></svg-icon>
+                    class="ft24 color-999 bold"></svg-icon>
         </view>
       </view>
       <view class="pl32 pr32 pt8 h464">

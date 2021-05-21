@@ -19,7 +19,7 @@
         </view>
         <view class="flex heart-consume">
           <text class="opacity-6">使用</text>
-          <text>{{heartsData.redHeartConsume > 0 ? '-' : ''}}{{heartsData.redHeartBalance}}</text>
+          <text>{{heartsData.redHeartConsume > 0 ? '-' : ''}}{{heartsData.redHeartConsume}}</text>
         </view>
       </view>
     </view>
@@ -51,7 +51,9 @@ export default {
     // 切换tab
     changeTabs (index) {
       this.tabsCurrent = index
-      this.$refs.record.resetGetList()
+      this.$nextTick(() => {
+        this.$refs.record.resetGetList()
+      })
     },
     // 红心获取规则弹窗
     onPopup () {

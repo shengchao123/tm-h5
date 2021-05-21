@@ -1,28 +1,29 @@
 <template>
   <view class='record-wrap border-t20'>
-    <mescroll-body ref="mescrollRef"
-                   :up="upOption"
-                   @init="mescrollInit"
-                   @down="downCallback"
-                   @up="upCallback">
+    <mescroll-uni ref="mescrollRef"
+                  top="382"
+                  @init="mescrollInit"
+                  @down="downCallback"
+                  :up="upOption"
+                  @up="upCallback">
       <view v-if="isEmpty">
         <page-empty :imgUrl="empty.url"
                     :message="empty.msg"></page-empty>
       </view>
       <view v-else
-            class="pl30 pr30 mt12">
+            class="pl30 pr30 pt12">
         <view v-for="(item, index) in recordList"
               :key="index">
           <record-item :record="item"></record-item>
         </view>
       </view>
-    </mescroll-body>
+    </mescroll-uni>
   </view>
 </template>
 
 <script>
 import MescrollMixin from "@/components/mescroll-uni/mescroll-mixins.js";
-import MescrollBody from "@/components/mescroll-uni/mescroll-body.vue";
+import MescrollUni from "@/components/mescroll-uni/mescroll-uni.vue";
 import RecordItem from './RecordItem.vue';
 import pageEmpty from 'pages/components/PageEmpty'
 const typeMap = Object.freeze(new Map([
@@ -39,7 +40,8 @@ export default {
     upCallback (page) {
       this.getMyRedHeartRecordPage(page)
     },
-    resetGetList () {
+    resetGetList (index) {
+      this.recordList = []
       this.mescroll.resetUpScroll()
       this.mescroll.scrollTo(0, 100)
     },
@@ -79,14 +81,13 @@ export default {
       empty: {
         url: '../../../static/hearts/empty.png',
         msg: '暂无我的红心记录'
-      }
-
+      },
     }
   },
   props: {
     tabsCurrent: Number
   },
-  components: { MescrollBody, pageEmpty, RecordItem },
+  components: { MescrollUni, pageEmpty, RecordItem },
   mixins: [MescrollMixin],
 }
 </script>
