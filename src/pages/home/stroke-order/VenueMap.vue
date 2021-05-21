@@ -31,10 +31,10 @@ export default {
         geolocation.getCurrentPosition(function (status, result) {
           if (status == 'complete') {
             that.$amap.setCenter(result.position)
+            that.$marker = that.drawLocationMarkder()
+
             that.onEvent()
-            that.drawLocationMarkder()
             that.drawLocation()
-          } else {
           }
         })
       })
@@ -47,12 +47,14 @@ export default {
     },
     // 绘制进来定位点 marker
     drawLocationMarkder () {
-      this.$marker = new AMap.Marker({
+      const marker = new AMap.Marker({
         position: this.$amap.getCenter(),
         map: this.$amap,
         offset: new AMap.Pixel(-MARKER_W_H.W / 2, -MARKER_W_H.H),
         icon: this.getMarkderIcon('drag_location')
       })
+
+      return marker
     },
 
     // 地图拖动，定位点更换定位位置
