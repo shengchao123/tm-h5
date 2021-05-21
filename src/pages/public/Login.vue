@@ -77,13 +77,9 @@ export default {
       })
     }
   },
-  onLoad (option) {
-    // uni.redirectTo({ url: '/pages/public/Bind' })
-    // return
 
-    uni.setStorageSync('masterOrgId', option.masterOrgId)
-    // pages/public/Login?masterOrgId=21332293952180224
-    uni.setStorageSync('thirdUserId', option.thirdUserId)
+  onLoad (option) {
+    if (option.masterOrgId) uni.setStorageSync('masterOrgId', option.masterOrgId)
     this.h5Login(option)
   },
 }

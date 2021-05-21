@@ -67,6 +67,9 @@ export default {
     PathsList,
     ScenicSpot
   },
+  onLoad (option) {
+    if (option.masterOrgId) uni.setStorageSync('masterOrgId', option.masterOrgId)
+  }
 }
 </script>
 
