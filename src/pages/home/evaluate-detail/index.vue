@@ -29,7 +29,7 @@
         <view @click="onShowShareDialog">
           <svg-icon icon="icon_zhuanfa"></svg-icon>
         </view>
-        <text class="pl20">{{156}}</text>
+        <text class="pl20">{{detailInfo.shareQuantity}}</text>
       </view>
       <view class="">
         <svg-icon :icon="detailInfo.isLike ? 'icon_shoucang primary-color' : 'icon_weishoucang'"></svg-icon>
