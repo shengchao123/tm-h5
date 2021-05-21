@@ -28,6 +28,7 @@ import AMap from 'AMap'
 import DragPopover from '@/components/DragPopover'
 import { subStringWithStrlen } from '@/utils/tools.js'
 import Vue from 'vue/dist/vue.esm.js'
+
 import PointGuideItem from './components/PointGuideItem'
 import { getAMapLngLat, getLngLat, beginGuide } from '@/utils/map.js'
 

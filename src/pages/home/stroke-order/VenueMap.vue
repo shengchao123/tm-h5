@@ -2,16 +2,42 @@
 <template>
   <div class='venue-map-wrap'>
     <div id="map"></div>
-
-    <DragPopover showLocation="true"
-                 max-top="70"
+    <!-- showLocation="true" -->
+    <DragPopover max-top="70"
                  @onLocation="onLocation">
+      <div class="box relative">
+        <!-- 搜索框 -->
+        <div class="search-wrap">
+          <div class="search center-align color-999 ft26">
+            <SvgIcon icon="icon_hanhan-01-01"
+                     class="mr16"></SvgIcon>
+            <u-input v-model="poi.keyword"
+                     @input="poiSearch"
+                     placeholder="搜索地点"
+                     type="text" />
+          </div>
+        </div>
 
+        <div class="list">
+          <LocationItem v-for="(item, index) in poi.list"
+                        :item="item"
+                        @onSelectItem="onSelectLocation"
+                        :isCurrent="selectPoi.id === item.id"
+                        :key="index"></LocationItem>
+        </div>
+
+        <div class="btn-wrap bt center">
+          <div class="btn center bold"
+               @click="onConfirmBtn">确定</div>
+        </div>
+
+      </div>
     </DragPopover>
   </div>
 </template>
 <script>
 
+import LocationItem from '@/pages/home/stroke-order/components/LocationItem'
 import AMap from 'AMap'
 
 const MARKER_W_H = { W: 30, H: 50 }
@@ -19,22 +45,46 @@ const MARKER_W_H = { W: 30, H: 50 }
 export default {
   name: 'VenueMap',
   methods: {
-
+    onConfirmBtn () {
+      uni.navigateBack({ delta: 1 })
+      uni.$emit('setMeetingPlaceEvent', {
+        meetingPlace: this.selectPoi.address,
+        meetingPlaceLat: this.selectPoi.location.lat,
+        meetingPlaceLng: this.selectPoi.location.lng
+      })
+    },
+    poiSearch () {
+      this.getPoisBySearch()
+    },
+    onSelectLocation (e) {
+      console.log(e)
+      this.selectPoi = e
+      this.$amap.setCenter(e.location)
+      this.$marker = this.drawLocationMarkder()
+    },
     // 地图绘制
     drawMap () {
+
       const that = this
       AMap.plugin('AMap.Geolocation', function () {
         var geolocation = new AMap.Geolocation({
           enableHighAccuracy: true,//是否使用高精度定位，默认:true
-          timeout: 1000,          //超过10秒后停止定位，默认：5s
+          timeout: 1000,
+          extensions: 'all'         //超过10秒后停止定位，默认：5s
         });
         geolocation.getCurrentPosition(function (status, result) {
+          console.log(result)
           if (status == 'complete') {
+            that.locationResult = result
+
+            that.poi.list = result.pois
+            that.selectPoi = result.pois[0]
+            that.drawLocation()
+
             that.$amap.setCenter(result.position)
             that.$marker = that.drawLocationMarkder()
 
             that.onEvent()
-            that.drawLocation()
           }
         })
       })
@@ -56,6 +106,34 @@ export default {
 
       return marker
     },
+    drawLocation () {
+      new AMap.Marker({
+        position: this.locationResult.position,
+        map: this.$amap,
+        offset: new AMap.Pixel(-30 / 2, -30 / 2),
+        icon: new AMap.Icon({
+          size: new AMap.Size(30, 30),
+          image: require('@/static/map/location.png'),
+          imageSize: new AMap.Size(30, 30)
+        })
+      })
+    },
+
+    // 根据选择点，搜索 poi 点
+    getPoisBySearch () {
+      const that = this
+      AMap.plugin('AMap.Autocomplete', function () {
+        var autoOptions = {
+          city: '杭州市',
+        }
+        var placeSearch = new AMap.Autocomplete(autoOptions)
+        placeSearch.search(that.poi.keyword, function (status, result) {
+          if (result.info === 'OK') {
+            that.poi.list = result.tips
+          }
+        })
+      })
+    },
 
     // 地图拖动，定位点更换定位位置
     mapDragging (e) {
@@ -64,22 +142,15 @@ export default {
     },
     // 地图拖动完成，重新绘制定位点
     mapMoveend (e) {
-      const _lnglat = this.$amap.getCenter()
       this.$amap.clearMap()
+      this.drawLocation()
       this.$marker = this.drawLocationMarkder()
-
-      AMap.plugin('AMap.Geocoder', function () {
-        var geocoder = new AMap.Geocoder({})
-        geocoder.getAddress(_lnglat, function (status, result) {
-          if (status === 'complete' && result.regeocode) {
-            var address = result.regeocode.formattedAddress
-          }
-        })
-      })
     },
 
-    drawLocation () { },
-
+    onLocation () {
+      this.poi.keyword = ''
+      this.drawMap()
+    },
     // 绘制坐标 icon
     getMarkderIcon (img) {
       return new AMap.Icon({
@@ -89,16 +160,22 @@ export default {
       })
     },
   },
+  components: { LocationItem },
   data () {
     return {
       $amap: null,
-      $marker: null
+      $marker: null,
+      poi: {
+        keyword: '',
+        list: []
+      },
+      selectPoi: {}
     }
   },
   mounted () {
     const mapInitObj = Object.freeze({
       resizeEnable: true,
-      zoom: 10
+      zoom: 17
     })
     this.$amap = new AMap.Map('map', mapInitObj)
     this.drawMap()
@@ -111,6 +188,39 @@ export default {
   #map {
     width: 100vw;
     height: 70vh;
+  }
+
+  .box {
+    height: 100%;
+    position: relative;
+    .search-wrap {
+      padding: 24rpx 30rpx;
+      .search {
+        height: 66rpx;
+        padding: 0 20rpx;
+        border-radius: 33rpx;
+        background: #f4f5f7;
+      }
+    }
+    .list {
+      height: calc(100% - 240rpx);
+      overflow: scroll;
+    }
+  }
+  .btn-wrap {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 120rpx;
+    .btn {
+      font-size: 32rpx;
+      background: #e32417;
+      height: 88rpx;
+      width: 690rpx;
+      border-radius: 49px;
+      color: #ffffff;
+    }
   }
 }
 </style>
