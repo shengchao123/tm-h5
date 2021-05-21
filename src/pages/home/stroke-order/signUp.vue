@@ -69,8 +69,8 @@ export default {
       type: '',
       form: {
         data: {
-          name: '',
-          phone: '',
+          name: uni.getStorageSync('nick') || '',
+          phone: uni.getStorageSync('phone') || '',
         },
         rules: {
           name: [{ required: true, message: '输入名称', trigger: 'change' }],
