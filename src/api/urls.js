@@ -29,8 +29,17 @@ export const urls = {
   getMemberPersonalInfo: '/crm/member/getMemberPersonalInfo', // 我的信息获取
   getMyJourneyItineraryPage: '/linanJourney/journeyItinerary/getMyJourneyItineraryPage', // 我的行程单
 
+  // 实名认证
+  findOrgList: '/organization/orgConsumer/findOrgList', // 获取联盟组织列表
+  verifiedRealName: '/crm/member/verifiedRealName', // 实名认证
+
   // 我的红心
   getMyRedHeart: '/linanJourney/journeyMemberRedHeartRecordManagement/getMyRedHeart', // 获取我的红心值
   getMyRedHeartRecordPage: '/linanJourney/journeyMemberRedHeartRecordManagement/getMyRedHeartRecordPage', // 获取我的红心值记录分页
+
+  // 个人信息
+  uploadAvatar: '/file/fileUpload/uploadAvatar', //  上传头像
+  getMemberPersonalInfo: '/crm/member/getMemberPersonalInfo', //  获取会员个人信息
+  modifyMemberPersonalInfo: '/crm/member/modifyMemberPersonalInfo', //  编辑会员个人信息
 
 }

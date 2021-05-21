@@ -94,9 +94,33 @@
 			}
 		},
 		{
+			"path": "pages/mine/real-name/index",
+			"style": {
+				"navigationBarTitleText": "实名认证"
+			}
+		},
+		{
+			"path": "pages/mine/published-agreement/index",
+			"style": {
+				"navigationBarTitleText": "天目红盟论坛发表协议"
+			}
+		},
+		{
 			"path": "pages/mine/my-hearts/index",
 			"style": {
 				"navigationBarTitleText": "我的红心"
+			}
+		},
+		{
+			"path": "pages/mine/personal-settings/index",
+			"style": {
+				"navigationBarTitleText": "个人信息设置"
+			}
+		},
+		{
+			"path": "pages/mine/personal-settings/EditNick",
+			"style": {
+				"navigationBarTitleText": "修改昵称"
 			}
 		},
 		{
