@@ -14,7 +14,7 @@
            style="line-height: 42rpx">{{baseInfo.introduction}}</div>
     </div>
     <div class="mb20 bg-white pb32">
-      <org-tree></org-tree>
+      <org-tree :orgTree="orgTree"></org-tree>
       <div class="center">
         <div class="graphic-btn tc"
              @click="onGraphic">风采展示</div>
@@ -37,12 +37,12 @@
            style="color: #518CFC">
         <svg-icon icon="icon_didian"
                   class="ft24 mr14"></svg-icon>
-        <div class="flex1">{{pointsName}}</div>
+        <div class="flex1 ft26">{{pointsName}}</div>
       </div>
     </div>
-    <div class="bg-white pl30 pr30 mb20 pt24 pb30 pb48"
+    <div class="bg-white pl30 pr30 mb20 pt24 pb30 pb38"
          @click="onJourney">
-      <div class="center-align">
+      <div class="center-align mb20">
         <svg-icon icon="icon_zhongdiangongzuo"
                   class="ft32"
                   style="color: #BF2B19"></svg-icon>
@@ -51,15 +51,16 @@
       <div class="work-list">
         <div v-for="(item, index) in baseInfo.keyWorkDTOList"
              :key="index"
-             class="work-item">
-          <div class="icon-box mr14">
-            <svg-icon :icon="workStatusIcon(item).icon"
+             class="work-item flex"
+             :class="index !== baseInfo.keyWorkDTOList.length -1 && 'work-item-line'">
+          <div class="icon-box flex mr14 mt12">
+            <svg-icon :icon="workStatusInfo(item).icon"
                       class="ft24"
-                      :class="workStatusIcon(item).className"></svg-icon>
+                      :class="workStatusInfo(item).className"></svg-icon>
           </div>
           <div class="flex1">
             <p class="ft30 mb16">{{item.content}}</p>
-            <p class="ft24 color-999">{{item.content}}</p>
+            <p class="ft24 color-999 mb20">{{workStatusInfo(item).text}}</p>
           </div>
         </div>
       </div>
@@ -123,7 +124,7 @@ export default {
           "journeyLineName": "发哈算法国际爱护发时间按时间发",
           "keyWorkDTOList": [
             {
-              "content": "xxx西安市擦拭擦拭的暗时大",
+              "content": "xxx西安市擦拭擦拭的暗时大丰大厦股份哈的风格嗷嗷叫的方法骄傲的发骄",
               "endDate": 12412341243154,
               "startDate": 5134134141233412,
               "workStatus": 1,
@@ -144,34 +145,6 @@ export default {
               "year": 2
             }
           ],
-          "lat": 30.204302,
-          "lng": 119.365056,
-          "name": "发的回复哈",
-          "pointNameList": [],
-          "regionsCode": "",
-          "regionsName": "大撒大"
-        },
-        {
-          "addressBookList": [
-            {
-              "contactPerson": "大撒大撒",
-              "orgName": "阿大撒发",
-              "tel": "21312412451"
-            }
-          ],
-          "id": 0,
-          "introduction": "建立“1+3+X”组织框架，由镇党建办牵头，“龙门秘境”村落景区区域内3个村级党组织及景区运营商、村集体经济发展有限公司、中国美院等成员单位联合组建，整合基层党建资源，组建“五彩党建管家”。",
-          "journeyLineId": 0,
-          "journeyLineName": "发哈算法国际爱护发时间按时间发",
-          "keyWorkDTOList": [
-            {
-              "content": "xxx西安市擦拭擦拭的暗时大",
-              "endDate": 12412341243154,
-              "startDate": 5134134141233412,
-              "workStatus": 0,
-              "year": 2
-            }
-          ],
           "lat": 30.104302,
           "lng": 119.195056,
           "name": "发的回复哈",
@@ -180,8 +153,41 @@ export default {
           "regionsName": "大撒大"
         }
       ],
-      orgTree: [],
-      workStatusMap: ''
+      orgTree: [
+        {
+          "child": [
+            {
+              "child": [
+                {
+                  id: '231',
+                  "name": "dasd as发萨暗时暗时啊",
+                }
+              ],
+              id: '233231',
+              "name": "阿三大苏打实打实阿萨大阿萨大阿萨大暗时",
+            },
+            {
+              "child": [
+                {
+                  "child": [
+                    {
+                      id: '4233213',
+                      "name": "dasd as发萨暗时暗时啊",
+                    }
+                  ],
+                  id: '53232',
+                  "name": "阿三大苏打实打实阿萨大阿萨大阿萨大暗时",
+                }
+              ],
+              id: '5324234',
+
+              "name": "高发多发首发式发生",
+            }
+          ],
+          id: '223425431',
+          "name": "高发多发首发式发生",
+        }
+      ],
     }
   },
   computed: {
@@ -191,20 +197,24 @@ export default {
     pointsName () {
       return this.baseInfo.pointNameList.join('→')
     },
-    workStatusIcon () {
+    workStatusInfo () {
       return (item) => {
         const { workStatus } = item
         if (workStatus === 1) return {
-          className: 'color-999',
-          icon: 'icon_weikaishi'
+          className: 'color-8A8A8A',
+          icon: 'icon_weikaishi',
+          text: '未开始'
         }
         if (workStatus === 2) return {
-          className: 'color-ffddb0',
-          icon: 'icon_jinhangzhong'
+          className: 'color-FE8B00',
+          icon: 'icon_jinhangzhong',
+          text: '进行中'
+
         }
         if (workStatus === 3) return {
-          className: 'color-green',
-          icon: 'icon_yiwancheng'
+          className: 'color-4CBF00',
+          icon: 'icon_yiwancheng',
+          text: '已完成'
         }
       }
     }
@@ -224,6 +234,7 @@ page {
 <style lang='scss' scoped>
 .party-wrap {
   color: #333;
+  padding-bottom: 120rpx;
   .map {
     width: 100%;
     height: 560rpx;
@@ -247,16 +258,34 @@ page {
   }
   .work-list {
     .work-item {
+      position: relative;
       .icon-box {
+        position: relative;
         width: 24rpx;
         height: 24rpx;
         background: #fff;
-        .color-ffddb0 {
-          color: #ffddb0;
+        z-index: 1;
+        .color-8A8A8A {
+          color: #8a8a8a;
         }
-        .color-green {
-          color: green;
+        .color-FE8B00 {
+          color: #fe8b00;
         }
+        .color-4CBF00 {
+          color: #4cbf00;
+        }
+      }
+    }
+    .work-item-line {
+      &::after {
+        content: "";
+        position: absolute;
+        top: 10%;
+        bottom: 0;
+        height: 120%;
+        left: 10rpx;
+        width: 1rpx;
+        background: #eaeaea;
       }
     }
   }
