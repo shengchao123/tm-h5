@@ -130,9 +130,11 @@ export default {
     ActivitySwiper,
     MescrollUni,
   },
-  onLoad(option) {
-    if (option.masterOrgId)
-      uni.setStorageSync("masterOrgId", option.masterOrgId);
+  onLoad (option) {
+    if (option.masterOrgId) {
+      uni.setStorageSync('masterOrgId', option.masterOrgId)
+      uni.setStorageSync('orgId', option.masterOrgId)
+    }
   },
   mixins: [MescrollMixin],
 };

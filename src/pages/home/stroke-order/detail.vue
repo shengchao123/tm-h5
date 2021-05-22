@@ -85,6 +85,8 @@
              confirm-color="#F44000"
              cancel-color="#333333"
              @confirm="onDelete(true)"></u-modal>
+    <share-dialog ref="shareDialog"
+                  :shareData="shareData"></share-dialog>
   </div>
 </template>
 <script>
@@ -92,7 +94,7 @@ import HeadMap from './components/HeadMap.vue'
 import { playTimeNameMap, activityNameMap, transportationNameMap } from '@/utils/enum'
 import moment from "moment"
 import DetailInfo from './components/DetailInfo.vue'
-
+import ShareDialog from '../../components/ShareDialog.vue'
 export default {
   methods: {
     onSignUpList () {
@@ -129,11 +131,10 @@ export default {
     },
     // 分享
     onShare () {
-
+      this.$refs.shareDialog.show()
     },
     // 去评价
     onComment () {
-      if (this.$notMember()) return this.$goLogin()
       const url = `/pages/home/evaluation/index?id=${this.baseInfo.id}`
       uni.navigateTo({ url })
     },
@@ -147,7 +148,6 @@ export default {
     },
     // 报名
     onSignUp () {
-      if (this.$notMember()) return this.$goLogin()
       const id = this.id
       if (!this.baseInfo.isSignUp) {
         uni.navigateTo({
@@ -177,7 +177,18 @@ export default {
         this.baseInfo = res.content
         this.journeyPointList = journeyPointList
         this.signUpList = signUpList || []
+        this.getShareData()
       })
+
+    },
+    getShareData () {
+      const { name, journeyLineName } = this.baseInfo
+      this.shareData = {
+        link: window.location.href,
+        title: name,
+        desc: journeyLineName,
+        imgUrl: ''
+      }
     }
   },
   data () {
@@ -186,7 +197,8 @@ export default {
       showDeleteTip: false,
       baseInfo: {},
       journeyPointList: [],
-      signUpList: []
+      signUpList: [],
+      shareData: {}
     }
   },
   computed: {
@@ -219,12 +231,13 @@ export default {
     }
   },
   onShow () {
+    if (this.$notMember()) return this.$goLogin()
     this.getJourneyItineraryById()
   },
   onLoad (option) {
     this.id = option.id
   },
-  components: { HeadMap, DetailInfo }
+  components: { HeadMap, DetailInfo, ShareDialog }
 }
 </script>
 <style lang='scss' scoped>
