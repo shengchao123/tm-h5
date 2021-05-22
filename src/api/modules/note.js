@@ -77,7 +77,15 @@ export function getNoteCommentDetailPage (params) {
   return request({
     url: urls.getNoteCommentDetailPage,
     data: {
-      orgId: uni.getStorageSync('orgId'),
+      ...params
+    }
+  })
+}
+
+export function getCommunityNotePage (params) {// 分页查询笔记信息 (论坛列表)
+  return request({
+    url: urls.getCommunityNotePage,
+    data: {
       ...params
     }
   })

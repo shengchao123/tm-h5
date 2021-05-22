@@ -24,16 +24,18 @@ export const urls = {
   cancelSignUpJourneyItinerary: '/linanJourney/journeyItinerary/cancelSignUpJourneyItinerary', // 取消报名行程单
 
   // 评价详情
-  getItineraryEvaluationInfoById:'/linanJourney/journeyItineraryEvaluation/getItineraryEvaluationInfoById', // 根据笔记id查询行程评价详细信息
+  getItineraryEvaluationInfoById: '/linanJourney/journeyItineraryEvaluation/getItineraryEvaluationInfoById', // 根据笔记id查询行程评价详细信息
 
   // 活动
-  getJourneyActivityPage:'/linanJourney/journeyActivity/getJourneyActivityPage', // 获取活动分页
-  getJourneyActivityDetail:'/linanJourney/journeyActivity/getJourneyActivityDetail', // 获取活动详情
-  signUpJourneyActivity:'/linanJourney/journeyActivity/signUpJourneyActivity', // 报名活动
-  cancelSignUpJourneyActivity:'/linanJourney/journeyActivity/cancelSignUpJourneyActivity', // 取消报名活动
-  publishJourneyActivityStyle:'/linanJourney/journeyActivity/publishJourneyActivityStyle', // 发布活动风采
-  getJourneyActivityList:'/linanJourney/journeyActivity/getJourneyActivityList', // 获取活动列表
-  getMyJourneyActivityPage:'/linanJourney/journeyActivity/getMyJourneyActivityPage', // 获取我的活动分页
+  getJourneyActivityPage: '/linanJourney/journeyActivity/getJourneyActivityPage', // 获取活动分页
+  getJourneyActivityDetail: '/linanJourney/journeyActivity/getJourneyActivityDetail', // 获取活动详情
+  signUpJourneyActivity: '/linanJourney/journeyActivity/signUpJourneyActivity', // 报名活动
+  cancelSignUpJourneyActivity: '/linanJourney/journeyActivity/cancelSignUpJourneyActivity', // 取消报名活动
+  publishJourneyActivityStyle: '/linanJourney/journeyActivity/publishJourneyActivityStyle', // 发布活动风采
+  getJourneyActivityList: '/linanJourney/journeyActivity/getJourneyActivityList', // 获取活动列表
+  getMyJourneyActivityPage: '/linanJourney/journeyActivity/getMyJourneyActivityPage', // 获取我的活动分页
+  getCommunityNotePage: '/community/communityNote/getCommunityNotePage', // 分页查询笔记信息 (论坛列表)
+
   // 党建联盟
   getJourneyAllianceInfoList: '/linanJourney/journeyAlliance/getJourneyAllianceInfoList', // 获取联盟列表
   getJourneyAllianceDetailList: '/linanJourney/journeyAlliance/getJourneyAllianceDetailList', // 获取联盟及详情列表
@@ -61,8 +63,8 @@ export const urls = {
   getMyRedHeartRecordPage: '/linanJourney/journeyMemberRedHeartRecordManagement/getMyRedHeartRecordPage', // 获取我的红心值记录分页
 
   // 帖子详情
-  getCommunityNoteInfoById:'/community/communityNote/getCommunityNoteInfoById', // 根据笔记id查询笔记详细信息
-  getCommunityNoteInfoByShareId:'/community/communityNote/getCommunityNoteInfoByShareId', // 根据分享id查询笔记详细信息
+  getCommunityNoteInfoById: '/community/communityNote/getCommunityNoteInfoById', // 根据笔记id查询笔记详细信息
+  getCommunityNoteInfoByShareId: '/community/communityNote/getCommunityNoteInfoByShareId', // 根据分享id查询笔记详细信息
   createCommunityNoteComment: '/community/communityNoteComment/createCommunityNoteComment', // 新增社区笔记评论
   communityLikeNote: '/community/communityLike/communityLikeNote', // 点赞笔记
   cancelCommunityLikeNote: '/community/communityLike/cancelCommunityLikeNote', // 取消点赞笔记

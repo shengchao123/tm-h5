@@ -25,7 +25,6 @@
             @click="changeStatus('isAttention')"
             class="relative"
             :class="['center-flex',detailInfo.isAttention ? 'have-follow' : 'follow']">
-        <get-phone-button></get-phone-button>
         <text class="ft24">{{followStatus}}</text>
       </view>
       <view v-else
