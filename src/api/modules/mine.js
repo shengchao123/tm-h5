@@ -64,6 +64,15 @@ export function modifyMemberPersonalInfo (params) { // 编辑会员个人信息 
   })
 }
 
+export function getUnreadMessageQuantity (params) { // 获取未读消息数
+  return request({
+    url: urls.getUnreadMessageQuantity,
+    data: {
+      ...params
+    }
+  })
+}
+
 export function getCommunityNoteCommentIsNewMassage (params) { // 未读评论消息提醒
   return request({
     url: urls.getCommunityNoteCommentIsNewMassage,
@@ -100,9 +109,18 @@ export function getJourneyAnnouncementDetail (params) { // 获取公告详情
   })
 }
 
-export function getJourneyItinerarySignInById (params) { // 根据行程单id获取行程单打卡信息 '/linanJourney/journeySignInRecord/getJourneyItinerarySignInById'
+export function getJourneyItinerarySignInById (params) { // 根据行程单id获取行程单打卡信息
   return request({
     url: urls.getJourneyItinerarySignInById,
+    data: {
+      ...params
+    }
+  })
+}
+
+export function getJourneyItineraryPointSignIn (params) { // 获取行程单点位打卡信息
+  return request({
+    url: urls.getJourneyItineraryPointSignIn,
     data: {
       ...params
     }
@@ -112,6 +130,15 @@ export function getJourneyItinerarySignInById (params) { // 根据行程单id获
 export function createJourneyLifeDocumentary (params) { // 创建生活纪实 '/linanJourney/journeyLifeDocumentary/createJourneyLifeDocumentary'
   return request({
     url: urls.createJourneyLifeDocumentary,
+    data: {
+      ...params
+    }
+  })
+}
+
+export function journeyItineraryPointSignIn (params) { // 获取行程单点位打卡信息
+  return request({
+    url: urls.journeyItineraryPointSignIn,
     data: {
       ...params
     }
