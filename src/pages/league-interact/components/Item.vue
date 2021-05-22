@@ -12,7 +12,11 @@
           <view class="center-align mb10">
             <text class="ft28 medium">{{notesItem.nick}}</text>
           </view>
-          <text class="ft22 color-999">{{notesItem.time}}</text>
+          <view>
+            <text class="ft22 color-999"
+                  style="margin-right: 40rpx">{{notesItem.orgName}}</text>
+            <text class="ft22 color-999">{{notesItem.time}}</text>
+          </view>
         </view>
       </view>
     </view>

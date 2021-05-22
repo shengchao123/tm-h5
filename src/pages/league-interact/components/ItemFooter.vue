@@ -2,10 +2,11 @@
   <view class='item-footer-wrap'>
     <view class="between-row">
       <view class="pt12 center-align"
-            style="width: 80rpx; height: 82rpx"
+            style="width: 80rpx; height: 72rpx"
             @click.stop="onShare">
         <svg-icon icon="icon_zhuanfa"
                   class="ft28 color-999"></svg-icon>
+        <text class="ft26 color-333 ml8">{{notesItem.shareQuantity}}</text>
       </view>
       <view class="center-align pg12">
         <view class="trigger-area relative center-align pl32"
@@ -22,7 +23,7 @@
               @click.stop="onComment">
           <svg-icon icon="icon_pinglun"
                     class="ft28 color-999 mr8"></svg-icon>
-          <text class="ft26 color-666">{{notesItem.commetQuantity}}</text>
+          <text class="ft26 color-666">{{notesItem.commentQuantity}}</text>
         </view>
       </view>
     </view>
@@ -108,12 +109,12 @@ export default {
   },
   computed: {
     commentList () {
-      const { communityNoteCommentDTOList } = this.notesItem
-      if (!communityNoteCommentDTOList) return []
-      if (communityNoteCommentDTOList.length > 3) {
-        communityNoteCommentDTOList.length = 3
+      const { communityNoteCommentList } = this.notesItem
+      if (!communityNoteCommentList) return []
+      if (communityNoteCommentList.length > 3) {
+        communityNoteCommentList.length = 3
       }
-      return communityNoteCommentDTOList
+      return communityNoteCommentList
     }
   }
 }
@@ -122,7 +123,7 @@ export default {
 .item-footer-wrap {
   color: #333;
   .trigger-area {
-    height: 82rpx;
+    height: 72rpx;
   }
   .comment-list {
     background: #f2f2f2;

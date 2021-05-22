@@ -3,7 +3,7 @@
     <!-- <view style="width: 100%; height: 20rpx;"></view> -->
     <mescroll-uni ref="mescrollRef"
                   class="mescroll-wrap"
-                  top="80"
+                  top="120"
                   :up="upOption"
                   @init="mescrollInit"
                   @down="downCallback"
