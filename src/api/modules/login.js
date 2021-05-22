@@ -56,3 +56,12 @@ export function bindPhone (params) {
   })
 }
 
+// 获取微信需要的参数 /third/weChat/getJSConfig
+export function getJSConfig (params) {
+return request({
+  url: urls.getJSConfig,
+    data: {
+      ...params
+    }
+  })
+}
