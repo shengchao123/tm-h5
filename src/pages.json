@@ -70,6 +70,12 @@
 			}
 		},
 		{
+			"path": "pages/home/evaluate-detail/index",
+			"style": {
+				"navigationBarTitleText": "评价详情"
+			}
+		},
+		{
 			"path": "pages/public/Login",
 			"style": {
 				"navigationBarTitleText": "授权"
@@ -109,12 +115,48 @@
 			"path": "pages/league-interact/send-post/index",
 			"style": {
 				"navigationBarTitleText": "发帖"
+			 }
+		},
+		{
+			"path": "pages/league-interact/detail/index",
+			"style": {
+				"navigationBarTitleText": "活动详情"
+			}
+		},
+		{
+			"path": "pages/league-interact/note-detail/index",
+			"style": {
+				"navigationBarTitleText": "帖子详情"
 			}
 		},
 		{
 			"path": "pages/mine/index/index",
 			"style": {
 				"navigationBarTitleText": "我的"
+			}
+		},
+		{
+			"path": "pages/mine/notification/index",
+			"style": {
+				"navigationBarTitleText": "我的消息"
+			}
+		},
+		{
+			"path": "pages/mine/notification/announcementDetail",
+			"style": {
+				"navigationBarTitleText": "公告详情"
+			}
+		},
+		{
+			"path": "pages/mine/card-record/index",
+			"style": {
+				"navigationBarTitleText": "打卡记录"
+			}
+		},
+		{
+			"path": "pages/mine/card-record/personnelCard",
+			"style": {
+				"navigationBarTitleText": "人员打卡情况"
 			}
 		},
 		{
@@ -133,6 +175,12 @@
 			"path": "pages/mine/my-hearts/index",
 			"style": {
 				"navigationBarTitleText": "我的红心"
+			}
+		},
+		{
+			"path": "pages/mine/my-activity/index",
+			"style": {
+				"navigationBarTitleText": "我的活动"
 			}
 		},
 		{

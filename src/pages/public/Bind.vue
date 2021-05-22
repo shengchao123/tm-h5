@@ -96,13 +96,15 @@ export default {
       }
       this.$api.bindPhone(params).then(res => {
         if (res.isError) {
-          if (res.subCode === 'ERROR') return this.$msg('验证码不正确')
+          if (res.subCode === 'ERROR') this.$msg('验证码不正确')
           return
         }
         saveLoginInfo(res.content)
         uni.setStorageSync('status', 3)
         this.$msg('登录成功')
-        uni.navigateBack()
+        setTimeout(() => {
+          uni.navigateBack()
+        }, 900)
       })
     },
     // 发送验证码

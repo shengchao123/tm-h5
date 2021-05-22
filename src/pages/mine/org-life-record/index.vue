@@ -1,5 +1,5 @@
 <template>
-  <view>
+  <view class="life-wrap">
     <view class="tb pl30 pr30 bg-white">
       <u-form :model="formData"
               ref="uForm"
@@ -7,11 +7,7 @@
         <u-form-item label="对应行程"
                      class="p10-0"
                      label-width="144rpx">
-          <u-input v-model="formData.lineName"
-                   :clearable="false"
-                   placeholder-style="color:#999"
-                   :custom-style="customInputStyle"
-                   placeholder="输入对应行程" />
+          <text>{{lineData.journeyItineraryName}}</text>
         </u-form-item>
         <u-form-item label="应到人数"
                      class="p10-0"
@@ -19,6 +15,7 @@
           <u-input v-model="formData.shouldNumber"
                    placeholder="输入应到人数"
                    :clearable="false"
+                   @input="changeInput"
                    placeholder-style="color:#999"
                    :custom-style="customInputStyle" />
         </u-form-item>
@@ -28,6 +25,7 @@
           <u-input v-model="formData.actualNumber"
                    placeholder="输入实到人数"
                    :clearable="false"
+                   @input="changeInput"
                    placeholder-style="color:#999"
                    :custom-style="customInputStyle" />
         </u-form-item>
@@ -39,8 +37,9 @@
           <view class="content-textarea">
             <textarea placeholder="记录您的活动心得"
                       :maxlength="1000"
+                      placeholder-style="color:#999"
+                      @input="changeInput"
                       v-model="formData.activityExperience"
-                      @blur="changeContent"
                       :enableNative="false">
           </textarea>
             <view class="color-999 ft22 experience-count mt8">{{formData.activityExperience.length}}/1000</view>
@@ -50,10 +49,17 @@
       <view class="mt24 flex pb8">
         <upload-images :count="9"
                        :length="9"
-                       :imageData.sync="formData.imageList"></upload-images>
+                       imageTypeName="sourceType"
+                       :imageData.sync="formData.attachmentList"></upload-images>
       </view>
     </view>
-    <line-clock isShowSignIn.sync="formData.isShowSignIn"></line-clock>
+    <line-clock :isShowSignIn.sync="formData.isShowSignIn"
+                :journeyItineraryId="lineData.journeyItineraryId"></line-clock>
+    <view class="center-align bg-white pl30 pr30 save-btn tb">
+      <u-button @click="onSave"
+                :disabled="btnDisabled"
+                :custom-style="btnStyle">{{pageType === 'edit' ? '保存':'确定'}}</u-button>
+    </view>
   </view>
 </template>
 
@@ -63,15 +69,65 @@ import LineClock from './LineClock.vue'
 export default {
   components: { UploadImages, LineClock },
   name: 'index',
+  methods: {
+    // 输入框有值时按钮可操作
+    changeInput () {
+      const { shouldNumber, actualNumber, activityExperience, attachmentList } = this.formData
+      if (!this.$isEmpty(shouldNumber) && !this.$isEmpty(actualNumber) && !this.$isEmpty(activityExperience) && !this.$isEmpty(attachmentList)) {
+        this.btnDisabled = false
+      } else {
+        this.btnDisabled = true
+      }
+    },
+    // 确定
+    onSave () {
+      const params = {
+        ...this.formData,
+        journeyItineraryId: this.lineData.journeyItineraryId
+      }
+      this.pageType === 'edit' ? this.modifyJourneyLifeDocumentary(params) : this.createJourneyLifeDocumentary(params)
+    },
+    // 创建生活纪实
+    createJourneyLifeDocumentary (params) {
+      this.$api.createJourneyLifeDocumentary(params).then(res => {
+        if (res.isError) return this.$msg(res.message)
+        this.successTip()
+      })
+    },
+    // 修改生活纪实
+    modifyJourneyLifeDocumentary (params) {
+      this.$api.modifyJourneyLifeDocumentary(params).then(res => {
+        if (res.isError) return this.$msg(res.message)
+        this.successTip()
+      })
+    },
+    // 成功提示
+    successTip () {
+      this.$msg('信息提交成功')
+      setTimeout(() => {
+        uni.navigateBack()
+      }, 500)
+    },
+    // 根据行程单id获取生活纪实
+    getJourneyLifeDocumentaryByItineraryId (journeyItineraryId) {
+      this.$api.getJourneyLifeDocumentaryByItineraryId({ journeyItineraryId }).then(res => {
+        if (res.isError) return this.$msg(res.message)
+        this.formData = res.content
+      })
+    },
+  },
   data () {
     return {
       formData: {
         shouldNumber: '',
         actualNumber: '',
         activityExperience: '',
-        imageList: []
+        attachmentList: [],
+        isShowSignIn: true
       },
-
+      lineData: {},
+      btnDisabled: true,
+      pageType: 'add'
     }
   },
   computed: {
@@ -91,42 +147,35 @@ export default {
       return temStyle
     },
     btnStyle () { // 自定义按钮样式
-      const btnBgColor = this.btnDisabled ? '#ccc' : primaryColor
+      const btnBgColor = this.btnDisabled ? '#ccc' : '#E32417'
       const temStyle = {
-        fontSize: '32rpx',
+        fontSize: '30rpx',
         color: '#fff',
-        height: '98rpx',
-        borderRadius: '8rpx',
+        width: '690rpx',
+        height: '88rpx',
+        borderRadius: '44rpx',
         fontWeight: 'bold',
-        background: btnBgColor,
-        marginTop: '120rpx'
-      }
-      return temStyle
-    },
-    tipContentStyle () { // 自定义modal内容样式
-      const temStyle = {
-        fontSize: '32rpx',
-        color: '#333333',
-        padding: "82rpx 0 78rpx",
-        fontWeight: 'bold',
-        fontFamily: 'PingFangSC-Medium'
-      }
-      return temStyle
-    },
-    tipCancelStyle () { // 自定义modal取消按钮样式
-      const temStyle = {
-        borderRight: '1rpx solid #eee',
-        borderRadius: '0',
-        height: '86rpx',
-        lineHeight: '86rpx',
-        fontFamily: 'PingFangSC-Regular'
+        background: btnBgColor
       }
       return temStyle
     }
   },
   onLoad (option) {
-    this.formData.lineName = option.name
-
+    const { pageType, name, id } = option
+    this.lineData = {
+      journeyItineraryName: name,
+      journeyItineraryId: id
+    }
+    this.pageType = pageType
+    pageType === 'edit' && this.getJourneyLifeDocumentaryByItineraryId(id)
+  },
+  watch: {
+    'formData.attachmentList': {
+      handler (val) {
+        this.changeInput()
+      },
+      immediate: true
+    }
   }
 }
 </script>
@@ -138,6 +187,10 @@ page {
 }
 .p10-0 {
   padding: 10rpx 0;
+}
+.life-wrap {
+  margin-bottom: 152rpx;
+  overflow: auto;
 }
 .content-textarea {
   overflow: hidden;
@@ -155,5 +208,10 @@ page {
     line-height: 22rpx;
     float: right;
   }
+}
+.save-btn {
+  height: 120rpx;
+  position: fixed;
+  bottom: 0;
 }
 </style>

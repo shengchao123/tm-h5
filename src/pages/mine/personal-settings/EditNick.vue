@@ -34,7 +34,10 @@ export default {
       }
       this.$api.modifyMemberPersonalInfo(params).then(res => {
         if (res.isError) return this.$msg(res.message)
-        uni.navigateBack()
+        this.$msg('昵称修改成功')
+        setTimeout(() => {
+          uni.navigateBack()
+        }, 500)
       })
     }
   },

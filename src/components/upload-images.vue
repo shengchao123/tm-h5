@@ -39,6 +39,10 @@ export default {
     imageData: {
       type: Array,
       default: () => { [] }
+    },
+    imageTypeName: {
+      type: String,
+      default: 'type'
     }
   },
   computed: {
@@ -66,8 +70,7 @@ export default {
     async uploadFiles (images) {
       this.imageList.push({
         url: images[0],
-        progress: 0,
-        type: '01'
+        [this.imageTypeName]: '01'
       });
       let uploadData = ""
       uni.showLoading({
