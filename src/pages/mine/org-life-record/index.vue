@@ -37,6 +37,7 @@
           <view class="content-textarea">
             <textarea placeholder="记录您的活动心得"
                       :maxlength="1000"
+                      placeholder-style="color:#999"
                       @input="changeInput"
                       v-model="formData.activityExperience"
                       :enableNative="false">
@@ -84,7 +85,7 @@ export default {
         ...this.formData,
         journeyItineraryId: this.lineData.journeyItineraryId
       }
-      pageType === 'edit' ? this.modifyJourneyLifeDocumentary(params) : this.createJourneyLifeDocumentary(params)
+      this.pageType === 'edit' ? this.modifyJourneyLifeDocumentary(params) : this.createJourneyLifeDocumentary(params)
     },
     // 创建生活纪实
     createJourneyLifeDocumentary (params) {
@@ -155,13 +156,13 @@ export default {
     }
   },
   onLoad (option) {
-    const { pageType, journeyItineraryName, journeyItineraryId } = option
+    const { pageType, name, id } = option
     this.lineData = {
-      journeyItineraryName,
-      journeyItineraryId
+      journeyItineraryName: name,
+      journeyItineraryId: id
     }
     this.pageType = pageType
-    pageType === 'edit' && this.getJourneyLifeDocumentaryByItineraryId(journeyItineraryId)
+    pageType === 'edit' && this.getJourneyLifeDocumentaryByItineraryId(id)
   },
   watch: {
     'formData.attachmentList': {

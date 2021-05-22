@@ -13,12 +13,14 @@
             :class="isLineAllShow && 'h-auto'">
         <view v-for="(item,index) in lineList"
               :key="index"
-              class="h100 center-align between-row bb ft28">
+              :class="index !== lineList.length-1 && 'bb'"
+              class="h100 center-align between-row ft28">
           <text>{{item.name}}</text>
           <text>{{item.signInQuantity}}人</text>
         </view>
       </view>
-      <view class="ft24 color-999 h100 center"
+      <view class="ft24 color-999 h100 center tb"
+            v-if="lineList.length>3"
             @click="isLineAllShow = !isLineAllShow">
         <text>{{isLineAllShow ? '收起':'展开'}}</text>
         <svg-icon class="color-999 ml8"
@@ -34,7 +36,9 @@ export default {
   methods: {
     changeIsShowSignIn () {
       this.isShowSignIn && this.$msg('确定后，线路打卡情况将不会在组织生活记录显示')
-      this.$emit('update:isShowSignIn', !this.isShowSignIn)
+      this.$nextTick(() => {
+        this.$emit('update:isShowSignIn', !this.isShowSignIn)
+      })
     },
     // 根据行程单id获取行程单打卡信息
     getJourneyItinerarySignInById () {
@@ -50,40 +54,11 @@ export default {
   data () {
     return {
       isLineAllShow: false,
-      lineList: [
-        {
-          "name": "石门老街",
-          "signInQuantity": 4
-        },
-        {
-          "name": "石门老街",
-          "signInQuantity": 6
-        },
-        {
-          "name": "石门老街",
-          "signInQuantity": 8
-        },
-        {
-          "name": "石门老街",
-          "signInQuantity": 9
-        },
-        {
-          "name": "石门老街",
-          "signInQuantity": 12
-        },
-        {
-          "name": "石门老街",
-          "signInQuantity": 14
-        },
-        {
-          "name": "石门老街",
-          "signInQuantity": 23
-        }
-      ]
+      lineList: []
     }
   },
   created () {
-    // this.getJourneyItinerarySignInById()
+    this.getJourneyItinerarySignInById()
   },
   props: {
     isShowSignIn: Boolean,

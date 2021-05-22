@@ -121,7 +121,7 @@ export default {
 <style lang='scss' scoped>
 .tabbar-mine {
   .info-wrap {
-    border-bottom: 20rpx solid #eaeaea;
+    border-bottom: 20rpx solid #f7f7f7;
     padding: 40rpx 32rpx;
     .top-info {
       img {

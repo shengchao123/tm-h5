@@ -12,9 +12,7 @@
         <view class="center-align h88 ft28 color-333">
           <text class="w144 bold">活动心得</text>
         </view>
-        <view class="mt-8">
-          {{lifeData.activityExperience}}
-        </view>
+        <text class="mt-8">{{lifeData.activityExperience}}</text>
       </view>
       <view class="mt24 flex pb8 flex-wrap life-image">
         <view v-for="(item, index) in lifeData.attachmentList"
@@ -64,7 +62,7 @@
              :content-style="maskContentStyle"
              :cancel-style="maskCancelStyle"
              :confirm-style="maskConfirmStyle"
-             @confirm="confirmDel"></u-modal>
+             @confirm="onDelete"></u-modal>
   </view>
 </template>
 
@@ -81,14 +79,15 @@ export default {
     onJourneyItinerary (type) {
       if (type !== 'journeyItineraryName') return
       uni.navigateTo({
-        url: `/pages/home/stroke-order/detail?id${this.journeyItineraryId}`
+        url: `/pages/home/stroke-order/detail?id=${this.journeyItineraryId}`
       })
     },
     // 编辑
     onEdit () {
-      const pageParams = `pageType=edit&journeyItineraryId=${this.journeyItineraryId}&journeyItineraryName=${this.lifeData.journeyItineraryName}`
+      const pageParams = `pageType=edit&id=${this.journeyItineraryId}&name=${this.lifeData.journeyItineraryName}`
       uni.navigateTo({ url: `/pages/mine/org-life-record/index?${pageParams}` })
     },
+    // 删除
     onDelete () {
       const params = {
         journeyItineraryId: this.journeyItineraryId
@@ -128,10 +127,11 @@ export default {
       isDelShow: false
     }
   },
+  onShow () {
+    this.getJourneyLifeDocumentaryByItineraryId(this.journeyItineraryId)
+  },
   onLoad (option) {
-    const { journeyItineraryId } = option
-    this.journeyItineraryId = journeyItineraryId
-    this.getJourneyLifeDocumentaryByItineraryId(journeyItineraryId)
+    this.journeyItineraryId = option.id
   },
   computed: {
     btnStyle () { // 自定义按钮样式
