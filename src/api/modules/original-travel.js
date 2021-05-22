@@ -5,23 +5,22 @@ export function getJourneyRegionsList () { // 获取行政区域列表 '/linanJo
   return request({
     url: urls.getJourneyRegionsList,
     data: {
-      orgId: localStorage.getItem('orgId')
     }
   })
 }
 
-export function getJourneyPointListByRegionsCode () { // 获取点位列表 '/linanJourney/journeyLine/getJourneyPointListByRegionsCode'
+export function getJourneyPointListByRegionsCode (params) { // 获取点位列表 '/linanJourney/journeyLine/getJourneyPointListByRegionsCode'
   return request({
     url: urls.getJourneyPointListByRegionsCode,
     data: {
-      orgId: localStorage.getItem('orgId')
+      ...params
     }
   })
 }
 
-export function getJourneyLineListByOrgId () { // 推荐路线 '/linanJourney/journeyLine/getJourneyLineListByOrgId'
+export function getRecommendJourneyLineList () { // 推荐路线 '/linanJourney/journeyLine/getRecommendJourneyLineList'
   return request({
-    url: urls.getJourneyLineListByOrgId,
+    url: urls.getRecommendJourneyLineList,
     data: {
       orgId: localStorage.getItem('orgId')
     }
@@ -67,9 +66,49 @@ export function createJourneyItinerary (params) { // 创建行程单
   })
 }
 
+export function modifyJourneyItinerary (params) { // 修改行程单
+  return request({
+    url: urls.modifyJourneyItinerary,
+    data: {
+      orgId: localStorage.getItem('orgId'),
+      ...params
+    }
+  })
+}
+
 export function getJourneyItineraryById (params) { // 根据id获取行程单
   return request({
     url: urls.getJourneyItineraryById,
+    data: {
+      orgId: localStorage.getItem('orgId'),
+      ...params
+    }
+  })
+}
+
+export function removeJourneyItinerary (params) { // 删除行程单
+  return request({
+    url: urls.removeJourneyItinerary,
+    data: {
+      orgId: localStorage.getItem('orgId'),
+      ...params
+    }
+  })
+}
+
+export function signUpJourneyItinerary (params) { // 报名行程单
+  return request({
+    url: urls.signUpJourneyItinerary,
+    data: {
+      orgId: localStorage.getItem('orgId'),
+      ...params
+    }
+  })
+}
+
+export function cancelSignUpJourneyItinerary (params) { // 取消报名行程单
+  return request({
+    url: urls.cancelSignUpJourneyItinerary,
     data: {
       orgId: localStorage.getItem('orgId'),
       ...params

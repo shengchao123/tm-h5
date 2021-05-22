@@ -6,9 +6,10 @@
          :points="points"></Map>
     <DragPopover>
       <div class="box relative">
-        <PathsList @onSelectPath="getJourneyPointListByJourneyId"></PathsList>
+        <PathsList @onSelectPath="onSelectPath"></PathsList>
         <div class="content">
-          <ScenicSpot :points="points"></ScenicSpot>
+          <ScenicSpot :points="points"
+                      ref="refScenicSpot"></ScenicSpot>
           <div class="center pb32 pt16 create-btn-wrap">
             <div class="create-btn center bold"
                  @click="onCreateTravel">创建我的行程</div>
@@ -30,10 +31,18 @@ export default {
     onCreateTravel () {
       uni.navigateTo({ url: '/pages/home/stroke-order/index' })
     },
+
+    onSelectPath (journeyLineId) {
+      this.$nextTick(() => {
+        this.$refs.refScenicSpot.scrollTop = 0
+      })
+      this.getJourneyPointListByJourneyId(journeyLineId)
+    },
+
     // 根据路线 id 获取点位
     getJourneyPointListByJourneyId (journeyLineId) {
       const params = {
-        journeyLineId: journeyLineId
+        journeyLineId
       }
       this.$api.getJourneyPointListByJourneyId(params).then(res => {
         if (res.isError) return
@@ -44,56 +53,7 @@ export default {
   },
   data () {
     return {
-      points: [
-        {
-          code: '',
-          journeyPointId: 0,
-          lat: 30.224302,
-          lng: 119.005056,
-          name: '第一个',
-          regionsCode: '',
-          regionsName: '临安区喜欢睡了看都就方老师',
-          type: '01',
-          typeName: '景区',
-          url: 'http://downsc.chinaz.net/Files/DownLoad/sound1/201906/11582.mp3'
-        },
-        {
-          code: '',
-          journeyPointId: 0,
-          lat: 30.124302,
-          lng: 119.165056,
-          name: '第2个',
-          regionsCode: '',
-          regionsName: '',
-          type: '',
-          typeName: '',
-          url: 'http://downsc.chinaz.net/Files/DownLoad/sound1/201906/11582.mp3'
-        },
-        {
-          code: '',
-          journeyPointId: 0,
-          lat: 30.224302,
-          lng: 119.365056,
-          name: '第3个',
-          regionsCode: '',
-          regionsName: '',
-          type: '',
-          typeName: '',
-          url: 'http://downsc.chinaz.net/Files/DownLoad/sound1/201906/11582.mp3'
-        },
-        {
-          code: '',
-          journeyPointId: 0,
-          lat: 30.274302,
-          lng: 119.765056,
-          name: '第4个',
-          regionsCode: '',
-          regionsName: '',
-          type: '',
-          typeName: '',
-          url: 'http://downsc.chinaz.net/Files/DownLoad/sound1/201906/11582.mp3'
-        }
-      ],
+      points: [],
       mapInitObj: Object.freeze({
         resizeEnable: true,
         zoom: 9, // 级别
@@ -107,6 +67,9 @@ export default {
     PathsList,
     ScenicSpot
   },
+  onLoad (option) {
+    if (option.masterOrgId) uni.setStorageSync('masterOrgId', option.masterOrgId)
+  }
 }
 </script>
 

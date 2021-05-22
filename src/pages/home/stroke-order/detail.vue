@@ -1,63 +1,66 @@
 <template>
-  <div class='detail-wrap'>
-    <head-map :journeyPointList="journeyPointList"
+  <div class='detail-wrap'
+       v-if="baseInfo.id">
+    <head-map :journeyLineName="baseInfo.journeyLineName"
+              :journeyPointList="journeyPointList"
               :isDetail="true"></head-map>
     <div class="mb20">
       <detail-info :list="topList"></detail-info>
     </div>
     <detail-info :list="bottomList"></detail-info>
-    <div class="mt20  pb40  bg-white">
-      <div class="between-row cenetr-align pt18 pb40 pl30 pr30">
+    <div class="mt20 pb20 bg-white"
+         @click="onSignUpList">
+      <div class="between-row cenetr-align pt18 pl30 pr30">
         <div class="ft28">参与人员</div>
         <div class="center-align">
-          <div class="ft22 color-666">20人</div>
+          <div class="ft22 color-666">{{signUpList.length}}人</div>
           <svg-icon icon="icon_xiangyoujiantou"
                     class="ft20 color-999 ml8"></svg-icon>
         </div>
       </div>
-      <div v-if="participants.length > 0"
+      <!-- <div v-if="signUpList.length > 0"
            class="center-align pr30">
-        <div class="participants">
-          <div v-for="(item, index) in participants"
+        <div class="sign-up-list">
+          <div v-for="(item, index) in signUpList"
                :key="index"
                class="head-img ml32">
             <img class="img"
-                 :src="item" />
+                 :src="$avatarUrl(avatar)" />
           </div>
         </div>
-        <div v-if="participants.length > 6"
+        <div v-if="signUpList.length > 6"
              class="mb12 ft26 color-666">···</div>
-      </div>
-      <div v-else
-           class="ft26 color-999 pl30">暂时还没有人报名参加该行程～</div>
+      </div> -->
+      <!-- <div v-else
+           class="ft26 color-999 pl30">暂时还没有人报名参加该行程～</div> -->
     </div>
     <div class="footer pl30 pr30 between-row center-align">
       <div class="center-align left-btns between-row flex1">
-        <div v-if="baseInfo.isSelf"
-             class="icon-btn center-align column"
+        <div v-if="baseInfo.isOrganizer"
+             class="icon-btn center-align column color-666"
              @click="onEdit">
           <svg-icon icon="icon_bianji"
                     class="ft34"></svg-icon>
-          <div class="ft20 color-666 mt14">编辑</div>
+          <div class="ft20 mt14">编辑</div>
         </div>
-        <div v-if="baseInfo.isSelf"
-             class="icon-btn center-align column"
-             @click="onDelete">
+        <div v-if="baseInfo.isOrganizer"
+             class="icon-btn center-align column color-666"
+             @click="onDelete()">
           <svg-icon icon="icon_shanchu"
                     class="ft34"></svg-icon>
-          <div class="ft20 color-666 mt14">删除</div>
+          <div class="ft20 mt14">删除</div>
         </div>
-        <div class="icon-btn center-align column"
+        <div class="icon-btn center-align column color-666"
              @click="onShare">
           <svg-icon icon="icon_zhuanfa"
                     class="ft34"></svg-icon>
-          <div class="ft20 color-666 mt14">分享</div>
+          <div class="ft20 mt14">分享</div>
         </div>
       </div>
       <div v-if="isShowJoinBtn">
         <div class="ft28 tc medium"
-             :class="baseInfo.isAlreadyJoin ? 'border-btn w272' : 'confirm-btn'"
-             @click="onConfirm">{{baseInfo.isAlreadyJoin ? '取消报名' : '我要报名'}}</div>
+             :class="baseInfo.isSignUp ? 'border-btn w272' : 'confirm-btn'"
+             @click="onSignUp">{{baseInfo.isSignUp ? '取消报名' : '我要报名'}}</div>
       </div>
       <div v-else
            class="center-align">
@@ -65,8 +68,8 @@
              @click="onComment">评价</div>
         <div v-if="baseInfo.needLifeDocumentary"
              class="ft28 tc medium"
-             :class="baseInfo.isHaveLifeDocumentary ? 'border-btn w272' : 'confirm-btn'"
-             @click="onLifeDocumentary">{{baseInfo.isHaveLifeDocumentary ? '查看' : '填写'}}组织生活记录</div>
+             :class="baseInfo.hasLifeRecord ? 'border-btn w272' : 'confirm-btn'"
+             @click="onLifeDocumentary">{{baseInfo.hasLifeRecord ? '查看' : '填写'}}组织生活记录</div>
       </div>
     </div>
     <u-modal v-model="showDeleteTip"
@@ -80,7 +83,8 @@
              confirm-text="删除"
              cancel-text="先留着"
              confirm-color="#F44000"
-             cancel-color="#333333"></u-modal>
+             cancel-color="#333333"
+             @confirm="onDelete(true)"></u-modal>
   </div>
 </template>
 <script>
@@ -91,13 +95,37 @@ import DetailInfo from './components/DetailInfo.vue'
 
 export default {
   methods: {
+    onSignUpList () {
+      const signUpList = this.signUpList
+      if (signUpList.length <= 0) return
+      uni.setStorageSync('signUpList', JSON.stringify(signUpList))
+      uni.navigateTo({
+        url: '/pages/home/stroke-order/signUpList'
+      })
+    },
     // 编辑
     onEdit () {
-
+      uni.navigateTo({
+        url: `/pages/home/stroke-order/index?isEdit=1&&id=${this.id}`
+      })
     },
     // 删除
-    onDelete () {
-      this.showDeleteTip = true
+    onDelete (isDelete) {
+      if (!isDelete) {
+        this.showDeleteTip = true
+        return
+      }
+      const params = {
+        id: this.id
+      }
+      this.$api.removeJourneyItinerary(params).then(res => {
+        if (res.isError) return this.$mmsg(res.message)
+        this.$msg('删除成功')
+        setTimeout(() => {
+          uni.navigateBack()
+        }, 500)
+      })
+
     },
     // 分享
     onShare () {
@@ -105,10 +133,33 @@ export default {
     },
     // 去评价
     onComment () {
-
+      if (this.$notMember()) return this.$goLogin()
+      const url = `/pages/home/evaluation/index?id=${this.baseInfo.id}`
+      uni.navigateTo({ url })
     },
     // 去填写组织生活记录
     onLifeDocumentary () {
+      const { id, name, hasLifeRecord } = this.baseInfo
+      const writeLifeUrl = `/pages/mine/org-life-record/index?id=${id}&name=${name}`
+      const lifeRecordUrl = `/pages/mine/org-life-record/Detail?id=${id}`
+      const url = hasLifeRecord ? lifeRecordUrl : writeLifeUrl
+      uni.navigateTo({ url })
+    },
+    // 报名
+    onSignUp () {
+      if (this.$notMember()) return this.$goLogin()
+      const id = this.id
+      if (!this.baseInfo.isSignUp) {
+        uni.navigateTo({
+          url: `/pages/home/stroke-order/signUp?id=${id}&type=stroke`
+        })
+        return
+      }
+      this.$api.cancelSignUpJourneyItinerary({ id }).then(res => {
+        if (res.isError) return this.$msg(res.message)
+        this.$msg('取消成功')
+        this.getJourneyItineraryById()
+      })
 
     },
     getJourneyItineraryById () {
@@ -119,10 +170,13 @@ export default {
       }
       this.$api.getJourneyItineraryById(params).then(res => {
         if (res.isError) return this.$msg(res.message)
-        const { journeyPointList, participants } = res.content
+        const { journeyPointList, signUpList, journeyLineId } = res.content
+        if (!journeyLineId) {
+          res.content.journeyLineName = '自定义路线'
+        }
         this.baseInfo = res.content
         this.journeyPointList = journeyPointList
-        this.participants = participants
+        this.signUpList = signUpList || []
       })
     }
   },
@@ -130,51 +184,17 @@ export default {
     return {
       id: null,
       showDeleteTip: false,
-      baseInfo: {
-        isSelf: true,
-        isAlreadyJoin: true,
-        isHaveLifeDocumentary: true,
-        "activityType": "01",
-        "contactDetails": "13506578597",
-        "id": 3214123,
-        "journeyLineId": 413123154,
-        "journeyLineName": '“龙门秘境”乡村振兴之路',
-        "journeyPointList": [],
-        "meetingPlace": "浙江省 杭州市 大家安静的 就阿萨放大算法哈 安抚按军法啊安抚骄傲",
-        "meetingPlaceLat": 0,
-        "meetingPlaceLng": 0,
-        "name": "杭州一日游",
-        "needLifeDocumentary": true,
-        "organizer": "某某某",
-        "playTime": "04",
-        "precautions": "注意喝水",
-        "setOutTime": 2314122397412,
-        "transportation": "01",
-        "type": "01"
-      },
-      journeyPointList: null,
-      participants: [
-        'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fdpic.tiankong.com%2Fpc%2Fb5%2FQJ8448137459.jpg&refer=http%3A%2F%2Fdpic.tiankong.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1623998043&t=089fde2cd7716be76f55672efb3d3e38',
-        'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fdpic.tiankong.com%2Fpc%2Fb5%2FQJ8448137459.jpg&refer=http%3A%2F%2Fdpic.tiankong.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1623998043&t=089fde2cd7716be76f55672efb3d3e38',
-        'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fdpic.tiankong.com%2Fpc%2Fb5%2FQJ8448137459.jpg&refer=http%3A%2F%2Fdpic.tiankong.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1623998043&t=089fde2cd7716be76f55672efb3d3e38',
-        'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fdpic.tiankong.com%2Fpc%2Fb5%2FQJ8448137459.jpg&refer=http%3A%2F%2Fdpic.tiankong.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1623998043&t=089fde2cd7716be76f55672efb3d3e38',
-        'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fdpic.tiankong.com%2Fpc%2Fb5%2FQJ8448137459.jpg&refer=http%3A%2F%2Fdpic.tiankong.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1623998043&t=089fde2cd7716be76f55672efb3d3e38',
-        'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fdpic.tiankong.com%2Fpc%2Fb5%2FQJ8448137459.jpg&refer=http%3A%2F%2Fdpic.tiankong.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1623998043&t=089fde2cd7716be76f55672efb3d3e38',
-        'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fdpic.tiankong.com%2Fpc%2Fb5%2FQJ8448137459.jpg&refer=http%3A%2F%2Fdpic.tiankong.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1623998043&t=089fde2cd7716be76f55672efb3d3e38',
-        'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fdpic.tiankong.com%2Fpc%2Fb5%2FQJ8448137459.jpg&refer=http%3A%2F%2Fdpic.tiankong.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1623998043&t=089fde2cd7716be76f55672efb3d3e38',
-        'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fdpic.tiankong.com%2Fpc%2Fb5%2FQJ8448137459.jpg&refer=http%3A%2F%2Fdpic.tiankong.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1623998043&t=089fde2cd7716be76f55672efb3d3e38',
-        'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fdpic.tiankong.com%2Fpc%2Fb5%2FQJ8448137459.jpg&refer=http%3A%2F%2Fdpic.tiankong.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1623998043&t=089fde2cd7716be76f55672efb3d3e38',
-        'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fdpic.tiankong.com%2Fpc%2Fb5%2FQJ8448137459.jpg&refer=http%3A%2F%2Fdpic.tiankong.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1623998043&t=089fde2cd7716be76f55672efb3d3e38',
-
-      ]
+      baseInfo: {},
+      journeyPointList: [],
+      signUpList: []
     }
   },
   computed: {
     isShowJoinBtn () {
-      const { isSelf, setOutTime } = this.baseInfo
+      const { isOrganizer, setOutTime, isSignUp } = this.baseInfo
       const nowTime = new Date().getTime()
       const isAlreadyStarted = nowTime >= setOutTime
-      if (isSelf || isAlreadyStarted) return false
+      if (isOrganizer || isAlreadyStarted) return false
       return true
     },
     topList () {
@@ -198,9 +218,11 @@ export default {
       ]
     }
   },
+  onShow () {
+    this.getJourneyItineraryById()
+  },
   onLoad (option) {
     this.id = option.id
-    this.getJourneyItineraryById()
   },
   components: { HeadMap, DetailInfo }
 }
@@ -211,7 +233,7 @@ export default {
   height: 100%;
   background: #f7f7f7;
   padding-bottom: 152rpx;
-  .participants {
+  .sign-up-list {
     height: 80rpx;
     overflow-y: hidden;
     .head-img {

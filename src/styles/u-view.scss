@@ -5,6 +5,26 @@
   }
   .u-form-item--left {
     font-size: 30rpx;
-    font-weight: bold;
+    font-weight: 600;
   }
+}
+
+.u-drawer-content {
+  border-radius: 15px 15px 0 0;
+}
+
+.uni-tabbar__badge{
+  background: #fff !important;
+  border: 1rpx solid #F54400;
+  color: #F54400 !important;
+  height: 26rpx !important;
+  line-height: 26rpx !important;
+  min-width: auto !important;
+   padding: 0 8rpx !important;
+   font-size: 20rpx !important;
+}
+
+.uni-tabbar-border{
+  background-color: #eaeaea !important;
+  height: 3px;
 }

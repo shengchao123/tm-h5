@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "我的",
+  "usingComponents": {
+    "u-badge": "/node-modules/uview-ui/components/u-badge/u-badge",
+    "my-journey-item": "/pages/mine/components/MyJourneyItem"
+  }
+}

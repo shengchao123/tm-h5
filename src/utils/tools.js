@@ -119,7 +119,7 @@ export function formatDecimal (num, decimal) {
 
 export function avatarUrl (url) {
   if (!url) return imgHost + 'user/img_avatar.png'
-  return url.includes('http://') || url.includes('https://') ? url : fileHost + url
+  return imgUrlDeal(url)
 }
 
 export function replaceString (any, keyValues) {
@@ -202,4 +202,9 @@ export function dateTimeOptions () {
       children: children,
     }
   })
+}
+
+// 网络图片和阿里云素材库判断
+export function imgUrlDeal (url) {
+  return url.includes('http://') || url.includes('https://') ? url : fileHost + url
 }

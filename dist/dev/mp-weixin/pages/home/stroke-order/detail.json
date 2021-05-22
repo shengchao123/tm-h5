@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "行程单",
+  "usingComponents": {
+    "u-modal": "/node-modules/uview-ui/components/u-modal/u-modal",
+    "head-map": "/pages/home/stroke-order/components/HeadMap",
+    "detail-info": "/pages/home/stroke-order/components/DetailInfo"
+  }
+}

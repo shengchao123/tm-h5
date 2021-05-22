@@ -46,6 +46,18 @@
 			}
 		},
 		{
+			"path": "pages/home/stroke-order/signUp",
+			"style": {
+				"navigationBarTitleText": "报名"
+			}
+		},
+		{
+			"path": "pages/home/stroke-order/signUpList",
+			"style": {
+				"navigationBarTitleText": "参与人员"
+			}
+		},
+		{
 			"path": "pages/home/stroke-order/CustomPath",
 			"style": {
 				"navigationBarTitleText": "自定义路线"
@@ -55,6 +67,12 @@
 			"path": "pages/home/stroke-order/GetRedPoints",
 			"style": {
 				"navigationBarTitleText": "添加红色地标"
+			}
+		},
+		{
+			"path": "pages/home/evaluate-detail/index",
+			"style": {
+				"navigationBarTitleText": "评价详情"
 			}
 		},
 		{
@@ -76,9 +94,111 @@
 			}
 		},
 		{
+			"path": "pages/party/graphic/index",
+			"style": {
+				"navigationBarTitleText": "联盟风采"
+			}
+		},
+		{
+			"path": "pages/party/graphic/detail",
+			"style": {
+				"navigationBarTitleText": "联盟风采详情"
+			}
+		},
+		{
+			"path": "pages/league-interact/index/index",
+			"style": {
+				"navigationBarTitleText": "联盟互动"
+			}
+		},
+		{
+			"path": "pages/league-interact/detail/index",
+			"style": {
+				"navigationBarTitleText": "活动详情"
+			}
+		},
+		{
+			"path": "pages/league-interact/note-detail/index",
+			"style": {
+				"navigationBarTitleText": "帖子详情"
+			}
+		},
+		{
 			"path": "pages/mine/index/index",
 			"style": {
 				"navigationBarTitleText": "我的"
+			}
+		},
+		{
+			"path": "pages/mine/notification/index",
+			"style": {
+				"navigationBarTitleText": "我的消息"
+			}
+		},
+		{
+			"path": "pages/mine/notification/announcementDetail",
+			"style": {
+				"navigationBarTitleText": "公告详情"
+			}
+		},
+		{
+			"path": "pages/mine/card-record/index",
+			"style": {
+				"navigationBarTitleText": "打卡记录"
+			}
+		},
+		{
+			"path": "pages/mine/card-record/personnelCard",
+			"style": {
+				"navigationBarTitleText": "人员打卡情况"
+			}
+		},
+		{
+			"path": "pages/mine/real-name/index",
+			"style": {
+				"navigationBarTitleText": "实名认证"
+			}
+		},
+		{
+			"path": "pages/mine/published-agreement/index",
+			"style": {
+				"navigationBarTitleText": "天目红盟论坛发表协议"
+			}
+		},
+		{
+			"path": "pages/mine/my-hearts/index",
+			"style": {
+				"navigationBarTitleText": "我的红心"
+			}
+		},
+		{
+			"path": "pages/mine/my-activity/index",
+			"style": {
+				"navigationBarTitleText": "我的活动"
+			}
+		},
+		{
+			"path": "pages/mine/personal-settings/index",
+			"style": {
+				"navigationBarTitleText": "个人信息设置"
+			}
+		},
+		{
+			"path": "pages/mine/personal-settings/EditNick",
+			"style": {
+				"navigationBarTitleText": "修改昵称"
+			}
+		},
+		{
+			"path": "pages/mine/org-life-record/index",
+			"style": {
+				"navigationBarTitleText": "填写组织生活记录"
+			}
+		},
+		{
+			"path": "pages/mine/org-life-record/Detail",
+			"style": {
+				"navigationBarTitleText": "组织生活记录"
 			}
 		},
 		{
@@ -92,7 +212,10 @@
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		"backgroundColor": "#F8F8F8",
+		"app-plus": {
+			"titleNView": false
+		}
 	},
 	"tabBar": {
 		"color": "#666666",
@@ -113,6 +236,12 @@
 				"iconPath": "static/tabbar/party.png",
 				"selectedIconPath": "static/tabbar/party_l.png",
 				"text": "党建联盟"
+			},
+			{
+				"pagePath": "pages/league-interact/index/index",
+				"iconPath": "static/tabbar/interact.png",
+				"selectedIconPath": "static/tabbar/interact_l.png",
+				"text": "联盟互动"
 			},
 			{
 				"pagePath": "pages/mine/index/index",
