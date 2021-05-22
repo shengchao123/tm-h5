@@ -187,7 +187,7 @@ export default {
         link: window.location.href,
         title: name,
         desc: journeyLineName,
-        imgUrl: '../../../static/mine/share.png'
+        imgUrl: this.$imgHost + 'share.png'
       }
     }
   },

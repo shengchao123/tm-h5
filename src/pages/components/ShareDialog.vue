@@ -375,7 +375,7 @@ page {
   z-index: 10001;
   image {
     position: absolute;
-    right: 100rpx;
+    right: 0rpx;
     top: 28rpx;
     width: 618rpx;
     height: 272rpx;
