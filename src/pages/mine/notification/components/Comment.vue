@@ -12,7 +12,7 @@
     <view v-else
           class="empty-page center-align column">
       <image style="width: 332rpx; height: 256rpx"
-             :src="$imgHost + 'user/msg-info/comment_empty.png'"></image>
+             :src="$imgHost + 'user/msg-info/fans_empty.png'"></image>
       <view class="mt20">
         <text class="ft28 color-999">暂无收到新的评论</text>
       </view>

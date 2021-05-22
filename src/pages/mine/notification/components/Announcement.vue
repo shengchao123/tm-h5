@@ -38,7 +38,7 @@
     <view v-show="listData.length <= 0"
           class="empty-page center-align column">
       <image style="width: 332rpx; height: 256rpx"
-             :src="$imgHost + 'user/msg-info/fans_empty.png'"></image>
+             :src="$imgHost + 'user/msg-info/comment_empty.png'"></image>
       <text class="ft28 color-999 mt20">暂无公告</text>
     </view>
   </view>
