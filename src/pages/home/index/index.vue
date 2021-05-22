@@ -1,33 +1,57 @@
 <template>
   <div class="tabbar-home-wrap">
-    <Map
-      needClick
-      :mapInitObj="mapInitObj"
-      mapClass="mapVH60"
-      :points="points"
-    ></Map>
+    <Map needClick
+         :mapInitObj="mapInitObj"
+         mapClass="mapVH60"
+         :points="points"></Map>
     <DragPopover @dragTopChange="dragTopChange">
-      <mescroll-uni
-        ref="mescrollRef"
-        class="mescroll-wrap"
-        :top="scrollTop"
-        :up="upOption"
-        @init="mescrollInit"
-        @down="downCallback"
-        @up="upCallback"
-      >
+      <mescroll-uni ref="mescrollRef"
+                    class="mescroll-wrap"
+                    :top="scrollTop"
+                    :up="upOption"
+                    @init="mescrollInit"
+                    @down="downCallback"
+                    @up="upCallback">
         <template>
           <div class="box relative">
             <PathsList @onSelectPath="onSelectPath"></PathsList>
-            <div class="content">
-              <ScenicSpot :points="points" ref="refScenicSpot"></ScenicSpot>
+            <div>
+              <div class="content">
+                <ScenicSpot :points="points"
+                            ref="refScenicSpot"></ScenicSpot>
+              </div>
               <div class="center pb32 pt16 create-btn-wrap">
-                <div class="create-btn center bold" @click="onCreateTravel">
-                  创建我的行程
-                </div>
+                <div class="create-btn center bold"
+                     @click="onCreateTravel">创建我的行程</div>
               </div>
             </div>
             <activity-swiper></activity-swiper>
+            <div class="pl30 pr30 mt20">
+              <div class="center-align">
+                <span class="ft32 color-333 mr8 bold">评价</span>
+                <span class="ft24 color-999">({{evaluationCount}})</span>
+              </div>
+              <div class="evaluation-list between-row">
+                <div v-for="(item, index) in evaluationList"
+                     :key="index"
+                     class="evaluation-item">
+                  <img class="attachment"
+                       :src="$fileHost + item.attachment" />
+                  <div class="pl12 pr12 pt4 pb18">
+                    <div class="title ft28 color-333 medium mb4">{{item.title}}</div>
+                    <div class="center-align between-row">
+                      <div class="avatar center-align">
+                        <img :src="$avatarUrl(item.avatar)" />
+                        <span class="ft24 color-999">{{item.nick}}</span>
+                      </div>
+                      <div>
+                        <svg-icon icon=""></svg-icon>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </template>
       </mescroll-uni>
@@ -50,19 +74,19 @@ export default {
   name: "index",
   methods: {
     // 下拉刷新
-    downCallback() {
+    downCallback () {
       this.mescroll.resetUpScroll(); // 重置列表为第一页
     },
     // 加载更多
-    upCallback(page) {
+    upCallback (page) {
       this.getItineraryEvaluationPage(page);
     },
-    resetGetList() {
+    resetGetList () {
       this.listData = [];
       this.mescroll.resetUpScroll();
     },
 
-    getItineraryEvaluationPage(page) {
+    getItineraryEvaluationPage (page) {
       const params = {
         pageNumber: page ? page.num : 1,
         pageSize: page ? page.size : 10,
@@ -72,19 +96,19 @@ export default {
         const { items, count } = res.content;
         this.mescroll.endBySize(items.length, count);
         const list = res.content.items;
-        this.evaluationList =
-          params.pageNumber === 1 ? list : this.evaluationList.concat(list);
+        // this.evaluationList = params.pageNumber === 1 ? list : this.evaluationList.concat(list);
+        this.evaluationCount = count
       });
     },
 
-    dragTopChange(top) {
+    dragTopChange (top) {
       this.scrollTop = top * 2 + 32;
     },
 
-    onCreateTravel() {
+    onCreateTravel () {
       uni.navigateTo({ url: "/pages/home/stroke-order/index" });
     },
-    onSelectPath(journeyLineId) {
+    onSelectPath (journeyLineId) {
       this.$nextTick(() => {
         this.$refs.refScenicSpot.scrollTop = 0;
       });
@@ -92,7 +116,7 @@ export default {
     },
 
     // 根据路线 id 获取点位
-    getJourneyPointListByJourneyId(journeyLineId) {
+    getJourneyPointListByJourneyId (journeyLineId) {
       const params = {
         journeyLineId,
       };
@@ -102,7 +126,7 @@ export default {
       });
     },
   },
-  data() {
+  data () {
     return {
       points: [],
       mapInitObj: Object.freeze({
@@ -118,7 +142,51 @@ export default {
         noMoreSize: 8, // 配置列表的总数量要大于等于1条才显示'-- END --'的提示
       },
       scrollTop: 630,
-      evaluationList: [],
+      evaluationList: [
+        {
+          "attachment": "material/image/2021051819245642835059756182528.jpg",
+          "avatar": "material/image/2021051819245642835059756182528.jpg",
+          "communityNoteId": 0,
+          "isAuthor": false,
+          "isLike": false,
+          "isRecommend": false,
+          "journeyItineraryId": 0,
+          "journeyItineraryName": "萨达撒",
+          "likeQuantity": 0,
+          "memberId": 0,
+          "nick": "发撒大苏打",
+          "title": "发生发噶饭啊大哥撒大噶发收到给俺是个发萨"
+        },
+        {
+          "attachment": "material/image/2021051819245642835059756182528.jpg",
+          "avatar": "material/image/2021051819245642835059756182528.jpg",
+          "communityNoteId": 0,
+          "isAuthor": false,
+          "isLike": false,
+          "isRecommend": false,
+          "journeyItineraryId": 0,
+          "journeyItineraryName": "萨达撒",
+          "likeQuantity": 0,
+          "memberId": 0,
+          "nick": "发撒大苏打",
+          "title": "发生发噶饭啊大哥撒大噶发收到给俺是个发萨"
+        },
+        {
+          "attachment": "material/image/2021051819245642835059756182528.jpg",
+          "avatar": "material/image/2021051819245642835059756182528.jpg",
+          "communityNoteId": 0,
+          "isAuthor": false,
+          "isLike": false,
+          "isRecommend": false,
+          "journeyItineraryId": 0,
+          "journeyItineraryName": "萨达撒",
+          "likeQuantity": 0,
+          "memberId": 0,
+          "nick": "发撒大苏打",
+          "title": "发生发噶饭啊大哥撒大噶发收到给俺是个发萨"
+        }
+      ],
+      evaluationCount: 0
     };
   },
   components: {
@@ -157,12 +225,39 @@ export default {
       }
     }
   }
+  .evaluation-list {
+    flex-wrap: wrap;
+    .evaluation-item {
+      width: 335rpx;
+      border-radius: 6rpx;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 3rpx 2rpx 12rpx 8rpx rgba(17, 17, 17, 0.03);
+      .attachment {
+        width: 335rpx;
+        height: 335rpx;
+      }
+      .title {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: box;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
+      .avatar {
+        width: 32rpx;
+        height: 32rpx;
+        border-radius: 16rpx;
+        overflow: hidden;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
   .content {
-    position: absolute;
-    top: 240rpx;
-    bottom: 24rpx;
-    left: 0;
-    right: 0;
     box-sizing: border-box;
     overflow: scroll;
     white-space: nowrap;
