@@ -1,20 +1,21 @@
 <template>
   <div class='activity-wrap'>
-    <div class="box">
+    <div class="box"
+         :style="{top: top + 'rpx'}">
       <u-tabs :list="tab.list"
               :is-scroll="false"
               :height="height"
               font-size="28"
               :current="current"
-              :bar-style="{width: '32rpx', height:'4rpx', bottom: '16rpx'}"
+              :bar-style="{width: '32rpx', height:'4rpx', bottom: '10rpx'}"
               active-color="#E32417"
               inactive-color="#666666"
               @change="tabChange"></u-tabs>
     </div>
     <view v-if="isEmpty"
           :style="{
-            height: ($windowHeight - 100) + 'px',
-            top: (82 + height) + 'rpx'
+            height: ($windowHeight - delHeight) + 'px',
+            top: (top + height) + 'rpx'
           }"
           class="bg-white relative">
       <page-empty :imgUrl="require('@/static/empty/no-activity.png')"
@@ -22,7 +23,7 @@
     </view>
     <mescroll-uni v-else
                   ref="mescrollRef"
-                  :top="82 + height"
+                  :top="top + height"
                   @init="mescrollInit"
                   @down="downCallback"
                   :up="upOption"
@@ -72,6 +73,18 @@ export default {
       default: (() => {
         return 88
       })
+    },
+    top: {
+      type: Number,
+      default: (() => {
+        return 0
+      })
+    },
+    delHeight: {
+      type: Number,
+      default: (() => {
+        return 44
+      })
     }
   },
   data () {
@@ -109,7 +122,6 @@ export default {
   .box {
     width: 100%;
     position: fixed;
-    top: 82rpx;
     z-index: 8;
   }
 }

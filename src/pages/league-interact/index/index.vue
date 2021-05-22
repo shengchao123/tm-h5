@@ -12,13 +12,14 @@
     </div>
     <view>
       <forum v-if="subsection.curNow === 0"></forum>
-      <activity ref="activity"
-                v-else
-                class="activity-wrap"
+      <activity v-else
+                ref="activity"
                 :isEmpty="isEmpty"
                 :dataList="dataList"
                 :current.sync="current"
                 :height="100"
+                :top="82"
+                :delHeight="140"
                 @getListData="getListData"></activity>
     </view>
   </div>
@@ -55,13 +56,6 @@ export default {
   },
   data () {
     return {
-      upOption: {
-        empty: {
-          use: false
-        },
-        textNoMore: "没有更多数据",
-        noMoreSize: 10, // 配置列表的总数量要大于等于10条才显示'-- END --'的提示
-      },
       isEmpty: false,
       dataList: [],
       current: 0,
