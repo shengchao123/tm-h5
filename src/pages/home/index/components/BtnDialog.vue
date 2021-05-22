@@ -64,13 +64,15 @@ export default {
       this.isScroll = false;
     },
     // 跳转评价
-    onEvaluate(){
-      uni.navigateTo({ url: '/pages/home/evaluation/index' })
+    onEvaluate() {
+      if (this.$notMember()) return this.$goLogin();
+      uni.navigateTo({ url: "/pages/home/evaluation/index" });
     },
     // 跳转行程
-    onTrip(){
-      uni.navigateTo({ url: '/pages/home/stroke-order/index' })
-    }
+    onTrip() {
+      if (this.$notMember()) return this.$goLogin();
+      uni.navigateTo({ url: "/pages/home/stroke-order/index" });
+    },
   },
   onLoad() {
     uni.$on("discoverBtn", (res) => {
@@ -115,7 +117,7 @@ export default {
   bottom: 137rpx;
 }
 .evaluate-btn {
-  width: 90rpx; 
+  width: 90rpx;
   height: 90rpx;
   line-height: 90rpx;
   text-align: center;

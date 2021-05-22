@@ -35,7 +35,6 @@ export default {
     onCreateTravel() {
       uni.navigateTo({ url: "/pages/home/stroke-order/index" });
     },
-
     onSelectPath(journeyLineId) {
       this.$nextTick(() => {
         this.$refs.refScenicSpot.scrollTop = 0;
