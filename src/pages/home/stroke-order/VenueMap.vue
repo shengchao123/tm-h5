@@ -18,7 +18,8 @@
           </div>
         </div>
 
-        <div class="list">
+        <div class="list"
+             ref="list">
           <LocationItem v-for="(item, index) in poi.list"
                         :item="item"
                         @onSelectItem="onSelectLocation"
@@ -64,7 +65,6 @@ export default {
     },
     // 地图绘制
     drawMap () {
-
       const that = this
       AMap.plugin('AMap.Geolocation', function () {
         var geolocation = new AMap.Geolocation({
@@ -130,6 +130,7 @@ export default {
         placeSearch.search(that.poi.keyword, function (status, result) {
           if (result.info === 'OK') {
             that.poi.list = result.tips
+            that.selectPoi = result.tips[0]
           }
         })
       })
@@ -145,8 +146,26 @@ export default {
       this.$amap.clearMap()
       this.drawLocation()
       this.$marker = this.drawLocationMarkder()
+      this.getPoisByMoveend()
     },
-
+    // 根据选择点，搜索 poi 点
+    getPoisByMoveend () {
+      const that = this
+      const lnglat = this.$amap.getCenter()
+      AMap.plugin('AMap.PlaceSearch', function () {
+        var autoOptions = {
+          pageSize: 50,
+        }
+        var placeSearch = new AMap.PlaceSearch(autoOptions)
+        placeSearch.searchNearBy('', lnglat, 5000, function (status, result) {
+          if (!result || !result.poiList) return
+          const _pois = result.poiList.pois
+          that.poi.list = _pois
+          that.selectPoi = _pois[0]
+          that.$refs.list.scrollTop = 0
+        })
+      })
+    },
     onLocation () {
       this.poi.keyword = ''
       this.drawMap()

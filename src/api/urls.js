@@ -23,13 +23,27 @@ export const urls = {
   signUpJourneyItinerary: '/linanJourney/journeyItinerary/signUpJourneyItinerary', // 报名行程单
   cancelSignUpJourneyItinerary: '/linanJourney/journeyItinerary/cancelSignUpJourneyItinerary', // 取消报名行程单
 
+  // 党建联盟
+  getJourneyAllianceInfoList: '/linanJourney/journeyAlliance/getJourneyAllianceInfoList', // 获取联盟列表
+  getJourneyAllianceDetailList: '/linanJourney/journeyAlliance/getJourneyAllianceDetailList', // 获取联盟及详情列表
+  getGraphicInfoPage: '/partyWebsite/partyGraphic/getGraphicInfoPage', // 分页获取风采图文信息
+  getGraphicInfoById: '/partyWebsite/partyGraphic/getGraphicInfoById', // 获取风采图文详情
 
   // 我的页面
   getMemberPersonalInfo: '/crm/member/getMemberPersonalInfo', // 我的信息获取
   getMyJourneyItineraryPage: '/linanJourney/journeyItinerary/getMyJourneyItineraryPage', // 我的行程单
 
+  // 实名认证
+  findOrgList: '/organization/orgConsumer/findOrgList', // 获取联盟组织列表
+  verifiedRealName: '/crm/member/verifiedRealName', // 实名认证
+
   // 我的红心
   getMyRedHeart: '/linanJourney/journeyMemberRedHeartRecordManagement/getMyRedHeart', // 获取我的红心值
   getMyRedHeartRecordPage: '/linanJourney/journeyMemberRedHeartRecordManagement/getMyRedHeartRecordPage', // 获取我的红心值记录分页
+
+  // 个人信息
+  uploadAvatar: '/file/fileUpload/uploadAvatar', //  上传头像
+  getMemberPersonalInfo: '/crm/member/getMemberPersonalInfo', //  获取会员个人信息
+  modifyMemberPersonalInfo: '/crm/member/modifyMemberPersonalInfo', //  编辑会员个人信息
 
 }

@@ -39,6 +39,9 @@ export default {
     }
   },
   created () {
+    uni.$on('initJourneyLineId', (id) => {
+      this.$emit('onSelectPath', id)
+    })
     this.getRecommendJourneyLineList()
   },
   data () {
