@@ -9,7 +9,7 @@
           <view class="imgs flex">
             <view v-if="shareBtns.includes('wx')"
                   class="center column"
-                  @click="onWeixin">
+                  @click="guideShareType">
               <!-- <button open-type="share"
                       class="share-btn">
                 <image :src="imgHost + 'pull-new/invite_icon01.png'" />
