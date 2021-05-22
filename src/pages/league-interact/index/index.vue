@@ -26,7 +26,7 @@
 </template>
 <script>
 import Activity from '@/pages/components/Activity.vue'
-import Forum from '@/pages/league-interact/Forum'
+import Forum from '../components/Forum'
 export default {
   name: 'index',
   methods: {
