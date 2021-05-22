@@ -1,6 +1,10 @@
 <template>
   <div class='stroke-order-wrap'>
-    <head-map :journeyLineId.sync="form.data.journeyLineId"></head-map>
+    <head-map ref="headMap"
+              :journeyLineId.sync="form.data.journeyLineId"
+              :journeyLineName="journeyLineName"
+              :journeyPointList="journeyPointList"
+              @journeyLineChange="journeyLineChange"></head-map>
     <u-form ref="form"
             :model="form.data"
             class="bg-white">
@@ -25,42 +29,51 @@
       <div class="line-bold"></div>
       <div class="pl30 pr30">
         <u-form-item label="名称"
-                     label-width="144">
+                     label-width="144"
+                     prop="name">
           <u-input v-model="form.data.name"
+                   maxlength="15"
                    placeholder="命名你的行程，如临安红色一日游" />
+          <input-length-word :modelData="form.data.name"
+                             maxLength="15"></input-length-word>
         </u-form-item>
         <u-form-item label="组织员"
-                     label-width="144">
+                     label-width="144"
+                     prop="organizer">
           <u-input v-model="form.data.organizer"
+                   maxlength="10"
                    placeholder="输入组织员姓名" />
+          <input-length-word :modelData="form.data.organizer"
+                             maxLength="10"></input-length-word>
         </u-form-item>
         <u-form-item label="手机号"
-                     label-width="144">
+                     label-width="144"
+                     prop="contactDetails">
           <u-input v-model="form.data.contactDetails"
                    type="number"
                    placeholder="输入组织员手机号" />
         </u-form-item>
         <u-form-item label="集合地点"
-                     label-width="144">
-          <u-input v-model="form.data.meetingPlace"
-                   class="flex1"
-                   :disabled="true"
-                   placeholder="输入集合地点" />
-          <svg-icon icon="icon_dingwei"
-                    class="ft30 ml16"
-                    style="color: #518CFC"></svg-icon>
+                     label-width="144"
+                     prop="meetingPlace">
+          <div class="center-align flex1"
+               @click="onVenueMap">
+            <span class="flex1"
+                  :class="form.data.meetingPlace ? 'color-333' : 'color-placeholder'">{{meetingPlaceText}}</span>
+            <input-length-word :modelData="form.data.meetingPlace"
+                               maxLength="30"></input-length-word>
+            <svg-icon icon="icon_dingwei"
+                      class="ft30 ml16"
+                      style="color: #518CFC"></svg-icon>
+          </div>
         </u-form-item>
         <u-form-item label="出发日期"
-                     label-width="144">
+                     label-width="144"
+                     prop="setOutTime">
           <div class="center-align flex1"
-               @click="onShowDateSelect">
-            <!-- <u-input v-model="form.data.setOutTime"
-                     class="flex1"
-                     :disabled="true"
-                     @click="onShowDateSelect"
-                     placeholder="选择时间" /> -->
+               @click="onShowTimePicker">
             <span class="flex1"
-                  :class="form.data.setOutTime ? 'color-333' : 'color-placeholder'">{{form.data.setOutTime || '选择时间'}}</span>
+                  :class="form.data.setOutTime ? 'color-333' : 'color-placeholder'">{{setOutTimeText}}</span>
             <svg-icon icon="icon_riqi"
                       class="ft30 ml16"
                       style="color: #878787"></svg-icon>
@@ -74,93 +87,183 @@
         <u-form-item label="温馨提示"
                      label-width="144"
                      :border-bottom="false">
-          <u-input v-model="form.data.tip"
+          <u-input v-model="form.data.precautions"
                    placeholder="输入其他注意事项（选填）" />
         </u-form-item>
       </div>
     </u-form>
     <div class="footer pl30 pr30 center-align">
       <div class="confirm-btn ft32 tc"
-           @click="onConfirm">确定</div>
+           @click="onConfirm">{{isEdit ? '保存' : '确定'}}</div>
     </div>
-    <u-select v-model="showDateSelect"
+    <u-picker v-model="showTimePicker"
+              mode="time"
               title="日期"
-              mode="mutil-column-auto"
-              :list="dateTimeOptions"
-              :default-value="defaultValueOfDate"
-              @confirm="confirmDateSelect"></u-select>
+              confirm-color="#E32417"
+              :params="timePickerConfig.params"
+              :start-year="timePickerConfig.startYear"
+              :end-year="timePickerConfig.endYear"
+              :default-time="timePickerConfig.defaultTime"
+              @confirm="confirmTimePicker"></u-picker>
   </div>
 </template>
 <script>
 import { playTimeOptions, activityTypeOptions, needLifeDocumentaryOptions, transportationOptions } from '@/utils/enum'
 import MyRadio from './components/MyRadio'
 import MyRadioBox from './components/MyRadioBox.vue'
-import { dateTimeOptions } from '@/utils/tools.js'
 import HeadMap from './components/HeadMap.vue'
+import InputLengthWord from './components/InputLengthWord.vue'
+
 export default {
   methods: {
-    onShowDateSelect () {
-      this.showDateSelect = true
-    },
-    confirmDateSelect (params) {
-      const Y = params[0].value
-      const M = this.makeUpZero(params[1].value)
-      const D = this.makeUpZero(params[2].value)
-      const h = this.makeUpZero(params[3].value)
-      const m = this.makeUpZero(params[4].value)
-      this.form.data.setOutTime = `${Y}-${M}-${D} ${h}:${m}`
-      this.setDefaultValueOfDate(params)
-    },
-    setDefaultValueOfDate (list) {
-      const dateTimeOptions = this.dateTimeOptions
-      const differentIndex = [1, 2] // 月，日value是从1开始的
-      this.defaultValueOfDate = list.map(({ value }, index) => {
-        if (index === 0) {
-          for (let i = 0; i < dateTimeOptions.length; i++) {
-            if (value === dateTimeOptions[i].value) {
-              return i
-            }
-          }
-        }
-        if (differentIndex.includes(index)) {
-          return value - 1
-        }
-        return value
+    // 选择集合点
+    onVenueMap () {
+      uni.navigateTo({
+        url: '/pages/home/stroke-order/VenueMap'
       })
     },
+    // 显示 日期选择 弹窗
+    onShowTimePicker () {
+      this.showTimePicker = true
+    },
+    // 日期选中回调
+    confirmTimePicker (params) {
+      const { timestamp } = params
+      const setOutTime = timestamp * 1000
+      this.form.data.setOutTime = setOutTime
+      this.setTimePickerDefaultValue(setOutTime)
+    },
+    // 行程路线 切换 回调
+    journeyLineChange ({ playTime }) {
+      this.form.data.playTime = playTime
+    },
     onConfirm () {
-      this.$refs.uForm.validate(valid => {
+      this.$refs.form.validate(valid => {
         if (valid) {
+          if (!this.form.data.journeyLineId && this.$isEmpty(this.journeyPointList)) {
+            return this.$msg('请选择行程路线')
+          }
           this.createJourneyItinerary()
         } else {
           this.$msg('还有信息未填写')
         }
-      });
-      console.log(this.form.data)
-
+      })
     },
     createJourneyItinerary () {
-      // const params = {}
-      // this.$api.createJourneyItinerary(params).then(res => {
-      //   if (res.isError) return this.$msg(res.message)
-      // })
-    },
-    makeUpZero (num) {
-      if (+num < 10) {
-        return '0' + num
+      const {
+        name, playTime, activityType,
+        needLifeDocumentary, organizer, contactDetails,
+        meetingPlace, meetingPlaceLat, meetingPlaceLng,
+        setOutTime, transportation, journeyLineId,
+        precautions
+      } = this.form.data
+      const params = {
+        activityType,
+        contactDetails,
+        meetingPlace,
+        meetingPlaceLat,
+        meetingPlaceLng,
+        name,
+        needLifeDocumentary,
+        organizer,
+        playTime,
+        precautions,
+        setOutTime,
+        transportation,
+        type: journeyLineId ? '01' : '02' // 是否自定义路线
       }
-      return num
+      if (journeyLineId) {
+        params.journeyLineId = journeyLineId
+      } else {
+        params.journeyPointIds = this.journeyPointList.map(el => el.journeyPointId)
+      }
+      if (this.isEdit) { // 编辑id
+        params.id = this.id
+      }
+      const apiName = this.isEdit ? 'modifyJourneyItinerary' : 'createJourneyItinerary'
+      this.$api[apiName](params).then(res => {
+        if (res.isError) return this.$msg(res.message)
+        this.$msg(this.isEdit ? '修改成功' : '创建成功')
+        if (this.isEdit) {
+          uni.navigateBack()
+          return
+        }
+        uni.redirectTo({
+          url: `/pages/home/stroke-order/createSuccess?id=${res.content.id}`
+        })
+      })
+    },
+    getJourneyItineraryById (id) {
+      const params = { id }
+      this.$api.getJourneyItineraryById(params).then(res => {
+        if (res.isError) return this.$msg(res.message)
+        const { journeyLineName, journeyPointList, setOutTime, journeyLineId } = res.content
+        const journeyLineIdCache = journeyLineId && journeyLineId !== '0' ? journeyLineId : null
+        this.journeyLineName = journeyLineName
+        this.journeyPointList = journeyPointList
+        this.form.data = {
+          ...res.content,
+          journeyLineId: journeyLineIdCache
+        }
+        this.$refs.headMap.journeyLineIdCache = journeyLineIdCache
+        this.setTimePickerDefaultValue(setOutTime)
+      })
+    },
+    // 编辑设置
+    setEditConfig (id) {
+      uni.setNavigationBarTitle({
+        title: '编辑行程单'
+      })
+      this.getJourneyItineraryById(id)
+    },
+    // 设置日期选择 默认时间
+    setTimePickerDefaultValue (setOutTime) {
+      this.timePickerConfig.defaultTime = this.$moment(setOutTime).format('YYYY-MM-DD HH:mm')
+    },
+    // 设置 日期选择器配置
+    setTimePickeConfig () {
+      const nowDate = new Date()
+      const nowYear = nowDate.getFullYear()
+      this.timePickerConfig = {
+        ...this.timePickerConfig,
+        startYear: nowYear,
+        endYear: nowYear + 4,
+      }
+    },
+    setEvent () {
+      uni.$on('setJourneyPointListEvent', (list) => {
+        this.journeyPointList = [...list]
+      })
+      uni.$on('setMeetingPlaceEvent', (data) => {
+        const { meetingPlace, meetingPlaceLat, meetingPlaceLng } = data
+        const formData = this.form.data
+        this.form.data = {
+          ...formData,
+          meetingPlace,
+          meetingPlaceLat,
+          meetingPlaceLng
+        }
+      })
+    },
+    clearEvent () {
+      uni.$off('setJourneyPointListEvent')
+      uni.$off('setMeetingPlaceEvent')
     }
   },
-  components: { Map },
   data () {
     const contactDetailsVal = (rule, value, callback) => {
-      if (!value) return callback(new Error('请输入组织员手机号'))
+      if (!value) return callback(new Error('输入组织员手机号'))
       if (!this.$u.test.mobile(value)) return callback(new Error('手机号不正确'))
       callback()
     }
+    const setOutTimeVal = (rule, value, callback) => {
+      if (!value) return callback(new Error('选择出发时间'))
+      callback()
+    }
     return {
-      showDateSelect: false,
+      id: null,
+      isEdit: false,
+      showTimePicker: false,
       form: {
         data: {
           name: '',
@@ -170,35 +273,70 @@ export default {
           organizer: '',
           contactDetails: '',
           meetingPlace: '',
+          meetingPlaceLat: '',
+          meetingPlaceLng: '',
           setOutTime: '',
           transportation: '01',
-          tip: '',
-          journeyLineId: null,
-          type: '01'
+          precautions: '',
+          journeyLineId: null
         },
         rules: {
-          name: [{ required: true, message: '请输入行程名称', trigger: ['change', 'blur'] }],
-          organizer: [{ required: true, message: '请输入组织员姓名', trigger: ['change', 'blur'] }],
+          name: [{ required: true, message: '输入行程名称', trigger: ['change', 'blur'] }],
+          organizer: [{ required: true, message: '输入组织员姓名', trigger: ['change', 'blur'] }],
           contactDetails: [{ required: true, trigger: ['change', 'blur'], validator: contactDetailsVal }],
-          meetingPlace: [{ required: true, message: '请输入集合地点', trigger: ['change', 'blur'] }],
-          setOutTime: [{ required: true, message: '请选择出发时间', trigger: ['change', 'blur'] }],
+          meetingPlace: [{ required: true, message: '输入集合地点', trigger: ['change', 'blur'] }],
+          setOutTime: [{ required: true, trigger: ['change', 'blur'], validator: setOutTimeVal }],
         }
       },
-      defaultValueOfDate: [],
+      timePickerConfig: {
+        params: {
+          year: true,
+          month: true,
+          day: true,
+          hour: true,
+          minute: true,
+          timestamp: true,
+        },
+        startYear: '',
+        endYear: '',
+        defaultTime: '',
+      },
+      journeyLineName: '',
+      journeyPointList: [],
       playTimeOptions,
       activityTypeOptions,
       needLifeDocumentaryOptions,
       transportationOptions,
-      dateTimeOptions: dateTimeOptions(),
     }
   },
-
+  computed: {
+    setOutTimeText () {
+      const setOutTime = this.form.data.setOutTime
+      if (!setOutTime) return '选择时间'
+      return this.$moment(setOutTime).format('YYYY-MM-DD HH:mm')
+    },
+    meetingPlaceText () {
+      const meetingPlace = this.form.data.meetingPlace
+      if (!meetingPlace) return '选择集合点'
+      return meetingPlace
+    }
+  },
+  destroyed () {
+    this.clearEvent()
+  },
   onReady () {
     this.$refs.form.setRules(this.form.rules);
   },
-  created () {
+  onLoad (option) {
+    const { isEdit, id, journeyLineId } = option
+    this.form.data.journeyLineId = journeyLineId
+    this.id = id
+    this.isEdit = isEdit === '1'
+    if (this.isEdit) this.setEditConfig(id)
+    this.setTimePickeConfig()
+    this.setEvent()
   },
-  components: { MyRadio, MyRadioBox, HeadMap }
+  components: { MyRadio, MyRadioBox, HeadMap, InputLengthWord }
 }
 </script>
 <style>
@@ -255,6 +393,10 @@ page {
   }
   /deep/.u-form-item--left {
     align-items: flex-start;
+  }
+  /deep/.u-datetime-picker {
+    border-radius: 30rpx 30rpx 0 0;
+    overflow: hidden;
   }
 }
 </style>
