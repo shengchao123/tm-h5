@@ -37,24 +37,24 @@
     <div class="footer pl30 pr30 between-row center-align">
       <div class="center-align left-btns between-row flex1">
         <div v-if="baseInfo.isOrganizer"
-             class="icon-btn center-align column"
+             class="icon-btn center-align column color-666"
              @click="onEdit">
           <svg-icon icon="icon_bianji"
                     class="ft34"></svg-icon>
-          <div class="ft20 color-666 mt14">编辑</div>
+          <div class="ft20 mt14">编辑</div>
         </div>
         <div v-if="baseInfo.isOrganizer"
-             class="icon-btn center-align column"
+             class="icon-btn center-align column color-666"
              @click="onDelete()">
           <svg-icon icon="icon_shanchu"
                     class="ft34"></svg-icon>
-          <div class="ft20 color-666 mt14">删除</div>
+          <div class="ft20 mt14">删除</div>
         </div>
-        <div class="icon-btn center-align column"
+        <div class="icon-btn center-align column color-666"
              @click="onShare">
           <svg-icon icon="icon_zhuanfa"
                     class="ft34"></svg-icon>
-          <div class="ft20 color-666 mt14">分享</div>
+          <div class="ft20 mt14">分享</div>
         </div>
       </div>
       <div v-if="isShowJoinBtn">
@@ -68,8 +68,8 @@
              @click="onComment">评价</div>
         <div v-if="baseInfo.needLifeDocumentary"
              class="ft28 tc medium"
-             :class="baseInfo.isHaveLifeDocumentary ? 'border-btn w272' : 'confirm-btn'"
-             @click="onLifeDocumentary">{{baseInfo.isHaveLifeDocumentary ? '查看' : '填写'}}组织生活记录</div>
+             :class="baseInfo.hasLifeRecord ? 'border-btn w272' : 'confirm-btn'"
+             @click="onLifeDocumentary">{{baseInfo.hasLifeRecord ? '查看' : '填写'}}组织生活记录</div>
       </div>
     </div>
     <u-modal v-model="showDeleteTip"
@@ -120,7 +120,7 @@ export default {
       }
       this.$api.removeJourneyItinerary(params).then(res => {
         if (res.isError) return this.$mmsg(res.message)
-        this.$mmsg('删除成功')
+        this.$msg('删除成功')
         setTimeout(() => {
           uni.navigateBack()
         }, 500)
@@ -133,14 +133,21 @@ export default {
     },
     // 去评价
     onComment () {
-
+      if (this.$notMember()) return this.$goLogin()
+      const url = `/pages/home/evaluation/index?id=${this.baseInfo.id}`
+      uni.navigateTo({ url })
     },
     // 去填写组织生活记录
     onLifeDocumentary () {
-
+      const { id, name, hasLifeRecord } = this.baseInfo
+      const writeLifeUrl = `/pages/mine/org-life-record/index?id=${id}&name=${name}`
+      const lifeRecordUrl = `/pages/mine/org-life-record/Detail?id=${id}`
+      const url = hasLifeRecord ? lifeRecordUrl : writeLifeUrl
+      uni.navigateTo({ url })
     },
     // 报名
     onSignUp () {
+      if (this.$notMember()) return this.$goLogin()
       const id = this.id
       if (!this.baseInfo.isSignUp) {
         uni.navigateTo({

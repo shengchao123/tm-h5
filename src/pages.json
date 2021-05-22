@@ -64,6 +64,12 @@
 			}
 		},
 		{
+			"path": "pages/home/evaluate-detail/index",
+			"style": {
+				"navigationBarTitleText": "评价详情"
+			}
+		},
+		{
 			"path": "pages/public/Login",
 			"style": {
 				"navigationBarTitleText": "授权"
@@ -97,6 +103,18 @@
 			"path": "pages/league-interact/index/index",
 			"style": {
 				"navigationBarTitleText": "联盟互动"
+			}
+		},
+		{
+			"path": "pages/league-interact/detail/index",
+			"style": {
+				"navigationBarTitleText": "活动详情"
+			}
+		},
+		{
+			"path": "pages/league-interact/note-detail/index",
+			"style": {
+				"navigationBarTitleText": "帖子详情"
 			}
 		},
 		{
@@ -148,6 +166,12 @@
 			}
 		},
 		{
+			"path": "pages/mine/my-activity/index",
+			"style": {
+				"navigationBarTitleText": "我的活动"
+			}
+		},
+		{
 			"path": "pages/mine/personal-settings/index",
 			"style": {
 				"navigationBarTitleText": "个人信息设置"
@@ -157,6 +181,18 @@
 			"path": "pages/mine/personal-settings/EditNick",
 			"style": {
 				"navigationBarTitleText": "修改昵称"
+			}
+		},
+		{
+			"path": "pages/mine/org-life-record/index",
+			"style": {
+				"navigationBarTitleText": "填写组织生活记录"
+			}
+		},
+		{
+			"path": "pages/mine/org-life-record/Detail",
+			"style": {
+				"navigationBarTitleText": "组织生活记录"
 			}
 		},
 		{

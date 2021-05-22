@@ -127,9 +127,45 @@ export function getJourneyItineraryPointSignIn (params) { // 获取行程单点�
   })
 }
 
+export function createJourneyLifeDocumentary (params) { // 创建生活纪实 '/linanJourney/journeyLifeDocumentary/createJourneyLifeDocumentary'
+  return request({
+    url: urls.createJourneyLifeDocumentary,
+    data: {
+      ...params
+    }
+  })
+}
+
 export function journeyItineraryPointSignIn (params) { // 获取行程单点位打卡信息
   return request({
     url: urls.journeyItineraryPointSignIn,
+    data: {
+      ...params
+    }
+  })
+}
+
+export function getJourneyLifeDocumentaryByItineraryId (params) { // 根据行程单id获取生活纪实 '/linanJourney/journeyLifeDocumentary/getJourneyLifeDocumentaryByItineraryId'
+  return request({
+    url: urls.getJourneyLifeDocumentaryByItineraryId,
+    data: {
+      ...params
+    }
+  })
+}
+
+export function modifyJourneyLifeDocumentary (params) { // 修改生活纪实 '/linanJourney/journeyLifeDocumentary/modifyJourneyLifeDocumentary'
+  return request({
+    url: urls.modifyJourneyLifeDocumentary,
+    data: {
+      ...params
+    }
+  })
+}
+
+export function removeJourneyLifeDocumentary (params) { // 删除生活纪实 '/linanJourney/journeyLifeDocumentary/removeJourneyLifeDocumentary'
+  return request({
+    url: urls.removeJourneyLifeDocumentary,
     data: {
       ...params
     }
