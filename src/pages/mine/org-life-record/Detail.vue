@@ -95,7 +95,9 @@ export default {
       this.$api.removeJourneyLifeDocumentary(params).then(res => {
         if (res.isError) return this.$msg(res.message)
         this.$msg('删除成功')
-        uni.navigateBack()
+        setTimeout(() => {
+          uni.navigateBack()
+        }, 500)
       })
     },
     // 根据行程单id获取生活纪实

@@ -91,17 +91,22 @@ export default {
     createJourneyLifeDocumentary (params) {
       this.$api.createJourneyLifeDocumentary(params).then(res => {
         if (res.isError) return this.$msg(res.message)
-        this.$msg('信息提交成功')
-        uni.navigateBack()
+        this.successTip()
       })
     },
     // 修改生活纪实
     modifyJourneyLifeDocumentary (params) {
       this.$api.modifyJourneyLifeDocumentary(params).then(res => {
         if (res.isError) return this.$msg(res.message)
-        this.$msg('信息提交成功')
-        uni.navigateBack()
+        this.successTip()
       })
+    },
+    // 成功提示
+    successTip () {
+      this.$msg('信息提交成功')
+      setTimeout(() => {
+        uni.navigateBack()
+      }, 500)
     },
     // 根据行程单id获取生活纪实
     getJourneyLifeDocumentaryByItineraryId (journeyItineraryId) {
