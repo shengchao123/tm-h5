@@ -160,7 +160,7 @@ export default {
       default: ''
     },
     shareParams: {//分享请求参数
-      type: String,
+      type: [String, Object],
       default: ''
     },
     posterData: {//开团海报数据

@@ -61,6 +61,8 @@ export const urls = {
   communityLikeNoteComment: '/community/communityLike/communityLikeNoteComment', //点赞评论
   cancelCommunityLikeNoteComment: '/community/communityLike/cancelCommunityLikeNoteComment', //取消点赞评论
   shareCommunityNote: '/community/communityShare/shareCommunityNote', // 分享笔记
+  getNoteCommentDetailPage: '/community/communityNoteComment/getNoteCommentDetailPage', // 分页获取笔记评论详情
+
   // 个人信息
   uploadAvatar: '/file/fileUpload/uploadAvatar', //  上传头像
   getMemberPersonalInfo: '/crm/member/getMemberPersonalInfo', //  获取会员个人信息

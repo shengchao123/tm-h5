@@ -83,13 +83,13 @@
         </view>
         <view class="icon-item relative"
               @click="changeStatus('isLike')">
-          <get-phone-button></get-phone-button>
+          <!-- <get-phone-button></get-phone-button> -->
           <text :class="['iconfont', detailInfo.isLike ? 'icon_zan primary-color' : 'icon_zankong']"></text>
           <text class="ft26 pl8 w30 color-666">{{detailInfo.likeQuantity}}</text>
         </view>
         <view class="icon-item relative"
               @click="changeStatus('isFavorites')">
-          <get-phone-button></get-phone-button>
+          <!-- <get-phone-button></get-phone-button> -->
           <text
                 :class="['iconfont', detailInfo.isFavorites ? 'icon_shoucang primary-color' : 'icon_weishoucang']"></text>
           <text class="ft26 pl8 w30 color-666">{{detailInfo.favoritesQuantity}}</text>
@@ -208,13 +208,83 @@ export default {
       const params = {
         communityNoteId: this.communityNoteId
       }
-      this.$api.getCommunityNoteInfoById(params).then(res => {
-        if (res.isError) {
-          this.$msg(res.message)
-          return
-        }
-        this.detailInfo = res.content || {}
-      })
+      // this.$api.getCommunityNoteInfoById(params).then(res => {
+      //   if (res.isError) {
+      //     this.$msg(res.message)
+      //     return
+      //   }
+      const res = {
+        "code": 10000,
+        "content": {
+          "attachmentDTOList": [
+            {
+              "communityNoteId": "39015313910466560",
+              "type": "01",
+              "url": "material/image/2021040615270739015024839306240.jpg"
+            },
+            {
+              "communityNoteId": "39015313910466560",
+              "type": "01",
+              "url": "material/image/2021040615264739015003896097792.jpg"
+            },
+            {
+              "communityNoteId": "39015313910466560",
+              "type": "01",
+              "url": "material/image/2021040615265339015010748541952.jpg"
+            },
+            {
+              "communityNoteId": "39015313910466560",
+              "type": "01",
+              "url": "material/image/2021040615263339014990034971648.jpg"
+            },
+            {
+              "communityNoteId": "39015313910466560",
+              "type": "01",
+              "url": "material/image/2021040615263639014992383781888.jpg"
+            },
+            {
+              "communityNoteId": "39015313910466560",
+              "type": "01",
+              "url": "material/image/2021040615263939014995599764480.jpg"
+            },
+            {
+              "communityNoteId": "39015313910466560",
+              "type": "01",
+              "url": "material/image/2021040615265839015016195894272.jpg"
+            },
+            {
+              "communityNoteId": "39015313910466560",
+              "type": "01",
+              "url": "material/image/2021040615270339015020955380736.jpg"
+            },
+            {
+              "communityNoteId": "39015313910466560",
+              "type": "01",
+              "url": "material/image/2021040615264239014998895438848.jpg"
+            }
+          ],
+          "attachments": ["material/image/2021040615270339015020955380736.jpg", "material/image/2021040615270739015024839306240.jpg", "material/image/2021040615265339015010748541952.jpg", "material/image/2021040615263639014992383781888.jpg", "material/image/2021040615263939014995599764480.jpg", "material/image/2021040615263339014990034971648.jpg", "material/image/2021040615264239014998895438848.jpg", "material/image/2021040615264739015003896097792.jpg", "material/image/2021040615265839015016195894272.jpg"],
+          "avatar": "image/avatar/2020092914455421889605577157632.png",
+          "commentQuantity": 0,
+          "communityNoteId": "43176188282210304",
+          "content": "这条路线的风景那是相当的不错,世界",
+          "isAuthor": false,
+          "isLike": false,
+          "journeyItineraryId": "0",
+          "journeyItineraryName": null,
+          "likeQuantity": 0,
+          "memberId": "14380290006910976",
+          "nick": "蜗牛",
+          "shareQuantity": 1,
+          "time": "1小时前",
+          "title": "什么？这是什么啊？不可理喻"
+        },
+        "message": "操作成功",
+        "subCode": "SUCCESS",
+        "success": true
+      }
+      this.detailInfo = res.content || {}
+      // })
     },
     // getParamsInfo (scene) {
     //   const params = {

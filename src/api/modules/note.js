@@ -72,3 +72,13 @@ export function shareCommunityNote (params) {
     }
   })
 }
+// 分页获取笔记评论详情
+export function getNoteCommentDetailPage (params) {
+  return request({
+    url: urls.getNoteCommentDetailPage,
+    data: {
+      orgId: uni.getStorageSync('orgId'),
+      ...params
+    }
+  })
+}
