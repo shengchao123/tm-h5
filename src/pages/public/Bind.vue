@@ -90,7 +90,9 @@ export default {
     // 绑定会员手机号
     bindPhone () {
       const params = {
-        ...this.submitData
+        ...this.submitData,
+        // TODO: 老王说需要thirdUserId参数
+       thirdUserId: uni.getStorageSync('thirdUserId')
       }
       this.$api.bindPhone(params).then(res => {
         if (res.isError) {
