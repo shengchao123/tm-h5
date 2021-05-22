@@ -1,5 +1,6 @@
 <template>
-  <div class='tree-wrap'>
+  <div class='tree-wrap'
+       v-if="orgTree[0]">
     <scroll-view scroll-x>
       <div style="width: 200%">
         <div class='center-align pb32 ml30'>
@@ -10,8 +11,7 @@
             <div class="ft20 mr8 tc"
                  style="color: #fff;">{{orgTree[0].name}}</div>
           </div>
-          <div v-if="orgTree[0]"
-               class='center-align'>
+          <div class='center-align'>
             <org-tree-child :list="orgTree[0].child"></org-tree-child>
           </div>
         </div>

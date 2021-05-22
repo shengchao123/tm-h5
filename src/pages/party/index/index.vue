@@ -1,5 +1,6 @@
 <template>
-  <div class='party-wrap'>
+  <div class='party-wrap'
+       v-if="partyList.length > 0">
     <div class="map">
       <Map :points="partyList"
            :currentIndex="selectPoint"
@@ -87,7 +88,6 @@ export default {
       })
     },
     changeIndex (index) {
-      console.log(index)
       this.selectPoint = index
     },
     findOrgTreeByOrgId () {
@@ -102,6 +102,7 @@ export default {
     getJourneyAllianceDetailList () {
       this.$api.getJourneyAllianceDetailList().then(res => {
         if (res.isError) return this.$msg(res.message)
+        this.partyList = res.content || []
       })
     }
   },
@@ -109,85 +110,8 @@ export default {
 
     return {
       selectPoint: 0,
-      partyList: [
-        {
-          "addressBookList": [
-            {
-              "contactPerson": "大撒大撒",
-              "orgName": "阿大撒发",
-              "tel": "21312412451"
-            }
-          ],
-          "id": 0,
-          "introduction": "建立“1+3+X”组织框架，由镇党建办牵头，“龙门秘境”村落景区区域内3个村级党组织及景区运营商、村集体经济发展有限公司、中国美院等成员单位联合组建，整合基层党建资源，组建“五彩党建管家”。",
-          "journeyLineId": 0,
-          "journeyLineName": "发哈算法国际爱护发时间按时间发",
-          "keyWorkDTOList": [
-            {
-              "content": "xxx西安市擦拭擦拭的暗时大丰大厦股份哈的风格嗷嗷叫的方法骄傲的发骄",
-              "endDate": 12412341243154,
-              "startDate": 5134134141233412,
-              "workStatus": 1,
-              "year": 2
-            },
-            {
-              "content": "xxx西安市擦拭擦拭的暗时大",
-              "endDate": 12412341243154,
-              "startDate": 5134134141233412,
-              "workStatus": 2,
-              "year": 2
-            },
-            {
-              "content": "xxx西安市擦拭擦拭的暗时大",
-              "endDate": 12412341243154,
-              "startDate": 5134134141233412,
-              "workStatus": 3,
-              "year": 2
-            }
-          ],
-          "lat": 30.104302,
-          "lng": 119.195056,
-          "name": "发的回复哈",
-          "pointNameList": ['石门老街', '新四军纪念馆', '攀岩小镇（龙上村）', '党史学'],
-          "regionsCode": "",
-          "regionsName": "大撒大"
-        }
-      ],
-      orgTree: [
-        {
-          "child": [
-            {
-              "child": [
-                {
-                  id: '231',
-                  "name": "dasd as发萨暗时暗时啊",
-                }
-              ],
-              id: '233231',
-              "name": "阿三大苏打实打实阿萨大阿萨大阿萨大暗时",
-            },
-            {
-              "child": [
-                {
-                  "child": [
-                    {
-                      id: '4233213',
-                      "name": "dasd as发萨暗时暗时啊",
-                    }
-                  ],
-                  id: '53232',
-                  "name": "阿三大苏打实打实阿萨大阿萨大阿萨大暗时",
-                }
-              ],
-              id: '5324234',
-
-              "name": "高发多发首发式发生",
-            }
-          ],
-          id: '223425431',
-          "name": "高发多发首发式发生",
-        }
-      ],
+      partyList: [],
+      orgTree: [],
     }
   },
   computed: {
@@ -195,6 +119,7 @@ export default {
       return this.partyList[this.selectPoint] || {}
     },
     pointsName () {
+      if (!this.baseInfo.pointNameList) return
       return this.baseInfo.pointNameList.join('→')
     },
     workStatusInfo () {
@@ -217,6 +142,11 @@ export default {
           text: '已完成'
         }
       }
+    }
+  },
+  watch: {
+    selectPoint () {
+      this.findOrgTreeByOrgId()
     }
   },
   onLoad () {
