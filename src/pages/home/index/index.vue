@@ -31,21 +31,30 @@
                 <span class="ft32 color-333 mr8 bold">评价</span>
                 <span class="ft24 color-999">({{evaluationCount}})</span>
               </div>
-              <div class="evaluation-list between-row">
+              <div class="evaluation-list between-row  mt40">
                 <div v-for="(item, index) in evaluationList"
                      :key="index"
-                     class="evaluation-item">
+                     class="evaluation-item mb20">
                   <img class="attachment"
                        :src="$fileHost + item.attachment" />
                   <div class="pl12 pr12 pt4 pb18">
                     <div class="title ft28 color-333 medium mb4">{{item.title}}</div>
                     <div class="center-align between-row">
-                      <div class="avatar center-align">
-                        <img :src="$avatarUrl(item.avatar)" />
+                      <div class="center-align">
+                        <div class="avatar mr8">
+                          <img :src="$avatarUrl(item.avatar)" />
+                        </div>
                         <span class="ft24 color-999">{{item.nick}}</span>
                       </div>
-                      <div>
-                        <svg-icon icon=""></svg-icon>
+                      <div class="trigger-area relative center-align pl32"
+                           @click.stop="onLike(item, index)">
+                        <text class="iconfont ft28  mr8"
+                              :class="item.isLike ? 'icon_zan primary-color' : 'icon_zankong color-999'"></text>
+                        <svg-icon :icon="item.isLike ? 'icon_shoucang' : 'icon_weishoucang'"
+                                  class="ft28 color-999 mr8"
+                                  :class="item.isLike ? 'primary-color' : 'color-999'"></svg-icon>
+                        <text class="ft26"
+                              :class="item.isLike ? 'primary-color' : 'color-666'">{{item.likeQuantity}}</text>
                       </div>
                     </div>
                   </div>
@@ -96,7 +105,7 @@ export default {
         const { items, count } = res.content;
         this.mescroll.endBySize(items.length, count);
         const list = res.content.items;
-        // this.evaluationList = params.pageNumber === 1 ? list : this.evaluationList.concat(list);
+        this.evaluationList = params.pageNumber === 1 ? list : this.evaluationList.concat(list);
         this.evaluationCount = count
       });
     },
@@ -105,6 +114,24 @@ export default {
       this.scrollTop = top * 2 + 32;
     },
 
+    // 点赞
+    onLike (item, index) {
+      let { communityNoteId, isLike, likeQuantity } = item
+      const evaluationList = this.evaluationList
+      const params = {
+        communityNoteId,
+      }
+      item.isLike = !isLike
+      const apiName = isLike ? 'cancelCommunityLikeNote' : 'communityLikeNote'
+      this.$api[apiName](params).then(res => {
+        if (res.isError) return this.$msg(res.message)
+        item.isLike = !isLike
+        item.likeQuantity = isLike ? likeQuantity - 1 : likeQuantity + 1
+        console.log(item.likeQuantity)
+        evaluationList[index] = item
+        this.evaluationList = [...evaluationList]
+      })
+    },
     onCreateTravel () {
       uni.navigateTo({ url: "/pages/home/stroke-order/index" });
     },
@@ -142,50 +169,7 @@ export default {
         noMoreSize: 8, // 配置列表的总数量要大于等于1条才显示'-- END --'的提示
       },
       scrollTop: 630,
-      evaluationList: [
-        {
-          "attachment": "material/image/2021051819245642835059756182528.jpg",
-          "avatar": "material/image/2021051819245642835059756182528.jpg",
-          "communityNoteId": 0,
-          "isAuthor": false,
-          "isLike": false,
-          "isRecommend": false,
-          "journeyItineraryId": 0,
-          "journeyItineraryName": "萨达撒",
-          "likeQuantity": 0,
-          "memberId": 0,
-          "nick": "发撒大苏打",
-          "title": "发生发噶饭啊大哥撒大噶发收到给俺是个发萨"
-        },
-        {
-          "attachment": "material/image/2021051819245642835059756182528.jpg",
-          "avatar": "material/image/2021051819245642835059756182528.jpg",
-          "communityNoteId": 0,
-          "isAuthor": false,
-          "isLike": false,
-          "isRecommend": false,
-          "journeyItineraryId": 0,
-          "journeyItineraryName": "萨达撒",
-          "likeQuantity": 0,
-          "memberId": 0,
-          "nick": "发撒大苏打",
-          "title": "发生发噶饭啊大哥撒大噶发收到给俺是个发萨"
-        },
-        {
-          "attachment": "material/image/2021051819245642835059756182528.jpg",
-          "avatar": "material/image/2021051819245642835059756182528.jpg",
-          "communityNoteId": 0,
-          "isAuthor": false,
-          "isLike": false,
-          "isRecommend": false,
-          "journeyItineraryId": 0,
-          "journeyItineraryName": "萨达撒",
-          "likeQuantity": 0,
-          "memberId": 0,
-          "nick": "发撒大苏打",
-          "title": "发生发噶饭啊大哥撒大噶发收到给俺是个发萨"
-        }
-      ],
+      evaluationList: [],
       evaluationCount: 0
     };
   },
@@ -233,6 +217,9 @@ export default {
       overflow: hidden;
       background: #fff;
       box-shadow: 3rpx 2rpx 12rpx 8rpx rgba(17, 17, 17, 0.03);
+      .trigger-area {
+        height: 82rpx;
+      }
       .attachment {
         width: 335rpx;
         height: 335rpx;
