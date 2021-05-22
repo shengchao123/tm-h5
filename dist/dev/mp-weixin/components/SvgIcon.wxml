@@ -1,0 +1,1 @@
+<svg class="svg-icon" style="{{'font-size:'+(fontSize+'px')+';'+('color:'+(color)+';')}}" vue-id="2b92b054-1" aria-hidden="true" bind:__l="__l" vue-slots="{{['default']}}"><use vue-id="{{('2b92b054-2')+','+('2b92b054-1')}}" xlink:href="{{iconName}}" bind:__l="__l"></use></svg>

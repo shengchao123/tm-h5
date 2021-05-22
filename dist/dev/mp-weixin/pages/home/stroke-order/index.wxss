@@ -1,0 +1,105 @@
+
+page {
+  height: 100%;
+  background: #f7f7f5;
+}
+
+@charset "UTF-8";
+/* uni.scss */
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+/* 边框颜色 */
+.color-333.data-v-22895583 {
+  color: #333333;
+}
+.color-666.data-v-22895583 {
+  color: #666666;
+}
+.color-999.data-v-22895583 {
+  color: #999999;
+}
+.bg-color.data-v-22895583 {
+  background-color: #f7f7f7;
+}
+.bg-white.data-v-22895583 {
+  background-color: #ffffff;
+}
+.white-color.data-v-22895583 {
+  color: #ffffff;
+}
+.primary-color.data-v-22895583 {
+  color: #F54400;
+}
+.success-color.data-v-22895583 {
+  color: #0e130f;
+}
+.warning-color.data-v-22895583 {
+  color: #f0ad4e;
+}
+.error-color.data-v-22895583 {
+  color: #dd524d;
+}
+.primary-text.data-v-22895583 {
+  color: #333333;
+}
+.secondary-text.data-v-22895583 {
+  color: #666666;
+}
+.tip-text.data-v-22895583 {
+  color: #999999;
+}
+.stroke-order-wrap.data-v-22895583 {
+  color: #333;
+  padding-bottom: 152rpx;
+}
+.stroke-order-wrap .map.data-v-22895583 {
+  width: 689rpx;
+  height: 300rpx;
+  border-radius: 4rpx;
+  overflow: hidden;
+}
+.stroke-order-wrap .line-bold.data-v-22895583 {
+  width: 100%;
+  height: 20rpx;
+  background: #f7f7f7;
+}
+.stroke-order-wrap .head-map-from.data-v-22895583 {
+  background: #fff;
+}
+.stroke-order-wrap .head-map-from .route-select.data-v-22895583 {
+  height: 74rpx;
+}
+.stroke-order-wrap .ellipsis-text.data-v-22895583 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.stroke-order-wrap .footer.data-v-22895583 {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  height: 120rpx;
+  z-index: 2;
+}
+.stroke-order-wrap .footer .confirm-btn.data-v-22895583 {
+  width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
+  background: #e32417;
+  border-radius: 44rpx;
+  color: #fff;
+}
+.stroke-order-wrap .color-placeholder.data-v-22895583 {
+  color: #c0c4cc;
+}
+.stroke-order-wrap.data-v-22895583 .u-form-item--left {
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+          align-items: flex-start;
+}
+

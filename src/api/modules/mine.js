@@ -64,6 +64,42 @@ export function modifyMemberPersonalInfo (params) { // 编辑会员个人信息 
   })
 }
 
+export function getCommunityNoteCommentIsNewMassage (params) { // 未读评论消息提醒
+  return request({
+    url: urls.getCommunityNoteCommentIsNewMassage,
+    data: {
+      ...params
+    }
+  })
+}
+
+export function getCommunityLikeIsNewMassage (params) { // 获取未读点赞
+  return request({
+    url: urls.getCommunityLikeIsNewMassage,
+    data: {
+      ...params
+    }
+  })
+}
+
+export function getMyJourneyAnnouncementPage (params) { // 获取我的公告分页
+  return request({
+    url: urls.getMyJourneyAnnouncementPage,
+    data: {
+      ...params
+    }
+  })
+}
+
+export function getJourneyAnnouncementDetail (params) { // 获取公告详情
+  return request({
+    url: urls.getJourneyAnnouncementDetail,
+    data: {
+      ...params
+    }
+  })
+}
+
 export function getJourneyItinerarySignInById (params) { // 根据行程单id获取行程单打卡信息 '/linanJourney/journeySignInRecord/getJourneyItinerarySignInById'
   return request({
     url: urls.getJourneyItinerarySignInById,

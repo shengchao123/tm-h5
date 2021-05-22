@@ -1,0 +1,73 @@
+@charset "UTF-8";
+/* uni.scss */
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+/* 边框颜色 */
+.color-333.data-v-5605d6d0 {
+  color: #333333;
+}
+.color-666.data-v-5605d6d0 {
+  color: #666666;
+}
+.color-999.data-v-5605d6d0 {
+  color: #999999;
+}
+.bg-color.data-v-5605d6d0 {
+  background-color: #f7f7f7;
+}
+.bg-white.data-v-5605d6d0 {
+  background-color: #ffffff;
+}
+.white-color.data-v-5605d6d0 {
+  color: #ffffff;
+}
+.primary-color.data-v-5605d6d0 {
+  color: #F54400;
+}
+.success-color.data-v-5605d6d0 {
+  color: #0e130f;
+}
+.warning-color.data-v-5605d6d0 {
+  color: #f0ad4e;
+}
+.error-color.data-v-5605d6d0 {
+  color: #dd524d;
+}
+.primary-text.data-v-5605d6d0 {
+  color: #333333;
+}
+.secondary-text.data-v-5605d6d0 {
+  color: #666666;
+}
+.tip-text.data-v-5605d6d0 {
+  color: #999999;
+}
+.success-wrap.data-v-5605d6d0 {
+  height: 100%;
+  background: #fff;
+}
+.success-wrap .msg.data-v-5605d6d0 {
+  margin-top: 105rpx;
+}
+.success-wrap .msg .icon.data-v-5605d6d0 {
+  font-size: 88rpx;
+  color: #4cbf00;
+}
+.success-wrap .btns.data-v-5605d6d0 {
+  margin-top: 180rpx;
+}
+.success-wrap .btns .btn.data-v-5605d6d0 {
+  width: 330rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 40rpx;
+  border: solid 1rpx #d2d2d2;
+}
+.success-wrap .btns .share-btn.data-v-5605d6d0 {
+  color: #e32417;
+  border-color: #e32417;
+}
+

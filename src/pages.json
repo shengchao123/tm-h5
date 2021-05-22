@@ -40,6 +40,18 @@
 			}
 		},
 		{
+			"path": "pages/home/stroke-order/signUp",
+			"style": {
+				"navigationBarTitleText": "报名"
+			}
+		},
+		{
+			"path": "pages/home/stroke-order/signUpList",
+			"style": {
+				"navigationBarTitleText": "参与人员"
+			}
+		},
+		{
 			"path": "pages/home/stroke-order/CustomPath",
 			"style": {
 				"navigationBarTitleText": "自定义路线"
@@ -91,6 +103,18 @@
 			"path": "pages/mine/index/index",
 			"style": {
 				"navigationBarTitleText": "我的"
+			}
+		},
+		{
+			"path": "pages/mine/notification/index",
+			"style": {
+				"navigationBarTitleText": "我的消息"
+			}
+		},
+		{
+			"path": "pages/mine/notification/announcementDetail",
+			"style": {
+				"navigationBarTitleText": "公告详情"
 			}
 		},
 		{
