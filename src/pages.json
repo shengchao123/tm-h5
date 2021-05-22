@@ -118,6 +118,18 @@
 			}
 		},
 		{
+			"path": "pages/mine/card-record/index",
+			"style": {
+				"navigationBarTitleText": "打卡记录"
+			}
+		},
+		{
+			"path": "pages/mine/card-record/personnelCard",
+			"style": {
+				"navigationBarTitleText": "人员打卡情况"
+			}
+		},
+		{
 			"path": "pages/mine/real-name/index",
 			"style": {
 				"navigationBarTitleText": "实名认证"

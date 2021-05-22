@@ -53,11 +53,11 @@ export default {
     updateCount (index, count) {
       this.navList[index].count = count
     },
-    getCommunityMassageManagement () {
-      this.$api.getCommunityMassageManagement().then(res => {
+    getUnreadMessageQuantity () {
+      this.$api.getUnreadMessageQuantity().then(res => {
         if (res.isError) return this.$msg(res.message)
         const msgCount = res.content
-        const keys = ['likeFavoritesCount', 'attentionCount', 'noteCommentCount']
+        const keys = ['announcementCount', 'likeFavoritesCount', 'noteCommentCount']
         const navList = this.navList
         keys.forEach((key, index) => {
           navList[index].count = msgCount[key]
@@ -108,7 +108,7 @@ export default {
     }
   },
   onLoad () {
-    // this.getCommunityMassageManagement()
+    this.getUnreadMessageQuantity()
   },
   components: { Awesome, Announcement, Comment }
 }
