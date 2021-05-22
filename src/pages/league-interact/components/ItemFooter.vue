@@ -90,7 +90,7 @@ export default {
     },
     // 查看评论列表
     onShowCommentList () {
-      this.onShowCommentListPopup(this.notesItem.communityNoteId)
+      // this.onShowCommentListPopup(this.notesItem.communityNoteId)
     }
   },
   inject: ['setShareData', 'onShowCommentListPopup', 'onShowSendCommentPopup'],
