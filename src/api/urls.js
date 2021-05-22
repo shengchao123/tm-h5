@@ -29,6 +29,7 @@ export const urls = {
   cancelSignUpJourneyActivity:'/linanJourney/journeyActivity/cancelSignUpJourneyActivity', // 取消报名活动
   publishJourneyActivityStyle:'/linanJourney/journeyActivity/publishJourneyActivityStyle', // 发布活动风采
   getJourneyActivityList:'/linanJourney/journeyActivity/getJourneyActivityList', // 获取活动列表
+  getMyJourneyActivityPage:'/linanJourney/journeyActivity/getMyJourneyActivityPage', // 获取我的活动分页
   // 党建联盟
   getJourneyAllianceInfoList: '/linanJourney/journeyAlliance/getJourneyAllianceInfoList', // 获取联盟列表
   getJourneyAllianceDetailList: '/linanJourney/journeyAlliance/getJourneyAllianceDetailList', // 获取联盟及详情列表

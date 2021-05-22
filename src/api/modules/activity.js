@@ -54,5 +54,14 @@ export function getJourneyActivityList (params) {
     }
   })
 }
+// 获取我的活动分页
+export function getMyJourneyActivityPage (params) {
+  return request({
+    url: urls.getMyJourneyActivityPage,
+    data: {
+      ...params
+    }
+  })
+}
 
 

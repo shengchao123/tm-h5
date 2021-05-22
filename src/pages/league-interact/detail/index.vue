@@ -47,15 +47,12 @@
                :src="$imgUrlDeal(item.url)"></image>
       </view>
     </view>
-    <view v-if="detailInfo && detailInfo.status !== '02'"
+    <view v-if="detailInfo && detailInfo.status === '01'"
           class="footer bg-white center">
-      <!-- <text class="btn center ft32 medium"
-            :style="{background: detailInfo.status === '01' ? '#E32417':'#fff',color:detailInfo.status === '01' ? '#fff':'#E32417'}"
-            @click="onToRoute">{{detailInfo.status === '03' && !$isEmpty(detailInfo.styleDescription) ?  '编辑活动风采': getStatusInfo.btnText}}</text> -->
-      <text v-if="detailInfo.status === '01'"
-            class="btn center ft32 medium"
-            :style="{background: detailInfo.status === '01' ? '#E32417':'#fff',color:detailInfo.status === '01' ? '#fff':'#E32417'}"
-            @click="onToRoute">我要报名</text>
+      <text class="btn center ft32 medium"
+            :style="{background: detailInfo.isSignUp? '#fff':'#E32417',color: detailInfo.isSignUp ? '#E32417' : '#fff'}"
+            @click="onToRoute">{{detailInfo.isSignUp ? '取消报名' : '我要报名'}}
+      </text>
     </view>
   </view>
 </template>

@@ -11,17 +11,23 @@
               inactive-color="#666666"
               @change="tabChange"></u-tabs>
     </div>
-    <view class="mt20">
+    <view v-if="isEmpty"
+          class="bg-white">
+      <page-empty :imgUrl="require('@/static/empty/no-activity.png')"
+                  message="暂无内容"></page-empty>
+    </view>
+    <view v-else
+          class="mt20">
       <view v-for="(item,index) in dataList"
             :key="index"
             @click="onToDetail(item)">
-        <item :item="item"
-              :isMay="isMay"></item>
+        <item :item="item"></item>
       </view>
     </view>
   </div>
 </template>
 <script>
+import pageEmpty from 'pages/components/PageEmpty'
 import Item from './Item.vue'
 export default {
   name: 'Activity',
@@ -37,13 +43,7 @@ export default {
     }
   },
   props: {
-    // 是否是我的活动 默认不是
-    isMay: {
-      type: Boolean,
-      default: (() => {
-        return false
-      })
-    },
+    isEmpty: Boolean,
     dataList: Array,
     current: {
       type: Number,
@@ -74,7 +74,10 @@ export default {
     }
   },
   components: {
-    Item
-  }
+    Item,
+    pageEmpty,
+    // MescrollUni,
+  },
+  // mixins: [MescrollMixin],
 }
 </script>

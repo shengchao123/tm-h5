@@ -2,8 +2,7 @@
   <view>
     <activity :dataList="dataList"
               :current.sync="current"
-              @getListData="getListData"
-              :isMay="true"></activity>
+              @getListData="getListData"></activity>
   </view>
 </template>
 <script>
@@ -16,7 +15,7 @@ export default {
         status: this.current !== 0 ? "0" + this.current : '',
         ...this.search
       }
-      this.$api.getJourneyActivityList(params).then(res => {
+      this.$api.getMyJourneyActivityPage(params).then(res => {
         if (res.isError) {
           this.$msg(res.message)
           return
