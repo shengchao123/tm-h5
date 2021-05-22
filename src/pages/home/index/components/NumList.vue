@@ -7,7 +7,7 @@
         <div class="line"></div>
       </div>
 
-      <div class="ft32 ml16">{{pointData.item.name}}</div>
+      <div class="ft32 ml16 name">{{pointData.item.name}}</div>
     </div>
 
     <div class="center-align">
@@ -73,6 +73,12 @@ export default {
     border-left: 1px solid #ffd53d;
     width: 1px;
     height: 40rpx;
+  }
+  .name {
+    width: 29vw;
+    white-space: normal;
+    word-break: break-all;
+    word-wrap: break-word;
   }
   .circle {
     background: #feffff;

@@ -1,0 +1,117 @@
+@charset "UTF-8";
+/* uni.scss */
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+/* 边框颜色 */
+.color-333.data-v-19e0889d {
+  color: #333333;
+}
+.color-666.data-v-19e0889d {
+  color: #666666;
+}
+.color-999.data-v-19e0889d {
+  color: #999999;
+}
+.bg-color.data-v-19e0889d {
+  background-color: #f7f7f7;
+}
+.bg-white.data-v-19e0889d {
+  background-color: #ffffff;
+}
+.white-color.data-v-19e0889d {
+  color: #ffffff;
+}
+.primary-color.data-v-19e0889d {
+  color: #F54400;
+}
+.success-color.data-v-19e0889d {
+  color: #0e130f;
+}
+.warning-color.data-v-19e0889d {
+  color: #f0ad4e;
+}
+.error-color.data-v-19e0889d {
+  color: #dd524d;
+}
+.primary-text.data-v-19e0889d {
+  color: #333333;
+}
+.secondary-text.data-v-19e0889d {
+  color: #666666;
+}
+.tip-text.data-v-19e0889d {
+  color: #999999;
+}
+.get-red-wrap.data-v-19e0889d {
+  height: calc(100vh - 44px);
+}
+.get-red-wrap .search-wrap.data-v-19e0889d {
+  padding: 24rpx 30rpx;
+}
+.get-red-wrap .search-wrap .search.data-v-19e0889d {
+  height: 66rpx;
+  padding: 0 20rpx;
+  border-radius: 33rpx;
+  background: #f4f5f7;
+}
+.get-red-wrap .content.data-v-19e0889d {
+  box-sizing: border-box;
+  overflow: scroll;
+  white-space: nowrap;
+}
+.get-red-wrap .left-nav-wrap.data-v-19e0889d {
+  width: 180rpx;
+  background: #f5f5f5;
+  font-size: 26rpx;
+  height: 100%;
+  overflow: scroll;
+}
+.get-red-wrap .left-nav-wrap .region-item.data-v-19e0889d {
+  line-height: 90rpx;
+  height: 90rpx;
+  padding-left: 32rpx;
+  border-left: 6rpx solid transparent;
+  background: transparent;
+  color: #999999;
+}
+.get-red-wrap .left-nav-wrap .active.data-v-19e0889d {
+  border-color: #e32417;
+  background: #ffffff;
+  color: #e32417;
+}
+.get-red-wrap .points-wrap.data-v-19e0889d {
+  height: 100%;
+  overflow: scroll;
+}
+.get-red-wrap .points-wrap .point-item.data-v-19e0889d {
+  margin: 32rpx;
+  padding-bottom: 32rpx;
+}
+.get-red-wrap .points-wrap .point-item ._img.data-v-19e0889d {
+  width: 128rpx;
+  height: 128rpx;
+  border-radius: 10rpx;
+}
+.get-red-wrap .btn-wrap.data-v-19e0889d {
+  height: 120rpx;
+  background: #ffffff;
+  -webkit-justify-content: space-around;
+          justify-content: space-around;
+}
+.get-red-wrap .btn-wrap ._div.data-v-19e0889d {
+  width: 332rpx;
+  height: 88rpx;
+  border-radius: 44rpx;
+}
+.get-red-wrap .btn-wrap .cancel.data-v-19e0889d {
+  border: 1px solid #e32417;
+  color: #e32417;
+}
+.get-red-wrap .btn-wrap .add.data-v-19e0889d {
+  background: #e32417;
+  color: #ffffff;
+}
+

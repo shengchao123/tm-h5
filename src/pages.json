@@ -40,6 +40,18 @@
 			}
 		},
 		{
+			"path": "pages/home/stroke-order/signUp",
+			"style": {
+				"navigationBarTitleText": "报名"
+			}
+		},
+		{
+			"path": "pages/home/stroke-order/signUpList",
+			"style": {
+				"navigationBarTitleText": "参与人员"
+			}
+		},
+		{
 			"path": "pages/home/stroke-order/CustomPath",
 			"style": {
 				"navigationBarTitleText": "自定义路线"
@@ -76,9 +88,15 @@
 			}
 		},
 		{
-			"path": "pages/party/graphic",
+			"path": "pages/party/graphic/index",
 			"style": {
 				"navigationBarTitleText": "联盟风采"
+			}
+		},
+		{
+			"path": "pages/party/graphic/detail",
+			"style": {
+				"navigationBarTitleText": "联盟风采详情"
 			}
 		},
 		{
@@ -106,6 +124,18 @@
 			}
 		},
 		{
+			"path": "pages/mine/real-name/index",
+			"style": {
+				"navigationBarTitleText": "实名认证"
+			}
+		},
+		{
+			"path": "pages/mine/published-agreement/index",
+			"style": {
+				"navigationBarTitleText": "天目红盟论坛发表协议"
+			}
+		},
+		{
 			"path": "pages/mine/my-hearts/index",
 			"style": {
 				"navigationBarTitleText": "我的红心"
@@ -115,6 +145,18 @@
 			"path": "pages/mine/my-activity/index",
 			"style": {
 				"navigationBarTitleText": "我的活动"
+			}
+		},
+		{
+			"path": "pages/mine/personal-settings/index",
+			"style": {
+				"navigationBarTitleText": "个人信息设置"
+			}
+		},
+		{
+			"path": "pages/mine/personal-settings/EditNick",
+			"style": {
+				"navigationBarTitleText": "修改昵称"
 			}
 		},
 		{

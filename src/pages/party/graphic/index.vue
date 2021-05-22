@@ -24,15 +24,16 @@
         <div class="list pt12">
           <div v-for="(item, index) in listData"
                :key="index"
-               class="item flex mb20 pt32 pb32 pl30 pr30">
+               class="item flex mb20 pt32 pb32 pl30 pr30"
+               @click="onDetail(item)">
             <img class="poster mr24"
-                 :src="item.imageUrl" />
+                 :src="$fileHost + item.imageUrl" />
             <div class="flex1">
               <div class="ft32 medium mb16">{{item.title}}</div>
               <div class="content ft26 mb14">{{item.digest}}</div>
               <div class="ft24 color-999">
                 <span class="mr40">{{$moment(item.createTime).format('YYYY-MM-DD')}}</span>
-                <span>{{'大家萨达撒'}}</span>
+                <span>{{item.orgName}}</span>
               </div>
             </div>
           </div>
@@ -45,11 +46,23 @@
 <script>
 import MescrollMixin from "@/components/mescroll-uni/mescroll-mixins.js";
 import MescrollUni from "@/components/mescroll-uni/mescroll-uni.vue";
-import ContactPerson from './components/ContactPerson.vue';
+import ContactPerson from '../components/ContactPerson.vue';
 export default {
   methods: {
     changeTab (index) {
       this.current = index
+    },
+    onDetail (item) {
+      const { id, contentType, hyperlinksUrl } = item
+      if (contentType === '02') {
+        uni.navigateTo({
+          url: `/pages/webView?title=联盟风采详情&webUrl=${hyperlinksUrl}`
+        })
+        return
+      }
+      uni.navigateTo({
+        url: `/pages/party/graphic/detail?id=${id}`
+      })
     },
     // 下拉刷新
     downCallback () {
@@ -75,7 +88,7 @@ export default {
         const { items, count } = res.content
         this.mescroll.endBySize(items.length, count)
         this.count = count
-        // this.listData = params.pageNumber === 1 ? items : this.listData.concat(items)
+        this.listData = params.pageNumber === 1 ? items : this.listData.concat(items)
       })
     },
     getJourneyAllianceInfoList () {
@@ -98,18 +111,7 @@ export default {
         textNoMore: "没有更多数据",
         noMoreSize: 1, // 配置列表的总数量要大于等于5条才显示'-- END --'的提示
       },
-      listData: [
-        {
-          "contentType": "",
-          "createTime": 12312312412,
-          "digest": "发大水，发澳门反馈奥斯卡发放假啊是积分叫阿三的法撒旦噶士大夫结果大水噶地方河是德国地方公司大厦给v撒旦",
-          "hyperlinksUrl": "",
-          "id": 0,
-          "imageUrl": "material/image/2021051819245642835059756182528.jpg",
-          "title": "发噶十九分暗时你们发到付卡就发按实际发案件放假啊看",
-          "videoLinkUrl": ""
-        }
-      ],
+      listData: [],
       count: 0,
     }
   },

@@ -1,0 +1,100 @@
+@charset "UTF-8";
+/* uni.scss */
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+/* 边框颜色 */
+.color-333.data-v-fdbb9fe6 {
+  color: #333333;
+}
+.color-666.data-v-fdbb9fe6 {
+  color: #666666;
+}
+.color-999.data-v-fdbb9fe6 {
+  color: #999999;
+}
+.bg-color.data-v-fdbb9fe6 {
+  background-color: #f7f7f7;
+}
+.bg-white.data-v-fdbb9fe6 {
+  background-color: #ffffff;
+}
+.white-color.data-v-fdbb9fe6 {
+  color: #ffffff;
+}
+.primary-color.data-v-fdbb9fe6 {
+  color: #F54400;
+}
+.success-color.data-v-fdbb9fe6 {
+  color: #0e130f;
+}
+.warning-color.data-v-fdbb9fe6 {
+  color: #f0ad4e;
+}
+.error-color.data-v-fdbb9fe6 {
+  color: #dd524d;
+}
+.primary-text.data-v-fdbb9fe6 {
+  color: #333333;
+}
+.secondary-text.data-v-fdbb9fe6 {
+  color: #666666;
+}
+.tip-text.data-v-fdbb9fe6 {
+  color: #999999;
+}
+.u-input.data-v-fdbb9fe6 {
+  position: relative;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+          flex-direction: row;
+}
+.u-input__input.data-v-fdbb9fe6 {
+  font-size: 28rpx;
+  color: #303133;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+}
+.u-input__textarea.data-v-fdbb9fe6 {
+  width: auto;
+  font-size: 28rpx;
+  color: #303133;
+  padding: 10rpx 0;
+  line-height: normal;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+}
+.u-input--border.data-v-fdbb9fe6 {
+  border-radius: 6rpx;
+  border-radius: 4px;
+  border: 1px solid #dcdfe6;
+}
+.u-input--error.data-v-fdbb9fe6 {
+  border-color: #fa3534 !important;
+}
+.u-input__right-icon__item.data-v-fdbb9fe6 {
+  margin-left: 10rpx;
+}
+.u-input__right-icon--select.data-v-fdbb9fe6 {
+  -webkit-transition: -webkit-transform .4s;
+  transition: -webkit-transform .4s;
+  transition: transform .4s;
+  transition: transform .4s, -webkit-transform .4s;
+}
+.u-input__right-icon--select--reverse.data-v-fdbb9fe6 {
+  -webkit-transform: rotate(-180deg);
+          transform: rotate(-180deg);
+}
+

@@ -26,9 +26,18 @@ export function getGraphicInfoPage (params) { // 分页获取风采图文信息
   })
 }
 
-export function getGraphicById (params) { // 获取风采图文详情
+export function getGraphicInfoById (params) { // 获取风采图文详情
   return request({
-    url: urls.getGraphicById,
+    url: urls.getGraphicInfoById,
+    data: {
+      ...params
+    }
+  })
+}
+
+export function findOrgTreeByOrgId (params) { // 根据组织id获取组织树
+  return request({
+    url: urls.findOrgTreeByOrgId,
     data: {
       ...params
     }

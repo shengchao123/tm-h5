@@ -1,7 +1,7 @@
 <template>
   <u-popup v-model="isShow"
            border-radius="30"
-           height="834"
+           maxHeight="834"
            mode="bottom">
     <view class="popup">
       <view class="tc title">
@@ -41,8 +41,8 @@ export default {
       this.$emit('onRouteItem', item)
       this.hide()
     },
-    getJourneyLineListByOrgId () {
-      this.$api.getJourneyLineListByOrgId().then(res => {
+    getRecommendJourneyLineList () {
+      this.$api.getRecommendJourneyLineList().then(res => {
         if (res.isError) return this.$msg(res.message)
         const list = res.content
         if (this.needCustomize) {
@@ -58,47 +58,19 @@ export default {
   },
   props: {
     selectedId: String,
-    needCustomize: Boolean
+    needCustomize: Boolean,
+    isDetail: Boolean,
   },
   data () {
     return {
       isShow: false,
-      list: [
-        {
-          "journeyLineId": '23',
-          "name": "星创党建示范带",
-          "playTime": "01",
-        },
-        {
-          "journeyLineId": '123',
-          "name": "“龙门秘境”乡村振兴之路",
-          "playTime": "01",
-        },
-        {
-          "journeyLineId": '4321',
-          "name": "乡村蝶变·振兴之旅",
-          "playTime": "01",
-        },
-        {
-          "journeyLineId": '43210',
-          "name": "党建引领农村产业融合发展",
-          "playTime": "01",
-        },
-        {
-          "journeyLineId": '413210',
-          "name": "共同富裕践行区党建示范带",
-          "playTime": "01",
-        },
-        {
-          "journeyLineId": '62340',
-          "name": "“琴山蓝湾”党建联盟",
-          "playTime": "01",
-        }
-      ]
+      list: []
     }
   },
   created () {
-    this.getJourneyLineListByOrgId()
+    if (!this.isDetail) {
+      this.getRecommendJourneyLineList()
+    }
   }
 }
 </script>

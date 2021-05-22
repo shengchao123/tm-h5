@@ -27,7 +27,17 @@
 export default {
   methods: {
     onCall (phone) {
-
+      uni.showModal({
+        title: '即将拨打电话',
+        content: phone,
+        success: function (res) {
+          if (res.confirm) {
+            uni.makePhoneCall({
+              phoneNumber: phone
+            })
+          }
+        }
+      })
     }
   },
   props: {

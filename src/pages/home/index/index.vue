@@ -6,9 +6,10 @@
          :points="points"></Map>
     <DragPopover>
       <div class="box relative">
-        <PathsList @onSelectPath="getJourneyPointListByJourneyId"></PathsList>
+        <PathsList @onSelectPath="onSelectPath"></PathsList>
         <div class="content">
-          <ScenicSpot :points="points"></ScenicSpot>
+          <ScenicSpot :points="points"
+                      ref="refScenicSpot"></ScenicSpot>
           <div class="center pb32 pt16 create-btn-wrap">
             <div class="create-btn center bold"
                  @click="onCreateTravel">创建我的行程</div>
@@ -30,10 +31,18 @@ export default {
     onCreateTravel () {
       uni.navigateTo({ url: '/pages/home/stroke-order/index' })
     },
+
+    onSelectPath (journeyLineId) {
+      this.$nextTick(() => {
+        this.$refs.refScenicSpot.scrollTop = 0
+      })
+      this.getJourneyPointListByJourneyId(journeyLineId)
+    },
+
     // 根据路线 id 获取点位
     getJourneyPointListByJourneyId (journeyLineId) {
       const params = {
-        journeyLineId: journeyLineId
+        journeyLineId
       }
       this.$api.getJourneyPointListByJourneyId(params).then(res => {
         if (res.isError) return
@@ -58,6 +67,9 @@ export default {
     PathsList,
     ScenicSpot
   },
+  onLoad (option) {
+    if (option.masterOrgId) uni.setStorageSync('masterOrgId', option.masterOrgId)
+  }
 }
 </script>
 

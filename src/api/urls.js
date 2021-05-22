@@ -17,7 +17,11 @@ export const urls = {
   sendVerificationCode: '/crm/member/sendVerificationCode', // 发送验证码
   getJourneyRegionsList: '/linanJourney/journeyRegions/getJourneyRegionsList', //
   createJourneyItinerary: '/linanJourney/journeyItinerary/createJourneyItinerary', // 创建行程单
+  modifyJourneyItinerary: '/linanJourney/journeyItinerary/modifyJourneyItinerary', // 修改行程单
   getJourneyItineraryById: '/linanJourney/journeyItinerary/getJourneyItineraryById', // 根据id获取行程单
+  removeJourneyItinerary: '/linanJourney/journeyItinerary/removeJourneyItinerary', // 删除行程单
+  signUpJourneyItinerary: '/linanJourney/journeyItinerary/signUpJourneyItinerary', // 报名行程单
+  cancelSignUpJourneyItinerary: '/linanJourney/journeyItinerary/cancelSignUpJourneyItinerary', // 取消报名行程单
 
   // 评价详情
   getItineraryEvaluationInfoById:'/linanJourney/journeyItineraryEvaluation/getItineraryEvaluationInfoById', // 根据笔记id查询行程评价详细信息
@@ -34,11 +38,15 @@ export const urls = {
   getJourneyAllianceInfoList: '/linanJourney/journeyAlliance/getJourneyAllianceInfoList', // 获取联盟列表
   getJourneyAllianceDetailList: '/linanJourney/journeyAlliance/getJourneyAllianceDetailList', // 获取联盟及详情列表
   getGraphicInfoPage: '/partyWebsite/partyGraphic/getGraphicInfoPage', // 分页获取风采图文信息
-  getGraphicById: '/partyWebsite/partyGraphic/getGraphicById', // 获取风采图文详情
+  getGraphicInfoById: '/partyWebsite/partyGraphic/getGraphicInfoById', // 获取风采图文详情
 
   // 我的页面
   getMemberPersonalInfo: '/crm/member/getMemberPersonalInfo', // 我的信息获取
   getMyJourneyItineraryPage: '/linanJourney/journeyItinerary/getMyJourneyItineraryPage', // 我的行程单
+
+  // 实名认证
+  findOrgList: '/organization/orgConsumer/findOrgList', // 获取联盟组织列表
+  verifiedRealName: '/crm/member/verifiedRealName', // 实名认证
 
   // 我的红心
   getMyRedHeart: '/linanJourney/journeyMemberRedHeartRecordManagement/getMyRedHeart', // 获取我的红心值
@@ -53,5 +61,9 @@ export const urls = {
   communityLikeNoteComment: '/community/communityLike/communityLikeNoteComment', //点赞评论
   cancelCommunityLikeNoteComment: '/community/communityLike/cancelCommunityLikeNoteComment', //取消点赞评论
   shareCommunityNote: '/community/communityShare/shareCommunityNote', // 分享笔记
+  // 个人信息
+  uploadAvatar: '/file/fileUpload/uploadAvatar', //  上传头像
+  getMemberPersonalInfo: '/crm/member/getMemberPersonalInfo', //  获取会员个人信息
+  modifyMemberPersonalInfo: '/crm/member/modifyMemberPersonalInfo', //  编辑会员个人信息
 
 }
