@@ -7,7 +7,8 @@
         <div class="line"></div>
       </div>
 
-      <div class="ft32 ml16 name">{{pointData.item.name}}</div>
+      <div class="ft32 ml16 name"
+           @click="onIntroduction">{{pointData.item.name}}</div>
     </div>
 
     <div class="center-align">
@@ -44,6 +45,12 @@
 export default {
   name: 'NumList',
   methods: {
+    onIntroduction () {
+      const { journeyPointId } = this.pointData.item
+      uni.navigateTo({
+        url: `/pages/home/introduction/index?journeyPointId=${journeyPointId}`
+      })
+    },
     onPlayer () {
       this.$emit('onPlayer', this.pointData)
     },

@@ -1,5 +1,5 @@
 <template>
-  <div class='introduction-wrap'
+  <div class='introduction-wrap pb30'
        v-if="baseInfo">
     <head-swiper :vrLink="vrLink"
                  :imagesList="imagesList"
@@ -38,23 +38,24 @@
     </div>
     <div class="between-row mb30 pl30 pr30">
       <div class="center-align">
-        <div class="join-user relative mr16 center-align">
+        <!-- <div class="join-user relative mr16 center-align">
           <div v-for="(item, index) in users"
                :key="index"
                class="user-img relative">
             <img :src="item" />
           </div>
-        </div>
-        <span class="ft24">1356人已访问</span>
+        </div> -->
+        <span class="ft24">0人已访问</span>
       </div>
       <div class="center-align">
         <svg-icon icon="icon_dakaline"
                   class="ft24"></svg-icon>
-        <span class="ft24">1356人已打卡</span>
+        <span class="ft24">0人已打卡</span>
       </div>
     </div>
     <div class="pl30 pr30">
-      <audio-module ref='audioModule'></audio-module>
+      <audio-module v-if="audio"
+                    ref='audioModule'></audio-module>
     </div>
     <div class="color-333 pr30 pl30 mt24">
       <p class="medium ft32 mb24">简介</p>
@@ -70,10 +71,10 @@ export default {
   name: 'introduction',
   methods: {
     onPeriphery () {
-
+      uni.navigateTo({ url: '/pages/home/point-guide/index' })
     },
     onNavigation () {
-
+      // TODO: 导航引导
     },
     onCall () {
       const { phone } = this.baseInfo
@@ -103,28 +104,30 @@ export default {
         this.baseInfo = res.content
         const { journeyScenicSpotAttachmentImagesList, journeyScenicSpotAttachmentVR, journeyScenicSpotAttachmentVideo, journeyScenicSpotAttachmentVoice } = res.content
         this.vrLink = journeyScenicSpotAttachmentVR.url
-        this.videoList = journeyScenicSpotAttachmentVideo
-        this.imagesList = journeyScenicSpotAttachmentImagesList
+        this.videoList = journeyScenicSpotAttachmentVideo || []
+        this.imagesList = journeyScenicSpotAttachmentImagesList || []
+        this.audio = journeyScenicSpotAttachmentVoice.url
         // 初始化音频
-        this.$refs.audioModule.initAudio(journeyScenicSpotAttachmentVoice.url)
+        this.$nextTick(() => {
+          this.audio && this.$refs.audioModule.initAudio(journeyScenicSpotAttachmentVoice.url)
+        })
       })
     }
   },
   data () {
     return {
+      journeyPointId: null,
       baseInfo: {},
       vrLink: '',
       imagesList: [],
       videoList: [],
-      users: [
-        'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic4.zhimg.com%2F50%2Fv2-70443a5d7df7eae0c7e25dacc6e983fb_hd.jpg&refer=http%3A%2F%2Fpic4.zhimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1624071402&t=1cb4f4fd6c0e1fd28d0636e24f5220c9',
-        'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fi0.hdslb.com%2Fbfs%2Farticle%2F878a6c57bed136d9d176a6eb8289a04787b126bf.jpg&refer=http%3A%2F%2Fi0.hdslb.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1624071427&t=de472274e77488dc548dd63a22679f62',
-        'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Ff331c6a4056b8fc7766941647aa3534927ce0005c5c5-b9WRQf_fw658&refer=http%3A%2F%2Fhbimg.b0.upaiyun.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1624071446&t=0116493d4d4ba2663d0bc69081f25152'
-      ]
+      audio: null,
+      users: []
     }
   },
   onLoad (option) {
-    const journeyPointId = option.id
+    const journeyPointId = option.journeyPointId
+    this.journeyPointId = journeyPointId
     this.getJourneyPointInfoById(journeyPointId)
   },
   components: { HeadSwiper, AudioModule }
