@@ -124,6 +124,18 @@
 			}
 		},
 		{
+			"path": "pages/mine/org-life-record/index",
+			"style": {
+				"navigationBarTitleText": "填写组织生活记录"
+			}
+		},
+		{
+			"path": "pages/mine/org-life-record/Detail",
+			"style": {
+				"navigationBarTitleText": "组织生活记录"
+			}
+		},
+		{
 			"path": "pages/webView",
 			"style": {
 				"navigationBarTitleText": ""

@@ -38,6 +38,7 @@ export const urls = {
   getMyRedHeartRecordPage: '/linanJourney/journeyMemberRedHeartRecordManagement/getMyRedHeartRecordPage', // 获取我的红心值记录分页
 
   // 个人信息
+  uploadFile: '/file/fileUpload/uploadMaterial', //  上传文件
   uploadAvatar: '/file/fileUpload/uploadAvatar', //  上传头像
   getMemberPersonalInfo: '/crm/member/getMemberPersonalInfo', //  获取会员个人信息
   modifyMemberPersonalInfo: '/crm/member/modifyMemberPersonalInfo', //  编辑会员个人信息
