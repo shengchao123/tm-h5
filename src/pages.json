@@ -40,6 +40,18 @@
 			}
 		},
 		{
+			"path": "pages/home/stroke-order/signUp",
+			"style": {
+				"navigationBarTitleText": "报名"
+			}
+		},
+		{
+			"path": "pages/home/stroke-order/signUpList",
+			"style": {
+				"navigationBarTitleText": "参与人员"
+			}
+		},
+		{
 			"path": "pages/home/stroke-order/CustomPath",
 			"style": {
 				"navigationBarTitleText": "自定义路线"

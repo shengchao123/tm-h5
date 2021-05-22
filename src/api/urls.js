@@ -17,7 +17,11 @@ export const urls = {
   sendVerificationCode: '/crm/member/sendVerificationCode', // 发送验证码
   getJourneyRegionsList: '/linanJourney/journeyRegions/getJourneyRegionsList', //
   createJourneyItinerary: '/linanJourney/journeyItinerary/createJourneyItinerary', // 创建行程单
+  modifyJourneyItinerary: '/linanJourney/journeyItinerary/modifyJourneyItinerary', // 修改行程单
   getJourneyItineraryById: '/linanJourney/journeyItinerary/getJourneyItineraryById', // 根据id获取行程单
+  removeJourneyItinerary: '/linanJourney/journeyItinerary/removeJourneyItinerary', // 删除行程单
+  signUpJourneyItinerary: '/linanJourney/journeyItinerary/signUpJourneyItinerary', // 报名行程单
+  cancelSignUpJourneyItinerary: '/linanJourney/journeyItinerary/cancelSignUpJourneyItinerary', // 取消报名行程单
 
   // 党建联盟
   getJourneyAllianceInfoList: '/linanJourney/journeyAlliance/getJourneyAllianceInfoList', // 获取联盟列表
