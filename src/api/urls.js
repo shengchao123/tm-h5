@@ -8,6 +8,7 @@ export const urls = {
   getUserInfoAndToken: '/third/authorization/getUserInfoAndToken', // 接受微信公众号授权后的code获取thirdUserId及登陆
   getMemberLoginInfo: '/crm/member/getMemberLoginInfo', // 获取三方用户信息
   bindPhone: '/crm/member/bindPhone', // 获取三方用户信息
+  getJSConfig: '/third/authorization/getJSConfig',
 
   // 初心之旅
   getRecommendJourneyLineList: '/linanJourney/journeyLine/getRecommendJourneyLineList', // 推荐路线
