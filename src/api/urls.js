@@ -43,6 +43,10 @@ export const urls = {
   // 我的页面
   getMemberPersonalInfo: '/crm/member/getMemberPersonalInfo', // 我的信息获取
   getMyJourneyItineraryPage: '/linanJourney/journeyItinerary/getMyJourneyItineraryPage', // 我的行程单
+  getCommunityNoteCommentIsNewMassage: '/community/communityNoteComment/getCommunityNoteCommentIsNewMassage', // 未读评论消息提醒
+  getCommunityLikeIsNewMassage: '/community/communityLike/getCommunityLikeIsNewMassage', // 获取未读点赞点赞
+  getMyJourneyAnnouncementPage: '/linanJourney/journeyAnnouncement/getMyJourneyAnnouncementPage', // 获取我的公告分页
+  getJourneyAnnouncementDetail: '/linanJourney/journeyAnnouncement/getJourneyAnnouncementDetail', // 获取公告详情
 
   // 实名认证
   findOrgList: '/organization/orgConsumer/findOrgList', // 获取联盟组织列表
@@ -64,8 +68,17 @@ export const urls = {
   getNoteCommentDetailPage: '/community/communityNoteComment/getNoteCommentDetailPage', // 分页获取笔记评论详情
 
   // 个人信息
+  uploadFile: '/file/fileUpload/uploadMaterial', //  上传文件
   uploadAvatar: '/file/fileUpload/uploadAvatar', //  上传头像
   getMemberPersonalInfo: '/crm/member/getMemberPersonalInfo', //  获取会员个人信息
   modifyMemberPersonalInfo: '/crm/member/modifyMemberPersonalInfo', //  编辑会员个人信息
+
+  // 组织生活记录
+  getJourneyItinerarySignInById: '/linanJourney/journeySignInRecord/getJourneyItinerarySignInById', // 根据行程单id获取行程单打卡信息
+  createJourneyLifeDocumentary: '/linanJourney/journeyLifeDocumentary/createJourneyLifeDocumentary', // 创建生活纪实
+  getJourneyLifeDocumentaryByItineraryId: '/linanJourney/journeyLifeDocumentary/getJourneyLifeDocumentaryByItineraryId', // 根据行程单id获取生活纪实
+  modifyJourneyLifeDocumentary: '/linanJourney/journeyLifeDocumentary/modifyJourneyLifeDocumentary', // 修改生活纪实
+  removeJourneyLifeDocumentary: '/linanJourney/journeyLifeDocumentary/removeJourneyLifeDocumentary', // 删除生活纪实
+
 
 }

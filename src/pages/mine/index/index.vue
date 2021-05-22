@@ -21,8 +21,9 @@
           </div>
         </div>
 
-        <div class="row color-666 ft40">
-          <div class="relative badge ft22 mr48">
+        <div class="flex color-666 ft40">
+          <div class="relative badge ft22 mr48"
+               @click="onOtherPage('message')">
             <u-badge type="error"
                      :is-center="true"
                      size="mini"
@@ -30,17 +31,22 @@
             <SvgIcon icon="icon_dibudaohanglan-"
                      class="ft40"></SvgIcon>
           </div>
-          <SvgIcon icon="icon_shezhi"></SvgIcon>
+          <div @click="onOtherPage('setting')"
+               style="display:inherit">
+            <SvgIcon icon="icon_shezhi"></SvgIcon>
+          </div>
         </div>
       </div>
 
       <div class="count-wrap between-row">
-        <div class="item center column">
+        <div class="item center column"
+             @click="onOtherPage('hearts')">
           <div class="count ft34 bold">{{userInfo.redHeartBalance}}</div>
           <div class="count ft24 color-666 mt12">我的红心</div>
         </div>
 
-        <div class="item center column">
+        <div class="item center column"
+             @click="onOtherPage('activity')">
           <div class="count ft34 bold">{{userInfo.activeQuantity}}</div>
           <div class="count ft24 color-666 mt12">我的活动</div>
         </div>
@@ -68,6 +74,12 @@
 
 <script>
 import MyJourneyItem from '@/pages/mine/components/MyJourneyItem'
+const pageUrlMap = Object.freeze(new Map([
+  ['message', '/pages/mine/notification/index'],
+  ['setting', '/pages/mine/personal-settings/index'],
+  ['hearts', '/pages/mine/my-hearts/index'],
+  ['activity', '/pages/mine/my-activity/index']
+]))
 export default {
   name: 'index',
   methods: {
@@ -84,6 +96,11 @@ export default {
         if (res.isError) return
         this.journeies = res.content.items
       })
+    },
+    // 跳转其他页面
+    onOtherPage (type) {
+      const url = pageUrlMap.get(type)
+      uni.navigateTo({ url })
     }
   },
   components: { MyJourneyItem },
@@ -104,7 +121,7 @@ export default {
 <style lang='scss' scoped>
 .tabbar-mine {
   .info-wrap {
-    border-bottom: 20rpx solid #eaeaea;
+    border-bottom: 20rpx solid #f7f7f7;
     padding: 40rpx 32rpx;
     .top-info {
       img {

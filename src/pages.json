@@ -124,6 +124,18 @@
 			}
 		},
 		{
+			"path": "pages/mine/notification/index",
+			"style": {
+				"navigationBarTitleText": "我的消息"
+			}
+		},
+		{
+			"path": "pages/mine/notification/announcementDetail",
+			"style": {
+				"navigationBarTitleText": "公告详情"
+			}
+		},
+		{
 			"path": "pages/mine/real-name/index",
 			"style": {
 				"navigationBarTitleText": "实名认证"
@@ -157,6 +169,18 @@
 			"path": "pages/mine/personal-settings/EditNick",
 			"style": {
 				"navigationBarTitleText": "修改昵称"
+			}
+		},
+		{
+			"path": "pages/mine/org-life-record/index",
+			"style": {
+				"navigationBarTitleText": "填写组织生活记录"
+			}
+		},
+		{
+			"path": "pages/mine/org-life-record/Detail",
+			"style": {
+				"navigationBarTitleText": "组织生活记录"
 			}
 		},
 		{
