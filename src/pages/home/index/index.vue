@@ -122,7 +122,10 @@ export default {
     MescrollUni
   },
   onLoad (option) {
-    if (option.masterOrgId) uni.setStorageSync('masterOrgId', option.masterOrgId)
+    if (option.masterOrgId) {
+      uni.setStorageSync('masterOrgId', option.masterOrgId)
+      uni.setStorageSync('orgId', option.masterOrgId)
+    }
   },
   mixins: [MescrollMixin],
 }
