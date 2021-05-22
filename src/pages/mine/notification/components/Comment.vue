@@ -1,5 +1,6 @@
 <template>
   <view class='comment-wrap'>
+    <view class="dividing-line"></view>
     <scroll-view v-if="listData.length > 0"
                  :scroll-y="true"
                  class="list">
@@ -40,6 +41,11 @@ export default {
 .comment-wrap {
   color: #333;
   height: 100%;
+  .dividing-line {
+    width: 100%;
+    height: 20rpx;
+    background: #f7f7f7;
+  }
   .list {
     box-sizing: border-box;
     height: 100%;

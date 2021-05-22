@@ -73,7 +73,7 @@ export function getCommunityNoteCommentIsNewMassage (params) { // 未读评论�
   })
 }
 
-export function getCommunityLikeIsNewMassage (params) { // 获取未读点赞点赞
+export function getCommunityLikeIsNewMassage (params) { // 获取未读点赞
   return request({
     url: urls.getCommunityLikeIsNewMassage,
     data: {

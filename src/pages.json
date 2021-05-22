@@ -112,6 +112,12 @@
 			}
 		},
 		{
+			"path": "pages/mine/notification/announcementDetail",
+			"style": {
+				"navigationBarTitleText": "公告详情"
+			}
+		},
+		{
 			"path": "pages/mine/real-name/index",
 			"style": {
 				"navigationBarTitleText": "实名认证"

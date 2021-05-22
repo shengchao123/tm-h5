@@ -1,12 +1,12 @@
 <template>
-  <view class='list-item-wrap between-row center-align pt28 pb28'>
+  <view class='list-item-wrap between-row center-align pt28 pb28'
+        @click="onNoteDetail">
     <view class="flex flex1 mr24">
-      <view class="head-img mr24 mt4"
-            @click="onPersonalCenter">
+      <view class="head-img mr24 mt4">
         <image style="width: 100%; height: 100%"
-               :src="avatarUrl(itemData.avatar)"></image>
+               :src="$avatarUrl(itemData.avatar)"></image>
       </view>
-      <view @click="onNoteDetail">
+      <view>
         <view>
           <text class="ft28 mr24 medium">{{itemData.nick}}</text>
           <text v-if="type === '03'"
@@ -26,71 +26,23 @@
       </view>
     </view>
     <view v-if="type === '01' || type === '03'"
-          class="cover-img"
-          @click="onNoteDetail">
+          class="cover-img">
       <image mode="aspectFill"
              style="width: 100%; height: 100%"
-             :src="$imgUrlDeal(itemData.firstUrl)"></image>
-    </view>
-    <view v-if="type === '02'"
-          class="follow-btn">
-      <view v-if="itemData.isAttention"
-            class="cancel-btn center-flex"
-            @click="cancelAttentionUser">
-        <text class="ft24">相互关注</text>
-      </view>
-      <view v-else
-            class="primary-btn center-flex"
-            @click="attentionUser">
-        <text class="ft24 white-color">关注</text>
-      </view>
+             :src="$fileHost + itemData.firstUrl"></image>
     </view>
   </view>
 </template>
 <script>
-import { avatarUrl } from '@/utils/tools'
 
 export default {
   methods: {
     onNoteDetail () {
       const { communityNoteId } = this.itemData
       uni.navigateTo({
-        url: `/pagesDiscover/note-detail/index?communityNoteId=${communityNoteId}`
+        url: `/pages/league-interact/note-detail/index?communityNoteId=${communityNoteId}`
       })
     },
-    onPersonalCenter () {
-      const { communityMemberId } = this.itemData
-      uni.navigateTo({
-        url: `/pagesDiscover/personalCenter/index?id=${communityMemberId}`
-      })
-    },
-    attentionUser () {
-      const { communityMemberId } = this.itemData
-      const params = {
-        communityMemberId: communityMemberId
-      }
-      this.$api.attentionUser(params).then(res => {
-        if (res.isError) return this.$msg(res.message)
-        const itemData = this.itemData
-        const itemIndex = this.itemIndex
-        itemData[this.itemIndex].isAttention = true
-        this.$emit('updateListData', itemIndex, itemData)
-      })
-    },
-    cancelAttentionUser () {
-      const { communityMemberId } = this.itemData
-      const params = {
-        communityMemberId: communityMemberId
-      }
-      this.$api.cancelAttentionUser(params).then(res => {
-        if (res.isError) return this.$msg(res.message)
-        const itemData = this.itemData
-        const itemIndex = this.itemIndex
-        itemData[this.itemIndex].isAttention = false
-        this.$emit('updateListData', itemIndex, itemData)
-      })
-    },
-    avatarUrl
   },
   props: {
     type: String,

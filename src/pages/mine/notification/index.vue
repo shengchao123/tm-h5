@@ -7,14 +7,13 @@
             :key="index"
             @click="tabClick(index)">
         <text class="ft28 color-666"
-              :class="tabCurrentIndex === index && 'primary-color'">
+              :class="tabCurrentIndex === index && 'primary-color bold'">
           {{item.name}}{{item.count ? `(${item.count})` : ''}}
         </text>
       </view>
       <view class="line"
             :style="lineStyle"></view>
     </view>
-    <view class="dividing-line"></view>
     <swiper :current="tabCurrentIndex"
             class="swpier"
             @change="changeSwiper">
@@ -109,7 +108,7 @@ export default {
     }
   },
   onLoad () {
-    this.getCommunityMassageManagement()
+    // this.getCommunityMassageManagement()
   },
   components: { Awesome, Announcement, Comment }
 }

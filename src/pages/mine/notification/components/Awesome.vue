@@ -1,5 +1,6 @@
 <template>
   <view class='awesome-and-collect-wrap'>
+    <view class="dividing-line"></view>
     <scroll-view v-if="listData.length > 0"
                  :scroll-y="true"
                  class="list">
@@ -11,9 +12,9 @@
     <view v-else
           class="empty-page center-align column">
       <image style="width: 332rpx; height: 256rpx"
-             :src="imgHost + 'user/msg-info/awesome_collect_empty.png'"></image>
+             :src="$imgHost + 'user/msg-info/awesome_collect_empty.png'"></image>
       <view class="mt20">
-        <text class="ft28 color-999">暂无新的点赞和收藏</text>
+        <text class="ft28 color-999">暂无新的点赞</text>
       </view>
     </view>
   </view>
@@ -27,15 +28,10 @@ export default {
       listData: []
     }
   },
-  computed: {
-    imgHost () {
-      return this.$imgHost
-    },
-  },
   created () {
     this.getListData()
   },
-  mixins: [listMixins('getCommunityFavoritesIsNewMassage')],
+  mixins: [listMixins('getCommunityLikeIsNewMassage')],
   components: { ListItem }
 }
 </script>
@@ -43,6 +39,11 @@ export default {
 .awesome-and-collect-wrap {
   color: #333;
   height: 100%;
+  .dividing-line {
+    width: 100%;
+    height: 20rpx;
+    background: #f7f7f7;
+  }
   .list {
     box-sizing: border-box;
     height: 100%;
