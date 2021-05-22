@@ -138,7 +138,7 @@ export default {
     wxShare ({ appId, timestamp, nonceStr, signature }) {
       const { title, desc, link, imgUrl } = this.shareData
       wx.config({
-        debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
         appId, // 必填，公众号的唯一标识
         timestamp, // 必填，生成签名的时间戳
         nonceStr, // 必填，生成签名的随机串
@@ -169,12 +169,12 @@ export default {
           type: 'link', // 分享类型,music、video或link，不填默认为link
           success: function () {
             // 用户确认分享后执行的回调函数
-            alert('111已分享');
+            // alert('111已分享');
 
           },
           cancel: function () {
             // 用户取消分享后执行的回调函数
-            alert('111已取消');
+            // alert('111已取消');
           }
         });
         wx.onMenuShareTimeline({
@@ -185,11 +185,11 @@ export default {
           type: 'link', // 分享类型,music、video或link，不填默认为link
           success: function () {
             // 用户确认分享后执行的回调函数
-            alert('222已分享');
+            // alert('222已分享');
           },
           cancel: function () {
             // 用户取消分享后执行的回调函数
-            alert('222已取消');
+            // alert('222已取消');
           }
         });
 
@@ -220,7 +220,7 @@ export default {
           control: true,//是否控制点击事件，true 控制，false 不控制， 默认false
           text: '...',//控制显示文本，空字符串表示显示默认文本
           onSuccess: function (result) {
-            console.log(666, result)
+            // console.log(666, result)
             //如果control为true，则onSuccess将在发生按钮点击事件被回调
             dd.biz.util.share({
               type: 0, //分享类型，0:全部组件 默认； 1:只能分享到钉钉；2:不能分享，只有刷新按钮
