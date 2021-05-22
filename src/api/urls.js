@@ -46,8 +46,17 @@ export const urls = {
   getMyRedHeartRecordPage: '/linanJourney/journeyMemberRedHeartRecordManagement/getMyRedHeartRecordPage', // 获取我的红心值记录分页
 
   // 个人信息
+  uploadFile: '/file/fileUpload/uploadMaterial', //  上传文件
   uploadAvatar: '/file/fileUpload/uploadAvatar', //  上传头像
   getMemberPersonalInfo: '/crm/member/getMemberPersonalInfo', //  获取会员个人信息
   modifyMemberPersonalInfo: '/crm/member/modifyMemberPersonalInfo', //  编辑会员个人信息
+
+  // 组织生活记录
+  getJourneyItinerarySignInById: '/linanJourney/journeySignInRecord/getJourneyItinerarySignInById', // 根据行程单id获取行程单打卡信息
+  createJourneyLifeDocumentary: '/linanJourney/journeyLifeDocumentary/createJourneyLifeDocumentary', // 创建生活纪实
+  getJourneyLifeDocumentaryByItineraryId: '/linanJourney/journeyLifeDocumentary/getJourneyLifeDocumentaryByItineraryId', // 根据行程单id获取生活纪实
+  modifyJourneyLifeDocumentary: '/linanJourney/journeyLifeDocumentary/modifyJourneyLifeDocumentary', // 修改生活纪实
+  removeJourneyLifeDocumentary: '/linanJourney/journeyLifeDocumentary/removeJourneyLifeDocumentary', // 删除生活纪实
+
 
 }

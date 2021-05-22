@@ -99,3 +99,48 @@ export function getJourneyAnnouncementDetail (params) { // 获取公告详情
     }
   })
 }
+
+export function getJourneyItinerarySignInById (params) { // 根据行程单id获取行程单打卡信息 '/linanJourney/journeySignInRecord/getJourneyItinerarySignInById'
+  return request({
+    url: urls.getJourneyItinerarySignInById,
+    data: {
+      ...params
+    }
+  })
+}
+
+export function createJourneyLifeDocumentary (params) { // 创建生活纪实 '/linanJourney/journeyLifeDocumentary/createJourneyLifeDocumentary'
+  return request({
+    url: urls.createJourneyLifeDocumentary,
+    data: {
+      ...params
+    }
+  })
+}
+
+export function getJourneyLifeDocumentaryByItineraryId (params) { // 根据行程单id获取生活纪实 '/linanJourney/journeyLifeDocumentary/getJourneyLifeDocumentaryByItineraryId'
+  return request({
+    url: urls.getJourneyLifeDocumentaryByItineraryId,
+    data: {
+      ...params
+    }
+  })
+}
+
+export function modifyJourneyLifeDocumentary (params) { // 修改生活纪实 '/linanJourney/journeyLifeDocumentary/modifyJourneyLifeDocumentary'
+  return request({
+    url: urls.modifyJourneyLifeDocumentary,
+    data: {
+      ...params
+    }
+  })
+}
+
+export function removeJourneyLifeDocumentary (params) { // 删除生活纪实 '/linanJourney/journeyLifeDocumentary/removeJourneyLifeDocumentary'
+  return request({
+    url: urls.removeJourneyLifeDocumentary,
+    data: {
+      ...params
+    }
+  })
+}
