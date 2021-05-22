@@ -1,7 +1,7 @@
 <template>
   <div class='journey-item-wrap bb mb24'>
     <div class="between-row"
-         @click="onJourney">
+         @click="onOtherPage('detail')">
       <div class="date center column">
         <div class="ft28 bold">{{md}}</div>
         <div class="ft22 color-666 mt8">{{year}}</div>
@@ -24,23 +24,41 @@
 
     <div class="buttons ft24 center-align">
       <div class="btn"
-           v-if="item.hasLifeRecord">查看组织生活记录</div>
+           v-if="item.hasLifeRecord"
+           @click="onOtherPage('lifeRecord')">查看组织生活记录</div>
       <div class="primary-btn"
+           @click="onOtherPage('writeLife')"
            v-else>填写组织生活记录</div>
 
-      <div class="btn">打卡记录</div>
-      <div class="btn">评价</div>
+      <div class="btn"
+           @click="onOtherPage('clock')">打卡记录</div>
+      <div class="btn"
+           @click="onOtherPage('evaluation')">评价</div>
     </div>
 
   </div>
 </template>
 
 <script>
+const pageUrlMap = Object.freeze(new Map([
+  ['detail', '/pages/home/stroke-order/detail?'],
+  ['writeLife', '/pages/mine/org-life-record/index?'],
+  ['lifeRecord', '/pages/mine/org-life-record/Detail?'],
+  ['clock', 'pages/mine/card-record/index?'],
+  ['evaluation', '/pages/home/evaluation/index?']
+]))
 export default {
   name: 'MyJourneyItem',
   methods: {
-    onJourney () {
-
+    // 跳转其他页面
+    onOtherPage (type) {
+      const { id, name } = this.item
+      let pageParams = `id=${id}`
+      if (type === 'writeLife' || type === 'lifeRecord') {
+        pageParams = pageParams + `&name=${name}`
+      }
+      const url = pageUrlMap.get(type)
+      uni.navigateTo({ url: `${url}${pageParams}` })
     }
   },
   data () {
