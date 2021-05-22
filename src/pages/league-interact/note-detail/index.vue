@@ -67,7 +67,7 @@
       <input ref="input"
              class="input ft28 pl20"
              v-model="content"
-             placeholder="写评论"
+             placeholder="随便说点什么～"
              :focus="isFocus"
              :adjust-position="true"
              :cursor-spacing="15"
@@ -77,22 +77,21 @@
              type="text" />
       <view class="tip-text ft30 flex">
         <view class="icon-item">
-          <text @click="onShowShareDialog"
-                class="iconfont icon_zhuanfa"></text>
+          <view @click="onShowShareDialog">
+            <svg-icon icon="icon_zhuanfa"></svg-icon>
+          </view>
         </view>
         <view class="icon-item relative"
               @click="changeStatus('isLike')">
-          <!-- <get-phone-button></get-phone-button> -->
-          <text :class="['iconfont', detailInfo.isLike ? 'icon_zan primary-color' : 'icon_zankong']"></text>
+          <svg-icon :icon="detailInfo.isLike ? 'icon_shoucang primary-color' : 'icon_weishoucang'"></svg-icon>
           <text class="ft26 pl8 w30 color-666">{{detailInfo.likeQuantity}}</text>
         </view>
-        <view class="icon-item relative"
+        <!-- <view class="icon-item relative"
               @click="changeStatus('isFavorites')">
-          <!-- <get-phone-button></get-phone-button> -->
           <text
                 :class="['iconfont', detailInfo.isFavorites ? 'icon_shoucang primary-color' : 'icon_weishoucang']"></text>
           <text class="ft26 pl8 w30 color-666">{{detailInfo.favoritesQuantity}}</text>
-        </view>
+        </view> -->
       </view>
     </view>
     <!-- 商品列表弹窗 -->
