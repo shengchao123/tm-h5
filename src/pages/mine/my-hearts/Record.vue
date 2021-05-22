@@ -80,7 +80,7 @@ export default {
       isEmpty: false,
       empty: {
         url: '../../../static/hearts/empty.png',
-        msg: '暂无我的红心记录'
+        msg: '暂无内容'
       },
     }
   },

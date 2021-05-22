@@ -122,6 +122,12 @@ export function avatarUrl (url) {
   return url.includes('http://') || url.includes('https://') ? url : fileHost + url
 }
 
+// 网络图片和阿里云素材库判断
+export function imgUrlDeal (url) {
+  if (!url) return imgHost + 'home/img_placeholder.png'
+  return url.includes('http://') || url.includes('https://') ? url : fileHost + url
+}
+
 export function replaceString (any, keyValues) {
   let _any = JSON.stringify(any)
   keyValues.forEach(item => {
