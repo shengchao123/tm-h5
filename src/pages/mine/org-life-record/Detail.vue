@@ -63,17 +63,20 @@
              :cancel-style="maskCancelStyle"
              :confirm-style="maskConfirmStyle"
              @confirm="onDelete"></u-modal>
+    <share-dialog ref="shareDialog"
+                  :shareData="shareData"></share-dialog>
   </view>
 </template>
 
 <script>
+import ShareDialog from '../../components/ShareDialog.vue'
 import LineClock from './LineClock.vue'
 export default {
   name: 'Detail',
   methods: {
     // 分享
     onShare () {
-
+      this.$refs.shareDialog.show()
     },
     // 行程名称跳转
     onJourneyItinerary (type) {
@@ -100,17 +103,32 @@ export default {
         }, 500)
       })
     },
+    getShareData () {
+      const { journeyItineraryName, activityExperience } = this.lifeData
+      this.shareData = {
+        link: window.location.href,
+        title: journeyItineraryName,
+        desc: activityExperience,
+        imgUrl: ''
+      }
+    },
     // 根据行程单id获取生活纪实
-    getJourneyLifeDocumentaryByItineraryId (journeyItineraryId) {
-      this.$api.getJourneyLifeDocumentaryByItineraryId({ journeyItineraryId }).then(res => {
+    getJourneyLifeDocumentaryByItineraryId () {
+      const id = this.journeyItineraryId
+      if (!id) return
+      const params = {
+        journeyItineraryId: id
+      }
+      this.$api.getJourneyLifeDocumentaryByItineraryId(params).then(res => {
         if (res.isError) return this.$msg(res.message)
         this.lifeData = res.content
+        this.getShareData()
       })
     }
   },
   data () {
     return {
-      journeyItineraryId: '',
+      journeyItineraryId: null,
       lifeInfoProp: Object.freeze([
         {
           prop: 'journeyItineraryName',
@@ -126,11 +144,13 @@ export default {
         }
       ]),
       lifeData: {},
-      isDelShow: false
+      isDelShow: false,
+      shareData: {}
     }
   },
   onShow () {
-    this.getJourneyLifeDocumentaryByItineraryId(this.journeyItineraryId)
+    if (this.$notMember()) return this.$goLogin()
+    this.getJourneyLifeDocumentaryByItineraryId()
   },
   onLoad (option) {
     this.journeyItineraryId = option.id
@@ -182,9 +202,10 @@ export default {
       return temStyle
     }
   },
-  components: { LineClock },
+  components: { LineClock, ShareDialog },
 }
 </script>
+
 
 <style lang='scss' scoped>
 page {

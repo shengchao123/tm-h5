@@ -90,17 +90,21 @@ export default {
     // 绑定会员手机号
     bindPhone () {
       const params = {
-        ...this.submitData
+        ...this.submitData,
+        // TODO: 老王说需要thirdUserId参数
+       thirdUserId: uni.getStorageSync('thirdUserId')
       }
       this.$api.bindPhone(params).then(res => {
         if (res.isError) {
-          if (res.subCode === 'ERROR') return this.$msg('验证码不正确')
+          if (res.subCode === 'ERROR') this.$msg('验证码不正确')
           return
         }
         saveLoginInfo(res.content)
         uni.setStorageSync('status', 3)
         this.$msg('登录成功')
-        uni.navigateBack()
+        setTimeout(() => {
+          uni.navigateBack()
+        }, 900)
       })
     },
     // 发送验证码

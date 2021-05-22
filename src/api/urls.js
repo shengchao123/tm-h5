@@ -8,6 +8,7 @@ export const urls = {
   getUserInfoAndToken: '/third/authorization/getUserInfoAndToken', // 接受微信公众号授权后的code获取thirdUserId及登陆
   getMemberLoginInfo: '/crm/member/getMemberLoginInfo', // 获取三方用户信息
   bindPhone: '/crm/member/bindPhone', // 获取三方用户信息
+  getJSConfig: '/third/authorization/getJSConfig',
 
   // 初心之旅
   getRecommendJourneyLineList: '/linanJourney/journeyLine/getRecommendJourneyLineList', // 推荐路线
@@ -22,9 +23,21 @@ export const urls = {
   removeJourneyItinerary: '/linanJourney/journeyItinerary/removeJourneyItinerary', // 删除行程单
   signUpJourneyItinerary: '/linanJourney/journeyItinerary/signUpJourneyItinerary', // 报名行程单
   cancelSignUpJourneyItinerary: '/linanJourney/journeyItinerary/cancelSignUpJourneyItinerary', // 取消报名行程单
+  getJourneyActivityList: '/linanJourney/journeyActivity/getJourneyActivityList',//获取活动列表
+
+  // 行程评价管理
+  createItineraryEvaluation: '/linanJourney/journeyItineraryEvaluation/createItineraryEvaluation',//新增行程评价
+  getItineraryEvaluationInfoById: '/linanJourney/journeyItineraryEvaluation/getItineraryEvaluationInfoById',//根据笔记id查询行程评价详细信息
+  modifyItineraryEvaluation: '/linanJourney/journeyItineraryEvaluation/modifyItineraryEvaluation',//修改行程评价
+
+  //发帖
+  createCommunityNote: '/community/communityNote/createCommunityNote',//新增笔记
+  getCommunityNoteInfoById: '/community/communityNote/getCommunityNoteInfoById',//根据笔记id查询笔记详细信息
+  modifyCommunityNote: '/community/communityNote/modifyCommunityNote',//修改笔记
 
   // 评价详情
   getItineraryEvaluationInfoById: '/linanJourney/journeyItineraryEvaluation/getItineraryEvaluationInfoById', // 根据笔记id查询行程评价详细信息
+  getItineraryEvaluationPage: '/linanJourney/journeyItineraryEvaluation/getItineraryEvaluationPage', // 分页查询行程评价信息
 
   // 活动
   getJourneyActivityPage: '/linanJourney/journeyActivity/getJourneyActivityPage', // 获取活动分页
