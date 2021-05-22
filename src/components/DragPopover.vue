@@ -36,6 +36,7 @@ export default {
       if (_clientY <= minTop || _clientY >= + this.maxTop) return
       this.getContentHeight()
       this.top = _clientY + 'vh'
+      this.$emit('dragTopChange', _touch.clientY)
     },
     getContentHeight () {
       const _rect = this.$refs.wrap.getBoundingClientRect()

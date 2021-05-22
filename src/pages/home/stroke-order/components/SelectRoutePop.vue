@@ -6,9 +6,11 @@
     <view class="popup">
       <view class="tc title">
         <text class="ft34 medium">选择行程线路</text>
-        <svg-icon icon="icon_cha"
-                  class="color-999 ft24 close"
-                  @click="hide"></svg-icon>
+       <view @click="hide">
+          <svg-icon icon="icon_cha"
+                  class="color-999 ft24 close">
+          </svg-icon>
+       </view>
       </view>
       <scroll-view class="list pl30 pr30"
                    scroll-y>

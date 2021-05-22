@@ -105,3 +105,66 @@ export function cancelSignUpJourneyItinerary (params) { // 取消报名行程单
     }
   })
 }
+
+export function createItineraryEvaluation (params) { // 新增行程评价
+  return request({
+    url: urls.createItineraryEvaluation,
+    data: {
+      ...params
+    }
+  })
+}
+
+export function getItineraryEvaluationInfoById (params) { // 根据笔记id查询行程评价详细信息
+  return request({
+    url: urls.getItineraryEvaluationInfoById,
+    data: {
+      ...params
+    }
+  })
+}
+
+export function modifyItineraryEvaluation (params) { // 修改行程评价
+  return request({
+    url: urls.modifyItineraryEvaluation,
+    data: {
+      ...params
+    }
+  })
+}
+
+export function createCommunityNote (params) { // 新增笔记
+  return request({
+    url: urls.createCommunityNote,
+    data: {
+      ...params
+    }
+  })
+}
+
+export function getCommunityNoteInfoById (params) { // 根据笔记id查询笔记详细信息
+  return request({
+    url: urls.getCommunityNoteInfoById,
+    data: {
+      ...params
+    }
+  })
+}
+
+export function modifyCommunityNote (params) { // 修改笔记
+  return request({
+    url: urls.modifyCommunityNote,
+    data: {
+      ...params
+    }
+  })
+}
+
+export function getJourneyActivityList (params) { // 获取活动列表
+  return request({
+    url: urls.getJourneyActivityList,
+    data: {
+      ...params
+    }
+  })
+}
