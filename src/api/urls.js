@@ -22,6 +22,7 @@ export const urls = {
   removeJourneyItinerary: '/linanJourney/journeyItinerary/removeJourneyItinerary', // 删除行程单
   signUpJourneyItinerary: '/linanJourney/journeyItinerary/signUpJourneyItinerary', // 报名行程单
   cancelSignUpJourneyItinerary: '/linanJourney/journeyItinerary/cancelSignUpJourneyItinerary', // 取消报名行程单
+  getJourneyActivityList:'/linanJourney/journeyActivity/getJourneyActivityList',//获取活动列表
 
   // 行程评价管理
   createItineraryEvaluation:'/linanJourney/journeyItineraryEvaluation/createItineraryEvaluation',//新增行程评价

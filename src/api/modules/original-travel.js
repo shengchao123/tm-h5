@@ -159,3 +159,12 @@ export function modifyCommunityNote (params) { // 修改笔记
     }
   })
 }
+
+export function getJourneyActivityList (params) { // 获取活动列表
+  return request({
+    url: urls.getJourneyActivityList,
+    data: {
+      ...params
+    }
+  })
+}

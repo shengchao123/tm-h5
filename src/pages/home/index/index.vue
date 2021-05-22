@@ -16,10 +16,12 @@
               创建我的行程
             </div>
           </div>
+          <activity-swiper></activity-swiper>
         </div>
       </div>
     </DragPopover>
-<btn-dialog></btn-dialog>
+
+  <btn-dialog></btn-dialog>
   </div>
 </template>
 
@@ -29,6 +31,7 @@ import DragPopover from "@/components/DragPopover";
 import PathsList from "./components/PathsList";
 import ScenicSpot from "./components/ScenicSpot";
 import BtnDialog from './components/BtnDialog'
+import ActivitySwiper from './components/ActivitySwiper'
 export default {
   name: "index",
   methods: {
@@ -68,7 +71,8 @@ export default {
     DragPopover,
     PathsList,
     ScenicSpot,
-    BtnDialog
+    BtnDialog,
+    ActivitySwiper
   },
   onLoad(option) {
     if (option.masterOrgId)
