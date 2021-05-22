@@ -28,6 +28,10 @@ export const urls = {
   // 我的页面
   getMemberPersonalInfo: '/crm/member/getMemberPersonalInfo', // 我的信息获取
   getMyJourneyItineraryPage: '/linanJourney/journeyItinerary/getMyJourneyItineraryPage', // 我的行程单
+  getCommunityNoteCommentIsNewMassage: '/community/communityNoteComment/getCommunityNoteCommentIsNewMassage', // 未读评论消息提醒
+  getCommunityLikeIsNewMassage: '/community/communityLike/getCommunityLikeIsNewMassage', // 获取未读点赞点赞
+  getMyJourneyAnnouncementPage: '/linanJourney/journeyAnnouncement/getMyJourneyAnnouncementPage', // 获取我的公告分页
+  getJourneyAnnouncementDetail: '/linanJourney/journeyAnnouncement/getJourneyAnnouncementDetail', // 获取公告详情
 
   // 实名认证
   findOrgList: '/organization/orgConsumer/findOrgList', // 获取联盟组织列表

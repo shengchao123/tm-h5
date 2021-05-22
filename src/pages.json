@@ -94,6 +94,12 @@
 			}
 		},
 		{
+			"path": "pages/mine/notification/index",
+			"style": {
+				"navigationBarTitleText": "我的消息"
+			}
+		},
+		{
 			"path": "pages/mine/real-name/index",
 			"style": {
 				"navigationBarTitleText": "实名认证"
