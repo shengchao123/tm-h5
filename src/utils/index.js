@@ -12,4 +12,5 @@ Vue.prototype.$goLogin = goLogin
 Vue.prototype.$imgUrlDeal = imgUrlDeal
 Vue.prototype.$avatarUrl = avatarUrl
 Vue.prototype.$windowWidth = uni.getSystemInfoSync().windowWidth
+Vue.prototype.$windowHeight = uni.getSystemInfoSync().windowHeight
 

@@ -10,14 +10,17 @@
                       @change="subsectionChange"></u-subsection>
       </div>
     </div>
-    <forum v-if="subsection.curNow === 0"></forum>
-    <activity v-else
-              class="activity-wrap"
-              :isEmpty="isEmpty"
-              :dataList="dataList"
-              :current.sync="current"
-              :height="100"
-              @getListData="getListData"></activity>
+    <view>
+      <forum v-if="subsection.curNow === 0"></forum>
+      <activity ref="activity"
+                v-else
+                class="activity-wrap"
+                :isEmpty="isEmpty"
+                :dataList="dataList"
+                :current.sync="current"
+                :height="100"
+                @getListData="getListData"></activity>
+    </view>
   </div>
 </template>
 <script>
@@ -34,14 +37,14 @@ export default {
       }
       this.$api.getJourneyActivityPage(params).then(res => {
         if (res.isError || !res.content) {
-          // this.mescroll.endBySize(0, 0)
+          this.$refs.activity.mescroll.endBySize(0, 0)
           this.dataList = []
           this.isEmpty = true
           return
         }
         const { items, count } = res.content
-        // this.mescroll.endBySize(items.length, count)
-        if (params.pageNumber === 1) this.dataList = items
+        this.$refs.activity.mescroll.endBySize(items.length, count)
+        if (params.pageNumber === 1) this.dataList = []
         this.dataList = this.dataList.concat(items)
         this.isEmpty = this.$isEmpty(this.dataList)
       })
@@ -84,20 +87,19 @@ export default {
 <style>
 page {
   background: #f7f7f7;
-  /* display: flex; */
-  height: 100%;
 }
 </style>
 <style lang='scss' scoped>
 .league-interact-wrap {
   .tabs {
+    width: 100%;
+    position: fixed;
+    z-index: 9;
+    top: 0;
     height: 112rpx;
     .top-tabs {
       width: 272rpx;
     }
-  }
-  .activity-wrap {
-    margin-top: -30rpx;
   }
 }
 </style>

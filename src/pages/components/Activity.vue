@@ -12,26 +12,42 @@
               @change="tabChange"></u-tabs>
     </div>
     <view v-if="isEmpty"
-          class="bg-white">
+          :style="{
+            height: ($windowHeight - 100) + 'px',
+            top: (82 + height) + 'rpx'
+          }"
+          class="bg-white relative">
       <page-empty :imgUrl="require('@/static/empty/no-activity.png')"
                   message="暂无内容"></page-empty>
     </view>
-    <view v-else
-          class="mt20">
-      <view v-for="(item,index) in dataList"
-            :key="index"
-            @click="onToDetail(item)">
-        <item :item="item"></item>
+    <mescroll-uni v-else
+                  ref="mescrollRef"
+                  :top="82 + height"
+                  @init="mescrollInit"
+                  @down="downCallback"
+                  :up="upOption"
+                  @up="upCallback">
+      <view class="pt20">
+        <view v-for="(item,index) in dataList"
+              :key="index"
+              @click="onToDetail(item)">
+          <item :item="item"></item>
+        </view>
       </view>
-    </view>
+    </mescroll-uni>
   </div>
 </template>
 <script>
+import MescrollMixin from "@/components/mescroll-uni/mescroll-mixins.js";
+import MescrollUni from "@/components/mescroll-uni/mescroll-uni.vue";
 import pageEmpty from 'pages/components/PageEmpty'
 import Item from './Item.vue'
 export default {
   name: 'Activity',
   methods: {
+    upCallback (page) {
+      this.$emit('getListData', page)
+    },
     onToDetail (item) {
       uni.navigateTo({
         url: `/pages/league-interact/detail/index?id=${item.id}`
@@ -60,6 +76,13 @@ export default {
   },
   data () {
     return {
+      upOption: {
+        empty: {
+          use: false
+        },
+        textNoMore: "没有更多数据",
+        noMoreSize: 10, // 配置列表的总数量要大于等于10条才显示'-- END --'的提示
+      },
       tab: {
         list: [{
           name: '全部'
@@ -76,8 +99,18 @@ export default {
   components: {
     Item,
     pageEmpty,
-    // MescrollUni,
+    MescrollUni,
   },
-  // mixins: [MescrollMixin],
+  mixins: [MescrollMixin],
 }
 </script>
+<style lang="scss" scoped>
+.activity-wrap {
+  .box {
+    width: 100%;
+    position: fixed;
+    top: 82rpx;
+    z-index: 8;
+  }
+}
+</style>
