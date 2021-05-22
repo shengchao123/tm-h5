@@ -11,4 +11,13 @@ export function getItineraryEvaluationInfoById (params) {
   })
 }
 
+export function getItineraryEvaluationPage (params) {
+  return request({
+    url: urls.getItineraryEvaluationPage,
+    needlessToken: true,
+    data: {
+      ...params
+    }
+  })
+}
 
