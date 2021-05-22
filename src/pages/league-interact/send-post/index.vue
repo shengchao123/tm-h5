@@ -23,34 +23,29 @@
           :imageData.sync="evaluate.attachmentDTOList"
         ></upload-images>
       </view>
-      <view class="trips between-row" @click="changeEvaluate">
-        <view class="center-align">
-          <svg-icon icon="icon_didian" class="ft30 mr16 color-666"></svg-icon>
-          <view class="ft28">选择行程</view>
-        </view>
-        <view class="center-align">
-          <view class="ft24 mr8 color-999">{{
-            evaluateData.name ? evaluateData.name : "未选择"
-          }}</view>
-          <svg-icon icon="icon_xiangyoujiantou" class="ft20"></svg-icon>
-        </view>
-      </view>
-      <select-evaluate-pop
-        ref="selectRoutePop"
-        :selectedId.sync="evaluate.journeyItineraryId"
-        @onEvaluateItem="getEvaluateItem"
-      ></select-evaluate-pop>
     </view>
     <view class="bt">
       <button class="submit tc ft32 bold" :class="isSubmit" @click="submit">
         提交
       </button>
     </view>
+    <u-popup
+      mode="center"
+      v-model="show"
+      :mask-close-able="false"
+      border-radius="24"
+    >
+      <view class="tc pop-box">
+        <svg-icon icon="icon_chenggongFill" class="ft88 mt64 icon-style"></svg-icon>
+        <view class="ft32 bold mt32">提交成功，等待审核</view>
+        <view class="ft26 color-999 mt16">审核后，帖子内容将显示在论坛</view>
+        <view class="know-btn ft28 color-666" @click="onKnow">我知道啦</view>
+      </view>
+    </u-popup>
   </view>
 </template>
 <script>
 import UploadImages from "@/components/upload-images";
-import SelectEvaluatePop from "./components/SelectEvaluatePop.vue";
 
 export default {
   data() {
@@ -59,70 +54,51 @@ export default {
         title: "",
         content: "",
         attachmentDTOList: [],
-        journeyItineraryId: "",
       },
-      evaluateData: {
-        id: "",
-        name: "",
-      },
-      communityNoteId:''
+      communityNoteId: "",
+      show: false,
     };
   },
   methods: {
     // 提交按钮
     submit() {
-      const {
-        title,
-        content,
-        attachmentDTOList,
-        journeyItineraryId,
-      } = this.evaluate;
-      if (
-        !title ||
-        !content ||
-        !attachmentDTOList.length === 0 ||
-        !journeyItineraryId
-      ) {
+      this.show = true;
+      const { title, content, attachmentDTOList } = this.evaluate;
+      if (!title || !content || !attachmentDTOList.length === 0) {
         return this.$msg("请填写完整信息");
       }
       const params = {
         ...this.evaluate,
       };
-      let apiName = 'createItineraryEvaluation'
-      if(this.communityNoteId){
-        apiName = 'modifyItineraryEvaluation'
+      let apiName = "createCommunityNote";
+      if (this.communityNoteId) {
+        apiName = "modifyCommunityNote";
       }
       this.$api[apiName](params).then((res) => {
         if (res.isError) return this.$msg(res.message);
-        this.$msg("发布成功");
-        uni.navigateBack({ delta: 1 });
+        this.show = true
       });
     },
-    // 选择行程
-    changeEvaluate() {
-      this.$refs.selectRoutePop.show();
-    },
-    // 获取评价详情数据
+    // 获取帖子详情数据
     getEvaluateData(id) {
       const params = {
         communityNoteId: id,
       };
-      this.$api.getItineraryEvaluationInfoById(params).then((res) => {
+      this.$api.getCommunityNoteInfoById(params).then((res) => {
         if (res.isError) return this.$msg(res.message);
         this.evaluate = { ...res.content };
-        this.evaluateData.name = res.content.journeyItineraryName
       });
     },
-    // 获取选择行程数据
-    getEvaluateItem(val) {
-      this.evaluate.journeyItineraryId = val.id
-      this.evaluateData = val;
+    // 我知道了
+    onKnow() {
+      this.show = false;
+      uni.navigateBack({ delta: 1 });
     },
   },
   computed: {
     isSubmit() {
-      const { title, content, attachmentDTOList,journeyItineraryId } = this.evaluate;
-      if (title && content && attachmentDTOList.length > 0 && journeyItineraryId) {
+      const { title, content, attachmentDTOList } = this.evaluate;
+      if (title && content && attachmentDTOList.length > 0) {
         return "back";
       }
       return "";
@@ -130,11 +106,11 @@ export default {
   },
   onLoad(option) {
     if (option.id) {
-      this.communityNoteId = option.id
+      this.communityNoteId = option.id;
       this.getEvaluateData(option.id);
     }
   },
-  components: { UploadImages, SelectEvaluatePop },
+  components: { UploadImages },
 };
 </script>
 <style lang="scss" scoped>
@@ -179,5 +155,30 @@ export default {
     color: #ffffff;
     background: #cccccc;
   }
+}
+.ft88 {
+  font-size: 88rpx;
+}
+.ft26 {
+  font-size: 26rpx;
+}
+.know-btn {
+  width: 240rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  border-radius: 49rpx;
+  border: 1rpx solid #d2d2d2;
+  margin: 0 auto;
+  margin-top: 32rpx;
+}
+.pop-box {
+  width: 540rpx;
+  height: 416rpx;
+  .icon-style{
+    color: #67c23a;
+  }
+}
+.mt64 {
+  margin-top: 64rpx;
 }
 </style>

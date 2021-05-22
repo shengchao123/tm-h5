@@ -23,6 +23,16 @@ export const urls = {
   signUpJourneyItinerary: '/linanJourney/journeyItinerary/signUpJourneyItinerary', // 报名行程单
   cancelSignUpJourneyItinerary: '/linanJourney/journeyItinerary/cancelSignUpJourneyItinerary', // 取消报名行程单
 
+  // 行程评价管理
+  createItineraryEvaluation:'/linanJourney/journeyItineraryEvaluation/createItineraryEvaluation',//新增行程评价
+  getItineraryEvaluationInfoById:'/linanJourney/journeyItineraryEvaluation/getItineraryEvaluationInfoById',//根据笔记id查询行程评价详细信息
+  modifyItineraryEvaluation:'/linanJourney/journeyItineraryEvaluation/modifyItineraryEvaluation',//修改行程评价
+
+  //发帖
+  createCommunityNote:'/community/communityNote/createCommunityNote',//新增笔记
+  getCommunityNoteInfoById:'/community/communityNote/getCommunityNoteInfoById',//根据笔记id查询笔记详细信息
+  modifyCommunityNote:'/community/communityNote/modifyCommunityNote',//修改笔记
+
   // 党建联盟
   getJourneyAllianceInfoList: '/linanJourney/journeyAlliance/getJourneyAllianceInfoList', // 获取联盟列表
   getJourneyAllianceDetailList: '/linanJourney/journeyAlliance/getJourneyAllianceDetailList', // 获取联盟及详情列表

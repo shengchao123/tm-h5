@@ -1,0 +1,147 @@
+<template>
+  <view>
+    <view
+      :class="[
+        'publish white-color bold center-flex tc',
+        isScroll ? 'is-scroll' : '',
+      ]"
+      @click="onPublish"
+      v-if="!isScroll"
+    >
+      <svg-icon icon="icon_fabu" class="ft32"></svg-icon>
+    </view>
+    <view v-else>
+      <u-mask :show="show">
+        <view class="btn-list">
+          <view class="evaluates tc comment-position">
+            <view class="evaluate-btn comment-style" @click="onEvaluate">
+              <svg-icon
+                icon="icon_chuangjianhangcheng"
+                class="ft32 evaluate-icon"
+              ></svg-icon>
+            </view>
+            <view class="white-color ft22 mt12">发布评价</view>
+          </view>
+          <view class="evaluates tc evaluate-position">
+            <view class="evaluate-btn evaluate-style" @click="onTrip">
+              <svg-icon
+                icon="icon_fabupinglun"
+                class="ft32 evaluate-icon"
+              ></svg-icon>
+            </view>
+            <view class="white-color ft22 mt12">创建行程</view>
+          </view>
+          <view
+            class="evaluate-btn white-color tc close-style"
+            @click="hiddenIcon"
+          >
+            <svg-icon icon="icon_fabuguanbi" class="ft28"></svg-icon>
+          </view>
+        </view>
+      </u-mask>
+    </view>
+  </view>
+</template>
+<script>
+export default {
+  data() {
+    return {
+      isScroll: false,
+      show: false,
+    };
+  },
+  methods: {
+    // 发布按钮
+    onPublish() {
+      if (this.$notMember()) return this.$goLogin();
+      this.show = true;
+      this.isScroll = true;
+      console.log(this.show);
+    },
+    // 关闭发布背景
+    hiddenIcon() {
+      this.show = false;
+      this.isScroll = false;
+    },
+    // 跳转评价
+    onEvaluate(){
+      uni.navigateTo({ url: '/pages/home/evaluation/index' })
+    },
+    // 跳转行程
+    onTrip(){
+      uni.navigateTo({ url: '/pages/home/stroke-order/index' })
+    }
+  },
+  onLoad() {
+    uni.$on("discoverBtn", (res) => {
+      this.isScroll = !res;
+    });
+  },
+  beforeDestroy() {
+    uni.$off("discoverBtn");
+  },
+};
+</script>
+<style lang="scss" scoped>
+.publish {
+  position: absolute;
+  right: 0rpx;
+  width: 105rpx;
+  height: 105rpx;
+  border-radius: 50%;
+  background: rgba($color: #ffffff, $alpha: 0.9);
+  box-shadow: 4rpx 6rpx 8rpx 0 rgba(14, 2, 2, 0.25);
+  z-index: 200;
+  background-image: linear-gradient(98deg, #f54400 0%, #ff6630 72%);
+  bottom: 57rpx;
+  font-size: 56rpx;
+  right: 14rpx;
+  // transition: all 0.5s ease-in-out;
+  opacity: 1;
+}
+.is-scroll {
+  transition: all 0.5s ease-in-out;
+  right: -80rpx !important;
+  opacity: 0.4 !important;
+}
+.btn-list {
+  position: fixed;
+  right: 68rpx;
+  bottom: 57rpx;
+}
+.evaluates {
+  position: absolute;
+  right: 72rpx;
+  bottom: 137rpx;
+}
+.evaluate-btn {
+  width: 90rpx; 
+  height: 90rpx;
+  line-height: 90rpx;
+  text-align: center;
+  color: #ffffff;
+  border-radius: 50%;
+}
+.comment-style {
+  background-image: linear-gradient(98deg, #0083f5 0%, #3093ff 72%);
+}
+.comment-position {
+  position: absolute;
+  right: 72rpx;
+  bottom: 290rpx;
+}
+.evaluate-position {
+  position: absolute;
+  right: 135rpx;
+  bottom: 124rpx;
+}
+.evaluate-style {
+  background-image: linear-gradient(98deg, #f54400 0%, #ff6630 72%);
+}
+.close-style {
+  background: rgba($color: #000000, $alpha: 0.8);
+  position: absolute;
+  right: 8rpx;
+  bottom: 165rpx;
+}
+</style>

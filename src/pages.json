@@ -106,6 +106,12 @@
 			}
 		},
 		{
+			"path": "pages/league-interact/send-post/index",
+			"style": {
+				"navigationBarTitleText": "发帖"
+			}
+		},
+		{
 			"path": "pages/mine/index/index",
 			"style": {
 				"navigationBarTitleText": "我的"
