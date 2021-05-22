@@ -64,6 +64,12 @@
 			}
 		},
 		{
+			"path": "pages/home/evaluation/index",
+			"style": {
+				"navigationBarTitleText": "发布评价"
+			}
+		},
+		{
 			"path": "pages/home/evaluate-detail/index",
 			"style": {
 				"navigationBarTitleText": "评价详情"
@@ -106,6 +112,12 @@
 			}
 		},
 		{
+			"path": "pages/league-interact/send-post/index",
+			"style": {
+				"navigationBarTitleText": "发帖"
+			 }
+		},
+		{
 			"path": "pages/league-interact/detail/index",
 			"style": {
 				"navigationBarTitleText": "活动详情"
@@ -133,6 +145,18 @@
 			"path": "pages/mine/notification/announcementDetail",
 			"style": {
 				"navigationBarTitleText": "公告详情"
+			}
+		},
+		{
+			"path": "pages/mine/card-record/index",
+			"style": {
+				"navigationBarTitleText": "打卡记录"
+			}
+		},
+		{
+			"path": "pages/mine/card-record/personnelCard",
+			"style": {
+				"navigationBarTitleText": "人员打卡情况"
 			}
 		},
 		{
