@@ -41,8 +41,7 @@
         <div class="flex1 ft26">{{pointsName}}</div>
       </div>
     </div>
-    <div class="bg-white pl30 pr30 mb20 pt24 pb30 pb38"
-         @click="onJourney">
+    <div class="bg-white pl30 pr30 mb20 pt24 pb30 pb38">
       <div class="center-align mb20">
         <svg-icon icon="icon_zhongdiangongzuo"
                   class="ft32"
