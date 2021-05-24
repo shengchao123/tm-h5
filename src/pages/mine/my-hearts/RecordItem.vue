@@ -5,7 +5,7 @@
       <text class="ft24 opacity-5 mt8">{{timeText}}</text>
     </view>
     <view class="ft28"
-          :class="record.type === '01' ?'color-333':'color-e32417'">{{record.value}}
+          :class="record.type === '01' ?'color-333':'color-e32417'">{{record.value > 0 ?'+':''}}{{record.value}}
     </view>
   </view>
 </template>
