@@ -1,5 +1,6 @@
 <template>
-  <view class="evaluate-detail-wrap">
+  <view v-if="detailInfo"
+        class="evaluate-detail-wrap">
     <!-- 轮播图 -->
     <carousel :imgList="detailInfo.attachments"
               :indicatorDots="true">
@@ -31,18 +32,14 @@
         </view>
         <text class="pl20">{{detailInfo.shareQuantity}}</text>
       </view>
-      <view class="">
-        <svg-icon :icon="detailInfo.isLike ? 'icon_shoucang primary-color' : 'icon_weishoucang'"></svg-icon>
+      <view @click="changeStatus('isLike')">
+        <svg-icon :icon="detailInfo.isLike ? 'icon_shoucang' : 'icon_weishoucang'"
+                  :class="detailInfo.isLike ? 'primary-color' : 'color-999'"></svg-icon>
         <text class="pl20">{{detailInfo.likeQuantity}}</text>
       </view>
     </view>
     <!-- 分享弹窗 -->
     <share-dialog ref="shareDialog"
-                  posterType="note"
-                  shareBtns="wx moments poster"
-                  sharePath="pages/home/evaluate-detail/index"
-                  :posterData="posterData"
-                  :shareParams="shareParams"
                   :shareData="shareData">
     </share-dialog>
   </view>
@@ -53,6 +50,29 @@ import Carousel from '@/pages/components/Carousel.vue'
 export default {
   name: 'index',
   methods: {
+    // 改变状态（关注，点赞，收藏）
+    changeStatus (type) {
+      if (this.$notMember()) return this.$goLogin();
+      const { communityMemberId, communityNoteId } = this.detailInfo
+      const { apiName, msg, countKey, count } = this.statusMap.get(type).get(this.detailInfo[type])
+      const params = {
+        communityMemberId,
+        communityNoteId
+      }
+      this.$api[apiName](params).then(res => {
+        if (res.isError) {
+          this.$msg(res.message)
+          return
+        }
+        this.$msg(msg)
+        // 除了关注，点赞和收藏都需要数量计算
+        if (type !== 'isAttention') {
+          const countNum = this.detailInfo[countKey]
+          this.detailInfo[countKey] = countNum + count
+        }
+        this.detailInfo[type] = !this.detailInfo[type]
+      })
+    },
     onShowShareDialog () {
       this.$refs.shareDialog.show()
     },
@@ -71,9 +91,36 @@ export default {
   },
   data () {
     return {
+      statusMap: Object.freeze(
+        new Map([
+          ['isAttention', new Map([
+            [true, { apiName: 'cancelAttentionUser', msg: '取消关注' }],
+            [false, { apiName: 'attentionUser', msg: '已关注' }]])
+          ],
+          ['isLike', new Map([
+            [true, { apiName: 'cancelCommunityLikeNote', msg: '取消点赞', countKey: 'likeQuantity', count: -1 }],
+            [false, { apiName: 'communityLikeNote', msg: '点赞成功', countKey: 'likeQuantity', count: 1 }]])
+          ],
+          ['isFavorites', new Map([
+            [true, { apiName: 'cancelCommunityFavoritesNote', msg: '取消收藏', countKey: 'favoritesQuantity', count: -1 }],
+            [false, { apiName: 'communityFavoritesNote', msg: '收藏成功', countKey: 'favoritesQuantity', count: 1 }]])
+          ],
+        ])
+      ),
       communityNoteId: '',
       detailInfo: ''
     }
+  },
+  computed: {
+    shareData () {
+      const { title, content, attachments } = this.detailInfo
+      return {
+        title,
+        desc: content,
+        link: window.location.href,
+        imgUrl: this.$isEmpty(attachments) ? '' : this.$sourceUrl(attachments[0]),
+      }
+    },
   },
   created () {
     this.getItineraryEvaluationInfoById()

@@ -102,11 +102,6 @@
     <!-- <specification-select ref="specificationSelect"></specification-select> -->
     <!-- 分享弹窗 -->
     <share-dialog ref="shareDialog"
-                  posterType="note"
-                  shareBtns="wx moments poster"
-                  sharePath="pages/league-interact/note-detail/index"
-                  :posterData="posterData"
-                  :shareParams="shareParams"
                   :shareData="shareData">
     </share-dialog>
   </view>
@@ -150,6 +145,7 @@ export default {
     },
     // 改变状态（关注，点赞，收藏）
     changeStatus (type) {
+      if (this.$notMember()) return this.$goLogin();
       const { communityMemberId, communityNoteId } = this.detailInfo
       const { apiName, msg, countKey, count } = this.statusMap.get(type).get(this.detailInfo[type])
       const params = {
@@ -248,8 +244,9 @@ export default {
       return {
         title,
         desc: content,
-        path: `/pagesDiscover/note-detail/index?communityNoteId=${communityNoteId}&shareId=${this.shareId}`,
-        imageUrl: this.$isEmpty(attachments) ? '' : this.$sourceUrl(attachments[0]),
+        // path: `/pagesDiscover/note-detail/index?communityNoteId=${communityNoteId}&shareId=${this.shareId}`,
+        link: window.location.href,
+        imgUrl: this.$isEmpty(attachments) ? '' : this.$sourceUrl(attachments[0]),
       }
     },
     posterData () {
