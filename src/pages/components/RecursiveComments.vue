@@ -19,7 +19,6 @@
             </view>
           </view>
           <view class="tc relative">
-            <!-- <get-phone-button></get-phone-button> -->
             <view :class="['iconfont ft32 color-999',item.isLike ? 'icon_zan primary-color' : 'icon_zankong']"
                   @click="onLike(item,index)">
             </view>
@@ -46,7 +45,6 @@
             </view>
           </view>
           <view class="tc relative">
-            <!-- <get-phone-button></get-phone-button> -->
             <view :class="['iconfont ft32',chlidren.isLike ? 'icon_zan primary-color' : 'icon_zankong']"
                   @click="onLike(chlidren,idx,2)">
             </view>

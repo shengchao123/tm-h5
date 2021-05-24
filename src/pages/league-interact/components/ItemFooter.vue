@@ -78,7 +78,6 @@ export default {
           link,
           title,
           desc: content,
-          imgUrl: this.$imgHost + 'share.png'
         }
         this.setShareData(shareData)
       })
