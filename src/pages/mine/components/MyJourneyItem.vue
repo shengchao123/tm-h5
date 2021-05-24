@@ -44,7 +44,7 @@ const pageUrlMap = Object.freeze(new Map([
   ['detail', '/pages/home/stroke-order/detail?'],
   ['writeLife', '/pages/mine/org-life-record/index?'],
   ['lifeRecord', '/pages/mine/org-life-record/Detail?'],
-  ['clock', 'pages/mine/card-record/index?'],
+  ['clock', '/pages/mine/card-record/index?'],
   ['evaluation', '/pages/home/evaluation/index?']
 ]))
 export default {
