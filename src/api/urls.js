@@ -13,6 +13,12 @@ export const urls = {
   // 初心之旅
   getRecommendJourneyLineList: '/linanJourney/journeyLine/getRecommendJourneyLineList', // 推荐路线
   getJourneyPointListByJourneyId: '/linanJourney/journeyLine/getJourneyPointListByJourneyId', // 路线点位信息
+  getJourneyPointListByOrgId: '/linanJourney/journeyPoint/getJourneyPointListByOrgId', // 获取点位列表
+  getJourneyPointInfoById: '/linanJourney/journeyPoint/getJourneyPointInfoById', // 根据点位id获取点位信息
+
+  sendVerificationCode: '/crm/member/sendVerificationCode', // 发送验证码
+  getJourneyPointListByRegionsCode: '/linanJourney/journeyPoint/getJourneyPointListByRegionsCode', // 获取点位列表
+  getJourneyRegionsList: '/linanJourney/journeyRegionsManagement/getJourneyRegionsList', //
   getJourneyPointListByRegionsCode: '/linanJourney/journeyPoint/getJourneyPointListByRegionsCode', // 获取点位列表
 
   sendVerificationCode: '/crm/member/sendVerificationCode', // 发送验证码
