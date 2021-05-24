@@ -4,7 +4,7 @@
       <div class="column center-align">
         <div class="line"
              :class="currentIndex === 0 && 'hideLine'"></div>
-        <div class="circle center ft22">{{pointData.index}}</div>
+        <div class="circle center ft22">{{pointData.index + 1}}</div>
         <div class="line"
              :class="currentIndex === lastIndex && 'hideLine'"></div>
       </div>
