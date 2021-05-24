@@ -121,7 +121,7 @@ export default {
     },
     // 获取微信分享配置
     getConfig () {
-      const url = this.shareData.link && this.shareData.link.split("#")[0] // 获取的是当前分享的页面
+      const url = this.shareData.link && this.shareData.link.split("/pages")[0] // 获取的是当前分享的页面
       const params = {
         url
       }
@@ -136,7 +136,8 @@ export default {
       })
     },
     wxShare ({ appId, timestamp, nonceStr, signature }) {
-      const { title, desc, link, imgUrl } = this.shareData
+      const { title, desc, link } = this.shareData
+      const imgUrl = this.$isEmpty(this.shareData.imgUrl) ? this.$imgHost + 'share.png' : this.shareData.imgUrl
       wx.config({
         debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
         appId, // 必填，公众号的唯一标识

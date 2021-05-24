@@ -50,7 +50,7 @@ export default {
     // 去评价详情
     onDetail (item) {
       uni.navigateTo({
-        url: `pages/home/evaluate-detail/index?communityNoteId=${item.communityNoteId}`
+        url: `/pages/home/evaluate-detail/index?communityNoteId=${item.communityNoteId}`
       })
     },
     // 点赞

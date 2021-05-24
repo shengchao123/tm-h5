@@ -20,43 +20,13 @@
           </view>
         </view>
       </view>
-      <!-- 不是自己的笔记才会显示关注按钮 -->
-      <!-- <view v-if="!detailInfo.isAuthor"
-            @click="changeStatus('isAttention')"
-            class="relative"
-            :class="['center-flex',detailInfo.isAttention ? 'have-follow' : 'follow']">
-        <text class="ft24">{{followStatus}}</text>
-      </view>
-      <view v-else
-            class="share-icon center-align"
-            @click="onShowShareDialog('edit')">
-        <text class="normal"></text>
-        <text class="middle"></text>
-        <text class="normal"></text>
-      </view> -->
     </view>
-    <!-- 商品展示 -->
-    <!-- <view class="pl30 pb24"
-          v-if="!$isEmpty(detailInfo.communityNoteGoodsDTOList)">
-      <goods-list-in-note :goodsList="detailInfo.communityNoteGoodsDTOList"></goods-list-in-note>
-    </view> -->
     <!-- 笔记内容 -->
     <view class="pt8 ml30 mr30 note-content">
       <view class="pb32 column">
         <text class="ft36 bold pb16">{{detailInfo.title}}</text>
         <text class="content ft30">{{detailInfo.content}}</text>
       </view>
-      <!-- 标签 -->
-      <!-- <view v-if="!this.$isEmpty(detailInfo.communityTopicDTOList)"
-            class="label-list flex-wrap pb32">
-        <view class="label-list-item mb16 center-flex pl16 pr16"
-              v-for="(item,index) in detailInfo.communityTopicDTOList"
-              :key="index"
-              @click="onGoTopicDetail(item)">
-          <text class="icon center-flex white-color">#</text>
-          <text class="pl8">{{item.communityTopicName}}</text>
-        </view>
-      </view> -->
     </view>
     <!-- 评论 -->
     <view class="comment-list pt24">
@@ -86,35 +56,17 @@
               @click="changeStatus('isLike')">
           <svg-icon :icon="detailInfo.isLike ? 'icon_shoucang' : 'icon_weishoucang'"
                     :class="['iconfont ft32',detailInfo.isLike ? 'primary-color' : 'color-999']"></svg-icon>
-          <!-- <svg-icon :icon="detailInfo.isLike ? 'icon_shoucang primary-color' : 'icon_weishoucang'"></svg-icon> -->
           <text class="ft26 pl8 w30 color-666">{{detailInfo.likeQuantity}}</text>
         </view>
-        <!-- <view class="icon-item relative"
-              @click="changeStatus('isFavorites')">
-          <text
-                :class="['iconfont', detailInfo.isFavorites ? 'icon_shoucang primary-color' : 'icon_weishoucang']"></text>
-          <text class="ft26 pl8 w30 color-666">{{detailInfo.favoritesQuantity}}</text>
-        </view> -->
       </view>
     </view>
-    <!-- 商品列表弹窗 -->
-    <!-- <goods-list-popup ref="goodsListPopup"></goods-list-popup> -->
-    <!-- <specification-select ref="specificationSelect"></specification-select> -->
     <!-- 分享弹窗 -->
     <share-dialog ref="shareDialog"
-                  posterType="note"
-                  shareBtns="wx moments poster"
-                  sharePath="pagesDiscover/note-detail/index"
-                  :posterData="posterData"
-                  :shareParams="shareParams"
                   :shareData="shareData">
     </share-dialog>
   </view>
 </template>
 <script>
-// import GoodsListInNote from '@/pages/discover/index/components/GoodsListInNote/index.vue'
-// import GoodsListPopup from '@/pages/discover/index/components/GoodsListInNote/GoodsListPopup.vue';
-// import SpecificationSelect from '@/pages/components/SpecificationSelect';
 import Carousel from '@/pages/components/Carousel.vue'
 import Comments from '@/pages/components/Comments.vue'
 import ShareDialog from '@/pages/components/ShareDialog.vue';
@@ -150,6 +102,7 @@ export default {
     },
     // 改变状态（关注，点赞，收藏）
     changeStatus (type) {
+      if (this.$notMember()) return this.$goLogin();
       const { communityMemberId, communityNoteId } = this.detailInfo
       const { apiName, msg, countKey, count } = this.statusMap.get(type).get(this.detailInfo[type])
       const params = {
@@ -244,23 +197,12 @@ export default {
   },
   computed: {
     shareData () {
-      const { title, content, attachments, communityNoteId } = this.detailInfo
+      const { title, content, attachments } = this.detailInfo
       return {
         title,
         desc: content,
-        path: `/pagesDiscover/note-detail/index?communityNoteId=${communityNoteId}&shareId=${this.shareId}`,
-        imageUrl: this.$isEmpty(attachments) ? '' : this.$sourceUrl(attachments[0]),
-      }
-    },
-    posterData () {
-      return {
-        ...this.detailInfo
-      }
-    },
-    shareParams () {
-      return {
-        communityNoteId: this.communityNoteId,
-        shareId: this.shareId,
+        link: window.location.href,
+        imgUrl: this.$isEmpty(attachments) ? '' : this.$sourceUrl(attachments[0]),
       }
     },
     followStatus () {
@@ -271,9 +213,6 @@ export default {
   mixins: [commentMixins],
   components: {
     Carousel,
-    // GoodsListPopup,
-    // SpecificationSelect,
-    // GoodsListInNote,
     Comments,
     ShareDialog
   },
@@ -285,26 +224,6 @@ export default {
   // 页面周期函数--监听页面加载
   onLoad (option) {
     this.setOption(option)
-  },
-  //分享好友设置
-  onShareAppMessage () {
-    this.$refs.shareDialog.hide()
-    const { title, desc, path, imageUrl } = this.shareData
-    return {
-      title,
-      desc,
-      path,
-      imageUrl,
-    }
-  },
-  //分享朋友圈设置
-  onShareTimeline () {
-    const { title, imageUrl, path } = this.shareData
-    return {
-      title,
-      query: path.split('?')[1], // 页面传参
-      imageUrl
-    }
   },
   onPullDownRefresh () {
     uni.stopPullDownRefresh();

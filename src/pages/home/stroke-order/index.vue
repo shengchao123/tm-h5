@@ -195,7 +195,6 @@ export default {
             link,
             title: name,
             desc: precautions,
-            imgUrl: this.$imgHost + 'share.png'
           }
           uni.setStorageSync('strokeCreateShare', shareData)
           uni.redirectTo({
