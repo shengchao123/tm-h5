@@ -27,7 +27,6 @@
                  class="mr32"
                  placeholder="请输入验证码"
                  maxlength="6"
-                 :focus="true"
                  :trim="true"
                  type="number" />
 
@@ -58,7 +57,6 @@
 
 import { checkInput } from '@/utils/validate.js'
 import { saveLoginInfo, slzxNavigateBack } from '@/utils/login.js'
-
 
 export default {
   name: 'Login',
