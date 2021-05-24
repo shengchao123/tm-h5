@@ -56,7 +56,7 @@
           class="footer bg-white center">
       <text class="btn center ft32 medium"
             :style="{background: detailInfo.isSignUp? '#fff':'#E32417',color: detailInfo.isSignUp ? '#E32417' : '#fff'}"
-            @click="onToRoute">{{detailInfo.isSignUp ? '取消报名' : '我要报名'}}
+            @click="changeSignUpStatus">{{detailInfo.isSignUp ? '取消报名' : '我要报名'}}
       </text>
     </view>
   </view>
@@ -96,11 +96,22 @@ export default {
         }
       });
     },
-    onToRoute () {
-      const { status, id } = this.detailInfo
-      const url = status === '01' ? `/pages/home/stroke-order/signUp?id=${id}&type=activity` : ''
-      uni.navigateTo({
-        url
+    changeSignUpStatus () {
+      const { isSignUp, id } = this.detailInfo
+      const apiName = isSignUp ? 'cancelSignUpJourneyActivity' : 'signUpJourneyActivity'
+      const msg = isSignUp ? '取消报名' : '报名'
+      const params = {
+        id,
+        name: uni.getStorageSync('nick') || '',
+        phone: uni.getStorageSync('phone') || ''
+      }
+      this.$api[apiName](params).then(res => {
+        if (res.isError) {
+          this.$msg(res.message)
+          return
+        }
+        this.$msg(msg + '成功')
+        this.getJourneyActivityDetail()
       })
     },
     getJourneyActivityDetail () {
