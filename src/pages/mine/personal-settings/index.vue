@@ -3,18 +3,19 @@
     <view class="pl30 pr30 bg-white ft30">
       <view class="between-row h100 bb center-align">
         <text class="flex1 h100 center-align bold">头像</text>
-        <view class="center-align color-999">
+        <view class="center-align color-999 relative">
           <img :src="avatarUrl(formData.avatar)"
                mode="scaleToFill"
                class="member-avator"
                @click="onBigAvatar" />
+          <view @click="changeAvatar"
+                class="upload-icon">
+            <svg-icon icon="icon_xiangyoujiantou"
+                      class="ft20 ml8 relative"></svg-icon>
+          </view>
           <avatar @upload="myUpload"
                   ref="avatar"
                   style="width:0;height:0"></avatar>
-          <view @click="changeAvatar">
-            <svg-icon icon="icon_xiangyoujiantou"
-                      class="ft20 ml8"></svg-icon>
-          </view>
         </view>
       </view>
       <template v-for="(item,index) in infoProps">
@@ -195,10 +196,18 @@ page {
 .h100 {
   height: 100rpx;
 }
+.upload-icon {
+  width: 100rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  position: absolute;
+  right: -72rpx;
+}
 .member-avator {
   width: 68rpx;
   height: 68rpx;
   border-radius: 68rpx;
+  margin-right: 28rpx;
 }
 .member-big-avator {
   width: 100%;
