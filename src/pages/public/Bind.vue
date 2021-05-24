@@ -64,7 +64,7 @@ export default {
   name: 'Login',
   methods: {
     onJump () {
-      slzxNavigateBack()
+      uni.switchTab({ url: '/pages/home/index/index' })
     },
     onGetVerifyCode () {
       if (this.timer) return
