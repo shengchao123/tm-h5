@@ -189,7 +189,7 @@ page {
   padding: 10rpx 0;
 }
 .life-wrap {
-  margin-bottom: 152rpx;
+  padding-bottom: 152rpx;
   overflow: auto;
 }
 .content-textarea {
