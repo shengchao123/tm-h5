@@ -90,7 +90,6 @@ export default {
     bindPhone () {
       const params = {
         ...this.submitData,
-        // TODO: 老王说需要thirdUserId参数
         thirdUserId: uni.getStorageSync('thirdUserId')
       }
       this.$api.bindPhone(params).then(res => {

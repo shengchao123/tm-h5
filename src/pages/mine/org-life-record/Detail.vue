@@ -231,7 +231,7 @@ page {
   flex: wrap;
 }
 .life-wrap {
-  margin-bottom: 152rpx;
+  padding-bottom: 152rpx;
   overflow: auto;
   .life-item {
     position: relative;
