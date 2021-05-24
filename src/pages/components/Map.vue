@@ -48,8 +48,10 @@ export default {
     markerClick (e) {
       if (!this.needClick) return
       const point = e.target.getExtData()
-      sessionStorage.setItem('pointData', JSON.stringify(point))
-      uni.navigateTo({ url: '/pages/home/point-guide/index' })
+      // sessionStorage.setItem('pointData', JSON.stringify(point))
+      uni.navigateTo({
+        url: `/pages/home/introduction/index?journeyPointId=${point.journeyPointId}`
+      })
     },
 
     // 绘制折线图
