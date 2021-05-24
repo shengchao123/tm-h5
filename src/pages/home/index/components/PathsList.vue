@@ -55,7 +55,7 @@ export default {
 
 <style lang='scss' scoped>
 .paths-list-wrap {
-  padding: 16rpx 32rpx 0 32rpx;
+  padding: 0rpx 32rpx 0 32rpx;
   overflow-x: hidden;
   .path-container {
     box-sizing: border-box;
