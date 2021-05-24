@@ -81,7 +81,7 @@ export default {
       })
     },
     onJourney () {
-      uni.$emit('initJourneyLineId', this.baseInfo.journeyLineId)
+      uni.$emit('initJourneyLineId', this.baseInfo)
       uni.switchTab({
         url: '/pages/home/index/index'
       })
