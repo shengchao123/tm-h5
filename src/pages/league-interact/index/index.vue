@@ -11,7 +11,8 @@
       </div>
     </div>
     <view>
-      <forum v-if="subsection.curNow === 0"></forum>
+      <forum ref="forum"
+             v-if="subsection.curNow === 0"></forum>
       <activity v-else
                 ref="activity"
                 :isEmpty="isEmpty"
@@ -91,6 +92,9 @@ export default {
   },
   onShow () {
     this.getListData()
+    if (!this.$notMember()) {
+      this.$refs.forum && this.$refs.forum.getMemberPersonalInfo()
+    }
   },
   beforeDestroy () {
     uni.$off('discoverBtn')
