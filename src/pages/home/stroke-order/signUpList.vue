@@ -19,9 +19,6 @@ export default {
       list: []
     }
   },
-  destroyed () {
-    uni.clearStorageSync('signUpList')
-  },
   onLoad () {
     const signUpList = uni.getStorageSync('signUpList')
     this.list = signUpList ? JSON.parse(signUpList) : []

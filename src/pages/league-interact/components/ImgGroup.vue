@@ -5,7 +5,8 @@
          :src="$sourceUrl(showImgList[0])"
          @click.stop="onShowBigImgView(0)">
     <view v-else
-          class="between-row">
+          class="between-row"
+          style="flex-wrap: wrap;">
       <image v-for="(item, index) in showImgList"
              :key="index"
              mode="aspectFill"
@@ -23,7 +24,7 @@ export default {
     //   uni.$emit('onShowBigImgView', imgUrl)
     // },
     onShowBigImgView (index) {
-      const urls = this.showImgList.map(url => this.$sourceUrl(url))
+      const urls = this.imgList.map(url => this.$sourceUrl(url))
       uni.previewImage({
         urls: urls, //需要预览的图片http链接列表，多张的时候，url直接写在后面就行了
         current: index, // 当前显示图片的http链接，默认是第一个
