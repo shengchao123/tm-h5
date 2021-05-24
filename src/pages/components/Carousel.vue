@@ -11,7 +11,7 @@
              :key="index">
         <swiper-item>
           <view class="swiper-item">
-            <image mode="aspectFill"
+            <image mode="aspectFit"
                    class="swiper-item-img"
                    :src="$sourceUrl(item)">
             </image>
