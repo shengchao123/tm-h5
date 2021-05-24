@@ -43,6 +43,19 @@
         提交
       </button>
     </view>
+    <u-popup mode="center"
+             v-model="show"
+             :mask-close-able="false"
+             border-radius="24">
+      <view class="tc pop-box">
+        <svg-icon icon="icon_chenggongFill"
+                  class="ft88 mt64 icon-style"></svg-icon>
+        <view class="ft32 bold mt32">提交成功，等待审核</view>
+        <view class="ft26 color-999 mt16">审核后，评价内容将显示在初心之旅</view>
+        <view class="know-btn ft28 color-666"
+              @click="onKnow">我知道啦</view>
+      </view>
+    </u-popup>
   </view>
 </template>
 <script>
@@ -62,7 +75,8 @@ export default {
         id: "",
         name: "",
       },
-      communityNoteId: ''
+      communityNoteId: '',
+      show: false
     };
   },
   methods: {
@@ -91,8 +105,7 @@ export default {
       }
       this.$api[apiName](params).then((res) => {
         if (res.isError) return this.$msg(res.message);
-        this.$msg("发布成功");
-        uni.navigateBack({ delta: 1 });
+        this.show = true
       });
     },
     // 选择行程
@@ -115,6 +128,11 @@ export default {
       this.evaluate.journeyItineraryId = val.id
       this.evaluateData = val;
     },
+    // 我知道了
+    onKnow () {
+      this.show = false;
+      uni.navigateBack({ delta: 1 });
+    }
   },
   computed: {
     isSubmit () {
@@ -180,5 +198,30 @@ export default {
 }
 .fc4 {
   color: #c4c4c4;
+}
+.ft88 {
+  font-size: 88rpx;
+}
+.ft26 {
+  font-size: 26rpx;
+}
+.know-btn {
+  width: 240rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  border-radius: 49rpx;
+  border: 1rpx solid #d2d2d2;
+  margin: 0 auto;
+  margin-top: 32rpx;
+}
+.pop-box {
+  width: 540rpx;
+  height: 416rpx;
+  .icon-style {
+    color: #67c23a;
+  }
+}
+.mt64 {
+  margin-top: 64rpx;
 }
 </style>
