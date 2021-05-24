@@ -113,10 +113,10 @@ export default {
         this.vrLink = journeyScenicSpotAttachmentVR.url
         this.videoList = journeyScenicSpotAttachmentVideo || []
         this.imagesList = journeyScenicSpotAttachmentImagesList || []
-        this.audio = journeyScenicSpotAttachmentVoice.url
+        this.audio = this.$fileHost + journeyScenicSpotAttachmentVoice[0].url
         // 初始化音频
         this.$nextTick(() => {
-          this.audio && this.$refs.audioModule.initAudio(journeyScenicSpotAttachmentVoice.url)
+          this.audio && this.$refs.audioModule.initAudio(this.audio)
         })
       })
     }
