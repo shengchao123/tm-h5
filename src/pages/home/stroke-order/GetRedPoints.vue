@@ -20,25 +20,25 @@
           {{item.name}}
         </div>
       </div>
-      <div class="points-wrap">
+      <div class="points-wrap flex1">
         <div v-for="(item, index) in points"
              :key="index"
              class="point-item between-row bb">
 
           <img :src="$fileHost + item.imageUrl">
           <div class="title-wrap flex1 ml16 mr16 column between-row">
-            <div class="ft30 bold">{{item.name}}</div>
+            <div class="between-row flex1">
+              <div class="ft30 bold text-hidden">{{item.name}}</div>
+              <u-checkbox @change="checkboxChange"
+                          icon-size="20"
+                          :value="pointIds.includes(item.code)"
+                          shape="circle"
+                          active-color="#E32417"
+                          :name="item.code"></u-checkbox>
+            </div>
             <div class="ft22 color-999">{{item.regionsName}}</div>
           </div>
 
-          <div>
-            <u-checkbox @change="checkboxChange"
-                        icon-size="24"
-                        :value="pointIds.includes(item.code)"
-                        shape="circle"
-                        active-color="#E32417"
-                        :name="item.code"></u-checkbox>
-          </div>
         </div>
       </div>
     </div>
@@ -180,14 +180,12 @@ export default {
     height: 100%;
     overflow: scroll;
     .point-item {
-      margin: 32rpx;
+      margin: 32rpx 0 32rpx 32rpx;
       padding-bottom: 32rpx;
       img {
         width: 128rpx;
         height: 128rpx;
         border-radius: 10rpx;
-      }
-      .title-wrap {
       }
     }
   }

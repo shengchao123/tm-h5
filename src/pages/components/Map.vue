@@ -20,7 +20,11 @@ export default {
         image: require('@/static/map/travel_mark.png'),
         imageSize: new AMap.Size(23, 38)
       })
-      this.points.forEach((item, index) => {
+
+      const _temPoints = JSON.parse(JSON.stringify(this.points))
+      _temPoints.reverse()
+
+      _temPoints.forEach((item, index) => {
         // 绘制标记气球
         const marker = new AMap.Marker({
           position: new AMap.LngLat(item.lng, item.lat),
@@ -41,14 +45,12 @@ export default {
         marker.setExtData(item)
         // 点击方法绑定
         marker.on('click', this.markerClick)
-        // AMap.event.addListener(marker, 'click', this.markerClick)
       })
     },
 
     markerClick (e) {
       if (!this.needClick) return
       const point = e.target.getExtData()
-      // sessionStorage.setItem('pointData', JSON.stringify(point))
       uni.navigateTo({
         url: `/pages/home/introduction/index?journeyPointId=${point.journeyPointId}`
       })
