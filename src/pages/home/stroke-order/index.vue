@@ -183,6 +183,7 @@ export default {
       const apiName = this.isEdit ? 'modifyJourneyItinerary' : 'createJourneyItinerary'
       this.$api[apiName](params).then(res => {
         if (res.isError) return this.$msg(res.message)
+        this.$store.commit('travel/CUSTOM_PATH_POINTS', [])
         this.$msg(this.isEdit ? '修改成功' : '创建成功')
         setTimeout(() => {
           if (this.isEdit) {
