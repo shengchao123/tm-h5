@@ -40,7 +40,9 @@ export default {
   name: 'NoteList',
   methods: {
     setShareData (shareData) {
-      this.shareData = shareData
+      this.shareData = JSON.parse(JSON.stringify(shareData))
+      console.log('外层赋值')
+      console.log(this.shareData)
       this.$refs.shareDialog.show()
     },
     onShowCommentListPopup (communityNoteId) {
