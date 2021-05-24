@@ -11,32 +11,22 @@
             "mode" : "history",
             "base" : "/"
         },
-        "devServer" : {
-            "proxy" : {
-                "/api/" : {
-                    // "target" : "http://172.168.102.2:9032",
-                    "target" : "http://10.254.45.246:9032",
-                    "changeOrigin": true,
-                    "logLevel": "debug",
-                    "secure": false,
-                    "pathRewrite" : {
-                        "^/api" : ""
-                    }
-                },
-                "/geocode-api/" : {
-                    "target" : "https://restapi.amap.com/",
-                    "pathRewrite" : {
-                        "^/geocode-api" : "/"
-                    }
-                },
-                "/ali-oss" : {
-                    "target" : "https://hzslzx.oss-cn-hangzhou.aliyuncs.com/",
-                    "pathRewrite" : {
-                        "^/ali-oss" : "/"
-                    }
+        "devServer": {
+            "port": 8888,
+            "open": true,
+            "proxy": {
+            "/api/": {
+                "target" : "http://172.168.102.2:9032",
+                // "target": "http://10.254.45.246:9032",
+                "changeOrigin": true,
+                "logLevel": "debug",
+                "secure": false,
+                "pathRewrite": {
+                "^/api": ""
                 }
-            },
-            "https" : false
+            }
+        },
+        "https": false
         },
         "sdkConfigs" : {
             "maps" : {
@@ -47,6 +37,11 @@
         },
         "uniStatistics" : {
             "enable" : false
+        },
+        "optimization" : {
+            "treeShaking" : {
+                "enable" : false
+            }
         }
     },
     "mp-weixin" : {

@@ -143,11 +143,12 @@ export default {
       return "";
     },
   },
-  onLoad (option) {
+  onLoad (option) {//行程id或评价id(评价详情入口这期没做)
     if (option.id) {
-      this.communityNoteId = option.id
-      this.getEvaluateData(option.id);
+      this.evaluate.journeyItineraryId = option.id
+      this.evaluateData.name = option.name
     }
+    // this.getEvaluateData(option.id); 详情接口
   },
   components: { UploadImages, SelectEvaluatePop },
 };
