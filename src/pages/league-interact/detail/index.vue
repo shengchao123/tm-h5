@@ -19,14 +19,14 @@
             <text v-if="item.keyName === 'activityTime'">{{getTime}}</text>
             <text
                   v-else-if="item.keyName === 'startTime'">{{moment(detailInfo.startTime).format('YYYY-MM-DD HH:mm')}}</text>
-            <view v-else-if="item.keyName ==='address'"
+            <!-- <view v-else-if="item.keyName ==='address'"
                   class="between-row">
               <text class="color-666">{{detailInfo[item.keyName]}}</text>
               <view @click="onToMap">
                 <svg-icon class="ding-wei"
                           icon="icon_dingwei"></svg-icon>
               </view>
-            </view>
+            </view> -->
             <text
                   v-else-if="item.keyName === 'numberLimit'">{{detailInfo.numberLimit === -1 ? '不限制' : detailInfo.numberLimit}}</text>
             <text v-else
