@@ -27,7 +27,7 @@
            v-if="item.hasLifeRecord && item.needLifeDocumentary"
            @click="onOtherPage('lifeRecord')">查看组织生活记录</div>
       <div class="primary-btn"
-           v-if="!item.hasLifeRecord && item.needLifeDocumentary"
+           v-if="item.isOrganizer && !item.hasLifeRecord && item.needLifeDocumentary"
            @click="onOtherPage('writeLife')">填写组织生活记录</div>
 
       <div class="btn"
