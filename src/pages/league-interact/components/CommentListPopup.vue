@@ -32,7 +32,7 @@
                :cursor-spacing="15"
                :enableNative="false"
                @confirm="onConfirm"
-               confirm-type="发送"
+               confirm-type="send"
                type="text" />
       </view>
     </view>
