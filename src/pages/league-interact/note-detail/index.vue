@@ -216,11 +216,6 @@ export default {
     Comments,
     ShareDialog
   },
-  onShow () {
-    this.shareCommunityNote()
-    this.getNoteCommentDetailPage()
-    this.getNoteDetailInfo()
-  },
   // 页面周期函数--监听页面加载
   onLoad (option) {
     this.setOption(option)

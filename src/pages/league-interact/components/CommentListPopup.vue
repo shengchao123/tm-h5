@@ -45,7 +45,6 @@ import MescrollMixin from "@/components/mescroll-uni/mescroll-mixins.js";
 import MescrollUni from "@/components/mescroll-uni/mescroll-uni.vue";
 import Comments from '@/pages/components/Comments.vue';
 import Popup from '@/components/slzx-popup/slzx-popup.vue'
-import SvgIcon from '../../../components/SvgIcon.vue';
 export default {
   methods: {
     hide () {
@@ -119,7 +118,7 @@ export default {
     }
   },
   mixins: [MescrollMixin],
-  components: { MescrollUni, Comments, PopupSvgIcon }
+  components: { MescrollUni, Comments, Popup }
 }
 </script>
 <style lang='scss' scoped>

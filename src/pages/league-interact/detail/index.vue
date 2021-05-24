@@ -46,8 +46,10 @@
       <view class="mt16 imgs">
         <image v-for="(item,index) in imgList"
                :key="index"
+               mode="aspectFill"
                class="img"
-               :src="$sourceUrl(item.url)"></image>
+               :src="$sourceUrl(item.url)"
+               @click="onShowBigImgView(index)"></image>
       </view>
     </view>
     <view v-if="detailInfo && detailInfo.status === '01'"
@@ -66,6 +68,16 @@ export default {
   name: 'Detail',
   methods: {
     moment,
+    onShowBigImgView (index) {
+      const urls = this.imgList.map(url => this.$sourceUrl(url.url))
+      uni.previewImage({
+        urls: urls, //需要预览的图片http链接列表，多张的时候，url直接写在后面就行了
+        current: index, // 当前显示图片的http链接，默认是第一个
+        success: function (res) { },
+        fail: function (res) { },
+        complete: function (res) { },
+      })
+    },
     // TODO: 调用第三方地图
     onToMap () {
       uni.getLocation({
