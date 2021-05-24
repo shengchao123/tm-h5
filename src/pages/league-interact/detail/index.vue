@@ -130,7 +130,7 @@ export default {
         },
         {
           name: '报名人数',
-          keyName: ''
+          keyName: 'signUpQuantity'
         },
         {
           name: '活动介绍',
