@@ -46,7 +46,7 @@
         <image v-for="(item,index) in imgList"
                :key="index"
                class="img"
-               :src="$imgUrlDeal(item.url)"></image>
+               :src="$sourceUrl(item.url)"></image>
       </view>
     </view>
     <view v-if="detailInfo && detailInfo.status === '01'"

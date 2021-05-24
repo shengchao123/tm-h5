@@ -2,7 +2,7 @@
   <view class='img-group-wrap'>
     <img v-if="showImgList.length === 1"
          class="one-img "
-         :src="$imgUrlDeal(showImgList[0])"
+         :src="$sourceUrl(showImgList[0])"
          @click.stop="onShowBigImgView(0)">
     <view v-else
           class="between-row">
@@ -10,7 +10,7 @@
              :key="index"
              mode="aspectFill"
              :style="imgStyle"
-             :src="$imgUrlDeal(item)"
+             :src="$sourceUrl(item)"
              @click.stop="onShowBigImgView(index)"></image>
     </view>
   </view>
@@ -23,7 +23,7 @@ export default {
     //   uni.$emit('onShowBigImgView', imgUrl)
     // },
     onShowBigImgView (index) {
-      const urls = this.showImgList.map(url => this.$imgUrlDeal(url))
+      const urls = this.showImgList.map(url => this.$sourceUrl(url))
       uni.previewImage({
         urls: urls, //需要预览的图片http链接列表，多张的时候，url直接写在后面就行了
         current: index, // 当前显示图片的http链接，默认是第一个
