@@ -11,10 +11,11 @@
     <div class="mt20 pb20 bg-white"
          @click="onSignUpList">
       <div class="between-row cenetr-align pt18 pl30 pr30">
-        <div class="ft28">参与人员</div>
+        <div class="ft30 bold">参与人员</div>
         <div class="center-align">
           <div class="ft22 color-666">{{signUpList.length}}人</div>
-          <svg-icon icon="icon_xiangyoujiantou"
+          <svg-icon v-if="signUpList.length > 0"
+                    icon="icon_xiangyoujiantou"
                     class="ft20 color-999 ml8"></svg-icon>
         </div>
       </div>

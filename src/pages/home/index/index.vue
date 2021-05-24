@@ -4,7 +4,7 @@
          :mapInitObj="mapInitObj"
          mapClass="mapVH60"
          :points="points"></Map>
-    <DragPopover @dragTopChange="dragTopChange">
+    <DragPopover>
 
       <mescroll-uni ref="mescrollRef"
                     :height="dragPopHeight + 'px'"
@@ -33,6 +33,9 @@
         </template>
       </mescroll-uni>
     </DragPopover>
+    <u-action-sheet :list="actions"
+                    @click="onSelectGuide"
+                    v-model="showGuide"></u-action-sheet>
     <btn-dialog></btn-dialog>
   </div>
 </template>
@@ -47,6 +50,7 @@ import ActivitySwiper from "./components/ActivitySwiper";
 import MescrollMixin from "@/components/mescroll-uni/mescroll-mixins.js";
 import MescrollUni from "@/components/mescroll-uni/mescroll-uni.vue";
 import EvaluationList from './components/EvaluationList.vue';
+import { beginGuide } from '@/utils/map.js'
 export default {
   name: "index",
   methods: {
@@ -75,6 +79,7 @@ export default {
       this.dragPopHeight = offsetHeight
     },
     onCreateTravel () {
+      if (this.$notMember()) return this.$goLogin()
       uni.navigateTo({ url: `/pages/home/stroke-order/index?journeyLineId=${this.selectJourneyLineId}` });
     },
     onSelectPath (journeyLineId) {
@@ -83,6 +88,15 @@ export default {
       });
       this.selectJourneyLineId = journeyLineId
       this.getJourneyPointListByJourneyId(journeyLineId);
+    },
+    // 地图跳转
+    onShowNavigationSelect (pointData) {
+      this.showGuide = true
+      this.pointData = pointData
+    },
+    // 选择地图导航回调
+    onSelectGuide (act) {
+      beginGuide(act, this.pointData)
     },
     // 根据路线 id 获取点位
     getJourneyPointListByJourneyId (journeyLineId) {
@@ -94,6 +108,11 @@ export default {
         this.points = res.content;
       });
     },
+  },
+  provide () {
+    return {
+      onShowNavigationSelect: this.onShowNavigationSelect
+    }
   },
   data () {
     return {
@@ -114,6 +133,9 @@ export default {
       // scrollTop: 645,
       dragPopHeight: '50%',
       selectJourneyLineId: '',
+      showGuide: false,
+      pointData: {},
+      actions: Object.freeze([{ text: '高德地图' }, { text: '腾讯地图' }]),
     };
   },
   components: {

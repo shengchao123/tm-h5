@@ -88,7 +88,7 @@ export default {
   border-radius: 50%;
   background: rgba($color: #ffffff, $alpha: 0.9);
   box-shadow: 4rpx 6rpx 8rpx 0 rgba(14, 2, 2, 0.25);
-  z-index: 200;
+  z-index: 100;
   background: #e32417;
   // background-image: linear-gradient(98deg, #f54400 0%, #ff6630 72%);
   bottom: 57rpx;

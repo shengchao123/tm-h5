@@ -41,14 +41,10 @@
         <span class="ml8 color-666">导航</span>
       </div>
     </div>
-    <u-action-sheet :list="actions"
-                    @click="onSelectGuide"
-                    v-model="showGuide"></u-action-sheet>
   </div>
 </template>
 
 <script>
-import { beginGuide } from '@/utils/map.js'
 export default {
   name: 'NumList',
   methods: {
@@ -66,17 +62,13 @@ export default {
       uni.navigateTo({ url: '/pages/home/point-guide/index' })
     },
     onGuide () {
-      this.showGuide = true
+      this.onShowNavigationSelect(this.pointData)
     },
-    // 选择地图导航回调
-    onSelectGuide (act) {
-      beginGuide(act, this.pointData)
-    }
   },
+  inject: ['onShowNavigationSelect'],
   data () {
     return {
       showGuide: false,
-      actions: Object.freeze([{ text: '高德地图' }, { text: '腾讯地图' }]),
     }
   },
   props: {
