@@ -6,7 +6,7 @@
     "versionCode" : "100",
     "transformPx" : false,
     "h5" : {
-        "title" : "商城",
+        "title" : "天目红盟",
         "router" : {
             "mode" : "history",
             "base" : "/"

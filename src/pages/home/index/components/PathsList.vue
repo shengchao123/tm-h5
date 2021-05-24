@@ -8,7 +8,7 @@
            class="path-item mr32"
            :class="currentIndex === index ? 'item-active' : 'item-normal'"
            :key="index">
-        <div class="bold ft32 tc mt16 ellipsis">{{item.name}}</div>
+        <div class="bold ft32 tc mt16 ellipsis tc">{{item.name}}</div>
         <div class="ft22 mt8 tc">{{item.scenicSpotQuantity}}个红色地标 {{item.playTimeName}}天</div>
       </div>
     </div>
@@ -75,6 +75,7 @@ export default {
     color: #666666;
   }
   .ellipsis {
+    width: 100%;
     display: inline-block;
     overflow: hidden;
     white-space: nowrap;

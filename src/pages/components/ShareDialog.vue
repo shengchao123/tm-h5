@@ -9,7 +9,7 @@
           <view class="imgs flex">
             <view v-if="shareBtns.includes('wx')"
                   class="center column"
-                  @click="onWeixin">
+                  @click="guideShareType">
               <!-- <button open-type="share"
                       class="share-btn">
                 <image :src="imgHost + 'pull-new/invite_icon01.png'" />
@@ -169,12 +169,12 @@ export default {
           type: 'link', // 分享类型,music、video或link，不填默认为link
           success: function () {
             // 用户确认分享后执行的回调函数
-            // alert('已分享');
+            // alert('111已分享');
 
           },
           cancel: function () {
             // 用户取消分享后执行的回调函数
-            // alert('已取消');
+            // alert('111已取消');
           }
         });
         wx.onMenuShareTimeline({
@@ -185,11 +185,11 @@ export default {
           type: 'link', // 分享类型,music、video或link，不填默认为link
           success: function () {
             // 用户确认分享后执行的回调函数
-            // alert('已分享');
+            // alert('222已分享');
           },
           cancel: function () {
             // 用户取消分享后执行的回调函数
-            // alert('已取消');
+            // alert('222已取消');
           }
         });
 
@@ -220,7 +220,7 @@ export default {
           control: true,//是否控制点击事件，true 控制，false 不控制， 默认false
           text: '...',//控制显示文本，空字符串表示显示默认文本
           onSuccess: function (result) {
-            console.log(666, result)
+            // console.log(666, result)
             //如果control为true，则onSuccess将在发生按钮点击事件被回调
             dd.biz.util.share({
               type: 0, //分享类型，0:全部组件 默认； 1:只能分享到钉钉；2:不能分享，只有刷新按钮
@@ -375,7 +375,7 @@ page {
   z-index: 10001;
   image {
     position: absolute;
-    right: 100rpx;
+    right: 0rpx;
     top: 28rpx;
     width: 618rpx;
     height: 272rpx;

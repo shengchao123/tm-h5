@@ -22,8 +22,10 @@
               </view>
               <view class="tc relative">
                 <!-- <get-phone-button></get-phone-button> -->
-                <view :class="['iconfont ft32 color-999',item.isLike ? 'icon_zan primary-color' : 'icon_zankong']"
-                      @click="onLike(item)"></view>
+                <view @click="onLike(item)">
+                  <svg-icon :icon="item.isLike ? 'icon_shoucang' : 'icon_weishoucang'"
+                            :class="['iconfont ft32',item.isLike ? 'primary-color' : 'color-999']"></svg-icon>
+                </view>
                 <view class="mt20 ft22">{{item.likeCount}}</view>
               </view>
             </view>
@@ -86,9 +88,9 @@ export default {
   computed: {
     comments () {
       this.commentList.map((item) => {
-        item.otherChildren = item.children.slice(1)
+        // item.otherChildren = item.children.slice(1)
         item.showMore = false
-        item.children.splice(1)
+        // item.children.splice(1)
       })
       return this.commentList
     }
