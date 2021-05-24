@@ -47,20 +47,21 @@ export default {
   methods: {
     onConfirmBtn () {
       uni.navigateBack({ delta: 1 })
+      const { address } = this.selectPoi
+      const { lat, lng } = this.selectPoi.location
       uni.$emit('setMeetingPlaceEvent', {
-        meetingPlace: this.selectPoi.address,
-        meetingPlaceLat: this.selectPoi.location.lat,
-        meetingPlaceLng: this.selectPoi.location.lng
+        meetingPlace: address,
+        meetingPlaceLat: lat,
+        meetingPlaceLng: lng
       })
     },
     poiSearch () {
       this.getPoisBySearch()
     },
     onSelectLocation (e) {
-      console.log(e)
       this.selectPoi = e
       this.$amap.setCenter(e.location)
-      this.$marker = this.drawLocationMarkder()
+      this.$marker.setPosition(e.location)
     },
     // 地图绘制
     drawMap () {
@@ -86,7 +87,7 @@ export default {
               that.drawLocation()
 
               that.$amap.setCenter(_pois[0].location)
-              that.$marker = that.drawLocationMarkder()
+              that.$marker = that.drawLocationMarker()
 
               that.onEvent()
             })
@@ -101,7 +102,7 @@ export default {
       this.$amap.on('moveend', this.mapMoveend)
     },
     // 绘制进来定位点 marker
-    drawLocationMarkder () {
+    drawLocationMarker () {
       const marker = new AMap.Marker({
         position: this.$amap.getCenter(),
         map: this.$amap,
@@ -149,10 +150,8 @@ export default {
     },
     // 地图拖动完成，重新绘制定位点
     mapMoveend (e) {
-      this.$amap.clearMap()
-      this.drawLocation()
-      this.$marker = this.drawLocationMarkder()
-      this.getPoisByMoveend()
+      const _position = this.$amap.getCenter()
+      this.$marker.setPosition(_position)
     },
     // 根据选择点，搜索 poi 点
     getPoisByMoveend () {
