@@ -43,7 +43,7 @@
              :cursor-spacing="15"
              @blur="onBlur"
              @confirm="onConfirm"
-             confirm-type="发送"
+             confirm-type="send"
              type="text" />
       <view class="tip-text ft30 flex">
         <view class="icon-item">
