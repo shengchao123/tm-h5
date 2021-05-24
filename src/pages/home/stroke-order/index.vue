@@ -188,6 +188,14 @@ export default {
           uni.navigateBack()
           return
         }
+        const link = window.location.href.split('/pages')[0] + `/pages/home/stroke-order/detail?id=${res.content.id}`
+        const shareData = {
+          link,
+          title: name,
+          desc: precautions,
+          imgUrl: this.$imgHost + 'share.png'
+        }
+        uni.setStorageSync('strokeCreateShare', shareData)
         uni.redirectTo({
           url: `/pages/home/stroke-order/createSuccess?id=${res.content.id}`
         })

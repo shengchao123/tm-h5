@@ -18,10 +18,14 @@
         <SvgIcon :icon="pointData.item.isPlayed ? 'icon_zanting': 'icon_bofang'"
                  :style="{color: '#FF9204'}"
                  class="icon"></SvgIcon>
-        <span class="ml8 color-666">语音</span>
+        <span class="ml8"
+              :style="{color: pointData.item.isPlayed ? '#FF9204' : '#666666'}">语音</span>
       </div>
 
-      <div class="btn center ml16"
+      <div class="
+              btn
+              center
+              ml16"
            @click="onGuideVisit">
         <SvgIcon icon="icon_daolan"
                  style="color: #4CBF00"
@@ -60,6 +64,9 @@ export default {
     onGuideVisit () {
       sessionStorage.setItem('pointData', JSON.stringify(this.pointData.item))
       uni.navigateTo({ url: '/pages/home/point-guide/index' })
+    },
+    onGuide () {
+      this.showGuide = true
     },
     // 选择地图导航回调
     onSelectGuide (act) {

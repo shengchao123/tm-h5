@@ -41,8 +41,6 @@ export default {
   methods: {
     setShareData (shareData) {
       this.shareData = shareData
-      this.posterData = posterData
-      this.shareParams = shareParams
       this.$refs.shareDialog.show()
     },
     onShowCommentListPopup (communityNoteId) {
@@ -82,7 +80,7 @@ export default {
         if (res.isError) return this.mescroll.endErr()
         const { items, count } = res.content
         this.mescroll.endBySize(items.length, count)
-        // this.noteList = params.pageNumber === 1 ? items : this.noteList.concat(items)
+        this.noteList = params.pageNumber === 1 ? items : this.noteList.concat(items)
       })
 
     }
@@ -106,108 +104,7 @@ export default {
         noMoreSize: 1, // 配置列表的总数量要大于等于5条才显示'-- END --'的提示
       },
       shareData: {},
-      noteList: [
-        {
-          "attachment": "",
-          "attachmentDTOList": [
-            {
-              "type": "",
-              "url": ""
-            }
-          ],
-          "attachments": [],
-          "avatar": "",
-          "commentQuantity": 1231,
-          "communityNoteCommentList": [
-            {
-              "comment": "范德萨发达",
-              "nick": "飞洒发生"
-            }
-          ],
-          "communityNoteId": 0,
-          "content": "犯得上广泛受到旮都是发噶沙司的地发生放大算法撒发案说法安抚安抚安抚案说法案说法安抚方噶",
-          "isAuthor": false,
-          "isLike": true,
-          "isRecommend": false,
-          "journeyItineraryId": 0,
-          "journeyItineraryName": "",
-          "likeQuantity": 20,
-          "memberId": 0,
-          "nick": "撒飞洒地方",
-          "orgId": 0,
-          "orgName": "额外企鹅去但是",
-          "shareQuantity": 12,
-          "time": "一分钟前",
-          "title": "大撒大撒"
-        },
-        {
-          "attachment": "",
-          "attachmentDTOList": [
-            {
-              "type": "",
-              "url": ""
-            }
-          ],
-          "attachments": [],
-          "avatar": "",
-          "commentQuantity": 1231,
-          "communityNoteCommentList": [
-            {
-              "comment": "范德萨发达",
-              "nick": "飞洒发生"
-            }
-          ],
-          "communityNoteId": 0,
-          "content": "犯得上广泛受到旮都是发噶沙司的地发生放大算法撒发案说法安抚安抚安抚案说法案说法安抚方噶",
-          "isAuthor": false,
-          "isLike": true,
-          "isRecommend": false,
-          "journeyItineraryId": 0,
-          "journeyItineraryName": "",
-          "likeQuantity": 20,
-          "memberId": 0,
-          "nick": "撒飞洒地方",
-          "orgId": 0,
-          "orgName": "额外企鹅去但是",
-          "shareQuantity": 12,
-          "time": "一分钟前",
-          "title": "大撒大撒"
-        },
-        {
-          "attachment": "",
-          "attachmentDTOList": [
-            {
-              "type": "",
-              "url": ""
-            }
-          ],
-          "attachments": [],
-          "avatar": "",
-          "commentQuantity": 1231,
-          "communityNoteCommentList": [
-            {
-              "comment": "范德萨发达",
-              "nick": "飞洒发生"
-            }
-          ],
-          "communityNoteId": 0,
-          "content": "犯得上广泛受到旮都是发噶沙司的地发生放大算法撒发案说法安抚安抚安抚案说法案说法安抚方噶",
-          "isAuthor": false,
-          "isLike": true,
-          "isRecommend": false,
-          "journeyItineraryId": 0,
-          "journeyItineraryName": "",
-          "likeQuantity": 20,
-          "memberId": 0,
-          "nick": "撒飞洒地方",
-          "orgId": 0,
-          "orgName": "额外企鹅去但是",
-          "shareQuantity": 12,
-          "time": "一分钟前",
-          "title": "大撒大撒"
-        },
-
-      ]
+      noteList: []
     }
   },
   computed: {
