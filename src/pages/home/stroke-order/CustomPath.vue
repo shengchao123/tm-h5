@@ -69,6 +69,7 @@ export default {
       points: [],
       mapInitObj: {
         resizeEnable: true,
+        zooms: [9, 19],
         zoom: 9, // 级别
         center: [119.365056, 30.134302]
       },

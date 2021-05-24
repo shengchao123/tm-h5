@@ -14,7 +14,8 @@
         "devServer" : {
             "proxy" : {
                 "/api/" : {
-                    "target" : "http://172.168.102.2:9032",
+                    // "target" : "http://172.168.102.2:9032",
+                    "target" : "http://10.254.45.246:9032",
                     "pathRewrite" : {
                         "^/api" : ""
                     }

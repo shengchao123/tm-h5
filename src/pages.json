@@ -2,7 +2,7 @@
 	"easycom": {
 		"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
 	},
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+	"pages": [ 
 		{
 			"path": "pages/home/index/index",
 			"style": {
@@ -70,6 +70,12 @@
 			}
 		},
 		{
+			"path": "pages/home/evaluation/index",
+			"style": {
+				"navigationBarTitleText": "发布评价"
+			}
+		},
+		{
 			"path": "pages/home/evaluate-detail/index",
 			"style": {
 				"navigationBarTitleText": "评价详情"
@@ -110,6 +116,12 @@
 			"style": {
 				"navigationBarTitleText": "联盟互动"
 			}
+		},
+		{
+			"path": "pages/league-interact/send-post/index",
+			"style": {
+				"navigationBarTitleText": "发帖"
+			 }
 		},
 		{
 			"path": "pages/league-interact/detail/index",

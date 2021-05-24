@@ -24,11 +24,11 @@
 
     <div class="buttons ft24 center-align">
       <div class="btn"
-           v-if="item.hasLifeRecord"
+           v-if="item.hasLifeRecord && item.needLifeDocumentary"
            @click="onOtherPage('lifeRecord')">查看组织生活记录</div>
       <div class="primary-btn"
-           @click="onOtherPage('writeLife')"
-           v-else>填写组织生活记录</div>
+           v-if="!item.hasLifeRecord && item.needLifeDocumentary"
+           @click="onOtherPage('writeLife')">填写组织生活记录</div>
 
       <div class="btn"
            @click="onOtherPage('clock')">打卡记录</div>
