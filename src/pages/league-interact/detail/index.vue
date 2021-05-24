@@ -27,6 +27,8 @@
                           icon="icon_dingwei"></svg-icon>
               </view>
             </view>
+            <text
+                  v-else-if="item.keyName === 'numberLimit'">{{detailInfo.numberLimit === -1 ? '不限制' : detailInfo.numberLimit}}</text>
             <text v-else
                   class="color-666">{{detailInfo[item.keyName]}}</text>
           </view>
