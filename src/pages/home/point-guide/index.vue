@@ -45,7 +45,7 @@ export default {
   methods: {
     // 点击重新定位按钮
     onLocation () {
-      this.setMapCenter(this.scenicSpot)
+      this.resetDrawMarkders(this.scenicSpot)
     },
     // 显示导航选择框
     showGuideActionSheet (item) {
@@ -230,7 +230,8 @@ export default {
       pois: [],
       mapInitObj: Object.freeze({
         resizeEnable: true,
-        zoom: 12
+        zoom: 12,
+        zooms: [9, 19],
       })
     }
   },

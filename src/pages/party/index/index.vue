@@ -41,8 +41,7 @@
         <div class="flex1 ft26">{{pointsName}}</div>
       </div>
     </div>
-    <div class="bg-white pl30 pr30 mb20 pt24 pb30 pb38"
-         @click="onJourney">
+    <div class="bg-white pl30 pr30 mb20 pt24 pb30 pb38">
       <div class="center-align mb20">
         <svg-icon icon="icon_zhongdiangongzuo"
                   class="ft32"
@@ -96,7 +95,7 @@ export default {
       }
       this.$api.findOrgTreeByOrgId(params).then(res => {
         if (res.isError) return this.$msg(res.message)
-        this.orgTree = res.content
+        this.orgTree = [res.content]
       })
     },
     getJourneyAllianceDetailList () {
@@ -107,7 +106,6 @@ export default {
     }
   },
   data () {
-
     return {
       selectPoint: 0,
       partyList: [],
@@ -145,7 +143,7 @@ export default {
     }
   },
   watch: {
-    selectPoint () {
+    baseInfo () {
       this.findOrgTreeByOrgId()
     }
   },

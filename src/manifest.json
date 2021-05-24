@@ -35,7 +35,14 @@
             "https" : false
         },
         "sdkConfigs" : {
-            "maps" : {}
+            "maps" : {
+                "qqmap" : {
+                    "key" : "PHWBZ-URTCO-OK4W7-SLP7N-KTCM6-Z3BXF"
+                }
+            }
+        },
+        "uniStatistics" : {
+            "enable" : false
         }
     },
     "mp-weixin" : {

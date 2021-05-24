@@ -66,27 +66,32 @@ export default {
     // 地图绘制
     drawMap () {
       const that = this
-      AMap.plugin('AMap.Geolocation', function () {
-        var geolocation = new AMap.Geolocation({
-          enableHighAccuracy: true,//是否使用高精度定位，默认:true
-          timeout: 1000,
-          extensions: 'all'         //超过10秒后停止定位，默认：5s
-        });
-        geolocation.getCurrentPosition(function (status, result) {
-          console.log(result)
-          if (status == 'complete') {
-            that.locationResult = result
 
-            that.poi.list = result.pois
-            that.selectPoi = result.pois[0]
-            that.drawLocation()
+      uni.getLocation({
+        type: 'gcj02',
+        success: ({ longitude, latitude }) => {
+          AMap.plugin('AMap.PlaceSearch', function () {
+            var autoOptions = {
+              city: '杭州市',
+              pageSize: 50
+            }
+            var placeSearch = new AMap.PlaceSearch(autoOptions)
+            placeSearch.searchNearBy('', [longitude, latitude], 5000, function (status, result) {
+              if (!result || !result.poiList) return
+              const _pois = result.poiList.pois
+              that.locationResult = result
 
-            that.$amap.setCenter(result.position)
-            that.$marker = that.drawLocationMarkder()
+              that.poi.list = _pois
+              that.selectPoi = _pois[0]
+              that.drawLocation()
 
-            that.onEvent()
-          }
-        })
+              that.$amap.setCenter(result.position)
+              that.$marker = that.drawLocationMarkder()
+
+              that.onEvent()
+            })
+          })
+        }
       })
     },
 
@@ -194,7 +199,8 @@ export default {
   mounted () {
     const mapInitObj = Object.freeze({
       resizeEnable: true,
-      zoom: 17
+      zoom: 17,
+      zooms: [9, 19],
     })
     this.$amap = new AMap.Map('map', mapInitObj)
     this.drawMap()

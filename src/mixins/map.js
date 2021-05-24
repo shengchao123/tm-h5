@@ -30,7 +30,7 @@ const map = {
             pathL: pathArray,
             strokeColor: '#FD9124',
             strokeWeight: 1.5,
-            fillColor: '#0A85EE14'
+            fillColor: 'rgba(10,133,238,0.14)'
           })
           polygon.setPath(pathArray)
           that.$amap.add(polygon)

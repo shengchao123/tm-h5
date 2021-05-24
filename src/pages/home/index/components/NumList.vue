@@ -7,7 +7,8 @@
         <div class="line"></div>
       </div>
 
-      <div class="ft32 ml16 name">{{pointData.item.name}}</div>
+      <div class="ft32 ml16 name"
+           @click="onIntroduction">{{pointData.item.name}}</div>
     </div>
 
     <div class="center-align">
@@ -17,10 +18,14 @@
         <SvgIcon :icon="pointData.item.isPlayed ? 'icon_zanting': 'icon_bofang'"
                  :style="{color: '#FF9204'}"
                  class="icon"></SvgIcon>
-        <span class="ml8 color-666">语音</span>
+        <span class="ml8"
+              :style="{color: pointData.item.isPlayed ? '#FF9204' : '#666666'}">语音</span>
       </div>
 
-      <div class="btn center ml16"
+      <div class="
+              btn
+              center
+              ml16"
            @click="onGuideVisit">
         <SvgIcon icon="icon_daolan"
                  style="color: #4CBF00"
@@ -36,14 +41,23 @@
         <span class="ml8 color-666">导航</span>
       </div>
     </div>
-
+    <u-action-sheet :list="actions"
+                    @click="onSelectGuide"
+                    v-model="showGuide"></u-action-sheet>
   </div>
 </template>
 
 <script>
+import { beginGuide } from '@/utils/map.js'
 export default {
   name: 'NumList',
   methods: {
+    onIntroduction () {
+      const { journeyPointId } = this.pointData.item
+      uni.navigateTo({
+        url: `/pages/home/introduction/index?journeyPointId=${journeyPointId}`
+      })
+    },
     onPlayer () {
       this.$emit('onPlayer', this.pointData)
     },
@@ -52,12 +66,17 @@ export default {
       uni.navigateTo({ url: '/pages/home/point-guide/index' })
     },
     onGuide () {
-
+      this.showGuide = true
+    },
+    // 选择地图导航回调
+    onSelectGuide (act) {
+      beginGuide(act, this.pointData)
     }
   },
   data () {
     return {
-
+      showGuide: false,
+      actions: Object.freeze([{ text: '高德地图' }, { text: '腾讯地图' }]),
     }
   },
   props: {

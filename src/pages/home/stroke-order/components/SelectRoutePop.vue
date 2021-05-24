@@ -6,11 +6,11 @@
     <view class="popup">
       <view class="tc title">
         <text class="ft34 medium">选择行程线路</text>
-       <view @click="hide">
+        <view @click="hide">
           <svg-icon icon="icon_cha"
-                  class="color-999 ft24 close">
+                    class="color-999 ft24 close">
           </svg-icon>
-       </view>
+        </view>
       </view>
       <scroll-view class="list pl30 pr30"
                    scroll-y>
@@ -43,6 +43,18 @@ export default {
       this.$emit('onRouteItem', item)
       this.hide()
     },
+    emitFirstSelectItem () {
+      const selectedId = this.selectedId
+      const list = this.list
+      if (this.selectedId) {
+        for (let i = 0; i < list.length; i++) {
+          if (list[i].journeyLineId === selectedId) {
+            this.$emit('onRouteItem', list[i])
+            return
+          }
+        }
+      }
+    },
     getRecommendJourneyLineList () {
       this.$api.getRecommendJourneyLineList().then(res => {
         if (res.isError) return this.$msg(res.message)
@@ -55,6 +67,7 @@ export default {
           })
         }
         this.list = list
+        this.emitFirstSelectItem()
       })
     }
   },

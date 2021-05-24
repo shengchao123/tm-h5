@@ -1,16 +1,16 @@
 <template>
-  <view>
+  <view v-if="activityList.length > 0">
     <view class="line"></view>
     <view class="pt30">
       <view class="between-row pl30 pr30">
         <view class="bold ft32">活动提醒</view>
-        <view v-if="ActivityList.length > 0">{{ current }}/{{ ActivityList.length }}</view>
+        <view v-if="activityList.length > 0">{{ current }}/{{ activityList.length }}</view>
       </view>
       <view>
         <swiper class="swiper mt24"
                 :duration="2000"
                 @change="getSwiper">
-          <swiper-item v-for="(item, index) in ActivityList"
+          <swiper-item v-for="(item, index) in activityList"
                        :key="index"
                        class="swiper-item">
             <view class="activity-item mt16 ml30 mr30">
@@ -33,7 +33,7 @@
 export default {
   data () {
     return {
-      ActivityList: {},
+      activityList: [],
       current: 1,
     };
   },
@@ -41,7 +41,7 @@ export default {
     getActivityList () {
       this.$api.getJourneyActivityList().then((res) => {
         if (res.isError) return this.$msg(res.message);
-        this.ActivityList = res.content.slice(0, 5);
+        this.activityList = res.content.slice(0, 5);
       });
     },
     getSwiper (e) {

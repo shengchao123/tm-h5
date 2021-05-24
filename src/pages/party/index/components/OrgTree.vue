@@ -8,7 +8,7 @@
             <svg-icon icon="icon_dangjianlianmeng_mian"
                       class="ft32"
                       style="color: #FCF050"></svg-icon>
-            <div class="ft20 mr8 tc"
+            <div class="ft20 mr8 ml8 tc"
                  style="color: #fff;">{{orgTree[0].name}}</div>
           </div>
           <div class='center-align'>

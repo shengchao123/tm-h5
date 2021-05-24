@@ -16,10 +16,12 @@
           <span class="color-666">{{item.tel}}</span>
         </div>
       </div>
-      <svg-icon icon="icon_dianhua"
-                class="ft32"
-                style="color: #518CFC"
-                @click="onCall(item.tel)"></svg-icon>
+      <div @click="onCall(item.tel)">
+        <svg-icon icon="icon_dianhua"
+                  class="ft32"
+                  style="color: #518CFC"></svg-icon>
+      </div>
+
     </div>
   </div>
 </template>

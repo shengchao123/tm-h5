@@ -2,11 +2,17 @@
 	"easycom": {
 		"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
 	},
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+	"pages": [ 
 		{
 			"path": "pages/home/index/index",
 			"style": {
 				"navigationBarTitleText": "天目红盟"
+			}
+		},
+		{
+			"path": "pages/home/introduction/index",
+			"style": {
+				"navigationBarTitleText": "地标简介"
 			}
 		},
 		{
