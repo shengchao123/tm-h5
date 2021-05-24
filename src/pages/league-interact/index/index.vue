@@ -22,6 +22,15 @@
                 :delHeight="140"
                 @getListData="getListData"></activity>
     </view>
+    <view v-if="subsection.curNow === 0"
+          class="btn-box">
+      <!-- <view :class="['publish white-color bold center-flex',isScroll ? 'is-scroll' : '']" -->
+      <view :class="['publish white-color bold center']"
+            @click="onPublish">
+        <svg-icon icon="icon_jia"
+                  class="ft32"></svg-icon>
+      </view>
+    </view>
   </div>
 </template>
 <script>
@@ -30,6 +39,13 @@ import Forum from '../components/Forum'
 export default {
   name: 'index',
   methods: {
+    onPublish () {
+      // 判断是否登录逻辑
+      if (this.$notMember()) return this.$goLogin();
+      uni.navigateTo({
+        url: '/pages/league-interact/send-post/index'
+      });
+    },
     getListData (page) {
       const params = {
         status: this.current !== 0 ? "0" + this.current : '',
@@ -56,6 +72,7 @@ export default {
   },
   data () {
     return {
+      isScroll: false,
       isEmpty: false,
       dataList: [],
       current: 0,
@@ -74,6 +91,15 @@ export default {
   },
   onShow () {
     this.getListData()
+  },
+  beforeDestroy () {
+    uni.$off('discoverBtn')
+  },
+  // 页面周期函数--监听页面加载
+  onLoad () {
+    uni.$on('discoverBtn', (res) => {
+      this.isScroll = !res
+    })
   },
   components: { Activity, Forum },
 }
@@ -94,6 +120,33 @@ page {
     .top-tabs {
       width: 272rpx;
     }
+  }
+  .btn-box {
+    position: absolute;
+    z-index: 9;
+    right: 14rpx;
+    bottom: 56rpx;
+    width: 98rpx;
+    height: 98rpx;
+    border-radius: 50%;
+  }
+  .publish {
+    position: absolute;
+    right: 0rpx;
+    width: 98rpx;
+    height: 98rpx;
+    border-radius: 50%;
+    background-image: linear-gradient(98deg, #f54400 0%, #ff6630 72%);
+    box-shadow: 4rpx 6rpx 8rpx 0 rgba(14, 2, 2, 0.25);
+    bottom: 0rpx;
+    font-size: 56rpx;
+    transition: all 0.5s ease-in-out;
+    opacity: 1;
+  }
+  .is-scroll {
+    transition: all 0.5s ease-in-out;
+    right: -80rpx !important;
+    opacity: 0.4 !important;
   }
 }
 </style>
