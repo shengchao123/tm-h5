@@ -45,7 +45,7 @@ export default {
   methods: {
     // 点击重新定位按钮
     onLocation () {
-      this.setMapCenter(this.scenicSpot)
+      this.resetDrawMarkders(this.scenicSpot)
     },
     // 显示导航选择框
     showGuideActionSheet (item) {
