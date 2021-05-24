@@ -1,7 +1,7 @@
 <template>
   <view>
     <view :class="[
-        'publish white-color bold center-flex tc',
+        'publish white-color bold center tc',
         isScroll ? 'is-scroll' : '',
       ]"
           @click="onPublish"
