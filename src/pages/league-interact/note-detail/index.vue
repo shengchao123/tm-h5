@@ -55,7 +55,7 @@
         <view class="icon-item relative"
               @click="changeStatus('isLike')">
           <svg-icon :icon="detailInfo.isLike ? 'icon_shoucang' : 'icon_weishoucang'"
-                    :class="['iconfont ft32',detailInfo.isLike ? 'primary-color' : 'color-999']"></svg-icon>
+                    :class="['ft32',detailInfo.isLike ? 'primary-color' : 'color-999']"></svg-icon>
           <text class="ft26 pl8 w30 color-666">{{detailInfo.likeQuantity}}</text>
         </view>
       </view>
