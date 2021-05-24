@@ -29,9 +29,11 @@
             <div class="pl30 pr30 mt20">
               <div class="center-align">
                 <span class="ft32 color-333 mr8 bold">评价</span>
-                <span class="ft24 color-999">({{evaluationCount}})</span>
+                <span v-if="evaluationCount > 0"
+                      class="ft24 color-999">({{evaluationCount}})</span>
               </div>
-              <div class="evaluation-list between-row  mt40">
+              <div v-if="evaluationCount > 0"
+                   class="evaluation-list between-row  mt40">
                 <div v-for="(item, index) in evaluationList"
                      :key="index"
                      class="evaluation-item mb20">
@@ -60,6 +62,9 @@
                   </div>
                 </div>
               </div>
+              <page-empty v-else
+                          :imgUrl="require('@/static/empty/no-activity.png')"
+                          message="暂无评价"></page-empty>
             </div>
           </div>
         </template>
@@ -79,6 +84,7 @@ import BtnDialog from "./components/BtnDialog";
 import ActivitySwiper from "./components/ActivitySwiper";
 import MescrollMixin from "@/components/mescroll-uni/mescroll-mixins.js";
 import MescrollUni from "@/components/mescroll-uni/mescroll-uni.vue";
+import PageEmpty from '../../components/PageEmpty.vue';
 export default {
   name: "index",
   methods: {
@@ -182,6 +188,7 @@ export default {
     BtnDialog,
     ActivitySwiper,
     MescrollUni,
+    PageEmpty,
   },
   onLoad (option) {
     if (option.masterOrgId) {
