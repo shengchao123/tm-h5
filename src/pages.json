@@ -10,6 +10,12 @@
 			}
 		},
 		{
+			"path": "pages/home/introduction/index",
+			"style": {
+				"navigationBarTitleText": "地标简介"
+			}
+		},
+		{
 			"path": "pages/home/point-guide/index",
 			"style": {
 				"navigationBarTitleText": "地标导览"

@@ -46,6 +46,16 @@ export function getJourneyPointListByOrgId (params) { // 路线获取点位 '/li
   })
 }
 
+export function getJourneyPointInfoById (params) { // 根据点位id获取点位信息
+  return request({
+    url: urls.getJourneyPointInfoById,
+    data: {
+      orgId: localStorage.getItem('orgId'),
+      ...params
+    }
+  })
+}
+
 export function createJourneyItinerary (params) { // 创建行程单
   return request({
     url: urls.createJourneyItinerary,
