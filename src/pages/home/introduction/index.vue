@@ -45,12 +45,12 @@
             <img :src="item" />
           </div>
         </div> -->
-        <span class="ft24">0人已访问</span>
+        <span class="ft24">{{baseInfo.signCount}}人已访问</span>
       </div>
       <div class="center-align">
         <svg-icon icon="icon_dakaline"
                   class="ft24"></svg-icon>
-        <span class="ft24">0人已打卡</span>
+        <span class="ft24">{{baseInfo.accessCount}}人已打卡</span>
       </div>
     </div>
     <div class="pl30 pr30">
@@ -61,12 +61,15 @@
       <p class="medium ft32 mb24">简介</p>
       <div class="ft28 content">{{baseInfo.introduction}}</div>
     </div>
+    <u-action-sheet :list="actions"
+                    @click="onSelectGuide"
+                    v-model="showGuide"></u-action-sheet>
   </div>
 </template>
 <script>
 import AudioModule from './components/AudioModule.vue'
 import HeadSwiper from './components/HeadSwiper.vue'
-
+import { beginGuide } from '@/utils/map.js'
 export default {
   name: 'introduction',
   methods: {
@@ -74,7 +77,11 @@ export default {
       uni.navigateTo({ url: '/pages/home/point-guide/index' })
     },
     onNavigation () {
-      // TODO: 导航引导
+      this.showGuide = true
+    },
+    // 选择地图导航回调
+    onSelectGuide (act) {
+      beginGuide(act, this.pointData)
     },
     onCall () {
       const { phone } = this.baseInfo
@@ -122,7 +129,9 @@ export default {
       imagesList: [],
       videoList: [],
       audio: null,
-      users: []
+      users: [],
+      showGuide: false,
+      actions: Object.freeze([{ text: '高德地图' }, { text: '腾讯地图' }]),
     }
   },
   onLoad (option) {
