@@ -96,7 +96,7 @@ export default {
       }
       this.$api.findOrgTreeByOrgId(params).then(res => {
         if (res.isError) return this.$msg(res.message)
-        this.orgTree = res.content
+        this.orgTree = [res.content]
       })
     },
     getJourneyAllianceDetailList () {
@@ -107,7 +107,6 @@ export default {
     }
   },
   data () {
-
     return {
       selectPoint: 0,
       partyList: [],
@@ -145,7 +144,7 @@ export default {
     }
   },
   watch: {
-    selectPoint () {
+    baseInfo () {
       this.findOrgTreeByOrgId()
     }
   },
