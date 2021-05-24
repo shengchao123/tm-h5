@@ -13,7 +13,7 @@
           <view class="swiper-item">
             <image mode="aspectFill"
                    class="swiper-item-img"
-                   :src="$imgUrlDeal(item)">
+                   :src="$sourceUrl(item)">
             </image>
           </view>
         </swiper-item>
@@ -34,7 +34,7 @@ export default {
     // 获取轮播图的第一张高度
     getImgInfo () {
       uni.getImageInfo({
-        src: this.$imgUrlDeal(this.imgList[0]),
+        src: this.$sourceUrl(this.imgList[0]),
         success: ((image) => {
           const { width, height } = image
           const imgHeight = height / (width / this.$windowWidth)

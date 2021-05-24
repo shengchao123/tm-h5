@@ -13,7 +13,7 @@ export default {
   name: 'ScenicSpot',
   methods: {
     onPlayer ({ item, index }) {
-      const { isPlayed, mp3 } = item
+      const { isPlayed, mp3, url } = item
       this.pagePoints.forEach(point => {
         point.isPlayed = false
         if (point.mp3) point.mp3.pause()
@@ -23,7 +23,7 @@ export default {
         item.mp3.pause()
         item.isPlayed = false
       } else {
-        const mp3 = new Audio(this.$file + item.url)
+        const mp3 = new Audio(this.$sourceUrl(url))
         mp3.play() // 播放 mp3这个音频对象
         item.isPlayed = true
         item.mp3 = mp3

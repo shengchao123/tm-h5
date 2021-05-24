@@ -113,13 +113,13 @@ export default {
         this.vrLink = journeyScenicSpotAttachmentVR.url
         this.videoList = journeyScenicSpotAttachmentVideo || []
         this.imagesList = journeyScenicSpotAttachmentImagesList || []
-        this.audio = this.$fileHost + journeyScenicSpotAttachmentVoice[0].url
+        this.audio = journeyScenicSpotAttachmentVoice ? this.$sourceUrl(journeyScenicSpotAttachmentVoice.url) : null
         // 初始化音频
         this.$nextTick(() => {
           this.audio && this.$refs.audioModule.initAudio(this.audio)
         })
       })
-    }
+    },
   },
   data () {
     return {
