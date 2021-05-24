@@ -104,7 +104,7 @@
     <share-dialog ref="shareDialog"
                   posterType="note"
                   shareBtns="wx moments poster"
-                  sharePath="pagesDiscover/note-detail/index"
+                  sharePath="pages/league-interact/note-detail/index"
                   :posterData="posterData"
                   :shareParams="shareParams"
                   :shareData="shareData">

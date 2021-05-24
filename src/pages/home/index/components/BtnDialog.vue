@@ -18,7 +18,8 @@
               <svg-icon icon="icon_fabupinglun"
                         class="ft32 evaluate-icon"></svg-icon>
             </view>
-            <view class="white-color ft22 mt12">发布评价</view>
+            <view style="white-space: nowrap;"
+                  class="white-color ft22 mt12">发布评价</view>
           </view>
           <view class="evaluates tc evaluate-position">
             <view class="evaluate-btn evaluate-style"
@@ -26,7 +27,8 @@
               <svg-icon icon="icon_chuangjianhangcheng"
                         class="ft36 evaluate-icon"></svg-icon>
             </view>
-            <view class="white-color ft22 mt12">创建行程</view>
+            <view style="white-space: nowrap;"
+                  class="white-color ft22 mt12">创建行程</view>
           </view>
           <view class="evaluate-btn white-color tc close-style"
                 @click="hiddenIcon">
