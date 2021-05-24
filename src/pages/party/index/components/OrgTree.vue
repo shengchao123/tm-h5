@@ -11,7 +11,8 @@
             <div class="ft20 mr8 ml8 tc"
                  style="color: #fff;">{{orgTree[0].name}}</div>
           </div>
-          <div class='center-align'>
+          <div class='center-align'
+               v-if="orgTree[0].child">
             <org-tree-child :list="orgTree[0].child"></org-tree-child>
           </div>
         </div>
