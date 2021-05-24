@@ -81,8 +81,9 @@ export default {
   onLoad (option) {
     // TODO: 这里增加了thirdUserId缓存，地址栏有这个字段时，说明已经绑定了信息
     if (option.masterOrgId) {
-     uni.setStorageSync('masterOrgId', option.masterOrgId)
-     uni.setStorageSync('thirdUserId', option.thirdUserId)
+      uni.clearStorageSync()
+      uni.setStorageSync('masterOrgId', option.masterOrgId)
+      uni.setStorageSync('thirdUserId', option.thirdUserId)
     }
     this.h5Login(option)
   },
