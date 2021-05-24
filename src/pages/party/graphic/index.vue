@@ -77,9 +77,9 @@ export default {
       this.mescroll.resetUpScroll()
     },
     getGraphicInfoPage (page) {
-      const orgId = this.tabList[this.current].id
+      const journeyAllianceId = this.tabList[this.current].id
       const params = {
-        orgId,
+        journeyAllianceId,
         pageNumber: page && page.num || 1,
         pageSize: page && page.size || 10,
       }
