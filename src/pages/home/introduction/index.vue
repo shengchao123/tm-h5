@@ -110,7 +110,7 @@ export default {
         if (res.isError) return this.$msg(res.message)
         this.baseInfo = res.content
         const { journeyScenicSpotAttachmentImagesList, journeyScenicSpotAttachmentVR, journeyScenicSpotAttachmentVideo, journeyScenicSpotAttachmentVoice } = res.content
-        this.vrLink = journeyScenicSpotAttachmentVR.url
+        this.vrLink = journeyScenicSpotAttachmentVR ? journeyScenicSpotAttachmentVR.url : ''
         this.videoList = journeyScenicSpotAttachmentVideo || []
         this.imagesList = journeyScenicSpotAttachmentImagesList || []
         this.audio = journeyScenicSpotAttachmentVoice ? this.$sourceUrl(journeyScenicSpotAttachmentVoice.url) : null
