@@ -67,6 +67,7 @@ export default {
     // 昵称、实名认证
     onInfoItem (type) {
       if (type === 'phone' || type === 'labelList') return
+      if (type === 'orgName' && !this.$isEmpty(this.formData.orgName)) return
       const temUrl = type === 'nick' ? `/pages/mine/personal-settings/EditNick?nick=${this.formData.nick}` : '/pages/mine/real-name/index'
       uni.navigateTo({ url: temUrl })
     },
