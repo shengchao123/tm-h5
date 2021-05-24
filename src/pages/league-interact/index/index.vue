@@ -136,7 +136,8 @@ page {
     width: 98rpx;
     height: 98rpx;
     border-radius: 50%;
-    background-image: linear-gradient(98deg, #f54400 0%, #ff6630 72%);
+    // background-image: linear-gradient(98deg, #f54400 0%, #ff6630 72%);
+    background: #e32417;
     box-shadow: 4rpx 6rpx 8rpx 0 rgba(14, 2, 2, 0.25);
     bottom: 0rpx;
     font-size: 56rpx;
