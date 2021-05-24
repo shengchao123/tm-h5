@@ -194,7 +194,8 @@ export default {
   mounted () {
     const mapInitObj = Object.freeze({
       resizeEnable: true,
-      zoom: 17
+      zoom: 17,
+      zooms: [9, 19],
     })
     this.$amap = new AMap.Map('map', mapInitObj)
     this.drawMap()

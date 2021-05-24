@@ -9,7 +9,7 @@
            :class="currentIndex === index ? 'item-active' : 'item-normal'"
            :key="index">
         <div class="bold ft32 tc mt16 ellipsis tc">{{item.name}}</div>
-        <div class="ft22 mt8 tc">{{item.scenicSpotQuantity}}个红色地标 {{item.playTimeName}}天</div>
+        <div class="ft22 mt8 tc">{{item.scenicSpotQuantity}}个红色地标 {{item.playTimeName}}</div>
       </div>
     </div>
   </div>
