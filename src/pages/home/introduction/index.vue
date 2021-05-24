@@ -45,12 +45,12 @@
             <img :src="item" />
           </div>
         </div> -->
-        <span class="ft24">{{baseInfo.signCount}}人已访问</span>
+        <span class="ft24">{{baseInfo.accessCount}}人已访问</span>
       </div>
       <div class="center-align">
         <svg-icon icon="icon_dakaline"
                   class="ft24"></svg-icon>
-        <span class="ft24">{{baseInfo.accessCount}}人已打卡</span>
+        <span class="ft24">{{baseInfo.signCount}}人已打卡</span>
       </div>
     </div>
     <div class="pl30 pr30">
