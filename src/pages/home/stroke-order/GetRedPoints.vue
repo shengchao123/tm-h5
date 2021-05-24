@@ -30,9 +30,9 @@
             <div class="between-row flex1">
               <div class="ft30 bold text-hidden">{{item.name}}</div>
               <u-checkbox @change="checkboxChange"
-                          icon-size="24"
+                          icon-size="20"
                           :value="pointIds.includes(item.code)"
-                          shape="shape"
+                          shape="circle"
                           active-color="#E32417"
                           :name="item.code"></u-checkbox>
             </div>
