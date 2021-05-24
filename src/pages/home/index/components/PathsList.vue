@@ -20,7 +20,7 @@ export default {
   name: 'PathsList',
   methods: {
     onSelectPath (item, index) {
-      this.$emit('onSelectPath', item.journeyLineId)
+      this.$emit('onSelectPath', item)
 
       const _scrollItem = this.$refs['item' + index][0]
       _scrollItem.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'start' })
@@ -33,7 +33,7 @@ export default {
         if (res.isError) return
         this.paths = res.content
         if (res.content && res.content.length > 0) {
-          this.$emit('onSelectPath', res.content[0].journeyLineId)
+          this.$emit('onSelectPath', res.content[0])
         }
       })
     }
