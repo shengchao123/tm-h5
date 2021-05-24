@@ -47,7 +47,7 @@ export function uploadAvatar (file, url = urls.uploadAvatar) { // 上传头像
   return new Promise((resolve, reject) => {
     uni.uploadFile({
       url: getFullUrl(urls.uploadAvatar),
-      name: 'filesAvatar',
+      name: 'files',
       filePath: file,
       fileType: 'image',
       success: (response) => {
