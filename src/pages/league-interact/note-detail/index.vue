@@ -13,11 +13,11 @@
         <view class="ml16">
           <view class="flex">
             <text class="ft28">{{detailInfo.nick}}</text>
-            <!-- <view class="community-title center-flex ml16">
-              <text class="ft22">{{detailInfo.communityTitle}}</text>
-            </view> -->
           </view>
-          <text class="ft22 tip-text">{{detailInfo.time}}</text>
+          <view class="ft22 color-999">
+            <text class="mr40">{{detailInfo.orgName}}</text>
+            <text>{{detailInfo.time}}</text>
+          </view>
         </view>
       </view>
       <!-- 不是自己的笔记才会显示关注按钮 -->
