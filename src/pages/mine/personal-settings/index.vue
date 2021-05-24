@@ -34,7 +34,7 @@
         </view>
       </template>
       <view class="pt12 pb32 color-999 ft26">
-        <text v-if="$isEmpty(formData.orgName)">认证后可在论坛发布帖子，可报名参加联盟活动</text>
+        <text v-if="!formData.isRealName">认证后可在论坛发布帖子，可报名参加联盟活动</text>
         <template v-else>
           <view v-for="(item,index) in realNameProp"
                 :key="index"
@@ -67,7 +67,7 @@ export default {
     // 昵称、实名认证
     onInfoItem (type) {
       if (type === 'phone' || type === 'labelList') return
-      if (type === 'orgName' && !this.$isEmpty(this.formData.orgName)) return
+      if (type === 'orgName' && this.formData.isRealName) return
       const temUrl = type === 'nick' ? `/pages/mine/personal-settings/EditNick?nick=${this.formData.nick}` : '/pages/mine/real-name/index'
       uni.navigateTo({ url: temUrl })
     },
@@ -167,14 +167,14 @@ export default {
     isClickShow () {
       return (val) => {
         if (val === 'nick') return true
-        if (val === 'orgName') return this.$isEmpty(this.formData.orgName)
+        if (val === 'orgName') return !this.formData.isRealName
         return false
       }
     },
     infoText () {
       return (val) => {
-        const { orgName, labelList } = this.formData
-        if (val === 'orgName') return this.$isEmpty(orgName) ? '未认证' : '已认证'
+        const { isRealName, labelList } = this.formData
+        if (val === 'orgName') return isRealName ? '已认证' : '未认证'
         if (val === 'labelList') labelList.splice(0, 2).join('、')
         return this.formData[val]
       }

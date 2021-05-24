@@ -1,12 +1,12 @@
 <template>
   <u-popup v-model="isRuleShow"
            mode="center"
-           height="546"
+           height="680"
            width="540"
            border-radius="6"
            :mask-custom-style="maskCustomStyle">
     <view class="popup-wrap">
-      <view class="relative">
+      <view class="relative pb32">
         <view class="ft30 popup-title bold pt40">红心获取规则</view>
         <view class="close-btn"
               @click="isRuleShow = false">
@@ -14,10 +14,10 @@
                     class="ft24 color-999 bold"></svg-icon>
         </view>
       </view>
-      <view class="pl32 pr32 pt8 h464">
+      <view class="pl32 pr32 pt8 h568">
         <view v-for="(item,index) in contentData"
               :key="index"
-              class="between-row ft28 color-333 mt32">
+              class="between-row ft28 color-333 mb32">
           <text class="bold">{{item.name}}</text>
           <text>+{{item.point}}</text>
         </view>
@@ -39,28 +39,53 @@ export default {
       isRuleShow: false,
       contentData: Object.freeze([
         {
-          name: '打卡',
+          name: '创建行程单',
           point: 2
         },
         {
-          name: '分享',
-          point: 5
+          name: '填写组织生活记录',
+          point: 3
         },
         {
-          name: '评价',
-          point: 10
+          name: '行程单报名',
+          point: 1
         },
+
         {
-          name: '参与行程',
+          name: '行程评价发布',
           point: 5
         },
         {
           name: '点赞',
+          point: 1
+        },
+        {
+          name: '分享',
+          point: 1
+        },
+        {
+          name: '社区发帖成功',
+          point: 5
+        },
+        {
+          name: '发布评论',
           point: 2
         },
         {
-          name: '评论',
-          point: 2
+          name: '打卡',
+          point: 10
+        },
+        {
+          name: '注册成功',
+          point: 10
+        },
+        {
+          name: '实名认证',
+          point: 5
+        },
+        {
+          name: '活动报名',
+          point: 5
         }
       ])
     }
@@ -77,8 +102,9 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-.h464 {
-  height: 464rpx;
+.h568 {
+  height: 568rpx;
+  overflow: auto;
 }
 .popup-wrap {
   .popup-title {
