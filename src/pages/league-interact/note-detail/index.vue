@@ -43,7 +43,7 @@
              :cursor-spacing="15"
              @blur="onBlur"
              @confirm="onConfirm"
-             confirm-type="发送"
+             confirm-type="send"
              type="text" />
       <view class="tip-text ft30 flex">
         <view class="icon-item">
@@ -55,7 +55,7 @@
         <view class="icon-item relative"
               @click="changeStatus('isLike')">
           <svg-icon :icon="detailInfo.isLike ? 'icon_shoucang' : 'icon_weishoucang'"
-                    :class="['iconfont ft32',detailInfo.isLike ? 'primary-color' : 'color-999']"></svg-icon>
+                    :class="['ft32',detailInfo.isLike ? 'primary-color' : 'color-999']"></svg-icon>
           <text class="ft26 pl8 w30 color-666">{{detailInfo.likeQuantity}}</text>
         </view>
       </view>
@@ -215,11 +215,6 @@ export default {
     Carousel,
     Comments,
     ShareDialog
-  },
-  onShow () {
-    this.shareCommunityNote()
-    this.getNoteCommentDetailPage()
-    this.getNoteDetailInfo()
   },
   // 页面周期函数--监听页面加载
   onLoad (option) {

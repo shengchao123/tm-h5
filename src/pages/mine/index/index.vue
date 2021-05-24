@@ -152,7 +152,7 @@ export default {
   }
 
   .scroll-Y {
-    max-height: calc(100vh - 44px - 370rpx - 50px - 60rpx);
+    max-height: calc(100vh - 44px - 370rpx - 50px);
   }
 }
 </style>

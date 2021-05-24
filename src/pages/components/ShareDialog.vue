@@ -46,15 +46,17 @@
           <view class="flex operate"
                 v-if="isOperate">
             <view @click="editNote()"
-                  class="tc mr87"
+                  class="tc mr87 flex"
                   style="width: 94rpx">
-              <text class="iconfont icon_bianji center-flex icon-operate ft32"></text>
+              <svg-icon icon="icon_bianji"
+                        class="center icon-operate ft32"></svg-icon>
               <p class="mt4">编辑</p>
             </view>
             <view @click="deleteNote()"
                   class="tc"
                   style="width: 94rpx">
-              <text class="iconfont icon_shanchu center-flex icon-operate ft32"></text>
+              <svg-icon icon="icon_shanchu"
+                        class="center icon-operate ft32"></svg-icon>
               <p class="mt4">删除</p>
             </view>
           </view>

@@ -6,8 +6,10 @@
     <view class="comment-list-pop">
       <view class="tc title">
         <text class="ft34 medium">共{{count}}条评论</text>
-        <text class="iconfont icon_cha close ft20 color-999"
-              @click="hide"></text>
+        <view @click="hide"
+              class="close ft20 color-999">
+          <svg-icon icon="icon_cha"></svg-icon>
+        </view>
       </view>
       <view class="comment-list">
         <mescroll-uni ref="mescrollRef"
@@ -32,7 +34,7 @@
                :cursor-spacing="15"
                :enableNative="false"
                @confirm="onConfirm"
-               confirm-type="发送"
+               confirm-type="send"
                type="text" />
       </view>
     </view>

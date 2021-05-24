@@ -26,16 +26,16 @@
     </view>
     <!-- 标题 -->
     <view class="mb10 pl30 pr30">
-      <text class="ft28 medium">{{notesItem.title}}</text>
+      <text class="ft30 medium">{{notesItem.title}}</text>
     </view>
     <!-- 内容 -->
     <view class="content ml30 mr30">
       <div ref="contentBox"
            class="content-box"
            :class="isHideContent && 'hide-content'">
-        <div ref="contentText"
-             class="ft26"
-             id="content-text">{{notesItem.content}}</div>
+        <text ref="contentText"
+              class="ft26"
+              id="content-text">{{notesItem.content}}</text>
       </div>
       <view v-if="isShowExpand"
             class="expand center-flex"
