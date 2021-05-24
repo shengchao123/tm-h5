@@ -53,66 +53,65 @@ export default {
         });
       })
     },
-  },
-  getListData (page) {
-    const params = {
-      status: this.current !== 0 ? "0" + this.current : '',
-      pageNumber: page && page.num || 1,
-      pageSize: page && page.size || 10
-    }
-    this.$api.getJourneyActivityPage(params).then(res => {
-      if (res.isError || !res.content) {
-        this.$refs.activity.mescroll.endBySize(0, 0)
-        this.dataList = []
-        this.isEmpty = true
-        return
+    getListData (page) {
+      const params = {
+        status: this.current !== 0 ? "0" + this.current : '',
+        pageNumber: page && page.num || 1,
+        pageSize: page && page.size || 10
       }
-      const { items, count } = res.content
-      this.$refs.activity.mescroll.endBySize(items.length, count)
-      if (params.pageNumber === 1) this.dataList = []
-      this.dataList = this.dataList.concat(items)
-      this.isEmpty = this.$isEmpty(this.dataList)
+      this.$api.getJourneyActivityPage(params).then(res => {
+        if (res.isError || !res.content) {
+          this.$refs.activity.mescroll.endBySize(0, 0)
+          this.dataList = []
+          this.isEmpty = true
+          return
+        }
+        const { items, count } = res.content
+        this.$refs.activity.mescroll.endBySize(items.length, count)
+        if (params.pageNumber === 1) this.dataList = []
+        this.dataList = this.dataList.concat(items)
+        this.isEmpty = this.$isEmpty(this.dataList)
+      })
+    },
+    subsectionChange (e) {
+      this.subsection.curNow = e
+    }
+  },
+  data () {
+    return {
+      isScroll: false,
+      isEmpty: false,
+      dataList: [],
+      current: 0,
+      subsection: {
+        list: Object.freeze([
+          {
+            name: '论坛'
+          },
+          {
+            name: '活动'
+          }
+        ]),
+        curNow: 1
+      }
+    }
+  },
+  onShow () {
+    this.getListData()
+    if (!this.$notMember()) {
+      this.$refs.forum && this.$refs.forum.getMemberPersonalInfo()
+    }
+  },
+  beforeDestroy () {
+    uni.$off('discoverBtn')
+  },
+  // 页面周期函数--监听页面加载
+  onLoad () {
+    uni.$on('discoverBtn', (res) => {
+      this.isScroll = !res
     })
   },
-  subsectionChange (e) {
-    this.subsection.curNow = e
-  }
-},
-data() {
-  return {
-    isScroll: false,
-    isEmpty: false,
-    dataList: [],
-    current: 0,
-    subsection: {
-      list: Object.freeze([
-        {
-          name: '论坛'
-        },
-        {
-          name: '活动'
-        }
-      ]),
-      curNow: 1
-    }
-  }
-},
-onShow() {
-  this.getListData()
-  if (!this.$notMember()) {
-    this.$refs.forum && this.$refs.forum.getMemberPersonalInfo()
-  }
-},
-beforeDestroy() {
-  uni.$off('discoverBtn')
-},
-// 页面周期函数--监听页面加载
-onLoad() {
-  uni.$on('discoverBtn', (res) => {
-    this.isScroll = !res
-  })
-},
-components: { Activity, Forum },
+  components: { Activity, Forum },
 }
 </script>
 <style>
