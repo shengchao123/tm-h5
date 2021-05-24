@@ -9,7 +9,8 @@
          class="evaluation-list between-row  mt40">
       <div v-for="(item, index) in evaluationList"
            :key="index"
-           class="evaluation-item mb20">
+           class="evaluation-item mb20"
+           @click="onDetail(item)">
         <img class="attachment"
              :src="$fileHost + item.attachment" />
         <div class="pl12 pr12 pt4 pb18">
@@ -46,6 +47,12 @@ import PageEmpty from '@/pages/components/PageEmpty.vue';
 export default {
   name: 'name',
   methods: {
+    // 去评价详情
+    onDetail (item) {
+      uni.navigateTo({
+        url: `pages/home/evaluate-detail/index?communityNoteId=${item.communityNoteId}`
+      })
+    },
     // 点赞
     onLike (item, index) {
       let { communityNoteId, isLike, likeQuantity } = item
