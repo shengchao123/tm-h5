@@ -54,7 +54,9 @@ export default {
     onOtherPage (type) {
       const { id, name } = this.item
       let pageParams = `id=${id}`
-      type === 'writeLife' || type === 'evaluation' && (pageParams = pageParams + `&name=${name}`)
+      if (type === 'writeLife' || type === 'evaluation') {
+        pageParams = pageParams + `&name=${name}`
+      }
       const url = pageUrlMap.get(type)
       uni.navigateTo({ url: `${url}${pageParams}` })
     }
