@@ -9,7 +9,7 @@
         <view class="ft34 popup-title">选择组织</view>
         <view class="close-btn"
               @click="isOrgShow = false">
-          <svg-icon class="iconfont ft24 color-999 bold mt8"
+          <svg-icon class="ft24 color-999 bold mt8"
                     icon="icon_cha"></svg-icon>
         </view>
       </view>

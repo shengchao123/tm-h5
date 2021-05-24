@@ -23,7 +23,7 @@
               <view class="tc relative">
                 <view @click="onLike(item)">
                   <svg-icon :icon="item.isLike ? 'icon_shoucang' : 'icon_weishoucang'"
-                            :class="['iconfont ft32',item.isLike ? 'primary-color' : 'color-999']"></svg-icon>
+                            :class="['ft32',item.isLike ? 'primary-color' : 'color-999']"></svg-icon>
                 </view>
                 <view class="mt20 ft22">{{item.likeCount}}</view>
               </view>

@@ -6,8 +6,10 @@
     <view class="comment-list-pop">
       <view class="tc title">
         <text class="ft34 medium">共{{count}}条评论</text>
-        <text class="iconfont icon_cha close ft20 color-999"
-              @click="hide"></text>
+        <view @click="hide"
+              class="close ft20 color-999">
+          <svg-icon icon="icon_cha"></svg-icon>
+        </view>
       </view>
       <view class="comment-list">
         <mescroll-uni ref="mescrollRef"
@@ -43,6 +45,7 @@ import MescrollMixin from "@/components/mescroll-uni/mescroll-mixins.js";
 import MescrollUni from "@/components/mescroll-uni/mescroll-uni.vue";
 import Comments from '@/pages/components/Comments.vue';
 import Popup from '@/components/slzx-popup/slzx-popup.vue'
+import SvgIcon from '../../../components/SvgIcon.vue';
 export default {
   methods: {
     hide () {
@@ -116,7 +119,7 @@ export default {
     }
   },
   mixins: [MescrollMixin],
-  components: { MescrollUni, Comments, Popup }
+  components: { MescrollUni, Comments, PopupSvgIcon }
 }
 </script>
 <style lang='scss' scoped>

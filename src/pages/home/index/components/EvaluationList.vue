@@ -24,7 +24,7 @@
             </div>
             <div class="trigger-area relative center-align pl32"
                  @click.stop="onLike(item, index)">
-              <text class="iconfont ft28  mr8"
+              <text class="ft28  mr8"
                     :class="item.isLike ? 'icon_zan primary-color' : 'icon_zankong color-999'"></text>
               <svg-icon :icon="item.isLike ? 'icon_shoucang' : 'icon_weishoucang'"
                         class="ft28 color-999 mr8"
