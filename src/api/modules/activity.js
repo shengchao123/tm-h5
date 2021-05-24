@@ -4,6 +4,7 @@ import { urls } from '../urls'
 export function getJourneyActivityPage (params) {
   return request({
     url: urls.getJourneyActivityPage,
+    needlessToken: true,
     data: {
       ...params
     }
@@ -13,6 +14,7 @@ export function getJourneyActivityPage (params) {
 export function getJourneyActivityDetail (params) {
   return request({
     url: urls.getJourneyActivityDetail,
+    needlessToken: true,
     data: {
       ...params
     }
@@ -49,6 +51,7 @@ export function publishJourneyActivityStyle (params) {
 export function getJourneyActivityList (params) {
   return request({
     url: urls.getJourneyActivityList,
+    needlessToken: true,
     data: {
       ...params
     }
