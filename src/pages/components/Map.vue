@@ -72,6 +72,7 @@ export default {
   watch: {
     points () {
       this.$amap.clearMap()
+      this.drawDistrict()
       this.drawPath()
       this.drawMarker()
     }
