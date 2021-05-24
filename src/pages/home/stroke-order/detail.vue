@@ -135,11 +135,13 @@ export default {
     },
     // 去评价
     onComment () {
+      if (this.$notMember()) return this.$goLogin()
       const url = `/pages/home/evaluation/index?id=${this.baseInfo.id}`
       uni.navigateTo({ url })
     },
     // 去填写组织生活记录
     onLifeDocumentary () {
+      if (this.$notMember()) return this.$goLogin()
       const { id, name, hasLifeRecord } = this.baseInfo
       const writeLifeUrl = `/pages/mine/org-life-record/index?id=${id}&name=${name}`
       const lifeRecordUrl = `/pages/mine/org-life-record/Detail?id=${id}`
@@ -148,6 +150,7 @@ export default {
     },
     // 报名
     onSignUp () {
+      if (this.$notMember()) return this.$goLogin()
       const id = this.id
       if (!this.baseInfo.isSignUp) {
         uni.navigateTo({
@@ -231,7 +234,6 @@ export default {
     }
   },
   onShow () {
-    if (this.$notMember()) return this.$goLogin()
     this.getJourneyItineraryById()
   },
   onLoad (option) {
