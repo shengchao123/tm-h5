@@ -159,6 +159,7 @@ export default {
       mapInitObj: Object.freeze({
         resizeEnable: true,
         zoom: 9, // 级别
+        zooms: [9, 19],
         center: [119.365056, 30.034302],
       }),
       upOption: {

@@ -230,7 +230,8 @@ export default {
       pois: [],
       mapInitObj: Object.freeze({
         resizeEnable: true,
-        zoom: 12
+        zoom: 12,
+        zooms: [9, 19],
       })
     }
   },
