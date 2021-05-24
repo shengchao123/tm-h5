@@ -122,7 +122,9 @@ import commentMixins from '@/mixins/comment.js'
 import { avatarUrl } from '@/utils/tools'
 export default {
   methods: {
+    avatarUrl,
     onShowShareDialog () {
+      if (this.$notMember()) return this.$goLogin()
       this.$refs.shareDialog.show()
     },
     onBlur () {
@@ -191,25 +193,12 @@ export default {
         this.shareId = res.content.shareId
       })
     },
-    // 根据分享id查询笔记详细信息
-    getCommunityNoteInfoByShareId () {
-      const params = {
-        shareId: this.shareId
-      }
-      this.$api.getCommunityNoteInfoByShareId(params).then(res => {
-        if (res.isError) {
-          this.$msg(res.message)
-          return
-        }
-        this.detailInfo = res.content || {}
-      })
-    },
-    // 根据笔记id查询笔记详细信息
-    getCommunityNoteInfoById () {
-      const params = {
-        communityNoteId: this.communityNoteId
-      }
-      this.$api.getCommunityNoteInfoById(params).then(res => {
+    // 根据id查询笔记详细信息
+    getNoteDetailInfo () {
+      // 如果没有分享人id则根据笔记id获取详情
+      const params = this.$isEmpty(this.shareId) ? { communityNoteId: this.communityNoteId } : { shareId: this.shareId }
+      const apiName = this.$isEmpty(this.shareId) ? 'getCommunityNoteInfoById' : 'getCommunityNoteInfoByShareId'
+      this.$api[apiName](params).then(res => {
         if (res.isError) {
           this.$msg(res.message)
           return
@@ -224,14 +213,8 @@ export default {
       // 获取分享人的id
       this.shareCommunityNote()
       this.getNoteCommentDetailPage()
-      // 如果没有分享人id则根据笔记id获取详情
-      if (this.$isEmpty(this.shareId)) {
-        this.getCommunityNoteInfoById()
-        return
-      }
-      this.getCommunityNoteInfoByShareId()
+      this.getNoteDetailInfo()
     },
-    avatarUrl
   },
   data () {
     return {
@@ -294,9 +277,13 @@ export default {
     Comments,
     ShareDialog
   },
+  onShow () {
+    this.shareCommunityNote()
+    this.getNoteCommentDetailPage()
+    this.getNoteDetailInfo()
+  },
   // 页面周期函数--监听页面加载
   onLoad (option) {
-    if (this.$notMember()) return this.$goLogin()
     this.setOption(option)
   },
   //分享好友设置

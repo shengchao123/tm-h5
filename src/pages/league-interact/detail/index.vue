@@ -13,20 +13,22 @@
       <view class="form-list">
         <view v-for="(item,index) in formList"
               :key="index"
-              class="ft30 form-item center-align pt28 pb28">
+              class="ft30 form-item flex pt28 pb28">
           <text class="color-333 medium">{{item.name}}</text>
           <view class="pl32 flex1">
             <text v-if="item.keyName === 'activityTime'">{{getTime}}</text>
             <text
                   v-else-if="item.keyName === 'startTime'">{{moment(detailInfo.startTime).format('YYYY-MM-DD HH:mm')}}</text>
-            <view v-else-if="item.keyName ==='address'"
+            <!-- <view v-else-if="item.keyName ==='address'"
                   class="between-row">
               <text class="color-666">{{detailInfo[item.keyName]}}</text>
               <view @click="onToMap">
                 <svg-icon class="ding-wei"
                           icon="icon_dingwei"></svg-icon>
               </view>
-            </view>
+            </view> -->
+            <text
+                  v-else-if="item.keyName === 'numberLimit'">{{detailInfo.numberLimit === -1 ? '不限制' : detailInfo.numberLimit}}</text>
             <text v-else
                   class="color-666">{{detailInfo[item.keyName]}}</text>
           </view>
@@ -36,7 +38,7 @@
     </view>
     <!-- 活动风采 -->
     <!-- 活动已结束才有活动风采 -->
-    <view v-if="detailInfo && detailInfo.status === '03'"
+    <view v-if="detailInfo && detailInfo.status === '03' && detailInfo.styleDescription"
           class="activity-style pt32 pb24 pl30 pr30 bg-white ft30 color-333 column mt20 mb32">
       <text class="bold">活动风采</text>
       <text class="pt20">{{detailInfo.styleDescription}}</text>
@@ -130,7 +132,7 @@ export default {
         },
         {
           name: '报名人数',
-          keyName: ''
+          keyName: 'signUpQuantity'
         },
         {
           name: '活动介绍',

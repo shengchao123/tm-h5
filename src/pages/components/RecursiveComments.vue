@@ -79,7 +79,7 @@ export default {
     },
     // 点赞、取消点赞评论
     onLike (item, indx, type) {
-      if (this.$notMember()) return
+      if (this.$notMember()) return this.$goLogin();
       let apiName = ''
       const params = {
         communityNoteId: item.communityNoteId
