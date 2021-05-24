@@ -238,9 +238,14 @@ export default {
   mixins: [mapMixin]
 }
 </script>
-
+<style>
+page {
+  height: 100%;
+}
+</style>
 <style lang='scss' scoped>
 .point-guide-wrap {
+  height: 100%;
   #map {
     width: 100vw;
     height: 93vh;

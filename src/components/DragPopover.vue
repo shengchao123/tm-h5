@@ -2,7 +2,8 @@
   <div class='drag-popover-wrap'
        ref="wrap"
        :style="{top}">
-    <div class="relative column"
+    <div ref="targetEl"
+         class="relative column"
          style="height:100%">
       <div class="location center color-333 ft48"
            @click="onLocation"
@@ -10,10 +11,10 @@
         <SvgIcon icon='icon_suoding'></SvgIcon>
       </div>
       <div @touchmove.prevent="move"
-           class="drag_control_wrap center">
+           class="drag_control_wrap center pt12 pb12">
         <div class="drag_control"></div>
       </div>
-      <div class="content">
+      <div class="content flex1">
         <slot class="slot"></slot>
       </div>
     </div>
@@ -31,12 +32,13 @@ export default {
       this.$emit('onLocation')
     },
     move (e) {
+      const offsetHeight = this.$refs.targetEl.getBoundingClientRect().height
       const _touch = e.touches[0]
       const _clientY = calcPx2Vh(_touch.clientY)
       if (_clientY <= minTop || _clientY >= + this.maxTop) return
       this.getContentHeight()
       this.top = _clientY + 'vh'
-      this.$emit('dragTopChange', _touch.clientY)
+      this.$emit('dragTopChange', offsetHeight)
     },
     getContentHeight () {
       const _rect = this.$refs.wrap.getBoundingClientRect()
@@ -85,10 +87,10 @@ export default {
     box-shadow: 0 -12rpx 34rpx 0 rgba(0, 0, 0, 0.1);
   }
   .drag_control_wrap {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
+    // position: absolute;
+    // top: 0;
+    // left: 0;
+    // right: 0;
     height: 38rpx;
     .drag_control {
       background: #eaeaea;
@@ -103,11 +105,12 @@ export default {
     top: 40rpx;
   }
   .content {
-    position: absolute;
-    top: 40rpx;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    height: 50%;
+    // position: absolute;
+    // top: 40rpx;
+    // left: 0;
+    // right: 0;
+    // bottom: 0;
   }
 }
 </style>

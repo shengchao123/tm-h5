@@ -1,48 +1,45 @@
 <template>
   <view>
     <view class="pb120 evaluate-box">
-      <input
-        type="text"
-        v-model="evaluate.title"
-        placeholder="有标题可以获得更多赞哦～"
-        placeholder-class="place-class"
-        class="ft32 bold title-style"
-      />
-      <textarea
-        placeholder="添加正文"
-        v-model="evaluate.content"
-        placeholder-style="color:#999"
-        maxlength="-1"
-        class="text-area mt36 ft30"
-      >
+      <input type="text"
+             v-model="evaluate.title"
+             placeholder="有标题可以获得更多赞哦～"
+             placeholder-class="place-class"
+             class="ft32 bold title-style" />
+      <textarea placeholder="添加正文"
+                v-model="evaluate.content"
+                placeholder-style="color:#999"
+                maxlength="-1"
+                class="text-area mt36 ft30">
       </textarea>
       <view class="mt24 flex pb8">
-        <upload-images
-          :count="9"
-          :length="9"
-          :imageData.sync="evaluate.attachmentDTOList"
-        ></upload-images>
+        <upload-images :count="9"
+                       :length="9"
+                       :imageData.sync="evaluate.attachmentDTOList"></upload-images>
       </view>
-      <view class="trips between-row" @click="changeEvaluate">
+      <view class="trips between-row"
+            @click="changeEvaluate">
         <view class="center-align">
-          <svg-icon icon="icon_didian" class="ft30 mr16 color-666"></svg-icon>
+          <svg-icon icon="icon_didian"
+                    class="ft30 mr16 color-666"></svg-icon>
           <view class="ft28">选择行程</view>
         </view>
         <view class="center-align">
           <view class="ft24 mr8 color-999">{{
             evaluateData.name ? evaluateData.name : "未选择"
           }}</view>
-          <svg-icon icon="icon_xiangyoujiantou" class="ft20"></svg-icon>
+          <svg-icon icon="icon_xiangyoujiantou"
+                    class="ft20 fc4"></svg-icon>
         </view>
       </view>
-      <select-evaluate-pop
-        ref="selectRoutePop"
-        :selectedId.sync="evaluate.journeyItineraryId"
-        @onEvaluateItem="getEvaluateItem"
-      ></select-evaluate-pop>
+      <select-evaluate-pop ref="selectRoutePop"
+                           :selectedId.sync="evaluate.journeyItineraryId"
+                           @onEvaluateItem="getEvaluateItem"></select-evaluate-pop>
     </view>
     <view class="bt">
-      <button class="submit tc ft32 bold" :class="isSubmit" @click="submit">
+      <button class="submit tc ft32 bold"
+              :class="isSubmit"
+              @click="submit">
         提交
       </button>
     </view>
@@ -53,7 +50,7 @@ import UploadImages from "@/components/upload-images";
 import SelectEvaluatePop from "./components/SelectEvaluatePop.vue";
 
 export default {
-  data() {
+  data () {
     return {
       evaluate: {
         title: "",
@@ -65,12 +62,12 @@ export default {
         id: "",
         name: "",
       },
-      communityNoteId:''
+      communityNoteId: ''
     };
   },
   methods: {
     // 提交按钮
-    submit() {
+    submit () {
       const {
         title,
         content,
@@ -89,7 +86,7 @@ export default {
         ...this.evaluate,
       };
       let apiName = 'createItineraryEvaluation'
-      if(this.communityNoteId){
+      if (this.communityNoteId) {
         apiName = 'modifyItineraryEvaluation'
       }
       this.$api[apiName](params).then((res) => {
@@ -99,11 +96,11 @@ export default {
       });
     },
     // 选择行程
-    changeEvaluate() {
+    changeEvaluate () {
       this.$refs.selectRoutePop.show();
     },
     // 获取评价详情数据
-    getEvaluateData(id) {
+    getEvaluateData (id) {
       const params = {
         communityNoteId: id,
       };
@@ -114,21 +111,21 @@ export default {
       });
     },
     // 获取选择行程数据
-    getEvaluateItem(val) {
+    getEvaluateItem (val) {
       this.evaluate.journeyItineraryId = val.id
       this.evaluateData = val;
     },
   },
   computed: {
-    isSubmit() {
-      const { title, content, attachmentDTOList,journeyItineraryId } = this.evaluate;
+    isSubmit () {
+      const { title, content, attachmentDTOList, journeyItineraryId } = this.evaluate;
       if (title && content && attachmentDTOList.length > 0 && journeyItineraryId) {
         return "back";
       }
       return "";
     },
   },
-  onLoad(option) {
+  onLoad (option) {
     if (option.id) {
       this.communityNoteId = option.id
       this.getEvaluateData(option.id);
@@ -144,6 +141,7 @@ export default {
     font-weight: 100;
   }
   .title-style {
+    font-size: 32rpx;
     height: 100rpx;
     border-bottom: 1rpx solid #eaeaea;
   }
@@ -179,5 +177,8 @@ export default {
     color: #ffffff;
     background: #cccccc;
   }
+}
+.fc4 {
+  color: #c4c4c4;
 }
 </style>
