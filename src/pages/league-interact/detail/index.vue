@@ -13,7 +13,7 @@
       <view class="form-list">
         <view v-for="(item,index) in formList"
               :key="index"
-              class="ft30 form-item center-align pt28 pb28">
+              class="ft30 form-item flex pt28 pb28">
           <text class="color-333 medium">{{item.name}}</text>
           <view class="pl32 flex1">
             <text v-if="item.keyName === 'activityTime'">{{getTime}}</text>
@@ -38,7 +38,7 @@
     </view>
     <!-- 活动风采 -->
     <!-- 活动已结束才有活动风采 -->
-    <view v-if="detailInfo && detailInfo.status === '03'"
+    <view v-if="detailInfo && detailInfo.status === '03' && detailInfo.styleDescription"
           class="activity-style pt32 pb24 pl30 pr30 bg-white ft30 color-333 column mt20 mb32">
       <text class="bold">活动风采</text>
       <text class="pt20">{{detailInfo.styleDescription}}</text>
