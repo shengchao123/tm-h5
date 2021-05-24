@@ -75,11 +75,12 @@ export default {
   },
   data () {
     return {
-      journeyLineIdCache: '',
+      journeyLineIdCache: this.journeyLineId,
       selectRouteItem: {},
       mapInitObj: Object.freeze({
         resizeEnable: true,
         zoom: 9, // 级别
+        zooms: [9, 19],
         center: [119.365056, 30.194302]
       }),
       points: []

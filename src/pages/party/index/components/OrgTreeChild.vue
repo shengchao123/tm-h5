@@ -23,6 +23,7 @@
 import OrgTreeChild from './OrgTreeChild.vue'
 
 export default {
+  name: 'orgTreeChild',
   props: {
     list: Array
   },

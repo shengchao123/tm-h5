@@ -1,41 +1,37 @@
 <template>
   <view>
-    <view
-      :class="[
+    <view :class="[
         'publish white-color bold center-flex tc',
         isScroll ? 'is-scroll' : '',
       ]"
-      @click="onPublish"
-      v-if="!isScroll"
-    >
-      <svg-icon icon="icon_fabu" class="ft32"></svg-icon>
+          @click="onPublish"
+          v-if="!isScroll">
+      <svg-icon icon="icon_fabu"
+                class="ft32"></svg-icon>
     </view>
     <view v-else>
       <u-mask :show="show">
         <view class="btn-list">
           <view class="evaluates tc comment-position">
-            <view class="evaluate-btn comment-style" @click="onEvaluate">
-              <svg-icon
-                icon="icon_chuangjianhangcheng"
-                class="ft32 evaluate-icon"
-              ></svg-icon>
+            <view class="evaluate-btn comment-style"
+                  @click="onEvaluate">
+              <svg-icon icon="icon_fabupinglun"
+                        class="ft32 evaluate-icon"></svg-icon>
             </view>
             <view class="white-color ft22 mt12">发布评价</view>
           </view>
           <view class="evaluates tc evaluate-position">
-            <view class="evaluate-btn evaluate-style" @click="onTrip">
-              <svg-icon
-                icon="icon_fabupinglun"
-                class="ft32 evaluate-icon"
-              ></svg-icon>
+            <view class="evaluate-btn evaluate-style"
+                  @click="onTrip">
+              <svg-icon icon="icon_chuangjianhangcheng"
+                        class="ft36 evaluate-icon"></svg-icon>
             </view>
             <view class="white-color ft22 mt12">创建行程</view>
           </view>
-          <view
-            class="evaluate-btn white-color tc close-style"
-            @click="hiddenIcon"
-          >
-            <svg-icon icon="icon_fabuguanbi" class="ft28"></svg-icon>
+          <view class="evaluate-btn white-color tc close-style"
+                @click="hiddenIcon">
+            <svg-icon icon="icon_fabuguanbi"
+                      class="ft28"></svg-icon>
           </view>
         </view>
       </u-mask>
@@ -44,7 +40,7 @@
 </template>
 <script>
 export default {
-  data() {
+  data () {
     return {
       isScroll: false,
       show: false,
@@ -52,34 +48,34 @@ export default {
   },
   methods: {
     // 发布按钮
-    onPublish() {
+    onPublish () {
       if (this.$notMember()) return this.$goLogin();
       this.show = true;
       this.isScroll = true;
       console.log(this.show);
     },
     // 关闭发布背景
-    hiddenIcon() {
+    hiddenIcon () {
       this.show = false;
       this.isScroll = false;
     },
     // 跳转评价
-    onEvaluate() {
+    onEvaluate () {
       if (this.$notMember()) return this.$goLogin();
       uni.navigateTo({ url: "/pages/home/evaluation/index" });
     },
     // 跳转行程
-    onTrip() {
+    onTrip () {
       if (this.$notMember()) return this.$goLogin();
       uni.navigateTo({ url: "/pages/home/stroke-order/index" });
     },
   },
-  onLoad() {
+  onLoad () {
     uni.$on("discoverBtn", (res) => {
       this.isScroll = !res;
     });
   },
-  beforeDestroy() {
+  beforeDestroy () {
     uni.$off("discoverBtn");
   },
 };
@@ -94,7 +90,8 @@ export default {
   background: rgba($color: #ffffff, $alpha: 0.9);
   box-shadow: 4rpx 6rpx 8rpx 0 rgba(14, 2, 2, 0.25);
   z-index: 200;
-  background-image: linear-gradient(98deg, #f54400 0%, #ff6630 72%);
+  background: #e32417;
+  // background-image: linear-gradient(98deg, #f54400 0%, #ff6630 72%);
   bottom: 57rpx;
   font-size: 56rpx;
   right: 14rpx;
@@ -141,9 +138,10 @@ export default {
   background-image: linear-gradient(98deg, #f54400 0%, #ff6630 72%);
 }
 .close-style {
-  background: rgba($color: #000000, $alpha: 0.8);
+  background: rgba($color: #333333, $alpha: 0.93);
   position: absolute;
   right: 8rpx;
   bottom: 165rpx;
+  z-index: 0;
 }
 </style>

@@ -66,25 +66,21 @@ export default {
     },
     // 分享
     onShare () {
-      const { title, content, attachments, communityNoteId } = this.notesItem
+      const { title, content, communityNoteId } = this.notesItem
       const params = {
         sourceId: communityNoteId
       }
       this.$api.shareCommunityNote(params).then(res => {
         if (res.isError) return this.$msg(res.message)
         const { shareId } = res.content
+        const link = window.location.href.split('/pages')[0] + `/pages/league-interact/note-detail/index?communityNoteId=${communityNoteId}&shareId=${shareId}`
         const shareData = {
+          link,
           title,
           desc: content,
-          path: `/pagesDiscover/note-detail/index?communityNoteId=${communityNoteId}&shareId=${shareId}`,
-          imageUrl: this.$isEmpty(attachments) ? '' : this.$imgUrlDeal(attachments[0])
+          imgUrl: this.$imgHost + 'share.png'
         }
-        const posterData = this.notesItem
-        const shareParams = {
-          communityNoteId,
-          shareId
-        }
-        this.setShareData(shareData, posterData, shareParams)
+        this.setShareData(shareData)
       })
 
     },
