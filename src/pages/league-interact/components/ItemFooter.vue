@@ -64,6 +64,11 @@ export default {
     // 评论
     onComment () {
       if (this.$notMember()) return this.$goLogin()
+      if (this.isRealName === null) {
+        this.$msg('正在获取认证信息')
+        this.$emit('getMemberPersonalInfo')
+      }
+      if (!this.isRealName) return
       this.onShowSendCommentPopup(this.notesItem.communityNoteId)
     },
     // 分享
@@ -99,6 +104,7 @@ export default {
       default: () => ({})
     },
     notesIndex: Number,
+    isRealName: Boolean
   },
   data () {
     return {

@@ -11,7 +11,8 @@
       </div>
     </div>
     <view>
-      <forum v-if="subsection.curNow === 0"></forum>
+      <forum ref="forum"
+             v-if="subsection.curNow === 0"></forum>
       <activity v-else
                 ref="activity"
                 :isEmpty="isEmpty"
@@ -42,66 +43,76 @@ export default {
     onPublish () {
       // 判断是否登录逻辑
       if (this.$notMember()) return this.$goLogin();
-      uni.navigateTo({
-        url: '/pages/league-interact/send-post/index'
-      });
-    },
-    getListData (page) {
-      const params = {
-        status: this.current !== 0 ? "0" + this.current : '',
-        pageNumber: page && page.num || 1,
-        pageSize: page && page.size || 10
-      }
-      this.$api.getJourneyActivityPage(params).then(res => {
-        if (res.isError || !res.content) {
-          this.$refs.activity.mescroll.endBySize(0, 0)
-          this.dataList = []
-          this.isEmpty = true
-          return
+      this.$api.getMemberPersonalInfo().then(res => {
+        if (res.isError) return this.$msg(res.message)
+        if (!res.content.isRealName) {
+          return this.$msg('请先实名认证')
         }
-        const { items, count } = res.content
-        this.$refs.activity.mescroll.endBySize(items.length, count)
-        if (params.pageNumber === 1) this.dataList = []
-        this.dataList = this.dataList.concat(items)
-        this.isEmpty = this.$isEmpty(this.dataList)
+        uni.navigateTo({
+          url: '/pages/league-interact/send-post/index'
+        });
       })
     },
-    subsectionChange (e) {
-      this.subsection.curNow = e
-    }
   },
-  data () {
-    return {
-      isScroll: false,
-      isEmpty: false,
-      dataList: [],
-      current: 0,
-      subsection: {
-        list: Object.freeze([
-          {
-            name: '论坛'
-          },
-          {
-            name: '活动'
-          }
-        ]),
-        curNow: 1
+  getListData (page) {
+    const params = {
+      status: this.current !== 0 ? "0" + this.current : '',
+      pageNumber: page && page.num || 1,
+      pageSize: page && page.size || 10
+    }
+    this.$api.getJourneyActivityPage(params).then(res => {
+      if (res.isError || !res.content) {
+        this.$refs.activity.mescroll.endBySize(0, 0)
+        this.dataList = []
+        this.isEmpty = true
+        return
       }
-    }
-  },
-  onShow () {
-    this.getListData()
-  },
-  beforeDestroy () {
-    uni.$off('discoverBtn')
-  },
-  // 页面周期函数--监听页面加载
-  onLoad () {
-    uni.$on('discoverBtn', (res) => {
-      this.isScroll = !res
+      const { items, count } = res.content
+      this.$refs.activity.mescroll.endBySize(items.length, count)
+      if (params.pageNumber === 1) this.dataList = []
+      this.dataList = this.dataList.concat(items)
+      this.isEmpty = this.$isEmpty(this.dataList)
     })
   },
-  components: { Activity, Forum },
+  subsectionChange (e) {
+    this.subsection.curNow = e
+  }
+},
+data() {
+  return {
+    isScroll: false,
+    isEmpty: false,
+    dataList: [],
+    current: 0,
+    subsection: {
+      list: Object.freeze([
+        {
+          name: '论坛'
+        },
+        {
+          name: '活动'
+        }
+      ]),
+      curNow: 1
+    }
+  }
+},
+onShow() {
+  this.getListData()
+  if (!this.$notMember()) {
+    this.$refs.forum && this.$refs.forum.getMemberPersonalInfo()
+  }
+},
+beforeDestroy() {
+  uni.$off('discoverBtn')
+},
+// 页面周期函数--监听页面加载
+onLoad() {
+  uni.$on('discoverBtn', (res) => {
+    this.isScroll = !res
+  })
+},
+components: { Activity, Forum },
 }
 </script>
 <style>

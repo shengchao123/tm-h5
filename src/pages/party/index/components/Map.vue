@@ -16,8 +16,10 @@ export default {
   methods: {
     // 绘制图中标记点
     drawMarker () {
+      const _temPoints = JSON.parse(JSON.stringify(this.points))
+      _temPoints.reverse()
       // 绘制图标
-      this.points.forEach((item, index) => {
+      _temPoints.forEach((item, index) => {
 
         const _img = index === this.currentIndex ? 'party_l.gif' : 'party.png'
         const _WH = index === this.currentIndex ? LWH : MWH

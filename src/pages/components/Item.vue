@@ -27,7 +27,7 @@
       </view>
     </view>
     <view v-if="item.status === '01'">
-      <view class="btn center cancel-btn"
+      <view class="btn center cancel-btn ft24"
             v-if="item.isSignUp ">
         已报名
       </view>
@@ -137,8 +137,8 @@ export default {
     line-height: 56rpx;
   }
   .cancel-btn {
-    border: 1rpx solid #d2d2d2;
-    color: #666666;
+    border: none;
+    color: #999;
   }
 }
 </style>

@@ -8,16 +8,19 @@
       </view>
       <view>
         <swiper class="swiper mt24"
-                :duration="2000"
+                :duration="1000"
+                :circular="true"
                 @change="getSwiper">
           <swiper-item v-for="(item, index) in activityList"
                        :key="index"
                        class="swiper-item">
             <view class="activity-item mt16 ml30 mr30">
-              <view class="ft28 color-333">{{ item.name
-                }}<span class="activity-status">{{
-                  item.statusName
-                }}</span></view>
+              <view class="ft28 color-333 center-align">
+                <div> {{ item.name }}</div>
+                <svg-icon :icon="activityStatus(item.status)"
+                          :class="activityClass(item.status)"
+                          class="ml8 activity-status"></svg-icon>
+              </view>
               <view class="between-row ft24 color-999">
                 <view>{{ item.orgName }}</view>
                 <view>{{ $moment(item.endTime).format("YYYY-MM-DD") }}</view>
@@ -30,6 +33,16 @@
   </view>
 </template>
 <script>
+const activityStatus = new Map([
+  ['01', 'icon_baomingzhong'],
+  ['02', 'icon_jinhangzhong1'],
+  ['03', 'icon_yijieshu']
+])
+const activityClass = new Map([
+  ['01', 'activity-ing'],
+  ['02', 'activity-in'],
+  ['03', 'activity-over']
+])
 export default {
   data () {
     return {
@@ -47,6 +60,20 @@ export default {
     },
     getSwiper (e) {
       this.current = e.detail.current + 1;
+    },
+  },
+  computed: {
+    // 活动状态
+    activityStatus () {
+      return (status) => {
+        return activityStatus.get(status)
+      }
+    },
+    // 活动样式
+    activityClass () {
+      return (status) => {
+        return activityClass.get(status)
+      }
     },
   },
   created () {
@@ -74,21 +101,15 @@ export default {
   .activity-status {
     width: 88rpx;
     height: 32rpx;
-    line-height: 32rpx;
-    text-align: center;
-    border-radius: 0 8rpx 0 8rpx;
   }
 }
 .activity-in {
-  color: #ff9204;
-  border: 1rpx solid #ff9204;
+  color: rgb(255, 179, 25);
 }
 .activity-ing {
-  color: #e32417;
-  border: 1rpx solid #e32417;
+  color: rgb(245, 64, 0);
 }
 .activity-over {
-  color: #999999;
-  border: 1rpx solid #999999;
+  color: rgb(153, 153, 153);
 }
 </style>

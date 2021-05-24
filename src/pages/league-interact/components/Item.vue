@@ -47,7 +47,9 @@
     <view class="pl30 pr30">
       <item-footer :notesItem="notesItem"
                    :notesIndex="notesIndex"
-                   @setNotesItem="setNotesItem">
+                   :isRealName="isRealName"
+                   @setNotesItem="setNotesItem"
+                   @getMemberPersonalInfo="getMemberPersonalInfo">
       </item-footer>
     </view>
   </view>
@@ -77,6 +79,9 @@ export default {
       const textHeight = this.$refs.contentText.offsetHeight
       this.isShowExpand = textHeight > boxHeight
     },
+    getMemberPersonalInfo () {
+      this.$emit('getMemberPersonalInfo')
+    }
   },
   props: {
     notesItem: {
@@ -84,6 +89,7 @@ export default {
       default: () => ({})
     },
     notesIndex: Number,
+    isRealName: Boolean
   },
   data () {
     return {

@@ -18,7 +18,9 @@
               :key="index"
               :notesIndex="index"
               :notesItem="item"
-              @setNotesItem="setNotesItem"></item>
+              :isRealName="isRealName"
+              @setNotesItem="setNotesItem"
+              @getMemberPersonalInfo="getMemberPersonalInfo"></item>
       </template>
     </mescroll-uni>
     <share-dialog ref="shareDialog"
@@ -41,8 +43,6 @@ export default {
   methods: {
     setShareData (shareData) {
       this.shareData = JSON.parse(JSON.stringify(shareData))
-      console.log('外层赋值')
-      console.log(this.shareData)
       this.$refs.shareDialog.show()
     },
     onShowCommentListPopup (communityNoteId) {
@@ -84,8 +84,16 @@ export default {
         this.mescroll.endBySize(items.length, count)
         this.noteList = params.pageNumber === 1 ? items : this.noteList.concat(items)
       })
-
-    }
+    },
+    getMemberPersonalInfo () {
+      this.$api.getMemberPersonalInfo().then(res => {
+        if (res.isError) return
+        this.isRealName = res.content.isRealName
+        if (!this.isRealName) {
+          this.$msg('请先实名认证')
+        }
+      })
+    },
   },
   provide () {
     return {
@@ -106,7 +114,8 @@ export default {
         noMoreSize: 1, // 配置列表的总数量要大于等于5条才显示'-- END --'的提示
       },
       shareData: {},
-      noteList: []
+      noteList: [],
+      isRealName: null,
     }
   },
   computed: {
