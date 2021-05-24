@@ -139,12 +139,13 @@ export default {
       })
     },
     onCreateTravel () {
-      uni.navigateTo({ url: "/pages/home/stroke-order/index" });
+      uni.navigateTo({ url: `/pages/home/stroke-order/index?journeyLineId=${this.selectJourneyLineId}` });
     },
     onSelectPath (journeyLineId) {
       this.$nextTick(() => {
         this.$refs.refScenicSpot.scrollTop = 0;
       });
+      this.selectJourneyLineId = journeyLineId
       this.getJourneyPointListByJourneyId(journeyLineId);
     },
 
@@ -176,6 +177,7 @@ export default {
         noMoreSize: 8, // 配置列表的总数量要大于等于1条才显示'-- END --'的提示
       },
       scrollTop: 630,
+      selectJourneyLineId: '',
       evaluationList: [],
       evaluationCount: 0
     };

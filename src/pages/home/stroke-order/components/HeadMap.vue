@@ -75,7 +75,7 @@ export default {
   },
   data () {
     return {
-      journeyLineIdCache: '',
+      journeyLineIdCache: this.journeyLineId,
       selectRouteItem: {},
       mapInitObj: Object.freeze({
         resizeEnable: true,

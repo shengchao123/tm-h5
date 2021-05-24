@@ -184,21 +184,23 @@ export default {
       this.$api[apiName](params).then(res => {
         if (res.isError) return this.$msg(res.message)
         this.$msg(this.isEdit ? '修改成功' : '创建成功')
-        if (this.isEdit) {
-          uni.navigateBack()
-          return
-        }
-        const link = window.location.href.split('/pages')[0] + `/pages/home/stroke-order/detail?id=${res.content.id}`
-        const shareData = {
-          link,
-          title: name,
-          desc: precautions,
-          imgUrl: this.$imgHost + 'share.png'
-        }
-        uni.setStorageSync('strokeCreateShare', shareData)
-        uni.redirectTo({
-          url: `/pages/home/stroke-order/createSuccess?id=${res.content.id}`
-        })
+        setTimeout(() => {
+          if (this.isEdit) {
+            uni.navigateBack()
+            return
+          }
+          const link = window.location.href.split('/pages')[0] + `/pages/home/stroke-order/detail?id=${res.content.id}`
+          const shareData = {
+            link,
+            title: name,
+            desc: precautions,
+            imgUrl: this.$imgHost + 'share.png'
+          }
+          uni.setStorageSync('strokeCreateShare', shareData)
+          uni.redirectTo({
+            url: `/pages/home/stroke-order/createSuccess?id=${res.content.id}`
+          })
+        }, 500)
       })
     },
     getJourneyItineraryById (id) {
