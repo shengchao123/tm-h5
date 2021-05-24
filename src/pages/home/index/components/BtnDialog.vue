@@ -52,7 +52,6 @@ export default {
       if (this.$notMember()) return this.$goLogin();
       this.show = true;
       this.isScroll = true;
-      console.log(this.show);
     },
     // 关闭发布背景
     hiddenIcon () {

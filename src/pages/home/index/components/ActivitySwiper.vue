@@ -41,7 +41,8 @@ export default {
     getActivityList () {
       this.$api.getJourneyActivityList().then((res) => {
         if (res.isError) return this.$msg(res.message);
-        this.activityList = res.content.slice(0, 5);
+        const cont = res.content
+        this.activityList = cont.length > 0 ? cont.slice(0, 5) : []
       });
     },
     getSwiper (e) {

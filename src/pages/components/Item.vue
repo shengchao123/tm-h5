@@ -23,7 +23,7 @@
           <text>{{getTime}}</text>
         </view>
         <text v-else
-              class="color-333">{{item[formItem.keyName]}}{{formItem.keyName === 'numberLimit' ? '人' : ''}}</text>
+              class="color-333">{{item[formItem.keyName]}}{{formItem.keyName === 'signUpQuantity' ? '人' : ''}}</text>
       </view>
     </view>
     <view v-if="item.status === '01'">
@@ -74,7 +74,7 @@ export default {
         {
           icon: 'icon_renshu',
           name: '报名：',
-          keyName: 'numberLimit'
+          keyName: 'signUpQuantity'
         }
       ]),
     }

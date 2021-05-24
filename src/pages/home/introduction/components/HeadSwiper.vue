@@ -18,10 +18,10 @@
         <swiper-item v-for="(item, index) in swiperList"
                      :key="index">
           <div class="swiper-item">
-            <img v-if="item.type === '01'"
+            <img v-if="item.sourceType === '01'"
                  :src="$fileHost + item.url" />
             <video-module ref="videoModule"
-                          v-if="item.type === '05'"
+                          v-if="item.sourceType === '05'"
                           :videoSrc="item.url"
                           @videoStartPlayEvent="videoStartPlayEvent"></video-module>
           </div>

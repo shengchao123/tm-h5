@@ -5,7 +5,7 @@
     <DragPopover max-top="70"
                  showLocation="true"
                  @onLocation="onLocation">
-      <div class="box relative">
+      <div class="box relative column">
         <!-- 搜索框 -->
         <div class="search-wrap">
           <div class="search center-align color-999 ft26">
@@ -18,7 +18,7 @@
           </div>
         </div>
 
-        <div class="list"
+        <div class="list flex1"
              ref="list">
           <LocationItem v-for="(item, index) in poi.list"
                         :item="item"
@@ -26,12 +26,11 @@
                         :isCurrent="selectPoi.id === item.id"
                         :key="index"></LocationItem>
         </div>
-
-        <div class="btn-wrap bt center">
-          <div class="btn center bold"
-               @click="onConfirmBtn">确定</div>
-        </div>
-
+        <div style="height: 120rpx;"></div>
+      </div>
+      <div class="btn-wrap bt center">
+        <div class="btn center bold"
+             @click="onConfirmBtn">确定</div>
       </div>
     </DragPopover>
   </div>
@@ -212,6 +211,8 @@ export default {
 
 <style lang='scss' scoped>
 .venue-map-wrap {
+  height: 100%;
+  overflow: hidden;
   #map {
     width: 100vw;
     height: 70vh;
@@ -221,7 +222,7 @@ export default {
     height: 100%;
     position: relative;
     .search-wrap {
-      padding: 24rpx 30rpx;
+      padding: 0rpx 30rpx 2rpx;
       .search {
         height: 66rpx;
         padding: 0 20rpx;
@@ -230,7 +231,7 @@ export default {
       }
     }
     .list {
-      height: calc(100% - 240rpx);
+      height: 100%;
       overflow: scroll;
     }
   }

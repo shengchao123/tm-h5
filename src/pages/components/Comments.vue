@@ -48,7 +48,7 @@ export default {
   methods: {
     // 点赞、取消点赞评论
     onLike (item) {
-      if (this.$notMember()) return
+      if (this.$notMember()) return this.$goLogin();
       this.dealLike(item)
     },
     // 点赞和取消点赞接口
