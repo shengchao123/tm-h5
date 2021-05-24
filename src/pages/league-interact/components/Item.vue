@@ -62,7 +62,7 @@ export default {
     onNoteDetail () {
       const { communityNoteId } = this.notesItem
       uni.navigateTo({
-        url: `/pagesDiscover/note-detail/index?communityNoteId=${communityNoteId}`
+        url: `/pages/league-interact/note-detail/index?communityNoteId=${communityNoteId}`
       })
     },
     setNotesItem (item, index) {

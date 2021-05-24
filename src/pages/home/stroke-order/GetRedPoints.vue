@@ -33,7 +33,7 @@
 
           <div>
             <u-checkbox @change="checkboxChange"
-                        icon-size="12"
+                        icon-size="24"
                         :value="pointIds.includes(item.code)"
                         shape="circle"
                         active-color="#E32417"
@@ -47,7 +47,10 @@
       <div class="cancel center"
            @click="onCancel">取消</div>
       <div class="add center"
-           @click="onAdd">加入路线{{pointIds.length || ''}}</div>
+           @click="onAdd">
+        <span>加入路线</span>
+        <span v-if="!$isEmpty(pointIds)">({{pointIds.length || ''}})</span>
+      </div>
     </div>
   </div>
 </template>
@@ -62,7 +65,7 @@ export default {
 
     onAdd () {
       this.$store.commit('travel/CUSTOM_PATH_POINTS', this.selectPoints)
-      uni.navigateBack()
+      uni.redirectTo({ url: '/pages/home/stroke-order/CustomPath' })
     },
 
     onRegion (item) {

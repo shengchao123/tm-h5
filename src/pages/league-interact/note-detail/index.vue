@@ -249,7 +249,7 @@ export default {
         title,
         desc: content,
         path: `/pagesDiscover/note-detail/index?communityNoteId=${communityNoteId}&shareId=${this.shareId}`,
-        imageUrl: this.$isEmpty(attachments) ? '' : this.$imgUrlDeal(attachments[0]),
+        imageUrl: this.$isEmpty(attachments) ? '' : this.$sourceUrl(attachments[0]),
       }
     },
     posterData () {

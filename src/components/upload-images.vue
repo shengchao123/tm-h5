@@ -4,7 +4,7 @@
           :key="index"
           class="upload-item column center">
       <image class="upload-img"
-             :src="$imgUrlDeal(item.url)"
+             :src="$sourceUrl(item.url)"
              mode="aspectFill"
              @click="previewImage(index)"></image>
       <text class="upload-del-btn"
@@ -141,7 +141,7 @@ export default {
     previewImage (index) {
       const urls = [];
       this.imageList.forEach((item) => {
-        urls.push(this.$imgUrlDeal(item.url));
+        urls.push(this.$sourceUrl(item.url));
       })
       uni.previewImage({
         current: urls[index],

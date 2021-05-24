@@ -35,7 +35,13 @@ export default {
   methods: {
     onConfirmCreateCustomPath () {
       uni.$emit('setJourneyPointListEvent', this.points)
-      uni.navigateBack()
+      const _pages = getCurrentPages()
+
+      _pages.forEach((item, index) => {
+        if (item.route === 'pages/home/stroke-order/index') {
+          uni.navigateBack({ delta: index })
+        }
+      })
     },
     onHandlePoints (type, index) {
       if (type === 'del') {

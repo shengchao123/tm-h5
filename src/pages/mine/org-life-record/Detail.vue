@@ -19,7 +19,7 @@
               :key="index"
               class="life-item column center">
           <image class="life-img"
-                 :src="$imgUrlDeal(item.url)"
+                 :src="$sourceUrl(item.url)"
                  mode="aspectFill"
                  @click="previewImage(index)"></image>
         </view>
