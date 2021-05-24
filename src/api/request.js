@@ -39,10 +39,10 @@ export default function (obj) {
         }
 
         const res = response.data
-        if (loginErrorCode.includes(res.code) && loginErrorSubCode.includes(res.subCode)) {
-          uni.navigateTo({ url: '/pages/public/login' })
+        if (loginErrorCode.includes(res.code) || loginErrorSubCode.includes(res.subCode)) {
           if (LOGIN_LOCK) return
           LOGIN_LOCK = true
+          uni.navigateTo({ url: '/pages/public/Login' })
           return
         }
 
@@ -62,7 +62,7 @@ export default function (obj) {
         if (loginErrorCode.includes(e.data.code) && loginErrorSubCode.includes(e.data.subCode)) {
           if (LOGIN_LOCK) return
           LOGIN_LOCK = true
-          uni.navigateTo({ url: '/pages/public/login' })
+          uni.navigateTo({ url: '/pages/public/Login' })
           return
         }
         console.log(" fail:" + JSON.stringify(e.data));
