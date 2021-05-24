@@ -55,6 +55,7 @@ export default {
     },
     // 点赞
     onLike (item, index) {
+      if (this.$notMember()) return this.$goLogin()
       let { communityNoteId, isLike, likeQuantity } = item
       const evaluationList = this.evaluationList
       const params = {

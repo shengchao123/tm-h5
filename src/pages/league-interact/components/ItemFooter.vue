@@ -46,6 +46,7 @@ export default {
   methods: {
     // 点赞
     onLike () {
+      if (this.$notMember()) return this.$goLogin()
       const notesItem = this.notesItem
       let { communityNoteId, isLike, likeQuantity } = notesItem
       const params = {
@@ -62,10 +63,12 @@ export default {
     },
     // 评论
     onComment () {
+      if (this.$notMember()) return this.$goLogin()
       this.onShowSendCommentPopup(this.notesItem.communityNoteId)
     },
     // 分享
     onShare () {
+      if (this.$notMember()) return this.$goLogin()
       const { title, content, communityNoteId } = this.notesItem
       const params = {
         sourceId: communityNoteId
@@ -78,8 +81,8 @@ export default {
           link,
           title,
           desc: content,
-          imgUrl: this.$imgHost + 'share.png'
         }
+        console.log(shareData)
         this.setShareData(shareData)
       })
 

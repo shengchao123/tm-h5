@@ -21,7 +21,6 @@
                 </view>
               </view>
               <view class="tc relative">
-                <!-- <get-phone-button></get-phone-button> -->
                 <view @click="onLike(item)">
                   <svg-icon :icon="item.isLike ? 'icon_shoucang' : 'icon_weishoucang'"
                             :class="['iconfont ft32',item.isLike ? 'primary-color' : 'color-999']"></svg-icon>

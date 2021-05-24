@@ -109,7 +109,6 @@ export default {
         link: window.location.href,
         title: journeyItineraryName,
         desc: activityExperience,
-        imgUrl: this.$imgHost + 'share.png'
       }
     },
     // 根据行程单id获取生活纪实

@@ -1,5 +1,6 @@
 <template>
-  <view class="detail-wrap mt20 flex1">
+  <view class="detail-wrap mt20 flex1"
+        :style="{paddingBottom: detailInfo && detailInfo.status === '01' ? '120rpx' : ''}">
     <view class="pl30 pr30 bg-white">
       <!-- 标题 -->
       <span class="title pt28 pb28 inline-block">
@@ -42,7 +43,7 @@
           class="activity-style pt32 pb24 pl30 pr30 bg-white ft30 color-333 column mt20 mb32">
       <text class="bold">活动风采</text>
       <text class="pt20">{{detailInfo.styleDescription}}</text>
-      <view class="flex mt16">
+      <view class="mt16 imgs">
         <image v-for="(item,index) in imgList"
                :key="index"
                class="img"
@@ -181,7 +182,7 @@ page {
 </style>
 <style lang='scss' scoped>
 .detail-wrap {
-  padding-bottom: 120rpx;
+  // padding-bottom: 120rpx;
   .title {
     .status-icon {
       font-size: 88rpx;
@@ -197,12 +198,14 @@ page {
     }
   }
   .activity-style {
-    .img + .img {
-      margin-left: 18rpx;
-    }
-    .img {
-      width: 218rpx;
-      height: 218rpx;
+    .imgs {
+      display: grid;
+      grid-gap: 18rpx;
+      grid-template-columns: 1fr 1fr 1fr;
+      .img {
+        width: 218rpx;
+        height: 218rpx;
+      }
     }
   }
   .footer {
