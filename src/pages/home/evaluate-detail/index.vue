@@ -29,8 +29,8 @@
       <view class="flex">
         <view @click="onShowShareDialog">
           <svg-icon icon="icon_zhuanfa"></svg-icon>
+          <text class="pl20">{{detailInfo.shareQuantity}}</text>
         </view>
-        <text class="pl20">{{detailInfo.shareQuantity}}</text>
       </view>
       <view @click="changeStatus('isLike')">
         <svg-icon :icon="detailInfo.isLike ? 'icon_shoucang' : 'icon_weishoucang'"
