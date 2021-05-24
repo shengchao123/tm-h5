@@ -2,8 +2,8 @@
 <template>
   <div class='venue-map-wrap'>
     <div id="map"></div>
-    <!-- showLocation="true" -->
     <DragPopover max-top="70"
+                 showLocation="true"
                  @onLocation="onLocation">
       <div class="box relative">
         <!-- 搜索框 -->
@@ -79,13 +79,14 @@ export default {
             placeSearch.searchNearBy('', [longitude, latitude], 5000, function (status, result) {
               if (!result || !result.poiList) return
               const _pois = result.poiList.pois
-              that.locationResult = result
 
               that.poi.list = _pois
               that.selectPoi = _pois[0]
+              that.locationResult = _pois[0]
+
               that.drawLocation()
 
-              that.$amap.setCenter(result.position)
+              that.$amap.setCenter(_pois[0].location)
               that.$marker = that.drawLocationMarkder()
 
               that.onEvent()
@@ -112,8 +113,9 @@ export default {
       return marker
     },
     drawLocation () {
+      const { position, location } = this.locationResult
       new AMap.Marker({
-        position: this.locationResult.position,
+        position: position || location,
         map: this.$amap,
         offset: new AMap.Pixel(-30 / 2, -30 / 2),
         icon: new AMap.Icon({
