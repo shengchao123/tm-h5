@@ -15,9 +15,9 @@
                    :key="index">{{item}}</div>
             </template>
           </div>
-          <div class="ft24 ">
+          <div class="ft24 row">
             <div :class="userInfo.name ? '': 'color-999'">{{userInfo.name || '暂未实名'}}</div>
-            <div class="color-999">{{userInfo.orgName}}</div>
+            <div class="color-999 ml24">{{userInfo.orgName}}</div>
           </div>
         </div>
 
@@ -26,6 +26,7 @@
                @click="onOtherPage('message')">
             <u-badge type="error"
                      :is-center="true"
+                     v-if="userInfo.messageQuantity"
                      size="mini"
                      :count="userInfo.messageQuantity"></u-badge>
             <SvgIcon icon="icon_dibudaohanglan-"
@@ -41,13 +42,13 @@
       <div class="count-wrap between-row">
         <div class="item center column"
              @click="onOtherPage('hearts')">
-          <div class="count ft34 bold">{{userInfo.redHeartBalance}}</div>
+          <div class="count ft34 bold">{{userInfo.redHeartBalance || 0}}</div>
           <div class="count ft24 color-666 mt12">我的红心</div>
         </div>
 
         <div class="item center column"
              @click="onOtherPage('activity')">
-          <div class="count ft34 bold">{{userInfo.activeQuantity}}</div>
+          <div class="count ft34 bold">{{userInfo.activeQuantity || 0}}</div>
           <div class="count ft24 color-666 mt12">我的活动</div>
         </div>
       </div>
@@ -64,8 +65,10 @@
                        :item="item"></MyJourneyItem>
       </scroll-view>
 
-      <u-empty v-else
-               src="@/static/empty/no-journey.png"></u-empty>
+      <u-empty src="/static/empty/no-journey.png"
+               v-if="showNull"
+               class="mt40"
+               icon-size="360"></u-empty>
 
     </div>
 
@@ -93,8 +96,9 @@ export default {
     // 获取行程分页
     getMyJourneyItineraryPage () {
       this.$api.getMyJourneyItineraryPage().then(res => {
-        if (res.isError) return
+        if (res.isError) return this.showNull = true
         this.journeies = res.content.items
+        this.showNull = this.$isEmpty(this.journeies)
       })
     },
     // 跳转其他页面
@@ -107,7 +111,8 @@ export default {
   data () {
     return {
       userInfo: {},
-      journeies: []
+      journeies: [],
+      showNull: false
     }
   },
   onShow () {
