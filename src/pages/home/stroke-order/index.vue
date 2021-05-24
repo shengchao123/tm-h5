@@ -188,8 +188,9 @@ export default {
           uni.navigateBack()
           return
         }
+        const link = window.location.href.split('/pages')[0] + `/pages/home/stroke-order/detail?id=${res.content.id}`
         const shareData = {
-          link: window.location.href,
+          link,
           title: name,
           desc: precautions,
           imgUrl: this.$imgHost + 'share.png'
