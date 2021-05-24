@@ -37,7 +37,7 @@
       </div>
 
       <div class="color-999 ft24 mt16 center-align">
-        <SvgIcon icon="icon_zhuyi"></SvgIcon>
+        <SvgIcon icon="icon_tishi"></SvgIcon>
         <div class="ml8">未注册的手机号验证后自动注册</div>
       </div>
 
@@ -57,13 +57,14 @@
 <script>
 
 import { checkInput } from '@/utils/validate.js'
-import { saveLoginInfo } from '@/utils/login.js'
+import { saveLoginInfo, slzxNavigateBack } from '@/utils/login.js'
+
 
 export default {
   name: 'Login',
   methods: {
     onJump () {
-      uni.navigateBack()
+      slzxNavigateBack()
     },
     onGetVerifyCode () {
       if (this.timer) return
@@ -92,7 +93,7 @@ export default {
       const params = {
         ...this.submitData,
         // TODO: 老王说需要thirdUserId参数
-       thirdUserId: uni.getStorageSync('thirdUserId')
+        thirdUserId: uni.getStorageSync('thirdUserId')
       }
       this.$api.bindPhone(params).then(res => {
         if (res.isError) {
@@ -103,7 +104,7 @@ export default {
         uni.setStorageSync('status', 3)
         this.$msg('登录成功')
         setTimeout(() => {
-          uni.navigateBack()
+          slzxNavigateBack()
         }, 900)
       })
     },
