@@ -12,13 +12,22 @@
       <div class="detail-btn btn tc color-666"
            @click="onDetail">查看行程单</div>
     </div>
+    <share-dialog ref="shareDialog"
+                  :shareData="shareData"></share-dialog>
   </div>
 </template>
 <script>
+import ShareDialog from '../../components/ShareDialog.vue'
 export default {
+  components: {
+    ShareDialog
+  },
   methods: {
     onShare () {
-
+      this.$refs.shareDialog.show()
+    },
+    getShareData () {
+      this.shareData = uni.getStorageSync('strokeCreateShare')
     },
     onDetail () {
       uni.navigateTo({
@@ -28,12 +37,19 @@ export default {
   },
   data () {
     return {
-      id: null
+      id: null,
+      shareData: {}
     }
+  },
+  onShow () {
+    this.getShareData()
   },
   onLoad (option) {
     this.id = option.id
-  }
+  },
+  beforeDestroy () {
+    uni.removeStorageSync('strokeCreateShare')
+  },
 }
 </script>
 <style lang='scss' scoped>
