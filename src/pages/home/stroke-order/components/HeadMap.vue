@@ -49,7 +49,7 @@ export default {
       if (!routeItem.journeyLineId) {
         this.points = []
         return uni.navigateTo({ // 去自定义线路
-          url: '/pages/home/stroke-order/CustomPath'
+          url: '/pages/home/stroke-order/GetRedPoints'
         })
       }
       this.getJourneyPointListByJourneyId(routeItem.journeyLineId)

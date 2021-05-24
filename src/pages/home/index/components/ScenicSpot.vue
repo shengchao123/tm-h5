@@ -23,7 +23,7 @@ export default {
         item.mp3.pause()
         item.isPlayed = false
       } else {
-        const mp3 = new Audio(item.url)
+        const mp3 = new Audio(this.$file + item.url)
         mp3.play() // 播放 mp3这个音频对象
         item.isPlayed = true
         item.mp3 = mp3
