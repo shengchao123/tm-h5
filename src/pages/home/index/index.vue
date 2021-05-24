@@ -5,6 +5,10 @@
          mapClass="mapVH60"
          :points="points"></Map>
     <DragPopover>
+      <div class="path-name center-align">
+        <SvgIcon icon="icon_luxian"></SvgIcon>
+        <div class="ml16">{{currentPath.name}}</div>
+      </div>
 
       <mescroll-uni ref="mescrollRef"
                     :height="dragPopHeight + 'px'"
@@ -82,12 +86,13 @@ export default {
       if (this.$notMember()) return this.$goLogin()
       uni.navigateTo({ url: `/pages/home/stroke-order/index?journeyLineId=${this.selectJourneyLineId}` });
     },
-    onSelectPath (journeyLineId) {
+    onSelectPath (item) {
       this.$nextTick(() => {
         this.$refs.refScenicSpot.scrollTop = 0;
       });
-      this.selectJourneyLineId = journeyLineId
-      this.getJourneyPointListByJourneyId(journeyLineId);
+      this.currentPath = item
+      this.selectJourneyLineId = item.journeyLineId
+      this.getJourneyPointListByJourneyId(item.journeyLineId);
     },
     // 地图跳转
     onShowNavigationSelect (pointData) {
@@ -117,6 +122,7 @@ export default {
   data () {
     return {
       points: [],
+      currentPath: {},
       mapInitObj: Object.freeze({
         resizeEnable: true,
         zoom: 9, // 级别
@@ -160,6 +166,19 @@ export default {
 
 <style lang="scss" scoped>
 .tabbar-home-wrap {
+  .path-name {
+    position: absolute;
+    top: -70rpx;
+    right: 20rpx;
+    height: 48rpx;
+    border-radius: 24rpx;
+    padding: 0 16rpx;
+    font-size: 26rpx;
+    z-index: 99;
+    background: #ffffff;
+    color: #e32417;
+    box-shadow: 6rpx 4rpx 12rpx 3rpx rgba(17, 17, 17, 0.1);
+  }
   .box {
     height: 100%;
     position: relative;
