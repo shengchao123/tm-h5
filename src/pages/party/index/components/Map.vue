@@ -52,7 +52,7 @@ export default {
     },
 
     drawMainMark (_currentPoint) {
-      const _img = 'party_l.png'
+      const _img = 'party_l.gif'
       const _WH = LWH
       const Icon = new AMap.Icon({
         size: new AMap.Size(_WH.W, _WH.H),
