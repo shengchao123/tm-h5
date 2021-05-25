@@ -103,9 +103,9 @@ export default {
   height: 20rpx;
 }
 .swiper {
-  height: 150rpx !important;
+  height: 160rpx !important;
   .swiper-item {
-    height: 150rpx !important;
+    height: 160rpx !important;
   }
   .activity-item {
     padding: 22rpx 24rpx;
