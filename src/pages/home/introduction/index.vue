@@ -81,7 +81,7 @@ export default {
     },
     // 选择地图导航回调
     onSelectGuide (act) {
-      beginGuide(act, this.pointData)
+      beginGuide(act, this.baseInfo)
     },
     onCall () {
       const { phone } = this.baseInfo
