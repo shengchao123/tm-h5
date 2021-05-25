@@ -14,7 +14,8 @@
           <swiper-item v-for="(item, index) in activityList"
                        :key="index"
                        class="swiper-item">
-            <view class="activity-item mt16 ml30 mr30">
+            <view class="activity-item mt16 ml30 mr30"
+                  @click="onActivityDetail(item)">
               <view class="ft28 color-333 center-align">
                 <div> {{ item.name }}</div>
                 <svg-icon :icon="activityStatus(item.status)"
@@ -61,6 +62,10 @@ export default {
     getSwiper (e) {
       this.current = e.detail.current + 1;
     },
+    // 跳转活动详情
+    onActivityDetail (item) {
+      uni.navigateTo({ url: `/pages/league-interact/detail/index?id=${item.id}` })
+    }
   },
   computed: {
     // 活动状态
