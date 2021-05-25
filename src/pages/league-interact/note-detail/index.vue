@@ -45,6 +45,7 @@
              @focus="onFocus"
              @confirm="onConfirm"
              confirm-type="send"
+             :auto-blur="true"
              type="text" />
       <view class="tip-text ft30 flex">
         <view class="icon-item">
@@ -85,10 +86,10 @@ export default {
     },
     // 聚焦input 判断是否登录和实名认证
     onFocus () {
-      this.isFocus = true
       if (this.$notMember()) return this.$goLogin()
       if (!this.memberPersonalInfo.isRealName) {
         this.isFocus = false
+        uni.hideKeyboard(); // 隐藏键盘
         uni.showModal({
           title: '请先实名认证',
           content: '认证后，即可发布帖子，评论',
