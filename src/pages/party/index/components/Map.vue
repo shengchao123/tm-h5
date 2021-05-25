@@ -62,7 +62,7 @@ export default {
 
       // 绘制标记气球
       const marker = new AMap.Marker({
-        position: new AMap.LngLat(item.lng, item.lat),
+        position: new AMap.LngLat(_currentPoint.lng, _currentPoint.lat),
         map: this.$amap,
         offset: new AMap.Pixel(-_WH.W / 2, -_WH.H),
         icon: Icon,
