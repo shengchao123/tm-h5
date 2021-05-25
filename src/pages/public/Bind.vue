@@ -99,6 +99,7 @@ export default {
         }
         saveLoginInfo(res.content)
         uni.setStorageSync('status', 3)
+        this.$store.dispatch('user/setMemberPersonalInfo')
         this.$msg('登录成功')
         setTimeout(() => {
           slzxNavigateBack()
