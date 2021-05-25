@@ -40,7 +40,6 @@ const map = {
   },
   mounted () {
     this.$amap = new AMap.Map('map', this.mapInitObj)
-    this.drawDistrict()
   }
 }
 
