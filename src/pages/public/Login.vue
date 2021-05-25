@@ -58,7 +58,7 @@ export default {
           uni.redirectTo({ url: '/pages/public/Bind' })
           return
         }
-
+        this.$store.dispatch('user/setMemberPersonalInfo')
         // 是会员直接成功
         if (status === 3 || status === 4) {
           slzxNavigateBack()

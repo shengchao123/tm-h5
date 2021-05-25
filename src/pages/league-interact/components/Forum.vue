@@ -18,9 +18,7 @@
               :key="index"
               :notesIndex="index"
               :notesItem="item"
-              :isRealName="isRealName"
-              @setNotesItem="setNotesItem"
-              @getMemberPersonalInfo="getMemberPersonalInfo"></item>
+              @setNotesItem="setNotesItem"></item>
       </template>
     </mescroll-uni>
     <share-dialog ref="shareDialog"
@@ -84,16 +82,7 @@ export default {
         this.mescroll.endBySize(items.length, count)
         this.noteList = params.pageNumber === 1 ? items : this.noteList.concat(items)
       })
-    },
-    getMemberPersonalInfo () {
-      this.$api.getMemberPersonalInfo().then(res => {
-        if (res.isError) return
-        this.isRealName = res.content.isRealName
-        if (!this.isRealName) {
-          this.$msg('请先实名认证')
-        }
-      })
-    },
+    }
   },
   provide () {
     return {
@@ -115,7 +104,6 @@ export default {
       },
       shareData: {},
       noteList: [],
-      isRealName: null,
     }
   },
   computed: {

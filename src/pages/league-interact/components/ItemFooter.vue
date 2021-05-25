@@ -64,11 +64,22 @@ export default {
     // 评论
     onComment () {
       if (this.$notMember()) return this.$goLogin()
-      if (this.isRealName === null) {
-        this.$msg('正在获取认证信息')
-        this.$emit('getMemberPersonalInfo')
+      if (!this.memberPersonalInfo.isRealName) {
+        uni.showModal({
+          title: '请先实名认证',
+          content: '认证后，即可发布帖子，评论',
+          cancelText: "取消",
+          confirmText: "实名认证",
+          confirmColor: '#E32417',
+          success: function (res) {
+            if (res.confirm) {
+              uni.navigateTo({
+                url: '/pages/mine/real-name/index'
+              })
+            }
+          }
+        })
       }
-      if (!this.isRealName) return
       this.onShowSendCommentPopup(this.notesItem.communityNoteId)
     },
     // 分享
@@ -104,7 +115,6 @@ export default {
       default: () => ({})
     },
     notesIndex: Number,
-    isRealName: Boolean
   },
   data () {
     return {
@@ -113,6 +123,9 @@ export default {
     }
   },
   computed: {
+    memberPersonalInfo () {
+      return this.$store.state.user.memberPersonalInfo
+    },
     commentList () {
       const { communityNoteCommentList } = this.notesItem
       if (!communityNoteCommentList) return []

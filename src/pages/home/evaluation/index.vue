@@ -5,7 +5,7 @@
              v-model="evaluate.title"
              placeholder="有标题可以获得更多赞哦～"
              placeholder-class="place-class"
-             class="ft32 bold title-style" />
+             class="ft32 title-style" />
       <textarea placeholder="添加正文"
                 v-model="evaluate.content"
                 placeholder-style="color:#999"
@@ -25,9 +25,8 @@
           <view class="ft28">选择行程</view>
         </view>
         <view class="center-align">
-          <view class="ft24 mr8 color-999">{{
-            evaluateData.name ? evaluateData.name : "未选择"
-          }}</view>
+          <view class="ft24 mr8 color-999">
+            {{evaluateData.name ? evaluateData.name : "未选择"}}</view>
           <svg-icon icon="icon_xiangyoujiantou"
                     class="ft20 fc4"></svg-icon>
         </view>
