@@ -43,15 +43,26 @@ export default {
     onPublish () {
       // 判断是否登录逻辑
       if (this.$notMember()) return this.$goLogin();
-      this.$api.getMemberPersonalInfo().then(res => {
-        if (res.isError) return this.$msg(res.message)
-        if (!res.content.isRealName) {
-          return this.$msg('请先实名认证')
-        }
+      if (this.memberPersonalInfo.isRealName) {
         uni.navigateTo({
           url: '/pages/league-interact/send-post/index'
         });
-      })
+      } else {
+        uni.showModal({
+          title: '请先实名认证',
+          content: '认证后，即可发布帖子，评论',
+          cancelText: "取消",
+          confirmText: "实名认证",
+          confirmColor: '#E32417',
+          success: function (res) {
+            if (res.confirm) {
+              uni.navigateTo({
+                url: '/pages/mine/real-name/index'
+              })
+            }
+          }
+        })
+      }
     },
     getListData (page) {
       const params = {
@@ -95,6 +106,11 @@ export default {
         curNow: 1
       }
     }
+  },
+  computed: {
+    memberPersonalInfo () {
+      return this.$store.state.user.memberPersonalInfo
+    },
   },
   onShow () {
     this.getListData()

@@ -4,6 +4,7 @@ export default {
     console.log('App Launch')
   },
   onShow: function () {
+    !this.$notMember() && this.$store.dispatch('user/setMemberPersonalInfo')
     console.log('App Show')
   },
   onHide: function () {
