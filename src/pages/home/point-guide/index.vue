@@ -54,7 +54,7 @@ export default {
     },
     // 选择地图导航回调
     onSelectGuide (act, index) {
-      beginGuide(act, this.guidePoint)
+      beginGuide(act, this.guidePoint.item)
     },
     // 选择切换 poi 点
     onPoi (info) {
