@@ -33,7 +33,7 @@ export default {
           touchZoom: false
         })
         // 绘制气球上数字文字
-        const indexText = `<div style="color:#ffffff;width:22px;text-align:center;margin-top:2px;font-size:11px">${index + 1}</div>`
+        const indexText = `<div style="color:#ffffff;width:22px;text-align:center;margin-top:2px;font-size:11px">${_temPoints.length - index}</div>`
         // eslint-disable-next-line no-new
         new AMap.Marker({
           position: new AMap.LngLat(item.lng, item.lat),

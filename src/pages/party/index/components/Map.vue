@@ -17,7 +17,6 @@ export default {
     // 绘制图中标记点
     drawMarker () {
       const _temPoints = JSON.parse(JSON.stringify(this.points))
-      _temPoints.reverse()
       // 绘制图标
       _temPoints.forEach((item, index) => {
 
