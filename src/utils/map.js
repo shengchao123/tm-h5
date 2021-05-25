@@ -26,10 +26,10 @@ export const beginGuide = function (act, guidePoint) {
   const _location = getLngLat(guidePoint)
   switch (act) {
     case 0:
-      window.location.href = `https://apis.map.qq.com/uri/v1/routeplan?type=walk&to=${guidePoint.name}&tocoord=${_location.lng},${_location.lat}&policy=1&coord_type=1&referer=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77`
+      window.location.href = `http://uri.amap.com/navigation?to=${_location.lng},${_location.lat},${guidePoint.name}&mode=walk&policy=1&callnative=1`
       break
     case 1:
-      window.location.href = `http://uri.amap.com/navigation?to=${_location.lng},${_location.lat},${guidePoint.name}&mode=walk&policy=1&callnative=1`
+      window.location.href = `https://apis.map.qq.com/uri/v1/routeplan?type=walk&to=${guidePoint.name}&tocoord=${_location.lng},${_location.lat}&policy=1&coord_type=1&referer=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77`
       break
   }
 }
