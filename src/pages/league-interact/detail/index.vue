@@ -96,7 +96,8 @@ export default {
         }
       });
     },
-    changeSignUpStatus () {
+    // 操作
+    onAction () {
       const { isSignUp, id } = this.detailInfo
       const apiName = isSignUp ? 'cancelSignUpJourneyActivity' : 'signUpJourneyActivity'
       const msg = isSignUp ? '取消报名' : '报名'
@@ -113,6 +114,24 @@ export default {
         this.$msg(msg + '成功')
         this.getJourneyActivityDetail()
       })
+    },
+    changeSignUpStatus () {
+      const { isSignUp } = this.detailInfo
+      if (isSignUp) {
+        uni.showModal({
+          title: '要取消报名？',
+          cancelText: "取消报名",
+          confirmText: "不取消",
+          confirmColor: '#E32417',
+          success: ((res) => {
+            if (!res.confirm) {
+              this.onAction()
+            }
+          })
+        })
+        return
+      }
+      this.onAction()
     },
     getJourneyActivityDetail () {
       const params = {
