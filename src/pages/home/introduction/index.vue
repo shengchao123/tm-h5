@@ -74,6 +74,7 @@ export default {
   name: 'introduction',
   methods: {
     onPeriphery () {
+      sessionStorage.setItem('pointData', JSON.stringify(this.baseInfo))
       uni.navigateTo({ url: '/pages/home/point-guide/index' })
     },
     onNavigation () {

@@ -77,7 +77,7 @@ export default {
   methods: {
     onGraphic () {
       uni.navigateTo({
-        url: '/pages/party/graphic/index'
+        url: `/pages/party/graphic/index?current=${this.selectPoint}`
       })
     },
     onJourney () {
