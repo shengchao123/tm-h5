@@ -83,6 +83,7 @@ export default {
     }
   },
   mounted () {
+    this.drawDistrict()
     this.drawMarkers()
   },
   mixins: [mapMixin]
