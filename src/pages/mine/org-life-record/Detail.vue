@@ -74,6 +74,18 @@ import LineClock from './LineClock.vue'
 export default {
   name: 'Detail',
   methods: {
+    //预览图片
+    previewImage (index) {
+      const urls = [];
+      this.lifeData.attachmentList.forEach((item) => {
+        urls.push(this.$sourceUrl(item.url));
+      })
+      uni.previewImage({
+        current: urls[index],
+        urls: urls,
+        indicator: "number"
+      })
+    },
     // 分享
     onShare () {
       this.$refs.shareDialog.show()

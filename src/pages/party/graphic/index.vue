@@ -55,7 +55,7 @@ export default {
     onDetail (item) {
       const { id, contentType, hyperlinksUrl } = item
       if (contentType === '02') {
-        widnow.location.href = hyperlinksUrl
+        window.location.href = hyperlinksUrl
         // uni.navigateTo({
         //   url: `/pages/webView?title=联盟风采详情&webUrl=${hyperlinksUrl}`
         // })
@@ -92,10 +92,11 @@ export default {
         this.listData = params.pageNumber === 1 ? items : this.listData.concat(items)
       })
     },
-    getJourneyAllianceInfoList () {
+    getJourneyAllianceInfoList (current) {
       this.$api.getJourneyAllianceInfoList().then(res => {
         if (res.isError) return this.$msg(res.message)
         this.tabList = res.content || []
+        this.current = current
       })
     },
   },
@@ -121,8 +122,9 @@ export default {
       this.resetGetList()
     }
   },
-  onLoad () {
-    this.getJourneyAllianceInfoList()
+  onLoad (option) {
+    const current = +option.current || 0
+    this.getJourneyAllianceInfoList(current)
   },
   mixins: [MescrollMixin],
   components: { MescrollUni, ContactPerson }

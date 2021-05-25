@@ -42,8 +42,10 @@
              :adjust-position="true"
              :cursor-spacing="15"
              @blur="onBlur"
+             @focus="onFocus"
              @confirm="onConfirm"
              confirm-type="send"
+             :auto-blur="true"
              type="text" />
       <view class="tip-text ft30 flex">
         <view class="icon-item">
@@ -81,6 +83,28 @@ export default {
     },
     onBlur () {
       this.isFocus = false
+    },
+    // 聚焦input 判断是否登录和实名认证
+    onFocus () {
+      if (this.$notMember()) return this.$goLogin()
+      if (!this.memberPersonalInfo.isRealName) {
+        this.isFocus = false
+        uni.hideKeyboard(); // 隐藏键盘
+        uni.showModal({
+          title: '请先实名认证',
+          content: '认证后，即可发布帖子，评论',
+          cancelText: "取消",
+          confirmText: "实名认证",
+          confirmColor: '#E32417',
+          success: function (res) {
+            if (res.confirm) {
+              uni.navigateTo({
+                url: '/pages/mine/real-name/index'
+              })
+            }
+          }
+        })
+      }
     },
     onConfirm () {
       const { content } = this
@@ -196,6 +220,9 @@ export default {
     }
   },
   computed: {
+    memberPersonalInfo () {
+      return this.$store.state.user.memberPersonalInfo
+    },
     shareData () {
       const { title, content, attachments } = this.detailInfo
       return {

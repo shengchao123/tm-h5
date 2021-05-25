@@ -15,39 +15,40 @@ export default {
   name: 'index',
   methods: {
     // 绘制图中标记点
-    drawMarker () {
+    drawMarkers () {
       const _temPoints = JSON.parse(JSON.stringify(this.points))
-      _temPoints.reverse()
       // 绘制图标
       _temPoints.forEach((item, index) => {
-
-        const _img = index === this.currentIndex ? 'party_l.gif' : 'party.png'
-        const _WH = index === this.currentIndex ? LWH : MWH
-
-        const Icon = new AMap.Icon({
-          size: new AMap.Size(_WH.W, _WH.H),
-          image: require(`@/static/map/${_img}`),
-          imageSize: new AMap.Size(_WH.W, _WH.H)
-        })
-
-        // 绘制标记气球
-        const marker = new AMap.Marker({
-          position: new AMap.LngLat(item.lng, item.lat),
-          map: this.$amap,
-          offset: new AMap.Pixel(-_WH.W / 2, -_WH.H),
-          icon: Icon,
-          touchZoom: false
-        })
-        // 设置 marker 绑定的数据
-        marker.setExtData(index)
-        // 点击方法绑定
-        marker.on('click', this.markerClick)
+        if (index !== this.currentIndex) {
+          this.drawMarker('party.png', MWH, index, item)
+        }
       })
+      const _point = _temPoints[this.currentIndex]
+      this.drawMarker('party_l.gif', LWH, this.currentIndex, _point)
+    },
+
+    drawMarker (_img, _WH, index, item) {
+      const Icon = new AMap.Icon({
+        size: new AMap.Size(_WH.W, _WH.H),
+        image: require(`@/static/map/${_img}`),
+        imageSize: new AMap.Size(_WH.W, _WH.H)
+      })
+
+      // 绘制标记气球
+      const marker = new AMap.Marker({
+        position: new AMap.LngLat(item.lng, item.lat),
+        map: this.$amap,
+        offset: new AMap.Pixel(-_WH.W / 2, -_WH.H),
+        icon: Icon,
+        touchZoom: false
+      })
+      // 设置 marker 绑定的数据
+      marker.setExtData(index)
+      // 点击方法绑定
+      marker.on('click', this.markerClick)
     },
 
     markerClick (e) {
-
-
       const index = e.target.getExtData()
 
       if (this.currentIndex === index) return
@@ -57,14 +58,14 @@ export default {
       this.$nextTick(() => {
         this.$amap.clearMap()
         this.drawDistrict()
-        this.drawMarker()
+        this.drawMarkers()
       })
     },
   },
   watch: {
     points () {
       this.$amap.clearMap()
-      this.drawMarker()
+      this.drawMarkers()
     }
   },
   props: {
@@ -74,8 +75,6 @@ export default {
   data () {
     return {
       mapInitObj: Object.freeze({
-        dragEnable: false,
-        zoomEnable: false,
         resizeEnable: true,
         zoom: 9, // 级别
         zooms: [9, 19],
@@ -84,7 +83,7 @@ export default {
     }
   },
   mounted () {
-    this.drawMarker()
+    this.drawMarkers()
   },
   mixins: [mapMixin]
 }
