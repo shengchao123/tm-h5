@@ -101,10 +101,8 @@ export default {
         const geolocation = new AMap.Geolocation({
           enableHighAccuracy: true, //是否使用高精度定位，默认:true
           timeout: 10000, //超过10秒后停止定位，默认：5s
-          buttonPosition: 'RB', //定位按钮的停靠位置
         });
         geolocation.getCurrentPosition((status, result) => {
-          setTimeout(this.initMyPoint, 60000)
           if (status == 'complete') {
             const { lng, lat } = result.position
             this.myPoint = [lng, lat]

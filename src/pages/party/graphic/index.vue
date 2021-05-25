@@ -55,7 +55,7 @@ export default {
     onDetail (item) {
       const { id, contentType, hyperlinksUrl } = item
       if (contentType === '02') {
-        widnow.location.href = hyperlinksUrl
+        window.location.href = hyperlinksUrl
         // uni.navigateTo({
         //   url: `/pages/webView?title=联盟风采详情&webUrl=${hyperlinksUrl}`
         // })
