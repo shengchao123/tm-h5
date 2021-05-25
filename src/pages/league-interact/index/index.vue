@@ -114,9 +114,6 @@ export default {
   },
   onShow () {
     this.getListData()
-    if (!this.$notMember()) {
-      this.$refs.forum && this.$refs.forum.getMemberPersonalInfo()
-    }
   },
   beforeDestroy () {
     uni.$off('discoverBtn')

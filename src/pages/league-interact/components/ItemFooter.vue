@@ -79,6 +79,7 @@ export default {
             }
           }
         })
+        return
       }
       this.onShowSendCommentPopup(this.notesItem.communityNoteId)
     },
