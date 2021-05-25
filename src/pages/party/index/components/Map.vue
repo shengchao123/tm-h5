@@ -18,14 +18,15 @@ export default {
     drawMarker () {
       const _temPoints = JSON.parse(JSON.stringify(this.points))
 
-      const _currentPoint = _temPoints.splice(this.currentIndex, 1)
+      const _currentPoint = _temPoints.splice(this.currentIndex, 1)[0]
+      _temPoints.push(_currentPoint)
 
-
+      const _last = _temPoints.length - 1
       // 绘制图标
       _temPoints.forEach((item, index) => {
 
-        const _img = 'party.png'
-        const _WH = MWH
+        const _img = index === _last ? 'party_l.gif' : 'party.png'
+        const _WH = index === _last ? LWH : MWH
 
         const Icon = new AMap.Icon({
           size: new AMap.Size(_WH.W, _WH.H),
@@ -46,32 +47,6 @@ export default {
         // 点击方法绑定
         marker.on('click', this.markerClick)
       })
-
-      this.drawMainMark(_currentPoint)
-
-    },
-
-    drawMainMark (_currentPoint) {
-      const _img = 'party_l.gif'
-      const _WH = LWH
-      const Icon = new AMap.Icon({
-        size: new AMap.Size(_WH.W, _WH.H),
-        image: require(`@/static/map/${_img}`),
-        imageSize: new AMap.Size(_WH.W, _WH.H)
-      })
-
-      // 绘制标记气球
-      const marker = new AMap.Marker({
-        position: new AMap.LngLat(_currentPoint.lng, _currentPoint.lat),
-        map: this.$amap,
-        offset: new AMap.Pixel(-_WH.W / 2, -_WH.H),
-        icon: Icon,
-        touchZoom: false
-      })
-      // 设置 marker 绑定的数据
-      marker.setExtData(index)
-      // 点击方法绑定
-      marker.on('click', this.markerClick)
     },
 
     markerClick (e) {
