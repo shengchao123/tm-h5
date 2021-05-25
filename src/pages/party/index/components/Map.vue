@@ -22,6 +22,8 @@ export default {
       _temPoints.push(_currentPoint)
 
       const _last = _temPoints.length - 1
+      this.$emit('changeIndex', _last)
+
       // 绘制图标
       _temPoints.forEach((item, index) => {
 
@@ -50,8 +52,6 @@ export default {
     },
 
     markerClick (e) {
-
-
       const index = e.target.getExtData()
 
       if (this.currentIndex === index) return
