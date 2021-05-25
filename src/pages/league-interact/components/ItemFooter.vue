@@ -125,9 +125,7 @@ export default {
   computed: {
     memberPersonalInfo () {
       return this.$store.state.user.memberPersonalInfo
-    }
-  },
-  computed: {
+    },
     commentList () {
       const { communityNoteCommentList } = this.notesItem
       if (!communityNoteCommentList) return []
