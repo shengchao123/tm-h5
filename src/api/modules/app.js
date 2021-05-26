@@ -19,6 +19,9 @@ export function uploadFile (params, url = urls.uploadFile) { // 上传图片
       name: 'files',
       filePath: params.file,
       fileType: params.fileType,
+      header: {
+          contentType : 'multipart/form-data' 
+      },
       formData: {
         'loginName': uni.getStorageSync('thirdUserId'),
         'orgId': uni.getStorageSync('orgId'),
@@ -49,6 +52,9 @@ export function uploadAvatar (file, url = urls.uploadAvatar) { // 上传头像
       url: getFullUrl(urls.uploadAvatar),
       name: 'files',
       filePath: file,
+      header: {
+          contentType : 'multipart/form-data' 
+      },
       fileType: 'image',
       success: (response) => {
         const res = JSON.parse(response.data)

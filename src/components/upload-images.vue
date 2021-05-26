@@ -116,6 +116,9 @@ export default {
           name: 'files',
           filePath: file,
           fileType: 'image',
+          header: {
+            contentType: 'multipart/form-data'
+          },
           formData,
           success (uploadFileResult) {
             const uploadFileRes = JSON.parse(uploadFileResult.data) || {};
