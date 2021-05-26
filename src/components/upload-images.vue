@@ -90,6 +90,7 @@ export default {
           this.uploadFiles(images);
         } else {
           uni.hideLoading();
+          this.$emit('update:imageData', this.imageList)
         }
       } else {
         //上传失败处理
@@ -102,7 +103,7 @@ export default {
           duration: 2000
         });
       }
-      this.$emit('update:imageData', this.imageList)
+      // this.$emit('update:imageData', this.imageList)
     },
     uploadImage (file) {
       return new Promise((resolve, reject) => {
