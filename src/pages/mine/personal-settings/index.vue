@@ -79,6 +79,7 @@ export default {
     // 上传头像
     uploadAvatar (file) {
       this.$api.uploadAvatar(file).then(res => {
+        this.formData.avatar = res.filePaths[0]
         const temParams = {
           avatar: res.filePaths[0]
         }

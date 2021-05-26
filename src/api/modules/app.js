@@ -5,7 +5,7 @@ import { getFullUrl } from '@/utils/tools.js'
 // type: 2: 图片，3: 视频，4: 音频
 export function uploadFile (params, url = urls.uploadFile) { // 上传图片
   const temConfig = {
-    headers: {
+    header: {
       'Content-Type': 'multipart/form-data',
       // authToken: getGlobalParams('token'),
       // masterOrgId: getGlobalParams('masterOrgId'),
@@ -19,9 +19,7 @@ export function uploadFile (params, url = urls.uploadFile) { // 上传图片
       name: 'files',
       filePath: params.file,
       fileType: params.fileType,
-      header: {
-          contentType : 'multipart/form-data' 
-      },
+      ...temConfig,
       formData: {
         'loginName': uni.getStorageSync('thirdUserId'),
         'orgId': uni.getStorageSync('orgId'),
@@ -48,13 +46,14 @@ export function uploadFile (params, url = urls.uploadFile) { // 上传图片
 // 上传头像
 export function uploadAvatar (file, url = urls.uploadAvatar) { // 上传头像
   return new Promise((resolve, reject) => {
+    const headers = {
+      'ContentType': 'multipart/form-data',
+    }
     uni.uploadFile({
       url: getFullUrl(urls.uploadAvatar),
       name: 'files',
       filePath: file,
-      header: {
-          contentType : 'multipart/form-data' 
-      },
+      header:headers,
       fileType: 'image',
       success: (response) => {
         const res = JSON.parse(response.data)

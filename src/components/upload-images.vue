@@ -111,15 +111,16 @@ export default {
         const formData = {
           type: 2,
         };
+        const headers = {
+          'ContentType': 'multipart/form-data',
+        }
         uni.uploadFile({
           url: getFullUrl(urls.uploadFile),
           // url: 'https://www.example.com/upload',
           name: 'files',
           filePath: file,
           fileType: 'image',
-          header: {
-            contentType: 'multipart/form-data'
-          },
+          header: headers,
           formData,
           success (uploadFileResult) {
             const uploadFileRes = JSON.parse(uploadFileResult.data) || {};
