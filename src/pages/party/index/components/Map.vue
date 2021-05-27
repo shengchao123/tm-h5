@@ -38,7 +38,7 @@ export default {
       const marker = new AMap.Marker({
         position: new AMap.LngLat(item.lng, item.lat),
         map: this.$amap,
-        offset: new AMap.Pixel(-_WH.W / 2, -_WH.H),
+        offset: new AMap.Pixel(-_WH.W / 2, -_WH.H / 2),
         icon: Icon,
         touchZoom: false
       })
