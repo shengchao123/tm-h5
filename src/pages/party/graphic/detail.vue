@@ -27,9 +27,11 @@
         <div class="img-list between-row">
           <div v-for="(item, index) in baseInfo.photoWallList"
                :key="index"
-               class="img-item mb20"
+               class="mb20"
                @click.stop="onShowBigImgView(index)">
-            <img :src="$fileHost + item.imageUrl">
+            <image mode="aspectFill"
+                   class="img-item"
+                   :src="$fileHost + item.imageUrl"></image>
           </div>
         </div>
       </div>
@@ -94,11 +96,6 @@ page {
         width: 336rpx;
         height: 336rpx;
         border-radius: 8rpx;
-        overflow: hidden;
-      }
-      img {
-        width: 100%;
-        height: 100%;
       }
     }
   }
