@@ -162,7 +162,7 @@ page {
 <style lang='scss' scoped>
 .party-wrap {
   color: #333;
-  padding-bottom: 120rpx;
+  padding-bottom: 190rpx;
   .map {
     width: 100%;
     height: 560rpx;

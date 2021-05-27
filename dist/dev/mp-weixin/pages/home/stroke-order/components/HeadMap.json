@@ -1,7 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "map": "/pages/components/Map",
-    "select-route-pop": "/pages/home/stroke-order/components/SelectRoutePop"
-  }
-}

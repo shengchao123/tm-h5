@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "添加红色地标",
-  "usingComponents": {
-    "u-input": "/node-modules/uview-ui/components/u-input/u-input",
-    "u-checkbox": "/node-modules/uview-ui/components/u-checkbox/u-checkbox"
-  }
-}
