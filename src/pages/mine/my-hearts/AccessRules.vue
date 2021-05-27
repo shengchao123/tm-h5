@@ -1,12 +1,12 @@
 <template>
   <u-popup v-model="isRuleShow"
            mode="center"
-           height="680"
+           height="672"
            width="540"
            border-radius="6"
            :mask-custom-style="maskCustomStyle">
     <view class="popup-wrap">
-      <view class="relative pb32">
+      <view class="relative pb24">
         <view class="ft30 popup-title bold pt40">红心获取规则</view>
         <view class="close-btn"
               @click="isRuleShow = false">
@@ -15,12 +15,15 @@
         </view>
       </view>
       <view class="pl32 pr32 pt8 h568">
-        <view v-for="(item,index) in contentData"
-              :key="index"
-              class="between-row ft28 color-333 mb32">
-          <text class="bold">{{item.name}}</text>
-          <text>+{{item.point}}</text>
-        </view>
+        <scroll-view :scroll-y="true"
+                     class="h568">
+          <view v-for="(item,index) in contentData"
+                :key="index"
+                class="between-row ft28 color-333 mb32">
+            <text class="bold">{{item.name}}</text>
+            <text>+{{item.point}}</text>
+          </view>
+        </scroll-view>
       </view>
     </view>
   </u-popup>
