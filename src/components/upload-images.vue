@@ -90,6 +90,7 @@ export default {
           this.uploadFiles(images);
         } else {
           uni.hideLoading();
+          this.$emit('update:imageData', this.imageList)
         }
       } else {
         //上传失败处理
@@ -102,7 +103,7 @@ export default {
           duration: 2000
         });
       }
-      this.$emit('update:imageData', this.imageList)
+      // this.$emit('update:imageData', this.imageList)
     },
     uploadImage (file) {
       return new Promise((resolve, reject) => {
@@ -110,12 +111,16 @@ export default {
         const formData = {
           type: 2,
         };
+        const headers = {
+          'ContentType': 'multipart/form-data',
+        }
         uni.uploadFile({
           url: getFullUrl(urls.uploadFile),
           // url: 'https://www.example.com/upload',
           name: 'files',
           filePath: file,
           fileType: 'image',
+          header: headers,
           formData,
           success (uploadFileResult) {
             const uploadFileRes = JSON.parse(uploadFileResult.data) || {};

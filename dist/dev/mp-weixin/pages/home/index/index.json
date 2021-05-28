@@ -1,9 +1,0 @@
-{
-  "navigationBarTitleText": "天目红盟",
-  "usingComponents": {
-    "map": "/pages/components/Map",
-    "drag-popover": "/components/DragPopover",
-    "paths-list": "/pages/home/index/components/PathsList",
-    "scenic-spot": "/pages/home/index/components/ScenicSpot"
-  }
-}

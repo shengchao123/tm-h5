@@ -91,6 +91,7 @@ export default {
       this.$api.getMemberPersonalInfo().then(res => {
         if (res.isError) return
         this.userInfo = res.content
+        this.setTabbarBadge()
       })
     },
     // 获取行程分页
@@ -100,6 +101,15 @@ export default {
         this.journeies = res.content.items
         this.showNull = this.$isEmpty(this.journeies)
       })
+    },
+    setTabBarBadge () {
+      const messageQuantity = this.userInfo
+      if (messageQuantity) {
+        uni.setTabBarBadge({
+          index: 3,
+          text: messageQuantity
+        })
+      }
     },
     // 跳转其他页面
     onOtherPage (type) {
