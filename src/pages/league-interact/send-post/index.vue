@@ -113,7 +113,6 @@ export default {
 .evaluate-box {
   padding: 0 30rpx;
   .place-class {
-    font-weight: 100;
   }
   .title-style {
     height: 100rpx;
