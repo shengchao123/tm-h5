@@ -25,8 +25,7 @@
     </view>
     <view v-if="subsection.curNow === 0"
           class="btn-box">
-      <!-- <view :class="['publish white-color bold center-flex',isScroll ? 'is-scroll' : '']" -->
-      <view :class="['publish white-color bold center']"
+      <view :class="['publish white-color bold center', isScroll ? 'is-scroll' : '']"
             @click="onPublish">
         <svg-icon icon="icon_jia"
                   class="ft32"></svg-icon>
@@ -72,13 +71,13 @@ export default {
       }
       this.$api.getJourneyActivityPage(params).then(res => {
         if (res.isError || !res.content) {
-          this.$refs.activity.mescroll.endBySize(0, 0)
+          this.$refs.activity && this.$refs.activity.mescroll.endBySize(0, 0)
           this.dataList = []
           this.isEmpty = true
           return
         }
         const { items, count } = res.content
-        this.$refs.activity.mescroll.endBySize(items.length, count)
+        this.$refs.activity && this.$refs.activity.mescroll.endBySize(items.length, count)
         if (params.pageNumber === 1) this.dataList = []
         this.dataList = this.dataList.concat(items)
         this.isEmpty = this.$isEmpty(this.dataList)

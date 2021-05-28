@@ -1,15 +1,11 @@
 <template>
   <view>
-    <view :class="[
-        'publish white-color bold center tc',
-        isScroll ? 'is-scroll' : '',
-      ]"
-          @click="onPublish"
-          v-if="!isScroll">
+    <view :class="['publish white-color bold center tc', isScroll ? 'is-scroll' : '']"
+          @click="onPublish">
       <svg-icon icon="icon_fabu"
                 class="ft32"></svg-icon>
     </view>
-    <view v-else>
+    <view>
       <u-mask :show="show">
         <view class="btn-list">
           <view class="evaluates tc comment-position">
@@ -42,9 +38,11 @@
 </template>
 <script>
 export default {
+  props: {
+    isScroll: Boolean
+  },
   data () {
     return {
-      isScroll: false,
       show: false,
     };
   },
@@ -53,12 +51,12 @@ export default {
     onPublish () {
       if (this.$notMember()) return this.$goLogin();
       this.show = true;
-      this.isScroll = true;
+      // this.isScroll = true;
     },
     // 关闭发布背景
     hiddenIcon () {
       this.show = false;
-      this.isScroll = false;
+      // this.isScroll = false;
     },
     // 跳转评价
     onEvaluate () {
@@ -71,14 +69,16 @@ export default {
       uni.navigateTo({ url: "/pages/home/stroke-order/index" });
     },
   },
-  onLoad () {
-    uni.$on("discoverBtn", (res) => {
-      this.isScroll = !res;
-    });
-  },
-  beforeDestroy () {
-    uni.$off("discoverBtn");
-  },
+  // onLoad () {
+  //   uni.$on("discoverBtn", (res) => {
+  //     console.log(res);
+  //     this.isScroll = !res;
+  //     console.log(this.isScroll);
+  //   });
+  // },
+  // beforeDestroy () {
+  //   uni.$off("discoverBtn");
+  // },
 };
 </script>
 <style lang="scss" scoped>
@@ -96,7 +96,7 @@ export default {
   bottom: 57rpx;
   font-size: 56rpx;
   right: 14rpx;
-  // transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
   opacity: 1;
 }
 .is-scroll {

@@ -40,7 +40,7 @@
     <u-action-sheet :list="actions"
                     @click="onSelectGuide"
                     v-model="showGuide"></u-action-sheet>
-    <btn-dialog></btn-dialog>
+    <btn-dialog :isScroll="isScroll"></btn-dialog>
   </div>
 </template>
 
@@ -121,6 +121,7 @@ export default {
   },
   data () {
     return {
+      isScroll: false,
       points: [],
       currentPath: {},
       mapInitObj: Object.freeze({
@@ -159,6 +160,12 @@ export default {
       uni.setStorageSync('masterOrgId', option.masterOrgId)
       uni.setStorageSync('orgId', option.masterOrgId)
     }
+    uni.$on("discoverBtn", (res) => {
+      this.isScroll = !res;
+    });
+  },
+  beforeDestroy () {
+    uni.$off("discoverBtn");
   },
   mixins: [MescrollMixin],
 };
