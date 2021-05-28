@@ -156,7 +156,7 @@ export default {
 .evaluate-box {
   padding: 0 30rpx;
   .place-class {
-    font-weight: 100;
+    font-size: 32rpx;
   }
   .title-style {
     font-size: 32rpx;
