@@ -33,9 +33,8 @@
       <div ref="contentBox"
            class="content-box"
            :class="isHideContent && 'hide-content'">
-        <text ref="contentText"
-              class="ft26"
-              id="content-text">{{notesItem.content}}</text>
+        <span ref="contentText"
+              class="ft26 content-text">{{notesItem.content}}</span>
       </div>
       <view v-if="isShowExpand"
             class="expand center-flex"
@@ -75,6 +74,7 @@ export default {
     calculationHeight () {
       const boxHeight = this.$refs.contentBox.offsetHeight
       const textHeight = this.$refs.contentText.offsetHeight
+      console.log(textHeight, boxHeight)
       this.isShowExpand = textHeight > boxHeight
     },
   },
@@ -132,10 +132,12 @@ export default {
     position: relative;
     .content-box {
       width: 100%;
-      line-height: 30rpx;
+      .content-text {
+        line-height: 38rpx;
+      }
     }
     .hide-content {
-      height: 60rpx;
+      height: 80rpx;
       display: -webkit-box;
       -webkit-box-orient: vertical; // 点点点
       -webkit-line-clamp: 2;
@@ -144,9 +146,9 @@ export default {
     .expand {
       position: absolute;
       right: 0;
-      bottom: -2rpx;
-      width: 100rpx;
-      height: 33rpx;
+      bottom: 8rpx;
+      width: 90rpx;
+      height: 35rpx;
       background: rgba(255, 255, 255, 1);
       letter-spacing: 2rpx;
     }
