@@ -8,9 +8,9 @@
       <detail-info :list="topList"></detail-info>
     </div>
     <detail-info :list="bottomList"></detail-info>
-    <div class="mt20 pb20 bg-white"
+    <div class="pb24 bg-white"
          @click="onSignUpList">
-      <div class="between-row cenetr-align pt18 pl30 pr30">
+      <div class="between-row cenetr-align pt24 pl30 pr30">
         <div class="ft30 bold">参与人员</div>
         <div class="center-align">
           <div class="ft22 color-666">{{signUpList.length}}人</div>
@@ -137,7 +137,8 @@ export default {
     // 去评价
     onComment () {
       if (this.$notMember()) return this.$goLogin()
-      const url = `/pages/home/evaluation/index?id=${this.baseInfo.id}`
+      const { id, name } = this.baseInfo
+      const url = `/pages/home/evaluation/index?id=${id}&name=${name}`
       uni.navigateTo({ url })
     },
     // 去填写组织生活记录
