@@ -37,7 +37,7 @@
 </template>
 <script>
 
-import LocationItem from '@/pages/home/stroke-order/components/LocationItem'
+import LocationItem from '@/pages/red-league/stroke-order/components/LocationItem'
 import AMap from 'AMap'
 
 const MARKER_W_H = { W: 30, H: 50 }

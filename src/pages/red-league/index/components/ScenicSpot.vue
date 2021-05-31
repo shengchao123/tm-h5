@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import NumList from '@/pages/home/index/components/NumList'
+import NumList from '@/pages/red-league/index/components/NumList'
 export default {
   name: 'ScenicSpot',
   methods: {
