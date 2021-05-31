@@ -225,7 +225,7 @@ export default {
       const { name, organizer, contactDetails, meetingPlace, setOutTime, transportation, precautions } = this.baseInfo
       return [
         { label: '名称', content: name },
-        { label: '组织员', content: organizer },
+        { label: '召集人', content: organizer },
         { label: '联系方式', content: contactDetails },
         { label: '集合地点', content: meetingPlace },
         { label: '出发日期', content: moment(setOutTime).format('YYYY-MM-DD HH:mm:ss') },

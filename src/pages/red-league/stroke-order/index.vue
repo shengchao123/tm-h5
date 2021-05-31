@@ -37,12 +37,12 @@
           <input-length-word :modelData="form.data.name"
                              maxLength="15"></input-length-word>
         </u-form-item>
-        <u-form-item label="组织员"
+        <u-form-item label="召集人"
                      label-width="144"
                      prop="organizer">
           <u-input v-model="form.data.organizer"
                    maxlength="10"
-                   placeholder="输入组织员姓名" />
+                   placeholder="输入召集人姓名" />
           <input-length-word :modelData="form.data.organizer"
                              maxLength="10"></input-length-word>
         </u-form-item>
@@ -51,7 +51,7 @@
                      prop="contactDetails">
           <u-input v-model="form.data.contactDetails"
                    type="number"
-                   placeholder="输入组织员手机号" />
+                   placeholder="输入召集人手机号" />
         </u-form-item>
         <u-form-item label="集合地点"
                      label-width="144"
@@ -262,7 +262,7 @@ export default {
   },
   data () {
     const contactDetailsVal = (rule, value, callback) => {
-      if (!value) return callback(new Error('输入组织员手机号'))
+      if (!value) return callback(new Error('输入召集人手机号'))
       if (!this.$u.test.mobile(value)) return callback(new Error('手机号不正确'))
       callback()
     }
@@ -292,7 +292,7 @@ export default {
         },
         rules: {
           name: [{ required: true, message: '输入行程名称', trigger: ['change', 'blur'] }],
-          organizer: [{ required: true, message: '输入组织员姓名', trigger: ['change', 'blur'] }],
+          organizer: [{ required: true, message: '输入召集人姓名', trigger: ['change', 'blur'] }],
           contactDetails: [{ required: true, trigger: ['change', 'blur'], validator: contactDetailsVal }],
           meetingPlace: [{ required: true, message: '输入集合地点', trigger: ['change', 'blur'] }],
           setOutTime: [{ required: true, trigger: ['change', 'blur'], validator: setOutTimeVal }],

@@ -30,7 +30,7 @@
         <SvgIcon icon="icon_daolan"
                  style="color: #4CBF00"
                  class="icon"></SvgIcon>
-        <span class="ml8 color-666">导览</span>
+        <span class="ml8 color-666">周边</span>
       </div>
 
       <div class="btn center ml16"
