@@ -51,7 +51,7 @@ export default {
     },
     onToDetail (item) {
       uni.navigateTo({
-        url: `/pages/league-interact/detail/index?id=${item.id}`
+        url: `/pages/union/interact/detail/index?id=${item.id}`
       })
     },
     tabChange (index) {
