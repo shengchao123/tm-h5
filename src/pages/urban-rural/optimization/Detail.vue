@@ -1,6 +1,6 @@
 <template>
   <div class='detail-wrap'>
-    <img src="@/static/test/01.jpg">
+    <img src="@/static/test/01.png">
   </div>
 </template>
 
