@@ -6,77 +6,83 @@
 		{
 			"path": "pages/home/index/index",
 			"style": {
-				"navigationBarTitleText": "天目红盟"
+				"navigationBarTitleText": "首页"
 			}
 		},
 		{
-			"path": "pages/home/introduction/index",
+			"path": "pages/original-travel/index/index",
+			"style": {
+				"navigationBarTitleText": "初心之旅"
+			}
+		},
+		{
+			"path": "pages/original-travel/introduction/index",
 			"style": {
 				"navigationBarTitleText": "地标简介"
 			}
 		},
 		{
-			"path": "pages/home/point-guide/index",
+			"path": "pages/original-travel/point-guide/index",
 			"style": {
-				"navigationBarTitleText": "地标导览"
+				"navigationBarTitleText": "地标周边"
 			}
 		},
 		{
-			"path": "pages/home/stroke-order/index",
+			"path": "pages/original-travel/stroke-order/index",
 			"style": {
 				"navigationBarTitleText": "创建行程单"
 			}
 		},
 		{
-			"path": "pages/home/stroke-order/VenueMap",
+			"path": "pages/original-travel/stroke-order/VenueMap",
 			"style": {
 				"navigationBarTitleText": "选择集合点"
 			}
 		},
 		{
-			"path": "pages/home/stroke-order/createSuccess",
+			"path": "pages/original-travel/stroke-order/createSuccess",
 			"style": {
 				"navigationBarTitleText": "创建成功"
 			}
 		},
 		{
-			"path": "pages/home/stroke-order/detail",
+			"path": "pages/original-travel/stroke-order/detail",
 			"style": {
 				"navigationBarTitleText": "行程单"
 			}
 		},
 		{
-			"path": "pages/home/stroke-order/signUp",
+			"path": "pages/original-travel/stroke-order/signUp",
 			"style": {
 				"navigationBarTitleText": "报名"
 			}
 		},
 		{
-			"path": "pages/home/stroke-order/signUpList",
+			"path": "pages/original-travel/stroke-order/signUpList",
 			"style": {
 				"navigationBarTitleText": "参与人员"
 			}
 		},
 		{
-			"path": "pages/home/stroke-order/CustomPath",
+			"path": "pages/original-travel/stroke-order/CustomPath",
 			"style": {
 				"navigationBarTitleText": "自定义路线"
 			}
 		},
 		{
-			"path": "pages/home/stroke-order/GetRedPoints",
+			"path": "pages/original-travel/stroke-order/GetRedPoints",
 			"style": {
 				"navigationBarTitleText": "添加红色地标"
 			}
 		},
 		{
-			"path": "pages/home/evaluation/index",
+			"path": "pages/original-travel/evaluation/index",
 			"style": {
 				"navigationBarTitleText": "发布评价"
 			}
 		},
 		{
-			"path": "pages/home/evaluate-detail/index",
+			"path": "pages/original-travel/evaluate-detail/index",
 			"style": {
 				"navigationBarTitleText": "评价详情"
 			}
@@ -94,43 +100,74 @@
 			}
 		},
 		{
-			"path": "pages/party/index/index",
+			"path": "pages/union/index/index",
 			"style": {
 				"navigationBarTitleText": "党建联盟"
 			}
 		},
 		{
-			"path": "pages/party/graphic/index",
+			"path": "pages/think-tank/index/index",
+			"style": {
+				"navigationBarTitleText": "人才智库"
+			}
+		},
+		{
+			"path": "pages/think-tank/policy/Detail",
+			"style": {
+				"navigationBarTitleText": "政策详情"
+			}
+		},
+		{
+			"path": "pages/steward/index/index",
+			"style": {
+				"navigationBarTitleText": "基层治理"
+			}
+		},
+
+		{
+			"path": "pages/urban-rural/index/index",
+			"style": {
+				"navigationBarTitleText": "城乡融合"
+			}
+		},
+		{
+			"path": "pages/urban-rural/optimization/Detail",
+			"style": {
+				"navigationBarTitleText": "商品详情"
+			}
+		},
+		{
+			"path": "pages/union/graphic/index",
 			"style": {
 				"navigationBarTitleText": "联盟风采"
 			}
 		},
 		{
-			"path": "pages/party/graphic/detail",
+			"path": "pages/union/graphic/detail",
 			"style": {
 				"navigationBarTitleText": "联盟风采详情"
 			}
 		},
 		{
-			"path": "pages/league-interact/index/index",
+			"path": "pages/union/interact/index/index",
 			"style": {
 				"navigationBarTitleText": "联盟互动"
 			}
 		},
 		{
-			"path": "pages/league-interact/send-post/index",
+			"path": "pages/union/interact/send-post/index",
 			"style": {
 				"navigationBarTitleText": "发帖"
 			 }
 		},
 		{
-			"path": "pages/league-interact/detail/index",
+			"path": "pages/union/interact/detail/index",
 			"style": {
 				"navigationBarTitleText": "活动详情"
 			}
 		},
 		{
-			"path": "pages/league-interact/note-detail/index",
+			"path": "pages/union/interact/note-detail/index",
 			"style": {
 				"navigationBarTitleText": "帖子详情"
 			}
@@ -239,21 +276,9 @@
 		"list": [
 			{
 				"pagePath": "pages/home/index/index",
-				"iconPath": "static/tabbar/original.png",
-				"selectedIconPath": "static/tabbar/original_l.png",
-				"text": "初心之旅"
-			},
-			{
-				"pagePath": "pages/party/index/index",
-				"iconPath": "static/tabbar/party.png",
-				"selectedIconPath": "static/tabbar/party_l.png",
-				"text": "党建联盟"
-			},
-			{
-				"pagePath": "pages/league-interact/index/index",
-				"iconPath": "static/tabbar/interact.png",
-				"selectedIconPath": "static/tabbar/interact_l.png",
-				"text": "联盟互动"
+				"iconPath": "static/tabbar/home.png",
+				"selectedIconPath": "static/tabbar/home_l.png",
+				"text": "首页"
 			},
 			{
 				"pagePath": "pages/mine/index/index",
