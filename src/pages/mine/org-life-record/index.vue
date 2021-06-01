@@ -1,6 +1,7 @@
 <template>
   <view class="life-wrap">
-    <view class="tb pl30 pr30 bg-white">
+    <img src="@/static/test/12.png">
+    <!-- <view class="tb pl30 pr30 bg-white">
       <u-form :model="formData"
               ref="uForm"
               :label-style="labelStyle">
@@ -54,7 +55,7 @@
       </view>
     </view>
     <line-clock :isShowSignIn.sync="formData.isShowSignIn"
-                :journeyItineraryId="lineData.journeyItineraryId"></line-clock>
+                :journeyItineraryId="lineData.journeyItineraryId"></line-clock> -->
     <view class="center-align bg-white pl30 pr30 save-btn tb">
       <u-button @click="onSave"
                 :disabled="btnDisabled"
@@ -191,6 +192,9 @@ page {
 .life-wrap {
   padding-bottom: 152rpx;
   overflow: auto;
+  img {
+    width: 100vw;
+  }
 }
 .content-textarea {
   overflow: hidden;
