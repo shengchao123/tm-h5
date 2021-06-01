@@ -69,7 +69,13 @@ export default {
         },
       ])
     }
-  }
+  },
+  onLoad (option) {
+    if (option.masterOrgId) {
+      uni.setStorageSync('masterOrgId', option.masterOrgId)
+      uni.setStorageSync('orgId', option.masterOrgId)
+    }
+  },
 }
 </script>
 
