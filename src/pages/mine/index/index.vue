@@ -63,6 +63,7 @@
         <MyJourneyItem v-for="(item, index) in journeies"
                        :key="index"
                        :item="item"></MyJourneyItem>
+        <div style="width: 100%; height: 100rpx"></div>
       </scroll-view>
 
       <u-empty src="/static/empty/no-journey.png"
@@ -156,6 +157,8 @@ page {
   }
   .my-journey {
     padding: 32rpx 32rpx 0;
+    height: 100%;
+    overflow: hidden;
   }
 
   .label {
