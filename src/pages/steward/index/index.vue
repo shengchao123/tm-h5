@@ -6,12 +6,7 @@
 
 <script>
 export default {
-  name: 'index',
-  data () {
-    return {
-
-    }
-  }
+  name: 'index'
 }
 </script>
 
