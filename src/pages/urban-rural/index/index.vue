@@ -68,7 +68,7 @@ page {
 <style lang='scss' scoped>
 .urban-rural-wrap {
   padding-bottom: 50px;
-  padding-top: 100rpx;
+  padding-top: 88rpx;
   .tab {
     position: fixed;
     top: 0;
