@@ -12,7 +12,7 @@
     </div>
 
     <div class="center-align">
-      <div class="btn center ml16"
+      <!-- <div class="btn center ml16"
            :style="{borderColor: pointData.item.isPlayed ? '#FF9204' : '#dcdcdc'}"
            @click="onPlayer">
         <SvgIcon :icon="pointData.item.isPlayed ? 'icon_zanting': 'icon_bofang'"
@@ -20,12 +20,9 @@
                  class="icon"></SvgIcon>
         <span class="ml8"
               :style="{color: pointData.item.isPlayed ? '#FF9204' : '#666666'}">语音</span>
-      </div>
+      </div> -->
 
-      <div class="
-              btn
-              center
-              ml16"
+      <div class="btn center ml16"
            @click="onGuideVisit">
         <SvgIcon icon="icon_daolan"
                  style="color: #4CBF00"
