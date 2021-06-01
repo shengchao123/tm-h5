@@ -31,7 +31,7 @@ export default {
     },
     onDetail () {
       uni.navigateTo({
-        url: `/pages/home/stroke-order/detail?id=${this.id}`
+        url: `/pages/original-travel/stroke-order/detail?id=${this.id}`
       })
     }
   },

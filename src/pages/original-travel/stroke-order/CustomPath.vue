@@ -56,7 +56,7 @@ export default {
       this.$store.commit('travel/CUSTOM_PATH_POINTS', this.points)
     },
     onAddRedPoints () {
-      uni.navigateTo({ url: '/pages/home/stroke-order/GetRedPoints' })
+      uni.navigateTo({ url: '/pages/original-travel/stroke-order/GetRedPoints' })
     }
   },
   watch: {

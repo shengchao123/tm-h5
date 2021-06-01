@@ -103,13 +103,13 @@ export default {
       if (signUpList.length <= 0) return
       uni.setStorageSync('signUpList', JSON.stringify(signUpList))
       uni.navigateTo({
-        url: '/pages/home/stroke-order/signUpList'
+        url: '/pages/original-travel/stroke-order/signUpList'
       })
     },
     // 编辑
     onEdit () {
       uni.navigateTo({
-        url: `/pages/home/stroke-order/index?isEdit=1&&id=${this.id}`
+        url: `/pages/original-travel/stroke-order/index?isEdit=1&&id=${this.id}`
       })
     },
     // 删除
@@ -138,7 +138,7 @@ export default {
     onComment () {
       if (this.$notMember()) return this.$goLogin()
       const { id, name } = this.baseInfo
-      const url = `/pages/home/evaluation/index?id=${id}&name=${name}`
+      const url = `/pages/original-travel/evaluation/index?id=${id}&name=${name}`
       uni.navigateTo({ url })
     },
     // 去填写组织生活记录
@@ -156,7 +156,7 @@ export default {
       const id = this.id
       if (!this.baseInfo.isSignUp) {
         uni.navigateTo({
-          url: `/pages/home/stroke-order/signUp?id=${id}&type=stroke`
+          url: `/pages/original-travel/stroke-order/signUp?id=${id}&type=stroke`
         })
         return
       }

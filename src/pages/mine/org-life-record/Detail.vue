@@ -94,7 +94,7 @@ export default {
     onJourneyItinerary (type) {
       if (type !== 'journeyItineraryName') return
       uni.navigateTo({
-        url: `/pages/home/stroke-order/detail?id=${this.journeyItineraryId}`
+        url: `/pages/original-travel/stroke-order/detail?id=${this.journeyItineraryId}`
       })
     },
     // 编辑

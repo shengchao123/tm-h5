@@ -96,7 +96,7 @@ export default {
     onJourney () {
       uni.$emit('initJourneyLineId', this.baseInfo)
       uni.switchTab({
-        url: '/pages/home/index/index'
+        url: '/pages/original-travel/index/index'
       })
     },
     changeIndex (index) {

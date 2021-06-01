@@ -46,7 +46,7 @@ export default {
   name: 'item',
   methods: {
     onToRoute (item) {
-      const url = item.status === '01' ? `/pages/home/stroke-order/signUp?id=${item.id}&type=activity` : ''
+      const url = item.status === '01' ? `/pages/original-travel/stroke-order/signUp?id=${item.id}&type=activity` : ''
       uni.navigateTo({
         url
       })

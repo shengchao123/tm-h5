@@ -41,11 +41,11 @@
 
 <script>
 const pageUrlMap = Object.freeze(new Map([
-  ['detail', '/pages/home/stroke-order/detail?'],
+  ['detail', '/pages/original-travel/stroke-order/detail?'],
   ['writeLife', '/pages/mine/org-life-record/index?'],
   ['lifeRecord', '/pages/mine/org-life-record/Detail?'],
   ['clock', '/pages/mine/card-record/index?'],
-  ['evaluation', '/pages/home/evaluation/index?']
+  ['evaluation', '/pages/original-travel/evaluation/index?']
 ]))
 export default {
   name: 'MyJourneyItem',

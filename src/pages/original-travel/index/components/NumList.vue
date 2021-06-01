@@ -48,7 +48,7 @@ export default {
     onIntroduction () {
       const { journeyPointId } = this.pointData.item
       uni.navigateTo({
-        url: `/pages/home/introduction/index?journeyPointId=${journeyPointId}`
+        url: `/pages/original-travel/introduction/index?journeyPointId=${journeyPointId}`
       })
     },
     onPlayer () {
@@ -56,7 +56,7 @@ export default {
     },
     onGuideVisit () {
       sessionStorage.setItem('pointData', JSON.stringify(this.pointData.item))
-      uni.navigateTo({ url: '/pages/home/point-guide/index' })
+      uni.navigateTo({ url: '/pages/original-travel/point-guide/index' })
     },
     onGuide () {
       this.onShowNavigationSelect(this.pointData)

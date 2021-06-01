@@ -88,7 +88,7 @@ export default {
     },
     onCreateTravel () {
       if (this.$notMember()) return this.$goLogin()
-      uni.navigateTo({ url: `/pages/home/stroke-order/index?journeyLineId=${this.selectJourneyLineId}` });
+      uni.navigateTo({ url: `/pages/original-travel/stroke-order/index?journeyLineId=${this.selectJourneyLineId}` });
     },
     onSelectPath (item) {
       this.$nextTick(() => {
