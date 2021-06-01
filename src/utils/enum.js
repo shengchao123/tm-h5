@@ -6,7 +6,7 @@ export const playTimeOptions = Object.freeze([
 ])
 
 export const activityTypeOptions = Object.freeze([
-  { id: '01', name: '党组活动' },
+  { id: '01', name: '党员活动' },
   { id: '02', name: '学习教育' },
   { id: '03', name: '观光游览' },
   { id: '04', name: '其他' }
