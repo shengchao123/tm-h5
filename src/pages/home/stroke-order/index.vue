@@ -37,7 +37,7 @@
           <input-length-word :modelData="form.data.name"
                              maxLength="15"></input-length-word>
         </u-form-item>
-        <u-form-item label="组织员"
+        <u-form-item label="召集人"
                      label-width="144"
                      prop="organizer">
           <u-input v-model="form.data.organizer"
