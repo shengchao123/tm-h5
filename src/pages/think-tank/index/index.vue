@@ -28,24 +28,35 @@ export default {
       if (this.current === 0) {
         uni.navigateTo({ url: '/pages/think-tank/policy/Detail' })
       }
+      if (this.current === 2) {
+        uni.navigateTo({ url: '/pages/think-tank/countryside/Detail' })
+      }
     },
     tabChange (index) {
       this.current = index
     },
   },
+
   data () {
     return {
       current: 0,
       imgs: Object.freeze([
-        require('@/static/test/08.png'),
-        require('@/static/test/09.png'),
+        require('@/static/test/081.png'),
+        require('@/static/test/082.png'),
+        require('@/static/test/083.png'),
       ]),
       tab: {
-        list: [{
-          name: '政策信息'
-        }, {
-          name: '专家服务'
-        }]
+        list: [
+          {
+            name: '政策信息'
+          },
+          {
+            name: '专家服务'
+          },
+          {
+            name: '涉农项目'
+          },
+        ]
       }
     }
   }
@@ -60,7 +71,10 @@ page {
 <style lang='scss' scoped>
 .think-tank-wrap {
   padding-bottom: 50px;
+  padding-top: 100rpx;
   .tab {
+    position: fixed;
+    top: 0;
     width: 100%;
     height: 88rpx;
     box-sizing: border-box;

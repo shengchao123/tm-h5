@@ -118,6 +118,12 @@
 			}
 		},
 		{
+			"path": "pages/think-tank/countryside/Detail",
+			"style": {
+				"navigationBarTitleText": "涉农项目"
+			}
+		},
+		{
 			"path": "pages/steward/index/index",
 			"style": {
 				"navigationBarTitleText": "基层治理"
