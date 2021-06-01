@@ -1,13 +1,19 @@
 <template>
   <div class='urban-rural-wrap'>
-    <u-tabs :list="tab.list"
-            :is-scroll="false"
-            font-size="28"
-            :current="current"
-            :bar-style="{width: '32rpx', height:'4rpx', bottom: '10rpx'}"
-            active-color="#E32417"
-            inactive-color="#666666"
-            @change="tabChange"></u-tabs>
+    <div class="tab">
+
+      <u-tabs :list="tab.list"
+              :is-scroll="false"
+              bar-width="32"
+              bar-height="4"
+              height="60"
+              font-size="28"
+              :offset="[20, 0]"
+              :current="current"
+              active-color="#E32417"
+              inactive-color="#666666"
+              @change="tabChange"></u-tabs>
+    </div>
 
     <img :src="imgs[current]"
          @click="onImage">
@@ -53,11 +59,22 @@ export default {
   }
 }
 </script>
-
+<style>
+page {
+  height: 100%;
+  background: #f7f7f7;
+}
+</style>
 <style lang='scss' scoped>
 .urban-rural-wrap {
-  padding-top: 30rpx;
   padding-bottom: 50px;
+  .tab {
+    width: 100%;
+    height: 88rpx;
+    box-sizing: border-box;
+    padding-top: 16rpx;
+    background: #fff;
+  }
   img {
     width: 100vw;
   }
