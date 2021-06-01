@@ -34,7 +34,7 @@ export const playTimeNameMap = new Map([
 ])
 
 export const activityNameMap = new Map([
-  ['01', '党组活动'],
+  ['01', '党员活动'],
   ['02', '学习教育'],
   ['03', '观光游览'],
   ['04', '其他'],
@@ -51,7 +51,7 @@ export const transportationNameMap = new Map([
 
 // 状态 (01:报名中; 02:进行中; 03:已结束)
 export const statusMap = Object.freeze(new Map([
-  ['01', { iconClass: 'icon_baomingzhong', color: '#F54000'}],
+  ['01', { iconClass: 'icon_baomingzhong', color: '#F54000' }],
   ['02', { iconClass: 'icon_jinhangzhong1', color: '#FFB319' }],
   ['03', { iconClass: 'icon_yijieshu', color: '#999999' }],
 ]))
