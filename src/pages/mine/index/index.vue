@@ -59,10 +59,11 @@
 
       <scroll-view scroll-y="true"
                    v-if="journeies.length > 0"
-                   class="scroll-Y">
+                   class="scroll-Y flex1">
         <MyJourneyItem v-for="(item, index) in journeies"
                        :key="index"
                        :item="item"></MyJourneyItem>
+        <div style="width: 100%; height: 100rpx"></div>
       </scroll-view>
 
       <u-empty src="/static/empty/no-journey.png"
@@ -132,9 +133,14 @@ export default {
   }
 }
 </script>
-
+<style>
+page {
+  height: 100%;
+}
+</style>
 <style lang='scss' scoped>
 .tabbar-mine {
+  height: 100%;
   .info-wrap {
     border-bottom: 20rpx solid #f7f7f7;
     padding: 40rpx 32rpx;
@@ -151,6 +157,8 @@ export default {
   }
   .my-journey {
     padding: 32rpx 32rpx 0;
+    height: 100%;
+    overflow: hidden;
   }
 
   .label {
@@ -162,7 +170,7 @@ export default {
   }
 
   .scroll-Y {
-    max-height: calc(100vh - 44px - 370rpx - 50px);
+    height: 100%;
   }
 }
 </style>

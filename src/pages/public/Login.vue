@@ -17,6 +17,7 @@ export default {
      * 3. 用户信息状态 status  (1:未找到该用户; 2:未成为会员; 3:未完善资料; 4:已完善资料; 5:登录失败; 6:冻结)
      */
     h5Login (option) {
+      console.log(111)
       // 微信授权登录
       if (option.code) {
         this.getUserInfoAndToken(option)

@@ -119,7 +119,7 @@ export default {
     // 选择集合点
     onVenueMap () {
       uni.navigateTo({
-        url: '/pages/home/stroke-order/VenueMap'
+        url: '/pages/original-travel/stroke-order/VenueMap'
       })
     },
     // 显示 日期选择 弹窗
@@ -190,7 +190,7 @@ export default {
             uni.navigateBack()
             return
           }
-          const link = window.location.href.split('/pages')[0] + `/pages/home/stroke-order/detail?id=${res.content.id}`
+          const link = window.location.href.split('/pages')[0] + `/pages/original-travel/stroke-order/detail?id=${res.content.id}`
           const shareData = {
             link,
             title: name,
@@ -198,7 +198,7 @@ export default {
           }
           uni.setStorageSync('strokeCreateShare', shareData)
           uni.redirectTo({
-            url: `/pages/home/stroke-order/createSuccess?id=${res.content.id}`
+            url: `/pages/original-travel/stroke-order/createSuccess?id=${res.content.id}`
           })
         }, 500)
       })

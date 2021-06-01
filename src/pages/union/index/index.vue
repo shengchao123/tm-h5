@@ -1,6 +1,5 @@
 <template>
-  <div class='party-wrap'
-       v-if="partyList.length > 0">
+  <div class='party-wrap'>
     <div class="map">
       <Map :points="partyList"
            :currentIndex="selectPoint"
@@ -66,7 +65,14 @@
       </div>
     </div>
     <contact-person :list="baseInfo.addressBookList"></contact-person>
-
+    <div class="btn-box center"
+         @click="onInteract">
+      <div class="link-btn center white-color">
+        <svg-icon icon="icon_lianmenghudong"
+                  class="ft32 mr20"></svg-icon>
+        <span class="ft30">联盟互动</span>
+      </div>
+    </div>
     <custom-tabbar></custom-tabbar>
   </div>
 </template>
@@ -77,15 +83,20 @@ import OrgTree from './components/OrgTree.vue'
 import Map from './components/Map'
 export default {
   methods: {
+    onInteract () {
+      uni.navigateTo({
+        url: '/pages/union/interact/index/index'
+      })
+    },
     onGraphic () {
       uni.navigateTo({
-        url: `/pages/party/graphic/index?current=${this.selectPoint}`
+        url: `/pages/union/graphic/index?current=${this.selectPoint}`
       })
     },
     onJourney () {
       uni.$emit('initJourneyLineId', this.baseInfo)
-      uni.switchTab({
-        url: '/pages/home/index/index'
+      uni.navigateTo({
+        url: '/pages/original-travel/index/index'
       })
     },
     changeIndex (index) {
@@ -164,7 +175,7 @@ page {
 <style lang='scss' scoped>
 .party-wrap {
   color: #333;
-  padding-bottom: 190rpx;
+  padding-bottom: 280rpx;
   .map {
     width: 100%;
     height: 560rpx;
@@ -217,6 +228,22 @@ page {
         width: 1rpx;
         background: #eaeaea;
       }
+    }
+  }
+  .btn-box {
+    position: fixed;
+    bottom: 130rpx;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 98rpx;
+    .link-btn {
+      width: 270rpx;
+      height: 98rpx;
+      background: #e32417;
+      box-shadow: 4rpx 6rpx 8rpx 0 rgba(0, 0, 0, 0.25);
+      border-radius: 49rpx;
+      transform: scale(0.8);
     }
   }
 }

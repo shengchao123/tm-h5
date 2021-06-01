@@ -67,7 +67,7 @@ export default {
 
     onAdd () {
       this.$store.commit('travel/CUSTOM_PATH_POINTS', this.selectPoints)
-      uni.redirectTo({ url: '/pages/home/stroke-order/CustomPath' })
+      uni.redirectTo({ url: '/pages/original-travel/stroke-order/CustomPath' })
     },
 
     onRegion (item) {

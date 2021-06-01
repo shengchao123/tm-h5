@@ -59,7 +59,7 @@ export default {
       if (!this.needClick) return
       const point = e.target.getExtData()
       uni.navigateTo({
-        url: `/pages/home/introduction/index?journeyPointId=${point.journeyPointId}`
+        url: `/pages/original-travel/introduction/index?journeyPointId=${point.journeyPointId}`
       })
     },
 

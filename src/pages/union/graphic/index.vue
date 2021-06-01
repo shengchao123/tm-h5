@@ -38,7 +38,7 @@
             </div>
           </div>
         </div>
-        <contact-person :list="tabList[current].addressBookList"></contact-person>
+        <!-- <contact-person :list="tabList[current].addressBookList"></contact-person> -->
       </template>
     </mescroll-uni>
   </div>
@@ -62,7 +62,7 @@ export default {
         return
       }
       uni.navigateTo({
-        url: `/pages/party/graphic/detail?id=${id}`
+        url: `/pages/union/graphic/detail?id=${id}`
       })
     },
     // 下拉刷新

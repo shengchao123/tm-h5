@@ -44,32 +44,38 @@ export default {
       cardList: Object.freeze([
         {
           img: require('@/static/home/01.png'),
-          style: { left: '30rpx', top: '255rpx' },
+          style: { left: '30rpx', top: '205rpx' },
           url: '/pages/original-travel/index/index'
         },
         {
           img: require('@/static/home/02.png'),
-          style: { left: '172rpx', top: '335rpx' },
+          style: { left: '172rpx', top: '285rpx' },
           url: '/pages/union/index/index'
         },
         {
           img: require('@/static/home/03.png'),
-          style: { left: '312rpx', top: '415rpx' },
+          style: { left: '312rpx', top: '365rpx' },
           url: '/pages/urban-rural/index/index'
         },
         {
           img: require('@/static/home/04.png'),
-          style: { right: '172rpx', top: '335rpx' },
+          style: { right: '172rpx', top: '285rpx' },
           url: '/pages/think-tank/index/index'
         },
         {
           img: require('@/static/home/05.png'),
-          style: { right: '30rpx', top: '255rpx' },
+          style: { right: '30rpx', top: '205rpx' },
           url: '/pages/steward/index/index'
         },
       ])
     }
-  }
+  },
+  onLoad (option) {
+    if (option.masterOrgId) {
+      uni.setStorageSync('masterOrgId', option.masterOrgId)
+      uni.setStorageSync('orgId', option.masterOrgId)
+    }
+  },
 }
 </script>
 
@@ -89,7 +95,7 @@ export default {
     }
     .main-card {
       height: 334rpx;
-      margin-top: 100rpx;
+      margin-top: 50rpx;
     }
     .card {
       position: absolute;

@@ -62,12 +62,12 @@ export default {
     // 跳转评价
     onEvaluate () {
       if (this.$notMember()) return this.$goLogin();
-      uni.navigateTo({ url: "/pages/home/evaluation/index" });
+      uni.navigateTo({ url: "/pages/original-travel/evaluation/index" });
     },
     // 跳转行程
     onTrip () {
       if (this.$notMember()) return this.$goLogin();
-      uni.navigateTo({ url: "/pages/home/stroke-order/index" });
+      uni.navigateTo({ url: "/pages/original-travel/stroke-order/index" });
     },
   },
   // onLoad () {
