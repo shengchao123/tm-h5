@@ -93,7 +93,7 @@ export default {
   z-index: 100;
   background: #e32417;
   // background-image: linear-gradient(98deg, #f54400 0%, #ff6630 72%);
-  bottom: 57rpx;
+  bottom: 150rpx;
   font-size: 56rpx;
   right: 14rpx;
   transition: all 0.5s ease-in-out;
