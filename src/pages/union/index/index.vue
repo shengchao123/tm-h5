@@ -243,6 +243,7 @@ page {
       background: #e32417;
       box-shadow: 4rpx 6rpx 8rpx 0 rgba(0, 0, 0, 0.25);
       border-radius: 49rpx;
+      transform: scale(0.8);
     }
   }
 }

@@ -2,11 +2,11 @@
   <div class='custom-tabbar-wrap tb row center-align'>
     <div v-for="item in tabbars"
          :key="item.text"
-         class="column center item">
+         class="column center item"
+         @click="onTabbar(item)">
       <img :src="item.iconPath">
       <div style="font-size: 12px;margin-top:3px"
-           class="color-666"
-           @click="onTabbar(item)">{{item.text}}</div>
+           class="color-666">{{item.text}}</div>
     </div>
   </div>
 </template>

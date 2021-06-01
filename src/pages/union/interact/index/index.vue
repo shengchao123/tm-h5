@@ -149,7 +149,7 @@ page {
     position: absolute;
     z-index: 9;
     right: 14rpx;
-    bottom: 56rpx;
+    bottom: 126rpx;
     width: 98rpx;
     height: 98rpx;
     border-radius: 50%;

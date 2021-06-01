@@ -1,7 +1,8 @@
 <template>
   <view>
     <view :class="['publish white-color bold center tc', isScroll ? 'is-scroll' : '']"
-          @click="onPublish">
+          @click="onPublish"
+          v-if="!show">
       <svg-icon icon="icon_fabu"
                 class="ft32"></svg-icon>
     </view>
@@ -106,8 +107,8 @@ export default {
 }
 .btn-list {
   position: fixed;
-  right: 68rpx;
-  bottom: 57rpx;
+  right: 8rpx;
+  bottom: -16rpx;
 }
 .evaluates {
   position: absolute;
@@ -115,9 +116,9 @@ export default {
   bottom: 137rpx;
 }
 .evaluate-btn {
-  width: 90rpx;
-  height: 90rpx;
-  line-height: 90rpx;
+  width: 105rpx;
+  height: 105rpx;
+  line-height: 105rpx;
   text-align: center;
   color: #ffffff;
   border-radius: 50%;
@@ -132,7 +133,7 @@ export default {
 }
 .evaluate-position {
   position: absolute;
-  right: 135rpx;
+  right: 170rpx;
   bottom: 124rpx;
 }
 .evaluate-style {
