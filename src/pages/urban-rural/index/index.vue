@@ -2,7 +2,6 @@
   <div class='urban-rural-wrap'
        :style="{paddingTop: current === 3 ? '182rpx' : '88rpx'}">
     <div class="tab">
-
       <u-tabs :list="tab.list"
               :is-scroll="false"
               bar-width="32"
@@ -14,7 +13,6 @@
               active-color="#E32417"
               inactive-color="#666666"
               @change="tabChange"></u-tabs>
-
       <div class="c-tabs center-align"
            v-if="current === 3">
         <div class="tab-item center"
@@ -25,7 +23,6 @@
           {{item}}
         </div>
       </div>
-
     </div>
 
     <img :src="cimgs[currentTab]"
@@ -34,7 +31,6 @@
     <img :src="imgs[current]"
          v-else
          @click="onImage">
-
     <custom-tabbar></custom-tabbar>
   </div>
 </template>
