@@ -62,8 +62,7 @@ export default {
       imgs: Object.freeze([
         require('@/static/test/03.png'),
         require('@/static/test/04.png'),
-        require('@/static/test/05.png'),
-        require('@/static/test/07.png'),
+        require('@/static/test/05.png')
       ]),
       tab: {
         list: [{
@@ -107,6 +106,7 @@ page {
     background: #fff;
     .c-tabs {
       height: 105rpx;
+      padding: 0 16rpx;
       justify-content: space-around;
       .tab-item {
         height: 60rpx;
