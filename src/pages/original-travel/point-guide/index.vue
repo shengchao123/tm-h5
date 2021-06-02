@@ -46,7 +46,13 @@ export default {
   methods: {
     // 点击重新定位按钮
     onLocation () {
-      this.resetDrawMarkders(scenicSpot)
+      this.$amap.clearMap()
+      let _pois = JSON.parse(JSON.stringify(this.pois))
+      _pois.forEach(poi => {
+        this.drawMarkder({ ...MWH }, poi, poi.typeName ? "guide_mark_red.png" : this.currentPoi.marker)
+      })
+      this.setMapCenter(scenicSpot)
+      this.drawMarkder({ ...LWH }, scenicSpot, scenicSpot.typeName ? "guide_mark_red.png" : this.currentPoi.marker)
     },
     // 显示导航选择框
     showGuideActionSheet (item) {
