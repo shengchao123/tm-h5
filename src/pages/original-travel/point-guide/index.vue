@@ -28,6 +28,7 @@ import AMap from 'AMap'
 import DragPopover from '@/components/DragPopover'
 import { subStringWithStrlen } from '@/utils/tools.js'
 import Vue from 'vue/dist/vue.esm.js'
+import SvgIcon from '@/components/SvgIcon'
 
 import PointGuideItem from './components/PointGuideItem'
 import { getAMapLngLat, getLngLat, beginGuide } from '@/utils/map.js'
@@ -145,6 +146,7 @@ export default {
           '<SvgIcon icon="icon_daohang" style="color:#518CFC "class="ft20 mr8"></SvgIcon>' +
           '<span>到这里去</span></div>' +
           '</div>',
+        components: { SvgIcon },
         methods: {
           onOpenGuide () {
             _this.showGuideActionSheet(_point)
