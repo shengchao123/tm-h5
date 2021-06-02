@@ -1,6 +1,6 @@
 <template>
   <div class='urban-rural-wrap'
-       :style="{paddingTop: current === 3 ? '176rpx' : '88rpx'}">
+       :style="{paddingTop: current === 3 ? '182rpx' : '88rpx'}">
     <div class="tab">
 
       <u-tabs :list="tab.list"
@@ -28,7 +28,11 @@
 
     </div>
 
+    <img :src="cimgs[currentTab]"
+         v-if="current === 3"
+         @click="onImage">
     <img :src="imgs[current]"
+         v-else
          @click="onImage">
 
     <custom-tabbar></custom-tabbar>
@@ -75,10 +79,10 @@ export default {
       currentTab: 0,
       ctabs: ['房产商铺', '土地林地', '农产品', '其它'],
       cimgs: Object.freeze([
-        require('@/static/test/03.png'),
-        require('@/static/test/04.png'),
-        require('@/static/test/05.png'),
-        require('@/static/test/07.png'),
+        require('@/static/test/21.png'),
+        require('@/static/test/22.png'),
+        require('@/static/test/23.png'),
+        require('@/static/test/24.png'),
       ])
     }
   }
@@ -102,18 +106,19 @@ page {
     padding-top: 16rpx;
     background: #fff;
     .c-tabs {
-      height: 88rpx;
+      height: 105rpx;
       justify-content: space-around;
       .tab-item {
         height: 60rpx;
-        width: 140rpx;
-        border-radius: 30rpx;
-        background: #dedede;
+        width: 160rpx;
+        font-size: 26rpx;
+        border-radius: 28rpx;
+        background: #a6a6a610;
         color: #666666;
       }
       .active {
-        background: red;
-        color: salmon;
+        background: #f5440010;
+        color: #e32417;
       }
     }
   }
