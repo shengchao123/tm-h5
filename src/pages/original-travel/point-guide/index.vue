@@ -227,13 +227,16 @@ export default {
     this.pois = [{ address: scenicSpot.regionsName, ...scenicSpot }]
     this.drawMarkder({ ...LWH }, scenicSpot)
     this.setMapCenter(scenicSpot)
-    this.getJourneyPointList()
+    this.changePois({
+      marker: 'guide_mark_2.png',
+      name: '风景'
+    })
   },
   components: { PoiKeywords, DragPopover, PointGuideItem },
   data () {
     this.currentPoi = {}
     return {
-      currentIndex: 0,
+      currentIndex: 1,
       showGuide: false,
       guidePoint: {},
       actions: Object.freeze([{ text: '高德地图' }, { text: '腾讯地图' }]),

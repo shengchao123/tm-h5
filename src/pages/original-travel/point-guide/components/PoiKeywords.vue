@@ -26,7 +26,7 @@ export default {
   },
   data () {
     return {
-      selectedIndex: 0,
+      selectedIndex: 1,
       keywords: Object.freeze([
         {
           icon: 'icon_dibiao',
