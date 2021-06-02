@@ -4,7 +4,7 @@
       <div :key="item.name"
            @click="onSelectKeyword(item, index)"
            class="item column center-align"
-           :style="{color: selectedIndex === index ? '#F13042' : '#666666'}"
+           :style="{color: selectedIndex === index ? '#F13042' : '#9D767A'}"
            :class="index !== 0 && 'tb'">
         <SvgIcon :icon="item.icon"
                  class="ft32"></SvgIcon>
@@ -35,7 +35,7 @@ export default {
           name: '红色地标'
         },
         {
-          icon: 'icon_dangjianlianmeng_mian',
+          icon: 'icon_jingdian',
           marker: 'guide_mark_2.png',
           name: '风景'
         },

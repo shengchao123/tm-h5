@@ -1,5 +1,6 @@
 <template>
-  <div class='urban-rural-wrap'>
+  <div class='urban-rural-wrap'
+       :style="{paddingTop: current === 3 ? '176rpx' : '88rpx'}">
     <div class="tab">
 
       <u-tabs :list="tab.list"
@@ -13,6 +14,18 @@
               active-color="#E32417"
               inactive-color="#666666"
               @change="tabChange"></u-tabs>
+
+      <div class="c-tabs center-align"
+           v-if="current === 3">
+        <div class="tab-item center"
+             @click="changeCTab(index)"
+             :class="index === currentTab && 'active'"
+             v-for="(item, index) in ctabs"
+             :key="index">
+          {{item}}
+        </div>
+      </div>
+
     </div>
 
     <img :src="imgs[current]"
@@ -33,6 +46,10 @@ export default {
     },
     tabChange (index) {
       this.current = index
+    },
+    changeCTab (index) {
+      this.currentTab = index
+
     },
   },
   data () {
@@ -55,6 +72,14 @@ export default {
           name: '资源共享'
         }]
       },
+      currentTab: 0,
+      ctabs: ['房产商铺', '土地林地', '农产品', '其它'],
+      cimgs: Object.freeze([
+        require('@/static/test/03.png'),
+        require('@/static/test/04.png'),
+        require('@/static/test/05.png'),
+        require('@/static/test/07.png'),
+      ])
     }
   }
 }
@@ -68,15 +93,29 @@ page {
 <style lang='scss' scoped>
 .urban-rural-wrap {
   padding-bottom: 50px;
-  padding-top: 88rpx;
   .tab {
     position: fixed;
     top: 0;
     width: 100%;
-    height: 88rpx;
+    min-height: 88rpx;
     box-sizing: border-box;
     padding-top: 16rpx;
     background: #fff;
+    .c-tabs {
+      height: 88rpx;
+      justify-content: space-around;
+      .tab-item {
+        height: 60rpx;
+        width: 140rpx;
+        border-radius: 30rpx;
+        background: #dedede;
+        color: #666666;
+      }
+      .active {
+        background: red;
+        color: salmon;
+      }
+    }
   }
   img {
     width: 100vw;

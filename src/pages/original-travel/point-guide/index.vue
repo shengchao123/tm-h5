@@ -45,7 +45,7 @@ export default {
   methods: {
     // 点击重新定位按钮
     onLocation () {
-      this.resetDrawMarkders(this.scenicSpot)
+      this.resetDrawMarkders(scenicSpot)
     },
     // 显示导航选择框
     showGuideActionSheet (item) {
@@ -153,7 +153,6 @@ export default {
       })
       // 将新创建的子组件进行挂载
       var component = new MyComponent().$mount()
-      console.log(component)
       // 将窗体内容添加到infoWindow中
       var infoWindow = new AMap.InfoWindow({
         isCustom: true, // 使用自定义窗体
