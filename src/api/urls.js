@@ -12,6 +12,7 @@ export const urls = {
 
   // 初心之旅
   getRecommendJourneyLineList: '/linanJourney/journeyLine/getRecommendJourneyLineList', // 推荐路线
+  getJourneyPointList: '/linanJourney/journeyPointManagement/getJourneyPointList', // 获取点位列表
   getJourneyPointListByJourneyId: '/linanJourney/journeyLine/getJourneyPointListByJourneyId', // 路线点位信息
   getJourneyPointListByOrgId: '/linanJourney/journeyPoint/getJourneyPointListByOrgId', // 获取点位列表
   getJourneyPointInfoById: '/linanJourney/journeyPoint/getJourneyPointInfoById', // 根据点位id获取点位信息

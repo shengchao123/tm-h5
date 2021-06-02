@@ -1,6 +1,16 @@
 import request from '../request'
 import { urls } from '../urls'
 
+export function getJourneyPointList (params) { // 获取点位列表 '/linanJourney/journeyLine/getJourneyPointList'
+  return request({
+    url: urls.getJourneyPointList,
+    needlessToken: true,
+    data: {
+      ...params
+    }
+  })
+}
+
 export function getJourneyRegionsList () { // 获取行政区域列表 '/linanJourney/journeyLine/getJourneyRegionsList'
   return request({
     url: urls.getJourneyRegionsList,

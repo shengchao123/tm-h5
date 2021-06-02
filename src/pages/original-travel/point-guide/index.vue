@@ -79,13 +79,15 @@ export default {
       this.setMapCenter(scenicSpot)
       this.drawMarkder({ ...LWH }, scenicSpot)
 
-      if (poi.type) return this.getJourneyPointListByOrgId(poi.type)
+      if (poi.type) return this.getJourneyPointList()
 
       this.getPoisWithLngLat(poi.name)
     },
-    getJourneyPointListByOrgId (type) {
-      const params = { type }
-      this.$api.getJourneyPointListByOrgId(params).then(res => {
+    getJourneyPointList () {
+      const params = {
+        type: '01'
+      }
+      this.$api.getJourneyPointList(params).then(res => {
         if (res.isError) return
         const _pois = res.content.map(item => {
           item.address = item.regionsName
@@ -225,6 +227,7 @@ export default {
     this.pois = [{ address: scenicSpot.regionsName, ...scenicSpot }]
     this.drawMarkder({ ...LWH }, scenicSpot)
     this.setMapCenter(scenicSpot)
+    this.getJourneyPointList()
   },
   components: { PoiKeywords, DragPopover, PointGuideItem },
   data () {
