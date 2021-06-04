@@ -89,6 +89,14 @@ export default {
         {
           name: '活动报名',
           point: 5
+        },
+        {
+          name: '申请商家展位成功',
+          point: 20
+        },
+        {
+          name: '留言回复成功（仅限专家）',
+          point: 10
         }
       ])
     }
