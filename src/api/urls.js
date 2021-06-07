@@ -4,6 +4,13 @@ export const imgHost = 'https://hzslzx.oss-cn-hangzhou.aliyuncs.com/system/h5-ma
 
 
 export const urls = {
+
+
+
+  // 城乡融合
+  getJourneyProductInfoPage: '/linanJourney/journeyProduct/getJourneyProductInfoPage', // 城乡产品列表
+
+
   redirectToOAuth: '/third/authorization/redirectToOAuth', // 获取授权 url
   getUserInfoAndToken: '/third/authorization/getUserInfoAndToken', // 接受微信公众号授权后的code获取thirdUserId及登陆
   getMemberLoginInfo: '/crm/member/getMemberLoginInfo', // 获取三方用户信息

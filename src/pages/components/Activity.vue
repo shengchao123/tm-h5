@@ -18,7 +18,7 @@
             top: (top + height) + 'rpx'
           }"
           class="bg-white relative">
-      <page-empty :imgUrl="require('@/static/empty/no-activity.png')"
+      <page-empty :imgUrl="require('@/static/empty/no_data.png')"
                   message="暂无内容"></page-empty>
     </view>
     <mescroll-uni v-else
