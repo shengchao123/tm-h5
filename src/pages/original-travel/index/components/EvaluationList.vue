@@ -37,7 +37,7 @@
       </div>
     </div>
     <page-empty v-else
-                :imgUrl="require('@/static/empty/no-activity.png')"
+                :imgUrl="require('@/static/empty/no_data.png')"
                 message="暂无评价"></page-empty>
   </div>
 </template>
