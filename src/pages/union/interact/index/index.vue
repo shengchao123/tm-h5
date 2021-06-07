@@ -20,6 +20,7 @@
                 :current.sync="current"
                 :height="100"
                 :top="82"
+                bottom="102"
                 :delHeight="140"
                 @getListData="getListData"></activity>
     </view>

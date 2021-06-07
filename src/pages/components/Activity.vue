@@ -24,6 +24,7 @@
     <mescroll-uni v-else
                   ref="mescrollRef"
                   :top="top + height"
+                  :bottom="bottom || 0"
                   @init="mescrollInit"
                   @down="downCallback"
                   :up="upOption"
@@ -32,7 +33,7 @@
         <view v-for="(item,index) in dataList"
               :key="index"
               @click="onToDetail(item)">
-          <item :item="item"></item>
+          <activity-item :item="item"></activity-item>
         </view>
       </view>
     </mescroll-uni>
@@ -42,7 +43,7 @@
 import MescrollMixin from "@/components/mescroll-uni/mescroll-mixins.js";
 import MescrollUni from "@/components/mescroll-uni/mescroll-uni.vue";
 import pageEmpty from 'pages/components/PageEmpty'
-import Item from './Item.vue'
+import ActivityItem from './ActivityItem.vue'
 export default {
   name: 'Activity',
   methods: {
@@ -80,6 +81,7 @@ export default {
         return 0
       })
     },
+    bottom: [String, Number],
     delHeight: {
       type: Number,
       default: (() => {
@@ -110,7 +112,7 @@ export default {
     }
   },
   components: {
-    Item,
+    ActivityItem,
     pageEmpty,
     MescrollUni,
   },
