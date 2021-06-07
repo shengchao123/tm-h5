@@ -72,7 +72,7 @@
       <span class="ft24">联盟</span>
       <span class="ft24">互动</span>
     </div>
-    <div style="width: 100%; height: 150rpx;"></div>
+    <div style="width: 100%; height: 250rpx;"></div>
     <custom-tabbar></custom-tabbar>
   </div>
 </template>
