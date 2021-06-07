@@ -1,7 +1,7 @@
 <template>
   <div class="wrap">
 
-    <div class="search-wrap  mt16"
+    <div class="search-wrap"
          style="padding:20rpx;30rpx">
       <u-search placeholder="输入产品名称搜索"
                 :show-action="false"
@@ -67,13 +67,10 @@ export default {
 
 <style lang='scss' scoped>
 .wrap {
+  background: #ffffff;
   height: 100%;
-  .search-wrap {
-    background: #ffffff;
-  }
   .scroll {
-    background: #ffffff;
-    height: calc(100% - 120rpx);
+    height: calc(100% - 104rpx);
     padding: 0 30rpx;
     .content {
       justify-content: space-between;

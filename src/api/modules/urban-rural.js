@@ -8,3 +8,10 @@ export function getJourneyProductInfoPage (params) { // '/linanJourney/journeyPr
     data: { ...params }
   })
 }
+export function getJourneyProductInfoById (params) { // '/linanJourney/journeyProduct/getJourneyProductInfoById', // 城乡产品详情
+  return request({
+    url: urls.getJourneyProductInfoById,
+    needlessToken: true,
+    data: { ...params }
+  })
+}

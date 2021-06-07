@@ -18,7 +18,7 @@ export default {
   name: 'ProductItem',
   methods: {
     onGoDetail () {
-      uni.navigateTo({ url: '/pages/urban-rural/optimization/Detail' })
+      uni.navigateTo({ url: '/pages/urban-rural/optimization/Detail?id=' + this.item.journeyProductId })
     }
   },
   props: {

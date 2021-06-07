@@ -17,8 +17,11 @@
             class="swiper"
             @transition="transition"
             @animationfinish="animationfinish">
-      <swiper-item class="swiper-item">
+      <swiper-item>
         <List1></List1>
+      </swiper-item>
+      <swiper-item>
+        <List2></List2>
       </swiper-item>
     </swiper>
 
@@ -38,7 +41,8 @@
 </template>
 
 <script>
-import List1 from '../optimization/List'
+import List1 from '../optimization/List.vue'
+import List2 from '../activity/List.vue'
 export default {
   name: 'index',
   methods: {
@@ -62,7 +66,7 @@ export default {
       this.current = index
     },
   },
-  components: { List1 },
+  components: { List1, List2 },
   data () {
     return {
       current: 0,
