@@ -15,7 +15,7 @@
 
       <div class="reset-btn center"
            @click="resetMap">
-        <svg-icon class="ft40"
+        <svg-icon class="ft40 color-666"
                   icon="icon_suoding"></svg-icon>
       </div>
 
