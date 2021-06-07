@@ -11,10 +11,11 @@
              class="main-card">
 
         <template v-for="(item, index) in cardList">
-          <HomeItem :item="item"
-                    :style="item.style"
-                    @click="onItem(item)"
-                    :key="index"></HomeItem>
+          <div @click="onItem(item)"
+               :key="index">
+            <HomeItem :item="item"
+                      :style="item.style"></HomeItem>
+          </div>
         </template>
       </div>
     </div>

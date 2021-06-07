@@ -10,11 +10,6 @@
 <script>
 export default {
   name: 'HomeItem',
-  data () {
-    return {
-
-    }
-  },
   props: {
     item: Object
   }
