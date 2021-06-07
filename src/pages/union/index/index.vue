@@ -1,5 +1,6 @@
 <template>
-  <div class='party-wrap'>
+  <div class='party-wrap'
+       @scroll="scroll">
     <div class="map">
       <Map :points="partyList"
            :currentIndex="selectPoint"
@@ -65,14 +66,13 @@
       </div>
     </div>
     <contact-person :list="baseInfo.addressBookList"></contact-person>
-    <div class="btn-box center"
+    <div class="link-btn center white-color column"
+         :class="isScroll && 'is-scroll'"
          @click="onInteract">
-      <div class="link-btn center white-color">
-        <svg-icon icon="icon_lianmenghudong"
-                  class="ft32 mr20"></svg-icon>
-        <span class="ft30">联盟互动</span>
-      </div>
+      <span class="ft24">联盟</span>
+      <span class="ft24">互动</span>
     </div>
+    <div style="width: 100%; height: 150rpx;"></div>
     <custom-tabbar></custom-tabbar>
   </div>
 </template>
@@ -81,6 +81,7 @@
 import ContactPerson from '../components/ContactPerson.vue'
 import OrgTree from './components/OrgTree.vue'
 import Map from './components/Map'
+let timer = null
 export default {
   methods: {
     onInteract () {
@@ -101,6 +102,13 @@ export default {
     },
     changeIndex (index) {
       this.selectPoint = index
+    },
+    scroll (e) {
+      timer && clearTimeout(timer) // 每次滚动前 清除一次
+      this.isScroll = true
+      timer = setTimeout(() => {
+        this.isScroll = false
+      }, 500)
     },
     findOrgTreeByOrgId () {
       const params = {
@@ -123,6 +131,7 @@ export default {
       selectPoint: 0,
       partyList: [],
       orgTree: [],
+      isScroll: false,
     }
   },
   computed: {
@@ -170,12 +179,14 @@ export default {
 page {
   height: 100%;
   background: #f7f7f7;
+  overflow: hidden;
 }
 </style>
 <style lang='scss' scoped>
 .party-wrap {
+  height: 100%;
+  overflow: scroll;
   color: #333;
-  padding-bottom: 280rpx;
   .map {
     width: 100%;
     height: 560rpx;
@@ -230,21 +241,21 @@ page {
       }
     }
   }
-  .btn-box {
+  .link-btn {
     position: fixed;
     bottom: 130rpx;
-    left: 0;
-    right: 0;
-    width: 100%;
+    right: 14rpx;
+    width: 98rpx;
     height: 98rpx;
-    .link-btn {
-      width: 270rpx;
-      height: 98rpx;
-      background: #e32417;
-      box-shadow: 4rpx 6rpx 8rpx 0 rgba(0, 0, 0, 0.25);
-      border-radius: 49rpx;
-      transform: scale(0.8);
-    }
+    background: #e32417;
+    box-shadow: 4rpx 6rpx 8rpx 0 rgba(0, 0, 0, 0.25);
+    border-radius: 50%;
+    transition: all 0.4s;
+  }
+  .is-scroll {
+    transition: all 0.5s ease-in-out;
+    right: -80rpx !important;
+    opacity: 0.4 !important;
   }
 }
 </style>
