@@ -12,7 +12,7 @@
     </div>
 
     <scroll-view scroll-y
-                 class="scroll"
+                 class="scroll relative"
                  @scrolltolower="onreachBottom">
       <div class="content row">
         <div v-for="item in dataList"
@@ -20,6 +20,8 @@
           <ProductItem :item="item"></ProductItem>
         </div>
       </div>
+
+      <!-- <empty></empty> -->
     </scroll-view>
   </div>
 </template>
