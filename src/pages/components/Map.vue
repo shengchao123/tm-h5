@@ -12,7 +12,7 @@ let overlays = null
 export default {
   name: 'index',
   methods: {
-    // 重置缩放级别
+    // 重置缩放及定位
     resetMap () {
       if (!this.$amap) return
       const { zoom, center } = this.mapInitObj
