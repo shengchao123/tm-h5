@@ -1,15 +1,22 @@
 <template>
   <div class="tabbar-home-wrap ">
     <!-- 所有内容的容器 -->
-    <Map needClick
+    <Map ref="map"
+         needClick
          :mapInitObj="mapInitObj"
          mapClass="mapVH60"
-         :points="points"></Map>
+         :points="points" />
 
     <DragPopover style="margin-bottom: 50px;">
       <div class="path-name center-align">
         <SvgIcon icon="icon_luxian"></SvgIcon>
         <div class="ml16">{{currentPath.name}}</div>
+      </div>
+
+      <div class="reset-btn center"
+           @click="resetMap">
+        <svg-icon class="ft40"
+                  icon="icon_suoding"></svg-icon>
       </div>
 
       <mescroll-uni ref="mescrollRef"
@@ -72,6 +79,10 @@ export default {
       console.log('加载更多')
       const evaluationList = this.$refs.evaluationList
       evaluationList && evaluationList.getItineraryEvaluationPage(page);
+    },
+    resetMap () {
+      const mapEl = this.$refs.map
+      mapEl && mapEl.resetMap()
     },
     resetGetList () {
       this.listData = [];
@@ -189,6 +200,16 @@ export default {
     background: #ffffff;
     color: #e32417;
     box-shadow: 6rpx 4rpx 12rpx 3rpx rgba(17, 17, 17, 0.1);
+  }
+  .reset-btn {
+    position: absolute;
+    top: -105rpx;
+    left: 15rpx;
+    width: 88rpx;
+    height: 88rpx;
+    background: #ffffff;
+    box-shadow: 0 -6rpx 17rpx 0 rgba(0, 0, 0, 0.1);
+    border-radius: 20rpx;
   }
   .box {
     height: 100%;

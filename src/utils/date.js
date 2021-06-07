@@ -6,7 +6,7 @@ import moment from "moment"
  * 示例[1,2,3,5,6]=>["周一 至 周三","周五","周六"]
  * 示例['2-4','2-5','2-6','2-8','3-1']=>["2-4 至 2-6","2-8","3-1"] (暂时不需要)
  */
-export function filterContinuousDate (arr, type = '02') {
+export function filterContinuousDate (arr, type = '01') {
   // 数组从小到大排序
   arr.sort(function (a, b) { return a > b ? 1 : -1 })
   // if (type === '04') return monthRender(arr) // 自定义日期 (暂时不需要)

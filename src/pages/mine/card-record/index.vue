@@ -114,6 +114,7 @@ export default {
       const pointSignInList = this.pointSignInList.map(el => {
         const { lng, lat } = el
         const lnglat = new AMap.LngLat(lng, lat, true)
+        // AMap.GeometryUtil.distance(p1, p2);
         const distance = Math.round(lnglat.distance(this.myPoint)) + ''
         return {
           ...el,
