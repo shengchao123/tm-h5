@@ -26,7 +26,7 @@
           <span class="ft24 ml8">导航</span>
         </div>
       </div>
-      <div v-if="baseInfo.type === '03'"
+      <div v-if="openDayText"
            class="mt24 ft28 color-666">{{openDayText}}</div>
       <div class="mt24 center-align">
         <span class="ft28 color-666">{{baseInfo.phone}}</span>
@@ -64,13 +64,16 @@
          class="pl30">
       <p class="medium ft32 mb24">优质产品</p>
       <div class="flex goods-list">
-        <image v-for="(item, index) in goodsList"
-               :key="index"
-               mode="aspectFill"
-               class="goods mr24 mb24"
-               :src="$fileHost + item.journeyProductImages[0]"
-               @click="onGoodsDetail(item)">
-        </image>
+        <div v-for="(item, index) in goodsList"
+             :key="index"
+             class="goods mr24 mb24">
+          <image mode="aspectFill"
+                 class="img"
+                 :src="$fileHost + item.journeyProductImages[0].url"
+                 @click="onGoodsDetail(item)">
+          </image>
+          <div class="name ellipsis ft28">{{item.journeyProductName}}</div>
+        </div>
       </div>
     </div>
     <div class="color-333 pr30 pl30">
@@ -161,8 +164,8 @@ export default {
   },
   computed: {
     openDayText () {
-      const { openDay, startTime, endTime, type } = this.baseInfo
-      if (type !== '03') return ''
+      const { openDay, startTime, endTime } = this.baseInfo
+      if (this.$isEmpty(openDay)) return ''
       const week = filterContinuousDate(openDay)
       const start = this.$moment(startTime).format('H:mm')
       const end = this.$moment(endTime).format('H:mm')
@@ -198,8 +201,20 @@ export default {
     flex-wrap: wrap;
     .goods {
       width: 214rpx;
-      height: 214rpx;
-      border-radius: 4rpx;
+      border-radius: 6rpx;
+      background: #ffffff;
+      box-shadow: 3px 2px 12px 8px rgba(17, 17, 17, 0.03);
+      .name {
+        width: 100%;
+        padding: 0 5rpx 0 12rpx;
+        height: 52rpx;
+        line-height: 52rpx;
+      }
+      .img {
+        width: 214rpx;
+        height: 214rpx;
+        border-radius: 6rpx;
+      }
     }
   }
   .title {
@@ -207,6 +222,12 @@ export default {
   }
   .content {
     line-height: 42rpx;
+  }
+  .ellipsis {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 }
 </style>
