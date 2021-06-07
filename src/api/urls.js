@@ -10,6 +10,7 @@ export const urls = {
   // 城乡融合
   getJourneyProductInfoPage: '/linanJourney/journeyProduct/getJourneyProductInfoPage', // 城乡产品列表
   getJourneyProductInfoById: '/linanJourney/journeyProduct/getJourneyProductInfoById', // 城乡产品详情
+  getJourneyActivityPage: '/linanJourney/journeyActivity/getJourneyActivityPage', // 特色活动分页
 
 
   redirectToOAuth: '/third/authorization/redirectToOAuth', // 获取授权 url

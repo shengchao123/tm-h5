@@ -1,14 +1,14 @@
 <template>
   <div class="wrap">
 
-    <div class="search-wrap  mt16"
+    <div class="search-wrap mt16"
          style="padding:20rpx;30rpx">
       <u-search placeholder="输入产品名称搜索"
                 :show-action="false"
                 @change="changeSearchKeyword"
                 search-icon-color="#999999"
                 placeholder-color="#999999"
-                v-model="keyword"></u-search>
+                v-model="search.keyword"></u-search>
     </div>
 
     <scroll-view scroll-y
@@ -35,16 +35,16 @@ export default {
   name: 'List',
   methods: {
     changeSearchKeyword () {
+      this.search.pageNumber = 1
       this.getJourneyProductInfoPage()
     },
-    // scroll-view到底部加载更多
     onreachBottom () {
-      console.log(1)
+      this.search.pageNumber++
     },
     // 获取商品列表
     getJourneyProductInfoPage () {
       const params = {
-        keyword: this.keyword
+        ...this.search
       }
       this.$api.getJourneyProductInfoPage(params).then(res => {
         if (res.isError) return
@@ -58,7 +58,10 @@ export default {
   components: { ProductItem },
   data () {
     return {
-      keyword: '',
+      search: {
+        keyword: '',
+        pageNumber: 1,
+      },
       dataList: []
     }
   }

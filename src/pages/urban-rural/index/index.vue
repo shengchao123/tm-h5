@@ -25,17 +25,6 @@
       </swiper-item>
     </swiper>
 
-    <!-- <div class="c-tabs center-align"
-         v-if="current === 3">
-      <div class="tab-item center"
-           @click="changeCTab(index)"
-           :class="index === currentTab && 'active'"
-           v-for="(item, index) in ctabs"
-           :key="index">
-        {{item}}
-      </div>
-    </div> -->
-
     <custom-tabbar></custom-tabbar>
   </div>
 </template>
@@ -81,14 +70,7 @@ export default {
         }, {
           name: '资源共享'
         }
-      ],
-      ctabs: ['房产商铺', '土地林地', '农产品', '其它'],
-      cimgs: Object.freeze([
-        require('@/static/test/21.png'),
-        require('@/static/test/22.png'),
-        require('@/static/test/23.png'),
-        require('@/static/test/24.png'),
-      ])
+      ]
     }
   }
 }
@@ -105,35 +87,6 @@ page {
   height: calc(100vh - 50px);
   .swiper {
     height: calc(100vh - 88rpx - 50px);
-  }
-  .tab {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    min-height: 88rpx;
-    box-sizing: border-box;
-    padding-top: 16rpx;
-    background: #fff;
-    .c-tabs {
-      height: 105rpx;
-      padding: 0 16rpx;
-      justify-content: space-around;
-      .tab-item {
-        height: 60rpx;
-        width: 160rpx;
-        font-size: 26rpx;
-        border-radius: 28rpx;
-        background: #a6a6a610;
-        color: #666666;
-      }
-      .active {
-        background: #f5440010;
-        color: #e32417;
-      }
-    }
-  }
-  img {
-    width: 100vw;
   }
 }
 </style>
