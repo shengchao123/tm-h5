@@ -1,6 +1,6 @@
 <template>
   <div class="c-tabs center-align">
-    <div class="tab-item center"
+    <div class="tab-item center mr24"
          :class="index === current && 'active'"
          v-for="(item, index) in tabs"
          @click="onTab(index, item)"
@@ -35,7 +35,6 @@ export default {
   height: 105rpx;
   padding: 0 16rpx;
   background: #ffffff;
-  justify-content: space-around;
   .tab-item {
     height: 60rpx;
     width: 160rpx;

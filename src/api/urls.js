@@ -10,6 +10,9 @@ export const urls = {
   // 城乡融合
   getJourneyProductInfoPage: '/linanJourney/journeyProduct/getJourneyProductInfoPage', // 城乡产品列表
   getJourneyProductInfoById: '/linanJourney/journeyProduct/getJourneyProductInfoById', // 城乡产品详情
+  getJourneyMerchantBoothInfoPage: '/linanJourney/journeyMerchantBooth/getJourneyMerchantBoothInfoPage', // 分页获取商家展位
+  getJourneyMerchantBoothInfoById: '/linanJourney/journeyMerchantBooth/getJourneyMerchantBoothInfoById', // 商家展位详情
+  createJourneyMerchantBooth: '/linanJourney/journeyMerchantBooth/createJourneyMerchantBooth', // 创建商家展位
 
 
   redirectToOAuth: '/third/authorization/redirectToOAuth', // 获取授权 url

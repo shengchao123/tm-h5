@@ -28,3 +28,24 @@ export function getJourneyActivityPage (params) { // '/linanJourney/journeyActiv
     data: { ...params, type: '02' }
   })
 }
+export function getJourneyMerchantBoothInfoPage (params) { // '/linanJourney/journeyMerchantBooth/getJourneyMerchantBoothInfoPage', // 分页获取商家展位
+  return request({
+    url: urls.getJourneyMerchantBoothInfoPage,
+    needlessToken: true,
+    data: { ...params }
+  })
+}
+export function getJourneyMerchantBoothInfoById (params) { // '/linanJourney/journeyMerchantBooth/getJourneyMerchantBoothInfoById', // 商家展位详情
+  return request({
+    url: urls.getJourneyMerchantBoothInfoById,
+    needlessToken: true,
+    data: { ...params }
+  })
+}
+export function createJourneyMerchantBooth (params) { // '/linanJourney/journeyMerchantBooth/createJourneyMerchantBooth', // 创建商家展位
+  return request({
+    url: urls.createJourneyMerchantBooth,
+    needlessToken: true,
+    data: { ...params }
+  })
+}

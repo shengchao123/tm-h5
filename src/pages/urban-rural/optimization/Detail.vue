@@ -59,7 +59,7 @@ export default {
   },
   data () {
     return {
-      infoItems: [
+      infoItems: Object.freeze([
         {
           icon: 'icon_rongyu',
           title: '荣誉：',
@@ -81,7 +81,7 @@ export default {
           key: 'storeName',
           url: 'storeUrl'
         },
-      ],
+      ]),
       detailInfo: {},
       images: [],
     }
