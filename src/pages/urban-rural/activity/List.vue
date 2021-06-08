@@ -73,7 +73,31 @@ export default {
           text: '已结束'
         }
       ],
-      dataList: []
+      dataList: [
+        {
+          "address": "",
+          "code": "",
+          "endTime": "",
+          "id": 0,
+          "introduction": "",
+          "isBelong": false,
+          "isSignUp": false,
+          "lat": 0,
+          "lng": 0,
+          "masterOrgId": 0,
+          "name": "",
+          "numberLimit": 0,
+          "orgId": 0,
+          "orgName": "",
+          "phone": "",
+          "signUpQuantity": 0,
+          "startTime": "",
+          "status": "",
+          "statusName": "",
+          "styleDescription": "",
+          "type": ""
+        }
+      ]
     }
   }
 }

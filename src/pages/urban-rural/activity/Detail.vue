@@ -1,7 +1,6 @@
 <template>
   <div class='detail-wrap'>
-    <u-swiper :list="images"
-              height="562"></u-swiper>
+    <img src="">
     <div class="info">
       <div class="name ft40 bold">{{detailInfo.name}}</div>
       <div v-for="item in infoItems"
@@ -20,20 +19,6 @@
                   :showUnderLine="false"
                   :text="detailInfo[item.key]"></uni-link>
       </div>
-
-      <div class="contact b mt16">
-        <div class="color-999 ft26"> 联系人</div>
-        <div class="ft28 mt28">{{detailInfo.contactPerson}}：{{detailInfo.contactPhone}}</div>
-      </div>
-
-      <div class="mt16 mb16">
-        <u-divider color="#999999"
-                   half-width="280"
-                   border-color="#eaeaea">商品详情</u-divider>
-      </div>
-
-      <u-parse :html="detailInfo.content"></u-parse>
-
     </div>
   </div>
 </template>
@@ -42,37 +27,21 @@
 export default {
   name: 'Detail',
   methods: {
-    onItemStore (item) {
-      if (!item.url) return
-    },
-    // 获取详情
-    getJourneyProductInfoById (id) {
-      const params = {
-        journeyProductId: id
-      }
-      this.$api.getJourneyProductInfoById(params).then(res => {
-        if (res.isError) return
-        this.detailInfo = res.content
-        this.images = res.content.images.map(item => {
-          return {
-            image: item.url
-          }
-        })
-      })
-    }
+
   },
   data () {
     return {
       infoItems: [
         {
           icon: 'icon_rongyu',
-          title: '荣誉：',
-          key: 'honor'
+          title: '时间：',
+          key1: 'startTime',
+          key2: 'endTime'
         },
         {
           icon: 'icon_pinpai',
           title: '品牌：',
-          key: 'brand'
+          key: 'address'
         },
         {
           icon: 'icon_chandi',
