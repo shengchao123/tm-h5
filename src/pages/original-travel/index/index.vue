@@ -38,6 +38,7 @@
                      @click="onCreateTravel">创建我的行程</div>
               </div>
             </div>
+            <agricultural-product :journeyLineId="selectJourneyLineId"></agricultural-product>
             <activity-swiper></activity-swiper>
             <evaluation-list ref="evaluationList"
                              @endBySize="endBySize"
@@ -66,6 +67,7 @@ import MescrollMixin from "@/components/mescroll-uni/mescroll-mixins.js";
 import MescrollUni from "@/components/mescroll-uni/mescroll-uni.vue";
 import EvaluationList from './components/EvaluationList.vue';
 import { beginGuide } from '@/utils/map.js'
+import AgriculturalProduct from './components/AgriculturalProduct.vue';
 export default {
   name: "index",
   methods: {
@@ -169,6 +171,7 @@ export default {
     ActivitySwiper,
     MescrollUni,
     EvaluationList,
+    AgriculturalProduct,
   },
   onLoad (option) {
     if (option.masterOrgId) {

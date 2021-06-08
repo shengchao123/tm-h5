@@ -72,6 +72,16 @@ export function getJourneyPointInfoById (params) { // 根据点位id获取点位
   })
 }
 
+export function getJourneyProductListByJourneyLineId (params) { // 根据线路id获取产品信息
+  return request({
+    url: urls.getJourneyProductListByJourneyLineId,
+    needlessToken: true,
+    data: {
+      ...params
+    }
+  })
+}
+
 export function createJourneyItinerary (params) { // 创建行程单
   return request({
     url: urls.createJourneyItinerary,
