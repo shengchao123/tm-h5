@@ -34,6 +34,7 @@ export default {
 .c-tabs {
   height: 105rpx;
   padding: 0 16rpx;
+  background: #ffffff;
   justify-content: space-around;
   .tab-item {
     height: 60rpx;

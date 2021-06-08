@@ -1,5 +1,23 @@
 import moment from "moment"
 
+
+export function dateCount (end) {
+  const start = new Date().getTime()
+  // 计算时会发生隐式转换，调用valueOf()方法，转化成时间戳的形式
+  var days = (end - start) / 1000 / 3600 / 24;
+  // 下面都是简单的数学计算
+  var day = Math.floor(days);
+  var hours = (days - day) * 24;
+  var hour = Math.floor(hours);
+  var minutes = (hours - hour) * 60;
+  var minute = Math.floor(minutes);
+  var seconds = (minutes - minute) * 60;
+  var second = Math.floor(seconds);
+  var back = day + '天' + hour + '小时' + minute + '分钟' + second + '秒';
+  return back;
+}
+
+
 /**
  * 连续日期的过滤
  * 示例[1,2,3,4,5,19,20,30]=>["1日 至 5日","19日","20日","30日"]

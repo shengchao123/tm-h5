@@ -4,13 +4,13 @@
     <SubTabs @change="changeSubTab"
              :tabs="subTabs"></SubTabs>
     <scroll-view scroll-y
-                 class="scroll relative"
+                 class="scroll relative mt30"
                  @scrolltolower="onreachBottom">
       <div class="content row"
            v-if="!$isEmpty(dataList)">
         <div v-for="item in dataList"
              :key="item.id">
-          <ProductItem :item="item"></ProductItem>
+          <ActiveItem :item="item"></ActiveItem>
         </div>
       </div>
 
@@ -21,13 +21,14 @@
 </template>
 
 <script>
-import ProductItem from '@/pages/urban-rural/components/ProductItem'
 import SubTabs from '@/pages/urban-rural/components/SubTabs'
+import ActiveItem from '@/pages/urban-rural/components/ActiveItem'
 
 export default {
   name: 'List',
   methods: {
     changeSubTab (item) {
+      if (this.search.status === item.status) return
       this.search.status = item.status
       this.search.pageNumber = 1
       this.getJourneyActivityPage()
@@ -49,7 +50,7 @@ export default {
   created () {
     this.getJourneyActivityPage()
   },
-  components: { ProductItem, SubTabs },
+  components: { SubTabs, ActiveItem },
   data () {
     return {
       search: {
@@ -105,7 +106,6 @@ export default {
 
 <style lang='scss' scoped>
 .wrap {
-  background: #ffffff;
   height: 100%;
   .scroll {
     height: calc(100% - 104rpx);

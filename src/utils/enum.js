@@ -51,7 +51,7 @@ export const transportationNameMap = new Map([
 
 // 状态 (01:报名中; 02:进行中; 03:已结束)
 export const statusMap = Object.freeze(new Map([
-  ['01', { iconClass: 'icon_baomingzhong', color: '#F54000' }],
-  ['02', { iconClass: 'icon_jinhangzhong1', color: '#FFB319' }],
-  ['03', { iconClass: 'icon_yijieshu', color: '#999999' }],
+  ['01', { text: '报名中', color: '#F54000' }],
+  ['02', { text: '进行中', color: '#FFB319' }],
+  ['03', { text: '已结束', color: '#999999' }],
 ]))
