@@ -143,6 +143,12 @@
 			}
 		},
 		{
+			"path": "pages/urban-rural/activity/Detail",
+			"style": {
+				"navigationBarTitleText": "特色活动详情"
+			}
+		},
+		{
 			"path": "pages/union/graphic/index",
 			"style": {
 				"navigationBarTitleText": "联盟风采"

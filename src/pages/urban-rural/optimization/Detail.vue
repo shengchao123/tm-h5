@@ -51,7 +51,7 @@ export default {
         this.detailInfo = res.content
         this.images = res.content.images.map(item => {
           return {
-            image: item.url
+            image: this.$fileHost + item.url
           }
         })
       })

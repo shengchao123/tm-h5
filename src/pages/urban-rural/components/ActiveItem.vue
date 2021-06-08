@@ -1,5 +1,6 @@
 <template>
-  <div class='active-item-wrap mb20 relative'>
+  <div class='active-item-wrap mb20 relative'
+       @click="onGoDetail">
     <img :src="fileHost + item.picUrl"
          :style="{width: '100%', height: '388rpx'}" />
 
@@ -57,6 +58,9 @@ let TIMER = null
 export default {
   name: 'ActiveItem',
   methods: {
+    onGoDetail () {
+      uni.navigateTo({ url: '/pages/urban-rural/activity/Detail?id=' + this.item.id })
+    },
     onToRoute (item) {
       const url = item.status === '01' ? `/pages/original-travel/stroke-order/signUp?id=${item.id}&type=activity` : ''
       uni.navigateTo({
