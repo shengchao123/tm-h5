@@ -370,7 +370,7 @@ export default {
           src: 'https://hzslzx.oss-cn-hangzhou.aliyuncs.com/material/image/2021033019234538395733786962944.png',
           safearea: true,
           right: 2,
-          bottom: 228,
+          bottom: 252,
           width: 116,
         },
         // 派发上拉加载的回调
