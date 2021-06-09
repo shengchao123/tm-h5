@@ -7,7 +7,7 @@
         <div class="line"></div>
       </div>
 
-      <div class="ft32 ml16 name"
+      <div class="ft30 ml16 name medium"
            @click="onIntroduction">{{pointData.item.name}}</div>
     </div>
 

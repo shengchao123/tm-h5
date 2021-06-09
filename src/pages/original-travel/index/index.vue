@@ -1,15 +1,22 @@
 <template>
   <div class="tabbar-home-wrap ">
     <!-- 所有内容的容器 -->
-    <Map needClick
+    <Map ref="map"
+         needClick
          :mapInitObj="mapInitObj"
          mapClass="mapVH60"
-         :points="points"></Map>
+         :points="points" />
 
     <DragPopover style="margin-bottom: 50px;">
       <div class="path-name center-align">
         <SvgIcon icon="icon_luxian"></SvgIcon>
         <div class="ml16">{{currentPath.name}}</div>
+      </div>
+
+      <div class="reset-btn center"
+           @click="resetMap">
+        <svg-icon class="ft40 color-666"
+                  icon="icon_suoding"></svg-icon>
       </div>
 
       <mescroll-uni ref="mescrollRef"
@@ -31,6 +38,7 @@
                      @click="onCreateTravel">创建我的行程</div>
               </div>
             </div>
+            <agricultural-product :journeyLineId="selectJourneyLineId"></agricultural-product>
             <activity-swiper></activity-swiper>
             <evaluation-list ref="evaluationList"
                              @endBySize="endBySize"
@@ -59,19 +67,24 @@ import MescrollMixin from "@/components/mescroll-uni/mescroll-mixins.js";
 import MescrollUni from "@/components/mescroll-uni/mescroll-uni.vue";
 import EvaluationList from './components/EvaluationList.vue';
 import { beginGuide } from '@/utils/map.js'
+import AgriculturalProduct from './components/AgriculturalProduct.vue';
 export default {
   name: "index",
   methods: {
     // 下拉刷新
     downCallback () {
-      console.log('下拉刷新')
+      // console.log('下拉刷新')
       this.mescroll.resetUpScroll(); // 重置列表为第一页
     },
     // 加载更多
     upCallback (page) {
-      console.log('加载更多')
+      // console.log('加载更多')
       const evaluationList = this.$refs.evaluationList
       evaluationList && evaluationList.getItineraryEvaluationPage(page);
+    },
+    resetMap () {
+      const mapEl = this.$refs.map
+      mapEl && mapEl.resetMap()
     },
     resetGetList () {
       this.listData = [];
@@ -158,6 +171,7 @@ export default {
     ActivitySwiper,
     MescrollUni,
     EvaluationList,
+    AgriculturalProduct,
   },
   onLoad (option) {
     if (option.masterOrgId) {
@@ -189,6 +203,16 @@ export default {
     background: #ffffff;
     color: #e32417;
     box-shadow: 6rpx 4rpx 12rpx 3rpx rgba(17, 17, 17, 0.1);
+  }
+  .reset-btn {
+    position: absolute;
+    top: -105rpx;
+    left: 15rpx;
+    width: 88rpx;
+    height: 88rpx;
+    background: #ffffff;
+    box-shadow: 0 -6rpx 17rpx 0 rgba(0, 0, 0, 0.1);
+    border-radius: 20rpx;
   }
   .box {
     height: 100%;

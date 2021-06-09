@@ -18,10 +18,16 @@
       </div>
       <div class="flex1 ft30 ellipsis-text name">{{selectRouteItem.name || journeyLineName}}</div>
       <div class="pt14 pb20 ft26 color-666 bb">{{pointsName}}</div>
-      <div class="map">
-        <Map :mapInitObj="mapInitObj"
+      <div class="map relative">
+        <Map ref="map"
+             :mapInitObj="mapInitObj"
              mapClass="mapH400"
              :points="usePoints"></Map>
+        <div class="reset-btn center"
+             @click="resetMap">
+          <svg-icon class="ft32 color-666"
+                    icon="icon_suoding"></svg-icon>
+        </div>
       </div>
     </div>
     <select-route-pop ref="selectRoutePop"
@@ -37,6 +43,10 @@ import SelectRoutePop from './SelectRoutePop.vue'
 
 export default {
   methods: {
+    resetMap () {
+      const mapEl = this.$refs.map
+      mapEl && mapEl.resetMap()
+    },
     onShowRouteSelect () {
       if (this.isDetail) return
       this.$refs.selectRoutePop.show()
@@ -106,6 +116,18 @@ export default {
   }
   .name {
     width: 480rpx;
+  }
+  .map {
+    .reset-btn {
+      position: absolute;
+      bottom: 15rpx;
+      left: 15rpx;
+      width: 64rpx;
+      height: 64rpx;
+      background: #ffffff;
+      box-shadow: 0 -6rpx 17rpx 0 rgba(0, 0, 0, 0.1);
+      border-radius: 12rpx;
+    }
   }
 }
 </style>
