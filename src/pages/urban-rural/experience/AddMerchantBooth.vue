@@ -48,18 +48,13 @@
                  placeholder="输入地址"
                  class="tr" />
       </u-form-item>
-      <u-form-item label="经度">
-        <u-input v-model="form.lng"
+      <u-form-item label="经纬度">
+        <u-input v-model="form.lngLat"
                  placeholder-style="color: #999999"
-                 placeholder="请输入经度"
+                 placeholder="输入经纬度，如：192.743，32.123"
                  class="tr" />
       </u-form-item>
-      <u-form-item label="纬度">
-        <u-input v-model="form.lat"
-                 placeholder-style="color: #999999"
-                 placeholder="请输入维度"
-                 class="tr" />
-      </u-form-item>
+
       <u-form-item label="联系电话"
                    prop="contactPhone">
         <u-input v-model="form.contactPhone"
@@ -135,6 +130,8 @@
 import UploadImages from "@/components/upload-images";
 import { appropriateCrowdOptions, serviceContentOptions } from '@/utils/enum.js'
 import { subStringWithStrlen } from '@/utils/tools'
+import { checkInput } from '@u/validate.js'
+
 
 let appropriateCrowdList = []
 let serviceContentList = []
@@ -200,6 +197,8 @@ export default {
       }
       params.appropriateCrowd = appropriateCrowdList.map(item => item.id)
       params.serviceContent = serviceContentList.map(item => item.id)
+      params.lng = params.lngLat.split('，')[0]
+      params.lat = params.lngLat.split('，')[1]
       params.images = params.images.map(item => {
         const temItem = {
           url: item.url,
@@ -215,9 +214,17 @@ export default {
     validateForm () {
 
       for (const [key, val] of formValidateMap) {
-        if (this.$isEmpty(this.form[key])) {
+        const _val = this.form[key]
+
+        if (this.$isEmpty(_val)) {
           this.$msg(val)
           return
+        }
+        if (_val && key === 'lngLat' && !_val.includes('，')) {
+          return this.$msg('经纬度格式不正确')
+        }
+        if (_val && key === 'contactPhone' && !checkInput(_val, 'phone')) {
+          return this.$msg('手机号格式不正确')
         }
       }
       return true
@@ -259,8 +266,7 @@ const formValidateMap = new Map([
   ['appropriateCrowd', '请选择适宜人群'],
   ['serviceContent', '请选择服务内容'],
   ['address', '请输入地址'],
-  ['lng', '请输入经度'],
-  ['lat', '请输入纬度'],
+  ['lngLat', '请输入经纬度'],
   ['contactPhone', '请输入联系电话'],
 ])
 </script>
