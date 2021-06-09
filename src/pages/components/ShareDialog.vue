@@ -305,6 +305,8 @@ export default {
     },
     // 生成海报
     createPoster () {
+      this.$emit('posterDrawStart')
+      this.$emit('scrollToTop')
       this.showPoster = true
       this.savePoster = true
       this.posterCreateEnd = false

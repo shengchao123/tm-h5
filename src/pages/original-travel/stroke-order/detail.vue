@@ -2,7 +2,7 @@
   <div v-if="baseInfo.id"
        class='detail-wrap'
        @click="onPage">
-    <view id="posterView">
+    <div id="posterView">
       <head-map :journeyLineName="baseInfo.journeyLineName"
                 :journeyPointList="journeyPointList"
                 :isDetail="true"></head-map>
@@ -38,7 +38,7 @@
         <!-- <div v-else
            class="ft26 color-999 pl30">暂时还没有人报名参加该行程～</div> -->
       </div>
-    </view>
+    </div>
     <div class="footer pl30 pr30 between-row center-align">
       <div class="center-align left-btns between-row flex1">
         <div v-if="baseInfo.isOrganizer"
@@ -93,7 +93,8 @@
     <share-dialog ref="shareDialog"
                   shareBtns="wx moments copyLink poster"
                   :shareData="shareData"
-                  :showHomeBtn="showHomeBtn"></share-dialog>
+                  :showHomeBtn="showHomeBtn"
+                  @scrollToTop="scrollToTop"></share-dialog>
   </div>
 </template>
 <script>

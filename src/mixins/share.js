@@ -9,7 +9,11 @@ const share = {
     onPage () {
       if (!this.isShareIn) return
       this.showHomeBtn = !this.showHomeBtn
-    }
+    },
+    scrollToTop () {
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    },
   },
   onLoad (option) {
     if (option.masterOrgId) {

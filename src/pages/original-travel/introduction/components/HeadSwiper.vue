@@ -54,7 +54,8 @@ export default {
   methods: {
     swiperChange (e) {
       this.activeIndex = e.detail.current
-      this.$refs.videoModule[0].pause()
+      const videoModule = this.$refs.videoModule
+      videoModule && videoModule[0].pause()
     },
     // 切换模块
     onModuleSwitch (id) {
