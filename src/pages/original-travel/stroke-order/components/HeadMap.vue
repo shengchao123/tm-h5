@@ -25,8 +25,7 @@
              :points="usePoints"></Map>
         <div class="reset-btn center"
              @click="resetMap">
-          <svg-icon class="ft32 color-666"
-                    icon="icon_suoding"></svg-icon>
+          <span class="iconfont icon_suoding ft32 color-666"></span>
         </div>
       </div>
     </div>
