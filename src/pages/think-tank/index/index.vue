@@ -13,13 +13,18 @@
               inactive-color="#666666"
               @change="tabChange"></u-tabs>
     </div>
-    <!-- <img :src="imgs[current]"
-         @click="onImage"> -->
+    <policy-info v-if="current === 0"></policy-info>
+    <expert-services v-if="current===1"></expert-services>
+    <img v-if="current===2"
+         :src="imgs[current]"
+         @click="onImage">
     <custom-tabbar></custom-tabbar>
   </div>
 </template>
 
 <script>
+import PolicyInfo from './components/policy-info';
+import ExpertServices from './components/expert-services';
 export default {
   name: 'index',
   methods: {
@@ -35,7 +40,6 @@ export default {
       this.current = index
     },
   },
-
   data () {
     return {
       current: 0,
@@ -58,6 +62,10 @@ export default {
         ]
       }
     }
+  },
+  components: {
+    PolicyInfo,
+    ExpertServices
   }
 }
 </script>

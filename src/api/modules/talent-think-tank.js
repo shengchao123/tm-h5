@@ -18,3 +18,22 @@ export function getShowJourneyPolicyDetail (params) { // 政策详情
     }
   })
 }
+
+export function getShowJourneyTalentsPage (params) { // 人才分页
+  return request({
+    url: urls.getShowJourneyTalentsPage,
+    needlessToken: true,
+    data: {
+      ...params
+    }
+  })
+}
+export function getShowJourneyTalentsDetail (params) { // 人才详情
+  return request({
+    url: urls.getShowJourneyTalentsDetail,
+    needlessToken: true,
+    data: {
+      ...params
+    }
+  })
+}

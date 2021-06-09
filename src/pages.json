@@ -112,6 +112,12 @@
 			}
 		},
 		{
+			"path": "pages/think-tank/message/index",
+			"style": {
+				"navigationBarTitleText": "留言"
+			}
+		},
+		{
 			"path": "pages/think-tank/policy/Detail",
 			"style": {
 				"navigationBarTitleText": "政策详情"
