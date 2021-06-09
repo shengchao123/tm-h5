@@ -1,16 +1,8 @@
 <template>
   <div class="wrap">
 
-    <div class="search-wrap"
-         style="padding:20rpx;30rpx">
-      <u-search placeholder="输入产品名称搜索"
-                :show-action="false"
-                @change="changeSearchKeyword"
-                search-icon-color="#999999"
-                placeholder-color="#999999"
-                v-model="keyword"></u-search>
-    </div>
-
+    <SubTabs @change="changeSubTab"
+             :tabs="subTabs"></SubTabs>
     <scroll-view scroll-y
                  class="scroll relative"
                  @scrolltolower="onreachBottom">
@@ -30,36 +22,82 @@
 
 <script>
 import ProductItem from '@/pages/urban-rural/components/ProductItem'
+import SubTabs from '@/pages/urban-rural/components/SubTabs'
 
 export default {
   name: 'List',
   methods: {
-    changeSearchKeyword () {
-      this.getJourneyProductInfoPage()
+    changeSubTab (item) {
+      this.search.status = item.status
+      this.search.pageNumber = 1
+      this.getJourneyActivityPage()
     },
-    // scroll-view到底部加载更多
     onreachBottom () {
-      console.log(1)
+      this.search.pageNumber++
     },
     // 获取商品列表
-    getJourneyProductInfoPage () {
+    getJourneyActivityPage () {
       const params = {
-        keyword: this.keyword
+        ...this.search
       }
-      this.$api.getJourneyProductInfoPage(params).then(res => {
+      this.$api.getJourneyActivityPage(params).then(res => {
         if (res.isError) return
         this.dataList = res?.content?.items ?? []
       })
     }
   },
   created () {
-    this.getJourneyProductInfoPage()
+    this.getJourneyActivityPage()
   },
-  components: { ProductItem },
+  components: { ProductItem, SubTabs },
   data () {
     return {
-      keyword: '',
-      dataList: []
+      search: {
+        pageNumber: 1,
+      },
+      subTabs: [
+        {
+          status: '',
+          text: '全部'
+        },
+        {
+          status: '01',
+          text: '报名中'
+        },
+        {
+          status: '02',
+          text: '进行中'
+        },
+        {
+          status: '03',
+          text: '已结束'
+        }
+      ],
+      dataList: [
+        {
+          "address": "",
+          "code": "",
+          "endTime": "",
+          "id": 0,
+          "introduction": "",
+          "isBelong": false,
+          "isSignUp": false,
+          "lat": 0,
+          "lng": 0,
+          "masterOrgId": 0,
+          "name": "",
+          "numberLimit": 0,
+          "orgId": 0,
+          "orgName": "",
+          "phone": "",
+          "signUpQuantity": 0,
+          "startTime": "",
+          "status": "",
+          "statusName": "",
+          "styleDescription": "",
+          "type": ""
+        }
+      ]
     }
   }
 }

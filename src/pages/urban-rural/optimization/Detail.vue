@@ -42,9 +42,6 @@
 export default {
   name: 'Detail',
   methods: {
-    onItemStore (item) {
-      if (!item.url) return
-    },
     // 获取详情
     getJourneyProductInfoById (id) {
       const params = {
