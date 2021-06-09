@@ -20,9 +20,10 @@
                  @click="onActivityDetail(item)">
               <div class="ft28 color-333 center-align">
                 <div class="name ellipsis">{{ item.name }}</div>
-                <svg-icon :icon="activityStatus(item.status)"
-                          :class="activityClass(item.status)"
-                          class="ml8 activity-status"></svg-icon>
+                <div class="status-info ft20 ml8"
+                     :style="{color: getStatusInfo(item).color, borderColor: getStatusInfo(item).color}">
+                  {{getStatusInfo(item).text}}
+                </div>
               </div>
               <div class="flex mt18">
                 <image v-if="item.type === '02'"
@@ -66,21 +67,14 @@
   </div>
 </template>
 <script>
-const activityStatus = new Map([
-  ['01', 'icon_baomingzhong'],
-  ['02', 'icon_jinhangzhong1'],
-  ['03', 'icon_yijieshu']
-])
-const activityClass = new Map([
-  ['01', 'activity-ing'],
-  ['02', 'activity-in'],
-  ['03', 'activity-over']
-])
+import { statusMap } from '@/utils/enum.js'
+
 export default {
   data () {
     return {
       activityList: [],
-      current: 1
+      current: 1,
+      statusMap,
     };
   },
   methods: {
@@ -101,16 +95,9 @@ export default {
     }
   },
   computed: {
-    // 活动状态
-    activityStatus () {
-      return (status) => {
-        return activityStatus.get(status)
-      }
-    },
-    // 活动样式
-    activityClass () {
-      return (status) => {
-        return activityClass.get(status)
+    getStatusInfo () {
+      return (item) => {
+        return this.statusMap.get(item.status)
       }
     },
     // 轮播样式
@@ -161,9 +148,13 @@ export default {
       background: #ffffff;
       box-shadow: 3rpx 2rpx 12rpx 8rpx rgba(17, 17, 17, 0.03);
       border-radius: 6rpx;
-      .activity-status {
-        width: 88rpx;
+      .status-info {
+        border: 1px solid transparent;
+        border-radius: 0 16rpx 0 16rpx;
         height: 32rpx;
+        line-height: 32rpx;
+        text-align: center;
+        width: 88rpx;
       }
       .name {
         max-width: 532rpx;
