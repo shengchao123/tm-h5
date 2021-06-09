@@ -1,6 +1,21 @@
 <template>
   <div class='announcement-detail-wrap'
        v-if="baseInfo">
+    <div v-if="!$isEmpty(baseInfo.attachmentList)"
+         class="swiper"
+         :style="{height: swiperHeight + 'px'}">
+      <swiper :style="{height: swiperHeight + 'px'}"
+              @change="swiperChange">
+        <swiper-item v-for="(item, index) in baseInfo.attachmentList"
+                     :key="index">
+          <div class="swiper-item"
+               @click.stop="onShowBigImgView(index)">
+            <img :src="$fileHost + item.url" />
+          </div>
+        </swiper-item>
+      </swiper>
+      <div class="pagination ft24">{{activeIndex + 1}}/{{baseInfo.attachmentList.length}}</div>
+    </div>
     <div class="pt28 pl30 pr30">
       <div class="ft36 mb20 bold">{{baseInfo.title}}</div>
       <div class="ft26 color-666">
@@ -14,6 +29,16 @@
 <script>
 export default {
   methods: {
+    swiperChange (e) {
+      this.activeIndex = e.detail.current
+    },
+    onShowBigImgView (index) {
+      const urls = this.baseInfo.attachmentList.map(({ url }) => this.$fileHost + url)
+      uni.previewImage({
+        urls: urls,
+        current: index,
+      })
+    },
     getJourneyAnnouncementDetail (id) {
       const params = {
         id
@@ -26,7 +51,14 @@ export default {
   },
   data () {
     return {
-      baseInfo: null
+      baseInfo: null,
+      activeIndex: 0
+    }
+  },
+  computed: {
+    swiperHeight () {
+      const winWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth
+      return winWidth * 3 / 4
     }
   },
   onLoad (option) {
@@ -37,6 +69,30 @@ export default {
 <style lang='scss' scoped>
 .announcement-detail-wrap {
   color: #333;
+  .swiper {
+    position: relative;
+    width: 100%;
+    .swiper-item {
+      width: 100%;
+      height: 100%;
+      background: #000;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .pagination {
+      position: absolute;
+      right: 24rpx;
+      bottom: 20rpx;
+      height: 36rpx;
+      line-height: 36rpx;
+      border-radius: 18rpx;
+      padding: 0 18rpx;
+      background: rgba(0, 0, 0, 0.8);
+      color: #fff;
+    }
+  }
   .content {
     line-height: 48rpx;
   }

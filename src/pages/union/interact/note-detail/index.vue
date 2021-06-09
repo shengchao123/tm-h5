@@ -1,5 +1,6 @@
 <template>
-  <view class="note-detail-wrap bg-white">
+  <view class="note-detail-wrap bg-white"
+        @click="onPage">
     <!-- 轮播图 -->
     <carousel :imgList="detailInfo.attachments"
               :indicatorDots="true">
@@ -64,6 +65,7 @@
     </view>
     <!-- 分享弹窗 -->
     <share-dialog ref="shareDialog"
+                  :showHomeBtn="showHomeBtn"
                   :shareData="shareData">
     </share-dialog>
   </view>
@@ -74,6 +76,7 @@ import Comments from '@/pages/components/Comments.vue'
 import ShareDialog from '@/pages/components/ShareDialog.vue';
 import commentMixins from '@/mixins/comment.js'
 import { avatarUrl } from '@/utils/tools'
+import shareMixin from '@/mixins/share.js'
 export default {
   methods: {
     avatarUrl,
@@ -237,7 +240,7 @@ export default {
       return !isAttention ? '关注' : isFans ? '互相关注' : '已关注'
     }
   },
-  mixins: [commentMixins],
+  mixins: [commentMixins, shareMixin],
   components: {
     Carousel,
     Comments,

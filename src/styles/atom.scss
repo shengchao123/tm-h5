@@ -8,6 +8,13 @@
   flex: 1;
 }
 
+.ellipsis {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 .b {
   border: 1rpx solid $borderColor;
 }

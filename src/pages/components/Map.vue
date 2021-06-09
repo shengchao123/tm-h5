@@ -12,6 +12,13 @@ let overlays = null
 export default {
   name: 'index',
   methods: {
+    // 重置缩放及定位
+    resetMap () {
+      if (!this.$amap) return
+      const { zoom, center } = this.mapInitObj
+      this.$amap.setZoom(zoom)
+      this.$amap.setCenter(center)
+    },
     // 绘制图中标记点
     drawMarker () {
       // 绘制图标

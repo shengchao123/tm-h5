@@ -9,6 +9,7 @@ import * as evaluateDetail from './modules/evaluate-detail'
 import * as activity from './modules/activity'
 import * as party from './modules/party'
 import * as note from './modules/note'
+import * as urbanRural from './modules/urban-rural'
 
 export const api = {
   ...originalTravel,
@@ -18,6 +19,7 @@ export const api = {
   ...evaluateDetail,
   ...activity,
   ...party,
+  ...urbanRural,
   ...note
 }
 

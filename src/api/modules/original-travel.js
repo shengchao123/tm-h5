@@ -66,7 +66,16 @@ export function getJourneyPointInfoById (params) { // 根据点位id获取点位
     url: urls.getJourneyPointInfoById,
     needlessToken: true,
     data: {
-      orgId: localStorage.getItem('orgId'),
+      ...params
+    }
+  })
+}
+
+export function getJourneyProductListByJourneyLineId (params) { // 根据线路id获取产品信息
+  return request({
+    url: urls.getJourneyProductListByJourneyLineId,
+    needlessToken: true,
+    data: {
       ...params
     }
   })
@@ -76,7 +85,6 @@ export function createJourneyItinerary (params) { // 创建行程单
   return request({
     url: urls.createJourneyItinerary,
     data: {
-      orgId: localStorage.getItem('orgId'),
       ...params
     }
   })
@@ -86,7 +94,6 @@ export function modifyJourneyItinerary (params) { // 修改行程单
   return request({
     url: urls.modifyJourneyItinerary,
     data: {
-      orgId: localStorage.getItem('orgId'),
       ...params
     }
   })
@@ -97,7 +104,6 @@ export function getJourneyItineraryById (params) { // 根据id获取行程单
     url: urls.getJourneyItineraryById,
     needlessToken: true,
     data: {
-      orgId: localStorage.getItem('orgId'),
       ...params
     }
   })
@@ -107,7 +113,6 @@ export function removeJourneyItinerary (params) { // 删除行程单
   return request({
     url: urls.removeJourneyItinerary,
     data: {
-      orgId: localStorage.getItem('orgId'),
       ...params
     }
   })
@@ -117,7 +122,6 @@ export function signUpJourneyItinerary (params) { // 报名行程单
   return request({
     url: urls.signUpJourneyItinerary,
     data: {
-      orgId: localStorage.getItem('orgId'),
       ...params
     }
   })
@@ -127,7 +131,6 @@ export function cancelSignUpJourneyItinerary (params) { // 取消报名行程单
   return request({
     url: urls.cancelSignUpJourneyItinerary,
     data: {
-      orgId: localStorage.getItem('orgId'),
       ...params
     }
   })

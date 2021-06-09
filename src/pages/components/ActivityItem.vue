@@ -3,9 +3,8 @@
     <view class="top center-align between-row">
       <view class="center-align">
         <span class="title ft32 color-333 medium pr16">{{item.name}}</span>
-        <svg-icon :icon="getStatusInfo.iconClass"
-                  :style="{color:getStatusInfo.color}"
-                  class="status-icon"></svg-icon>
+        <div class="status-info ft20"
+             :style="{color: getStatusInfo.color, borderColor: getStatusInfo.color}">{{getStatusInfo.text}}</div>
       </view>
       <view>
         <svg-icon class="ft20 color-999"
@@ -26,16 +25,24 @@
               class="color-333">{{item[formItem.keyName]}}{{formItem.keyName === 'signUpQuantity' ? '人' : ''}}</text>
       </view>
     </view>
-    <view v-if="item.status === '01'">
-      <view class="btn center cancel-btn ft24"
-            v-if="item.isSignUp ">
-        已报名
-      </view>
-      <view v-else
-            class="btn center"
-            @click.stop="onToRoute(item)">
-        我要报名
-      </view>
+    <view v-if="item.status === '01'"
+          class="btn-box">
+      <view v-if="item.isSignUp"
+            class="btn center cancel-btn ft24">已报名</view>
+      <div v-else>
+        <view class="btn center"
+              @click.stop="onToRoute(item)">我要报名</view>
+        <div class="ft20 color-999 mt4">
+          <u-count-down separator='zh'
+                        font-size="20"
+                        separator-size="20"
+                        separator-color="#999"
+                        color="#999"
+                        :show-seconds="false"
+                        :timestamp="timestamp"></u-count-down>
+          <span>后截止</span>
+        </div>
+      </div>
     </view>
   </view>
 </template>
@@ -94,6 +101,9 @@ export default {
     },
     getStatusInfo () {
       return this.statusMap.get(this.item.status)
+    },
+    timestamp () {
+      return Math.floor((this.item.endTime - new Date().getTime()) / 1000)
     }
   },
 }
@@ -115,8 +125,13 @@ export default {
       overflow: hidden;
       text-overflow: ellipsis;
     }
-    .status-icon {
-      font-size: 88rpx;
+    .status-info {
+      border: 1px solid transparent;
+      border-radius: 0 16rpx 0 16rpx;
+      height: 32rpx;
+      line-height: 32rpx;
+      text-align: center;
+      width: 88rpx;
     }
   }
   .form-list {
@@ -125,16 +140,21 @@ export default {
       margin-top: 24rpx;
     }
   }
-  .btn {
+  .btn-box {
     position: absolute;
     right: 30rpx;
     bottom: 20rpx;
-    padding: 0 24rpx;
+    text-align: right;
+  }
+  .btn {
+    display: inline-block;
+    width: 144rpx;
     height: 56rpx;
     border: 1rpx solid #e32417;
-    border-radius: 44rpx;
+    border-radius: 28rpx;
     color: #e32417;
-    line-height: 56rpx;
+    text-align: center;
+    line-height: 55rpx;
   }
   .cancel-btn {
     border: none;

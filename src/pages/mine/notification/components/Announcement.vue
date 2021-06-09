@@ -19,7 +19,7 @@
               <span class="tip mr8 bg-color-518CFC ft22 mt4"
                     style="vertical-align: middle;">公告</span>
               <span class="ft32 medium"
-                    style="vertical-align: middle;">{{item.title}}发生放假啊是发就啊是免费噶收发数据发送啊</span>
+                    style="vertical-align: middle;">{{item.title}}</span>
             </div>
             <svg-icon icon="icon_xiangyoujiantou"
                       class="ft20 color-999 ml16"></svg-icon>
@@ -32,7 +32,7 @@
                class="ellipsis-clamp-2 ft26 mt20">{{item.content}}</div>
           <div class="ft24 color-999 mt20">
             <span style="margin-right: 60rpx">{{$moment(item.createTime).format('YYYY-MM-DD HH:mm:ss')}}</span>
-            <span>{{item.orgName}}</span>
+            <span v-if="item.orgName">{{item.orgName}}</span>
           </div>
         </view>
       </template>

@@ -4,6 +4,26 @@
 .tr {
   text-align: right;
 }
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+
+.clearfix:after,
+.clearfix:before {
+   content: '';
+   display: table;
+  clear: both;
+}
+.full {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
 
 .width100 {
   width: 100%;
