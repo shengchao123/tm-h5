@@ -7,21 +7,13 @@
       <p class="color-999 ft26 mt20">可通过分享同步给活动参与人员</p>
     </div>
     <div class="btns center-align column">
-      <!-- <div class="share-btn btn tc mb32"
-           @click="onShare">立即分享</div> -->
       <div class="detail-btn btn tc color-666"
            @click="onDetail">查看行程单</div>
     </div>
-    <share-dialog ref="shareDialog"
-                  :shareData="shareData"></share-dialog>
   </div>
 </template>
 <script>
-import ShareDialog from '../../components/ShareDialog.vue'
 export default {
-  components: {
-    ShareDialog
-  },
   methods: {
     onShare () {
       this.$refs.shareDialog.show()

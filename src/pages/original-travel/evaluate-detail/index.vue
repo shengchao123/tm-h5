@@ -1,6 +1,7 @@
 <template>
   <view v-if="detailInfo"
-        class="evaluate-detail-wrap">
+        class="evaluate-detail-wrap"
+        @click="onPage">
     <!-- 轮播图 -->
     <carousel :imgList="detailInfo.attachments"
               :indicatorDots="true">
@@ -22,7 +23,8 @@
     <view class="pt8 ml30 mr30 note-content">
       <view class="pb32 column">
         <text class="ft36 bold pb16">{{detailInfo.title}}</text>
-        <text class="content ft30">{{detailInfo.content}}</text>
+        <text class="content ft30">{{detailInfo.content}}
+        </text>
       </view>
     </view>
     <view class="footer center-align ft30 color-999 between-row bg-white">
@@ -40,13 +42,15 @@
     </view>
     <!-- 分享弹窗 -->
     <share-dialog ref="shareDialog"
-                  :shareData="shareData">
+                  :shareData="shareData"
+                  :showHomeBtn="showHomeBtn">
     </share-dialog>
   </view>
 </template>
 <script>
 import ShareDialog from '@/pages/components/ShareDialog.vue';
 import Carousel from '@/pages/components/Carousel.vue'
+import shareMixin from '@/mixins/share.js'
 export default {
   name: 'index',
   methods: {
@@ -128,6 +132,7 @@ export default {
   onLoad ({ communityNoteId }) {
     this.communityNoteId = communityNoteId
   },
+  mixins: [shareMixin],
   components: {
     Carousel,
     ShareDialog

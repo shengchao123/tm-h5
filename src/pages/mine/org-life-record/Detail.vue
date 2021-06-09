@@ -1,5 +1,6 @@
 <template>
-  <view class="life-wrap">
+  <view class="life-wrap"
+        @click="onPage">
     <view class="tb pl30 pr30 bg-white">
       <view class="center-align h88 bb ft28 color-333"
             v-for="(item,index) in lifeInfoProp"
@@ -64,6 +65,7 @@
              :confirm-style="maskConfirmStyle"
              @confirm="onDelete"></u-modal>
     <share-dialog ref="shareDialog"
+                  :showHomeBtn="showHomeBtn"
                   :shareData="shareData"></share-dialog>
   </view>
 </template>
@@ -71,6 +73,7 @@
 <script>
 import ShareDialog from '../../components/ShareDialog.vue'
 import LineClock from './LineClock.vue'
+import shareMixin from '@/mixins/share.js'
 export default {
   name: 'Detail',
   methods: {
@@ -213,6 +216,7 @@ export default {
       return temStyle
     }
   },
+  mixins: [shareMixin],
   components: { LineClock, ShareDialog },
 }
 </script>
