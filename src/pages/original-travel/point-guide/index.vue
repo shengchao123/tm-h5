@@ -79,13 +79,13 @@ export default {
       this.setMapCenter(scenicSpot)
       this.drawMarkder({ ...LWH }, scenicSpot)
 
-      if (poi.type) return this.getJourneyPointList()
+      if (poi.type) return this.getJourneyPointList(poi.type)
 
       this.getPoisWithLngLat(poi.name)
     },
-    getJourneyPointList () {
+    getJourneyPointList (type) {
       const params = {
-        type: '01'
+        type,
       }
       this.$api.getJourneyPointList(params).then(res => {
         if (res.isError) return

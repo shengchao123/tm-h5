@@ -1,25 +1,28 @@
 <template>
-  <div class='detail-wrap'
-       v-if="baseInfo.id">
-    <head-map :journeyLineName="baseInfo.journeyLineName"
-              :journeyPointList="journeyPointList"
-              :isDetail="true"></head-map>
-    <div class="mb20">
+  <div v-if="baseInfo.id"
+       class='detail-wrap'
+       @click="onPage">
+    <div id="posterView">
+      <head-map :journeyLineName="baseInfo.journeyLineName"
+                :journeyPointList="journeyPointList"
+                :isDetail="true"></head-map>
       <detail-info :list="topList"></detail-info>
-    </div>
-    <detail-info :list="bottomList"></detail-info>
-    <div class="pb24 bg-white"
-         @click="onSignUpList">
-      <div class="between-row cenetr-align pt24 pl30 pr30">
-        <div class="ft30 bold">参与人员</div>
-        <div class="center-align">
-          <div class="ft22 color-666">{{signUpList.length}}人</div>
-          <svg-icon v-if="signUpList.length > 0"
-                    icon="icon_xiangyoujiantou"
-                    class="ft20 color-999 ml8"></svg-icon>
+      <div class="line"></div>
+      <detail-info :list="bottomList"></detail-info>
+      <div class="pb24 bg-white"
+           @click="onSignUpList">
+        <div class="cenetr-align flex pt24 pl30 pr30"
+             style="border-top: solid 1rpx #eaeaea;">
+          <div class="ft30 bold"
+               style="width: 220rpx;">参与人员</div>
+          <div class="between-row center-align flex1">
+            <div class="ft30 color-666">{{signUpList.length}}人</div>
+            <svg-icon v-if="signUpList.length > 0"
+                      icon="icon_xiangyoujiantou"
+                      class="ft20 color-999 ml8"></svg-icon>
+          </div>
         </div>
-      </div>
-      <!-- <div v-if="signUpList.length > 0"
+        <!-- <div v-if="signUpList.length > 0"
            class="center-align pr30">
         <div class="sign-up-list">
           <div v-for="(item, index) in signUpList"
@@ -32,8 +35,9 @@
         <div v-if="signUpList.length > 6"
              class="mb12 ft26 color-666">···</div>
       </div> -->
-      <!-- <div v-else
+        <!-- <div v-else
            class="ft26 color-999 pl30">暂时还没有人报名参加该行程～</div> -->
+      </div>
     </div>
     <div class="footer pl30 pr30 between-row center-align">
       <div class="center-align left-btns between-row flex1">
@@ -87,7 +91,10 @@
              cancel-color="#333333"
              @confirm="onDelete(true)"></u-modal>
     <share-dialog ref="shareDialog"
-                  :shareData="shareData"></share-dialog>
+                  shareBtns="wx moments copyLink poster"
+                  :shareData="shareData"
+                  :showHomeBtn="showHomeBtn"
+                  @scrollToTop="scrollToTop"></share-dialog>
   </div>
 </template>
 <script>
@@ -95,7 +102,8 @@ import HeadMap from './components/HeadMap.vue'
 import { playTimeNameMap, activityNameMap, transportationNameMap } from '@/utils/enum'
 import moment from "moment"
 import DetailInfo from './components/DetailInfo.vue'
-import ShareDialog from '../../components/ShareDialog.vue'
+import ShareDialog from '@/pages/components/ShareDialog.vue'
+import shareMixin from '@/mixins/share.js'
 export default {
   methods: {
     onSignUpList () {
@@ -240,6 +248,7 @@ export default {
   onLoad (option) {
     this.id = option.id
   },
+  mixins: [shareMixin],
   components: { HeadMap, DetailInfo, ShareDialog }
 }
 </script>
@@ -298,6 +307,11 @@ export default {
   }
   .w272 {
     width: 272rpx !important;
+  }
+  .line {
+    width: 100%;
+    height: 20rpx;
+    background: #f7f7f7;
   }
 }
 </style>

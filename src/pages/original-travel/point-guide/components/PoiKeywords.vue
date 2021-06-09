@@ -26,13 +26,19 @@ export default {
   },
   data () {
     return {
-      selectedIndex: 1,
+      selectedIndex: 2,
       keywords: Object.freeze([
         {
           icon: 'icon_dibiao',
           marker: 'guide_mark_1.png',
           type: '01',
           name: '红色地标'
+        },
+        {
+          icon: 'icon_nongchanpin',
+          marker: 'guide_mark_6.png',
+          type: '03',
+          name: '农产品'
         },
         {
           icon: 'icon_jingdian',

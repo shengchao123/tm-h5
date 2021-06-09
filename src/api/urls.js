@@ -30,6 +30,7 @@ export const urls = {
   getJourneyPointListByJourneyId: '/linanJourney/journeyLine/getJourneyPointListByJourneyId', // 路线点位信息
   getJourneyPointListByOrgId: '/linanJourney/journeyPoint/getJourneyPointListByOrgId', // 获取点位列表
   getJourneyPointInfoById: '/linanJourney/journeyPoint/getJourneyPointInfoById', // 根据点位id获取点位信息
+  getJourneyProductListByJourneyLineId: '/linanJourney/journeyLine/getJourneyProductListByJourneyLineId', //  根据线路id获取产品信息
 
   sendVerificationCode: '/crm/member/sendVerificationCode', // 发送验证码
   getJourneyPointListByRegionsCode: '/linanJourney/journeyPoint/getJourneyPointListByRegionsCode', // 获取点位列表

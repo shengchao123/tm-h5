@@ -1,13 +1,13 @@
 <template>
-  <view v-if="activityList.length > 0">
-    <view class="line"></view>
-    <view class="pt30">
-      <view class="between-row pl30 pr30">
-        <view class="bold ft32">活动提醒</view>
-        <view v-if="activityList.length > 0"
-              class="color-999 ft24">{{ current }}/{{ activityList.length }}</view>
-      </view>
-      <view>
+  <div v-if="activityList.length > 0">
+    <div class="line"></div>
+    <div class="pt30">
+      <div class="between-row center-align pl30 pr30">
+        <div class="bold ft34">活动提醒</div>
+        <div v-if="activityList.length > 0"
+             class="color-999 ft24">{{ current }}/{{ activityList.length }}</div>
+      </div>
+      <div>
         <swiper class="swiper mt24"
                 :class="swiperClass"
                 :duration="1000"
@@ -16,41 +16,65 @@
           <swiper-item v-for="(item, index) in activityList"
                        :key="index"
                        class="swiper-item">
-            <view class="activity-item mt16 ml30 mr30"
-                  @click="onActivityDetail(item)">
-              <view class="ft28 color-333 center-align">
-                <div>{{ item.name }}</div>
-                <svg-icon :icon="activityStatus(item.status)"
-                          :class="activityClass(item.status)"
-                          class="ml8 activity-status"></svg-icon>
-              </view>
-              <view class="between-row ft24 color-999 mt20">
-                <view>{{ item.orgName }}</view>
-                <view>{{ $moment(item.endTime).format("YYYY-MM-DD") }}</view>
-              </view>
-            </view>
+            <div class="activity-item mt16 ml30 mr30"
+                 @click="onActivityDetail(item)">
+              <div class="ft28 color-333 center-align">
+                <div class="name ellipsis">{{ item.name }}</div>
+                <div class="status-info ft20 ml8"
+                     :style="{color: getStatusInfo(item).color, borderColor: getStatusInfo(item).color}">
+                  {{getStatusInfo(item).text}}
+                </div>
+              </div>
+              <div class="flex mt18">
+                <image v-if="item.type === '02'"
+                       mode="aspectFill"
+                       class="mr16"
+                       style="width: 160rpx;height: 119rpx; border-radius: 6rpx;"
+                       :src="$fileHost + item.picUrl">
+                </image>
+                <div class="flex1">
+                  <div class="ft26 flex mb12">
+                    <svg-icon icon="icon_shijian"
+                              class="ft26 color-999 mt4"></svg-icon>
+                    <span class="pl8 color-999"
+                          style="white-space: nowrap;">时间：</span>
+                    <span class="ft24">{{activityTime(item)}}</span>
+                  </div>
+                  <div class="ft26 flex mb18">
+                    <svg-icon icon="icon_lianmeng"
+                              class="ft26 color-999 mt4"></svg-icon>
+                    <span class="pl8 color-999"
+                          style="white-space: nowrap;">组织：</span>
+                    <span class="ft24">{{item.orgName}}</span>
+                  </div>
+                  <div class="ft20 color-999 mt4">
+                    <u-count-down separator='zh'
+                                  font-size="20"
+                                  separator-size="20"
+                                  separator-color="#999"
+                                  color="#999"
+                                  :show-seconds="false"
+                                  :timestamp="timestamp(item)"></u-count-down>
+                    <span>后截止</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </swiper-item>
         </swiper>
-      </view>
-    </view>
-  </view>
+      </div>
+    </div>
+  </div>
 </template>
 <script>
-const activityStatus = new Map([
-  ['01', 'icon_baomingzhong'],
-  ['02', 'icon_jinhangzhong1'],
-  ['03', 'icon_yijieshu']
-])
-const activityClass = new Map([
-  ['01', 'activity-ing'],
-  ['02', 'activity-in'],
-  ['03', 'activity-over']
-])
+import { statusMap } from '@/utils/enum.js'
+
 export default {
   data () {
     return {
       activityList: [],
-      current: 1
+      current: 1,
+      statusMap,
     };
   },
   methods: {
@@ -71,16 +95,9 @@ export default {
     }
   },
   computed: {
-    // 活动状态
-    activityStatus () {
-      return (status) => {
-        return activityStatus.get(status)
-      }
-    },
-    // 活动样式
-    activityClass () {
-      return (status) => {
-        return activityClass.get(status)
+    getStatusInfo () {
+      return (item) => {
+        return this.statusMap.get(item.status)
       }
     },
     // 轮播样式
@@ -89,6 +106,25 @@ export default {
         return 'swiper-one'
       } else {
         return 'swipers'
+      }
+    },
+    activityTime () {
+      return (item) => {
+        const { startTime, endTime } = item
+        const sDay = moment(startTime).format('YYYY-MM-DD')
+        const eDay = moment(endTime).format('YYYY-MM-DD')
+        const eTime = moment(endTime).format('HH:mm')
+        const newStartTime = moment(startTime).format('YYYY-MM-DD HH:mm')
+        const newEndTime = moment(endTime).format('YYYY-MM-DD HH:mm')
+        if (sDay === eDay) {
+          return newStartTime + '~' + eTime
+        }
+        return newStartTime + '~' + newEndTime
+      }
+    },
+    timestamp () {
+      return (item) => {
+        return Math.floor((item.endTime - new Date().getTime()) / 1000)
       }
     }
   },
@@ -104,18 +140,25 @@ export default {
   height: 20rpx;
 }
 .swiper {
-  height: 160rpx !important;
+  height: 300rpx !important;
   .swiper-item {
-    height: 160rpx !important;
-  }
-  .activity-item {
-    padding: 22rpx 24rpx;
-    background: #ffffff;
-    box-shadow: 3rpx 2rpx 12rpx 8rpx rgba(17, 17, 17, 0.03);
-    border-radius: 6rpx;
-    .activity-status {
-      width: 88rpx;
-      height: 32rpx;
+    height: 300rpx !important;
+    .activity-item {
+      padding: 22rpx 24rpx;
+      background: #ffffff;
+      box-shadow: 3rpx 2rpx 12rpx 8rpx rgba(17, 17, 17, 0.03);
+      border-radius: 6rpx;
+      .status-info {
+        border: 1px solid transparent;
+        border-radius: 0 16rpx 0 16rpx;
+        height: 32rpx;
+        line-height: 32rpx;
+        text-align: center;
+        width: 88rpx;
+      }
+      .name {
+        max-width: 532rpx;
+      }
     }
   }
 }
