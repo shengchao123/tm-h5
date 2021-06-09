@@ -13,9 +13,8 @@
               inactive-color="#666666"
               @change="tabChange"></u-tabs>
     </div>
-    <img :src="imgs[current]"
-         @click="onImage">
-
+    <!-- <img :src="imgs[current]"
+         @click="onImage"> -->
     <custom-tabbar></custom-tabbar>
   </div>
 </template>

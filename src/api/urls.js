@@ -10,6 +10,10 @@ export const urls = {
   bindPhone: '/crm/member/bindPhone', // 获取三方用户信息
   getJSConfig: '/third/authorization/getJSConfig',
 
+  // 人才智库
+  getShowJourneyPolicyPage:'/linanJourney/journeyPolicyManagement/getShowJourneyPolicyPage',// 政策分页
+  getShowJourneyPolicyDetai:'/linanJourney/journeyPolicyManagement/getShowJourneyPolicyDetail',// 政策详情
+
   // 初心之旅
   getRecommendJourneyLineList: '/linanJourney/journeyLine/getRecommendJourneyLineList', // 推荐路线
   getJourneyPointList: '/linanJourney/journeyPointManagement/getJourneyPointList', // 获取点位列表
