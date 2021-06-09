@@ -3,58 +3,91 @@
 
     <SubTabs @change="changeSubTab"
              :tabs="subTabs"></SubTabs>
-    <scroll-view scroll-y
-                 class="scroll relative mt30"
-                 @scrolltolower="onreachBottom">
+
+    <mescroll-uni ref="mescrollRef"
+                  :top="mescrollTop"
+                  :bottom="mescrollBottom"
+                  @init="mescrollInit"
+                  :up="upOption"
+                  @up="onreachTop"
+                  @down="onreachBottom"
+                  class="relative uni mt30">
       <div class="content"
            v-if="!$isEmpty(dataList)">
-        <ResourceItem :item="item"
-                      v-for="item in dataList"
+        <ResourceItem :resourceItem="{item, index}"
+                      @click="setNotesItem"
+                      v-for="(item, index) in dataList"
                       :key="item.id"></ResourceItem>
       </div>
+    </mescroll-uni>
 
-      <empty v-else></empty>
-    </scroll-view>
-
+    <empty v-if="$isEmpty(dataList)"></empty>
+    <PublishBtn @onPublish="onPublish"
+                :isScroll="isScroll"></PublishBtn>
   </div>
 </template>
 
 <script>
 import SubTabs from '@/pages/urban-rural/components/SubTabs'
 import ResourceItem from '@/pages/urban-rural/components/ResourceItem'
+import PublishBtn from '@/pages/urban-rural/components/PublishBtn'
+import listMixins from '../mixins'
+import MescrollMixin from "@/components/mescroll-uni/mescroll-mixins.js";
 
 export default {
   name: 'List',
   methods: {
+    onPublish () {
+      uni.navigateTo({
+        url: '/pages/urban-rural/resource/AddResource'
+      });
+    },
+    setNotesItem (item, index) {
+      const noteList = this.noteList
+      noteList[index] = item
+      this.noteList = [...noteList]
+    },
     changeSubTab (item) {
       if (this.search.resourceType === item.status) return
       this.search.resourceType = item.status
       this.search.pageNumber = 1
-      this.getJourneyResourceSharingPage()
+      this.dataList()
     },
-    onreachBottom () {
-      this.search.pageNumber++
+    scroll () {
+      this.isScroll = true
+      if (this.timer) {
+        this.timer = null
+        clearTimeout(this.timer)
+      }
+      this.timer = setTimeout(() => {
+        this.isScroll = false
+      }, 500)
     },
     // 获取商品列表
-    getJourneyResourceSharingPage () {
+    getDataList () {
       const params = {
         ...this.search
       }
       this.$api.getJourneyResourceSharingPage(params).then(res => {
         if (res.isError) return
-        this.dataList = res?.content?.items ?? []
+        let { items, count } = res.content
+        items = items.map(item => {
+          item.images = item.images.map(item1 => item1.url)
+          return item
+        })
+
+        this.dataList = params.pageNumber === 1 ? items : this.dataList.concat(items)
+
+        this.mescroll.endBySize(items.length, count)
       })
     }
   },
-  created () {
-    // this.getJourneyResourceSharingPage()
-  },
-  components: { SubTabs, ResourceItem },
+  components: { SubTabs, ResourceItem, PublishBtn },
+  mixins: [listMixins, MescrollMixin],
   data () {
     return {
-      search: {
-        pageNumber: 1,
-      },
+      isScroll: false,
+      mescrollTop: '120rpx',
       subTabs: [
         {
           status: '01',
@@ -72,20 +105,6 @@ export default {
           status: '04',
           text: '其它'
         }
-      ],
-      dataList: [
-        {
-          "attachments": ['material/image/2021060718345744643854677149696.jpg', 'material/image/2021060718345744643854677149696.jpg'],
-          "avatar": "material/image/2021060718345744643854677149696.jpg",
-          "contactPerson": "挠挠",
-          "contactPhone": "1245234345",
-          "content": "圣诞节分离技术老地方见老师肯定积分啦是看见埃里克我就发了卡时间的浪费路上看到飞机为了看风景阿老师肯定积分了我就发了卡视角的反抗了所经历的看风景",
-          "nick": "我是昵称",
-          "resourceTypeName": "房产商铺",
-          "time": 1623204876804,
-          "title": "我是标题",
-          "weChatNumber": "微信小号"
-        }
       ]
     }
   }
@@ -95,13 +114,10 @@ export default {
 <style lang='scss' scoped>
 .wrap {
   height: 100%;
-  .scroll {
-    height: calc(100% - 104rpx);
+  .content {
     padding: 0 30rpx;
-    .content {
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
+    justify-content: space-between;
+    flex-wrap: wrap;
   }
 }
 </style>

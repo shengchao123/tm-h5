@@ -22,9 +22,7 @@
 
     <div class="images row mt24"
          v-if="showImgs">
-      <img :src="fileHost + img.url"
-           v-for="(img, index) in item.images"
-           :key="index">
+      <ImgGroup :imgList="item.images"></ImgGroup>
     </div>
 
     <div class="guide-btn center"
@@ -43,7 +41,7 @@
 </template>
 
 <script>
-
+import ImgGroup from '@/pages/union/interact/components/ImgGroup'
 import { beginGuide } from '@/utils/map.js'
 export default {
   name: 'experiItem',
@@ -95,6 +93,9 @@ export default {
         },
       ]),
     }
+  },
+  components: {
+    ImgGroup
   },
   props: {
     item: Object,

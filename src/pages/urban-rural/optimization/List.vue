@@ -10,10 +10,14 @@
                 placeholder-color="#999999"
                 v-model="search.keyword"></u-search>
     </div>
-
-    <scroll-view scroll-y
-                 class="scroll relative"
-                 @scrolltolower="onreachBottom">
+    <mescroll-uni ref="mescrollRef"
+                  :top="mescrollTop"
+                  :bottom="mescrollBottom"
+                  @init="mescrollInit"
+                  :up="upOption"
+                  @up="onreachTop"
+                  @down="onreachBottom"
+                  class="relative uni">
       <div class="content row"
            v-if="!$isEmpty(dataList)">
         <div v-for="item in dataList"
@@ -21,50 +25,43 @@
           <ProductItem :item="item"></ProductItem>
         </div>
       </div>
-
       <empty v-else></empty>
-    </scroll-view>
-
+    </mescroll-uni>
   </div>
 </template>
 
 <script>
 import ProductItem from '@/pages/urban-rural/components/ProductItem'
+import MescrollMixin from "@/components/mescroll-uni/mescroll-mixins.js";
 
+import listMixins from '../mixins'
 export default {
   name: 'List',
   methods: {
     changeSearchKeyword () {
       this.search.pageNumber = 1
-      this.getJourneyProductInfoPage()
-    },
-    onreachBottom () {
-      this.search.pageNumber++
+      this.getDataList()
     },
     // 获取商品列表
-    getJourneyProductInfoPage () {
+    getDataList () {
       const params = {
         ...this.search
       }
       this.$api.getJourneyProductInfoPage(params).then(res => {
         if (res.isError) return
-        this.dataList = res?.content?.items ?? []
+        const { items, count } = res.content
+        this.mescroll.endBySize(items.length, count)
+        this.dataList = params.pageNumber === 1 ? items : this.dataList.concat(items)
       })
     }
   },
-  created () {
-    this.getJourneyProductInfoPage()
-  },
-  components: { ProductItem },
   data () {
     return {
-      search: {
-        keyword: '',
-        pageNumber: 1,
-      },
-      dataList: []
+      mescrollTop: '120rpx'
     }
-  }
+  },
+  mixins: [listMixins, MescrollMixin],
+  components: { ProductItem },
 }
 </script>
 
@@ -74,14 +71,11 @@ export default {
   .search-wrap {
     background: #ffffff;
   }
-  .scroll {
-    background: #ffffff;
-    height: calc(100% - 120rpx);
+
+  .content {
     padding: 0 30rpx;
-    .content {
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
+    justify-content: space-between;
+    flex-wrap: wrap;
   }
 }
 </style>
