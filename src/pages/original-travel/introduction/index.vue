@@ -167,10 +167,12 @@ export default {
       const { openDay, startTime, endTime } = this.baseInfo
       if (this.$isEmpty(openDay)) return ''
       const week = filterContinuousDate(openDay)
-      if (startTime === '00:00' && endTime === '23:59') {
+      const start = this.$moment(startTime).format('HH:mm')
+      const end = this.$moment(endTime).format('HH:mm')
+      if (start === '00:00' && end === '23:59') {
         return `整天(${week})，对外开放`
       }
-      return `${startTime}-${endTime}(${week})，对外开放`
+      return `${start}-${end}(${week})，对外开放`
     }
   },
   onLoad (option) {
