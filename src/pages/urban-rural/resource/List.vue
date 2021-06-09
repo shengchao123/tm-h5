@@ -6,12 +6,11 @@
     <scroll-view scroll-y
                  class="scroll relative mt30"
                  @scrolltolower="onreachBottom">
-      <div class="content row"
+      <div class="content"
            v-if="!$isEmpty(dataList)">
-        <div v-for="item in dataList"
-             :key="item.id">
-          <ActiveItem :item="item"></ActiveItem>
-        </div>
+        <ResourceItem :item="item"
+                      v-for="item in dataList"
+                      :key="item.id"></ResourceItem>
       </div>
 
       <empty v-else></empty>
@@ -22,35 +21,35 @@
 
 <script>
 import SubTabs from '@/pages/urban-rural/components/SubTabs'
-import ActiveItem from '@/pages/urban-rural/components/ActiveItem'
+import ResourceItem from '@/pages/urban-rural/components/ResourceItem'
 
 export default {
   name: 'List',
   methods: {
     changeSubTab (item) {
-      if (this.search.status === item.status) return
-      this.search.status = item.status
+      if (this.search.resourceType === item.status) return
+      this.search.resourceType = item.status
       this.search.pageNumber = 1
-      this.getJourneyActivityPage()
+      this.getJourneyResourceSharingPage()
     },
     onreachBottom () {
       this.search.pageNumber++
     },
     // 获取商品列表
-    getJourneyActivityPage () {
+    getJourneyResourceSharingPage () {
       const params = {
         ...this.search
       }
-      this.$api.getJourneyActivityPage(params).then(res => {
+      this.$api.getJourneyResourceSharingPage(params).then(res => {
         if (res.isError) return
         this.dataList = res?.content?.items ?? []
       })
     }
   },
   created () {
-    this.getJourneyActivityPage()
+    // this.getJourneyResourceSharingPage()
   },
-  components: { SubTabs, ActiveItem },
+  components: { SubTabs, ResourceItem },
   data () {
     return {
       search: {
@@ -58,41 +57,34 @@ export default {
       },
       subTabs: [
         {
-          status: '',
-          text: '实时推荐'
-        },
-        {
           status: '01',
-          text: '我要定制'
+          text: '房产商铺'
         },
         {
           status: '02',
-          text: '我要接单'
+          text: '土地林地'
+        },
+        {
+          status: '03',
+          text: '农产品'
+        },
+        {
+          status: '04',
+          text: '其它'
         }
       ],
       dataList: [
         {
-          "address": "",
-          "code": "",
-          "endTime": "",
-          "id": 0,
-          "introduction": "",
-          "isBelong": false,
-          "isSignUp": false,
-          "lat": 0,
-          "lng": 0,
-          "masterOrgId": 0,
-          "name": "",
-          "numberLimit": 0,
-          "orgId": 0,
-          "orgName": "",
-          "phone": "",
-          "signUpQuantity": 0,
-          "startTime": "",
-          "status": "",
-          "statusName": "",
-          "styleDescription": "",
-          "type": ""
+          "attachments": ['material/image/2021060718345744643854677149696.jpg', 'material/image/2021060718345744643854677149696.jpg'],
+          "avatar": "material/image/2021060718345744643854677149696.jpg",
+          "contactPerson": "挠挠",
+          "contactPhone": "1245234345",
+          "content": "圣诞节分离技术老地方见老师肯定积分啦是看见埃里克我就发了卡时间的浪费路上看到飞机为了看风景阿老师肯定积分了我就发了卡视角的反抗了所经历的看风景",
+          "nick": "我是昵称",
+          "resourceTypeName": "房产商铺",
+          "time": 1623204876804,
+          "title": "我是标题",
+          "weChatNumber": "微信小号"
         }
       ]
     }

@@ -4,7 +4,19 @@
 .tr {
   text-align: right;
 }
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
 
+.clearfix:after,
+.clearfix:before {
+   content: '';
+   display: table;
+  clear: both;
+}
 .full {
   position: absolute;
   top: 0;

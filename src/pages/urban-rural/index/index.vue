@@ -83,14 +83,11 @@ export default {
   }
 }
 </script>
-<style>
-page {
-  height: 100%;
-  background: #f7f7f7;
-}
-</style>
+
 <style lang='scss' scoped>
 .urban-rural-wrap {
+  height: 100%;
+  background: #f7f7f7;
   padding-bottom: 50px;
   height: calc(100vh - 50px);
   .swiper {

@@ -20,7 +20,8 @@
       </div>
     </div>
 
-    <div class="images row mt24">
+    <div class="images row mt24"
+         v-if="showImgs">
       <img :src="fileHost + img.url"
            v-for="(img, index) in item.images"
            :key="index">
@@ -68,7 +69,7 @@ export default {
       })
     },
     onGoDetail () {
-      uni.navigateTo({ url: '/pages/urban-rural/activity/Detail?id=' + this.item.id })
+      uni.navigateTo({ url: '/pages/urban-rural/experience/Detail?id=' + this.item.journeyMerchantBoothId })
     },
   },
   data () {
@@ -96,7 +97,11 @@ export default {
     }
   },
   props: {
-    item: Object
+    item: Object,
+    showImgs: {
+      type: Boolean,
+      default: true
+    }
   },
   computed: {
     name () {

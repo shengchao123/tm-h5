@@ -155,6 +155,12 @@
 			}
 		},
 		{
+			"path": "pages/urban-rural/experience/Detail",
+			"style": {
+				"navigationBarTitleText": "商家展位详情"
+			}
+		},
+		{
 			"path": "pages/union/graphic/index",
 			"style": {
 				"navigationBarTitleText": "联盟风采"

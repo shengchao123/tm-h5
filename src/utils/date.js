@@ -17,6 +17,22 @@ export function dateCount (end) {
   return back;
 }
 
+export function dateForHowLongBefore (timestamp) {
+  var mistiming = new Date().getTime() - timestamp;
+  var arrr = ['天', '小时', '分钟', '秒'];
+  var arrn = [86400000, 3600000, 60000, 1000];
+
+  for (var i = 0; i < 6; i++) {
+    var inm = Math.floor(mistiming / arrn[i]);
+    if (inm != 0) {
+      if (i > 0 && inm > 30) {
+        return moment(timestamp).format('YYYY-MM-DD HH:mm:ss')
+      }
+      return inm + arrr[i] + '前';
+    }
+  }
+}
+
 
 /**
  * 连续日期的过滤

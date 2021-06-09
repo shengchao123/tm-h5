@@ -135,8 +135,6 @@ export default {
       showServiceContent: false,
       form: {
         title: "",
-        content: "",
-        attachmentDTOList: [],
         images: [],
         appropriateCrowd: '',
         serviceContent: ''
@@ -189,7 +187,16 @@ export default {
       }
       const params = {
         ...this.form,
-      };
+      }
+      params.appropriateCrowd = appropriateCrowdList.map(item => item.id)
+      params.serviceContent = serviceContentList.map(item => item.id)
+      params.images = params.images.map(item => {
+        const temItem = {
+          url: item.url,
+          sourceType: item.type
+        }
+        return temItem
+      })
       this.$api.createJourneyMerchantBooth(params).then((res) => {
         if (res.isError) return this.$msg(res.message);
         this.show = true
