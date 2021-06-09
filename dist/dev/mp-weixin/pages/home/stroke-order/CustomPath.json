@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "自定义路线",
-  "usingComponents": {
-    "map": "/pages/components/Map",
-    "num-list": "/pages/home/stroke-order/components/NumList"
-  }
-}

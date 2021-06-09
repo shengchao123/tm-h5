@@ -17,10 +17,7 @@ export default {
      * 3. 用户信息状态 status  (1:未找到该用户; 2:未成为会员; 3:未完善资料; 4:已完善资料; 5:登录失败; 6:冻结)
      */
     h5Login (option) {
-      if (uni.getStorageSync('thirdUserId')) {
-        this.getMemberLoginInfo()
-        return
-      }
+      console.log(111)
       // 微信授权登录
       if (option.code) {
         this.getUserInfoAndToken(option)
@@ -62,7 +59,7 @@ export default {
           uni.redirectTo({ url: '/pages/public/Bind' })
           return
         }
-
+        this.$store.dispatch('user/setMemberPersonalInfo')
         // 是会员直接成功
         if (status === 3 || status === 4) {
           slzxNavigateBack()
@@ -79,10 +76,18 @@ export default {
   },
 
   onLoad (option) {
-    // TODO: 这里增加了thirdUserId缓存，地址栏有这个字段时，说明已经绑定了信息
+    if (process.env.NODE_ENV === 'development') {
+      if (option.masterOrgId) {
+        uni.clearStorageSync()
+        uni.setStorageSync('masterOrgId', option.masterOrgId)
+        uni.setStorageSync('thirdUserId', option.thirdUserId)
+      }
+      this.getMemberLoginInfo()
+      return
+    }
     if (option.masterOrgId) {
-     uni.setStorageSync('masterOrgId', option.masterOrgId)
-     uni.setStorageSync('thirdUserId', option.thirdUserId)
+      uni.clearStorageSync()
+      uni.setStorageSync('masterOrgId', option.masterOrgId)
     }
     this.h5Login(option)
   },

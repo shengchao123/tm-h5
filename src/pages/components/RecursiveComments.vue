@@ -19,8 +19,7 @@
             </view>
           </view>
           <view class="tc relative">
-            <!-- <get-phone-button></get-phone-button> -->
-            <view :class="['iconfont ft32 color-999',item.isLike ? 'icon_zan primary-color' : 'icon_zankong']"
+            <view :class="['ft32 color-999',item.isLike ? 'icon_zan primary-color' : 'icon_zankong']"
                   @click="onLike(item,index)">
             </view>
             <view class="mt20 ft22">{{item.likeCount}}</view>
@@ -46,8 +45,7 @@
             </view>
           </view>
           <view class="tc relative">
-            <!-- <get-phone-button></get-phone-button> -->
-            <view :class="['iconfont ft32',chlidren.isLike ? 'icon_zan primary-color' : 'icon_zankong']"
+            <view :class="['ft32',chlidren.isLike ? 'icon_zan primary-color' : 'icon_zankong']"
                   @click="onLike(chlidren,idx,2)">
             </view>
             <view class="mt20 ft22">{{chlidren.likeCount}}</view>
@@ -79,7 +77,7 @@ export default {
     },
     // 点赞、取消点赞评论
     onLike (item, indx, type) {
-      if (this.$notMember()) return
+      if (this.$notMember()) return this.$goLogin();
       let apiName = ''
       const params = {
         communityNoteId: item.communityNoteId

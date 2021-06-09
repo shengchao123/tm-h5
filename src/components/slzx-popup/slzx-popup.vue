@@ -38,8 +38,10 @@
 			 			 width: closeIconSize + 'rpx',
 			 			 height: closeIconSize + 'rpx'}" />
         <view v-if="showCloseIcon&&!closeIcon"
-              class="iconfont icon_cha"
-              @tap="hide" />
+              @tap="hide">
+          <svg-icon icon="icon_cha"></svg-icon>
+        </view>
+
       </view>
 
       <scroll-view class="wyb-popup-container"

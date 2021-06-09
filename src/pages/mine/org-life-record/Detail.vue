@@ -1,5 +1,6 @@
 <template>
-  <view class="life-wrap">
+  <view class="life-wrap"
+        @click="onPage">
     <view class="tb pl30 pr30 bg-white">
       <view class="center-align h88 bb ft28 color-333"
             v-for="(item,index) in lifeInfoProp"
@@ -19,7 +20,7 @@
               :key="index"
               class="life-item column center">
           <image class="life-img"
-                 :src="$imgUrlDeal(item.url)"
+                 :src="$sourceUrl(item.url)"
                  mode="aspectFill"
                  @click="previewImage(index)"></image>
         </view>
@@ -64,6 +65,7 @@
              :confirm-style="maskConfirmStyle"
              @confirm="onDelete"></u-modal>
     <share-dialog ref="shareDialog"
+                  :showHomeBtn="showHomeBtn"
                   :shareData="shareData"></share-dialog>
   </view>
 </template>
@@ -71,9 +73,22 @@
 <script>
 import ShareDialog from '../../components/ShareDialog.vue'
 import LineClock from './LineClock.vue'
+import shareMixin from '@/mixins/share.js'
 export default {
   name: 'Detail',
   methods: {
+    //预览图片
+    previewImage (index) {
+      const urls = [];
+      this.lifeData.attachmentList.forEach((item) => {
+        urls.push(this.$sourceUrl(item.url));
+      })
+      uni.previewImage({
+        current: urls[index],
+        urls: urls,
+        indicator: "number"
+      })
+    },
     // 分享
     onShare () {
       this.$refs.shareDialog.show()
@@ -82,7 +97,7 @@ export default {
     onJourneyItinerary (type) {
       if (type !== 'journeyItineraryName') return
       uni.navigateTo({
-        url: `/pages/home/stroke-order/detail?id=${this.journeyItineraryId}`
+        url: `/pages/original-travel/stroke-order/detail?id=${this.journeyItineraryId}`
       })
     },
     // 编辑
@@ -109,7 +124,6 @@ export default {
         link: window.location.href,
         title: journeyItineraryName,
         desc: activityExperience,
-        imgUrl: this.$imgHost + 'share.png'
       }
     },
     // 根据行程单id获取生活纪实
@@ -202,6 +216,7 @@ export default {
       return temStyle
     }
   },
+  mixins: [shareMixin],
   components: { LineClock, ShareDialog },
 }
 </script>
@@ -231,7 +246,7 @@ page {
   flex: wrap;
 }
 .life-wrap {
-  margin-bottom: 152rpx;
+  padding-bottom: 152rpx;
   overflow: auto;
   .life-item {
     position: relative;

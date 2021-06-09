@@ -58,6 +58,7 @@ export default {
       this.$api.verifiedRealName(params).then(res => {
         if (res.isError) return this.$msg(res.message)
         this.$msg('实名认证成功')
+        this.$store.dispatch('user/setMemberPersonalInfo')
         setTimeout(() => {
           uni.navigateBack()
         }, 500)

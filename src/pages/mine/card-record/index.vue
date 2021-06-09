@@ -58,7 +58,7 @@ export default {
   methods: {
     onStrokeOrder () {
       uni.navigateTo({
-        url: `/pages/home/stroke-order/detail?id=${this.id}`
+        url: `/pages/original-travel/stroke-order/detail?id=${this.id}`
       })
     },
     // 查看打卡人员
@@ -101,10 +101,8 @@ export default {
         const geolocation = new AMap.Geolocation({
           enableHighAccuracy: true, //是否使用高精度定位，默认:true
           timeout: 10000, //超过10秒后停止定位，默认：5s
-          buttonPosition: 'RB', //定位按钮的停靠位置
         });
         geolocation.getCurrentPosition((status, result) => {
-          setTimeout(this.initMyPoint, 60000)
           if (status == 'complete') {
             const { lng, lat } = result.position
             this.myPoint = [lng, lat]
@@ -116,6 +114,7 @@ export default {
       const pointSignInList = this.pointSignInList.map(el => {
         const { lng, lat } = el
         const lnglat = new AMap.LngLat(lng, lat, true)
+        // AMap.GeometryUtil.distance(p1, p2);
         const distance = Math.round(lnglat.distance(this.myPoint)) + ''
         return {
           ...el,

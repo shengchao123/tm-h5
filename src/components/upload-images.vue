@@ -4,7 +4,7 @@
           :key="index"
           class="upload-item column center">
       <image class="upload-img"
-             :src="$imgUrlDeal(item.url)"
+             :src="$sourceUrl(item.url)"
              mode="aspectFill"
              @click="previewImage(index)"></image>
       <text class="upload-del-btn"
@@ -59,7 +59,7 @@ export default {
       uni.chooseImage({
         count: this.rduLength < this.count ? this.rduLength : this.count, //最多可以选择的图片张数，默认9
         sizeType: ['original', 'compressed'], //original 原图，compressed 压缩图，默认二者都有
-        sourceType: ['album'], //album 从相册选图，camera 使用相机，默认二者都有
+        sourceType: ['album', 'camera'], //album 从相册选图，camera 使用相机，默认二者都有
         success: (res) => {
           const images = res.tempFilePaths;
           this.uploadFiles(images);
@@ -90,6 +90,7 @@ export default {
           this.uploadFiles(images);
         } else {
           uni.hideLoading();
+          this.$emit('update:imageData', this.imageList)
         }
       } else {
         //上传失败处理
@@ -102,7 +103,7 @@ export default {
           duration: 2000
         });
       }
-      this.$emit('update:imageData', this.imageList)
+      // this.$emit('update:imageData', this.imageList)
     },
     uploadImage (file) {
       return new Promise((resolve, reject) => {
@@ -110,12 +111,16 @@ export default {
         const formData = {
           type: 2,
         };
+        const headers = {
+          'ContentType': 'multipart/form-data',
+        }
         uni.uploadFile({
           url: getFullUrl(urls.uploadFile),
           // url: 'https://www.example.com/upload',
           name: 'files',
           filePath: file,
           fileType: 'image',
+          header: headers,
           formData,
           success (uploadFileResult) {
             const uploadFileRes = JSON.parse(uploadFileResult.data) || {};
@@ -141,7 +146,7 @@ export default {
     previewImage (index) {
       const urls = [];
       this.imageList.forEach((item) => {
-        urls.push(this.$imgUrlDeal(item.url));
+        urls.push(this.$sourceUrl(item.url));
       })
       uni.previewImage({
         current: urls[index],

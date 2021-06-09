@@ -1,6 +1,7 @@
 import store from '@/store'
 import { getFullUrl } from '@/utils/tools.js'
 const loginErrorSubCode = ['TOKEN_EXPIRED', 'TOKEN_NULL', 'SESSION_KEY_FAIL']
+const loginErrorCode = [40001, 40002]
 // 报错锁
 let LOGIN_LOCK = false
 
@@ -38,10 +39,10 @@ export default function (obj) {
         }
 
         const res = response.data
-        if (res.code === 40004 && loginErrorSubCode.includes(res.subCode)) {
-          uni.navigateTo({ url: '/pages/public/login' })
+        if (loginErrorCode.includes(res.code) || loginErrorSubCode.includes(res.subCode)) {
           if (LOGIN_LOCK) return
           LOGIN_LOCK = true
+          uni.navigateTo({ url: '/pages/public/Login' })
           return
         }
 
@@ -58,10 +59,10 @@ export default function (obj) {
         }
       },
       fail: (e) => {
-        if (e.data && loginErrorSubCode.includes(e.data.subCode)) {
+        if (loginErrorCode.includes(e.data.code) && loginErrorSubCode.includes(e.data.subCode)) {
           if (LOGIN_LOCK) return
           LOGIN_LOCK = true
-          uni.navigateTo({ url: '/pages/public/login' })
+          uni.navigateTo({ url: '/pages/public/Login' })
           return
         }
         console.log(" fail:" + JSON.stringify(e.data));

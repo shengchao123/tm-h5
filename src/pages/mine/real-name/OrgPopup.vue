@@ -6,23 +6,26 @@
            :mask-custom-style="maskCustomStyle">
     <view class="popup-wrap">
       <view class="relative h84 bb">
-        <view class="ft34 popup-title">选择组织</view>
+        <view class="ft34 popup-title">选择联盟</view>
         <view class="close-btn"
               @click="isOrgShow = false">
-          <svg-icon class="iconfont ft24 color-999 bold mt8"
+          <svg-icon class="ft24 color-999 bold mt8"
                     icon="icon_cha"></svg-icon>
         </view>
       </view>
       <view class="popup-content pl30 pr30">
-        <view v-for="(item,index) in orgData"
-              :key="index"
-              :class="selectedOrg.orgId === item.orgId ? 'selected-color' :'color-333'"
-              class="center-align org-item bb between-row"
-              @click="changeSelectedOrg(item)">
-          <text>{{item.orgName}}</text>
-          <svg-icon icon="icon_duihao"
-                    v-if="selectedOrg.orgId === item.orgId"></svg-icon>
-        </view>
+        <scroll-view :scroll-y="true"
+                     class="popup-content">
+          <view v-for="(item,index) in orgData"
+                :key="index"
+                :class="selectedOrg.orgId === item.orgId ? 'selected-color' :'color-333'"
+                class="center-align org-item bb between-row"
+                @click="changeSelectedOrg(item)">
+            <text>{{item.orgName}}</text>
+            <svg-icon icon="icon_duihao"
+                      v-if="selectedOrg.orgId === item.orgId"></svg-icon>
+          </view>
+        </scroll-view>
       </view>
     </view>
   </u-popup>
@@ -81,6 +84,7 @@ export default {
   color: #e32417;
 }
 .popup-wrap {
+  position: relative;
   .popup-title {
     text-align: center;
     color: #000;
@@ -92,7 +96,6 @@ export default {
   }
   .popup-content {
     height: 686rpx;
-    overflow: auto;
     .org-item {
       height: 100rpx;
       &:last-child {

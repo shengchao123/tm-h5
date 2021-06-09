@@ -1,6 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "num-list": "/pages/home/index/components/NumList"
-  }
-}

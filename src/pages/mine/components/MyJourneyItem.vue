@@ -27,7 +27,7 @@
            v-if="item.hasLifeRecord && item.needLifeDocumentary"
            @click="onOtherPage('lifeRecord')">查看组织生活记录</div>
       <div class="primary-btn"
-           v-if="!item.hasLifeRecord && item.needLifeDocumentary"
+           v-if="item.isOrganizer && !item.hasLifeRecord && item.needLifeDocumentary"
            @click="onOtherPage('writeLife')">填写组织生活记录</div>
 
       <div class="btn"
@@ -41,11 +41,11 @@
 
 <script>
 const pageUrlMap = Object.freeze(new Map([
-  ['detail', '/pages/home/stroke-order/detail?'],
+  ['detail', '/pages/original-travel/stroke-order/detail?'],
   ['writeLife', '/pages/mine/org-life-record/index?'],
   ['lifeRecord', '/pages/mine/org-life-record/Detail?'],
   ['clock', '/pages/mine/card-record/index?'],
-  ['evaluation', '/pages/home/evaluation/index?']
+  ['evaluation', '/pages/original-travel/evaluation/index?']
 ]))
 export default {
   name: 'MyJourneyItem',
@@ -54,7 +54,9 @@ export default {
     onOtherPage (type) {
       const { id, name } = this.item
       let pageParams = `id=${id}`
-      type === 'writeLife' && (pageParams = pageParams + `&name=${name}`)
+      if (type === 'writeLife' || type === 'evaluation') {
+        pageParams = pageParams + `&name=${name}`
+      }
       const url = pageUrlMap.get(type)
       uni.navigateTo({ url: `${url}${pageParams}` })
     }

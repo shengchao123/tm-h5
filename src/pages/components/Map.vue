@@ -8,10 +8,17 @@
 <script>
 import mapMixin from '@/mixins/map.js'
 import AMap from 'AMap'
-
+let overlays = null
 export default {
   name: 'index',
   methods: {
+    // 重置缩放及定位
+    resetMap () {
+      if (!this.$amap) return
+      const { zoom, center } = this.mapInitObj
+      this.$amap.setZoom(zoom)
+      this.$amap.setCenter(center)
+    },
     // 绘制图中标记点
     drawMarker () {
       // 绘制图标
@@ -20,36 +27,47 @@ export default {
         image: require('@/static/map/travel_mark.png'),
         imageSize: new AMap.Size(23, 38)
       })
-      this.points.forEach((item, index) => {
+
+      const _temPoints = JSON.parse(JSON.stringify(this.points))
+      _temPoints.reverse()
+
+      overlays = new AMap.OverlayGroup()
+
+      _temPoints.forEach((item, index) => {
         // 绘制标记气球
         const marker = new AMap.Marker({
           position: new AMap.LngLat(item.lng, item.lat),
           map: this.$amap,
+          animation: 'AMAP_ANIMATION_DROP',
           icon: Icon,
           touchZoom: false
         })
         // 绘制气球上数字文字
-        const indexText = `<div style="color:#ffffff;width:22px;text-align:center;margin-top:2px;font-size:11px">${index + 1}</div>`
+        const indexText = `<div style="color:#ffffff;width:22px;text-align:center;margin-top:2px;font-size:11px">${_temPoints.length - index}</div>`
         // eslint-disable-next-line no-new
         new AMap.Marker({
           position: new AMap.LngLat(item.lng, item.lat),
           map: this.$amap,
+          animation: 'AMAP_ANIMATION_DROP',
           content: indexText,
           touchZoom: false
         })
+
+        overlays.addOverlay(marker)
+
         // 设置 marker 绑定的数据
         marker.setExtData(item)
         // 点击方法绑定
         marker.on('click', this.markerClick)
-        // AMap.event.addListener(marker, 'click', this.markerClick)
       })
     },
 
     markerClick (e) {
       if (!this.needClick) return
       const point = e.target.getExtData()
-      sessionStorage.setItem('pointData', JSON.stringify(point))
-      uni.navigateTo({ url: '/pages/home/point-guide/index' })
+      uni.navigateTo({
+        url: `/pages/original-travel/introduction/index?journeyPointId=${point.journeyPointId}`
+      })
     },
 
     // 绘制折线图
@@ -65,15 +83,19 @@ export default {
         lineJoin: 'round', // 折线拐点连接处样式
         map: this.$amap
       })
+      overlays.addOverlay(polyline)
       // 将折线添加至地图实例
       this.$amap.add(polyline)
     }
   },
   watch: {
     points () {
-      this.$amap.clearMap()
-      this.drawPath()
+      if (overlays) {
+        overlays.hide()
+        overlays.clearOverlays()
+      }
       this.drawMarker()
+      this.drawPath()
     }
   },
   props: {
@@ -90,8 +112,7 @@ export default {
     }
   },
   mounted () {
-    this.drawPath()
-    this.drawMarker()
+    this.drawDistrict()
   },
   mixins: [mapMixin]
 }

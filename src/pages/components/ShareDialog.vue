@@ -10,10 +10,6 @@
             <view v-if="shareBtns.includes('wx')"
                   class="center column"
                   @click="guideShareType">
-              <!-- <button open-type="share"
-                      class="share-btn">
-                <image :src="imgHost + 'pull-new/invite_icon01.png'" />
-              </button> -->
               <image :src="imgHost + 'pull-new/invite_icon01.png'" />
               <text class="mt8 ft24">微信</text>
             </view>
@@ -23,13 +19,8 @@
               <image :src="imgHost + 'pull-new/invite_icon02.png'" />
               <text class="mt8 ft24">朋友圈</text>
             </view>
-            <!-- <view @click="copyLink"
-                  v-if="!savePoster"
-                  class="center column">
-              <image :src="imgHost + 'pull-new/invite_icon03.png'" />
-              <text class="mt8 ft24">复制链接</text>
-            </view> -->
-            <view v-clipboard:copy="shareData.link"
+            <view v-if="shareBtns.includes('copyLink')"
+                  v-clipboard:copy="shareData.link"
                   v-clipboard:success="(type) => onCopyResult('success')"
                   v-clipboard:error="(type) => onCopyResult('error')"
                   class="center column">
@@ -42,19 +33,36 @@
               <image :src="imgHost + 'pull-new/invite_icon03.png'" />
               <text class="mt8 ft24">钉钉</text>
             </view> -->
+            <view @click="saveCanvas"
+                  class="center column"
+                  v-if="savePoster">
+              <div class="save-img">
+                <svg-icon class="ft46 color-999"
+                          icon="icon_baocundaoxiangce"></svg-icon>
+              </div>
+              <text class="mt4">保存到相册</text>
+            </view>
+            <view class="center column"
+                  v-if="!savePoster && shareBtns.includes('poster')">
+              <image :src="imgHost + 'pull-new/invite_icon04.png'"
+                     @click="createPoster" />
+              <text class="mt4">生成图片</text>
+            </view>
           </view>
           <view class="flex operate"
                 v-if="isOperate">
             <view @click="editNote()"
-                  class="tc mr87"
+                  class="tc mr87 flex"
                   style="width: 94rpx">
-              <text class="iconfont icon_bianji center-flex icon-operate ft32"></text>
+              <svg-icon icon="icon_bianji"
+                        class="center icon-operate ft32"></svg-icon>
               <p class="mt4">编辑</p>
             </view>
             <view @click="deleteNote()"
                   class="tc"
                   style="width: 94rpx">
-              <text class="iconfont icon_shanchu center-flex icon-operate ft32"></text>
+              <svg-icon icon="icon_shanchu"
+                        class="center icon-operate ft32"></svg-icon>
               <p class="mt4">删除</p>
             </view>
           </view>
@@ -63,6 +71,7 @@
             <text class="medium ft28 secondary-text">取消</text>
           </view>
         </view>
+
       </view>
     </popup>
     <view @click="closeMask"
@@ -71,34 +80,67 @@
       <image :src="imgHost + 'pull-new/guide_share_bg.png'"
              alt="">
     </view>
+    <view v-show="showPoster"
+          class="poster"
+          @click="onPoster">
+      <div class="poster-box column">
+        <div v-show="!posterCreateEnd && showPoster"
+             class="center"
+             style="width: 100%; height: 380rpx">
+          <u-loading size="60"
+                     mode="circle"
+                     style="margin: 30rpx auto 0"></u-loading>
+        </div>
+        <div v-show="posterCreateEnd"
+             class="img-box">
+          <img ref="posterImg"
+               class="img"
+               :src="posterUrl" />
+        </div>
+        <div v-show="posterCreateEnd"
+             class="tip tc ft24 flex1 center">长按图片保存</div>
+      </div>
+    </view>
+    <div class="home-btn center"
+         v-show="showHomeBtn"
+         @click.stop="onHome">
+      <svg-icon class="ft40 color-999"
+                icon="icon_shouye"></svg-icon>
+    </div>
   </view>
 </template>
 
 <script>
 import Popup from '@/components/slzx-popup/slzx-popup.vue'
-import VueClipboard from 'vue-clipboard2'
+// import VueClipboard from 'vue-clipboard2'
 import wx from 'weixin-js-sdk'			//微信sdk依赖
+import html2canvas from "html2canvas";
 export default {
   data () {
     return {
       guideShare: false,
       showPoster: false,
-      savePoster: false
+      savePoster: false,
+      posterCreateEnd: false,
+      posterUrl: ''
     }
   },
   methods: {
     show () {
       this.$refs.sharePopup.show()
-      /* #ifdef MP-WEIXIN */
-      this.$refs.sharePopup.show()
-      /* #endif */
-      /* #ifdef MP-ALIPAY */
-      this.createPoster()
-      /* #endif */
     },
     // 关闭分享弹窗
     hide () {
-      this.$refs.sharePopup.close()
+      this.guideShare = false,
+        this.showPoster = false,
+        this.savePoster = false,
+        this.posterCreateEnd = false,
+        this.$refs.sharePopup.close()
+    },
+    onHome () {
+      uni.switchTab({
+        url: '/pages/home/index/index'
+      })
     },
     // 编辑按钮
     editNote () {
@@ -116,12 +158,17 @@ export default {
     closeMask () {
       this.guideShare = false
     },
+    // 点击海报蒙版
+    onPoster () {
+      if (!this.posterCreateEnd) return
+      this.hide()
+    },
     onWeixin () {
       this.getConfig()
     },
     // 获取微信分享配置
     getConfig () {
-      const url = this.shareData.link && this.shareData.link.split("#")[0] // 获取的是当前分享的页面
+      const url = this.shareData.link && this.shareData.link.split("/pages")[0] // 获取的是当前分享的页面
       const params = {
         url
       }
@@ -136,7 +183,11 @@ export default {
       })
     },
     wxShare ({ appId, timestamp, nonceStr, signature }) {
-      const { title, desc, link, imgUrl } = this.shareData
+      const { title, desc, link } = this.shareData
+      const separator = link.includes('?') ? '' : '?'
+      const masterOrgId = uni.getStorageSync('masterOrgId')
+      const shareLink = link + separator + '&masterOrgId=' + masterOrgId
+      const imgUrl = this.$isEmpty(this.shareData.imgUrl) ? this.$imgHost + 'share.png' : this.shareData.imgUrl
       wx.config({
         debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
         appId, // 必填，公众号的唯一标识
@@ -164,7 +215,7 @@ export default {
         wx.onMenuShareAppMessage({
           title, // 分享标题
           desc, // 分享描述
-          link, // 分享链接
+          link: shareLink, // 分享链接
           imgUrl, // 分享图标
           type: 'link', // 分享类型,music、video或link，不填默认为link
           success: function () {
@@ -180,7 +231,7 @@ export default {
         wx.onMenuShareTimeline({
           title, // 分享标题
           desc, // 分享描述
-          link, // 分享链接
+          link: shareLink, // 分享链接
           imgUrl, // 分享图标
           type: 'link', // 分享类型,music、video或link，不填默认为link
           success: function () {
@@ -252,31 +303,29 @@ export default {
         }
       })
     },
-
-    // 保存海报
-    saveCanvas () {
-      this.$refs.activityPoster.savePoster()
-    },
     // 生成海报
     createPoster () {
+      this.$emit('posterDrawStart')
+      this.$emit('scrollToTop')
       this.showPoster = true
       this.savePoster = true
+      this.posterCreateEnd = false
+      const posterEl = document.getElementById('posterView')
+      html2canvas(posterEl, {
+        useCORS: true,
+      }).then((canvas) => {
+        this.posterCreateEnd = true
+        this.posterUrl = canvas.toDataURL("image/png");
+      });
     },
-    // 关闭海报
-    closePoster (val) {
-      if (val === 'ALIPAY') {
-        this.$refs.sharePopup.show()
-        this.savePoster = true
-      } else {
-        this.showPoster = val
-        /* #ifdef MP-ALIPAY */
-        this.$refs.sharePopup.hide()
-        /* #endif */
-        /* #ifdef MP-WEIXIN */
-        this.savePoster = false
-        /* #endif */
-      }
-    }
+    // 保存海报
+    saveCanvas () {
+      let a = document.createElement('a')
+      document.body.appendChild(a);
+      a.setAttribute('download', '海报')
+      a.href = this.posterUrl
+      a.click()
+    },
   },
   props: {
     posterType: {
@@ -289,7 +338,7 @@ export default {
     },
     shareBtns: {
       type: String,
-      default: 'wx moments'
+      default: 'wx moments copyLink'
     },
     isOperate: {
       type: Boolean,
@@ -306,7 +355,8 @@ export default {
     posterData: {//开团海报数据
       type: Object,
       default: () => { }
-    }
+    },
+    showHomeBtn: Boolean
   },
   computed: {
     imgHost () {
@@ -342,9 +392,7 @@ page {
   padding-top: 50rpx;
   z-index: 50;
 }
-.zinde17 {
-  z-index: 10075;
-}
+
 .imgs {
   margin-bottom: 50rpx;
   padding: 0 60rpx;
@@ -390,6 +438,36 @@ page {
 .ft46 {
   font-size: 46rpx;
 }
+.poster {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10075;
+  .poster-box {
+    width: 600rpx;
+    box-sizing: border-box;
+    padding: 20rpx 20rpx 0 20rpx;
+    height: 55vh;
+    margin: 155rpx auto;
+    border-radius: 6rpx;
+    background: #fff;
+    .img-box {
+      width: 100%;
+      height: 48vh;
+      box-shadow: 3rpx 2rpx 12rpx 8rpx rgba(0, 0, 0, 0.03);
+      overflow: scroll;
+      .img {
+        width: 100%;
+        height: auto;
+      }
+    }
+    .tip {
+      color: #518cfc;
+    }
+  }
+}
 .save-img {
   width: 88rpx;
   height: 88rpx;
@@ -397,5 +475,15 @@ page {
   text-align: center;
   background: #ffffff;
   border-radius: 50%;
+}
+.home-btn {
+  position: fixed;
+  bottom: 140rpx;
+  right: 16rpx;
+  width: 98rpx;
+  height: 98rpx;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 4rpx 6rpx 8rpx 0 rgba(0, 0, 0, 0.25);
 }
 </style>

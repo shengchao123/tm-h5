@@ -4,6 +4,20 @@ export const imgHost = 'https://hzslzx.oss-cn-hangzhou.aliyuncs.com/system/h5-ma
 
 
 export const urls = {
+
+
+
+  // 城乡融合
+  getJourneyProductInfoPage: '/linanJourney/journeyProduct/getJourneyProductInfoPage', // 城乡产品列表
+  getJourneyProductInfoById: '/linanJourney/journeyProduct/getJourneyProductInfoById', // 城乡产品详情
+  getJourneyMerchantBoothInfoPage: '/linanJourney/journeyMerchantBooth/getJourneyMerchantBoothInfoPage', // 分页获取商家展位
+  getJourneyMerchantBoothInfoById: '/linanJourney/journeyMerchantBooth/getJourneyMerchantBoothInfoById', // 商家展位详情
+  createJourneyMerchantBooth: '/linanJourney/journeyMerchantBooth/createJourneyMerchantBooth', // 创建商家展位
+  getJourneyResourceSharingPage: '/linanJourney/journeyResourceSharing/getJourneyResourceSharingPage', // 资源共享列表
+  createJourneyResourceSharing: '/linanJourney/journeyResourceSharing/createJourneyResourceSharing', // 新增资源共享
+  getJourneyResourceSharingInfoById: ' /linanJourney/journeyResourceSharing/getJourneyResourceSharingInfoById', // 资源共享详情
+
+
   redirectToOAuth: '/third/authorization/redirectToOAuth', // 获取授权 url
   getUserInfoAndToken: '/third/authorization/getUserInfoAndToken', // 接受微信公众号授权后的code获取thirdUserId及登陆
   getMemberLoginInfo: '/crm/member/getMemberLoginInfo', // 获取三方用户信息
@@ -12,9 +26,11 @@ export const urls = {
 
   // 初心之旅
   getRecommendJourneyLineList: '/linanJourney/journeyLine/getRecommendJourneyLineList', // 推荐路线
+  getJourneyPointList: '/linanJourney/journeyPointManagement/getJourneyPointList', // 获取点位列表
   getJourneyPointListByJourneyId: '/linanJourney/journeyLine/getJourneyPointListByJourneyId', // 路线点位信息
   getJourneyPointListByOrgId: '/linanJourney/journeyPoint/getJourneyPointListByOrgId', // 获取点位列表
   getJourneyPointInfoById: '/linanJourney/journeyPoint/getJourneyPointInfoById', // 根据点位id获取点位信息
+  getJourneyProductListByJourneyLineId: '/linanJourney/journeyLine/getJourneyProductListByJourneyLineId', //  根据线路id获取产品信息
 
   sendVerificationCode: '/crm/member/sendVerificationCode', // 发送验证码
   getJourneyPointListByRegionsCode: '/linanJourney/journeyPoint/getJourneyPointListByRegionsCode', // 获取点位列表
@@ -60,6 +76,7 @@ export const urls = {
   getJourneyAllianceDetailList: '/linanJourney/journeyAlliance/getJourneyAllianceDetailList', // 获取联盟及详情列表
   getGraphicInfoPage: '/partyWebsite/partyGraphic/getGraphicInfoPage', // 分页获取风采图文信息
   getGraphicInfoById: '/partyWebsite/partyGraphic/getGraphicInfoById', // 获取风采图文详情
+  findOrgTreeByOrgId: '/organization/orgConsumer/findOrgTreeByOrgId', // 根据组织id获取组织树
 
   // 我的页面
   getMemberPersonalInfo: '/crm/member/getMemberPersonalInfo', // 我的信息获取

@@ -3,18 +3,19 @@
     <view class="pl30 pr30 bg-white ft30">
       <view class="between-row h100 bb center-align">
         <text class="flex1 h100 center-align bold">头像</text>
-        <view class="center-align color-999">
+        <view class="center-align color-999 relative">
           <img :src="avatarUrl(formData.avatar)"
                mode="scaleToFill"
                class="member-avator"
                @click="onBigAvatar" />
+          <view @click="changeAvatar"
+                class="upload-icon">
+            <svg-icon icon="icon_xiangyoujiantou"
+                      class="ft20 ml8 relative"></svg-icon>
+          </view>
           <avatar @upload="myUpload"
                   ref="avatar"
                   style="width:0;height:0"></avatar>
-          <view @click="changeAvatar">
-            <svg-icon icon="icon_xiangyoujiantou"
-                      class="ft20 ml8"></svg-icon>
-          </view>
         </view>
       </view>
       <template v-for="(item,index) in infoProps">
@@ -33,7 +34,7 @@
         </view>
       </template>
       <view class="pt12 pb32 color-999 ft26">
-        <text v-if="$isEmpty(formData.orgName)">认证后可在论坛发布帖子，可报名参加联盟活动</text>
+        <text v-if="!formData.isRealName">认证后可在论坛发布帖子，可报名参加联盟活动</text>
         <template v-else>
           <view v-for="(item,index) in realNameProp"
                 :key="index"
@@ -65,6 +66,8 @@ export default {
   methods: {
     // 昵称、实名认证
     onInfoItem (type) {
+      if (type === 'phone' || type === 'labelList') return
+      if (type === 'orgName' && this.formData.isRealName) return
       const temUrl = type === 'nick' ? `/pages/mine/personal-settings/EditNick?nick=${this.formData.nick}` : '/pages/mine/real-name/index'
       uni.navigateTo({ url: temUrl })
     },
@@ -76,6 +79,7 @@ export default {
     // 上传头像
     uploadAvatar (file) {
       this.$api.uploadAvatar(file).then(res => {
+        this.formData.avatar = res.filePaths[0]
         const temParams = {
           avatar: res.filePaths[0]
         }
@@ -164,14 +168,14 @@ export default {
     isClickShow () {
       return (val) => {
         if (val === 'nick') return true
-        if (val === 'orgName') return this.$isEmpty(this.formData.orgName)
+        if (val === 'orgName') return !this.formData.isRealName
         return false
       }
     },
     infoText () {
       return (val) => {
-        const { orgName, labelList } = this.formData
-        if (val === 'orgName') return this.$isEmpty(orgName) ? '未认证' : '已认证'
+        const { isRealName, labelList } = this.formData
+        if (val === 'orgName') return isRealName ? '已认证' : '未认证'
         if (val === 'labelList') labelList.splice(0, 2).join('、')
         return this.formData[val]
       }
@@ -194,10 +198,18 @@ page {
 .h100 {
   height: 100rpx;
 }
+.upload-icon {
+  width: 100rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  position: absolute;
+  right: -72rpx;
+}
 .member-avator {
   width: 68rpx;
   height: 68rpx;
   border-radius: 68rpx;
+  margin-right: 28rpx;
 }
 .member-big-avator {
   width: 100%;
