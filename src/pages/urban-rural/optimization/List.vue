@@ -11,9 +11,12 @@
                 v-model="search.keyword"></u-search>
     </div>
 
-    <scroll-view scroll-y
-                 class="scroll relative"
-                 @scrolltolower="onreachBottom">
+    <mescroll-uni ref="mescrollRef"
+                  top="120rpx"
+                  @init="mescrollInit"
+                  :up="upOption"
+                  @up="onreachTop"
+                  class="relative uni">
       <div class="content row"
            v-if="!$isEmpty(dataList)">
         <div v-for="item in dataList"
@@ -21,50 +24,38 @@
           <ProductItem :item="item"></ProductItem>
         </div>
       </div>
-
       <empty v-else></empty>
-    </scroll-view>
+    </mescroll-uni>
 
   </div>
 </template>
 
 <script>
 import ProductItem from '@/pages/urban-rural/components/ProductItem'
-
+import listMixins from '../mixins'
 export default {
   name: 'List',
   methods: {
     changeSearchKeyword () {
       this.search.pageNumber = 1
-      this.getJourneyProductInfoPage()
+      this.getDataList()
     },
-    onreachBottom () {
-      this.search.pageNumber++
-    },
+
     // 获取商品列表
-    getJourneyProductInfoPage () {
+    getDataList () {
       const params = {
         ...this.search
       }
       this.$api.getJourneyProductInfoPage(params).then(res => {
         if (res.isError) return
-        this.dataList = res?.content?.items ?? []
+        const { items, count } = res.content
+        this.mescroll.endBySize(items.length, count)
+        this.dataList = params.pageNumber === 1 ? items : this.listData.concat(items)
       })
     }
   },
-  created () {
-    this.getJourneyProductInfoPage()
-  },
+  mixins: [listMixins],
   components: { ProductItem },
-  data () {
-    return {
-      search: {
-        keyword: '',
-        pageNumber: 1,
-      },
-      dataList: []
-    }
-  }
 }
 </script>
 
@@ -74,14 +65,11 @@ export default {
   .search-wrap {
     background: #ffffff;
   }
-  .scroll {
-    background: #ffffff;
-    height: calc(100% - 120rpx);
+
+  .content {
     padding: 0 30rpx;
-    .content {
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
+    justify-content: space-between;
+    flex-wrap: wrap;
   }
 }
 </style>
