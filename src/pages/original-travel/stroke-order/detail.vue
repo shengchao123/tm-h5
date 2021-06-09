@@ -6,16 +6,17 @@
       <head-map :journeyLineName="baseInfo.journeyLineName"
                 :journeyPointList="journeyPointList"
                 :isDetail="true"></head-map>
-      <div class="mb20">
-        <detail-info :list="topList"></detail-info>
-      </div>
+      <detail-info :list="topList"></detail-info>
+      <div class="line"></div>
       <detail-info :list="bottomList"></detail-info>
       <div class="pb24 bg-white"
            @click="onSignUpList">
-        <div class="between-row cenetr-align pt24 pl30 pr30">
-          <div class="ft30 bold">参与人员</div>
-          <div class="center-align">
-            <div class="ft22 color-666">{{signUpList.length}}人</div>
+        <div class="cenetr-align flex pt24 pl30 pr30"
+             style="border-top: solid 1rpx #eaeaea;">
+          <div class="ft30 bold"
+               style="width: 220rpx;">参与人员</div>
+          <div class="between-row center-align flex1">
+            <div class="ft30 color-666">{{signUpList.length}}人</div>
             <svg-icon v-if="signUpList.length > 0"
                       icon="icon_xiangyoujiantou"
                       class="ft20 color-999 ml8"></svg-icon>
@@ -305,6 +306,11 @@ export default {
   }
   .w272 {
     width: 272rpx !important;
+  }
+  .line {
+    width: 100%;
+    height: 20rpx;
+    background: #f7f7f7;
   }
 }
 </style>
