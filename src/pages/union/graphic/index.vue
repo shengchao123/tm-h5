@@ -21,7 +21,8 @@
                   @down="downCallback"
                   @up="upCallback">
       <template>
-        <div class="list pt12">
+        <div v-if="listData.length > 0"
+             class="list pt12">
           <div v-for="(item, index) in listData"
                :key="index"
                class="item flex mb20 pt32 pb32 pl30 pr30"
@@ -38,9 +39,11 @@
             </div>
           </div>
         </div>
+        <empty v-else></empty>
         <!-- <contact-person :list="tabList[current].addressBookList"></contact-person> -->
       </template>
     </mescroll-uni>
+
   </div>
 </template>
 <script>
