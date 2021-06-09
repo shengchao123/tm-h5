@@ -3,9 +3,8 @@
     <view class="top center-align between-row">
       <view class="center-align">
         <span class="title ft32 color-333 medium pr16">{{item.name}}</span>
-        <svg-icon :icon="getStatusInfo.iconClass"
-                  :style="{color:getStatusInfo.color}"
-                  class="status-icon"></svg-icon>
+        <div class="status-info ft20"
+             :style="{color: getStatusInfo.color, borderColor: getStatusInfo.color}">{{getStatusInfo.text}}</div>
       </view>
       <view>
         <svg-icon class="ft20 color-999"
@@ -126,8 +125,13 @@ export default {
       overflow: hidden;
       text-overflow: ellipsis;
     }
-    .status-icon {
-      font-size: 88rpx;
+    .status-info {
+      border: 1px solid transparent;
+      border-radius: 0 16rpx 0 16rpx;
+      height: 32rpx;
+      line-height: 32rpx;
+      text-align: center;
+      width: 88rpx;
     }
   }
   .form-list {

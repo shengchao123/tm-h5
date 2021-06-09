@@ -11,7 +11,6 @@
                  class="ft26 color-999"></SvgIcon>
         <text class="ml16 ft26 color-999">{{item.title}}</text>
         <text class="ft26"
-              @click="onItemStore(item)"
               v-if="!item.url">{{detailInfo[item.key]}}</text>
         <uni-link :href="item.url"
                   v-else
@@ -52,7 +51,7 @@ export default {
         this.detailInfo = res.content
         this.images = res.content.images.map(item => {
           return {
-            image: item.url
+            image: this.$fileHost + item.url
           }
         })
       })
@@ -60,7 +59,7 @@ export default {
   },
   data () {
     return {
-      infoItems: [
+      infoItems: Object.freeze([
         {
           icon: 'icon_rongyu',
           title: '荣誉：',
@@ -82,7 +81,7 @@ export default {
           key: 'storeName',
           url: 'storeUrl'
         },
-      ],
+      ]),
       detailInfo: {},
       images: [],
     }

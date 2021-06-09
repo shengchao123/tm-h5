@@ -25,6 +25,27 @@ export const transportationOptions = Object.freeze([
   { id: '05', name: '骑行' },
   { id: '06', name: '步行' },
 ])
+// 适宜人群
+export const appropriateCrowdOptions = [
+  { id: '01', name: '家庭游', isSelected: false },
+  { id: '02', name: '亲子游', isSelected: false },
+  { id: '03', name: '团建拓展', isSelected: false },
+  { id: '04', name: '朋友聚会', isSelected: false },
+  { id: '05', name: '情侣游', isSelected: false },
+  { id: '06', name: '夕阳红', isSelected: false },
+]
+// 服务内容 
+export const serviceContentOptions = [
+  { id: '01', name: '吃饭', isSelected: false },
+  { id: '02', name: '住宿', isSelected: false },
+  { id: '03', name: '免费停车', isSelected: false },
+  { id: '04', name: '烧烤', isSelected: false },
+  { id: '05', name: '采摘', isSelected: false },
+  { id: '06', name: '钓鱼', isSelected: false },
+  { id: '07', name: '骑马', isSelected: false },
+  { id: '08', name: '戏水', isSelected: false },
+  { id: '09', name: '露营', isSelected: false },
+]
 
 export const playTimeNameMap = new Map([
   ['01', '半天'],
@@ -51,7 +72,7 @@ export const transportationNameMap = new Map([
 
 // 状态 (01:报名中; 02:进行中; 03:已结束)
 export const statusMap = Object.freeze(new Map([
-  ['01', { iconClass: 'icon_baomingzhong', color: '#F54000' }],
-  ['02', { iconClass: 'icon_jinhangzhong1', color: '#FFB319' }],
-  ['03', { iconClass: 'icon_yijieshu', color: '#999999' }],
+  ['01', { text: '报名中', color: '#F54000' }],
+  ['02', { text: '进行中', color: '#FFB319' }],
+  ['03', { text: '已结束', color: '#999999' }],
 ]))

@@ -6,51 +6,69 @@
     <scroll-view scroll-y
                  class="scroll relative mt30"
                  @scrolltolower="onreachBottom">
-      <div class="content row"
+      <div class="content"
            v-if="!$isEmpty(dataList)">
         <div v-for="item in dataList"
              :key="item.id">
-          <ActiveItem :item="item"></ActiveItem>
+          <ExperienceItem :item="item"></ExperienceItem>
         </div>
       </div>
 
       <empty v-else></empty>
     </scroll-view>
 
+    <view class="add white-color bold center tc"
+          @click="onAdd">
+      <svg-icon icon="icon_fabu"
+                class="ft32"></svg-icon>
+    </view>
   </div>
 </template>
 
 <script>
 import SubTabs from '@/pages/urban-rural/components/SubTabs'
-import ActiveItem from '@/pages/urban-rural/components/ActiveItem'
+import ExperienceItem from '@/pages/urban-rural/components/ExperienceItem'
 
 export default {
   name: 'List',
   methods: {
+    onAdd () {
+      // 判断是否登录逻辑
+      // if (this.$notMember()) return this.$goLogin();
+      uni.navigateTo({
+        url: '/pages/urban-rural/experience/AddMerchantBooth'
+      });
+    },
     changeSubTab (item) {
       if (this.search.status === item.status) return
-      this.search.status = item.status
-      this.search.pageNumber = 1
-      this.getJourneyActivityPage()
+      // this.search.status = item.status
+      // this.search.pageNumber = 1
+      // this.getJourneyActivityPage()
     },
     onreachBottom () {
       this.search.pageNumber++
     },
     // 获取商品列表
-    getJourneyActivityPage () {
+    getJourneyMerchantBoothInfoPage () {
       const params = {
         ...this.search
       }
-      this.$api.getJourneyActivityPage(params).then(res => {
+      this.$api.getJourneyMerchantBoothInfoPage(params).then(res => {
         if (res.isError) return
-        this.dataList = res?.content?.items ?? []
+        this.dataList = res?.content?.items.map(item => {
+          const _appropriateCrowdFormat = item.appropriateCrowd.map(item => item.typeName)
+          const _serviceContentFormat = item.serviceContent.map(item => item.typeName)
+          item.appropriateCrowdFormat = _appropriateCrowdFormat.join(' ')
+          item.serviceContentFormat = _serviceContentFormat.join(' ')
+          return item
+        })
       })
     }
   },
   created () {
-    this.getJourneyActivityPage()
+    this.getJourneyMerchantBoothInfoPage()
   },
-  components: { SubTabs, ActiveItem },
+  components: { SubTabs, ExperienceItem },
   data () {
     return {
       search: {
@@ -59,19 +77,15 @@ export default {
       subTabs: [
         {
           status: '',
-          text: '全部'
+          text: '实时推荐'
         },
         {
           status: '01',
-          text: '报名中'
+          text: '我要定制'
         },
         {
           status: '02',
-          text: '进行中'
-        },
-        {
-          status: '03',
-          text: '已结束'
+          text: '我要接单'
         }
       ],
       dataList: [
@@ -109,11 +123,22 @@ export default {
   height: 100%;
   .scroll {
     height: calc(100% - 104rpx);
-    padding: 0 30rpx;
     .content {
       justify-content: space-between;
       flex-wrap: wrap;
     }
+  }
+  .add {
+    position: fixed;
+    right: 32rpx;
+    bottom: 90rpx;
+    width: 98rpx;
+    height: 98rpx;
+    border-radius: 50%;
+    box-shadow: 4rpx 6rpx 8rpx 0 rgba(14, 2, 2, 0.25);
+    z-index: 100;
+    background: #e32417;
+    font-size: 56rpx;
   }
 }
 </style>

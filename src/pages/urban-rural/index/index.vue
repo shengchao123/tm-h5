@@ -23,6 +23,12 @@
       <swiper-item>
         <List2></List2>
       </swiper-item>
+      <swiper-item>
+        <List3></List3>
+      </swiper-item>
+      <swiper-item>
+        <List4></List4>
+      </swiper-item>
     </swiper>
 
     <custom-tabbar></custom-tabbar>
@@ -32,6 +38,8 @@
 <script>
 import List1 from '../optimization/List.vue'
 import List2 from '../activity/List.vue'
+import List3 from '../experience/List.vue'
+import List4 from '../resource/List.vue'
 export default {
   name: 'index',
   methods: {
@@ -55,7 +63,7 @@ export default {
       this.current = index
     },
   },
-  components: { List1, List2 },
+  components: { List1, List2, List3, List4 },
   data () {
     return {
       current: 0,
@@ -75,14 +83,11 @@ export default {
   }
 }
 </script>
-<style>
-page {
-  height: 100%;
-  background: #f7f7f7;
-}
-</style>
+
 <style lang='scss' scoped>
 .urban-rural-wrap {
+  height: 100%;
+  background: #f7f7f7;
   padding-bottom: 50px;
   height: calc(100vh - 50px);
   .swiper {

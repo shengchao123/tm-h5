@@ -10,7 +10,12 @@ export const urls = {
   // 城乡融合
   getJourneyProductInfoPage: '/linanJourney/journeyProduct/getJourneyProductInfoPage', // 城乡产品列表
   getJourneyProductInfoById: '/linanJourney/journeyProduct/getJourneyProductInfoById', // 城乡产品详情
-  getJourneyActivityPage: '/linanJourney/journeyActivity/getJourneyActivityPage', // 特色活动分页
+  getJourneyMerchantBoothInfoPage: '/linanJourney/journeyMerchantBooth/getJourneyMerchantBoothInfoPage', // 分页获取商家展位
+  getJourneyMerchantBoothInfoById: '/linanJourney/journeyMerchantBooth/getJourneyMerchantBoothInfoById', // 商家展位详情
+  createJourneyMerchantBooth: '/linanJourney/journeyMerchantBooth/createJourneyMerchantBooth', // 创建商家展位
+  getJourneyResourceSharingPage: '/linanJourney/journeyResourceSharing/getJourneyResourceSharingPage', // 资源共享列表
+  createJourneyResourceSharing: '/linanJourney/journeyResourceSharing/createJourneyResourceSharing', // 新增资源共享
+  getJourneyResourceSharingInfoById: ' /linanJourney/journeyResourceSharing/getJourneyResourceSharingInfoById', // 资源共享详情
 
 
   redirectToOAuth: '/third/authorization/redirectToOAuth', // 获取授权 url
