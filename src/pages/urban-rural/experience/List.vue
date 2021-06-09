@@ -7,10 +7,10 @@
     <mescroll-uni ref="mescrollRef"
                   :top="mescrollTop"
                   :bottom="mescrollBottom"
+                  @scroll="scroll"
                   @init="mescrollInit"
                   :up="upOption"
                   @up="onreachTop"
-                  @down="onreachBottom"
                   class="relative uni">
       <div class="content"
            v-if="!$isEmpty(dataList)">
@@ -21,10 +21,10 @@
         </div>
       </div>
       <empty v-else></empty>
-
     </mescroll-uni>
 
-    <PublishBtn @onPublish="onPublish"></PublishBtn>
+    <PublishBtn @onPublish="onPublish"
+                :isScroll="isScroll"></PublishBtn>
   </div>
 </template>
 
@@ -89,6 +89,9 @@ export default {
     return {
       isScroll: false,
       mescrollTop: '120rpx',
+      upOption: {
+        onScroll: true
+      },
       subTabs: [
         {
           status: '',

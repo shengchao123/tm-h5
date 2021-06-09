@@ -7,7 +7,7 @@
              class="avatar mr16 fl">
         <div class="name fl">
           <div class="ft28 medium">{{resourceItem.item.nick}}</div>
-          <div class="ft22 color-999 mt8">{{time}}</div>
+          <div class="ft22 color-999 mt8">{{resourceItem.item.time}}</div>
         </div>
         <div class="tag fr ft22 color-999">房产商铺</div>
       </div>
@@ -15,8 +15,10 @@
       <div class="content">
         <div class="bold ft34 mt24">{{resourceItem.item.title}}</div>
 
-        <div class="relative">
+        <div class="relative"
+             @click.stop>
           <u-read-more close-text="...展开"
+                       @open="open"
                        font-size="24"
                        color="#E32417 "
                        text-indent="0"
@@ -28,12 +30,14 @@
       </div>
 
       <div class="contact center-align ft26">
-        <div v-for="obj in contactItems"
-             class="mt16 item center-align"
-             :key="obj.key">
-          <div class="color-999">{{obj.label}}</div>
-          <div>{{resourceItem.item[obj.key]}}</div>
-        </div>
+        <template v-for="obj in contactItems">
+          <div class="mt16 item center-align"
+               :key="obj.key"
+               v-if="resourceItem.item[obj.key]">
+            <div class="color-999">{{obj.label}}</div>
+            <div>{{resourceItem.item[obj.key]}}</div>
+          </div>
+        </template>
       </div>
     </div>
 
@@ -61,25 +65,13 @@ import ItemFooter from '@/pages/union/interact/components/ItemFooter'
 import ShareDialog from '@/pages/components/ShareDialog'
 import SendCommentPopup from '@/pages/union/interact/components/SendCommentPopup'
 import CommentListPopup from '@/pages/union/interact/components/CommentListPopup'
-// {
-//           "attachments": ['material/image/2021060718345744643854677149696.jpg', 'material/image/2021060718345744643854677149696.jpg'],
-//           "avatar": "material/image/2021060718345744643854677149696.jpg",
-//           "contactPerson": "挠挠",
-//           "contactPhone": "1245234345",
-//           "content": "圣诞节分离技术老地方见老师肯定积分啦是看见埃里克我就发了卡时间的浪费路上看到飞机为了看风景阿老师肯定积分了我就发了卡视角的反抗了所经历的看风景",
-//           "nick": "我是昵称",
-//           "resourceTypeName": "房产商铺",
-//           "time": 1623204876804,
-//           "title": "我是标题",
-//           "weChatNumber": "微信小号"
-//         }
 import { dateForHowLongBefore } from '@u/date.js'
 
 export default {
   name: 'ResourceItem',
   methods: {
     onNoteDetail () {
-      const { communityNoteId } = this.resourceItem
+      const { communityNoteId } = this.resourceItem.item
       uni.navigateTo({
         url: `/pages/union/interact/note-detail/index?communityNoteId=${communityNoteId}`
       })

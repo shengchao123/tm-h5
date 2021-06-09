@@ -27,7 +27,7 @@
                    prop="appropriateCrowd">
         <div class="flex1 tr mr16 text-hidden"
              @click="showAppropriateCrowd = true"
-             style="color: #999999">
+             :style="{color: appropriateCrowdNames === '未选择' ? '#999999' : '#333333'}">
           {{appropriateCrowdNames}}</div>
         <SvgIcon icon="icon_xiangyoujiantou"
                  style="color:#c4c4c4"></SvgIcon>
@@ -36,7 +36,7 @@
                    prop="serviceContent">
         <div class="flex1 tr mr16 text-hidden"
              @click="showServiceContent = true"
-             style="color: #999999">
+             :style="{color: serviceContentNames === '未选择' ? '#999999' : '#333333'}">
           {{serviceContentNames}}</div>
         <SvgIcon icon="icon_xiangyoujiantou"
                  style="color:#c4c4c4"></SvgIcon>
@@ -46,6 +46,18 @@
         <u-input v-model="form.address"
                  placeholder-style="color: #999999"
                  placeholder="输入地址"
+                 class="tr" />
+      </u-form-item>
+      <u-form-item label="经度">
+        <u-input v-model="form.lng"
+                 placeholder-style="color: #999999"
+                 placeholder="请输入经度"
+                 class="tr" />
+      </u-form-item>
+      <u-form-item label="纬度">
+        <u-input v-model="form.lat"
+                 placeholder-style="color: #999999"
+                 placeholder="请输入维度"
                  class="tr" />
       </u-form-item>
       <u-form-item label="联系电话"
@@ -182,9 +194,7 @@ export default {
     },
     // 提交按钮
     submit () {
-      if (!this.validateForm()) {
-        return this.$msg("请填写完整信息");
-      }
+      if (!this.validateForm()) return
       const params = {
         ...this.form,
       }
@@ -203,13 +213,24 @@ export default {
       });
     },
     validateForm () {
-      const { title, introduction, appropriateCrowd, images, serviceContent, address, contactPhone } = this.form;
-      if (appropriateCrowd && title && introduction && images.length > 0 && serviceContent && address && contactPhone) {
-        return true;
-      } else {
-        return false
+
+      for (const [key, val] of formValidateMap) {
+        if (this.$isEmpty(this.form[key])) {
+          this.$msg(val)
+          return
+        }
       }
+      return true
     },
+    validateFormClass () {
+      for (const [key, val] of formValidateMap) {
+        if (this.$isEmpty(this.form[key])) {
+          return false
+        }
+      }
+      return true
+    },
+
     // 我知道了
     onKnow () {
       this.show = false;
@@ -226,11 +247,22 @@ export default {
       return _temStr || '未选择'
     },
     isSubmit () {
-      return this.validateForm() ? 'back' : ''
+      return this.validateFormClass() ? 'back' : ''
     },
   },
   components: { UploadImages },
 };
+const formValidateMap = new Map([
+  ['title', '请输入标题'],
+  ['introduction', '请输入描述'],
+  ['images', '请至少上传一张照片'],
+  ['appropriateCrowd', '请选择适宜人群'],
+  ['serviceContent', '请选择服务内容'],
+  ['address', '请输入地址'],
+  ['lng', '请输入经度'],
+  ['lat', '请输入纬度'],
+  ['contactPhone', '请输入联系电话'],
+])
 </script>
 <style lang="scss" scoped>
 .wrap {

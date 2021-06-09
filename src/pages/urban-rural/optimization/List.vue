@@ -10,13 +10,12 @@
                 placeholder-color="#999999"
                 v-model="search.keyword"></u-search>
     </div>
+
     <mescroll-uni ref="mescrollRef"
-                  :top="mescrollTop"
-                  :bottom="mescrollBottom"
+                  top="120rpx"
                   @init="mescrollInit"
                   :up="upOption"
                   @up="onreachTop"
-                  @down="onreachBottom"
                   class="relative uni">
       <div class="content row"
            v-if="!$isEmpty(dataList)">
@@ -27,13 +26,12 @@
       </div>
       <empty v-else></empty>
     </mescroll-uni>
+
   </div>
 </template>
 
 <script>
 import ProductItem from '@/pages/urban-rural/components/ProductItem'
-import MescrollMixin from "@/components/mescroll-uni/mescroll-mixins.js";
-
 import listMixins from '../mixins'
 export default {
   name: 'List',
@@ -42,6 +40,7 @@ export default {
       this.search.pageNumber = 1
       this.getDataList()
     },
+
     // 获取商品列表
     getDataList () {
       const params = {
@@ -51,16 +50,11 @@ export default {
         if (res.isError) return
         const { items, count } = res.content
         this.mescroll.endBySize(items.length, count)
-        this.dataList = params.pageNumber === 1 ? items : this.dataList.concat(items)
+        this.dataList = params.pageNumber === 1 ? items : this.listData.concat(items)
       })
     }
   },
-  data () {
-    return {
-      mescrollTop: '120rpx'
-    }
-  },
-  mixins: [listMixins, MescrollMixin],
+  mixins: [listMixins],
   components: { ProductItem },
 }
 </script>

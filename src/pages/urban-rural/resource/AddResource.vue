@@ -69,7 +69,7 @@
         <svg-icon icon="icon_chenggongFill"
                   class="ft88 mt64 icon-style"></svg-icon>
         <div class="ft32 bold mt32">提交成功，等待审核</div>
-        <div class="ft26 color-999 mt16">审核后，展位内容将显示在定制体验列表</div>
+        <div class="ft26 color-999 mt16">审核后帖子内容将显示在资源共享页面</div>
         <div class="know-btn ft28 color-666"
              @click="onKnow">我知道啦</div>
       </div>
@@ -94,9 +94,8 @@ export default {
     },
     // 提交按钮
     submit () {
-      if (!this.validateForm()) {
-        return this.$msg("请填写完整信息");
-      }
+      console.log(!this.validateForm())
+      if (!this.validateForm()) return
       const params = {
         ...this.form,
       }
@@ -106,12 +105,20 @@ export default {
       });
     },
     validateForm () {
-      const { title, content, resourceType, contactPerson, contactPhone, weChatNumber, attachmentDTOList } = this.form;
-      if (content && title && resourceType && attachmentDTOList.length > 0 && contactPerson && weChatNumber && contactPhone) {
-        return true;
-      } else {
+      const { title, content, attachmentDTOList } = this.form;
+      if (!title) {
+        this.$msg('请输入标题')
         return false
       }
+      if (!content) {
+        this.$msg('请输入正文内容')
+        return false
+      }
+      if (this.$isEmpty(attachmentDTOList)) {
+        this.$msg('请至少上传一张照片')
+        return false
+      }
+      return true
     },
     // 我知道了
     onKnow () {
@@ -147,7 +154,8 @@ export default {
       return _temStr || '未选择'
     },
     isSubmit () {
-      return this.validateForm() ? 'back' : ''
+      const { title, content, attachmentDTOList } = this.form;
+      return title && content && !this.$isEmpty(attachmentDTOList) ? 'back' : ''
     },
   },
   components: { UploadImages },

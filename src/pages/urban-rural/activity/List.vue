@@ -10,7 +10,6 @@
                   @init="mescrollInit"
                   :up="upOption"
                   @up="onreachTop"
-                  @down="onreachBottom"
                   class="relative uni mt30">
       <div v-if="!$isEmpty(dataList)">
         <div v-for="item in dataList"
