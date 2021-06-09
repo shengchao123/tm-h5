@@ -9,6 +9,7 @@
 import mapMixin from '@/mixins/map.js'
 import AMap from 'AMap'
 let overlays = null
+let productOverlays = null
 export default {
   name: 'index',
   methods: {
@@ -38,7 +39,6 @@ export default {
         const marker = new AMap.Marker({
           position: new AMap.LngLat(item.lng, item.lat),
           map: this.$amap,
-          animation: 'AMAP_ANIMATION_DROP',
           icon: Icon,
           touchZoom: false
         })
@@ -48,7 +48,6 @@ export default {
         new AMap.Marker({
           position: new AMap.LngLat(item.lng, item.lat),
           map: this.$amap,
-          animation: 'AMAP_ANIMATION_DROP',
           content: indexText,
           touchZoom: false
         })
@@ -60,6 +59,47 @@ export default {
         // 点击方法绑定
         marker.on('click', this.markerClick)
       })
+    },
+    drawProductMarkers (points) {
+      // 绘制图标
+      const Icon = new AMap.Icon({
+        size: new AMap.Size(23, 38),
+        image: require('@/static/map/guide_mark_6.png'),
+        imageSize: new AMap.Size(23, 38)
+      })
+
+      productOverlays = new AMap.OverlayGroup()
+
+      points.forEach((item, index) => {
+        // 绘制标记气球
+        const marker = new AMap.Marker({
+          position: new AMap.LngLat(item.lng, item.lat),
+          map: this.$amap,
+          icon: Icon,
+          touchZoom: false
+        })
+
+        productOverlays.addOverlay(marker)
+
+        // 设置 marker 绑定的数据
+        marker.setExtData(item)
+        // 点击方法绑定
+        marker.on('click', this.productClick)
+      })
+    },
+
+    productClick (e) {
+      const point = e.target.getExtData()
+      // 绘制气球上数字文字
+      const indexText = `<div style="color:#333333;margin-top:2px;font-size:14px">${point.name}</div>`
+      // eslint-disable-next-line no-new
+      const marker = new AMap.Marker({
+        position: new AMap.LngLat(point.lng, point.lat),
+        map: this.$amap,
+        content: indexText,
+        touchZoom: false
+      })
+      productOverlays.addOverlay(marker)
     },
 
     markerClick (e) {
@@ -97,6 +137,14 @@ export default {
       this.drawMarker()
       this.drawPath()
     }
+  },
+  created () {
+    uni.$on('drawProductMarkers', (data) => {
+      if (productOverlays) {
+        productOverlays.clearOverlays()
+      }
+      this.drawProductMarkers(data)
+    })
   },
   props: {
     points: Array,
