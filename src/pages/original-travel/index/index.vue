@@ -73,12 +73,12 @@ export default {
   methods: {
     // 下拉刷新
     downCallback () {
-      console.log('下拉刷新')
+      // console.log('下拉刷新')
       this.mescroll.resetUpScroll(); // 重置列表为第一页
     },
     // 加载更多
     upCallback (page) {
-      console.log('加载更多')
+      // console.log('加载更多')
       const evaluationList = this.$refs.evaluationList
       evaluationList && evaluationList.getItineraryEvaluationPage(page);
     },

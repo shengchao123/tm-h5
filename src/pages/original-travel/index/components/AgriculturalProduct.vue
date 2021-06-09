@@ -44,7 +44,7 @@ export default {
       })
     },
     onGuide (item) {
-      this.onShowNavigationSelect(item)
+      this.onShowNavigationSelect({ item })
     },
     getJourneyProductListByJourneyLineId () {
       const params = {
