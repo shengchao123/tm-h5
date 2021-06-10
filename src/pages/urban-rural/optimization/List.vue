@@ -12,10 +12,11 @@
     </div>
 
     <mescroll-uni ref="mescrollRef"
-                  top="120rpx"
+                  top="150rpx"
                   @init="mescrollInit"
                   :up="upOption"
-                  @up="onreachTop"
+                  @down="downCallback"
+                  @up="upCallback"
                   class="relative uni">
       <div class="content row"
            v-if="!$isEmpty(dataList)">
@@ -24,9 +25,8 @@
           <ProductItem :item="item"></ProductItem>
         </div>
       </div>
-      <empty v-else></empty>
     </mescroll-uni>
-
+    <empty v-if="$isEmpty(dataList)"></empty>
   </div>
 </template>
 
