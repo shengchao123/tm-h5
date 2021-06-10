@@ -23,8 +23,9 @@
             v-if="lineList.length>3"
             @click="isLineAllShow = !isLineAllShow">
         <text>{{isLineAllShow ? '收起':'展开'}}</text>
-        <svg-icon class="color-999 ml8"
-                  :icon="isLineAllShow ? 'icon_xiangshangjiantou' : 'icon_xiangxia'"></svg-icon>
+        <span class="iconfont color-999 ml8 ft24"
+              :class="isLineAllShow ? 'icon_xiangshangjiantou' : 'icon_xiangxia'"></span>
+
       </view>
     </view>
   </view>
@@ -79,13 +80,13 @@ export default {
   width: 100%;
   overflow: hidden;
   max-height: 0rpx;
-  transition: max-height 0.8s;
+  transition: max-height 0.4s;
 }
 .line-wrap {
   width: 100%;
   overflow: hidden;
   max-height: 299rpx;
-  transition: max-height 0.8s;
+  transition: max-height 0.4s;
 }
 .h-auto {
   max-height: 2000rpx;

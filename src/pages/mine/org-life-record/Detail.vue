@@ -30,14 +30,15 @@
         <view class="column pt24 pb24 ft28 color-333">
           <text class="bold pb24">活动内容及决议</text>
           <text class="activity-content">{{lifeData.activityContent}}</text>
-          <view class="color-999 ft22 experience-count mt8">{{lifeData.activityContent.length}}/1000</view>
+          <!-- <view class="color-999 ft22 experience-count mt8">{{lifeData.activityContent.length}}/1000</view> -->
         </view>
       </view>
+      <line-clock v-if="lifeData.isShowSignIn"
+                  ref="lineClock"
+                  clockPageType="detail"
+                  :isShowSignIn.sync="lifeData.isShowSignIn"
+                  :journeyItineraryId="journeyItineraryId"></line-clock>
     </div>
-    <line-clock v-if="lifeData.isShowSignIn"
-                clockPageType="detail"
-                :isShowSignIn.sync="lifeData.isShowSignIn"
-                :journeyItineraryId="journeyItineraryId"></line-clock>
     <view class="center-align bg-white pl30 pr30 save-btn between-row tb">
       <view class="center-align ft20 color-666 flex1"
             v-if="lifeData.isSelf">
@@ -76,7 +77,8 @@
                   shareBtns="wx moments copyLink poster"
                   :showHomeBtn="showHomeBtn"
                   :shareData="shareData"
-                  @scrollToTop="scrollToTop"></share-dialog>
+                  @scrollToTop="scrollToTop"
+                  @posterDrawStart="posterDrawStart"></share-dialog>
   </view>
 </template>
 
@@ -98,6 +100,12 @@ export default {
         urls: urls,
         indicator: "number"
       })
+    },
+    posterDrawStart () {
+      const lineClock = this.$refs.lineClock
+      if (lineClock) {
+        lineClock.isLineAllShow = true
+      }
     },
     // 分享
     onShare () {

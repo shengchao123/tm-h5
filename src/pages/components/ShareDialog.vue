@@ -91,7 +91,7 @@
                      mode="circle"
                      style="margin: 30rpx auto 0"></u-loading>
         </div>
-        <div v-show="posterCreateEnd"
+        <div v-if="posterCreateEnd"
              class="img-box">
           <img ref="posterImg"
                class="img"
@@ -131,11 +131,12 @@ export default {
     },
     // 关闭分享弹窗
     hide () {
-      this.guideShare = false,
-        this.showPoster = false,
-        this.savePoster = false,
-        this.posterCreateEnd = false,
-        this.$refs.sharePopup.close()
+      this.guideShare = false
+      this.showPoster = false
+      this.savePoster = false
+      this.posterCreateEnd = false
+      this.posterUrl = ''
+      this.$refs.sharePopup.close()
     },
     onHome () {
       uni.switchTab({
@@ -314,12 +315,14 @@ export default {
       this.savePoster = true
       this.posterCreateEnd = false
       const posterEl = document.getElementById('posterView')
-      html2canvas(posterEl, {
-        useCORS: true,
-      }).then((canvas) => {
-        this.posterCreateEnd = true
-        this.posterUrl = canvas.toDataURL("image/png");
-      });
+      setTimeout(() => {
+        html2canvas(posterEl, {
+          useCORS: true,
+        }).then((canvas) => {
+          this.posterCreateEnd = true
+          this.posterUrl = canvas.toDataURL("image/png");
+        });
+      }, 500)
     },
     // 保存海报
     saveCanvas () {
