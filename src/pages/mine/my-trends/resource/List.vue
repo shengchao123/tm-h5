@@ -2,7 +2,6 @@
   <div class="wrap">
     <mescroll-uni ref="mescrollRef"
                   :top="mescrollTop"
-                  :bottom="mescrollBottom"
                   @init="mescrollInit"
                   :up="upOption"
                   @up="onreachTop"
