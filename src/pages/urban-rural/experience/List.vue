@@ -10,7 +10,8 @@
                   @scroll="scroll"
                   @init="mescrollInit"
                   :up="upOption"
-                  @up="onreachTop"
+                  @down="downCallback"
+                  @up="upCallback"
                   class="relative uni">
       <div class="content"
            v-if="!$isEmpty(dataList)">
@@ -20,8 +21,8 @@
                           :isScroll="isScroll"></ExperienceItem>
         </div>
       </div>
-      <empty v-else></empty>
     </mescroll-uni>
+    <empty v-if="$isEmpty(dataList)"></empty>
 
     <PublishBtn @onPublish="onPublish"
                 :isScroll="isScroll"></PublishBtn>
