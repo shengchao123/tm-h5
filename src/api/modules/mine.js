@@ -174,6 +174,15 @@ export function removeJourneyLifeDocumentary (params) { // 删除生活纪实 '/
 export function getMyCommunityNotePage (params) { // 分页查询我的联盟帖子
   return request({
     url: urls.getMyCommunityNotePage,
+     data: {
+      ...params
+    }
+  })
+}
+
+export function getMyJourneyTalentsMessagePage (params) { // 我的留言分页
+  return request({
+    url: urls.getMyJourneyTalentsMessagePage,
     data: {
       ...params
     }
@@ -198,6 +207,15 @@ export function getMyJourneyMerchantBoothInfoPage (params) { // 分页我的获�
 export function getMyItineraryEvaluationPage (params) { // 分页查询我的行程评价
   return request({
     url: urls.getMyItineraryEvaluationPage,
+      data: {
+      ...params
+    }
+  })
+}
+
+export function respondMessage (params) { // 回复留言
+  return request({
+    url: urls.respondMessage,
     data: {
       ...params
     }

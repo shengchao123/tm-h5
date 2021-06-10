@@ -133,5 +133,8 @@ export const urls = {
   modifyJourneyLifeDocumentary: '/linanJourney/journeyLifeDocumentary/modifyJourneyLifeDocumentary', // 修改生活纪实
   removeJourneyLifeDocumentary: '/linanJourney/journeyLifeDocumentary/removeJourneyLifeDocumentary', // 删除生活纪实
 
+  //留言
+  getMyJourneyTalentsMessagePage:'/linanJourney/journeyTalentsMessage/getMyJourneyTalentsMessagePage',//我的留言分页
+  respondMessage:'/linanJourney/journeyTalentsMessage/respondMessage'//回复留言
 
 }
