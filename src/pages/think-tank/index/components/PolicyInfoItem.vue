@@ -1,3 +1,4 @@
+
 <template>
   <view class="item-wrap bg-white pl30 pr30 pt24 pb32">
     <text class="ft34 medium color-333">{{itemInfo.title}}</text>

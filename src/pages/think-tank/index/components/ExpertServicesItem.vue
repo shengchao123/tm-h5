@@ -7,7 +7,7 @@
       </image>
       <view class="ml16 column">
         <text class="ft28 color-333 medium">{{item.name}}</text>
-        <text class="ft22 color-999 pt12 skilled">{{item.titleList.join('、')}}</text>
+        <text class="ft22 color-999 pt12 skilled">{{titleList}}</text>
       </view>
     </view>
     <view class="ft26">
@@ -50,11 +50,11 @@
         <!-- 普通用户 -->
         <view v-else
               class="member">
-          <view v-for="(item,index) in btns"
+          <view v-for="(btnItem,index) in btns"
                 :key="index"
                 class="btn-item center ft34 color-333"
                 @click="onAction(index)">
-            <text>{{item}}</text>
+            <text>{{btnItem}}</text>
           </view>
         </view>
       </view>
@@ -74,7 +74,7 @@ export default {
       }
       if (index === 1) {
         uni.navigateTo({
-          url: '/pages/think-tank/message/index'
+          url: `/pages/think-tank/message/index?id=${this.item.id}`
         })
       }
     },
@@ -122,6 +122,13 @@ export default {
       formList: []
     }
   },
+  computed: {
+    titleList () {
+      const { item } = this
+      if (this.$isEmpty(item.titleList)) return ''
+      return item.titleList.join('、')
+    }
+  }
 }
 </script>
 <style lang='scss' scoped>

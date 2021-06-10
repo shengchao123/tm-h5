@@ -37,3 +37,13 @@ export function getShowJourneyTalentsDetail (params) { // 人才详情
     }
   })
 }
+
+export function leaveMessage (params) { // 留言
+  return request({
+    url: urls.leaveMessage,
+    needlessToken: true,
+    data: {
+      ...params
+    }
+  })
+}

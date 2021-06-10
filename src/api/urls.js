@@ -26,9 +26,10 @@ export const urls = {
 
   // 人才智库
   getShowJourneyPolicyPage:'/linanJourney/journeyPolicyManagement/getShowJourneyPolicyPage',// 政策分页
-  getShowJourneyPolicyDetai:'/linanJourney/journeyPolicyManagement/getShowJourneyPolicyDetail',// 政策详情
+  getShowJourneyPolicyDetail:'/linanJourney/journeyPolicyManagement/getShowJourneyPolicyDetail',// 政策详情
   getShowJourneyTalentsPage:'/linanJourney/journeyTalents/getShowJourneyTalentsPage',// 人才分页
   getShowJourneyTalentsDetail:'/linanJourney/journeyTalents/getShowJourneyTalentsDetail',// 人才详情
+  leaveMessage:'/linanJourney/journeyTalentsMessage/leaveMessage', // 留言
 
   // 初心之旅
   getRecommendJourneyLineList: '/linanJourney/journeyLine/getRecommendJourneyLineList', // 推荐路线

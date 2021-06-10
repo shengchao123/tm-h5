@@ -124,6 +124,12 @@
 			}
 		},
 		{
+			"path": "pages/think-tank/expert/Detail",
+			"style": {
+				"navigationBarTitleText": "专家详情"
+			}
+		},
+		{
 			"path": "pages/think-tank/countryside/Detail",
 			"style": {
 				"navigationBarTitleText": "涉农项目"
