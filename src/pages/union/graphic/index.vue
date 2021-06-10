@@ -14,33 +14,39 @@
     </div>
     <mescroll-uni v-if="tabList.length > 0"
                   ref="mescrollRef"
-                  class="mescroll-wrap"
+                  class="mescroll-wrap relative"
                   top="100"
                   :up="upOption"
                   @init="mescrollInit"
                   @down="downCallback"
                   @up="upCallback">
       <template>
-        <div class="list pt12">
-          <div v-for="(item, index) in listData"
-               :key="index"
-               class="item flex mb20 pt32 pb32 pl30 pr30"
-               @click="onDetail(item)">
-            <img class="poster mr24"
-                 :src="$fileHost + item.imageUrl" />
-            <div class="flex1">
-              <div class="ft32 medium mb16">{{item.title}}</div>
-              <div class="content ft26 mb14">{{item.digest}}</div>
-              <div class="ft24 color-999">
-                <span class="mr40">{{$moment(item.createTime).format('YYYY-MM-DD')}}</span>
-                <span>{{item.orgName}}</span>
+        <div class="relative"
+             style="height: 75vh">
+          <div v-if="listData.length > 0"
+               class="list pt12">
+            <div v-for="(item, index) in listData"
+                 :key="index"
+                 class="item flex mb20 pt32 pb32 pl30 pr30"
+                 @click="onDetail(item)">
+              <img class="poster mr24"
+                   :src="$fileHost + item.imageUrl" />
+              <div class="flex1">
+                <div class="ft32 medium mb16">{{item.title}}</div>
+                <div class="content ft26 mb14">{{item.digest}}</div>
+                <div class="ft24 color-999">
+                  <span class="mr40">{{$moment(item.createTime).format('YYYY-MM-DD')}}</span>
+                  <span>{{item.orgName}}</span>
+                </div>
               </div>
             </div>
           </div>
+          <empty v-else></empty>
         </div>
         <!-- <contact-person :list="tabList[current].addressBookList"></contact-person> -->
       </template>
     </mescroll-uni>
+
   </div>
 </template>
 <script>
