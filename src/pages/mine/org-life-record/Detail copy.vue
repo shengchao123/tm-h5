@@ -1,37 +1,30 @@
 <template>
   <view class="life-wrap"
         @click="onPage">
-    <view class="tb pl30 pr30 bg-white content-wrap">
-      <view class="flex bb pt24 pb24 ft28 color-333 content-item"
+    <view class="tb pl30 pr30 bg-white">
+      <view class="center-align h88 bb ft28 color-333"
             v-for="(item,index) in lifeInfoProp"
             :key="index">
-        <text class="w168 bold">{{item.name}}</text>
-        <text class="pl24 flex1">{{lifeDataText(item.prop)}}</text>
+        <text class="w144 bold">{{item.name}}</text>
+        <text :class="item.prop === 'journeyItineraryName' && 'color-518cfc'"
+              @click="onJourneyItinerary(item.prop)">{{lifeData[item.prop]}}</text>
       </view>
-    </view>
-    <view class="mt20 pl30 pr30 bg-white content-wrap">
-      <view class="center-align bb pt24 pb24 ft28 color-333 content-item"
-            v-for="(item,index) in numInfoProp"
-            :key="index">
-        <text class="w168 bold">{{item.name}}</text>
-        <text class="pl24">{{lifeData[item.prop]}}</text>
+      <view>
+        <view class="center-align h88 ft28 color-333">
+          <text class="w144 bold">活动心得</text>
+        </view>
+        <text class="mt-8">{{lifeData.activityExperience}}</text>
       </view>
-    </view>
-    <view class="mt20 pl30 pr30 bg-white content-wrap">
-      <view class="column bb pt24 pb32 ft28 color-333 content-item"
-            v-for="(item,index) in nameInfoProp"
-            :key="index">
-        <text class="bold pb24">{{item.name}}</text>
-        <text class="h78">{{lifeData[item.prop]}}</text>
+      <view class="mt24 flex pb8 flex-wrap life-image">
+        <view v-for="(item, index) in lifeData.attachmentList"
+              :key="index"
+              class="life-item column center">
+          <image class="life-img"
+                 :src="$sourceUrl(item.url)"
+                 mode="aspectFill"
+                 @click="previewImage(index)"></image>
+        </view>
       </view>
-    </view>
-    <view class="mt20 pl30 pr30 bg-white">
-      <view class="column pt24 pb24 ft28 color-333">
-        <text class="bold pb24">活动内容及决议</text>
-        <text class="activity-content">{{lifeData.activityContent}}</text>
-        <view class="color-999 ft22 experience-count mt8">{{lifeData.activityContent.length}}/1000</view>
-      </view>
-
     </view>
     <line-clock v-if="lifeData.isShowSignIn"
                 clockPageType="detail"
@@ -100,6 +93,13 @@ export default {
     onShare () {
       this.$refs.shareDialog.show()
     },
+    // 行程名称跳转
+    onJourneyItinerary (type) {
+      if (type !== 'journeyItineraryName') return
+      uni.navigateTo({
+        url: `/pages/original-travel/stroke-order/detail?id=${this.journeyItineraryId}`
+      })
+    },
     // 编辑
     onEdit () {
       const pageParams = `pageType=edit&id=${this.journeyItineraryId}&name=${this.lifeData.journeyItineraryName}`
@@ -145,57 +145,19 @@ export default {
       journeyItineraryId: null,
       lifeInfoProp: Object.freeze([
         {
-          prop: 'type',
-          name: '类型'
+          prop: 'journeyItineraryName',
+          name: '对应行程'
         },
-        {
-          prop: 'date',
-          name: '时间'
-        },
-        {
-          prop: 'address',
-          name: '地点'
-        },
-        {
-          prop: 'host',
-          name: '主持人'
-        },
-        {
-          prop: 'recorder',
-          name: '记录人'
-        }
-      ]),
-      numInfoProp: Object.freeze([
         {
           prop: 'shouldNumber',
           name: '应到人数'
-        },
-        {
-          prop: 'flowNumber',
-          name: '流动党员和行动不便党员数'
         },
         {
           prop: 'actualNumber',
           name: '实到人数'
         }
       ]),
-      nameInfoProp: Object.freeze([
-        {
-          prop: 'attendees',
-          name: '到会人员'
-        },
-        {
-          prop: 'superiors',
-          name: '到会指导的上级领导'
-        },
-        {
-          prop: 'absentPerson',
-          name: '缺席人员及原因'
-        }
-      ]),
-      lifeData: {
-        activityContent: ''
-      },
+      lifeData: {},
       isDelShow: false,
       shareData: {}
     }
@@ -208,14 +170,6 @@ export default {
     this.journeyItineraryId = option.id
   },
   computed: {
-    lifeDataText () {
-      return (val) => {
-        const { date } = this.lifeData
-        if (val === 'date') return this.$moment(date).format('YYYY-MM-DD')
-        return this.lifeData[val]
-      }
-
-    },
     btnStyle () { // 自定义按钮样式
       const temWidth = this.lifeData.isSelf ? '330rpx' : '690rpx'
       const temStyle = {
@@ -273,31 +227,43 @@ page {
   background: #f7f7f7;
   height: 100%;
 }
-.w168 {
-  width: 168rpx;
+.color-518cfc {
+  color: #518cfc;
 }
-.h78 {
-  min-height: 78rpx;
+.w144 {
+  width: 144rpx;
+}
+.h88 {
+  height: 88rpx;
+}
+.mt-8 {
+  margin-top: -8rpx;
 }
 .m-bianji {
   margin: 0 124rpx 0 66rpx;
 }
-.content-wrap {
-  .content-item:last-child {
-    border-bottom: 0;
-  }
+.flex-wrap {
+  flex: wrap;
 }
 .life-wrap {
   padding-bottom: 152rpx;
   overflow: auto;
-  .activity-content {
-    min-height: 320rpx;
-    // overflow: auto;
+  .life-item {
+    position: relative;
+    width: 214rpx;
+    height: 214rpx;
+    border-radius: 10rpx;
+    margin-right: 24rpx;
+    margin-bottom: 24rpx;
+    box-sizing: border-box;
+    .life-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 10rpx;
+    }
   }
-  .experience-count {
-    height: 22rpx;
-    line-height: 22rpx;
-    text-align: right;
+  .life-image .life-item:nth-of-type(3n) {
+    margin-right: 0;
   }
 }
 .save-btn {
