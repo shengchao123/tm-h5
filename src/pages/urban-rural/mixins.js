@@ -11,7 +11,12 @@ const map = {
       mescrollBottom: '0',
       upOption: {
         empty: {
-          use: false
+          icon: null,
+          tip: "暂无相关数据",
+          btnText: "",
+          fixed: false,
+          top: "100rpx",
+          zIndex: 99
         },
         page: {
           size: 10 // 每页数据的数量,默认10

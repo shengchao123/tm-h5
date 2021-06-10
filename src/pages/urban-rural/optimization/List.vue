@@ -16,8 +16,7 @@
                   @init="mescrollInit"
                   :up="upOption"
                   @down="downCallback"
-                  @up="upCallback"
-                  class="relative uni">
+                  @up="upCallback">
       <div class="content row"
            v-if="!$isEmpty(dataList)">
         <div v-for="item in dataList"
@@ -25,8 +24,9 @@
           <ProductItem :item="item"></ProductItem>
         </div>
       </div>
+      <empty v-else></empty>
     </mescroll-uni>
-    <empty v-if="$isEmpty(dataList)"></empty>
+
   </div>
 </template>
 
