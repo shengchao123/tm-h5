@@ -99,7 +99,6 @@ export default {
           title,
           desc: content,
         }
-        console.log(shareData)
         this.setShareData(shareData)
       })
 
