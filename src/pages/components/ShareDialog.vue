@@ -368,6 +368,9 @@ export default {
       immediate: true
     }
   },
+  created () {
+    console.log(wx)
+  },
   components: { Popup }
 }
 </script>
