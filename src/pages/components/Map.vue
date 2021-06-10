@@ -147,7 +147,7 @@ export default {
       if (productOverlays) {
         productOverlays.clearOverlays()
       }
-      this.drawProductMarkers(temArray)
+      this.drawProductMarkers(data)
     })
   },
   props: {
@@ -169,23 +169,6 @@ export default {
   mixins: [mapMixin]
 }
 
-const temArray = [
-  {
-    "lat": 30.71298400,
-    "lng": 119.86725100,
-    journeyPointName: '农产品 1'
-  },
-  {
-    "lat": 30.21298400,
-    "lng": 119.16725100,
-    journeyPointName: '农产品'
-  },
-  {
-    "lat": 30.81298400,
-    "lng": 119.46725100,
-    journeyPointName: '农产品 3'
-  },
-]
 </script>
 
 <style lang='scss' scoped>
