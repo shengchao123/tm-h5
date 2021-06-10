@@ -184,9 +184,12 @@ export default {
     },
     wxShare ({ appId, timestamp, nonceStr, signature }) {
       const { title, desc, link } = this.shareData
-      const separator = link.includes('?') ? '' : '?'
-      const masterOrgId = uni.getStorageSync('masterOrgId')
-      const shareLink = link + separator + '&masterOrgId=' + masterOrgId
+      let shareLink = link
+      if (!link.includes('masterOrgId')) {
+        const separator = link.includes('?') ? '' : '?'
+        const masterOrgId = uni.getStorageSync('masterOrgId')
+        shareLink = link + separator + '&masterOrgId=' + masterOrgId
+      }
       const imgUrl = this.$isEmpty(this.shareData.imgUrl) ? this.$imgHost + 'share.png' : this.shareData.imgUrl
       wx.config({
         debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。

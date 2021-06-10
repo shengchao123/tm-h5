@@ -21,4 +21,6 @@ export default {
 @import "./styles/init.scss";
 @import "./styles/u-view.scss";
 /*每个页面公共css */
+@import "./styles/iconfont.css";
 </style>
+

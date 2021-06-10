@@ -12,7 +12,6 @@
       <div class="ft28 mt24">{{detailInfo.introduction}}</div>
     </div>
   </div>
-  </div>
 </template>
 
 <script>

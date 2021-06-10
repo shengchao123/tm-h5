@@ -9,6 +9,7 @@
 import mapMixin from '@/mixins/map.js'
 import AMap from 'AMap'
 let overlays = null
+let productOverlays = null
 export default {
   name: 'index',
   methods: {
@@ -38,7 +39,6 @@ export default {
         const marker = new AMap.Marker({
           position: new AMap.LngLat(item.lng, item.lat),
           map: this.$amap,
-          animation: 'AMAP_ANIMATION_DROP',
           icon: Icon,
           touchZoom: false
         })
@@ -48,7 +48,6 @@ export default {
         new AMap.Marker({
           position: new AMap.LngLat(item.lng, item.lat),
           map: this.$amap,
-          animation: 'AMAP_ANIMATION_DROP',
           content: indexText,
           touchZoom: false
         })
@@ -60,6 +59,51 @@ export default {
         // 点击方法绑定
         marker.on('click', this.markerClick)
       })
+    },
+    drawProductMarkers (points) {
+      const size = new AMap.Size(20, 25)
+      // 绘制图标
+      const Icon = new AMap.Icon({
+        size,
+        image: require('@/static/map/guide_mark_6.png'),
+        imageSize: size
+      })
+
+      productOverlays = new AMap.OverlayGroup()
+
+      points.forEach((item, index) => {
+        // 绘制标记气球
+        const marker = new AMap.Marker({
+          position: new AMap.LngLat(item.lng, item.lat),
+          map: this.$amap,
+          icon: Icon,
+          label: item.journeyPointName,
+          touchZoom: false,
+          extData: item
+        })
+
+        productOverlays.addOverlay(marker)
+
+        // 点击方法绑定
+        marker.on('click', this.productClick)
+      })
+    },
+
+    productClick (e) {
+      const point = e.target.getExtData()
+      console.log(point)
+      // 绘制气球上数字文字
+      const indexText = `<div style="color:#333333;margin-top:2px;font-size:12px">${point.journeyPointName}</div>`
+      // eslint-disable-next-line no-new
+      const offsetW = point.journeyPointName.length * 12 / 2 - 2
+      const marker = new AMap.Marker({
+        position: new AMap.LngLat(point.lng, point.lat),
+        map: this.$amap,
+        content: indexText,
+        offset: new AMap.Pixel(-offsetW, -3),
+        touchZoom: false
+      })
+      productOverlays.addOverlay(marker)
     },
 
     markerClick (e) {
@@ -98,6 +142,14 @@ export default {
       this.drawPath()
     }
   },
+  created () {
+    uni.$on('drawProductMarkers', (data) => {
+      if (productOverlays) {
+        productOverlays.clearOverlays()
+      }
+      this.drawProductMarkers(data)
+    })
+  },
   props: {
     points: Array,
     needClick: {
@@ -116,6 +168,7 @@ export default {
   },
   mixins: [mapMixin]
 }
+
 </script>
 
 <style lang='scss' scoped>
