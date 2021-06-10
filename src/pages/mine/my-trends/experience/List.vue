@@ -17,12 +17,10 @@
       </div>
       <empty v-else></empty>
     </mescroll-uni>
-
     <!-- <PublishBtn @onPublish="onPublish"
                 :isScroll="isScroll"></PublishBtn> -->
   </div>
 </template>
-
 <script>
 import ExperienceItem from '@/pages/urban-rural/components/ExperienceItem'
 // import PublishBtn from '@/pages/urban-rural/components/PublishBtn'
@@ -53,9 +51,7 @@ export default {
       }
       this.$api.getMyJourneyMerchantBoothInfoPage(params).then(res => {
         if (res.isError) return
-
         let { items, count } = res.content
-
         items = items.map(item => {
           const _appropriateCrowdFormat = item.appropriateCrowd.map(item1 => item1.typeName)
           const _serviceContentFormat = item.serviceContent.map(item1 => item1.typeName)
@@ -69,7 +65,6 @@ export default {
       })
     }
   },
-
   mixins: [listMixins, MescrollMixin],
   components: { ExperienceItem, },
   data () {

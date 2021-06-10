@@ -11,8 +11,9 @@
       <view class="center-align pg12">
         <view class="trigger-area relative center-align pl32"
               @click.stop="onLike">
-          <text class="ft28  mr8"
-                :class="notesItem.isLike ? 'icon_zan primary-color' : 'icon_zankong color-999'"></text>
+          <!-- <svg-icon class="ft28  mr8"
+                    :class="notesItem.isLike ? 'primary-color' : 'color-999'"
+                    :icon="notesItem.isLike ? 'icon_zan' : 'icon_zankong'"></svg-icon> -->
           <svg-icon :icon="notesItem.isLike ? 'icon_shoucang' : 'icon_weishoucang'"
                     class="ft28 color-999 mr8"
                     :class="notesItem.isLike ? 'primary-color' : 'color-999'"></svg-icon>

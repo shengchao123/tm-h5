@@ -195,3 +195,11 @@ export function getMyJourneyMerchantBoothInfoPage (params) { // 分页我的获�
     }
   })
 }
+export function getMyItineraryEvaluationPage (params) { // 分页查询我的行程评价
+  return request({
+    url: urls.getMyItineraryEvaluationPage,
+    data: {
+      ...params
+    }
+  })
+}

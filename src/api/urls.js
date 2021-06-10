@@ -99,6 +99,7 @@ export const urls = {
   getMyCommunityNotePage: '/community/communityNote/getMyCommunityNotePage', // 分页查询我的联盟帖子
   getMyJourneyResourceSharingPage: '/linanJourney/journeyResourceSharing/getMyJourneyResourceSharingPage', // 分页查询我的共享资源
   getMyJourneyMerchantBoothInfoPage: '/linanJourney/journeyMerchantBooth/getMyJourneyMerchantBoothInfoPage', // 分页我的获取商家展位
+  getMyItineraryEvaluationPage: '/linanJourney/journeyItineraryEvaluation/getMyItineraryEvaluationPage', // 分页查询我的行程评价
 
   // 实名认证
   findOrgList: '/organization/orgConsumer/findOrgList', // 获取联盟组织列表

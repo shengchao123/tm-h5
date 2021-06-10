@@ -74,7 +74,6 @@ export default {
     calculationHeight () {
       const boxHeight = this.$refs.contentBox.offsetHeight
       const textHeight = this.$refs.contentText.offsetHeight
-      console.log(textHeight, boxHeight)
       this.isShowExpand = textHeight > boxHeight
     },
   },
