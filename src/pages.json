@@ -215,6 +215,12 @@
 			}
 		},
 		{
+			"path": "pages/mine/leave-message/index",
+			"style": {
+				"navigationBarTitleText": "留言回复"
+			}
+		},
+		{
 			"path": "pages/mine/notification/announcementDetail",
 			"style": {
 				"navigationBarTitleText": "公告详情"
