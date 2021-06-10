@@ -96,6 +96,9 @@ export const urls = {
   getJourneyItinerarySignInById: '/linanJourney/journeySignInRecord/getJourneyItinerarySignInById', // 根据行程单id获取行程单打卡信息
   getJourneyItineraryPointSignIn: '/linanJourney/journeySignInRecord/getJourneyItineraryPointSignIn', // 获取行程单点位打卡信息
   journeyItineraryPointSignIn: '/linanJourney/journeySignInRecord/journeyItineraryPointSignIn', // 行程单点位打卡
+  getMyCommunityNotePage: '/community/communityNote/getMyCommunityNotePage', // 分页查询我的联盟帖子
+  getMyJourneyResourceSharingPage: '/linanJourney/journeyResourceSharing/getMyJourneyResourceSharingPage', // 分页查询我的共享资源
+  getMyJourneyMerchantBoothInfoPage: '/linanJourney/journeyMerchantBooth/getMyJourneyMerchantBoothInfoPage', // 分页我的获取商家展位
 
   // 实名认证
   findOrgList: '/organization/orgConsumer/findOrgList', // 获取联盟组织列表

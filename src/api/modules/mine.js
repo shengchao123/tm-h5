@@ -171,3 +171,27 @@ export function removeJourneyLifeDocumentary (params) { // 删除生活纪实 '/
     }
   })
 }
+export function getMyCommunityNotePage (params) { // 分页查询我的联盟帖子
+  return request({
+    url: urls.getMyCommunityNotePage,
+    data: {
+      ...params
+    }
+  })
+}
+export function getMyJourneyResourceSharingPage (params) { // 分页查询我的共享资源
+  return request({
+    url: urls.getMyJourneyResourceSharingPage,
+    data: {
+      ...params
+    }
+  })
+}
+export function getMyJourneyMerchantBoothInfoPage (params) { // 分页我的获取商家展位
+  return request({
+    url: urls.getMyJourneyMerchantBoothInfoPage,
+    data: {
+      ...params
+    }
+  })
+}

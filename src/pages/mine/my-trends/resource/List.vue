@@ -1,0 +1,86 @@
+<template>
+  <div class="wrap">
+    <mescroll-uni ref="mescrollRef"
+                  :top="mescrollTop"
+                  :bottom="mescrollBottom"
+                  @init="mescrollInit"
+                  :up="upOption"
+                  @up="onreachTop"
+                  class="relative uni mt30">
+      <div class="content"
+           v-if="!$isEmpty(dataList)">
+        <ResourceItem :resourceItem="{item, index}"
+                      @click="setNotesItem"
+                      v-for="(item, index) in dataList"
+                      :key="item.id"></ResourceItem>
+      </div>
+      <empty v-else></empty>
+    </mescroll-uni>
+    <!-- <PublishBtn @onPublish="onPublish"
+                :isScroll="isScroll"></PublishBtn> -->
+  </div>
+</template>
+<script>
+import ResourceItem from '@/pages/urban-rural/components/ResourceItem'
+// import PublishBtn from '@/pages/urban-rural/components/PublishBtn'
+import listMixins from '../mixins'
+export default {
+  name: 'List',
+  methods: {
+    // onPublish () {
+    //   uni.navigateTo({
+    //     url: '/pages/urban-rural/resource/AddResource'
+    //   });
+    // },
+    setNotesItem (item, index) {
+      const noteList = this.noteList
+      noteList[index] = item
+      this.noteList = [...noteList]
+    },
+    // scroll () {
+    //   this.isScroll = true
+    //   if (this.timer) {
+    //     this.timer = null
+    //     clearTimeout(this.timer)
+    //   }
+    //   this.timer = setTimeout(() => {
+    //     this.isScroll = false
+    //   }, 500)
+    // },
+    // 获取商品列表
+    getDataList () {
+      const params = {
+        ...this.search
+      }
+      this.$api.getMyJourneyResourceSharingPage(params).then(res => {
+        if (res.isError) return
+        let { items, count } = res.content
+        console.log(this.dataList)
+        this.dataList = params.pageNumber === 1 ? items : this.dataList.concat(items)
+        this.mescroll.endBySize(items.length, count)
+      })
+    }
+  },
+  components: { ResourceItem },
+  mixins: [listMixins],
+  data () {
+    return {
+      // isScroll: false,
+      upOption: {
+        onScroll: true
+      },
+      mescrollTop: '20rpx',
+    }
+  }
+}
+</script>
+
+<style lang='scss' scoped>
+.wrap {
+  height: 100%;
+  .content {
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+}
+</style>
