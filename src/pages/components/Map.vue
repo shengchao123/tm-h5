@@ -61,11 +61,12 @@ export default {
       })
     },
     drawProductMarkers (points) {
+      const size = new AMap.Size(20, 25)
       // 绘制图标
       const Icon = new AMap.Icon({
-        size: new AMap.Size(23, 38),
+        size,
         image: require('@/static/map/guide_mark_6.png'),
-        imageSize: new AMap.Size(23, 38)
+        imageSize: size
       })
 
       productOverlays = new AMap.OverlayGroup()
@@ -76,13 +77,13 @@ export default {
           position: new AMap.LngLat(item.lng, item.lat),
           map: this.$amap,
           icon: Icon,
-          touchZoom: false
+          label: item.journeyPointName,
+          touchZoom: false,
+          extData: item
         })
 
         productOverlays.addOverlay(marker)
 
-        // 设置 marker 绑定的数据
-        marker.setExtData(item)
         // 点击方法绑定
         marker.on('click', this.productClick)
       })
@@ -90,13 +91,16 @@ export default {
 
     productClick (e) {
       const point = e.target.getExtData()
+      console.log(point)
       // 绘制气球上数字文字
-      const indexText = `<div style="color:#333333;margin-top:2px;font-size:14px">${point.name}</div>`
+      const indexText = `<div style="color:#333333;margin-top:2px;font-size:12px">${point.journeyPointName}</div>`
       // eslint-disable-next-line no-new
+      const offsetW = point.journeyPointName.length * 12 / 2 - 2
       const marker = new AMap.Marker({
         position: new AMap.LngLat(point.lng, point.lat),
         map: this.$amap,
         content: indexText,
+        offset: new AMap.Pixel(-offsetW, -3),
         touchZoom: false
       })
       productOverlays.addOverlay(marker)
@@ -143,7 +147,7 @@ export default {
       if (productOverlays) {
         productOverlays.clearOverlays()
       }
-      this.drawProductMarkers(data)
+      this.drawProductMarkers(temArray)
     })
   },
   props: {
@@ -164,6 +168,24 @@ export default {
   },
   mixins: [mapMixin]
 }
+
+const temArray = [
+  {
+    "lat": 30.71298400,
+    "lng": 119.86725100,
+    journeyPointName: '农产品 1'
+  },
+  {
+    "lat": 30.21298400,
+    "lng": 119.16725100,
+    journeyPointName: '农产品'
+  },
+  {
+    "lat": 30.81298400,
+    "lng": 119.46725100,
+    journeyPointName: '农产品 3'
+  },
+]
 </script>
 
 <style lang='scss' scoped>
