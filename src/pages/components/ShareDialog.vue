@@ -171,7 +171,7 @@ export default {
     getConfig () {
       const url = this.shareData.link && this.shareData.link.split('#')[0] // 获取的是当前分享的页面
       const params = {
-        url: encodeURIComponent(url)
+        url,
       }
       this.$api.getJSConfig(params).then(res => {
         if (res.isError) {
