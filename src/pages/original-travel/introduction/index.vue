@@ -120,7 +120,7 @@ export default {
     },
     onGoodsDetail ({ journeyProductId }) {
       uni.navigateTo({
-        url: ''
+        url: `/pages/urban-rural/optimization/Detail?id=${journeyProductId}`
       })
     },
     // 视频开始播放事件
