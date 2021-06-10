@@ -11,17 +11,15 @@
                   @init="mescrollInit"
                   :up="upOption"
                   @up="upCallback"
-                  @down="downCallback"
-                  class="relative uni mt30">
-      <div class="content"
-           v-if="!$isEmpty(dataList)">
+                  @down="downCallback">
+      <div v-if="!$isEmpty(dataList)">
         <ResourceItem :resourceItem="{item, index}"
                       @click="setNotesItem"
                       v-for="(item, index) in dataList"
                       :key="item.id"></ResourceItem>
       </div>
+      <empty v-else></empty>
     </mescroll-uni>
-    <empty v-if="$isEmpty(dataList)"></empty>
 
     <PublishBtn @onPublish="onPublish"
                 :isScroll="isScroll"></PublishBtn>
@@ -111,9 +109,5 @@ export default {
 <style lang='scss' scoped>
 .wrap {
   height: 100%;
-  .content {
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="wrap">
+  <div class="wrap column">
 
     <SubTabs @change="changeSubTab"
              :tabs="subTabs"></SubTabs>
@@ -11,8 +11,7 @@
                   @init="mescrollInit"
                   :up="upOption"
                   @down="downCallback"
-                  @up="upCallback"
-                  class="relative uni">
+                  @up="upCallback">
       <div class="content"
            v-if="!$isEmpty(dataList)">
         <div v-for="item in dataList"
@@ -21,8 +20,8 @@
                           :isScroll="isScroll"></ExperienceItem>
         </div>
       </div>
+      <empty v-else></empty>
     </mescroll-uni>
-    <empty v-if="$isEmpty(dataList)"></empty>
 
     <PublishBtn @onPublish="onPublish"
                 :isScroll="isScroll"></PublishBtn>

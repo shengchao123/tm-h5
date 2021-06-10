@@ -11,15 +11,15 @@
                   :up="upOption"
                   @down="downCallback"
                   @up="upCallback"
-                  class="uni mt30 scroll">
+                  class="mt30">
       <div v-if="!$isEmpty(dataList)">
         <div v-for="item in dataList"
              :key="item.id">
           <ActiveItem :item="item"></ActiveItem>
         </div>
       </div>
+      <empty v-else></empty>
     </mescroll-uni>
-    <empty v-if="$isEmpty(dataList)"></empty>
 
   </div>
 </template>
