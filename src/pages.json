@@ -263,6 +263,12 @@
 			}
 		},
 		{
+			"path": "pages/mine/my-trends/index",
+			"style": {
+				"navigationBarTitleText": "我的动态"
+			}
+		},
+		{
 			"path": "pages/mine/personal-settings/index",
 			"style": {
 				"navigationBarTitleText": "个人信息设置"
