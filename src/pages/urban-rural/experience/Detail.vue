@@ -1,17 +1,22 @@
 <template>
-  <div class='detail-wrap'>
-    <u-swiper :list="images"
-              height="562"></u-swiper>
+  <div>
+    <empty v-if="$isEmpty(detailInfo)"></empty>
+    <div v-else
+         class='detail-wrap'>
+      <u-swiper :list="images"
+                height="562"></u-swiper>
 
-    <ExperienceItem :showImgs="false"
-                    style="margin-bottom:0"
-                    :item="detailInfo"></ExperienceItem>
+      <ExperienceItem :showImgs="false"
+                      style="margin-bottom:0"
+                      :item="detailInfo"></ExperienceItem>
 
-    <div class="content">
-      <div class="ft32 bold">展位介绍</div>
-      <div class="ft28 mt24">{{detailInfo.introduction}}</div>
+      <div class="content">
+        <div class="ft32 bold">展位介绍</div>
+        <div class="ft28 mt24">{{detailInfo.introduction}}</div>
+      </div>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -27,6 +32,7 @@ export default {
       this.$api.getJourneyMerchantBoothInfoById(params).then(res => {
         if (res.isError) return
         const temContent = res.content
+        if (!temContent) return this.detailInfo = {}
         const _appropriateCrowdFormat = temContent.appropriateCrowd.map(item => item.typeName)
         const _serviceContentFormat = temContent.serviceContent.map(item => item.typeName)
         temContent.appropriateCrowdFormat = _appropriateCrowdFormat.join(' ')

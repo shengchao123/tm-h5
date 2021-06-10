@@ -112,9 +112,21 @@
 			}
 		},
 		{
+			"path": "pages/think-tank/message/index",
+			"style": {
+				"navigationBarTitleText": "留言"
+			}
+		},
+		{
 			"path": "pages/think-tank/policy/Detail",
 			"style": {
 				"navigationBarTitleText": "政策详情"
+			}
+		},
+		{
+			"path": "pages/think-tank/expert/Detail",
+			"style": {
+				"navigationBarTitleText": "专家详情"
 			}
 		},
 		{
@@ -260,6 +272,12 @@
 			"path": "pages/mine/my-activity/index",
 			"style": {
 				"navigationBarTitleText": "我的活动"
+			}
+		},
+		{
+			"path": "pages/mine/my-trends/index",
+			"style": {
+				"navigationBarTitleText": "我的动态"
 			}
 		},
 		{

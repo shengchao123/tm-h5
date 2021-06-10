@@ -11,8 +11,9 @@
       <view class="center-align pg12">
         <view class="trigger-area relative center-align pl32"
               @click.stop="onLike">
-          <text class="ft28  mr8"
-                :class="notesItem.isLike ? 'icon_zan primary-color' : 'icon_zankong color-999'"></text>
+          <!-- <svg-icon class="ft28  mr8"
+                    :class="notesItem.isLike ? 'primary-color' : 'color-999'"
+                    :icon="notesItem.isLike ? 'icon_zan' : 'icon_zankong'"></svg-icon> -->
           <svg-icon :icon="notesItem.isLike ? 'icon_shoucang' : 'icon_weishoucang'"
                     class="ft28 color-999 mr8"
                     :class="notesItem.isLike ? 'primary-color' : 'color-999'"></svg-icon>
@@ -47,6 +48,7 @@ export default {
     // 点赞
     onLike () {
       if (this.$notMember()) return this.$goLogin()
+      if (this.notesItem.status === 1) return
       const notesItem = this.notesItem
       let { communityNoteId, isLike, likeQuantity } = notesItem
       const params = {
@@ -64,6 +66,7 @@ export default {
     // 评论
     onComment () {
       if (this.$notMember()) return this.$goLogin()
+      if (this.notesItem.status === 1) return
       if (!this.memberPersonalInfo.isRealName) {
         uni.showModal({
           title: '请先实名认证',
@@ -86,6 +89,7 @@ export default {
     // 分享
     onShare () {
       if (this.$notMember()) return this.$goLogin()
+      if (this.notesItem.status === 1) return
       const { title, content, communityNoteId } = this.notesItem
       const params = {
         sourceId: communityNoteId

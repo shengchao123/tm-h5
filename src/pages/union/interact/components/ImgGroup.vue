@@ -62,6 +62,7 @@ export default {
 </script>
 <style lang='scss' scoped>
 .img-group-wrap {
+  width: 100%;
   .one-img {
     width: 100%;
     border-radius: 8rpx;
