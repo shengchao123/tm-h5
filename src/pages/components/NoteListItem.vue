@@ -60,7 +60,8 @@ export default {
     // 跳转到详情（笔记详情/话题详情）
     onToDetail ({ communityNoteId }) {
       uni.navigateTo({
-        url: `/pages/union/interact/note-detail/index?communityNoteId=${communityNoteId}`
+        url: `/pages/original-travel/evaluate-detail/index?communityNoteId=${communityNoteId}`
+        // url: `/pages/union/interact/note-detail/index?communityNoteId=${communityNoteId}`
       })
     },
   },
