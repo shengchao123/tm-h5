@@ -11,7 +11,6 @@
         <swiper class="swiper mt24"
                 :class="swiperClass"
                 :duration="1000"
-                :circular="true"
                 @change="getSwiper">
           <swiper-item v-for="(item, index) in activityList"
                        :key="index"
@@ -169,10 +168,7 @@ export default {
 }
 .swipers {
   /deep/.uni-swiper-slide-frame {
-    width: 70% !important;
-  }
-  .activity-item {
-    width: 490rpx;
+    width: 100% !important;
   }
 }
 .activity-in {
