@@ -53,10 +53,14 @@ export default {
       this.$api.getJourneyProductListByJourneyLineId(params).then(res => {
         if (res.isError) return this.$msg(res.message)
         this.allList = res.content || []
+        this.events()
         const allList = this.allList
         this.showList = allList.length > 5 ? allList.slice(0, 5) : [...allList]
       })
     },
+    events () {
+      uni.$emit('drawProductMarkers', this.allList)
+    }
   },
   inject: ['onShowNavigationSelect'],
   props: {

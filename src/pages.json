@@ -173,6 +173,12 @@
 			}
 		},
 		{
+			"path": "pages/urban-rural/resource/AddResource",
+			"style": {
+				"navigationBarTitleText": "发布资源"
+			}
+		},
+		{
 			"path": "pages/union/graphic/index",
 			"style": {
 				"navigationBarTitleText": "联盟风采"

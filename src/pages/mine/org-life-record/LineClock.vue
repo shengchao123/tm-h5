@@ -84,7 +84,7 @@ export default {
 .line-wrap {
   width: 100%;
   overflow: hidden;
-  max-height: 300rpx;
+  max-height: 299rpx;
   transition: max-height 0.8s;
 }
 .h-auto {
