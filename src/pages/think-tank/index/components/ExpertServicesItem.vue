@@ -102,6 +102,8 @@ export default {
   methods: {
     filterWeek,
     onContact () {
+      // 判断是否登录逻辑
+      if (this.$notMember()) return this.$goLogin();
       const { isTelephoneCommunication } = this.item
       if (isTelephoneCommunication) {
         this.show = true
