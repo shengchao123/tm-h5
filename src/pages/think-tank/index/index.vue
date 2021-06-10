@@ -13,7 +13,7 @@
               inactive-color="#666666"
               @change="tabChange"></u-tabs>
     </div>
-    <div>
+    <div v-if="current !== 2">
       <empty v-if="isEmpty"></empty>
       <mescroll-uni v-else
                     ref="mescrollRef"
@@ -41,7 +41,7 @@
         </view>
       </mescroll-uni>
     </div>
-    <img v-if="current === 2"
+    <img v-else
          :src="imgs[current]"
          @click="onToDetail">
     <custom-tabbar></custom-tabbar>
@@ -164,6 +164,7 @@ page {
     background: #fff;
   }
   img {
+    margin-top: -10rpx;
     width: 100vw;
   }
 }

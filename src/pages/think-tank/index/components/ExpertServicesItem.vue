@@ -20,7 +20,7 @@
         <text class="color-999">{{item.serviceTypeName}}</text>
       </view>
     </view>
-    <view @click="show = true"
+    <view @click.stop="onContact"
           class="contact-btn center">
       <text class="ft24 color-666">联系TA</text>
     </view>
@@ -59,30 +59,103 @@
         </view>
       </view>
     </u-popup>
+    <u-popup class="contact-dialog tc"
+             v-model="noTimeShow"
+             mode="center"
+             border-radius="24"
+             width="540">
+      <view class="container column">
+        <view class="column center-align color-333 ft32 medium">
+          <text class="line1">不在电话服务时间内</text>
+          <text v-if="!isTalents">可进行问题留言</text>
+        </view>
+        <!-- 专家 -->
+        <view v-if="isTalents"
+              class="no-time pt16">
+          <text class="line1 color-999 ft26">时间：{{noTimes}}</text>
+          <view class="btn center"
+                @click="noTimeShow = false">
+            <text class="color-666 medium">我知道了</text>
+          </view>
+        </view>
+        <!-- 普通用户 -->
+        <view v-else
+              class="expert flex">
+          <view class="color-333 ft32 center"
+                @click="noTimeShow = false">
+            取消
+          </view>
+          <view class="center primary-color"
+                @click="onMessage">
+            留言
+          </view>
+        </view>
+      </view>
+    </u-popup>
   </view>
 </template>
 <script>
 import { avatarUrl } from '@/utils/tools'
+import { filterWeek } from './filter.js'
 export default {
   name: 'Item',
   methods: {
+    filterWeek,
+    onContact () {
+      const { isTelephoneCommunication } = this.item
+      if (isTelephoneCommunication) {
+        this.show = true
+        return
+      }
+      this.onMessage()
+    },
     onAction (index) {
       this.show = false
+      this.noTimeShow = false
       if (index === 0) {
         this.onCall()
         return
       }
       if (index === 1) {
-        uni.navigateTo({
-          url: `/pages/think-tank/message/index?id=${this.item.id}`
-        })
+        this.onMessage()
       }
+    },
+    // 将时间转成数字 与当前时间比较
+    filterTimeToNumber (time) {
+      return +(time.split(':').join(''))
+    },
+    // 判断当前时间是否在范围内
+    isInTimes () {
+      const { openDayList, startTime, endTime } = this.item
+      const currentWeek = this.$moment().weekday() + 1
+      const currentTime = this.$moment().format("HH:mm")
+      const numStart = this.filterTimeToNumber(startTime)
+      const numEnd = this.filterTimeToNumber(endTime)
+      const numCurrent = this.filterTimeToNumber(currentTime)
+      if (!openDayList.includes(currentWeek)) return false
+      if (numCurrent < numStart) return false
+      if (numCurrent > numEnd) return false
+      return false
     },
     // 打电话
     onCall () {
+      const { openDayList, startTime, endTime } = this.item
       this.show = false
+      if (!this.isInTimes()) {
+        this.noTimes = this.filterWeek(openDayList) + '，' + startTime + '～' + endTime
+        this.$nextTick(() => {
+          this.noTimeShow = true
+        })
+        return
+      }
       uni.makePhoneCall({
         phoneNumber: this.item.contactPhone
+      })
+    },
+    // 留言
+    onMessage () {
+      uni.navigateTo({
+        url: `/pages/think-tank/message/index?id=${this.item.id}`
       })
     },
     avatarUrl,
@@ -115,9 +188,11 @@ export default {
   },
   data () {
     return {
+      noTimes: '',
       btns: ['拨通电话', '留言', '取消'],
       isTalents: uni.getStorageSync('isTalents'),
       show: false,
+      noTimeShow: false,
       item: {},
       formList: []
     }
@@ -127,13 +202,22 @@ export default {
       const { item } = this
       if (this.$isEmpty(item.titleList)) return ''
       return item.titleList.join('、')
-    }
+    },
   }
 }
 </script>
 <style lang='scss' scoped>
 .line1 {
   line-height: 1;
+}
+.no-time {
+  .btn {
+    width: 240rpx;
+    margin: 44rpx auto 32rpx;
+    height: 70rpx;
+    border: 1rpx solid #d2d2d2;
+    border-radius: 49rpx;
+  }
 }
 .item-wrap {
   width: 100%;
