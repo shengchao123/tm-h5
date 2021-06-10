@@ -18,8 +18,8 @@
                       v-for="(item, index) in dataList"
                       :key="item.id"></ResourceItem>
       </div>
+      <empty v-else></empty>
     </mescroll-uni>
-    <empty v-if="$isEmpty(dataList)"></empty>
 
     <PublishBtn @onPublish="onPublish"
                 :isScroll="isScroll"></PublishBtn>
