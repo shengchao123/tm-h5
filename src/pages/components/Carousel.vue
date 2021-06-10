@@ -13,7 +13,8 @@
           <view class="swiper-item">
             <image mode="widthFix"
                    class="swiper-item-img"
-                   :src="$sourceUrl(item)">
+                   :src="$sourceUrl(item)"
+                   @click="onShowBigImg(index)">
             </image>
           </view>
         </swiper-item>
@@ -31,6 +32,13 @@
 <script>
 export default {
   methods: {
+    onShowBigImg (index) {
+      const urls = this.imgList.map(item => this.$sourceUrl(item))
+      uni.previewImage({
+        urls: urls, //需要预览的图片http链接列表，多张的时候，url直接写在后面就行了
+        current: index // 当前显示图片的http链接，默认是第一个
+      })
+    },
     // 获取轮播图的第一张高度
     getImgInfo () {
       uni.getImageInfo({
