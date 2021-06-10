@@ -14,11 +14,18 @@
                     message="暂无帖子"></page-empty>
       </view>
       <template>
-        <note-item v-for="(item, index) in noteList"
-                   :key="index"
-                   :notesIndex="index"
-                   :notesItem="item"
-                   @setNotesItem="setNotesItem"></note-item>
+        <view v-for="(item, index) in noteList"
+              :key="index"
+              class="relative">
+          <!-- 审核状态 (1:待审核; 2:已发布) -->
+          <view v-if="item.status === 1"
+                class="wait-check white-color ft22 tc">
+            待审核
+          </view>
+          <note-item :notesIndex="index"
+                     :notesItem="item"
+                     @setNotesItem="setNotesItem"></note-item>
+        </view>
       </template>
     </mescroll-uni>
     <share-dialog ref="shareDialog"
@@ -118,6 +125,17 @@ export default {
 .notes-list-wrap {
   .empty-wrap {
     height: 100%;
+  }
+  .wait-check {
+    position: absolute;
+    right: 0rpx;
+    top: 32rpx;
+    width: 96rpx;
+    height: 42rpx;
+    line-height: 42rpx;
+    background: #ff8800;
+    border-radius: 6rpx 0 0 6rpx;
+    z-index: 9;
   }
 }
 </style>

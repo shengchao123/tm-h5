@@ -9,10 +9,20 @@
                   class="relative uni mt30">
       <div class="content"
            v-if="!$isEmpty(dataList)">
-        <ResourceItem :resourceItem="{item, index}"
-                      @click="setNotesItem"
-                      v-for="(item, index) in dataList"
-                      :key="item.id"></ResourceItem>
+        <view v-for="(item, index) in dataList"
+              :key="index"
+              class="relative">
+
+          <resource-item :resourceItem="{item, index}"
+                         @click="setNotesItem">
+            <!-- 审核状态 (1:待审核; 2:已发布) -->
+            <view v-if="item.status === 1"
+                  class="wait-check white-color ft22 tc fr">
+              待审核
+            </view>
+          </resource-item>
+        </view>
+
       </div>
       <empty v-else></empty>
     </mescroll-uni>
@@ -81,6 +91,17 @@ export default {
   .content {
     justify-content: space-between;
     flex-wrap: wrap;
+  }
+  .wait-check {
+    margin-top: -2rpx;
+    margin-right: -30rpx;
+    width: 96rpx;
+    height: 42rpx;
+    line-height: 42rpx;
+    background: #ff8800;
+    border-radius: 6rpx 0 0 6rpx;
+    z-index: 9;
+    margin-left: 20rpx;
   }
 }
 </style>

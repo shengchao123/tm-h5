@@ -9,10 +9,16 @@
                   class="relative uni">
       <div class="content"
            v-if="!$isEmpty(dataList)">
-        <div v-for="item in dataList"
-             :key="item.id">
-          <ExperienceItem :item="item"
-                          :isScroll="isScroll"></ExperienceItem>
+        <div v-for="(item,index) in dataList"
+             :key="index"
+             class="relative">
+          <!-- 审核状态 (1:待审核; 2:已发布) -->
+          <view v-if="item.status === 1"
+                class="wait-check white-color tc ft22">
+            待审核
+          </view>
+          <experience-item :item="item"
+                           :isScroll="isScroll"></experience-item>
         </div>
       </div>
       <empty v-else></empty>
@@ -85,6 +91,17 @@ export default {
   .content {
     justify-content: space-between;
     flex-wrap: wrap;
+  }
+  .wait-check {
+    position: absolute;
+    right: 0rpx;
+    top: 32rpx;
+    width: 96rpx;
+    height: 42rpx;
+    line-height: 42rpx;
+    background: #ff8800;
+    border-radius: 6rpx 0 0 6rpx;
+    z-index: 9;
   }
 }
 </style>

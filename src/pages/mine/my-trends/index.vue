@@ -30,12 +30,10 @@
         <List4></List4>
       </swiper-item>
     </swiper>
-    <!-- <custom-tabbar></custom-tabbar> -->
   </div>
 </template>
-
 <script>
-import List1 from './optimization/List.vue'
+import List1 from './travel-evaluation/List.vue'
 import List2 from './union-note/List.vue'
 import List3 from './resource/List.vue'
 import List4 from './experience/List.vue'
@@ -82,7 +80,6 @@ export default {
   }
 }
 </script>
-
 <style lang='scss' scoped>
 .urban-rural-wrap {
   height: 100%;

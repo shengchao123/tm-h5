@@ -10,7 +10,14 @@
               v-for="(el,i) in newWaterfallData"
               :key="i">
           <view v-for="(item,index) in el"
-                :key="index">
+                :key="index"
+                class="relative">
+            <!-- 审核状态 (1:待审核; 2:已发布) -->
+            <view v-if="item.status === 1"
+                  class="wait-check white-color ft22 tc"
+                  :style="{right:i === 0 && '20rpx' }">
+              待审核
+            </view>
             <view class="mb20"
                   :class="i === 0 && 'mr20'">
               <note-list-item :item="item">
@@ -85,5 +92,15 @@ export default {
 <style lang="scss">
 .left {
   float: left;
+}
+.wait-check {
+  position: absolute;
+  right: 0rpx;
+  width: 96rpx;
+  height: 42rpx;
+  line-height: 42rpx;
+  background: #ff8800;
+  border-radius: 0 6rpx 0 6rpx;
+  z-index: 9;
 }
 </style>

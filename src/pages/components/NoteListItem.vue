@@ -50,6 +50,7 @@ export default {
     changeLike (item) {
       // 判断是否登录逻辑
       if (this.$notMember()) return this.$goLogin();
+      if (item.status === 1) return
       let apiName = item.isLike ? 'cancelCommunityLikeNote' : 'communityLikeNote'
       let msg = item.isLike ? '取消点赞成功' : '点赞成功'
       this.noteItem.likeQuantity = item.isLike ? this.noteItem.likeQuantity - 1 : this.noteItem.likeQuantity + 1

@@ -16,7 +16,6 @@ export default {
     onScrollTop () {
       this.$refs.waterfall.onScrollTop(0, 100)
     },
-    // 分页查询笔记信息(发现)
     getListData (page, callback) {
       const params = {
         pageNumber: page && page.num || 1,
