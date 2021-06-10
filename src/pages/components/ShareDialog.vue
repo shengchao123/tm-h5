@@ -169,7 +169,7 @@ export default {
     },
     // 获取微信分享配置
     getConfig () {
-      const url = this.shareData.link && this.shareData.link.split("?")[0] // 获取的是当前分享的页面
+      const url = this.shareData.link && this.shareData.link.split("/pages")[0] // 获取的是当前分享的页面
       const params = {
         url
       }
@@ -367,9 +367,6 @@ export default {
       },
       immediate: true
     }
-  },
-  created () {
-    console.log(wx)
   },
   components: { Popup }
 }
