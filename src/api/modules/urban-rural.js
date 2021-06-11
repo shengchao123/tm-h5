@@ -25,7 +25,7 @@ export function getJourneyActivityPage (params) { // '/linanJourney/journeyActiv
   return request({
     url: urls.getJourneyActivityPage,
     needlessToken: true,
-    data: { ...params, type: '02' }
+    data: { type: '02', ...params }
   })
 }
 export function getJourneyMerchantBoothInfoPage (params) { // '/linanJourney/journeyMerchantBooth/getJourneyMerchantBoothInfoPage', // 分页获取商家展位
