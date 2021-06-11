@@ -116,6 +116,7 @@ export default {
       })
     },
     changeSignUpStatus () {
+      if (this.$notMember()) return this.$goLogin();
       const { isSignUp } = this.detailInfo
       if (isSignUp) {
         uni.showModal({
@@ -253,7 +254,7 @@ page {
   .footer {
     width: 100%;
     height: 120rpx;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     .btn {
       width: calc(100% - 60rpx);

@@ -53,6 +53,7 @@ export default {
   name: 'item',
   methods: {
     onToRoute (item) {
+      if (this.$notMember()) return this.$goLogin();
       const url = item.status === '01' ? `/pages/original-travel/stroke-order/signUp?id=${item.id}&type=activity` : ''
       uni.navigateTo({
         url
