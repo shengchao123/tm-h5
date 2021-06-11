@@ -62,8 +62,8 @@ export default {
       background: rgba($color: #a6a6a6, $alpha: 0.1);
     }
     .active {
-      color: $uni-color-primary;
-      background: rgba($color: $uni-color-primary, $alpha: 0.1);
+      color: $color-f54400;
+      background: rgba($color: $color-f54400, $alpha: 0.1);
     }
   }
   .note-list {

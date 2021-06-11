@@ -77,7 +77,7 @@ export default {
       height: 48rpx;
       line-height: 48rpx;
       border-radius: 24rpx;
-      background: $uni-color-primary;
+      background: $color-f54400;
     }
     .cancel-btn {
       width: 140rpx;

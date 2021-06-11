@@ -22,7 +22,7 @@ $border-color-light: #EBEEF5;
 /* 图片加载中颜色 */
 $image-bg-color: #eee;
 /* 行为相关颜色 */
-$uni-color-primary:#F54400;
+
 $uni-color-success: #0e130f;
 $uni-color-warning: #f0ad4e;
 $uni-color-error: #dd524d;
@@ -37,6 +37,13 @@ $borderColor: #EAEAEA;
 $color-333: #333333;
 $color-666: #666666;
 $color-999: #999999;
+$color-f54400: #F54400;
+
+$color-primary: #3049C0;
+
+.color-primary {
+  color: $color-primary;
+}
 
 
 .color-333 {
@@ -63,7 +70,7 @@ $color-999: #999999;
 }
 
 .primary-color {
-  color: $uni-color-primary;
+  color: $color-f54400;
 }
 
 .success-color {
