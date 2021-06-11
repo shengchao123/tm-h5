@@ -22,6 +22,7 @@
       </template>
     </mescroll-uni>
     <share-dialog ref="shareDialog"
+                  shareBtns="copyLink"
                   :shareData="shareData"></share-dialog>
     <comment-list-popup ref="commentListPopup"></comment-list-popup>
     <send-comment-popup ref="sendCommentPopup"></send-comment-popup>

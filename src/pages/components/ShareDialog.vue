@@ -169,9 +169,9 @@ export default {
     },
     // 获取微信分享配置
     getConfig () {
-      const url = this.shareData.link && this.shareData.link.split("/pages")[0] // 获取的是当前分享的页面
+      const url = this.shareData.link && this.shareData.link.split('#')[0] // 获取的是当前分享的页面
       const params = {
-        url
+        url,
       }
       this.$api.getJSConfig(params).then(res => {
         if (res.isError) {
@@ -211,11 +211,12 @@ export default {
         //     // 如：{"checkResult":{"chooseImage":true},"errMsg":"checkJsApi:ok"}
         //   }
         // })
-        wx.onMenuShareTimeline({
+        wx.updateAppMessageShareData({
           title, // 分享标题
           desc, // 分享描述
           link: shareLink, // 分享链接
           imgUrl, // 分享图标
+          type: 'link', // 分享类型,music、video或link，不填默认为link
           success: function () {
             // 用户确认分享后执行的回调函数
             // alert('111已分享');
@@ -226,11 +227,12 @@ export default {
             // alert('111已取消');
           }
         });
-        wx.onMenuShareAppMessage({
+        wx.updateTimelineShareData({
           title, // 分享标题
           desc, // 分享描述
           link: shareLink, // 分享链接
           imgUrl, // 分享图标
+          type: 'link', // 分享类型,music、video或link，不填默认为link
           success: function () {
             // 用户确认分享后执行的回调函数
             // alert('222已分享');
