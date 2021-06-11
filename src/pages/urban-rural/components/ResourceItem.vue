@@ -49,6 +49,7 @@
     <view class="pl30 pr30">
       <ItemFooter :notesItem="resourceItem.item"
                   :notesIndex="resourceItem.index"
+                  :entrance="entrance"
                   @setNotesItem="setNotesItem"></ItemFooter>
     </view>
 
@@ -118,6 +119,7 @@ export default {
     }
   },
   props: {
+    entrance: String,
     resourceItem: Object
   },
   computed: {

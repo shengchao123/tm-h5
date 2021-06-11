@@ -48,7 +48,7 @@ export default {
     // 点赞
     onLike () {
       if (this.$notMember()) return this.$goLogin()
-      if (this.notesItem.status === 1) return
+      if (this.entrance === 'myTrends' && this.notesItem.status === 1) return
       const notesItem = this.notesItem
       let { communityNoteId, isLike, likeQuantity } = notesItem
       const params = {
@@ -66,7 +66,7 @@ export default {
     // 评论
     onComment () {
       if (this.$notMember()) return this.$goLogin()
-      if (this.notesItem.status === 1) return
+      if (this.entrance === 'myTrends' && this.notesItem.status === 1) return
       if (!this.memberPersonalInfo.isRealName) {
         uni.showModal({
           title: '请先实名认证',
@@ -89,7 +89,7 @@ export default {
     // 分享
     onShare () {
       if (this.$notMember()) return this.$goLogin()
-      if (this.notesItem.status === 1) return
+      if (this.entrance === 'myTrends' && this.notesItem.status === 1) return
       const { title, content, communityNoteId } = this.notesItem
       const params = {
         sourceId: communityNoteId
@@ -114,6 +114,7 @@ export default {
   },
   inject: ['setShareData', 'onShowCommentListPopup', 'onShowSendCommentPopup'],
   props: {
+    entrance: String,
     notesItem: {
       type: Object,
       default: () => ({})

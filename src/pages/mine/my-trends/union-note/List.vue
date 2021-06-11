@@ -24,6 +24,7 @@
           </view>
           <note-item :notesIndex="index"
                      :notesItem="item"
+                     entrance="myTrends"
                      @setNotesItem="setNotesItem"></note-item>
         </view>
       </template>

@@ -12,7 +12,8 @@
               :key="index"
               class="relative">
 
-          <resource-item :resourceItem="{item, index}"
+          <resource-item entrance="myTrends"
+                         :resourceItem="{item, index}"
                          @click="setNotesItem">
             <!-- 审核状态 (1:待审核; 2:已发布) -->
             <view v-if="item.status === 1"

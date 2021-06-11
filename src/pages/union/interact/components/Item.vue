@@ -46,6 +46,7 @@
     <view class="pl30 pr30">
       <item-footer :notesItem="notesItem"
                    :notesIndex="notesIndex"
+                   :entrance="entrance"
                    @setNotesItem="setNotesItem">
       </item-footer>
     </view>
@@ -78,6 +79,7 @@ export default {
     },
   },
   props: {
+    entrance: String,
     notesItem: {
       type: Object,
       default: () => ({})
