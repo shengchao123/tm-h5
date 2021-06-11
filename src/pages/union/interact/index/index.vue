@@ -70,7 +70,8 @@ export default {
       const params = {
         status: this.current !== 0 ? "0" + this.current : '',
         pageNumber: page && page.num || 1,
-        pageSize: page && page.size || 10
+        pageSize: page && page.size || 10,
+        type: '01'
       }
       this.$api.getJourneyActivityPage(params).then(res => {
         if (res.isError || !res.content) {
