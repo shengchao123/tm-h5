@@ -56,7 +56,7 @@
           <div class="count ft24 color-666 mt12">我的活动</div>
         </div>
         <div class="item center column"
-             @click="onOtherPage('trends')">
+             @click="onOtherPage('reply')">
           <div class="count ft34 bold">{{userInfo.messageQuantity || 0}}</div>
           <div class="count ft24 color-666 mt12">留言回复</div>
         </div>
@@ -93,7 +93,7 @@ const pageUrlMap = Object.freeze(new Map([
   ['hearts', '/pages/mine/my-hearts/index'],
   ['activity', '/pages/mine/my-activity/index'],
   ['trends', '/pages/mine/my-trends/index'],
-  // ['reply', '/pages/mine/leave-message/index']
+  ['reply', '/pages/mine/leave-message/index']
 ]))
 export default {
   name: 'index',
