@@ -11,8 +11,7 @@
       <detail-info :list="bottomList"></detail-info>
       <div class="pb24 bg-white"
            @click="onSignUpList">
-        <div class="cenetr-align flex pt24 pl30 pr30"
-             style="border-top: solid 1rpx #eaeaea;">
+        <div class="cenetr-align flex pt24 pl30 pr30">
           <div class="ft30 bold"
                style="width: 220rpx;">参与人员</div>
           <div class="between-row center-align flex1">
