@@ -1,0 +1,106 @@
+<template>
+  <div class="wrap">
+    <mescroll-uni ref="mescrollRef"
+                  :top="mescrollTop"
+                  @init="mescrollInit"
+                  :up="upOption"
+                  @up="onreachTop"
+                  class="relative uni mt30">
+      <div class="content"
+           v-if="!$isEmpty(dataList)">
+        <view v-for="(item, index) in dataList"
+              :key="index"
+              class="relative">
+
+          <resource-item :resourceItem="{item, index}"
+                         @click="setNotesItem">
+            <!-- 审核状态 (1:待审核; 2:已发布) -->
+            <view v-if="item.status === 1"
+                  class="wait-check white-color ft22 tc fr">
+              待审核
+            </view>
+          </resource-item>
+        </view>
+
+      </div>
+      <empty v-else></empty>
+    </mescroll-uni>
+    <!-- <PublishBtn @onPublish="onPublish"
+                :isScroll="isScroll"></PublishBtn> -->
+  </div>
+</template>
+<script>
+import ResourceItem from '@/pages/urban-rural/components/ResourceItem'
+// import PublishBtn from '@/pages/urban-rural/components/PublishBtn'
+import listMixins from '../mixins'
+export default {
+  name: 'List',
+  methods: {
+    // onPublish () {
+    //   uni.navigateTo({
+    //     url: '/pages/urban-rural/resource/AddResource'
+    //   });
+    // },
+    setNotesItem (item, index) {
+      const noteList = this.noteList
+      noteList[index] = item
+      this.noteList = [...noteList]
+    },
+    // scroll () {
+    //   this.isScroll = true
+    //   if (this.timer) {
+    //     this.timer = null
+    //     clearTimeout(this.timer)
+    //   }
+    //   this.timer = setTimeout(() => {
+    //     this.isScroll = false
+    //   }, 500)
+    // },
+    // 获取商品列表
+    getDataList () {
+      const params = {
+        ...this.search
+      }
+      this.$api.getMyJourneyResourceSharingPage(params).then(res => {
+        if (res.isError) return
+        let { items, count } = res.content
+        console.log(this.dataList)
+        this.dataList = params.pageNumber === 1 ? items : this.dataList.concat(items)
+        this.mescroll.endBySize(items.length, count)
+      })
+    }
+  },
+  components: { ResourceItem },
+  mixins: [listMixins],
+  data () {
+    return {
+      // isScroll: false,
+      upOption: {
+        onScroll: true
+      },
+      mescrollTop: '20rpx',
+    }
+  }
+}
+</script>
+
+<style lang='scss' scoped>
+.wrap {
+  height: 100%;
+  .content {
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .wait-check {
+    margin-top: -2rpx;
+    margin-right: -30rpx;
+    width: 96rpx;
+    height: 42rpx;
+    line-height: 42rpx;
+    background: #ff8800;
+    border-radius: 6rpx 0 0 6rpx;
+    z-index: 9;
+    margin-left: 20rpx;
+  }
+}
+</style>

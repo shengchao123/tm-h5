@@ -50,6 +50,10 @@ export default {
     upCallback (page) {
       this.$emit('getListData', page)
     },
+    // 下拉刷新
+    downCallback () {
+      this.mescroll.resetUpScroll(); // 重置列表为第一页
+    },
     onToDetail (item) {
       uni.navigateTo({
         url: `/pages/union/interact/detail/index?id=${item.id}`

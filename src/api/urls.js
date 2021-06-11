@@ -24,6 +24,13 @@ export const urls = {
   bindPhone: '/crm/member/bindPhone', // 获取三方用户信息
   getJSConfig: '/third/authorization/getJSConfig',
 
+  // 人才智库
+  getShowJourneyPolicyPage:'/linanJourney/journeyPolicyManagement/getShowJourneyPolicyPage',// 政策分页
+  getShowJourneyPolicyDetail:'/linanJourney/journeyPolicyManagement/getShowJourneyPolicyDetail',// 政策详情
+  getShowJourneyTalentsPage:'/linanJourney/journeyTalents/getShowJourneyTalentsPage',// 人才分页
+  getShowJourneyTalentsDetail:'/linanJourney/journeyTalents/getShowJourneyTalentsDetail',// 人才详情
+  leaveMessage:'/linanJourney/journeyTalentsMessage/leaveMessage', // 留言
+
   // 初心之旅
   getRecommendJourneyLineList: '/linanJourney/journeyLine/getRecommendJourneyLineList', // 推荐路线
   getJourneyPointList: '/linanJourney/journeyPointManagement/getJourneyPointList', // 获取点位列表
@@ -89,6 +96,10 @@ export const urls = {
   getJourneyItinerarySignInById: '/linanJourney/journeySignInRecord/getJourneyItinerarySignInById', // 根据行程单id获取行程单打卡信息
   getJourneyItineraryPointSignIn: '/linanJourney/journeySignInRecord/getJourneyItineraryPointSignIn', // 获取行程单点位打卡信息
   journeyItineraryPointSignIn: '/linanJourney/journeySignInRecord/journeyItineraryPointSignIn', // 行程单点位打卡
+  getMyCommunityNotePage: '/community/communityNote/getMyCommunityNotePage', // 分页查询我的联盟帖子
+  getMyJourneyResourceSharingPage: '/linanJourney/journeyResourceSharing/getMyJourneyResourceSharingPage', // 分页查询我的共享资源
+  getMyJourneyMerchantBoothInfoPage: '/linanJourney/journeyMerchantBooth/getMyJourneyMerchantBoothInfoPage', // 分页我的获取商家展位
+  getMyItineraryEvaluationPage: '/linanJourney/journeyItineraryEvaluation/getMyItineraryEvaluationPage', // 分页查询我的行程评价
 
   // 实名认证
   findOrgList: '/organization/orgConsumer/findOrgList', // 获取联盟组织列表

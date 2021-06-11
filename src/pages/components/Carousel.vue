@@ -1,5 +1,5 @@
 <template>
-  <view class="carousel-wrap"
+  <view class="carousel-wrap bg-white"
         :style="{height: firstImgHeight + 'px'}">
     <swiper class="swiper-box"
             :indicator-dots="false"
@@ -11,7 +11,7 @@
              :key="index">
         <swiper-item>
           <view class="swiper-item">
-            <image mode="aspectFit"
+            <image mode="widthFix"
                    class="swiper-item-img"
                    :src="$sourceUrl(item)">
             </image>

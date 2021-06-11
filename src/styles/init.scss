@@ -23,7 +23,7 @@ uni-modal {
     border-radius: 24rpx;
   }
   .uni-modal__btn_primary {
-    color: $uni-color-primary !important;
+    color: $color-f54400 !important;
   }
   .uni-modal__hd {
     padding: 40rpx 0 0;
@@ -46,9 +46,9 @@ uni-radio {
     height: 32rpx;
   }
   .uni-radio-input-checked {
-    background-color: $uni-color-primary !important;
-    color: $uni-color-primary !important;
-    border-color: $uni-color-primary !important;
+    background-color: $color-f54400 !important;
+    color: $color-f54400 !important;
+    border-color: $color-f54400 !important;
   }
 }
 

@@ -41,15 +41,24 @@
 
       <div class="count-wrap between-row">
         <div class="item center column"
+             @click="onOtherPage('trends')">
+          <div class="count ft34 bold">{{userInfo.talentsMessageQuantity || 0}}</div>
+          <div class="count ft24 color-666 mt12">动态</div>
+        </div>
+        <div class="item center column"
              @click="onOtherPage('hearts')">
           <div class="count ft34 bold">{{userInfo.redHeartBalance || 0}}</div>
           <div class="count ft24 color-666 mt12">我的红心</div>
         </div>
-
         <div class="item center column"
              @click="onOtherPage('activity')">
           <div class="count ft34 bold">{{userInfo.activeQuantity || 0}}</div>
           <div class="count ft24 color-666 mt12">我的活动</div>
+        </div>
+        <div class="item center column"
+             @click="onOtherPage('trends')">
+          <div class="count ft34 bold">{{userInfo.messageQuantity || 0}}</div>
+          <div class="count ft24 color-666 mt12">留言回复</div>
         </div>
       </div>
     </div>
@@ -82,7 +91,9 @@ const pageUrlMap = Object.freeze(new Map([
   ['message', '/pages/mine/notification/index'],
   ['setting', '/pages/mine/personal-settings/index'],
   ['hearts', '/pages/mine/my-hearts/index'],
-  ['activity', '/pages/mine/my-activity/index']
+  ['activity', '/pages/mine/my-activity/index'],
+  ['trends', '/pages/mine/my-trends/index'],
+  // ['reply', '/pages/mine/leave-message/index']
 ]))
 export default {
   name: 'index',
@@ -153,7 +164,7 @@ page {
     }
   }
   .count-wrap {
-    padding: 42rpx 163rpx 0;
+    padding: 42rpx 70rpx 0;
   }
   .my-journey {
     padding: 32rpx 32rpx 0;

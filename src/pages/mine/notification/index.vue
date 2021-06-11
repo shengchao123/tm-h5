@@ -148,7 +148,7 @@ page {
       width: 28rpx;
       height: 4rpx;
       border-radius: 3rpx;
-      background: $uni-color-primary;
+      background: $color-f54400;
     }
   }
   .dividing-line {

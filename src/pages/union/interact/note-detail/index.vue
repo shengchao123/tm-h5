@@ -16,7 +16,8 @@
             <text class="ft28">{{detailInfo.nick}}</text>
           </view>
           <view class="ft22 color-999">
-            <text class="mr40">{{detailInfo.orgName}}</text>
+            <text v-if="detailInfo.orgName"
+                  class="mr40">{{detailInfo.orgName}}</text>
             <text>{{detailInfo.time}}</text>
           </view>
         </view>
@@ -82,6 +83,7 @@ export default {
     avatarUrl,
     onShowShareDialog () {
       if (this.$notMember()) return this.$goLogin()
+      if (this.detailInfo.status === 1) return
       this.$refs.shareDialog.show()
     },
     onBlur () {
@@ -90,6 +92,7 @@ export default {
     // 聚焦input 判断是否登录和实名认证
     onFocus () {
       if (this.$notMember()) return this.$goLogin()
+      if (this.detailInfo.status === 1) return
       if (!this.memberPersonalInfo.isRealName) {
         this.isFocus = false
         uni.hideKeyboard(); // 隐藏键盘
@@ -130,6 +133,7 @@ export default {
     // 改变状态（关注，点赞，收藏）
     changeStatus (type) {
       if (this.$notMember()) return this.$goLogin();
+      if (this.detailInfo.status === 1) return
       const { communityMemberId, communityNoteId } = this.detailInfo
       const { apiName, msg, countKey, count } = this.statusMap.get(type).get(this.detailInfo[type])
       const params = {
