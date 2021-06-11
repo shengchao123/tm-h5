@@ -20,7 +20,8 @@
             </view>
             <view class="mb20"
                   :class="i === 0 && 'mr20'">
-              <note-list-item :item="item">
+              <note-list-item :item="item"
+                              entrance="myTrends">
               </note-list-item>
             </view>
           </view>
