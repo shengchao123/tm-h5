@@ -194,10 +194,10 @@ export default {
         nonceStr, // 必填，生成签名的随机串
         signature, // 必填，签名
         jsApiList: [ //需要调用的JS接口列表
-          // 'updateAppMessageShareData', //自定义“分享给朋友”及“分享到QQ”按钮的分享内容（1.4.0） 新接口
-          // 'updateTimelineShareData', //自定义“分享到朋友圈”及“分享到QQ空间”按钮的分享内容（1.4.0） 老接口
-          'onMenuShareTimeline', //分享到朋友圈 老接口
-          'onMenuShareAppMessage',//分享给盆友 老接口
+          'updateAppMessageShareData', //自定义“分享给朋友”及“分享到QQ”按钮的分享内容（1.4.0） 新接口
+          'updateTimelineShareData', //自定义“分享到朋友圈”及“分享到QQ空间”按钮的分享内容（1.4.0） 老接口
+          // 'onMenuShareTimeline', //分享到朋友圈 老接口
+          // 'onMenuShareAppMessage',//分享给盆友 老接口
           // 'getLocation'  //获取定位
         ]
       })
