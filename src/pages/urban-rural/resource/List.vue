@@ -1,9 +1,7 @@
 <template>
   <div class="wrap">
-
     <SubTabs @change="changeSubTab"
              :tabs="subTabs"></SubTabs>
-
     <mescroll-uni ref="mescrollRef"
                   :top="mescrollTop"
                   :bottom="mescrollBottom"

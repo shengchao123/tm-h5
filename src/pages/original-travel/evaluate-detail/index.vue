@@ -57,6 +57,7 @@ export default {
     // 改变状态（关注，点赞，收藏）
     changeStatus (type) {
       if (this.$notMember()) return this.$goLogin();
+      if (this.detailInfo.status === 1) return
       const { communityMemberId, communityNoteId } = this.detailInfo
       const { apiName, msg, countKey, count } = this.statusMap.get(type).get(this.detailInfo[type])
       const params = {

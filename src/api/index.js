@@ -10,6 +10,7 @@ import * as activity from './modules/activity'
 import * as party from './modules/party'
 import * as note from './modules/note'
 import * as urbanRural from './modules/urban-rural'
+import * as talentThinkTank from './modules/talent-think-tank'
 
 export const api = {
   ...originalTravel,
@@ -20,7 +21,8 @@ export const api = {
   ...activity,
   ...party,
   ...urbanRural,
-  ...note
+  ...note,
+  ...talentThinkTank
 }
 
 Vue.prototype.$fileHost = fileHost
