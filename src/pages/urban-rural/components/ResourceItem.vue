@@ -159,7 +159,7 @@ export default {
     right: 0;
     top: 56rpx;
     background: #ffffff;
-    width: 104rpx;
+    width: 114rpx;
   }
 }
 </style>

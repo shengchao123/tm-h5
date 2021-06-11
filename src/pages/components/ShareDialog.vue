@@ -20,7 +20,7 @@
               <text class="mt8 ft24">朋友圈</text>
             </view>
             <view v-if="shareBtns.includes('copyLink')"
-                  v-clipboard:copy="shareData.link"
+                  v-clipboard:copy="linkRender(shareData.link)"
                   v-clipboard:success="(type) => onCopyResult('success')"
                   v-clipboard:error="(type) => onCopyResult('error')"
                   class="center column">
@@ -91,7 +91,7 @@
                      mode="circle"
                      style="margin: 30rpx auto 0"></u-loading>
         </div>
-        <div v-show="posterCreateEnd"
+        <div v-if="posterCreateEnd"
              class="img-box">
           <img ref="posterImg"
                class="img"
@@ -131,11 +131,12 @@ export default {
     },
     // 关闭分享弹窗
     hide () {
-      this.guideShare = false,
-        this.showPoster = false,
-        this.savePoster = false,
-        this.posterCreateEnd = false,
-        this.$refs.sharePopup.close()
+      this.guideShare = false
+      this.showPoster = false
+      this.savePoster = false
+      this.posterCreateEnd = false
+      this.posterUrl = ''
+      this.$refs.sharePopup.close()
     },
     onHome () {
       uni.switchTab({
@@ -168,9 +169,9 @@ export default {
     },
     // 获取微信分享配置
     getConfig () {
-      const url = this.shareData.link && this.shareData.link.split("/pages")[0] // 获取的是当前分享的页面
+      const url = this.shareData.link && this.shareData.link.split('#')[0] // 获取的是当前分享的页面
       const params = {
-        url
+        url,
       }
       this.$api.getJSConfig(params).then(res => {
         if (res.isError) {
@@ -184,12 +185,7 @@ export default {
     },
     wxShare ({ appId, timestamp, nonceStr, signature }) {
       const { title, desc, link } = this.shareData
-      let shareLink = link
-      if (!link.includes('masterOrgId')) {
-        const separator = link.includes('?') ? '' : '?'
-        const masterOrgId = uni.getStorageSync('masterOrgId')
-        shareLink = link + separator + '&masterOrgId=' + masterOrgId
-      }
+      let shareLink = this.linkRender(link)
       const imgUrl = this.$isEmpty(this.shareData.imgUrl) ? this.$imgHost + 'share.png' : this.shareData.imgUrl
       wx.config({
         debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
@@ -215,7 +211,7 @@ export default {
         //     // 如：{"checkResult":{"chooseImage":true},"errMsg":"checkJsApi:ok"}
         //   }
         // })
-        wx.onMenuShareAppMessage({
+        wx.updateAppMessageShareData({
           title, // 分享标题
           desc, // 分享描述
           link: shareLink, // 分享链接
@@ -231,7 +227,7 @@ export default {
             // alert('111已取消');
           }
         });
-        wx.onMenuShareTimeline({
+        wx.updateTimelineShareData({
           title, // 分享标题
           desc, // 分享描述
           link: shareLink, // 分享链接
@@ -294,18 +290,6 @@ export default {
       })
 
     },
-    // 复制链接
-    copyLink () {
-      // TODO: 复制链接有待更改
-      const url = ''
-      const that = this
-      uni.setClipboardData({
-        data: url + (this.shareData.path || '/pagesDiscover/note-detail/index.vue?communityNoteId=' + this.shareData.communityNoteId),
-        success: function () {
-          that.$msg('复制成功')
-        }
-      })
-    },
     // 生成海报
     createPoster () {
       this.$emit('posterDrawStart')
@@ -314,12 +298,14 @@ export default {
       this.savePoster = true
       this.posterCreateEnd = false
       const posterEl = document.getElementById('posterView')
-      html2canvas(posterEl, {
-        useCORS: true,
-      }).then((canvas) => {
-        this.posterCreateEnd = true
-        this.posterUrl = canvas.toDataURL("image/png");
-      });
+      setTimeout(() => {
+        html2canvas(posterEl, {
+          useCORS: true,
+        }).then((canvas) => {
+          this.posterCreateEnd = true
+          this.posterUrl = canvas.toDataURL("image/png");
+        });
+      }, 500)
     },
     // 保存海报
     saveCanvas () {
@@ -328,6 +314,16 @@ export default {
       a.setAttribute('download', '海报')
       a.href = this.posterUrl
       a.click()
+    },
+    linkRender (link) {
+      if (!link) return ''
+      let shareLink = link
+      if (!link.includes('masterOrgId')) {
+        const separator = link.includes('?') ? '' : '?'
+        const masterOrgId = uni.getStorageSync('masterOrgId')
+        shareLink = link + separator + '&masterOrgId=' + masterOrgId
+      }
+      return shareLink
     },
   },
   props: {

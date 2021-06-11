@@ -10,7 +10,6 @@ const map = {
       },
       mescrollBottom: '0',
       upOption: {
-
         empty: {
           use: false
         },
@@ -24,13 +23,12 @@ const map = {
     }
   },
   methods: {
-    onreachTop () {
-      this.search.pageNumber = 1
-      this.getDataList()
-    },
-    onreachBottom (page) {
+    upCallback (page) {
       this.search.pageNumber = page.num
       this.getDataList()
+    },
+    downCallback (page) {
+      this.mescroll.resetUpScroll()
     },
   },
   mixins: [MescrollMixin],

@@ -9,8 +9,9 @@
                   :bottom="mescrollBottom"
                   @init="mescrollInit"
                   :up="upOption"
-                  @up="onreachTop"
-                  class="relative uni mt30">
+                  @down="downCallback"
+                  @up="upCallback"
+                  class="mt30">
       <div v-if="!$isEmpty(dataList)">
         <div v-for="item in dataList"
              :key="item.id">

@@ -10,10 +10,9 @@
                   @scroll="scroll"
                   @init="mescrollInit"
                   :up="upOption"
-                  @up="onreachTop"
-                  class="relative uni mt30">
-      <div class="content"
-           v-if="!$isEmpty(dataList)">
+                  @up="upCallback"
+                  @down="downCallback">
+      <div v-if="!$isEmpty(dataList)">
         <ResourceItem :resourceItem="{item, index}"
                       @click="setNotesItem"
                       v-for="(item, index) in dataList"
@@ -110,9 +109,5 @@ export default {
 <style lang='scss' scoped>
 .wrap {
   height: 100%;
-  .content {
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
 }
 </style>

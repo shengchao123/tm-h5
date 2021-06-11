@@ -1,5 +1,5 @@
 <template>
-  <div class="wrap">
+  <div class="wrap column">
 
     <SubTabs @change="changeSubTab"
              :tabs="subTabs"></SubTabs>
@@ -10,8 +10,8 @@
                   @scroll="scroll"
                   @init="mescrollInit"
                   :up="upOption"
-                  @up="onreachTop"
-                  class="relative uni">
+                  @down="downCallback"
+                  @up="upCallback">
       <div class="content"
            v-if="!$isEmpty(dataList)">
         <div v-for="item in dataList"

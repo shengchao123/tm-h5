@@ -88,6 +88,14 @@ export default {
     },
     subsectionChange (e) {
       this.subsection.curNow = e
+    },
+    checkIsShareIn (option) {
+      if (option && option.shareId) {
+        const { communityNoteId, shareId, masterOrgId } = option
+        uni.redirectTo({
+          url: `/pages/union/interact/note-detail/index?communityNoteId=${communityNoteId}&shareId=${shareId}&masterOrgId=${masterOrgId}`
+        })
+      }
     }
   },
   data () {
@@ -121,7 +129,8 @@ export default {
     uni.$off('discoverBtn')
   },
   // 页面周期函数--监听页面加载
-  onLoad () {
+  onLoad (option) {
+    this.checkIsShareIn(option)
     uni.$on('discoverBtn', (res) => {
       this.isScroll = !res
     })

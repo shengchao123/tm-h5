@@ -171,3 +171,21 @@ export function removeJourneyLifeDocumentary (params) { // 删除生活纪实 '/
     }
   })
 }
+
+export function getMyJourneyTalentsMessagePage (params) { // 我的留言分页
+  return request({
+    url: urls.getMyJourneyTalentsMessagePage,
+    data: {
+      ...params
+    }
+  })
+}
+
+export function respondMessage (params) { // 回复留言
+  return request({
+    url: urls.respondMessage,
+    data: {
+      ...params
+    }
+  })
+}
