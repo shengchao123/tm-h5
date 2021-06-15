@@ -1,5 +1,8 @@
 <template>
   <div class='urban-rural-wrap'>
+    <img src="@/static/banner.png"
+         style="width:100vw;"
+         @click="onImg">
     <div>
       <u-tabs-swiper ref="uTabs"
                      :list="list"
@@ -43,6 +46,9 @@ import List4 from '../resource/List.vue'
 export default {
   name: 'index',
   methods: {
+    onImg () {
+      window.location.href = 'https://loan.jztdata.com:18085/html/index.html'
+    },
     // swiper-item左右移动，通知tabs的滑块跟随移动
     transition (e) {
       let dx = e.detail.dx;
