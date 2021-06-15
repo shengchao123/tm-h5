@@ -21,7 +21,7 @@
                     @down="downCallback"
                     :up="upOption"
                     @up="upCallback"
-                    bottom="166"
+                    bottom="100"
                     top="88">
         <view v-if="current === 0">
           <view v-for="(item,index) in policyDataList"
@@ -126,7 +126,7 @@ export default {
             name: '专家服务'
           },
           {
-            name: '涉农项目'
+            name: '无感直补'
           },
         ]
       }
