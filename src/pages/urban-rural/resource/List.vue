@@ -81,6 +81,7 @@ export default {
         onScroll: true
       },
       mescrollTop: '120rpx',
+      mescrollBottom: '20rpx',
       subTabs: [
         {
           status: '01',

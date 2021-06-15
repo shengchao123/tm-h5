@@ -28,7 +28,6 @@
 import SubTabs from '@/pages/urban-rural/components/SubTabs'
 import ActiveItem from '@/pages/urban-rural/components/ActiveItem'
 import listMixins from '../mixins'
-import MescrollMixin from "@/components/mescroll-uni/mescroll-mixins.js";
 export default {
   name: 'List',
   methods: {
@@ -51,14 +50,12 @@ export default {
       })
     }
   },
-  created () {
-    this.getDataList()
-  },
-  mixins: [listMixins, MescrollMixin],
+  mixins: [listMixins],
   components: { SubTabs, ActiveItem },
   data () {
     return {
       mescrollTop: '120rpx',
+      mescrollBottom: '20rpx',
       subTabs: [
         {
           status: '',

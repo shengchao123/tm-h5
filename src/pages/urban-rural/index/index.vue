@@ -1,7 +1,7 @@
 <template>
   <div class='urban-rural-wrap'>
     <img src="@/static/banner.png"
-         style="width:100vw;"
+         style="width:100vw;height:200rpx"
          @click="onImg">
     <div>
       <u-tabs-swiper ref="uTabs"
@@ -92,12 +92,11 @@ export default {
 
 <style lang='scss' scoped>
 .urban-rural-wrap {
-  height: 100%;
   background: #f7f7f7;
   padding-bottom: 50px;
-  height: calc(100vh - 50px - 200rpx);
+  height: calc(100vh - 50px);
   .swiper {
-    height: calc(100vh - 80rpx - 200rpx - 50px);
+    height: calc(100vh - 80rpx - 50px - 200rpx);
   }
 }
 </style>

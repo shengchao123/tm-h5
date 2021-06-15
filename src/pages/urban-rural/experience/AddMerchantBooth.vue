@@ -212,7 +212,6 @@ export default {
       });
     },
     validateForm () {
-
       for (const [key, val] of formValidateMap) {
         const _val = this.form[key]
 

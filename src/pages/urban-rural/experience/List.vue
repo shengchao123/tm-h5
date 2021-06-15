@@ -33,7 +33,6 @@ import SubTabs from '@/pages/urban-rural/components/SubTabs'
 import ExperienceItem from '@/pages/urban-rural/components/ExperienceItem'
 import PublishBtn from '@/pages/urban-rural/components/PublishBtn'
 import listMixins from '../mixins'
-import MescrollMixin from "@/components/mescroll-uni/mescroll-mixins.js";
 export default {
   name: 'List',
   methods: {
@@ -83,15 +82,13 @@ export default {
       })
     }
   },
-  created () {
-    this.getDataList()
-  },
-  mixins: [listMixins, MescrollMixin],
+  mixins: [listMixins],
   components: { SubTabs, ExperienceItem, PublishBtn },
   data () {
     return {
       isScroll: false,
       mescrollTop: '120rpx',
+      mescrollBottom: '20rpx',
       upOption: {
         onScroll: true
       },
