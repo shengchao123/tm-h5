@@ -6,7 +6,8 @@
 
     <div class="info mb16">
       <div class="center-align">
-        <div class="name ft40 bold mr16">{{item.name}}</div>
+        <div class="name ft40 bold mr16 text-hidden"
+             style="max-width:500rpx">{{item.name}}</div>
         <div class="status-info ft20"
              v-if="getStatusInfo"
              :style="{color: getStatusInfo.color, borderColor: getStatusInfo.color}">{{getStatusInfo.text}}</div>
@@ -20,7 +21,7 @@
       </div>
 
       <div class="center-align mt16 ft26">
-        <SvgIcon icon="icon_didian"
+        <SvgIcon icon="icon_dingwei"
                  class="color-999"></SvgIcon>
         <text class="ml16 color-999">地址：</text>
         <text>{{item.address}}</text>
