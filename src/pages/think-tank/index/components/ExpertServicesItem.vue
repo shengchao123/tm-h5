@@ -3,6 +3,7 @@
     <view class="center-align">
       <image :src="avatarUrl(item.photo)"
              alt=""
+             mode="center"
              class="mr16 user-img">
       </image>
       <view class="ml16 column">
