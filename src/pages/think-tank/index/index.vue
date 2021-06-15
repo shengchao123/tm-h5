@@ -162,6 +162,7 @@ page {
     box-sizing: border-box;
     padding-top: 16rpx;
     background: #fff;
+    z-index: 1;
   }
   img {
     margin-top: -10rpx;

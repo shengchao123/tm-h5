@@ -46,7 +46,7 @@ export default {
   left: 0;
   right: 0;
   background: #ffffff;
-  z-index: 999;
+  z-index: 0;
   .item {
     width: 50%;
     padding-top: 5px;

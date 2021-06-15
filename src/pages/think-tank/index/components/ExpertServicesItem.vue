@@ -1,24 +1,27 @@
 <template>
   <view class="item-wrap bg-white relative">
     <view class="center-align">
-      <image :src="avatarUrl(item.photo)"
+      <!-- <image :src="avatarUrl(item.photo)" -->
+      <!-- <image :src="avatarUrl('image/logo/2021061514122745352115422332928.png')"
              alt=""
-             mode="center"
+             mode="scaleToFill"
              class="mr16 user-img">
-      </image>
+      </image> -->
+      <view class="mr16 user-img"
+            :style="{backgroundImage: `url(${avatarUrl(item.photo)})`}"></view>
       <view class="ml16 column">
         <text class="ft28 color-333 medium">{{item.name}}</text>
         <text class="ft22 color-999 pt12 skilled">{{titleList}}</text>
       </view>
     </view>
     <view class="ft26">
-      <view class="mt24 flex">
+      <view class="mt24 flex line1">
         <text class="color-999">擅长：</text>
-        <text class="color-999 flex1">{{item.specialty}}</text>
+        <text class="color-333 flex1">{{item.specialty}}</text>
       </view>
-      <view class="mt24">
+      <view class="mt24 line1">
         <text class="color-999">服务：</text>
-        <text class="color-999">{{item.serviceTypeName}}</text>
+        <text class="color-333">{{item.serviceTypeName}}</text>
       </view>
     </view>
     <view @click.stop="onContact"
@@ -138,7 +141,7 @@ export default {
       if (!openDayList.includes(currentWeek)) return false
       if (numCurrent < numStart) return false
       if (numCurrent > numEnd) return false
-      return false
+      return true
     },
     // 打电话
     onCall () {
@@ -231,6 +234,9 @@ export default {
     width: 80rpx;
     height: 80rpx;
     border-radius: 50%;
+    background-size: cover;
+    background-position: 50% 50%; /*图片上下左右居中*/
+    background-repeat: no-repeat;
   }
   .skilled {
     width: 500rpx;
@@ -253,7 +259,7 @@ export default {
     position: absolute;
     width: 108rpx;
     height: 40rpx;
-    border-radius: 6rpx;
+    border-radius: 6rpx 0 0 6rpx;
     background: #ddf9d7;
     color: #51ac3d;
   }
