@@ -44,9 +44,10 @@ export default {
     },
     changeSubTab (item) {
       if (this.search.status === item.status) return
-      // this.search.status = item.status
-      // this.search.pageNumber = 1
-      // this.getJourneyActivityPage()
+      if (item.disabled) return this.$msg('功能开发中')
+      this.search.status = item.status
+      this.search.pageNumber = 1
+      this.getDataList()
     },
     scroll () {
       this.isScroll = true
@@ -101,11 +102,13 @@ export default {
         },
         {
           status: '01',
-          text: '我要定制'
+          text: '我要定制',
+          disabled: true
         },
         {
           status: '02',
-          text: '我要接单'
+          text: '我要接单',
+          disabled: true
         }
       ]
     }

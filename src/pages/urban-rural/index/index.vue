@@ -95,9 +95,9 @@ export default {
   height: 100%;
   background: #f7f7f7;
   padding-bottom: 50px;
-  height: calc(100vh - 50px);
+  height: calc(100vh - 50px - 200rpx);
   .swiper {
-    height: calc(100vh - 80rpx - 50px);
+    height: calc(100vh - 80rpx - 200rpx - 50px);
   }
 }
 </style>

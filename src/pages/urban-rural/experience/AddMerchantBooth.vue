@@ -220,7 +220,8 @@ export default {
           this.$msg(val)
           return
         }
-        if (_val && key === 'lngLat' && (!_val.includes('，') || !_val.includes(','))) {
+        if (_val && key === 'lngLat' && !_val.includes('，') && !_val.includes(',')) {
+          console.log(_val)
           return this.$msg('经纬度格式不正确')
         }
         if (_val && key === 'contactPhone' && !checkInput(_val, 'phone')) {
@@ -285,7 +286,7 @@ const formValidateMap = new Map([
       width: calc(100vw - 60rpx);
     }
     .tag {
-      width: 159rpx;
+      width: 155rpx;
       height: 66rpx;
       line-height: 66rpx;
       background: #f7f7f7;

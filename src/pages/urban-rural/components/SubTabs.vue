@@ -15,8 +15,9 @@ export default {
   name: 'SubTabs',
   methods: {
     onTab (index, item) {
-      this.current = index
       this.$emit('change', item)
+      if (item.disabled) return
+      this.current = index
     },
   },
   data () {
