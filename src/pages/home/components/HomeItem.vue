@@ -3,7 +3,8 @@
     <img :src="item.img"
          :style="{width: item.imgW + 'rpx'}"
          object-fit="contain" />
-    <div class="title mt16">{{item.text}}</div>
+    <div class="title mt16">{{item.text1}}</div>
+    <div class="title">{{item.text2}}</div>
   </div>
 </template>
 

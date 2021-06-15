@@ -46,35 +46,40 @@ export default {
       cardList: Object.freeze([
         {
           img: require('@/static/home/02.png'),
-          text: '初心之旅——张图',
+          text1: '初心之旅',
+          text2: '一张图',
           imgW: 45,
           style: { left: '30rpx', top: '205rpx' },
           url: '/pages/original-travel/index/index'
         },
         {
           img: require('@/static/home/05.png'),
-          text: '组团发展——联盟',
+          text1: '组团发展',
+          text2: '一联盟',
           imgW: 50,
           style: { left: '172rpx', top: '285rpx' },
           url: '/pages/union/index/index'
         },
         {
           img: require('@/static/home/01.png'),
-          text: '城乡融合——社区',
+          text1: '城乡融合',
+          text2: '一社区',
           imgW: 50,
           style: { left: '312rpx', top: '365rpx' },
           url: '/pages/urban-rural/index/index'
         },
         {
           img: require('@/static/home/04.png'),
-          text: '乡村人才——智库',
+          text1: '乡村人才',
+          text2: '一智库',
           imgW: 60,
           style: { right: '172rpx', top: '285rpx' },
           url: '/pages/think-tank/index/index'
         },
         {
           img: require('@/static/home/03.png'),
-          text: '基层治理——管家',
+          text1: '基层治理',
+          text2: '一管家',
           imgW: 50,
           style: { right: '30rpx', top: '205rpx' },
           url: '/pages/steward/index/index'
