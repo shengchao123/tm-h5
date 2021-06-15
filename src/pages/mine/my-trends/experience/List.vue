@@ -11,8 +11,8 @@
         <div v-for="(item,index) in dataList"
              :key="index"
              class="relative">
-          <!-- 审核状态 (1:待审核; 2:已发布) -->
-          <view v-if="item.status === 1"
+          <!-- 审核状态 (1:已发布; 2:待审核) -->
+          <view v-if="item.status === 2"
                 class="wait-check white-color tc ft22">
             待审核
           </view>
