@@ -52,14 +52,15 @@
       <view class="tip-text ft30 flex">
         <view class="icon-item">
           <view @click="onShowShareDialog">
-            <svg-icon icon="icon_zhuanfa"></svg-icon>
+            <svg-icon icon="icon_zhuanfa"
+                      :class="detailInfo.status === 2 ? 'color-d2d2d2' : 'color-999'"></svg-icon>
             <text class="ft26 pl8 color-666">{{detailInfo.shareQuantity}}</text>
           </view>
         </view>
         <view class="icon-item relative"
               @click="changeStatus('isLike')">
           <svg-icon :icon="detailInfo.isLike ? 'icon_shoucang' : 'icon_weishoucang'"
-                    :class="['ft32',detailInfo.isLike ? 'primary-color' : 'color-999']"></svg-icon>
+                    :class="['ft32',$actionIconClass(detailInfo)]"></svg-icon>
           <text class="ft26 pl8 w30 color-666">{{detailInfo.likeQuantity}}</text>
         </view>
       </view>
@@ -260,6 +261,9 @@ export default {
 };
 </script>
 <style lang='scss' scoped>
+.color-d2d2d2 {
+  color: #d2d2d2;
+}
 .w30 {
   display: inline-block;
   width: 30rpx;

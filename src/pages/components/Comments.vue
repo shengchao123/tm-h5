@@ -23,7 +23,7 @@
               <view class="tc relative">
                 <view @click="onLike(item)">
                   <svg-icon :icon="item.isLike ? 'icon_shoucang' : 'icon_weishoucang'"
-                            :class="['ft32',item.isLike ? 'primary-color' : 'color-999']"></svg-icon>
+                            :class="['ft32',$actionIconClass(item)]"></svg-icon>
                 </view>
                 <view class="mt20 ft22">{{item.likeCount}}</view>
               </view>
@@ -104,6 +104,9 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.color-d2d2d2 {
+  color: #d2d2d2;
+}
 .bt {
   border-bottom: 1rpx solid #eaeaea;
 }

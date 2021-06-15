@@ -20,7 +20,7 @@
         <view class="tip-text ft20">
           <view class="center-align relative"
                 @click.stop="changeLike(noteItem)">
-            <svg-icon :class="['ft32',noteItem.isLike ? 'primary-color' : 'color-999' ]"
+            <svg-icon :class="['ft32',$actionIconClass(noteItem) ]"
                       :icon="noteItem.isLike ? 'icon_shoucang' : 'icon_weishoucang'">
             </svg-icon>
             <text :class="['ml8 ft26',noteItem.isLike ? 'primary-color' : '' ]">{{noteItem.likeQuantity}}</text>
@@ -50,7 +50,7 @@ export default {
     changeLike (item) {
       // 判断是否登录逻辑
       if (this.$notMember()) return this.$goLogin();
-      if (this.entrance === 'myTrends' && item.status === 1) return
+      if (this.entrance === 'myTrends' && item.status === 2) return
       let apiName = item.isLike ? 'cancelCommunityLikeNote' : 'communityLikeNote'
       let msg = item.isLike ? '取消点赞成功' : '点赞成功'
       this.noteItem.likeQuantity = item.isLike ? this.noteItem.likeQuantity - 1 : this.noteItem.likeQuantity + 1
@@ -85,6 +85,9 @@ export default {
 };
 </script>
 <style lang='scss' scoped>
+.color-d2d2d2 {
+  color: #d2d2d2;
+}
 .note-item {
   width: 335rpx;
   box-shadow: 3rpx 2rpx 12rpx 8rpx rgba(17, 17, 17, 0.03);
