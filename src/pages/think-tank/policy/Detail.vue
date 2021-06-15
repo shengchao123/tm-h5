@@ -2,7 +2,8 @@
   <div class='detail-wrap'>
     <!-- <img src="@/static/test/10.png"> -->
     <!-- 轮播图 -->
-    <carousel :imgList="imgList"
+    <carousel v-if="!$isEmpty(imgList)"
+              :imgList="imgList"
               :indicatorDots="true">
     </carousel>
     <view class="mt20 bg-white pt24 pl30 pr30 pb30">
