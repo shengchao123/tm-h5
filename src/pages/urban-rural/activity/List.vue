@@ -51,6 +51,9 @@ export default {
       })
     }
   },
+  created () {
+    this.getDataList()
+  },
   mixins: [listMixins, MescrollMixin],
   components: { SubTabs, ActiveItem },
   data () {

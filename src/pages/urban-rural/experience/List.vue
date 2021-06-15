@@ -82,7 +82,9 @@ export default {
       })
     }
   },
-
+  created () {
+    this.getDataList()
+  },
   mixins: [listMixins, MescrollMixin],
   components: { SubTabs, ExperienceItem, PublishBtn },
   data () {
