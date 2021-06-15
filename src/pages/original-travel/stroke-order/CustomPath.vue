@@ -26,7 +26,7 @@
 
 <script>
 
-import Map from '@/pages/components/Map.vue'
+import Map from './components/Map.vue'
 import NumList from './components/NumList'
 import { swapArr } from '@/utils/tools.js'
 
@@ -36,12 +36,10 @@ export default {
     onConfirmCreateCustomPath () {
       uni.$emit('setJourneyPointListEvent', this.points)
       const _pages = getCurrentPages()
-
-      _pages.forEach((item, index) => {
-        if (item.route === 'pages/home/stroke-order/index') {
-          uni.navigateBack({ delta: index })
-        }
-      })
+      const _routes = _pages.map(item => item.route)
+      _routes.reverse()
+      const _index = _routes.indexOf('pages/original-travel/stroke-order/index')
+      uni.navigateBack({ delta: _index })
     },
     onHandlePoints (type, index) {
       if (type === 'del') {
@@ -56,20 +54,21 @@ export default {
       this.$store.commit('travel/CUSTOM_PATH_POINTS', this.points)
     },
     onAddRedPoints () {
-      uni.navigateTo({ url: '/pages/original-travel/stroke-order/GetRedPoints' })
+      uni.redirectTo({ url: '/pages/original-travel/stroke-order/GetRedPoints' })
     }
   },
   watch: {
     '$store.state.travel.customPathPoints': {
       handler: function (n, o) {
-        console.log(n, o)
         if (n) {
+          console.log(1111)
           this.points = JSON.parse(JSON.stringify(n))
         }
       },
       immediate: true
     }
   },
+
   data () {
     return {
       points: [],

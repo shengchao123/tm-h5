@@ -1,6 +1,6 @@
 import { api } from '@/api/index.js'
 const state = {
-  customPathPoints: []
+  customPathPoints: [],
 }
 
 const mutations = {

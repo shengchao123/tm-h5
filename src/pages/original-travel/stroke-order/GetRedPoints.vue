@@ -112,7 +112,6 @@ export default {
   watch: {
     '$store.state.travel.customPathPoints': {
       handler: function (n, o) {
-        console.log(n, o)
         if (n) {
           this.selectPoints = JSON.parse(JSON.stringify(n))
           this.pointIds = n.map(item => item.code)

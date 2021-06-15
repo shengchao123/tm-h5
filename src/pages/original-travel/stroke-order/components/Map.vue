@@ -132,22 +132,19 @@ export default {
     }
   },
   watch: {
-    points () {
-      if (overlays) {
-        overlays.hide()
-        overlays.clearOverlays()
-      }
-      this.drawMarker()
-      this.drawPath()
+    points: {
+      handler: function () {
+        this.$nextTick(() => {
+          if (overlays) {
+            overlays.hide()
+            overlays.clearOverlays()
+          }
+          this.drawMarker()
+          this.drawPath()
+        })
+      },
+      immediate: true
     }
-  },
-  created () {
-    uni.$on('drawProductMarkers', (data) => {
-      if (productOverlays) {
-        productOverlays.clearOverlays()
-      }
-      this.drawProductMarkers(data)
-    })
   },
   props: {
     points: Array,
