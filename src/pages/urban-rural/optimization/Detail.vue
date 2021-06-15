@@ -11,9 +11,9 @@
                  class="ft26 color-999"></SvgIcon>
         <text class="ml16 ft26 color-999">{{item.title}}</text>
         <text class="ft26"
-              v-if="!item.url">{{detailInfo[item.key]}}</text>
+              v-if="!item.url && detailInfo[item.key]">{{detailInfo[item.key]}}</text>
         <uni-link :href="item.url"
-                  v-else
+                  v-if="item.url"
                   fontSize="26"
                   color="#518cfc"
                   :showUnderLine="false"
@@ -22,7 +22,13 @@
 
       <div class="contact b mt16">
         <div class="color-999 ft26"> 联系人</div>
-        <div class="ft28 mt28">{{detailInfo.contactPerson}}：{{detailInfo.contactPhone}}</div>
+        <div class="ft28 mt28 between-row">
+          <div>{{detailInfo.contactPerson}}：{{detailInfo.contactPhone}}</div>
+          <div @click="onCallPhone">
+            <SvgIcon icon='icon_dianhua'
+                     style="color:#518CFC;font-size:32rpx"></SvgIcon>
+          </div>
+        </div>
       </div>
 
       <div class="mt16 mb16">
@@ -41,6 +47,13 @@
 export default {
   name: 'Detail',
   methods: {
+    onCallPhone () {
+      uni.makePhoneCall({
+        phoneNumber: this.detailInfo.contactPhone,
+        success: (result) => { },
+        fail: (error) => { }
+      })
+    },
     // 获取详情
     getJourneyProductInfoById (id) {
       const params = {

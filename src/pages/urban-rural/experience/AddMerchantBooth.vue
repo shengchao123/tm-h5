@@ -220,7 +220,7 @@ export default {
           this.$msg(val)
           return
         }
-        if (_val && key === 'lngLat' && !_val.includes('，')) {
+        if (_val && key === 'lngLat' && (!_val.includes('，') || !_val.includes(','))) {
           return this.$msg('经纬度格式不正确')
         }
         if (_val && key === 'contactPhone' && !checkInput(_val, 'phone')) {
