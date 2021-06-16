@@ -6,7 +6,7 @@ const needSaveKeys = ['avatar', 'memberId', 'phone', 'token', 'nick', 'status','
 export const saveLoginInfo = function (res) {
   needSaveKeys.forEach(key => {
     if(key === "isTalents"){
-      uni.setStorageSync(key, res[key] || false)
+      uni.setStorageSync(key, String(res[key]) || false)
     }else if (res[key]){
       uni.setStorageSync(key, String(res[key]) || '')
     }
