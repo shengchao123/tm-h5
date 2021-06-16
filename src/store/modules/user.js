@@ -16,6 +16,7 @@ const actions = {
     api.getMemberPersonalInfo().then(res => {
       if (res.isError) return
       commit('SET_MEMBER_PERSONAL_INFO', res.content)
+      uni.setStorageSync('isTalents', String(res.content.isTalents) || 'false')
     })
   },
 }
