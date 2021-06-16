@@ -4,7 +4,7 @@
       <textarea focus
                 v-model="content"
                 class="input pt30"
-                placeholder="请输入您的问题，专家收到后会及时回复，请到“我的-服务记录”中查看"
+                placeholder="请输入您的问题，专家收到后会及时回复，请到“我的-留言回复”中查看"
                 :maxlength="500"
                 @input="changeInput" />
       <text class="number ft24 color-999">{{content.split('').length}}/500</text>
