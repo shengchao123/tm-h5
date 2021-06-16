@@ -37,7 +37,7 @@
   </div>
 </template>
 <script>
-import Map from '@/pages/components/Map.vue'
+import Map from './Map.vue'
 import SelectRoutePop from './SelectRoutePop.vue'
 
 export default {

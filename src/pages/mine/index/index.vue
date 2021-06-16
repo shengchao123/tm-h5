@@ -103,7 +103,10 @@ export default {
       this.$api.getMemberPersonalInfo().then(res => {
         if (res.isError) return
         this.userInfo = res.content
-        this.setTabbarBadge()
+        uni.setTabBarBadge({
+          index: 1,
+          text: this.userInfo.messageQuantity
+        })
       })
     },
     // 获取行程分页

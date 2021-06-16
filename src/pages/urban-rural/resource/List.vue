@@ -112,6 +112,5 @@ export default {
 <style lang='scss' scoped>
 .wrap {
   height: 100%;
-  overflow-y: hidden;
 }
 </style>
