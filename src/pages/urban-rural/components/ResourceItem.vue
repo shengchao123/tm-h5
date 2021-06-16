@@ -15,18 +15,21 @@
       <div class="content">
         <div class="bold ft34 mt24">{{resourceItem.item.title}}</div>
 
-        <div class="relative"
-             @click.stop>
-          <u-read-more close-text="...展开"
-                       @open="open"
-                       font-size="24"
-                       color="#E32417 "
-                       text-indent="0"
-                       :shadow-style="{backgroundImage: 'none'}"
-                       show-height="80">
-            <rich-text :nodes="resourceItem.item.content"></rich-text>
-          </u-read-more>
+        <div class="relative">
+          <div @click.stop>
+            <u-read-more close-text="...展开"
+                         @open="open"
+                         font-size="24"
+                         color="#E32417 "
+                         text-indent="0"
+                         :shadow-style="{backgroundImage: 'none'}"
+                         show-height="80">
+              <rich-text :nodes="resourceItem.item.content"></rich-text>
+            </u-read-more>
+          </div>
+          <div class="click-wrap"></div>
         </div>
+
       </div>
 
       <div class="contact center-align ft26">
@@ -135,6 +138,13 @@ export default {
 
 <style lang='scss' scoped>
 .resource-item-wrap {
+  .click-wrap {
+    position: absolute;
+    top: 0;
+    right: 100rpx;
+    left: 0;
+    bottom: 0;
+  }
   .wrap {
     padding: 30rpx;
   }

@@ -5,13 +5,12 @@
 
     <div v-for="subItem in infoItems"
          :key="subItem.title"
-         class="center-align mt16">
-      <div class="ft26 color-999"
+         class="row mt16 ft26">
+      <div class=" color-999"
            style="width:130rpx">{{subItem.title}}</div>
-      <div class="ft26"
-           style="max-width:360rpx"
+      <div style="max-width:360rpx"
            v-if="subItem.key !== 'contactPhone'">{{item[subItem.key]}}</div>
-      <div class="ft26 center-align"
+      <div class=" center-align"
            @click.stop="onCallPhone"
            v-else>
         <div>{{item[subItem.key]}}</div>
