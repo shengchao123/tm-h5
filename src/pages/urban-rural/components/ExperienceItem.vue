@@ -9,7 +9,7 @@
       <div class="ft26 color-999"
            style="width:130rpx">{{subItem.title}}</div>
       <div class="ft26"
-           style="max-width:400rpx"
+           style="max-width:360rpx"
            v-if="subItem.key !== 'contactPhone'">{{item[subItem.key]}}</div>
       <div class="ft26 center-align"
            @click.stop="onCallPhone"

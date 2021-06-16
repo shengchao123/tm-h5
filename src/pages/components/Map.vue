@@ -8,8 +8,8 @@
 <script>
 import mapMixin from '@/mixins/map.js'
 import AMap from 'AMap'
-let overlays = null
-let productOverlays = null
+let overlays = new AMap.OverlayGroup()
+let productOverlays = new AMap.OverlayGroup()
 export default {
   name: 'index',
   methods: {
@@ -31,8 +31,6 @@ export default {
 
       const _temPoints = JSON.parse(JSON.stringify(this.points))
       _temPoints.reverse()
-
-      overlays = new AMap.OverlayGroup()
 
       _temPoints.forEach((item, index) => {
         // 绘制标记气球
@@ -69,10 +67,9 @@ export default {
         imageSize: size
       })
 
-      productOverlays = new AMap.OverlayGroup()
-
       points.forEach((item, index) => {
-        // 绘制标记气球
+        // 绘制标记气球lat: 30.270003 lng: 119.606614
+
         const marker = new AMap.Marker({
           position: new AMap.LngLat(item.lng, item.lat),
           map: this.$amap,
@@ -85,7 +82,7 @@ export default {
         productOverlays.addOverlay(marker)
 
         // 点击方法绑定
-        marker.on('click', this.productClick)
+        // marker.on('click', this.productClick)
       })
     },
 
@@ -144,9 +141,13 @@ export default {
   created () {
     uni.$on('drawProductMarkers', (data) => {
       if (productOverlays) {
+        productOverlays.hide()
         productOverlays.clearOverlays()
       }
-      this.drawProductMarkers(data)
+
+      if (!this.$isEmpty(data)) {
+        this.drawProductMarkers(data)
+      }
     })
   },
   props: {
