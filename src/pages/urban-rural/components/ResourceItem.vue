@@ -10,7 +10,7 @@
           <div class="ft22 color-999 mt8">{{resourceItem.item.time}}</div>
         </div>
         <slot></slot>
-        <div class="tag fr ft22 color-999">房产商铺</div>
+        <div class="tag fr ft22 color-999">{{resourceItem.item.resourceTypeName}}</div>
       </div>
       <div class="content">
         <div class="bold ft34 mt24">{{resourceItem.item.title}}</div>

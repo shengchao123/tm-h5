@@ -76,6 +76,10 @@ export default {
   mixins: [listMixins],
   data () {
     return {
+      search: {
+        pageNumber: 1,
+        resourceType: '01'
+      },
       isScroll: false,
       upOption: {
         onScroll: true
