@@ -196,7 +196,7 @@ export default {
     return {
       noTimes: '',
       btns: ['拨通电话', '留言', '取消'],
-      isTalents: uni.getStorageSync('isTalents'),
+      isTalents: JSON.parse(uni.getStorageSync('isTalents')),
       show: false,
       noTimeShow: false,
       item: {},
