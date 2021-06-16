@@ -116,6 +116,7 @@ export default {
 <style lang='scss' scoped>
 .wrap {
   height: 100%;
+  overflow-y: hidden;
   .content {
     justify-content: space-between;
     flex-wrap: wrap;
