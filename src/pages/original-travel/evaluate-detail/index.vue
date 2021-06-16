@@ -30,13 +30,14 @@
     <view class="footer center-align ft30 color-999 between-row bg-white">
       <view class="flex">
         <view @click="onShowShareDialog">
-          <svg-icon icon="icon_zhuanfa"></svg-icon>
+          <svg-icon icon="icon_zhuanfa"
+                    :class="detailInfo.status === 2 ? 'color-d2d2d2' : 'color-999'"></svg-icon>
           <text class="pl20">{{detailInfo.shareQuantity}}</text>
         </view>
       </view>
       <view @click="changeStatus('isLike')">
         <svg-icon :icon="detailInfo.isLike ? 'icon_shoucang' : 'icon_weishoucang'"
-                  :class="detailInfo.isLike ? 'primary-color' : 'color-999'"></svg-icon>
+                  :class="$actionIconClass(detailInfo)"></svg-icon>
         <text class="pl20">{{detailInfo.likeQuantity}}</text>
       </view>
     </view>
@@ -143,6 +144,9 @@ export default {
 }
 </script>
 <style lang='scss' scoped>
+.color-d2d2d2 {
+  color: #d2d2d2;
+}
 .evaluate-detail-wrap {
   padding-bottom: 98rpx;
   .user {

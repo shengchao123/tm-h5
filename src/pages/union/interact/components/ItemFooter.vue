@@ -5,25 +5,24 @@
             style="width: 80rpx; height: 72rpx"
             @click.stop="onShare">
         <svg-icon icon="icon_zhuanfa"
-                  class="ft28 color-999"></svg-icon>
+                  class="ft28"
+                  :class="notesItem.status === 2 ? 'color-d2d2d2' : 'color-999'"></svg-icon>
         <text class="ft26 color-333 ml8">{{notesItem.shareQuantity}}</text>
       </view>
       <view class="center-align pg12">
         <view class="trigger-area relative center-align pl32"
               @click.stop="onLike">
-          <!-- <svg-icon class="ft28  mr8"
-                    :class="notesItem.isLike ? 'primary-color' : 'color-999'"
-                    :icon="notesItem.isLike ? 'icon_zan' : 'icon_zankong'"></svg-icon> -->
           <svg-icon :icon="notesItem.isLike ? 'icon_shoucang' : 'icon_weishoucang'"
                     class="ft28 color-999 mr8"
-                    :class="notesItem.isLike ? 'primary-color' : 'color-999'"></svg-icon>
+                    :class="$actionIconClass(notesItem)"></svg-icon>
           <text class="ft26"
                 :class="notesItem.isLike ? 'primary-color' : 'color-666'">{{notesItem.likeQuantity}}</text>
         </view>
         <view class="trigger-area relative center-align pl32"
               @click.stop="onComment">
           <svg-icon icon="icon_pinglun"
-                    class="ft28 color-999 mr8"></svg-icon>
+                    class="ft28 color-999 mr8"
+                    :class="notesItem.status === 2 ? 'color-d2d2d2' : 'color-999'"></svg-icon>
           <text class="ft26 color-666">{{notesItem.commentQuantity}}</text>
         </view>
       </view>
@@ -48,7 +47,7 @@ export default {
     // 点赞
     onLike () {
       if (this.$notMember()) return this.$goLogin()
-      if (this.entrance === 'myTrends' && this.notesItem.status === 1) return
+      if (this.entrance === 'myTrends' && this.notesItem.status === 2) return
       const notesItem = this.notesItem
       let { communityNoteId, isLike, likeQuantity } = notesItem
       const params = {
@@ -66,7 +65,7 @@ export default {
     // 评论
     onComment () {
       if (this.$notMember()) return this.$goLogin()
-      if (this.entrance === 'myTrends' && this.notesItem.status === 1) return
+      if (this.entrance === 'myTrends' && this.notesItem.status === 2) return
       if (!this.memberPersonalInfo.isRealName) {
         uni.showModal({
           title: '请先实名认证',
@@ -89,7 +88,7 @@ export default {
     // 分享
     onShare () {
       if (this.$notMember()) return this.$goLogin()
-      if (this.entrance === 'myTrends' && this.notesItem.status === 1) return
+      if (this.entrance === 'myTrends' && this.notesItem.status === 2) return
       const { title, content, communityNoteId } = this.notesItem
       const params = {
         sourceId: communityNoteId
@@ -143,6 +142,9 @@ export default {
 }
 </script>
 <style lang='scss' scoped>
+.color-d2d2d2 {
+  color: #d2d2d2;
+}
 .item-footer-wrap {
   color: #333;
   .trigger-area {

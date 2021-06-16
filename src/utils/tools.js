@@ -209,3 +209,10 @@ export function sourceUrl (url) {
   if (!url) return
   return url.includes('http://') || url.includes('https://') ? url : fileHost + url
 }
+
+// 操作按钮的样式名
+export function actionIconClass (item) {
+  if(item.status === 2) return 'color-d2d2d2'
+  if(item.isLike) return 'primary-color'
+  return 'color-999'
+}

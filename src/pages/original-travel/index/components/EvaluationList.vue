@@ -28,7 +28,7 @@
                     :class="item.isLike ? 'icon_zan primary-color' : 'icon_zankong color-999'"></text>
               <svg-icon :icon="item.isLike ? 'icon_shoucang' : 'icon_weishoucang'"
                         class="ft28 color-999 mr8"
-                        :class="item.isLike ? 'primary-color' : 'color-999'"></svg-icon>
+                        :class="$actionIconClass(item)"></svg-icon>
               <text class="ft26"
                     :class="item.isLike ? 'primary-color' : 'color-666'">{{item.likeQuantity}}</text>
             </div>
@@ -97,6 +97,9 @@ export default {
 }
 </script>
 <style lang='scss' scoped>
+.color-d2d2d2 {
+  color: #d2d2d2;
+}
 .evaluation-list {
   flex-wrap: wrap;
   .evaluation-item {
