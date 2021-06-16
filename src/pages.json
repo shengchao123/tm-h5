@@ -145,7 +145,10 @@
 		{
 			"path": "pages/urban-rural/index/index",
 			"style": {
-				"navigationBarTitleText": "城乡融合"
+				"navigationBarTitleText": "城乡融合",
+				"app-plus":{
+					"bounce":"none"
+				}
 			}
 		},
 		{
