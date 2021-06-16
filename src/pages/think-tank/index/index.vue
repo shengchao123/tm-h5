@@ -41,9 +41,12 @@
         </view>
       </mescroll-uni>
     </div>
-    <img v-else
+    <div v-else>
+      <subsidies></subsidies>
+    </div>
+    <!-- <img v-else
          :src="imgs[current]"
-         @click="onToDetail">
+         @click="onToDetail"> -->
     <custom-tabbar></custom-tabbar>
   </div>
 </template>
@@ -52,6 +55,7 @@ import MescrollMixin from "@/components/mescroll-uni/mescroll-mixins.js";
 import MescrollUni from "@/components/mescroll-uni/mescroll-uni.vue";
 import PolicyInfoItem from './components/PolicyInfoItem.vue'
 import ExpertServicesItem from './components/ExpertServicesItem.vue'
+import Subsidies from './components/Subsidies.vue'
 export default {
   name: 'index',
   methods: {
@@ -140,7 +144,8 @@ export default {
   components: {
     PolicyInfoItem,
     ExpertServicesItem,
-    MescrollUni
+    MescrollUni,
+    Subsidies
   }
 }
 </script>
@@ -153,7 +158,7 @@ page {
 <style lang='scss' scoped>
 .think-tank-wrap {
   padding-bottom: 50px;
-  padding-top: 100rpx;
+  // padding-top: 100rpx;
   .tab {
     position: fixed;
     top: 0;

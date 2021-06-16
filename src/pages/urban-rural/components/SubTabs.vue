@@ -3,6 +3,7 @@
     <div class="tab-item center mr24"
          :class="index === current && 'active'"
          v-for="(item, index) in tabs"
+         :style="{width: item.width ? item.width + 'rpx' : '160rpx'}"
          @click="onTab(index, item)"
          :key="index">
       {{item.text}}
