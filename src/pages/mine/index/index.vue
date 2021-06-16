@@ -57,7 +57,7 @@
         </div>
         <div class="item center column"
              @click="onOtherPage('reply')">
-          <div class="count ft34 bold">{{userInfo.messageQuantity || 0}}</div>
+          <div class="count ft34 bold">{{userInfo.talentsMessageQuantity || 0}}</div>
           <div class="count ft24 color-666 mt12">留言回复</div>
         </div>
       </div>
