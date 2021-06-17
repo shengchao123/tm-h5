@@ -26,7 +26,6 @@ const map = {
     upCallback (page) {
       this.search.pageNumber = page.num
       this.getDataList()
-      console.log(111)
     },
     downCallback (page) {
       this.mescroll.resetUpScroll()
