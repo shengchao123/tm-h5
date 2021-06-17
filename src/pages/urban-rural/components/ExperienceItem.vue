@@ -1,5 +1,5 @@
 <template>
-  <div class='experi-item-wrap mb20 relative'
+  <div class='experi-item-wrap relative'
        @click="onGoDetail">
     <div class="name ft40 bold mr16">{{item.title}}</div>
 

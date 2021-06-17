@@ -83,10 +83,10 @@ export default {
 <style lang='scss' scoped>
 .urban-rural-wrap {
   background: #f7f7f7;
-  padding-bottom: 50px;
-  height: calc(100vh - 16px);
+  // padding-bottom: 50px;
+  height: calc(100vh);
   .swiper {
-    height: calc(100vh - 80rpx - 16px);
+    height: calc(100vh - 80rpx);
   }
 }
 </style>

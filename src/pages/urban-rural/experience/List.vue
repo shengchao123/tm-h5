@@ -88,7 +88,7 @@ export default {
     return {
       isScroll: false,
       mescrollTop: '120rpx',
-      mescrollBottom: '20rpx',
+      mescrollBottom: '0rpx',
       upOption: {
         onScroll: true
       },

@@ -55,7 +55,7 @@ export default {
   data () {
     return {
       mescrollTop: '120rpx',
-      mescrollBottom: '20rpx',
+      mescrollBottom: '0rpx',
       subTabs: [
         {
           status: '',
