@@ -115,6 +115,7 @@ import Popup from '@/components/slzx-popup/slzx-popup.vue'
 // import VueClipboard from 'vue-clipboard2'
 import wx from 'weixin-js-sdk'			//微信sdk依赖
 import html2canvas from "html2canvas";
+const isiOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)
 export default {
   data () {
     return {
@@ -299,13 +300,11 @@ export default {
       this.posterCreateEnd = false
       const posterEl = document.getElementById('posterView')
       setTimeout(() => {
-        html2canvas(posterEl, {
-          useCORS: true,
-        }).then((canvas) => {
+        html2canvas(posterEl, { y: isiOS ? 160 : 0 }).then((canvas) => {
           this.posterCreateEnd = true
           this.posterUrl = canvas.toDataURL("image/png");
         });
-      }, 500)
+      }, 200)
     },
     // 保存海报
     saveCanvas () {
