@@ -1,14 +1,13 @@
 <template>
-  <view class="detail-wrap mt20 flex1"
+  <view v-if="detailInfo"
+        class="detail-wrap mt20 flex1"
         :style="{paddingBottom: detailInfo && detailInfo.status === '01' ? '120rpx' : ''}">
     <view class="pl30 pr30 bg-white">
       <!-- 标题 -->
       <span class="title pt28 pb28 inline-block">
-        <text class="ft32 color-333 medium mr20">{{detailInfo.name}}</text>
-        <svg-icon v-if="detailInfo"
-                  :icon="getStatusInfo.iconClass || ''"
-                  :style="{color: getStatusInfo.color || ''}"
-                  class="status-icon"></svg-icon>
+        <span class="ft32 color-333 medium mr20">{{detailInfo.name}}</span>
+        <span class="status-info ft20 inline-block"
+              :style="{color: getStatusInfo.color, borderColor: getStatusInfo.color}">{{getStatusInfo.text}}</span>
       </span>
       <!-- 表单列表 -->
       <view class="form-list">
@@ -16,7 +15,7 @@
               :key="index"
               class="ft30 form-item flex pt28 pb28">
           <text class="color-333 medium">{{item.name}}</text>
-          <view class="pl32 flex1">
+          <view class="pl32 flex1 color-666">
             <text v-if="item.keyName === 'activityTime'">{{getTime}}</text>
             <text
                   v-else-if="item.keyName === 'startTime'">{{moment(detailInfo.startTime).format('YYYY-MM-DD HH:mm')}}</text>
@@ -30,8 +29,7 @@
             </view> -->
             <text
                   v-else-if="item.keyName === 'numberLimit'">{{detailInfo.numberLimit === -1 ? '不限制' : detailInfo.numberLimit}}</text>
-            <text v-else
-                  class="color-666">{{detailInfo[item.keyName]}}</text>
+            <text v-else>{{detailInfo[item.keyName]}}</text>
           </view>
 
         </view>
@@ -226,11 +224,16 @@ page {
 </style>
 <style lang='scss' scoped>
 .detail-wrap {
-  // padding-bottom: 120rpx;
   .title {
-    .status-icon {
-      font-size: 88rpx;
-      height: 44rpx;
+    .status-info {
+      vertical-align: top;
+      margin-top: 6rpx;
+      border: 1px solid transparent;
+      border-radius: 0 16rpx 0 16rpx;
+      height: 32rpx;
+      line-height: 32rpx;
+      text-align: center;
+      width: 88rpx;
     }
   }
   .form-list {
