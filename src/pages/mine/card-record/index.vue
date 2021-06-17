@@ -18,7 +18,7 @@
              class="item mt20 ml30 mr30 pt24 pl24 pb24 center-align">
           <div class="flex flex1">
             <div class="num tc ft24 mr20">{{index + 1}}</div>
-            <div>
+            <div class="flex1">
               <div class="ft32 bold mb14">{{item.name}}</div>
               <div class="ft24 mb8">{{item.address}}</div>
               <div class="center-align color-999"
@@ -58,7 +58,7 @@ export default {
   methods: {
     onStrokeOrder () {
       uni.navigateTo({
-        url: `/pages/original-travel/stroke-order/detail?id=${this.id}`
+        url: `/pages/original-travel/stroke-order/detail?id=${this.journeyLineId}`
       })
     },
     // 查看打卡人员
@@ -66,16 +66,16 @@ export default {
       if (this.signUpQuantity <= 0) return
       const { id } = item
       uni.navigateTo({
-        url: `/pages/mine/card-record/personnelCard?id=${this.id}&journeyPointId=${id}`
+        url: `/pages/mine/card-record/personnelCard?id=${this.journeyLineId}&journeyPointId=${id}`
       })
     },
     // 打卡
-    onCard () {
-      const { journeyPointId, distance } = item
-      if (distance > 500) return
+    onCard (item) {
+      const { id, distance } = item
+      if (distance > 500) return this.$msg('不在打卡范围内')
       const params = {
-        id: this.id,
-        journeyPointId,
+        id: this.journeyLineId,
+        journeyPointId: id,
       }
       this.$api.journeyItineraryPointSignIn(params).then(res => {
         if (res.isError) return this.$msg(res.message)
@@ -184,8 +184,8 @@ export default {
   },
   onLoad (option) {
     this.initMyPoint()
-    this.id = option.id
-    this.getJourneyItinerarySignInById(this.id)
+    this.journeyLineId = option.id
+    this.getJourneyItinerarySignInById(this.journeyLineId)
   }
 }
 </script>
