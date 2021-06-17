@@ -9,9 +9,9 @@
             bar-height="4"
             :current="tabsCurrent"
             @change="changeTabs"
-            v-if="isTalents"></u-tabs>
+            v-if="isTalents === 'true'"></u-tabs>
     <mescroll-uni ref="mescrollRef"
-                  :top="isTalents?'88':'0'"
+                  :top="isTalents === 'true' ? '88' : '0'"
                   @init="mescrollInit"
                   @down="downCallback"
                   :up="upOption"
@@ -55,7 +55,7 @@ export default {
       const params = {
         pageNumber: page && page.num || 1,
         pageSize: page && page.size || 10,
-        status: this.isTalents ? this.tabsCurrent + 1 : null
+        status: this.isTalents === 'true' ? this.tabsCurrent + 1 : null
       }
       this.$api.getMyJourneyTalentsMessagePage(params).then(res => {
         if (res.isError) return this.$msg(res.message)
@@ -83,7 +83,7 @@ export default {
         textNoMore: "",
         noMoreSize: 10, // 配置列表的总数量要大于等于10条才显示'-- END --'的提示
       },
-      isTalents: JSON.parse(uni.getStorageSync('isTalents')), //是否为专家身份
+      isTalents: uni.getStorageSync('isTalents'), //是否为专家身份
       messageList: []
     }
   },

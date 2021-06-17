@@ -5,11 +5,7 @@ import { api } from '@/api/index.js'
 const needSaveKeys = ['avatar', 'memberId', 'phone', 'token', 'nick', 'status','isTalents']
 export const saveLoginInfo = function (res) {
   needSaveKeys.forEach(key => {
-    if(key === "isTalents"){
-      uni.setStorageSync(key, String(res[key]) || false)
-    }else if (res[key]){
-      uni.setStorageSync(key, String(res[key]) || '')
-    }
+    if (res[key]) uni.setStorageSync(key, String(res[key]))
   })
 }
 

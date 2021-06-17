@@ -40,7 +40,7 @@
         <text class="color-999 ft28 line1">即将拨打专家电话</text>
         <text class="color-333 ft34 medium line1 mt36">{{item.contactPhone}}</text>
         <!-- 专家 -->
-        <view v-if="isTalents"
+        <view v-if="isTalents === 'true'"
               class="expert flex">
           <view class="color-333 ft32 center"
                 @click="show = false">
@@ -71,10 +71,10 @@
       <view class="container column">
         <view class="column center-align color-333 ft32 medium">
           <text class="line1">不在电话服务时间内</text>
-          <text v-if="!isTalents">可进行问题留言</text>
+          <text v-if="!isTalents === 'true'">可进行问题留言</text>
         </view>
         <!-- 专家 -->
-        <view v-if="isTalents"
+        <view v-if="isTalents === 'true'"
               class="no-time pt16">
           <text class="line1 color-999 ft26">时间：{{noTimes}}</text>
           <view class="btn center"
@@ -196,7 +196,7 @@ export default {
     return {
       noTimes: '',
       btns: ['拨通电话', '留言', '取消'],
-      isTalents: JSON.parse(uni.getStorageSync('isTalents')),
+      isTalents: uni.getStorageSync('isTalents'),
       show: false,
       noTimeShow: false,
       item: {},

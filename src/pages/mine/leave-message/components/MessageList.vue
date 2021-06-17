@@ -14,7 +14,7 @@
             <view class="user-time">{{$moment(msgData.contentTime).format('YYYY-MM-DD HH:mm:ss')}}</view>
           </view>
           <view class="replay"
-                v-if="msgData.status === 1 && isTalents"
+                v-if="msgData.status === 1 && isTalents === 'true'"
                 @click="replayMsg(msgData.id)">回复TA</view>
         </view>
         <view class="content">{{msgData.content}}</view>
@@ -70,7 +70,7 @@ export default {
   },
   data () {
     return {
-      isTalents: JSON.parse(uni.getStorageSync('isTalents')) //是否为专家身份
+      isTalents: uni.getStorageSync('isTalents') //是否为专家身份
     }
   },
   components: { SendMessage },
