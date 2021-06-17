@@ -11,7 +11,7 @@
             @change="changeTabs"
             v-if="isTalents"></u-tabs>
     <mescroll-uni ref="mescrollRef"
-                  :top="isTalents?'88':'0'"
+                  :top="isTalents?'80':'0'"
                   @init="mescrollInit"
                   @down="downCallback"
                   :up="upOption"
