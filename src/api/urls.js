@@ -25,15 +25,14 @@ export const urls = {
   getJSConfig: '/third/authorization/getJSConfig',
 
   // 人才智库
-  getShowJourneyPolicyPage:'/linanJourney/journeyPolicyManagement/getShowJourneyPolicyPage',// 政策分页
-  getShowJourneyPolicyDetail:'/linanJourney/journeyPolicyManagement/getShowJourneyPolicyDetail',// 政策详情
-  getShowJourneyTalentsPage:'/linanJourney/journeyTalents/getShowJourneyTalentsPage',// 人才分页
-  getShowJourneyTalentsDetail:'/linanJourney/journeyTalents/getShowJourneyTalentsDetail',// 人才详情
-  leaveMessage:'/linanJourney/journeyTalentsMessage/leaveMessage', // 留言
+  getShowJourneyPolicyPage: '/linanJourney/journeyPolicyManagement/getShowJourneyPolicyPage',// 政策分页
+  getShowJourneyPolicyDetail: '/linanJourney/journeyPolicyManagement/getShowJourneyPolicyDetail',// 政策详情
+  getShowJourneyTalentsPage: '/linanJourney/journeyTalents/getShowJourneyTalentsPage',// 人才分页
+  getShowJourneyTalentsDetail: '/linanJourney/journeyTalents/getShowJourneyTalentsDetail',// 人才详情
+  leaveMessage: '/linanJourney/journeyTalentsMessage/leaveMessage', // 留言
 
   // 初心之旅
   getRecommendJourneyLineList: '/linanJourney/journeyLine/getRecommendJourneyLineList', // 推荐路线
-  getJourneyPointList: '/linanJourney/journeyPointManagement/getJourneyPointList', // 获取点位列表
   getJourneyPointListByJourneyId: '/linanJourney/journeyLine/getJourneyPointListByJourneyId', // 路线点位信息
   getJourneyPointListByOrgId: '/linanJourney/journeyPoint/getJourneyPointListByOrgId', // 获取点位列表
   getJourneyPointInfoById: '/linanJourney/journeyPoint/getJourneyPointInfoById', // 根据点位id获取点位信息
@@ -42,7 +41,6 @@ export const urls = {
   sendVerificationCode: '/crm/member/sendVerificationCode', // 发送验证码
   getJourneyPointListByRegionsCode: '/linanJourney/journeyPoint/getJourneyPointListByRegionsCode', // 获取点位列表
   getJourneyRegionsList: '/linanJourney/journeyRegionsManagement/getJourneyRegionsList', //
-  getJourneyPointListByRegionsCode: '/linanJourney/journeyPoint/getJourneyPointListByRegionsCode', // 获取点位列表
 
   sendVerificationCode: '/crm/member/sendVerificationCode', // 发送验证码
   getJourneyRegionsList: '/linanJourney/journeyRegions/getJourneyRegionsList', //
@@ -134,7 +132,7 @@ export const urls = {
   removeJourneyLifeDocumentary: '/linanJourney/journeyLifeDocumentary/removeJourneyLifeDocumentary', // 删除生活纪实
 
   //留言
-  getMyJourneyTalentsMessagePage:'/linanJourney/journeyTalentsMessage/getMyJourneyTalentsMessagePage',//我的留言分页
-  respondMessage:'/linanJourney/journeyTalentsMessage/respondMessage'//回复留言
+  getMyJourneyTalentsMessagePage: '/linanJourney/journeyTalentsMessage/getMyJourneyTalentsMessagePage',//我的留言分页
+  respondMessage: '/linanJourney/journeyTalentsMessage/respondMessage'//回复留言
 
 }

@@ -52,7 +52,7 @@ export default {
         this.drawMarkder({ ...MWH }, poi, poi.typeName ? "guide_mark_red.png" : this.currentPoi.marker)
       })
       this.setMapCenter(scenicSpot)
-      this.drawMarkder({ ...LWH }, scenicSpot, scenicSpot.typeName ? "guide_mark_red.png" : this.currentPoi.marker)
+      this.drawMarkder({ ...LWH }, scenicSpot, "guide_mark_red.png")
     },
     // 显示导航选择框
     showGuideActionSheet (item) {
@@ -79,15 +79,15 @@ export default {
       this.setMapCenter(scenicSpot)
       this.drawMarkder({ ...LWH }, scenicSpot)
 
-      if (poi.type) return this.getJourneyPointList(poi.type)
+      if (poi.type) return this.getJourneyPointListByRegionsCode(poi.type)
 
       this.getPoisWithLngLat(poi.name)
     },
-    getJourneyPointList (type) {
+    getJourneyPointListByRegionsCode (type) {
       const params = {
         type,
       }
-      this.$api.getJourneyPointList(params).then(res => {
+      this.$api.getJourneyPointListByRegionsCode(params).then(res => {
         if (res.isError) return
         const _pois = res.content.map(item => {
           item.address = item.regionsName
@@ -95,7 +95,7 @@ export default {
         })
         this.pois = [{ address: scenicSpot.regionsName, ...scenicSpot }].concat(_pois)
         _pois.forEach(poi => {
-          this.drawMarkder({ ...MWH }, poi)
+          this.drawMarkder({ ...MWH }, poi, this.currentPoi.marker)
         })
       })
     },
@@ -215,11 +215,11 @@ export default {
       let _pois = JSON.parse(JSON.stringify(this.pois))
       _pois = _pois.filter((item, index) => index !== this.currentIndex)
       _pois.forEach(poi => {
-        this.drawMarkder({ ...MWH }, poi, poi.typeName ? "guide_mark_red.png" : this.currentPoi.marker)
+        this.drawMarkder({ ...MWH }, poi, this.currentPoi.marker)
       })
 
       this.setMapCenter(_poi)
-      this.drawMarkder({ ...LWH }, _poi, _poi.typeName ? "guide_mark_red.png" : this.currentPoi.marker)
+      this.drawMarkder({ ...LWH }, _poi, "guide_mark_red.png")
     }
   },
   mounted () {
