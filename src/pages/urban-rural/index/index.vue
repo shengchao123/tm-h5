@@ -35,6 +35,10 @@
     </swiper>
 
     <custom-tabbar></custom-tabbar>
+
+    <u-action-sheet :list="actions"
+                    @click="onSelectGuide"
+                    v-model="showGuide"></u-action-sheet>
   </div>
 </template>
 
@@ -43,9 +47,20 @@ import List1 from '../optimization/List.vue'
 import List2 from '../activity/List.vue'
 import List3 from '../experience/List.vue'
 import List4 from '../resource/List.vue'
+import { beginGuide } from '@/utils/map.js'
+
 export default {
   name: 'index',
   methods: {
+    // 选择地图导航回调
+    onSelectGuide (act) {
+      const { lng, lat, address } = this.guideItem
+      beginGuide(act, {
+        name: address,
+        lng,
+        lat
+      })
+    },
     onImg () {
       window.location.href = 'https://loan.jztdata.com:18085/html/index.html'
     },
@@ -69,10 +84,20 @@ export default {
       this.current = index
     },
   },
+  created () {
+    uni.$on('onOpenGuide', (data) => {
+      this.showGuide = true
+      this.guideItem = data
+    })
+  },
   components: { List1, List2, List3, List4 },
   data () {
+
+    this.guideItem = {}
     return {
       current: 0,
+      actions: Object.freeze([{ text: '高德地图' }, { text: '腾讯地图' }]),
+      showGuide: false,
       swiperCurrent: 0,
       list: [
         {
