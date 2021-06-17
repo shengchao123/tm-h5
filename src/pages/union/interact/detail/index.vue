@@ -117,7 +117,7 @@ export default {
     },
     changeSignUpStatus () {
       if (this.$notMember()) return this.$goLogin();
-      const { isSignUp } = this.detailInfo
+      const { isSignUp, id } = this.detailInfo
       if (isSignUp) {
         uni.showModal({
           title: '要取消报名？',
@@ -132,7 +132,8 @@ export default {
         })
         return
       }
-      this.onAction()
+      // this.onAction()
+      uni.navigateTo({ url: `/pages/original-travel/stroke-order/signUp?id=${id}&type=activity` })
     },
     getJourneyActivityDetail () {
       const params = {

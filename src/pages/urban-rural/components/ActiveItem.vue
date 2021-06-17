@@ -40,7 +40,7 @@
             v-if="item.isSignUp && item.status !== '03'">
         已报名
       </view>
-      <view v-if="!item.isSignUp && item.status !== '03'"
+      <view v-if="!item.isSignUp && item.status === '01'"
             class="btn"
             @click.stop="onToRoute(item)">
         我要报名
