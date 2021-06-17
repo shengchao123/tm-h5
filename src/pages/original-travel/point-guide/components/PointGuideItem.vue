@@ -61,13 +61,13 @@ export default {
       display: inline-block;
       height: 36rpx;
       line-height: 36rpx;
-      border-radius: 18rpx;
+      border-radius: 20rpx;
       padding: 0 15rpx;
       vertical-align: middle;
     }
     .tag-card {
       color: #ff9708;
-      border: 1px solid #ff9708;
+      border: 1px solid #ffdfb4;
       background: #fff3e2;
     }
     .tag-03 {

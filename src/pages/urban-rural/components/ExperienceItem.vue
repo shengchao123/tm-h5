@@ -26,44 +26,30 @@
     </div>
 
     <div class="guide-btn center"
-         @click.stop="onOpenGuide">
+         @click.stop="onGuide">
       <SvgIcon icon="icon_daohang"
                style="color:#518CFC "
                class="ft20 mr8"></SvgIcon>
       <span class="color-666 ft26">导航</span>
     </div>
 
-    <u-action-sheet :list="actions"
-                    @click="onSelectGuide"
-                    v-model="showGuide"></u-action-sheet>
-
   </div>
 </template>
 
 <script>
 import ImgGroup from '@/pages/union/interact/components/ImgGroup'
-import { beginGuide } from '@/utils/map.js'
 export default {
   name: 'experiItem',
   methods: {
     // 显示导航选择框
-    onOpenGuide (item) {
-      this.showGuide = true
+    onGuide () {
+      uni.$emit('onOpenGuide', this.item)
     },
     onCallPhone () {
       uni.makePhoneCall({
         phoneNumber: this.item.contactPhone,
         success: (result) => { },
         fail: (error) => { }
-      })
-    },
-    // 选择地图导航回调
-    onSelectGuide (act) {
-      const { lng, lat, address } = this.item
-      beginGuide(act, {
-        name: address,
-        lng,
-        lat
       })
     },
     onGoDetail () {
@@ -73,7 +59,6 @@ export default {
   data () {
     return {
       showGuide: false,
-      actions: Object.freeze([{ text: '高德地图' }, { text: '腾讯地图' }]),
       infoItems: Object.freeze([
         {
           title: '适宜人群：',

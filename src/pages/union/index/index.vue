@@ -1,10 +1,16 @@
 <template>
   <div class='party-wrap'
        @scroll="scroll">
-    <div class="map">
-      <Map :points="partyList"
+    <div class="map relative">
+      <Map ref="map"
+           :points="partyList"
            :currentIndex="selectPoint"
            @changeIndex="changeIndex"></Map>
+      <div class="reset-btn center"
+           @click="resetMap">
+        <svg-icon class="ft40 color-666"
+                  icon="icon_suoding"></svg-icon>
+      </div>
     </div>
     <div class="pt24 pl30 pr30 bg-white pb20">
       <div class="title center-align">
@@ -84,6 +90,10 @@ import Map from './components/Map'
 let timer = null
 export default {
   methods: {
+    resetMap () {
+      const mapEl = this.$refs.map
+      mapEl && mapEl.resetMap()
+    },
     onInteract () {
       uni.navigateTo({
         url: '/pages/union/interact/index/index'
@@ -190,6 +200,16 @@ page {
   .map {
     width: 100%;
     height: 560rpx;
+    .reset-btn {
+      position: absolute;
+      left: 15rpx;
+      bottom: 15rpx;
+      width: 88rpx;
+      height: 88rpx;
+      background: #ffffff;
+      box-shadow: 0 -6rpx 17rpx 0 rgba(0, 0, 0, 0.1);
+      border-radius: 20rpx;
+    }
   }
   .title {
     .tip {

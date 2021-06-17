@@ -14,6 +14,13 @@ const MWH = { W: 20, H: 28 }
 export default {
   name: 'index',
   methods: {
+    // 重置缩放及定位
+    resetMap () {
+      if (!this.$amap) return
+      const { zoom, center } = this.mapInitObj
+      this.$amap.setZoom(zoom)
+      this.$amap.setCenter(center)
+    },
     // 绘制图中标记点
     drawMarkers () {
       const _temPoints = JSON.parse(JSON.stringify(this.points))

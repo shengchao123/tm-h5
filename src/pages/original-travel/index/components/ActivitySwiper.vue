@@ -34,16 +34,16 @@
                 <div class="flex1">
                   <div class="ft26 flex mb12">
                     <svg-icon icon="icon_shijian"
-                              class="ft26 color-999 mt4"></svg-icon>
-                    <span class="pl8 color-999"
-                          style="white-space: nowrap;">时间：</span>
+                              class="ft26 color-999 mt4 mr8"></svg-icon>
+                    <!-- <span class="color-999"
+                          style="white-space: nowrap;">时间：</span> -->
                     <span class="ft24">{{activityTime(item)}}</span>
                   </div>
                   <div class="ft26 flex mb18">
                     <svg-icon icon="icon_lianmeng"
-                              class="ft26 color-999 mt4"></svg-icon>
-                    <span class="pl8 color-999"
-                          style="white-space: nowrap;">组织：</span>
+                              class="ft26 color-999 mt4 mr8"></svg-icon>
+                    <!-- <span class="color-999"
+                          style="white-space: nowrap;">组织：</span> -->
                     <span class="ft24">{{item.orgName}}</span>
                   </div>
                   <div class="ft20 color-999 mt4">
@@ -54,7 +54,7 @@
                                   color="#999"
                                   :show-seconds="false"
                                   :timestamp="timestamp(item)"></u-count-down>
-                    <span>后截止</span>
+                    <span>后报名截止</span>
                   </div>
                 </div>
               </div>

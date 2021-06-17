@@ -8,24 +8,24 @@
         <view class="flex1">
           <view class="imgs flex">
             <view v-if="shareBtns.includes('wx')"
-                  class="center column"
+                  class="center column imgs-item"
                   @click="guideShareType">
               <image :src="imgHost + 'pull-new/invite_icon01.png'" />
-              <text class="mt8 ft24">微信</text>
+              <text class="mt8 ft24 color-666">微信</text>
             </view>
             <view v-if="shareBtns.includes('moments')"
                   @click="guideShareType"
-                  class="center column">
+                  class="center column imgs-item">
               <image :src="imgHost + 'pull-new/invite_icon02.png'" />
-              <text class="mt8 ft24">朋友圈</text>
+              <text class="mt8 ft24 color-666">朋友圈</text>
             </view>
             <view v-if="shareBtns.includes('copyLink')"
                   v-clipboard:copy="linkRender(shareData.link)"
                   v-clipboard:success="(type) => onCopyResult('success')"
                   v-clipboard:error="(type) => onCopyResult('error')"
-                  class="center column">
+                  class="center column imgs-item">
               <image :src="imgHost + 'pull-new/invite_icon03.png'" />
-              <text class="mt8 ft24">复制链接</text>
+              <text class="mt8 ft24 color-666">复制链接</text>
             </view>
             <!-- TODO: 钉钉图标、钉钉配置-->
             <!-- <view @click="onDingDing"
@@ -34,36 +34,34 @@
               <text class="mt8 ft24">钉钉</text>
             </view> -->
             <view @click="saveCanvas"
-                  class="center column"
+                  class="center column imgs-item"
                   v-if="savePoster">
               <div class="save-img">
                 <svg-icon class="ft46 color-999"
                           icon="icon_baocundaoxiangce"></svg-icon>
               </div>
-              <text class="mt4">保存到相册</text>
+              <text class="mt8 ft24 color-666">保存到相册</text>
             </view>
-            <view class="center column"
+            <view class="center column imgs-item"
                   v-if="!savePoster && shareBtns.includes('poster')">
               <image :src="imgHost + 'pull-new/invite_icon04.png'"
                      @click="createPoster" />
-              <text class="mt4">生成图片</text>
+              <text class="mt8 ft24 color-666">生成图片</text>
             </view>
           </view>
           <view class="flex operate"
                 v-if="isOperate">
             <view @click="editNote()"
-                  class="tc mr87 flex"
-                  style="width: 94rpx">
+                  class="center column imgs-item">
               <svg-icon icon="icon_bianji"
-                        class="center icon-operate ft32"></svg-icon>
-              <p class="mt4">编辑</p>
+                        class="ft32"></svg-icon>
+              <p class="mt8 ft24 color-666">编辑</p>
             </view>
             <view @click="deleteNote()"
-                  class="tc"
-                  style="width: 94rpx">
+                  class="center column imgs-item">
               <svg-icon icon="icon_shanchu"
-                        class="center icon-operate ft32"></svg-icon>
-              <p class="mt4">删除</p>
+                        class="ft32"></svg-icon>
+              <p class="mt8 ft24 color-666">删除</p>
             </view>
           </view>
           <view @click="hide"
@@ -115,6 +113,7 @@ import Popup from '@/components/slzx-popup/slzx-popup.vue'
 // import VueClipboard from 'vue-clipboard2'
 import wx from 'weixin-js-sdk'			//微信sdk依赖
 import html2canvas from "html2canvas";
+const isiOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)
 export default {
   data () {
     return {
@@ -299,13 +298,11 @@ export default {
       this.posterCreateEnd = false
       const posterEl = document.getElementById('posterView')
       setTimeout(() => {
-        html2canvas(posterEl, {
-          useCORS: true,
-        }).then((canvas) => {
+        html2canvas(posterEl, { y: isiOS ? 160 : 0 }).then((canvas) => {
           this.posterCreateEnd = true
           this.posterUrl = canvas.toDataURL("image/png");
         });
-      }, 500)
+      }, 200)
     },
     // 保存海报
     saveCanvas () {
@@ -395,10 +392,16 @@ page {
 .imgs {
   margin-bottom: 50rpx;
   padding: 0 60rpx;
-  justify-content: space-between;
   image {
     width: 88rpx;
     height: 88rpx;
+  }
+}
+.imgs-item {
+  width: 120rpx;
+  margin-right: 50rpx;
+  &:nth-of-type(4n) {
+    margin-right: 0;
   }
 }
 .cancel_btn {
@@ -429,7 +432,7 @@ page {
   }
 }
 .operate {
-  padding: 0 45rpx 50rpx;
+  padding: 0 60rpx 50rpx;
 }
 .mr87 {
   margin-right: 87rpx;

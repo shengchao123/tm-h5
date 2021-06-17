@@ -13,6 +13,7 @@ yarn-error.log*
 Detail copy.vue
 index copy.vue
 .hbuilderx*
+my-text*
 # Editor directories and files
 .project
 .idea

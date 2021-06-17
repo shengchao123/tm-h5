@@ -9,7 +9,7 @@
         <div v-if="!isDetail"
              class="center-align">
           <span class="ft24"
-                style="color: #518CFC;">自定义行程</span>
+                style="color: #518CFC;">{{usePoints.length > 0 ? '切换行程' : '自定义行程'}}</span>
           <svg-icon icon="icon_xiangyoujiantou"
                     class="ft20 ml8"
                     style="color:  #C4C4C4"></svg-icon>

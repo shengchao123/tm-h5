@@ -61,7 +61,6 @@ export default {
     '$store.state.travel.customPathPoints': {
       handler: function (n, o) {
         if (n) {
-          console.log(1111)
           this.points = JSON.parse(JSON.stringify(n))
         }
       },

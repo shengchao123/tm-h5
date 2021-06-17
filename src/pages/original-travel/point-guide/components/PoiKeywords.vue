@@ -70,7 +70,7 @@ export default {
 .poi-keywords-wrap {
   background: #ffffff;
   box-shadow: 0 -6rpx 17rpx 0 rgba(0, 0, 0, 0.1);
-  border-radius: 40rpx;
+  border-radius: 16rpx;
 
   .item {
     padding: 16rpx 8rpx;
