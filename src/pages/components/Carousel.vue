@@ -1,5 +1,5 @@
 <template>
-  <view class="carousel-wrap bg-white"
+  <view class="carousel-wrap"
         :style="{height: firstImgHeight + 'px'}">
     <swiper class="swiper-box"
             :indicator-dots="false"
@@ -10,7 +10,7 @@
       <block v-for="(item,index) in imgList"
              :key="index">
         <swiper-item>
-          <view class="swiper-item">
+          <view class="swiper-item center">
             <image mode="widthFix"
                    class="swiper-item-img"
                    :src="$sourceUrl(item)"
@@ -85,6 +85,7 @@ export default {
   min-height: 400rpx;
   max-height: 920rpx;
   position: relative;
+  background: #000;
   .swiper-box,
   .swiper-item,
   .swiper-item-img {
