@@ -1,5 +1,6 @@
 <template>
-  <div class='detail-wrap'>
+  <div class='detail-wrap'
+       v-if="inductiveDetail.title">
     <!-- <img src="@/static/test/13.png"> -->
     <div class="ft40 bold mb24">{{inductiveDetail.title}}</div>
     <div class="center-align ft26 color-666 mb24">
@@ -7,7 +8,8 @@
       <div>{{inductiveDetail.publishingDepartment}}</div>
     </div>
     <div v-html="inductiveDetail.content"></div>
-    <div class="flex-wrap mt30">
+    <div class="flex-wrap mt30"
+         v-if="inductiveDetail.picList.length > 0">
       <div v-for="(img,index) in inductiveDetail.picList"
            :key="index">
         <img :src="$fileHost + img.url"
@@ -15,7 +17,7 @@
              :class="(index + 1) % 3 === 0?'img':'img mr24'">
       </div>
     </div>
-    <div>
+    <div v-if="inductiveDetail.attachmentList.length > 0">
       <div class="bold ft28 mb24 mt48">附件</div>
       <div v-for="(item,index) in inductiveDetail.attachmentList"
            :key="index"
