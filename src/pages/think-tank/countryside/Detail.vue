@@ -72,6 +72,10 @@ export default {
     text-overflow: ellipsis;
     white-space: nowrap;
     color: #518cfc;
+    a {
+      text-decoration: none;
+      outline: none;
+    }
   }
 }
 </style>
