@@ -125,7 +125,7 @@ export default {
     right: 0;
     top: 20rpx;
     position: absolute;
-    width: 108rpx;
+    padding: 0 16rpx;
     height: 40rpx;
     border-radius: 6rpx 0 0 6rpx;
     background: #ddf9d7;
