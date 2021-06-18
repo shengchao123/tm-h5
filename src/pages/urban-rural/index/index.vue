@@ -41,6 +41,7 @@
                     v-model="showGuide"></u-action-sheet>
 
     <ShareDialog ref="shareDialog"
+                 shareBtns="copyLink"
                  :shareData="shareData"></ShareDialog>
   </div>
 </template>
