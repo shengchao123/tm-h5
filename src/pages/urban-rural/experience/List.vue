@@ -16,13 +16,15 @@
            v-if="!$isEmpty(dataList)">
         <div v-for="item in dataList"
              :key="item.id">
-          <ExperienceItem :item="item"
+          <ExperienceItem v-if="currentTab === 1"
+                          :item="item"
                           :isScroll="isScroll"></ExperienceItem>
+          <orders-item v-if="currentTab === 2"
+                       :item="item"></orders-item>
         </div>
       </div>
       <empty v-else></empty>
     </mescroll-uni>
-
     <PublishBtn @onPublish="onPublish"
                 :isScroll="isScroll"></PublishBtn>
   </div>
@@ -31,6 +33,7 @@
 <script>
 import SubTabs from '@/pages/urban-rural/components/SubTabs'
 import ExperienceItem from '@/pages/urban-rural/components/ExperienceItem'
+import OrdersItem from '../components/OrdersItem.vue'
 import PublishBtn from '@/pages/urban-rural/components/PublishBtn'
 import listMixins from '../mixins'
 export default {
@@ -44,6 +47,7 @@ export default {
     changeSubTab (item) {
       if (this.search.status === item.status) return
       if (item.disabled) return this.$msg('功能开发中')
+      this.currentTab = item.id
       this.search.status = item.status
       this.search.pageNumber = 1
       this.getDataList()
@@ -83,7 +87,7 @@ export default {
     }
   },
   mixins: [listMixins],
-  components: { SubTabs, ExperienceItem, PublishBtn },
+  components: { SubTabs, ExperienceItem, PublishBtn, OrdersItem },
   data () {
     return {
       isScroll: false,
@@ -92,20 +96,17 @@ export default {
       upOption: {
         onScroll: true
       },
+      currentTab: 2,
       subTabs: [
         {
+          id: 1,
           status: '',
           text: '实时推荐'
         },
         {
-          status: '01',
-          text: '我要定制',
-          disabled: true
-        },
-        {
-          status: '02',
-          text: '我要接单',
-          disabled: true
+          id: 1,
+          status: '',
+          text: '接单大厅'
         }
       ]
     }
