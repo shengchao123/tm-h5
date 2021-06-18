@@ -30,6 +30,18 @@ export const getFullUrl = function (url) {
 
 
 // 按照字节长截取字符串
+export function substringWithL (str, L) {
+  var result = ''
+  var strlen = str.length // 字符串长度
+  if (strlen <= L) {
+    return str
+  } else {
+    return str.substring(0, L) + '...'
+  }
+}
+
+
+// 按照字节长截取字符串
 export function subStringWithStrlen (str, L) {
   var result = ''
   var strlen = str.length // 字符串长度
@@ -212,7 +224,7 @@ export function sourceUrl (url) {
 
 // 操作按钮的样式名
 export function actionIconClass (item) {
-  if(item.status === 2) return 'color-d2d2d2'
-  if(item.isLike) return 'primary-color'
+  if (item.status === 2) return 'color-d2d2d2'
+  if (item.isLike) return 'primary-color'
   return 'color-999'
 }
