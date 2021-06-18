@@ -21,9 +21,13 @@
       <div class="bold ft28 mb24 mt48">附件</div>
       <div v-for="(item,index) in inductiveDetail.attachmentList"
            :key="index"
-           class="ft24 attachment mb16">
-        <span>{{index + 1}}.</span>
-        <span>{{item.name}}</span>
+           class="ft24 attachment mb16"
+           @click="dowmload(item.url)">
+        <a :href="$fileHost + item.url"
+           download>
+          <span>{{index + 1}}.</span>
+          <span>{{item.name}}</span>
+        </a>
       </div>
     </div>
   </div>
