@@ -39,6 +39,9 @@
     <u-action-sheet :list="actions"
                     @click="onSelectGuide"
                     v-model="showGuide"></u-action-sheet>
+
+    <ShareDialog ref="shareDialog"
+                 :shareData="shareData"></ShareDialog>
   </div>
 </template>
 
@@ -48,6 +51,7 @@ import List2 from '../activity/List.vue'
 import List3 from '../experience/List.vue'
 import List4 from '../resource/List.vue'
 import { beginGuide } from '@/utils/map.js'
+import ShareDialog from '@/pages/components/ShareDialog'
 
 export default {
   name: 'index',
@@ -63,6 +67,10 @@ export default {
     },
     onImg () {
       window.location.href = 'https://loan.jztdata.com:18085/html/index.html'
+    },
+    setShareData (shareData) {
+      this.shareData = JSON.parse(JSON.stringify(shareData))
+      this.$refs.shareDialog.show()
     },
     // swiper-item左右移动，通知tabs的滑块跟随移动
     transition (e) {
@@ -90,11 +98,17 @@ export default {
       this.guideItem = data
     })
   },
-  components: { List1, List2, List3, List4 },
+  components: { List1, List2, List3, List4, ShareDialog },
+  provide () {
+    return {
+      setShareData: this.setShareData,
+    }
+  },
   data () {
 
     this.guideItem = {}
     return {
+      shareData: {},
       current: 0,
       actions: Object.freeze([{ text: '高德地图' }, { text: '腾讯地图' }]),
       showGuide: false,

@@ -6,7 +6,6 @@
         <div class="circle center ft22">{{pointData.index + 1}}</div>
         <div class="line"></div>
       </div>
-
       <div class="ft30 ml16 medium"
            @click="onIntroduction">{{name(pointData.item.name, 11)}}</div>
     </div>
