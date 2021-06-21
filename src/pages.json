@@ -2,7 +2,7 @@
 	"easycom": {
 		"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
 	},
-	"pages": [ 
+	"pages": [
 		{
 			"path": "pages/home/index/index",
 			"style": {
@@ -141,13 +141,12 @@
 				"navigationBarTitleText": "基层治理"
 			}
 		},
-
 		{
 			"path": "pages/urban-rural/index/index",
 			"style": {
 				"navigationBarTitleText": "城乡融合",
-				"app-plus":{
-					"bounce":"none"
+				"app-plus": {
+					"bounce": "none"
 				}
 			}
 		},
@@ -161,6 +160,12 @@
 			"path": "pages/urban-rural/activity/Detail",
 			"style": {
 				"navigationBarTitleText": "特色活动详情"
+			}
+		},
+		{
+			"path": "pages/urban-rural/experience/AddCustomMade",
+			"style": {
+				"navigationBarTitleText": "我要定制"
 			}
 		},
 		{
@@ -203,7 +208,7 @@
 			"path": "pages/union/interact/send-post/index",
 			"style": {
 				"navigationBarTitleText": "发帖"
-			 }
+			}
 		},
 		{
 			"path": "pages/union/interact/detail/index",

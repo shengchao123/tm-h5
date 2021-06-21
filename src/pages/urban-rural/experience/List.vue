@@ -20,36 +20,42 @@
                           :item="item"
                           :isScroll="isScroll"></ExperienceItem>
           <orders-item v-if="currentTab === 2"
-                       :item="item"></orders-item>
+                       :item="item"
+                       @resetList="resetList"></orders-item>
         </div>
       </div>
       <empty v-else></empty>
     </mescroll-uni>
     <PublishBtn @onPublish="onPublish"
+                text="我要定制"
                 :isScroll="isScroll"></PublishBtn>
   </div>
 </template>
-
 <script>
 import SubTabs from '@/pages/urban-rural/components/SubTabs'
 import ExperienceItem from '@/pages/urban-rural/components/ExperienceItem'
 import OrdersItem from '../components/OrdersItem.vue'
 import PublishBtn from '@/pages/urban-rural/components/PublishBtn'
 import listMixins from '../mixins'
+const apiNameMap = new Map([
+  [1, 'getJourneyMerchantBoothInfoPage'],
+  [2, 'getJourneyPlayCustomizationInfoPage']
+])
 export default {
   name: 'List',
   methods: {
     onPublish () {
+      if (this.$notMember()) return this.$goLogin()
       uni.navigateTo({
-        url: '/pages/urban-rural/experience/AddMerchantBooth'
+        url: '/pages/urban-rural/experience/AddCustomMade'
       })
     },
     changeSubTab (item) {
-      if (this.search.status === item.status) return
+      if (this.currentTab === item.id) return
       if (item.disabled) return this.$msg('功能开发中')
       this.currentTab = item.id
-      this.search.status = item.status
       this.search.pageNumber = 1
+      this.dataList = []
       this.getDataList()
     },
     scroll () {
@@ -67,23 +73,27 @@ export default {
       const params = {
         ...this.search
       }
-      this.$api.getJourneyMerchantBoothInfoPage(params).then(res => {
+
+      this.$api[apiNameMap.get(this.currentTab)](params).then(res => {
         if (res.isError) return
 
         let { items, count } = res.content
-
-        items = items.map(item => {
-          const _appropriateCrowdFormat = item.appropriateCrowd.map(item1 => item1.typeName)
-          const _serviceContentFormat = item.serviceContent.map(item1 => item1.typeName)
-          item.appropriateCrowdFormat = _appropriateCrowdFormat.join(' ')
-          item.serviceContentFormat = _serviceContentFormat.join(' ')
-          item.images = item.images.map(item1 => item1.url)
-          return item
-        })
-
+        if (this.currentTab === 1) {
+          items = items.map(item => {
+            const _appropriateCrowdFormat = item.appropriateCrowd.map(item1 => item1.typeName)
+            const _serviceContentFormat = item.serviceContent.map(item1 => item1.typeName)
+            item.appropriateCrowdFormat = _appropriateCrowdFormat.join(' ')
+            item.serviceContentFormat = _serviceContentFormat.join(' ')
+            item.images = item.images.map(item1 => item1.url)
+            return item
+          })
+        }
         this.mescroll.endBySize(items.length, count)
         this.dataList = params.pageNumber === 1 ? items : this.dataList.concat(items)
       })
+    },
+    resetList () {
+      this.downCallback()
     }
   },
   mixins: [listMixins],
@@ -96,16 +106,14 @@ export default {
       upOption: {
         onScroll: true
       },
-      currentTab: 2,
+      currentTab: 1,
       subTabs: [
         {
           id: 1,
-          status: '',
           text: '实时推荐'
         },
         {
-          id: 1,
-          status: '',
+          id: 2,
           text: '接单大厅'
         }
       ]

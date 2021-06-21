@@ -35,6 +35,15 @@ export function getJourneyMerchantBoothInfoPage (params) { // '/linanJourney/jou
     data: { ...params }
   })
 }
+
+export function getJourneyPlayCustomizationInfoPage (params) { // 分页获取游玩定制
+  return request({
+    url: urls.getJourneyPlayCustomizationInfoPage,
+    needlessToken: true,
+    data: { ...params }
+  })
+}
+
 export function getJourneyMerchantBoothInfoById (params) { // '/linanJourney/journeyMerchantBooth/getJourneyMerchantBoothInfoById', // 商家展位详情
   return request({
     url: urls.getJourneyMerchantBoothInfoById,
@@ -66,6 +75,20 @@ export function getJourneyResourceSharingInfoById (params) { // ' /linanJourney/
   return request({
     url: urls.getJourneyResourceSharingInfoById,
     needlessToken: true,
+    data: { ...params }
+  })
+}
+
+export function orderJourneyPlayCustomizationInfoById (params) { // 对游玩定制进行接单
+  return request({
+    url: urls.orderJourneyPlayCustomizationInfoById,
+    data: { ...params }
+  })
+}
+
+export function createJourneyPlayCustomization (params) { // 创建游玩定制
+  return request({
+    url: urls.createJourneyPlayCustomization,
     data: { ...params }
   })
 }
