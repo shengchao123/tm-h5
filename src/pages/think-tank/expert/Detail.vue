@@ -1,6 +1,7 @@
 <template>
   <div class='detail-wrap pt20 flex1 column'>
-    <expert-services-item :itemInfo="detailInfo"></expert-services-item>
+    <expert-services-item :itemInfo="detailInfo"
+                          :isDetail="true"></expert-services-item>
     <view class="mt20 bg-white pl30 pr30 column flex1">
       <text class="title ft32 color-333 medium">个人介绍</text>
       <text class="line1 mt24 introduction pb20">{{detailInfo.introduction}}</text>
@@ -60,9 +61,7 @@ page {
   .introduction {
     text-align: justify;
     text-align-last: left;
+    line-height: 1.5;
   }
-  // img {
-  //   width: 100vw;
-  // }
 }
 </style>

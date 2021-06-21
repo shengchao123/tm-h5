@@ -3,9 +3,10 @@
     <view class="center-align">
       <view class="mr16 user-img"
             :style="{backgroundImage: `url(${avatarUrl(item.photo)})`}"></view>
-      <view class="ml16 column">
+      <view class="ml16 column flex1">
         <text class="ft28 color-333 medium">{{item.name}}</text>
-        <text class="ft22 color-999 pt12 skilled">{{titleList}}</text>
+        <text class="ft22 color-999 pt12 skilled"
+              :class="isDetail ? '' : 'list-skilled'">{{titleList}}</text>
       </view>
     </view>
     <view class="ft26">
@@ -41,7 +42,13 @@ export default {
     itemInfo: Object,
     showContact: Boolean,
     noTimeShow: Boolean,
-    selectItem: Object
+    selectItem: Object,
+    isDetail: {
+      type: Boolean,
+      default: (() => {
+        return false
+      })
+    }
   },
   data () {
     return {
@@ -106,11 +113,15 @@ export default {
     background-position: 50% 50%; /*图片上下左右居中*/
     background-repeat: no-repeat;
   }
-  .skilled {
+  .list-skilled {
     width: 500rpx;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+  .skilled {
+    text-align: justify;
+    text-align-last: left;
   }
   .contact-btn {
     right: 24rpx;
