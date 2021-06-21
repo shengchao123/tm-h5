@@ -66,7 +66,6 @@ export default {
       this.$api.getJourneyResourceSharingPage(params).then(res => {
         if (res.isError) return
         let { items, count } = res.content
-        console.log(this.dataList)
         this.dataList = params.pageNumber === 1 ? items : this.dataList.concat(items)
         this.mescroll.endBySize(items.length, count)
       })
