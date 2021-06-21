@@ -20,7 +20,7 @@
             class="swiper"
             @transition="transition"
             @animationfinish="animationfinish">
-      <swiper-item>
+      <swiper-item class="bg-white">
         <List1 v-if="current === 0 || hasLoaded(0)"></List1>
       </swiper-item>
       <swiper-item>
