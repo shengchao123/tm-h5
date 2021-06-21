@@ -277,6 +277,12 @@
 			}
 		},
 		{
+			"path": "pages/mine/my-hearts/Mall",
+			"style": {
+				"navigationBarTitleText": "红心商城"
+			}
+		},
+		{
 			"path": "pages/mine/my-activity/index",
 			"style": {
 				"navigationBarTitleText": "我的活动"

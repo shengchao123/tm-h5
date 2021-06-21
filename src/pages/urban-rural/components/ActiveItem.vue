@@ -60,7 +60,7 @@ export default {
   name: 'ActiveItem',
   methods: {
     onGoDetail () {
-      uni.navigateTo({ url: '/pages/urban-rural/activity/Detail?id=' + this.item.id })
+      uni.navigateTo({ url: `/pages/union/interact/detail/index?id=${this.item.id}` })
     },
     onToRoute (item) {
       const url = item.status === '01' ? `/pages/original-travel/stroke-order/signUp?id=${item.id}&type=activity` : ''

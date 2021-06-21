@@ -7,17 +7,25 @@
              v-if="userInfo.avatar">
 
         <div class="name-wrap ml20 column between-row flex1">
-          <div class="center-align">
-            <div class="ft32 bold">{{userInfo.nick}}</div>
-            <template v-for="(item, index) in userInfo.labelList">
+          <div class="ft32 bold mb16 line-h1">
+            {{userInfo.nick}}
+            <!-- <template v-for="(item, index) in userInfo.labelList">
               <div class="label ft22 center ml16"
                    v-if="index < 3"
                    :key="index">{{item}}</div>
-            </template>
+            </template> -->
           </div>
-          <div class="ft24 row">
+          <div class="center-align">
+            <div v-if="userInfo.isMerchant"
+                 class="label ft20 bg-9974fd mb16">商家</div>
+            <div v-if="userInfo.isAdmin"
+                 class="label ft20 ml8 bg-fd9374 mb16">专家</div>
+            <div v-if="!$isEmpty(userInfo.labelList)"
+                 class="label ft20 ml8 bg-74a3fd mb16">{{userInfo.labelList[0]}}</div>
+          </div>
+          <div class="ft24 row line-h1">
             <div :class="userInfo.name ? '': 'color-999'">{{userInfo.name || '暂未实名'}}</div>
-            <div class="color-999 ml24">{{userInfo.orgName}}</div>
+            <div class="color-999 ml32">{{userInfo.orgName}}</div>
           </div>
         </div>
 
@@ -42,7 +50,7 @@
       <div class="count-wrap between-row">
         <div class="item center column"
              @click="onOtherPage('trends')">
-          <div class="count ft34 bold">{{userInfo.talentsMessageQuantity || 0}}</div>
+          <div class="count ft34 bold">{{userInfo.noteQuantity || 0}}</div>
           <div class="count ft24 color-666 mt12">动态</div>
         </div>
         <div class="item center column"
@@ -153,11 +161,14 @@ page {
 }
 </style>
 <style lang='scss' scoped>
+.line-h1 {
+  line-height: 1;
+}
 .tabbar-mine {
   height: 100%;
   .info-wrap {
     border-bottom: 20rpx solid #f7f7f7;
-    padding: 40rpx 32rpx;
+    padding: 30rpx 32rpx 40rpx;
     .top-info {
       img {
         width: 100rpx;
@@ -167,7 +178,7 @@ page {
     }
   }
   .count-wrap {
-    padding: 42rpx 70rpx 0;
+    padding: 40rpx 38rpx 0;
   }
   .my-journey {
     padding: 32rpx 32rpx 0;
@@ -176,13 +187,21 @@ page {
   }
 
   .label {
-    height: 36rpx;
-    padding: 0 16rpx;
-    border: 1px solid #518cfc;
-    color: #518cfc;
-    border-radius: 18rpx;
+    height: 28rpx;
+    padding: 0 12rpx;
+    color: #fff;
+    border-radius: 4rpx;
+    line-height: 26rpx;
   }
-
+  .bg-9974fd {
+    background: #9974fd;
+  }
+  .bg-fd9374 {
+    background: #fd9374;
+  }
+  .bg-74a3fd {
+    background: #74a3fd;
+  }
   .scroll-Y {
     height: 100%;
   }
