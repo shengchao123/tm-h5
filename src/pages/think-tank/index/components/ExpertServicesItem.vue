@@ -40,9 +40,6 @@ export default {
   },
   props: {
     itemInfo: Object,
-    showContact: Boolean,
-    noTimeShow: Boolean,
-    selectItem: Object,
     isDetail: {
       type: Boolean,
       default: (() => {

@@ -37,9 +37,6 @@
                 class="list-item mt20 pl30 pr30"
                 @click="onToDetail(item.id)">
             <expert-services-item :itemInfo="item"
-                                  :showContact.sync="showContact"
-                                  :noTimeShow.sync="noTimeShow"
-                                  :selectItem.sync="selectItem"
                                   @onContact="onContact(item)">
             </expert-services-item>
           </view>
@@ -52,71 +49,14 @@
     <!-- <img v-else
          :src="imgs[current]"
          @click="onToDetail"> -->
-    <u-popup class="contact-dialog tc"
-             v-model="showContact"
-             mode="center"
-             border-radius="24"
-             width="540">
-      <view class="container column">
-        <text class="color-999 ft28 line1">即将拨打专家电话</text>
-        <text class="color-333 ft34 medium line1 mt36">{{selectItem.contactPhone}}</text>
-        <!-- 专家 -->
-        <view v-if="isTalents === 'true'"
-              class="expert flex">
-          <view class="color-333 ft32 center"
-                @click="showContact = false">
-            取消
-          </view>
-          <view class="center primary-color"
-                @click="onCall">
-            拨通电话
-          </view>
-        </view>
-        <!-- 普通用户 -->
-        <view v-else
-              class="member">
-          <view v-for="(btnItem,index) in btns"
-                :key="index"
-                class="btn-item center ft34 color-333"
-                @click="onAction(index)">
-            <text>{{btnItem}}</text>
-          </view>
-        </view>
-      </view>
-    </u-popup>
-    <u-popup class="contact-dialog tc"
-             v-model="noTimeShow"
-             mode="center"
-             border-radius="24"
-             width="540">
-      <view class="container column">
-        <view class="column center-align color-333 ft32 medium">
-          <text class="line1">不在电话服务时间内</text>
-          <text v-if="!isTalents === 'true'">可进行问题留言</text>
-        </view>
-        <!-- 专家 -->
-        <view v-if="isTalents === 'true'"
-              class="no-time pt16">
-          <text class="line1 color-999 ft26">时间：{{noTimes}}</text>
-          <view class="btn center"
-                @click="noTimeShow = false">
-            <text class="color-666 medium">我知道了</text>
-          </view>
-        </view>
-        <!-- 普通用户 -->
-        <view v-else
-              class="expert flex">
-          <view class="color-333 ft32 center"
-                @click="noTimeShow = false">
-            取消
-          </view>
-          <view class="center primary-color"
-                @click="onMessage">
-            留言
-          </view>
-        </view>
-      </view>
-    </u-popup>
+    <contact-popup :showContact.sync="showContact"
+                   :noTimeShow.sync="noTimeShow"
+                   :selectItem="selectItem"
+                   :noTimes="noTimes"
+                   @onCall="onCall"
+                   @onAction="onAction"
+                   @onMessage="onMessage">
+    </contact-popup>
     <custom-tabbar></custom-tabbar>
   </div>
 </template>
@@ -126,71 +66,13 @@ import MescrollUni from "@/components/mescroll-uni/mescroll-uni.vue";
 import PolicyInfoItem from './components/PolicyInfoItem.vue'
 import ExpertServicesItem from './components/ExpertServicesItem.vue'
 import Subsidies from './components/Subsidies.vue'
+import ExpertMixin from '@/mixins/expert-detail.js'
+import ContactPopup from '../components/ContactPopup.vue'
 import { filterWeek } from './components/filter.js'
 export default {
   name: 'index',
   methods: {
     filterWeek,
-    onContact (item) {
-      // 判断是否登录逻辑
-      if (this.$notMember()) return this.$goLogin();
-      this.selectItem = item
-      const { openDayList, startTime, endTime, isTelephoneCommunication } = this.selectItem
-      if (!this.isInTimes()) {
-        this.noTimes = this.filterWeek(openDayList) + '，' + startTime + '～' + endTime
-        this.$nextTick(() => {
-          this.noTimeShow = true
-        })
-        return
-      }
-      if (isTelephoneCommunication) {
-        this.showContact = true
-        return
-      }
-      this.onMessage()
-    },
-    // 将时间转成数字 与当前时间比较
-    filterTimeToNumber (time) {
-      return +(time.split(':').join(''))
-    },
-    // 判断当前时间是否在范围内
-    isInTimes () {
-      const { openDayList, startTime, endTime } = this.selectItem
-      const currentWeek = this.$moment().weekday() + 1
-      const currentTime = this.$moment().format("HH:mm")
-      const numStart = this.filterTimeToNumber(startTime)
-      const numEnd = this.filterTimeToNumber(endTime)
-      const numCurrent = this.filterTimeToNumber(currentTime)
-      if (!openDayList.includes(currentWeek)) return false
-      if (numCurrent < numStart) return false
-      if (numCurrent > numEnd) return false
-      return true
-    },
-    // 留言
-    onMessage () {
-      this.showContact = false
-      this.noTimeShow = false
-      uni.navigateTo({
-        url: `/pages/think-tank/message/index?id=${this.selectItem.id}`
-      })
-    },
-    // 打电话
-    onCall () {
-      uni.makePhoneCall({
-        phoneNumber: this.selectItem.contactPhone
-      })
-    },
-    onAction (index) {
-      this.showContact = false
-      this.noTimeShow = false
-      if (index === 0) {
-        this.onCall()
-        return
-      }
-      if (index === 1) {
-        this.onMessage()
-      }
-    },
     upCallback (page) {
       this.getListData(page)
     },
@@ -237,12 +119,6 @@ export default {
   },
   data () {
     return {
-      noTimes: '',
-      btns: ['拨通电话', '留言', '取消'],
-      isTalents: uni.getStorageSync('isTalents'),
-      selectItem: {},
-      showContact: false,
-      noTimeShow: false,
       policyDataList: [],
       expertDataList: [],
       isEmpty: false,
@@ -278,12 +154,13 @@ export default {
     if (!current) return
     this.current = +current
   },
-  mixins: [MescrollMixin],
+  mixins: [MescrollMixin, ExpertMixin],
   components: {
     PolicyInfoItem,
     ExpertServicesItem,
     MescrollUni,
-    Subsidies
+    Subsidies,
+    ContactPopup
   }
 }
 </script>
@@ -296,7 +173,6 @@ page {
 <style lang='scss' scoped>
 .think-tank-wrap {
   padding-bottom: 50px;
-  // padding-top: 100rpx;
   .tab {
     position: fixed;
     top: 0;
@@ -310,33 +186,6 @@ page {
   img {
     margin-top: -10rpx;
     width: 100vw;
-  }
-  .contact-dialog {
-    .container {
-      padding-top: 58rpx;
-      .expert {
-        margin-top: 50rpx;
-        border-top: 2rpx solid #eaeaea;
-        height: 88rpx;
-        view {
-          width: 50%;
-          &:last-child {
-            color: #e32417;
-            border-left: 2rpx solid #eaeaea;
-          }
-        }
-      }
-      .member {
-        margin-top: 36rpx;
-        .btn-item {
-          height: 88rpx;
-          border-top: 2rpx solid #eaeaea;
-          &:first-child {
-            color: #e32417;
-          }
-        }
-      }
-    }
   }
 }
 </style>

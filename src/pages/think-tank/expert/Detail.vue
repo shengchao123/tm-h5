@@ -1,18 +1,31 @@
 <template>
   <div class='detail-wrap pt20 flex1 column'>
     <expert-services-item :itemInfo="detailInfo"
-                          :isDetail="true"></expert-services-item>
+                          :isDetail="true"
+                          @onContact="onContact(detailInfo)"></expert-services-item>
     <view class="mt20 bg-white pl30 pr30 column flex1">
       <text class="title ft32 color-333 medium">个人介绍</text>
       <text class="line1 mt24 introduction pb20">{{detailInfo.introduction}}</text>
     </view>
+    <contact-popup :showContact.sync="showContact"
+                   :noTimeShow.sync="noTimeShow"
+                   :selectItem="selectItem"
+                   :noTimes="noTimes"
+                   @onCall="onCall"
+                   @onAction="onAction"
+                   @onMessage="onMessage">
+    </contact-popup>
   </div>
 </template>
 <script>
+import ExpertMixin from '@/mixins/expert-detail.js'
+import ContactPopup from '../components/ContactPopup.vue'
 import ExpertServicesItem from '@/pages/think-tank/index/components/ExpertServicesItem'
+import { filterWeek } from '../index/components/filter.js'
 export default {
   name: 'Detail',
   methods: {
+    filterWeek,
     getDetail () {
       const params = {
         id: this.id
@@ -37,8 +50,10 @@ export default {
   created () {
     this.getDetail()
   },
+  mixins: [ExpertMixin],
   components: {
-    ExpertServicesItem
+    ExpertServicesItem,
+    ContactPopup
   }
 }
 </script>
