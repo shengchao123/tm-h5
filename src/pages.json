@@ -158,12 +158,6 @@
 			}
 		},
 		{
-			"path": "pages/urban-rural/activity/Detail",
-			"style": {
-				"navigationBarTitleText": "特色活动详情"
-			}
-		},
-		{
 			"path": "pages/urban-rural/experience/AddMerchantBooth",
 			"style": {
 				"navigationBarTitleText": "申请展位"
