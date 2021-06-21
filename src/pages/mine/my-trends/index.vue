@@ -5,13 +5,13 @@
                      :list="list"
                      :current="current"
                      @change="tabsChange"
-                     :is-scroll="false"
+                     :is-scroll="true"
                      bar-width="32"
                      bar-height="4"
                      font-size="28"
                      active-color="#E32417"
                      inactive-color="#666666"
-                     swiperWidth="750"></u-tabs-swiper>
+                     gutter="64"></u-tabs-swiper>
     </div>
     <swiper :current="swiperCurrent"
             class="swiper"
@@ -29,7 +29,13 @@
       <swiper-item>
         <List4></List4>
       </swiper-item>
+      <swiper-item>
+        <List5></List5>
+      </swiper-item>
     </swiper>
+    <ShareDialog ref="shareDialog"
+                 shareBtns="copyLink"
+                 :shareData="shareData"></ShareDialog>
   </div>
 </template>
 <script>
@@ -37,9 +43,15 @@ import List1 from './travel-evaluation/List.vue'
 import List2 from './union-note/List.vue'
 import List3 from './resource/List.vue'
 import List4 from './experience/List.vue'
+import List5 from './my-customization/List.vue'
+import ShareDialog from '@/pages/components/ShareDialog'
 export default {
   name: 'index',
   methods: {
+    setShareData (shareData) {
+      this.shareData = JSON.parse(JSON.stringify(shareData))
+      this.$refs.shareDialog.show()
+    },
     // swiper-item左右移动，通知tabs的滑块跟随移动
     transition (e) {
       let dx = e.detail.dx;
@@ -60,9 +72,15 @@ export default {
       this.current = index
     },
   },
-  components: { List1, List2, List3, List4 },
+  components: { List1, List2, List3, List4, List5, ShareDialog },
+  provide () {
+    return {
+      setShareData: this.setShareData,
+    }
+  },
   data () {
     return {
+      shareData: {},
       current: 0,
       swiperCurrent: 0,
       list: [
@@ -74,7 +92,9 @@ export default {
           name: '资源共享',
         }, {
           name: '商家展位'
-        }
+        }, {
+          name: '我的定制'
+        },
       ]
     }
   }

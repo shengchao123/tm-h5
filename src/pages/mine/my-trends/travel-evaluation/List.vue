@@ -56,10 +56,6 @@ export default {
     Waterfall,
     PageEmpty
   },
-  // 页面周期函数--监听页面初次渲染完成
-  created () {
-    this.getListData()
-  }
 };
 </script>
 <style lang='scss' scoped>

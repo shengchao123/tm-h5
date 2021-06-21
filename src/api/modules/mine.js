@@ -221,3 +221,11 @@ export function respondMessage (params) { // 回复留言
     }
   })
 }
+export function getMyJourneyPlayCustomizationInfoPage (params) { // 分页获取我的游玩定制
+  return request({
+    url: urls.getMyJourneyPlayCustomizationInfoPage,
+      data: {
+      ...params
+    }
+  })
+}

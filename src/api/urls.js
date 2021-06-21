@@ -98,6 +98,7 @@ export const urls = {
   getMyJourneyResourceSharingPage: '/linanJourney/journeyResourceSharing/getMyJourneyResourceSharingPage', // 分页查询我的共享资源
   getMyJourneyMerchantBoothInfoPage: '/linanJourney/journeyMerchantBooth/getMyJourneyMerchantBoothInfoPage', // 分页我的获取商家展位
   getMyItineraryEvaluationPage: '/linanJourney/journeyItineraryEvaluation/getMyItineraryEvaluationPage', // 分页查询我的行程评价
+  getMyJourneyPlayCustomizationInfoPage: '/linanJourney/journeyPlayCustomization/getMyJourneyPlayCustomizationInfoPage', // 分页获取我的游玩定制
 
   // 实名认证
   findOrgList: '/organization/orgConsumer/findOrgList', // 获取联盟组织列表
