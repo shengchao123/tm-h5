@@ -135,7 +135,14 @@ export default {
       // 判断是否登录逻辑
       if (this.$notMember()) return this.$goLogin();
       this.selectItem = item
-      const { isTelephoneCommunication } = this.selectItem
+      const { openDayList, startTime, endTime, isTelephoneCommunication } = this.selectItem
+      if (!this.isInTimes()) {
+        this.noTimes = this.filterWeek(openDayList) + '，' + startTime + '～' + endTime
+        this.$nextTick(() => {
+          this.noTimeShow = true
+        })
+        return
+      }
       if (isTelephoneCommunication) {
         this.showContact = true
         return
@@ -161,21 +168,14 @@ export default {
     },
     // 留言
     onMessage () {
+      this.showContact = false
+      this.noTimeShow = false
       uni.navigateTo({
         url: `/pages/think-tank/message/index?id=${this.selectItem.id}`
       })
     },
     // 打电话
     onCall () {
-      const { openDayList, startTime, endTime } = this.selectItem
-      this.showContact = false
-      if (!this.isInTimes()) {
-        this.noTimes = this.filterWeek(openDayList) + '，' + startTime + '～' + endTime
-        this.$nextTick(() => {
-          this.noTimeShow = true
-        })
-        return
-      }
       uni.makePhoneCall({
         phoneNumber: this.selectItem.contactPhone
       })
