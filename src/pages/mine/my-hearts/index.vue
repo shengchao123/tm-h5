@@ -23,6 +23,23 @@
         </view>
       </view>
     </view>
+    <view class="h144 center-align exchange-wrap between-row pl30 pr30 bb"
+          @click="onMall">
+      <view class="center-align">
+        <img src="@/static/hearts/exchange-logo.png"
+             alt=""
+             class="logo-img">
+        <view class="column ml24">
+          <text class="ft30 color-333 mb20 line-h1">红心商城兑换福利</text>
+          <text class="ft24 color-999 line-h1">兑换更多礼品</text>
+        </view>
+      </view>
+      <view class="color-999">
+        <text class="ft24">去兑换</text>
+        <svg-icon icon="icon_xiangyoujiantou"
+                  class="ft24 ml8"></svg-icon>
+      </view>
+    </view>
     <view class="pt4 pb4">
       <u-tabs :list="tabsList"
               :is-scroll="false"
@@ -58,6 +75,10 @@ export default {
     // 红心获取规则弹窗
     onPopup () {
       this.$refs.accessRules.show()
+    },
+    // 红心商城
+    onMall () {
+      uni.navigateTo({ url: '/pages/mine/my-hearts/Mall' })
     },
     // 获取我的红心值
     getMyRedHeart () {
@@ -102,9 +123,15 @@ export default {
 .opacity-6 {
   opacity: 0.6;
 }
+.line-h1 {
+  line-height: 1;
+}
 .ft60 {
   font-size: 60rpx;
   line-height: 60rpx;
+}
+.h144 {
+  height: 144rpx;
 }
 .end-justify {
   justify-content: flex-end;
@@ -122,6 +149,12 @@ export default {
   .heart-accumulation {
     position: absolute;
     right: calc(50% + 50rpx);
+  }
+}
+.exchange-wrap {
+  .logo-img {
+    width: 86rpx;
+    height: 86rpx;
   }
 }
 </style>

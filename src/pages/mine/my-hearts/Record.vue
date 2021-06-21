@@ -1,7 +1,7 @@
 <template>
   <view class='record-wrap border-t20'>
     <mescroll-uni ref="mescrollRef"
-                  top="382"
+                  top="526"
                   @init="mescrollInit"
                   @down="downCallback"
                   :up="upOption"
