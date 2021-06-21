@@ -97,6 +97,10 @@ export default {
 }
 </script>
 <style lang='scss' scoped>
+.line1 {
+  line-height: 1;
+}
+
 .contact-dialog {
   .container {
     padding-top: 58rpx;
@@ -120,6 +124,15 @@ export default {
         &:first-child {
           color: #e32417;
         }
+      }
+    }
+    .no-time {
+      .btn {
+        width: 240rpx;
+        margin: 44rpx auto 32rpx;
+        height: 70rpx;
+        border: 1rpx solid #d2d2d2;
+        border-radius: 49rpx;
       }
     }
   }
