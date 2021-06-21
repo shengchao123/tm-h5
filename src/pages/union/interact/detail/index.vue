@@ -1,7 +1,10 @@
 <template>
   <view v-if="detailInfo"
-        class="detail-wrap mt20 flex1"
+        class="detail-wrap flex1"
         :style="{paddingBottom: detailInfo && detailInfo.status === '01' ? '120rpx' : ''}">
+    <u-swiper v-if="!$isEmpty(images)"
+              :list="images"
+              height="562"></u-swiper>
     <view class="pl30 pr30 bg-white">
       <!-- 标题 -->
       <span class="title pt28 pb28 inline-block">
@@ -130,7 +133,6 @@ export default {
         })
         return
       }
-      // this.onAction()
       uni.navigateTo({ url: `/pages/original-travel/stroke-order/signUp?id=${id}&type=activity` })
     },
     getJourneyActivityDetail () {
@@ -142,12 +144,21 @@ export default {
           this.$msg(res.message)
           return
         }
+        const { activityPicList } = res.content
+        if (!this.$isEmpty(activityPicList)) {
+          this.images = activityPicList.map(item => {
+            return {
+              image: this.$fileHost + item.url
+            }
+          })
+        }
         this.detailInfo = res.content
       })
     }
   },
   data () {
     return {
+      images: [],
       formList: Object.freeze([
         {
           name: '组织单位',
@@ -208,7 +219,7 @@ export default {
       return this.statusMap.get(this.detailInfo.status)
     }
   },
-  onLoad ({ id }) {
+  onLoad ({ id, title }) {
     this.id = id
   },
   created () {

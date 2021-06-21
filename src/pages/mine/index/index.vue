@@ -50,7 +50,7 @@
       <div class="count-wrap between-row">
         <div class="item center column"
              @click="onOtherPage('trends')">
-          <div class="count ft34 bold">{{userInfo.talentsMessageQuantity || 0}}</div>
+          <div class="count ft34 bold">{{userInfo.noteQuantity || 0}}</div>
           <div class="count ft24 color-666 mt12">动态</div>
         </div>
         <div class="item center column"
