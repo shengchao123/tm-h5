@@ -56,8 +56,6 @@
                   @setNotesItem="setNotesItem"></ItemFooter>
     </view>
 
-    <ShareDialog ref="shareDialog"
-                 :shareData="shareData"></ShareDialog>
     <SendCommentPopup ref="sendCommentPopup"></SendCommentPopup>
     <CommentListPopup ref="commentListPopup"></CommentListPopup>
   </div>
@@ -66,7 +64,6 @@
 <script>
 import ImgGroup from '@/pages/union/interact/components/ImgGroup'
 import ItemFooter from '@/pages/union/interact/components/ItemFooter'
-import ShareDialog from '@/pages/components/ShareDialog'
 import SendCommentPopup from '@/pages/union/interact/components/SendCommentPopup'
 import CommentListPopup from '@/pages/union/interact/components/CommentListPopup'
 import { dateForHowLongBefore } from '@u/date.js'
@@ -83,10 +80,6 @@ export default {
     setNotesItem (item, index) {
       this.$emit('setNotesItem', item, index)
     },
-    setShareData (shareData) {
-      this.shareData = JSON.parse(JSON.stringify(shareData))
-      this.$refs.shareDialog.show()
-    },
     onShowCommentListPopup (communityNoteId) {
       this.$refs.commentListPopup.show(communityNoteId)
     },
@@ -94,17 +87,15 @@ export default {
       this.$refs.sendCommentPopup.show(communityNoteId)
     }
   },
-  components: { ImgGroup, ItemFooter, ShareDialog, SendCommentPopup, CommentListPopup },
+  components: { ImgGroup, ItemFooter, SendCommentPopup, CommentListPopup },
   provide () {
     return {
-      setShareData: this.setShareData,
       onShowCommentListPopup: this.onShowCommentListPopup,
       onShowSendCommentPopup: this.onShowSendCommentPopup
     }
   },
   data () {
     return {
-      shareData: {},
       contactItems: Object.freeze([
         {
           key: 'contactPerson',

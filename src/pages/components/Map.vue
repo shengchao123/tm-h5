@@ -43,13 +43,14 @@ export default {
         // 绘制气球上数字文字
         const indexText = `<div style="color:#ffffff;width:22px;text-align:center;margin-top:2px;font-size:11px">${_temPoints.length - index}</div>`
         // eslint-disable-next-line no-new
-        new AMap.Marker({
+        const textMarker = new AMap.Marker({
           position: new AMap.LngLat(item.lng, item.lat),
           map: this.$amap,
           content: indexText,
           touchZoom: false
         })
 
+        overlays.addOverlay(textMarker)
         overlays.addOverlay(marker)
 
         // 设置 marker 绑定的数据

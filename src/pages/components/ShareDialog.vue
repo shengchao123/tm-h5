@@ -257,6 +257,7 @@ export default {
     onCopyResult (type) {
       if (type === 'success') {
         this.$msg('复制成功')
+        this.hide()
       } else {
         this.$msg('复制失败')
       }
