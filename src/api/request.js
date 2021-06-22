@@ -59,6 +59,10 @@ export default function (obj) {
         }
       },
       fail: (e) => {
+        uni.showToast({
+          title: '系统报错，请稍后再试！',
+          mask: false
+        })
         if (loginErrorCode.includes(e.data.code) && loginErrorSubCode.includes(e.data.subCode)) {
           if (LOGIN_LOCK) return
           LOGIN_LOCK = true
