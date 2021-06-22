@@ -136,6 +136,12 @@
 			}
 		},
 		{
+			"path": "pages/think-tank/countryside/attachmentPage",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
 			"path": "pages/steward/index/index",
 			"style": {
 				"navigationBarTitleText": "基层治理"

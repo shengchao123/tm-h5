@@ -22,12 +22,9 @@
       <div v-for="(item,index) in inductiveDetail.attachmentList"
            :key="index"
            class="ft24 attachment mb16"
-           @click="dowmload(item.url)">
-        <a :href="$fileHost + item.url"
-           download>
-          <span>{{index + 1}}.</span>
-          <span>{{item.name}}</span>
-        </a>
+           @click="dowmload(item)">
+        <span>{{index + 1}}.</span>
+        <span>{{item.name}}</span>
       </div>
     </div>
   </div>
@@ -50,6 +47,11 @@ export default {
         if (res.isError) return this.$msg(res.message)
         this.inductiveDetail = res.content
       })
+    },
+    // 跳转预览文件页面
+    dowmload (row) {
+      const fileType = row.url.substring(row.url.lastIndexOf('.') + 1)
+      uni.navigateTo({ url: `/pages/think-tank/countryside/attachmentPage?url=${row.url}&fileType=${fileType}` })
     }
   },
   onLoad (option) {
@@ -72,10 +74,6 @@ export default {
     text-overflow: ellipsis;
     white-space: nowrap;
     color: #518cfc;
-    a {
-      text-decoration: none;
-      outline: none;
-    }
   }
 }
 </style>
