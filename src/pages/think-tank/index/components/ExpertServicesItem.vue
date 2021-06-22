@@ -103,6 +103,7 @@ export default {
 .item-wrap {
   width: 100%;
   padding: 24rpx;
+  padding-bottom: 40rpx;
   box-shadow: 3rpx 2rpx 12rpx 8rpx rgba(17, 17, 17, 0.03);
   border-radius: 8rpx;
   .user-img {
@@ -125,7 +126,7 @@ export default {
   }
   .contact-btn {
     right: 24rpx;
-    bottom: 24rpx;
+    bottom: 32rpx;
     position: absolute;
     border: 2rpx solid #dedede;
     border-radius: 26rpx;
