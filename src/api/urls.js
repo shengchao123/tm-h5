@@ -11,12 +11,18 @@ export const urls = {
   getJourneyProductInfoPage: '/linanJourney/journeyProduct/getJourneyProductInfoPage', // 城乡产品列表
   getJourneyProductInfoById: '/linanJourney/journeyProduct/getJourneyProductInfoById', // 城乡产品详情
   getJourneyMerchantBoothInfoPage: '/linanJourney/journeyMerchantBooth/getJourneyMerchantBoothInfoPage', // 分页获取商家展位
+  getJourneyPlayCustomizationInfoPage: '/linanJourney/journeyPlayCustomization/getJourneyPlayCustomizationInfoPage', // 分页获取游玩定制
   getJourneyMerchantBoothInfoById: '/linanJourney/journeyMerchantBooth/getJourneyMerchantBoothInfoById', // 商家展位详情
   createJourneyMerchantBooth: '/linanJourney/journeyMerchantBooth/createJourneyMerchantBooth', // 创建商家展位
   getJourneyResourceSharingPage: '/linanJourney/journeyResourceSharing/getJourneyResourceSharingPage', // 资源共享列表
   createJourneyResourceSharing: '/linanJourney/journeyResourceSharing/createJourneyResourceSharing', // 新增资源共享
   getJourneyResourceSharingInfoById: ' /linanJourney/journeyResourceSharing/getJourneyResourceSharingInfoById', // 资源共享详情
-
+  orderJourneyPlayCustomizationInfoById: '/linanJourney/journeyPlayCustomization/orderJourneyPlayCustomizationInfoById', // 对游玩定制进行接单
+  createJourneyPlayCustomization: '/linanJourney/journeyPlayCustomization/createJourneyPlayCustomization', // 创建游玩定制
+  modifyJourneyPlayCustomizationInfoById: '/linanJourney/journeyPlayCustomization/modifyJourneyPlayCustomizationInfoById', // 编辑我的定制
+  getJourneyPlayCustomizationInfoById: '/linanJourney/journeyPlayCustomization/getJourneyPlayCustomizationInfoById', // 获取游玩定制详情
+  deleteJourneyPlayCustomizationInfoById: '/linanJourney/journeyPlayCustomization/deleteJourneyPlayCustomizationInfoById', // 删除我的游玩定制
+  modifyJourneyPlayCustomizationInfoShowStatusById: '/linanJourney/journeyPlayCustomization/modifyJourneyPlayCustomizationInfoShowStatusById', // 修改我的游玩定制展示状态
 
   redirectToOAuth: '/third/authorization/redirectToOAuth', // 获取授权 url
   getUserInfoAndToken: '/third/authorization/getUserInfoAndToken', // 接受微信公众号授权后的code获取thirdUserId及登陆
@@ -30,8 +36,8 @@ export const urls = {
   getShowJourneyTalentsPage: '/linanJourney/journeyTalents/getShowJourneyTalentsPage',// 人才分页
   getShowJourneyTalentsDetail: '/linanJourney/journeyTalents/getShowJourneyTalentsDetail',// 人才详情
   leaveMessage: '/linanJourney/journeyTalentsMessage/leaveMessage', // 留言
-  getAgriculturePage:'/linanJourney/journeyAgricultureRelatedProjects/getShowJourneyPolicyPage',//涉农项目分页
-  getAgricultureDetail:'/linanJourney/journeyAgricultureRelatedProjects/getShowJourneyPolicyDetail',//涉农项目详情
+  getShowAgricultureRelatedProjectsPage:'/linanJourney/journeyAgricultureRelatedProjects/getShowAgricultureRelatedProjectsPage',//涉农项目分页
+  getShowAgricultureRelatedProjectsDetail:'/linanJourney/journeyAgricultureRelatedProjects/getShowAgricultureRelatedProjectsDetail',//涉农项目详情
 
   // 初心之旅
   getRecommendJourneyLineList: '/linanJourney/journeyLine/getRecommendJourneyLineList', // 推荐路线

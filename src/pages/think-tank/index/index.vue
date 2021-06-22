@@ -21,7 +21,7 @@
                     @down="downCallback"
                     :up="upOption"
                     @up="upCallback"
-                    bottom="100"
+                    bottom="50px"
                     top="88">
         <view v-if="current === 0">
           <view v-for="(item,index) in policyDataList"

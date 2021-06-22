@@ -27,14 +27,25 @@
         </div>
       </div>
       <div v-if="openDayText"
-           class="mt24 ft28 color-666">{{openDayText}}</div>
+           class="mt24 ft28">
+        <span class="label color-999">开放时间：</span>
+        <span class="color-666">{{openDayText}}</span>
+      </div>
+      <div v-if="baseInfo.contactPerson"
+           class="mt24 ft28">
+        <span class="label color-999">联系人：</span>
+        <span class="color-666">{{baseInfo.contactPerson}}</span>
+      </div>
       <div class="mt24 center-align">
-        <span class="ft28 color-666">{{baseInfo.phone}}</span>
-        <div class="ml8 center-align"
-             style="color: #0084F6"
-             @click="onCall">
-          <svg-icon icon="icon_dianhua"
-                    class="ft32"></svg-icon>
+        <span class="label color-999">联系电话：</span>
+        <div class="center-align">
+          <span class="ft28 color-666">{{baseInfo.phone}}</span>
+          <div class="ml8 center-align"
+               style="color: #0084F6"
+               @click="onCall">
+            <svg-icon icon="icon_dianhua"
+                      class="ft32"></svg-icon>
+          </div>
         </div>
       </div>
     </div>
@@ -220,6 +231,10 @@ export default {
   }
   .title {
     padding: 30rpx;
+    .label {
+      display: inline-block;
+      width: 140rpx;
+    }
   }
   .content {
     line-height: 42rpx;

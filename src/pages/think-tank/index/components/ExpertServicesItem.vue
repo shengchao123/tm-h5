@@ -24,7 +24,7 @@
       <text class="ft24 color-666">联系TA</text>
     </view>
     <view class="label center">
-      <text class="ft22">{{item.typeName}}</text>
+      <text class="ft22">{{item.type}}</text>
     </view>
   </view>
 </template>
