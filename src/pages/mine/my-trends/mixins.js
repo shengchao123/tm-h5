@@ -24,7 +24,6 @@ const map = {
   },
   methods: {
     upCallback (page) {
-      console.log(22);
       this.search.pageNumber = page.num
       this.getDataList()
     },

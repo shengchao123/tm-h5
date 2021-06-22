@@ -24,23 +24,14 @@
       </div>
       <empty v-else></empty>
     </mescroll-uni>
-    <!-- <PublishBtn @onPublish="onPublish"
-                :isScroll="isScroll"></PublishBtn> -->
   </div>
 </template>
 <script>
 import ExperienceItem from '@/pages/urban-rural/components/ExperienceItem'
-// import PublishBtn from '@/pages/urban-rural/components/PublishBtn'
 import listMixins from '../mixins'
-import MescrollMixin from "@/components/mescroll-uni/mescroll-mixins.js";
 export default {
   name: 'List',
   methods: {
-    // onPublish () {
-    //   uni.navigateTo({
-    //     url: '/pages/urban-rural/experience/AddMerchantBooth'
-    //   })
-    // },
     scroll () {
       this.isScroll = true
       if (this.timer) {
@@ -57,6 +48,7 @@ export default {
       const params = {
         ...this.search
       }
+      console.log(2222);
       this.$api.getMyJourneyMerchantBoothInfoPage(params).then(res => {
         if (res.isError) return
         let { items, count } = res.content
@@ -74,7 +66,7 @@ export default {
       })
     }
   },
-  mixins: [listMixins, MescrollMixin],
+  mixins: [listMixins],
   components: { ExperienceItem, },
   data () {
     return {
@@ -86,9 +78,6 @@ export default {
       },
     }
   },
-  created () {
-    // this.getDataList()
-  }
 }
 </script>
 
