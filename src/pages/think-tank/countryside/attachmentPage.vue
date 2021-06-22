@@ -23,10 +23,11 @@ export default {
     fileUrl () {
       const file = this.file
       const fileType = this.fileType
+      const fileHost = this.$fileHost
       if (pdfTypes.includes(fileType)) {
-        return this.$fileHost + file
+        return fileHost + file
       } else if (wordTypes.includes(fileType)) {
-        return 'https://view.officeapps.live.com/op/view.aspx?src=' + this.$fileHost + file
+        return 'https://view.officeapps.live.com/op/view.aspx?src=' + fileHost + file
       }
     }
   },
