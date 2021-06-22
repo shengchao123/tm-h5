@@ -6,12 +6,13 @@
              placeholder="标题"
              placeholder-class="place-class"
              class="ft32 title-style" />
-      <textarea placeholder="做个介绍吧"
-                v-model="form.content"
-                placeholder-style="color:#999"
-                maxlength="-1"
-                class="text-area mt36 ft30">
-      </textarea>
+      <u-input v-model="form.content"
+               type="textarea"
+               class="text-area mt36 ft30"
+               maxlength="500"
+               placeholder-style="color:#999"
+               placeholder="做个介绍吧" />
+      <div class="color-999 tr mt8 ft24">{{form.introduction ? form.introduction.length : 0}} / 500</div>
       <div class="mt24 flex pb8">
         <upload-images :count="9"
                        :length="9"
