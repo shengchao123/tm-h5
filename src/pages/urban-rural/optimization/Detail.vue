@@ -18,7 +18,7 @@
                     fontSize="26"
                     color="#518cfc"
                     :showUnderLine="false"
-                    :text="detailInfo[item.key]"></uni-link>
+                    :text="linkUrl"></uni-link>
         </div>
       </template>
 
@@ -71,6 +71,16 @@ export default {
         })
       })
     }
+  },
+  computed: {
+    linkUrl () {
+      const { secondStoreUrl, firstStoreUrl } = this.detailInfo
+      if (!secondStoreUrl) return firstStoreUrl
+      const _paltform = uni.getSystemInfoSync().platform
+      const _temUrl = _paltform === 'ios' ? firstStoreUrl : firstStoreUrl
+      return _temUrl
+    }
+
   },
   data () {
     return {

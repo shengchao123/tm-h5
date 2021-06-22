@@ -14,7 +14,7 @@ const map = {
           use: false
         },
         page: {
-          size: 10 // 每页数据的数量,默认10
+          size: 5 // 每页数据的数量,默认10
         },
         textNoMore: "没有更多数据",
         noMoreSize: 10, // 配置列表的总数量要大于等于10条才显示'-- END --'的提示
