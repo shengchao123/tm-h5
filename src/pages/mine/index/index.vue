@@ -18,7 +18,7 @@
           <div class="center-align">
             <div v-if="userInfo.isMerchant"
                  class="label ft20 bg-9974fd mb16">商家</div>
-            <div v-if="userInfo.isAdmin"
+            <div v-if="userInfo.isTalents"
                  class="label ft20 ml8 bg-fd9374 mb16">专家</div>
             <div v-if="!$isEmpty(userInfo.labelList)"
                  class="label ft20 ml8 bg-74a3fd mb16">{{userInfo.labelList[0]}}</div>
