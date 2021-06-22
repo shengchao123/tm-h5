@@ -27,24 +27,22 @@ export const transportationOptions = Object.freeze([
 ])
 // 适宜人群
 export const appropriateCrowdOptions = [
-  { id: '01', name: '家庭游', isSelected: false },
-  { id: '02', name: '亲子游', isSelected: false },
-  { id: '03', name: '团建拓展', isSelected: false },
-  { id: '04', name: '朋友聚会', isSelected: false },
-  { id: '05', name: '情侣游', isSelected: false },
-  { id: '06', name: '夕阳红', isSelected: false },
+  { id: '01', name: '研学团队', isSelected: false },
+  { id: '02', name: '散客', isSelected: false }
 ]
-// 服务内容 
+// 服务内容
 export const serviceContentOptions = [
-  { id: '01', name: '吃饭', isSelected: false },
-  { id: '02', name: '住宿', isSelected: false },
-  { id: '03', name: '免费停车', isSelected: false },
-  { id: '04', name: '烧烤', isSelected: false },
-  { id: '05', name: '采摘', isSelected: false },
-  { id: '06', name: '钓鱼', isSelected: false },
-  { id: '07', name: '骑马', isSelected: false },
-  { id: '08', name: '戏水', isSelected: false },
-  { id: '09', name: '露营', isSelected: false },
+  { id: '01', name: '摄影摄像', isSelected: false },
+  { id: '02', name: '酒店服务', isSelected: false },
+  { id: '03', name: '游乐设施', isSelected: false },
+  { id: '04', name: '研学', isSelected: false },
+  { id: '05', name: '森林疗愈', isSelected: false },
+  { id: '06', name: '手工坊', isSelected: false },
+  { id: '07', name: '酒吧', isSelected: false },
+  { id: '08', name: '观影', isSelected: false },
+  { id: '09', name: '草坪活动', isSelected: false },
+  { id: '09', name: '体验', isSelected: false },
+  { id: '09', name: '参观', isSelected: false },
 ]
 
 export const playTimeNameMap = new Map([
