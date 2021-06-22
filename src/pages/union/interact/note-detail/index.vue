@@ -193,6 +193,10 @@ export default {
           return
         }
         this.detailInfo = res.content || {}
+        if (this.entrance === 'myTrends' && this.detailInfo.status !== 2) {
+          // 获取分享人的id
+          this.shareCommunityNote()
+        }
       })
     },
     setOption (option) {
@@ -200,8 +204,7 @@ export default {
       this.communityNoteId = communityNoteId
       this.shareId = shareId
       this.entrance = entrance
-      // 获取分享人的id
-      this.shareCommunityNote()
+
       this.getNoteCommentDetailPage()
       this.getNoteDetailInfo()
     },
