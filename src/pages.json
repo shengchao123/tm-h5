@@ -157,12 +157,6 @@
 			}
 		},
 		{
-			"path": "pages/urban-rural/activity/Detail",
-			"style": {
-				"navigationBarTitleText": "特色活动详情"
-			}
-		},
-		{
 			"path": "pages/urban-rural/experience/AddCustomMade",
 			"style": {
 				"navigationBarTitleText": "我要定制"

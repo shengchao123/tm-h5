@@ -61,10 +61,14 @@
 export default {
   methods: {
     onSubmit () {
+      console.log(this.form.data)
       this.$refs.form.validate(valid => {
-        console.log(valid)
         if (valid) {
-          this.createJourneyPlayCustomization()
+          if (this.journeyPlayCustomizationId) {
+            this.modifyJourneyPlayCustomizationInfoById()
+          } else {
+            this.createJourneyPlayCustomization()
+          }
         }
       })
     },
@@ -72,13 +76,44 @@ export default {
       const params = {
         ...this.form.data
       }
-      console.log(11111)
       this.$api.createJourneyPlayCustomization(params).then(res => {
         if (res.isError) return this.$msg(res.message)
         this.$msg('定制发布成功')
         setTimeout(() => {
           uni.navigateBack()
         }, 500)
+      })
+    },
+    modifyJourneyPlayCustomizationInfoById () {
+      const params = {
+        journeyPlayCustomizationId: this.journeyPlayCustomizationId,
+        ...this.form.data
+      }
+      this.$api.modifyJourneyPlayCustomizationInfoById(params).then(res => {
+        if (res.isError) return this.$msg(res.message)
+        this.$msg('定制编辑成功')
+        setTimeout(() => {
+          uni.$emit('editCustomMadeOver')
+          uni.navigateBack()
+        }, 500)
+      })
+    },
+    setFormData (formData) {
+      const { contactPhone, demand, peopleQuantity, playDays } = formData
+      this.form.data = {
+        peopleQuantity: peopleQuantity + '',
+        playDays,
+        contactPhone,
+        demand,
+      }
+    },
+    getJourneyPlayCustomizationInfoById (id) {
+      const params = {
+        journeyPlayCustomizationId: id
+      }
+      this.$api.getJourneyPlayCustomizationInfoById(params).then(res => {
+        if (res.isError) return this.$msg(res.message)
+        this.setFormData(res.content)
       })
     }
   },
@@ -89,6 +124,7 @@ export default {
       callback()
     }
     return {
+      journeyPlayCustomizationId: null,
       form: {
         data: {
           peopleQuantity: null,
@@ -114,6 +150,12 @@ export default {
   onReady () {
     this.$refs.form.setRules(this.form.rules);
   },
+  onLoad ({ id }) {
+    if (id) {
+      this.journeyPlayCustomizationId = id
+      this.getJourneyPlayCustomizationInfoById(id)
+    }
+  }
 }
 </script>
 <style >

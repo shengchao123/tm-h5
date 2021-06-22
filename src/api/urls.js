@@ -19,6 +19,10 @@ export const urls = {
   getJourneyResourceSharingInfoById: ' /linanJourney/journeyResourceSharing/getJourneyResourceSharingInfoById', // 资源共享详情
   orderJourneyPlayCustomizationInfoById: '/linanJourney/journeyPlayCustomization/orderJourneyPlayCustomizationInfoById', // 对游玩定制进行接单
   createJourneyPlayCustomization: '/linanJourney/journeyPlayCustomization/createJourneyPlayCustomization', // 创建游玩定制
+  modifyJourneyPlayCustomizationInfoById: '/linanJourney/journeyPlayCustomization/modifyJourneyPlayCustomizationInfoById', // 编辑我的定制
+  getJourneyPlayCustomizationInfoById: '/linanJourney/journeyPlayCustomization/getJourneyPlayCustomizationInfoById', // 获取游玩定制详情
+  deleteJourneyPlayCustomizationInfoById: '/linanJourney/journeyPlayCustomization/deleteJourneyPlayCustomizationInfoById', // 删除我的游玩定制
+  modifyJourneyPlayCustomizationInfoShowStatusById: '/linanJourney/journeyPlayCustomization/modifyJourneyPlayCustomizationInfoShowStatusById', // 修改我的游玩定制展示状态
 
   redirectToOAuth: '/third/authorization/redirectToOAuth', // 获取授权 url
   getUserInfoAndToken: '/third/authorization/getUserInfoAndToken', // 接受微信公众号授权后的code获取thirdUserId及登陆

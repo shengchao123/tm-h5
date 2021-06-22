@@ -10,7 +10,12 @@
           <p class="ft22 color-999">{{item.time}}</p>
         </div>
       </div>
-      <div class="take-info center-align">
+      <div v-if="entrance === 'myDynamic'">
+        <span v-show="item.status === 2"
+              class="ft24 color-e32417">已隐藏</span>
+      </div>
+      <div v-else
+           class="take-info center-align">
         <div class="ft22 color-999">{{item.ordersQuantity}}人已接单</div>
         <div v-if="!isMySelf"
              class="center-align ml24">
@@ -58,6 +63,7 @@
         <text class="ft24 color-e32417">...展开</text>
       </view>
     </div>
+    <slot></slot>
   </div>
 </template>
 <script>
@@ -111,6 +117,7 @@ export default {
   },
   props: {
     item: Object,
+    entrance: String
   },
   data () {
     return {
