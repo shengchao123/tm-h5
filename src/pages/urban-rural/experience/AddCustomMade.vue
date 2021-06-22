@@ -102,8 +102,8 @@ export default {
       const { contactPhone, demand, peopleQuantity, playDays } = formData
       this.form.data = {
         peopleQuantity: peopleQuantity + '',
-        playDays,
-        contactPhone,
+        playDays: playDays + '',
+        contactPhone: contactPhone + '',
         demand,
       }
     },
