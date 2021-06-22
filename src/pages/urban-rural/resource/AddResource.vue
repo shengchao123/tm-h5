@@ -241,9 +241,9 @@ export default {
 .bt {
   width: 100%;
   position: fixed;
-  bottom: 16rpx;
+  bottom: 0;
   border-top: 1rpx solid #eaeaea;
-  padding-top: 16rpx;
+  padding: 16rpx 0;
   background: #ffffff;
   z-index: 99;
   .submit {
