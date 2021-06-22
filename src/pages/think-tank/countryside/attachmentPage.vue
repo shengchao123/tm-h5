@@ -19,7 +19,6 @@ export default {
       fileType: ''
     }
   },
-  methods: {},
   computed: {
     fileUrl () {
       const file = this.file
