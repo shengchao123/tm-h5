@@ -4,21 +4,23 @@
               height="562"></u-swiper>
     <div class="info">
       <div class="name ft40 bold">{{detailInfo.name}}</div>
-      <div v-for="item in infoItems"
-           :key="item.title"
-           class="center-align mt16">
-        <SvgIcon :icon="item.icon"
-                 class="ft26 color-999"></SvgIcon>
-        <text class="ml16 ft26 color-999">{{item.title}}</text>
-        <text class="ft26"
-              v-if="!item.url && detailInfo[item.key]">{{detailInfo[item.key]}}</text>
-        <uni-link :href="detailInfo[item.url]"
-                  v-if="item.url"
-                  fontSize="26"
-                  color="#518cfc"
-                  :showUnderLine="false"
-                  :text="detailInfo[item.key]"></uni-link>
-      </div>
+      <template v-for="item in infoItems">
+        <div v-if="detailInfo[item.key]"
+             :key="item.title"
+             class="center-align mt16">
+          <SvgIcon :icon="item.icon"
+                   class="ft26 color-999"></SvgIcon>
+          <text class="ml16 ft26 color-999">{{item.title}}</text>
+          <text class="ft26"
+                v-if="!item.url && detailInfo[item.key]">{{detailInfo[item.key]}}</text>
+          <uni-link :href="detailInfo[item.url]"
+                    v-if="item.url"
+                    fontSize="26"
+                    color="#518cfc"
+                    :showUnderLine="false"
+                    :text="detailInfo[item.key]"></uni-link>
+        </div>
+      </template>
 
       <div class="contact b mt16">
         <div class="color-999 ft26"> 联系人</div>
