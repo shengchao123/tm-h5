@@ -27,7 +27,7 @@
       <empty v-else></empty>
     </mescroll-uni>
     <PublishBtn @onPublish="onPublish"
-                text="我要定制"
+                :text="currentTab === 1 ? '商家展位' : '我要定制'"
                 :isScroll="isScroll"></PublishBtn>
   </div>
 </template>
@@ -47,7 +47,7 @@ export default {
     onPublish () {
       if (this.$notMember()) return this.$goLogin()
       uni.navigateTo({
-        url: '/pages/urban-rural/experience/AddCustomMade'
+        url: `/pages/urban-rural/experience/${this.currentTab === 1 ? 'AddMerchantBooth' : 'AddCustomMade'}`
       })
     },
     changeSubTab (item) {

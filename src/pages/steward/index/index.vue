@@ -1,7 +1,7 @@
 <template>
-  <div class='steward-wrap'
-       @click="onMessage">
-    <img src="@/static/test/11.png">
+  <div class='steward-wrap'>
+    <img src="@/static/test/11.png"
+         @click.self="onMessage">
     <custom-tabbar></custom-tabbar>
   </div>
 </template>
