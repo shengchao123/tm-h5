@@ -225,9 +225,11 @@ export default {
           this.$msg(val)
           return
         }
-        if (_val && key === 'lngLat' && !_val.includes('，') && !_val.includes(',')) {
-          console.log(_val)
+        if (_val && key === 'address' && !_val.includes('，') && !_val.includes(',')) {
           return this.$msg('经纬度格式不正确')
+        }
+        if (this.form.address.length > 30) {
+          return this.$msg('地址最多支持输入 30 字')
         }
         if (_val && key === 'contactPhone' && !checkInput(_val, 'phone') && !checkInput(_val, 'tel')) {
           return this.$msg('电话号格式不正确')
