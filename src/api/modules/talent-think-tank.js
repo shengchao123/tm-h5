@@ -46,3 +46,21 @@ export function leaveMessage (params) { // 留言
     }
   })
 }
+
+export function getAgriculturePage (params) { // 涉农项目分页
+  return request({
+    url: urls.getAgriculturePage,
+    data: {
+      ...params
+    }
+  })
+}
+
+export function getAgricultureDetail (params) { // 涉农项目详情
+  return request({
+    url: urls.getAgricultureDetail,
+    data: {
+      ...params
+    }
+  })
+}

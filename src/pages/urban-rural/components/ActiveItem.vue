@@ -20,11 +20,11 @@
         <text>{{getTime}}</text>
       </div>
 
-      <div class="center-align mt16 ft26">
+      <div class="mt16 row ft26">
         <SvgIcon icon="icon_dingwei"
                  class="color-999"></SvgIcon>
-        <text class="ml16 color-999">地址：</text>
-        <text>{{item.address}}</text>
+        <div class="ml16 color-999">地址：</div>
+        <div style="width: 380rpx">{{item.address}}</div>
       </div>
 
       <div class="center-align mt16 ft26">
@@ -40,8 +40,8 @@
             v-if="item.isSignUp && item.status !== '03'">
         已报名
       </view>
-      <view v-if="!item.isSignUp && item.status === '01'"
-            class="btn"
+      <!-- v-if="!item.isSignUp && item.status === '01'" -->
+      <view class="btn"
             @click.stop="onToRoute(item)">
         我要报名
       </view>

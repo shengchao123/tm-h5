@@ -1,25 +1,53 @@
 <template>
-  <view class="subsidies-wrap">
-    <SubTabs class="tabs"
+  <div class="subsidies-wrap">
+    <!-- <SubTabs class="tabs"
              @change="changeSubTab"
-             :tabs="subTabs"></SubTabs>
-    <img class="img"
+             :tabs="subTabs"></SubTabs> -->
+    <!-- <img class="img"
          :src="imgs[current]"
-         @click="onToDetail">
-    <view class="apply ft24 white-color center column"
-          @click="$refs.selectPop.show()">
+         @click="onToDetail"> -->
+    <div>
+      <mescroll-uni ref="mescrollRef"
+                    @init="mescrollInit"
+                    @down="downCallback"
+                    :up="upOption"
+                    @up="upCallback"
+                    bottom="100"
+                    top="88">
+        <div v-if="!$isEmpty(noInductiveList)">
+          <div v-for="(item,index) in noInductiveList"
+               :key="index"
+               class="list-item mt20 pl30 pr30"
+               @click="onToDetail(item.id)">
+            <div class="cont-box">
+              <div class="title">{{item.title}}</div>
+              <div class="center-align ft24 color-999 mt24">
+                <div class="mr56">{{$moment(item.time).format('YYYY-MM-DD')}}</div>
+                <div>{{item.publishingDepartment}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <empty v-else></empty>
+      </mescroll-uni>
+    </div>
+    <div class="apply ft24 white-color center column"
+         @click="$refs.selectPop.show()">
       <text class="line1">申请</text>
       <text class="line1"
             style="margin-top:6rpx">补贴</text>
-    </view>
+    </div>
     <select-pop ref="selectPop"
                 :selectedId.sync="selectedId"
                 @onRouteItem="onRouteItem"></select-pop>
-  </view>
+  </div>
 </template>
 <script>
 import SubTabs from '@/pages/urban-rural/components/SubTabs'
 import SelectPop from './SelectPop.vue'
+import MescrollMixin from "@/components/mescroll-uni/mescroll-mixins.js";
+import MescrollUni from "@/components/mescroll-uni/mescroll-uni.vue";
+
 export default {
   name: 'Subsidies',
   methods: {
@@ -29,8 +57,33 @@ export default {
     changeSubTab (item) {
       this.current = item.status
     },
+    // 跳转无感详情
     onToDetail (id) {
-      uni.navigateTo({ url: '/pages/think-tank/countryside/Detail' })
+      uni.navigateTo({ url: `/pages/think-tank/countryside/Detail?id=${id}` })
+    },
+    upCallback (page) {
+      this.getAgriculturePage(page)
+    },
+    // 下拉刷新
+    downCallback () {
+      this.mescroll.resetUpScroll(); // 重置列表为第一页
+    },
+    // 获取无感直补数据
+    getAgriculturePage (page) {
+      const params = {
+        pageNumber: page && page.num || 1,
+        pageSize: page && page.size || 10
+      }
+      this.$api.getAgriculturePage(params).then(res => {
+        if (res.isError) {
+          this.mescroll.endBySize(0, 0)
+          this.$msg(res.message)
+          return
+        }
+        const { items, count } = res.content
+        this.mescroll.endBySize(items.length, count)
+        this.noInductiveList = params.pageNumber === 1 ? items : this.noInductiveList.concat(items)
+      })
     },
   },
   data () {
@@ -58,14 +111,26 @@ export default {
           text: '农机购置补贴',
           width: 204
         }
-      ]
+      ],
+      noInductiveList: [],
+      upOption: {
+        empty: {
+          use: false
+        },
+        textNoMore: "没有更多数据",
+        noMoreSize: 10, // 配置列表的总数量要大于等于10条才显示'-- END --'的提示
+      },
     }
   },
-  created () { },
+  created () {
+
+  },
   components: {
     SubTabs,
-    SelectPop
-  }
+    SelectPop,
+    MescrollUni
+  },
+  mixins: [MescrollMixin]
 }
 </script>
 <style lang='scss' scoped>
@@ -94,6 +159,20 @@ export default {
     background: #e32417;
     box-shadow: 4rpx 6rpx 8rpx 0 rgba(0, 0, 0, 0.25);
     border-radius: 50%;
+  }
+}
+.cont-box {
+  width: 686rpx;
+  background: #ffffff;
+  box-shadow: 3rpx 2rpx 12rpx 8rpx rgba(17, 17, 17, 0.03);
+  border-radius: 8rpx;
+  padding: 24rpx 32rpx;
+  .title {
+    font-size: 34rpx;
+    font-weight: 600;
+  }
+  .mr56 {
+    margin-right: 56rpx;
   }
 }
 </style>

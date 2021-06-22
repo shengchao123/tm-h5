@@ -2,7 +2,7 @@
   <view class="pt20">
     <view class="flex leave-msg">
       <view class="mr16 relative">
-        <img :src="$fileHost + msgData.memberAvatar"
+        <img :src="avatar(msgData.memberAvatar)"
              alt=""
              class="head-img">
         <span class="msg-status ask-color">问</span>
@@ -23,7 +23,7 @@
     <view class="flex leave-msg"
           v-if="msgData.status !== 1">
       <view class="mr16 relative">
-        <img :src="$fileHost + msgData.journeyTalentsPhoto"
+        <img :src="avatar(msgData.journeyTalentsPhoto)"
              alt=""
              class="head-img">
         <span class="msg-status answer-color">答</span>
@@ -40,6 +40,7 @@
 </template>
 <script>
 import SendMessage from './SendMessage'
+
 export default {
   methods: {
     replayMsg (id) {
@@ -66,6 +67,14 @@ export default {
       const msgData = this.msgData
       if (msgData.status === 1) return msgData.content
       return msgData.replyContent
+    },
+    // 头像,增加默认头像
+    avatar () {
+      return (avatar) => {
+        const fileHost = this.$fileHost
+        if (avatar) return fileHost + avatar
+        return require('@/static/home/default-avatar.png')
+      }
     }
   },
   data () {

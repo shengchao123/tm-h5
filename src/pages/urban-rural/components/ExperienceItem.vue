@@ -7,7 +7,7 @@
          :key="subItem.title"
          class="row mt16 ft26">
       <div class=" color-999"
-           style="width:130rpx">{{subItem.title}}</div>
+           style="width:140rpx">{{subItem.title}}</div>
       <div style="max-width:360rpx"
            v-if="subItem.key !== 'contactPhone'">{{item[subItem.key]}}</div>
       <div class=" center-align"
