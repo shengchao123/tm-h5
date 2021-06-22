@@ -11,8 +11,8 @@
     </view>
     <view class="ft26">
       <view class="mt24 flex line1">
-        <text class="color-999">擅长：</text>
-        <text class="color-333 flex1">{{item.specialty}}</text>
+        <text class="color-999 lineh1-5">擅长：</text>
+        <text class="color-333 flex1 lineh1-5">{{item.specialty}}</text>
       </view>
       <view class="mt24 line1">
         <text class="color-999">服务：</text>
@@ -85,6 +85,9 @@ export default {
 }
 </script>
 <style lang='scss' scoped>
+.lineh1-5 {
+  line-height: 1.5;
+}
 .line1 {
   line-height: 1;
 }
