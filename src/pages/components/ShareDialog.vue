@@ -51,13 +51,13 @@
           </view>
           <view class="flex operate"
                 v-if="isOperate">
-            <view @click="editNote()"
+            <view @click="onEdit"
                   class="center column imgs-item">
               <svg-icon icon="icon_bianji"
                         class="ft32"></svg-icon>
               <p class="mt8 ft24 color-666">编辑</p>
             </view>
-            <view @click="deleteNote()"
+            <view @click="onDelete"
                   class="center column imgs-item">
               <svg-icon icon="icon_shanchu"
                         class="ft32"></svg-icon>
@@ -143,12 +143,14 @@ export default {
       })
     },
     // 编辑按钮
-    editNote () {
-      this.$emit('editNote')
+    onEdit () {
+      this.$emit('onEdit')
+      this.hide()
     },
     // 删除按钮
-    deleteNote () {
-      this.$emit('deleteNote')
+    onDelete () {
+      this.$emit('onDelete')
+      this.hide()
     },
     // 关闭分享弹窗
     cancelShare () {
