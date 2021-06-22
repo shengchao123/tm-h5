@@ -229,8 +229,8 @@ export default {
           console.log(_val)
           return this.$msg('经纬度格式不正确')
         }
-        if (_val && key === 'contactPhone' && !checkInput(_val, 'phone')) {
-          return this.$msg('手机号格式不正确')
+        if (_val && key === 'contactPhone' && !checkInput(_val, 'phone') && !checkInput(_val, 'tel')) {
+          return this.$msg('电话号格式不正确')
         }
       }
       return true

@@ -40,7 +40,7 @@ export const checkInput = (str, type) => {
     case 'phone': // 手机号码
       return /^1[0-9]{10}$/.test(str)
     case 'tel': // 座机
-       return /^0\d{2,3}-?\d{7,8}$/.test(str)
+      return /^0\d{2,3}-?\d{7,8}$/.test(str)
     case 'card': // 身份证
       return /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test(str)
     case 'pwd': // 密码以字母开头，只能包含字母、数字和下划线
