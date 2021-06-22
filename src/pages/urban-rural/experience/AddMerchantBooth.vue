@@ -138,8 +138,8 @@ let serviceContentList = []
 export default {
   data () {
     return {
-      appropriateCrowdOptions,
-      serviceContentOptions,
+      appropriateCrowdOptions: JSON.parse(JSON.stringify(appropriateCrowdOptions)),
+      serviceContentOptions: JSON.parse(JSON.stringify(appropriateCrowdOptions)),
       showAppropriateCrowd: false,
       showServiceContent: false,
       form: {
@@ -225,7 +225,7 @@ export default {
           this.$msg(val)
           return
         }
-        if (_val && key === 'address' && !_val.includes('，') && !_val.includes(',')) {
+        if (_val && key === 'lngLat' && !_val.includes('，') && !_val.includes(',')) {
           return this.$msg('经纬度格式不正确')
         }
         if (this.form.address.length > 30) {

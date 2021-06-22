@@ -1,16 +1,16 @@
 <template>
-  <div class='experi-item-wrap relative'
+  <div class='experi-item-wrap relative mb32'
        @click="onGoDetail">
     <div class="name ft40 bold mr16">{{item.title}}</div>
 
     <div v-for="subItem in infoItems"
          :key="subItem.title"
          class="row mt16 ft26">
-      <div class=" color-999"
+      <div class="color-999"
            style="width:140rpx">{{subItem.title}}</div>
       <div style="max-width:420rpx"
-           v-if="subItem.key !== 'contactPhone'">{{item[subItem.key]}}sdfsdfs 是打发斯蒂芬斯蒂芬</div>
-      <div class=" center-align"
+           v-if="subItem.key !== 'contactPhone'">{{item[subItem.key]}}</div>
+      <div class="center-align"
            @click.stop="onCallPhone"
            v-else>
         <div>{{item[subItem.key]}}</div>
