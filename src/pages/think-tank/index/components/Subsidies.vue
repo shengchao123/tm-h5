@@ -62,19 +62,19 @@ export default {
       uni.navigateTo({ url: `/pages/think-tank/countryside/Detail?id=${id}` })
     },
     upCallback (page) {
-      this.getAgriculturePage(page)
+      this.getShowAgricultureRelatedProjectsPage(page)
     },
     // 下拉刷新
     downCallback () {
       this.mescroll.resetUpScroll(); // 重置列表为第一页
     },
     // 获取无感直补数据
-    getAgriculturePage (page) {
+    getShowAgricultureRelatedProjectsPage (page) {
       const params = {
         pageNumber: page && page.num || 1,
         pageSize: page && page.size || 10
       }
-      this.$api.getAgriculturePage(params).then(res => {
+      this.$api.getShowAgricultureRelatedProjectsPage(params).then(res => {
         if (res.isError) {
           this.mescroll.endBySize(0, 0)
           this.$msg(res.message)
@@ -162,7 +162,7 @@ export default {
   }
 }
 .cont-box {
-  width: 686rpx;
+  // width: 686rpx;
   background: #ffffff;
   box-shadow: 3rpx 2rpx 12rpx 8rpx rgba(17, 17, 17, 0.03);
   border-radius: 8rpx;

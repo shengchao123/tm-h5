@@ -39,11 +39,11 @@ export default {
     }
   },
   methods: {
-    getAgricultureDetail (id) {
+    getShowAgricultureRelatedProjectsDetail (id) {
       const params = {
         id
       }
-      this.$api.getAgricultureDetail(params).then(res => {
+      this.$api.getShowAgricultureRelatedProjectsDetail(params).then(res => {
         if (res.isError) return this.$msg(res.message)
         this.inductiveDetail = res.content
       })
@@ -55,7 +55,7 @@ export default {
     }
   },
   onLoad (option) {
-    option.id && this.getAgricultureDetail(option.id)
+    option.id && this.getShowAgricultureRelatedProjectsDetail(option.id)
   }
 }
 </script>
