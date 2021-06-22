@@ -44,13 +44,14 @@ export default {
     // 获取商品列表
     getDataList () {
       const params = {
-        ...this.search
+        ...this.search,
+        pageSize: 5
       }
       this.$api.getJourneyProductInfoPage(params).then(res => {
         if (res.isError) return
         const { items, count } = res.content
         this.mescroll.endBySize(items.length, count)
-        this.dataList = params.pageNumber === 1 ? items : this.listData.concat(items)
+        this.dataList = params.pageNumber === 1 ? items : this.dataList.concat(items)
       })
     }
   },

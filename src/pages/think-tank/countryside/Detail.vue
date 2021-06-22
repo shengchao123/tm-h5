@@ -54,7 +54,7 @@ export default {
     }
   },
   methods: {
-    getAgricultureDetail (id) {
+    getShowAgricultureRelatedProjectsDetail (id) {
       const params = {
         id
       }
@@ -90,7 +90,7 @@ export default {
     }
   },
   onLoad (option) {
-    option.id && this.getAgricultureDetail(option.id)
+    option.id && this.getShowAgricultureRelatedProjectsDetail(option.id)
   }
 }
 </script>

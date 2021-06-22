@@ -84,7 +84,7 @@ export default {
     avatarUrl,
     onShowShareDialog () {
       if (this.$notMember()) return this.$goLogin()
-      if (this.detailInfo.status === 2) return
+      if (this.entrance === 'myTrends' && this.detailInfo.status === 2) return
       this.$refs.shareDialog.show()
     },
     onBlur () {
@@ -93,7 +93,11 @@ export default {
     // 聚焦input 判断是否登录和实名认证
     onFocus () {
       if (this.$notMember()) return this.$goLogin()
-      if (this.detailInfo.status === 2) return
+      // 我的动态里进去的待审核的帖子无法评论
+      if (this.entrance === 'myTrends' && this.detailInfo.status === 2) {
+        this.isFocus = false
+        uni.hideKeyboard(); // 隐藏键盘
+      }
       if (!this.memberPersonalInfo.isRealName) {
         this.isFocus = false
         uni.hideKeyboard(); // 隐藏键盘
@@ -134,7 +138,7 @@ export default {
     // 改变状态（关注，点赞，收藏）
     changeStatus (type) {
       if (this.$notMember()) return this.$goLogin();
-      if (this.detailInfo.status === 2) return
+      if (this.entrance === 'myTrends' && this.detailInfo.status === 2) return
       const { communityMemberId, communityNoteId } = this.detailInfo
       const { apiName, msg, countKey, count } = this.statusMap.get(type).get(this.detailInfo[type])
       const params = {
@@ -189,20 +193,25 @@ export default {
           return
         }
         this.detailInfo = res.content || {}
+        if (this.entrance === 'myTrends' && this.detailInfo.status !== 2) {
+          // 获取分享人的id
+          this.shareCommunityNote()
+        }
       })
     },
     setOption (option) {
-      const { communityNoteId, shareId } = option
+      const { communityNoteId, shareId, entrance } = option
       this.communityNoteId = communityNoteId
       this.shareId = shareId
-      // 获取分享人的id
-      this.shareCommunityNote()
+      this.entrance = entrance
+
       this.getNoteCommentDetailPage()
       this.getNoteDetailInfo()
     },
   },
   data () {
     return {
+      entrance: '',
       communityNoteId: '',
       shareId: '',
       isShare: false,

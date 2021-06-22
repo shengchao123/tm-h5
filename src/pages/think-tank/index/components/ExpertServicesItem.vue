@@ -11,8 +11,8 @@
     </view>
     <view class="ft26">
       <view class="mt24 flex line1">
-        <text class="color-999">擅长：</text>
-        <text class="color-333 flex1">{{item.specialty}}</text>
+        <text class="color-999 lineh1-5">擅长：</text>
+        <text class="color-333 flex1 lineh1-5">{{item.specialty}}</text>
       </view>
       <view class="mt24 line1">
         <text class="color-999">服务：</text>
@@ -24,7 +24,7 @@
       <text class="ft24 color-666">联系TA</text>
     </view>
     <view class="label center">
-      <text class="ft22">{{item.typeName}}</text>
+      <text class="ft22">{{item.type}}</text>
     </view>
   </view>
 </template>
@@ -85,6 +85,9 @@ export default {
 }
 </script>
 <style lang='scss' scoped>
+.lineh1-5 {
+  line-height: 1.5;
+}
 .line1 {
   line-height: 1;
 }
@@ -100,6 +103,7 @@ export default {
 .item-wrap {
   width: 100%;
   padding: 24rpx;
+  padding-bottom: 40rpx;
   box-shadow: 3rpx 2rpx 12rpx 8rpx rgba(17, 17, 17, 0.03);
   border-radius: 8rpx;
   .user-img {
@@ -122,7 +126,7 @@ export default {
   }
   .contact-btn {
     right: 24rpx;
-    bottom: 24rpx;
+    bottom: 32rpx;
     position: absolute;
     border: 2rpx solid #dedede;
     border-radius: 26rpx;

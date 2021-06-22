@@ -13,7 +13,7 @@
           <text class="ml16 ft26 color-999">{{item.title}}</text>
           <text class="ft26"
                 v-if="!item.url && detailInfo[item.key]">{{detailInfo[item.key]}}</text>
-          <uni-link :href="detailInfo[item.url]"
+          <uni-link :href="linkUrl"
                     v-if="item.url"
                     fontSize="26"
                     color="#518cfc"
@@ -71,6 +71,16 @@ export default {
         })
       })
     }
+  },
+  computed: {
+    linkUrl () {
+      const { secondStoreUrl, firstStoreUrl } = this.detailInfo
+      if (!secondStoreUrl) return firstStoreUrl
+      const _paltform = uni.getSystemInfoSync().platform
+      const _temUrl = _paltform === 'ios' ? firstStoreUrl : firstStoreUrl
+      return _temUrl
+    }
+
   },
   data () {
     return {

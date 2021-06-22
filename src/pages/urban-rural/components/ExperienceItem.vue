@@ -1,16 +1,16 @@
 <template>
-  <div class='experi-item-wrap relative'
+  <div class='experi-item-wrap relative mb32'
        @click="onGoDetail">
     <div class="name ft40 bold mr16">{{item.title}}</div>
 
     <div v-for="subItem in infoItems"
          :key="subItem.title"
          class="row mt16 ft26">
-      <div class=" color-999"
+      <div class="color-999"
            style="width:140rpx">{{subItem.title}}</div>
-      <div style="max-width:360rpx"
+      <div style="max-width:420rpx"
            v-if="subItem.key !== 'contactPhone'">{{item[subItem.key]}}</div>
-      <div class=" center-align"
+      <div class="center-align"
            @click.stop="onCallPhone"
            v-else>
         <div>{{item[subItem.key]}}</div>
@@ -30,7 +30,7 @@
       <SvgIcon icon="icon_daohang"
                style="color:#518CFC "
                class="ft20 mr8"></SvgIcon>
-      <span class="color-666 ft26">导航</span>
+      <span class="color-666 ft24">导航</span>
     </div>
 
   </div>
@@ -109,9 +109,9 @@ export default {
     top: 184rpx;
     right: 30rpx;
     margin-left: 16rpx;
-    height: 56rpx;
-    width: 160rpx;
-    line-height: 56rpx;
+    height: 48rpx;
+    width: 100rpx;
+    line-height: 48rpx;
     text-align: center;
     border: 1px solid #dcdcdc;
     border-radius: 28rpx;

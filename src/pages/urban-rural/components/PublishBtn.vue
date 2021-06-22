@@ -1,9 +1,15 @@
 <template>
-  <div class="publish-btn-wrap white-color bold center tc"
+  <div class="publish-btn-wrap white-color center tc"
        :class="isScroll ? 'is-scroll' : ''"
        @click="onAdd">
-    <svg-icon icon="icon_fabu"
-              class="ft32"></svg-icon>
+    <div v-if="text"
+         class="ft24 white-color center column">
+      <span>{{text.slice(0, 2)}}</span>
+      <span>{{text.slice(2, 4)}}</span>
+    </div>
+    <svg-icon v-else
+              icon="icon_fabu"
+              class="ft32 bold"></svg-icon>
   </div>
 </template>
 
@@ -18,6 +24,7 @@ export default {
     }
   },
   props: {
+    text: String,
     isScroll: Boolean
   }
 }

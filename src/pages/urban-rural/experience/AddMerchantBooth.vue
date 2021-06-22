@@ -6,12 +6,13 @@
              placeholder="标题，比如xx农场，xx农家乐，xx民宿都可以"
              placeholder-class="place-class"
              class="ft32 title-style" />
-      <textarea placeholder="做个介绍吧"
-                v-model="form.introduction"
-                placeholder-style="color:#999"
-                maxlength="-1"
-                class="text-area mt36 ft30">
-      </textarea>
+      <u-input v-model="form.introduction"
+               type="textarea"
+               class="text-area mt36 ft30"
+               maxlength="500"
+               placeholder-style="color:#999"
+               placeholder="做个介绍吧" />
+      <div class="color-999 tr mt8 ft24">{{form.introduction ? form.introduction.length : 0}} / 500</div>
       <div class="mt24 flex pb8">
         <upload-images :count="9"
                        :length="9"
@@ -132,14 +133,13 @@ import { appropriateCrowdOptions, serviceContentOptions } from '@/utils/enum.js'
 import { subStringWithStrlen } from '@/utils/tools'
 import { checkInput } from '@u/validate.js'
 
-
 let appropriateCrowdList = []
 let serviceContentList = []
 export default {
   data () {
     return {
-      appropriateCrowdOptions,
-      serviceContentOptions,
+      appropriateCrowdOptions: JSON.parse(JSON.stringify(appropriateCrowdOptions)),
+      serviceContentOptions: JSON.parse(JSON.stringify(serviceContentOptions)),
       showAppropriateCrowd: false,
       showServiceContent: false,
       form: {
@@ -197,8 +197,15 @@ export default {
       }
       params.appropriateCrowd = appropriateCrowdList.map(item => item.id)
       params.serviceContent = serviceContentList.map(item => item.id)
-      params.lng = params.lngLat.split('，')[0]
-      params.lat = params.lngLat.split('，')[1]
+      if (params.lngLat.includes(',')) {
+        params.lng = params.lngLat.split(',')[0]
+        params.lat = params.lngLat.split(',')[1]
+      }
+      if (params.lngLat.includes('，')) {
+        params.lng = params.lngLat.split('，')[0]
+        params.lat = params.lngLat.split('，')[1]
+      }
+      delete params.lngLat
       params.images = params.images.map(item => {
         const temItem = {
           url: item.url,
@@ -214,17 +221,18 @@ export default {
     validateForm () {
       for (const [key, val] of formValidateMap) {
         const _val = this.form[key]
-
         if (this.$isEmpty(_val)) {
           this.$msg(val)
           return
         }
         if (_val && key === 'lngLat' && !_val.includes('，') && !_val.includes(',')) {
-          console.log(_val)
           return this.$msg('经纬度格式不正确')
         }
-        if (_val && key === 'contactPhone' && !checkInput(_val, 'phone')) {
-          return this.$msg('手机号格式不正确')
+        if (this.form.address.length > 30) {
+          return this.$msg('地址最多支持输入 30 字')
+        }
+        if (_val && key === 'contactPhone' && !checkInput(_val, 'phone') && !checkInput(_val, 'tel')) {
+          return this.$msg('电话号格式不正确')
         }
       }
       return true
@@ -349,9 +357,9 @@ const formValidateMap = new Map([
 .bt {
   width: 100%;
   position: fixed;
-  bottom: 16rpx;
+  bottom: 0;
   border-top: 1rpx solid #eaeaea;
-  padding-top: 16rpx;
+  padding: 16rpx 0;
   background: #ffffff;
   z-index: 99;
   .submit {

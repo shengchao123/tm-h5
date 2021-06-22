@@ -30,12 +30,12 @@
              alt=""
              class="logo-img">
         <view class="column ml24">
-          <text class="ft30 color-333 mb20 line-h1">红心商城兑换福利</text>
+          <text class="ft30 color-333 mb20 line-h1 bold">红心商城兑换福利</text>
           <text class="ft24 color-999 line-h1">兑换更多礼品</text>
         </view>
       </view>
-      <view class="color-999">
-        <text class="ft24">去兑换</text>
+      <view class="color-e32417">
+        <text class="ft26">去兑换</text>
         <svg-icon icon="icon_xiangyoujiantou"
                   class="ft24 ml8"></svg-icon>
       </view>
@@ -153,8 +153,11 @@ export default {
 }
 .exchange-wrap {
   .logo-img {
-    width: 86rpx;
+    width: 104rpx;
     height: 86rpx;
   }
+}
+.color-e32417 {
+  color: #e32417;
 }
 </style>
