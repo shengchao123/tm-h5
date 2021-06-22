@@ -111,6 +111,7 @@ export default {
     return {
       shareData: {},
       current: 0,
+      cacheCurrent: [0],
       actions: Object.freeze([{ text: '高德地图' }, { text: '腾讯地图' }]),
       showGuide: false,
       swiperCurrent: 0,
@@ -125,7 +126,6 @@ export default {
           name: '资源共享'
         }
       ],
-      cacheCurrent: [0]
     }
   },
   computed: {

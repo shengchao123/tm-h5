@@ -18,19 +18,19 @@
             @transition="transition"
             @animationfinish="animationfinish">
       <swiper-item>
-        <List1></List1>
+        <List1 v-if="current === 0 || hasLoaded(0)"></List1>
       </swiper-item>
       <swiper-item>
-        <List2></List2>
+        <List2 v-if="current === 1 || hasLoaded(1)"></List2>
       </swiper-item>
       <swiper-item>
-        <List3></List3>
+        <List3 v-if="current === 2 || hasLoaded(2)"></List3>
       </swiper-item>
       <swiper-item>
-        <List4></List4>
+        <List4 v-if="current === 3 || hasLoaded(3)"></List4>
       </swiper-item>
       <swiper-item>
-        <List5></List5>
+        <List5 v-if="current === 4 || hasLoaded(4)"></List5>
       </swiper-item>
     </swiper>
     <ShareDialog ref="shareDialog"
@@ -83,6 +83,7 @@ export default {
       shareData: {},
       current: 0,
       swiperCurrent: 0,
+      cacheCurrent: [0],
       list: [
         {
           name: '行程评价'
@@ -97,7 +98,20 @@ export default {
         },
       ]
     }
-  }
+  },
+  computed: {
+    hasLoaded () {
+      return (index) => {
+        return this.cacheCurrent.includes(index)
+      }
+    },
+  },
+  watch: {
+    current (val) {
+      if (this.cacheCurrent.includes(val)) return
+      this.cacheCurrent.push(val)
+    }
+  },
 }
 </script>
 <style lang='scss' scoped>
