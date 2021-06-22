@@ -21,16 +21,16 @@
             @transition="transition"
             @animationfinish="animationfinish">
       <swiper-item class="bg-white">
-        <List1></List1>
+        <List1 v-if="current === 0 || hasLoaded(0)"></List1>
       </swiper-item>
       <swiper-item>
-        <List2></List2>
+        <List2 v-if="current === 1 || hasLoaded(1)"></List2>
       </swiper-item>
       <swiper-item>
-        <List3></List3>
+        <List3 v-if="current === 2 || hasLoaded(2)"></List3>
       </swiper-item>
       <swiper-item>
-        <List4></List4>
+        <List4 v-if="current === 3 || hasLoaded(3)"></List4>
       </swiper-item>
     </swiper>
 
@@ -111,6 +111,7 @@ export default {
     return {
       shareData: {},
       current: 0,
+      cacheCurrent: [0],
       actions: Object.freeze([{ text: '高德地图' }, { text: '腾讯地图' }]),
       showGuide: false,
       swiperCurrent: 0,
@@ -124,9 +125,22 @@ export default {
         }, {
           name: '资源共享'
         }
-      ]
+      ],
     }
-  }
+  },
+  computed: {
+    hasLoaded () {
+      return (index) => {
+        return this.cacheCurrent.includes(index)
+      }
+    },
+  },
+  watch: {
+    current (val) {
+      if (this.cacheCurrent.includes(val)) return
+      this.cacheCurrent.push(val)
+    }
+  },
 }
 </script>
 

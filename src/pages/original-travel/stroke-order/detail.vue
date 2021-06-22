@@ -39,41 +39,45 @@
       </div>
     </div>
     <div class="footer pl30 pr30 between-row center-align">
-      <div class="center-align left-btns between-row flex1">
-        <div v-if="baseInfo.isOrganizer"
-             class="icon-btn center-align column color-666"
+      <div v-if="baseInfo.isOrganizer"
+           @click="onShare">
+        <!-- <div class="icon-btn center-align column color-666"
              @click="onEdit">
           <svg-icon icon="icon_bianji"
                     class="ft34"></svg-icon>
           <div class="ft20 mt14">编辑</div>
         </div>
-        <div v-if="baseInfo.isOrganizer"
-             class="icon-btn center-align column color-666"
+        <div class="icon-btn center-align column color-666"
              @click="onDelete()">
           <svg-icon icon="icon_shanchu"
                     class="ft34"></svg-icon>
           <div class="ft20 mt14">删除</div>
-        </div>
-        <div class="icon-btn center-align column color-666"
-             @click="onShare">
-          <svg-icon icon="icon_zhuanfa"
-                    class="ft34"></svg-icon>
-          <div class="ft20 mt14">分享</div>
-        </div>
-      </div>
-      <div v-if="isShowJoinBtn">
-        <div class="ft28 tc medium"
-             :class="baseInfo.isSignUp ? 'border-btn w272' : 'confirm-btn'"
-             @click="onSignUp">{{baseInfo.isSignUp ? '取消报名' : '我要报名'}}</div>
+        </div> -->
+        <svg-icon icon="icon_diandian"
+                  class="ft34"></svg-icon>
       </div>
       <div v-else
-           class="center-align">
-        <div class="border-btn ft28 tc mr24 medium"
-             @click="onComment">评价</div>
-        <div v-if="baseInfo.needLifeDocumentary"
-             class="ft28 tc medium"
-             :class="baseInfo.hasLifeRecord ? 'border-btn w272' : 'confirm-btn'"
-             @click="onLifeDocumentary">{{baseInfo.hasLifeRecord ? '查看' : '填写'}}组织生活记录</div>
+           class="icon-btn center-align column color-666"
+           @click="onShare">
+        <svg-icon icon="icon_zhuanfa"
+                  class="ft34"></svg-icon>
+        <div class="ft20 mt14">分享</div>
+      </div>
+
+      <div class="center-align"
+           style="justify-content: flex-end">
+        <div class="center-align">
+          <div class="border-btn ft28 tc mr24 medium"
+               @click="onComment">评价</div>
+          <div v-if="baseInfo.needLifeDocumentary"
+               class="ft28 tc medium"
+               :class="baseInfo.hasLifeRecord ? 'border-btn w272' : 'confirm-btn'"
+               @click="onLifeDocumentary">{{baseInfo.hasLifeRecord ? '查看' : '填写'}}组织生活记录</div>
+        </div>
+        <div v-if="isShowJoinBtn"
+             class="ft28 tc medium w184 ml24"
+             :class="baseInfo.isSignUp ? 'border-btn' : 'confirm-btn'"
+             @click="onSignUp">{{baseInfo.isSignUp ? '取消报名' : '我要报名'}}</div>
       </div>
     </div>
     <u-modal v-model="showDeleteTip"
@@ -91,9 +95,12 @@
              @confirm="onDelete(true)"></u-modal>
     <share-dialog ref="shareDialog"
                   shareBtns="wx moments copyLink poster"
+                  :isOperate="baseInfo.isOrganizer"
                   :shareData="shareData"
                   :showHomeBtn="showHomeBtn"
-                  @scrollToTop="scrollToTop"></share-dialog>
+                  @scrollToTop="scrollToTop"
+                  @onEdit="onEdit"
+                  @onDelete="onDelete"></share-dialog>
   </div>
 </template>
 <script>
@@ -217,7 +224,7 @@ export default {
       const { isOrganizer, setOutTime, isSignUp } = this.baseInfo
       const nowTime = new Date().getTime()
       const isAlreadyStarted = nowTime >= setOutTime
-      if (isOrganizer || isAlreadyStarted) return false
+      if (isAlreadyStarted) return false
       return true
     },
     topList () {
@@ -306,6 +313,9 @@ export default {
   }
   .w272 {
     width: 272rpx !important;
+  }
+  .w184 {
+    width: 184rpx !important;
   }
   .line {
     width: 100%;

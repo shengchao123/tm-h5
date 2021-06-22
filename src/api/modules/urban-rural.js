@@ -35,6 +35,15 @@ export function getJourneyMerchantBoothInfoPage (params) { // '/linanJourney/jou
     data: { ...params }
   })
 }
+
+export function getJourneyPlayCustomizationInfoPage (params) { // 分页获取游玩定制
+  return request({
+    url: urls.getJourneyPlayCustomizationInfoPage,
+    needlessToken: true,
+    data: { ...params }
+  })
+}
+
 export function getJourneyMerchantBoothInfoById (params) { // '/linanJourney/journeyMerchantBooth/getJourneyMerchantBoothInfoById', // 商家展位详情
   return request({
     url: urls.getJourneyMerchantBoothInfoById,
@@ -66,6 +75,48 @@ export function getJourneyResourceSharingInfoById (params) { // ' /linanJourney/
   return request({
     url: urls.getJourneyResourceSharingInfoById,
     needlessToken: true,
+    data: { ...params }
+  })
+}
+
+export function orderJourneyPlayCustomizationInfoById (params) { // 对游玩定制进行接单
+  return request({
+    url: urls.orderJourneyPlayCustomizationInfoById,
+    data: { ...params }
+  })
+}
+
+export function createJourneyPlayCustomization (params) { // 创建游玩定制
+  return request({
+    url: urls.createJourneyPlayCustomization,
+    data: { ...params }
+  })
+}
+
+export function modifyJourneyPlayCustomizationInfoById (params) { // 编辑我的定制
+  return request({
+    url: urls.modifyJourneyPlayCustomizationInfoById,
+    data: { ...params }
+  })
+}
+
+export function getJourneyPlayCustomizationInfoById (params) { // 获取游玩定制详情
+  return request({
+    url: urls.getJourneyPlayCustomizationInfoById,
+    data: { ...params }
+  })
+}
+
+export function deleteJourneyPlayCustomizationInfoById (params) { // 删除我的游玩定制
+  return request({
+    url: urls.deleteJourneyPlayCustomizationInfoById,
+    data: { ...params }
+  })
+}
+
+export function modifyJourneyPlayCustomizationInfoShowStatusById (params) { // 修改我的游玩定制展示状态
+  return request({
+    url: urls.modifyJourneyPlayCustomizationInfoShowStatusById,
     data: { ...params }
   })
 }
