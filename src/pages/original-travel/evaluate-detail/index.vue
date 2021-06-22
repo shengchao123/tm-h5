@@ -80,6 +80,7 @@ export default {
       })
     },
     onShowShareDialog () {
+      if (this.entrance === 'myTrends' && this.detailInfo.status === 2) return
       this.$refs.shareDialog.show()
     },
     getItineraryEvaluationInfoById () {

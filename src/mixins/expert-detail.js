@@ -5,13 +5,14 @@ const expertDetail = {
       selectItem: {},
       showContact: false,
       noTimeShow: false,
+       isTalents: uni.getStorageSync('isTalents')
     }
   },
   methods: {
     onContact (item) {
       // 判断是否登录逻辑
       if (this.$notMember()) return this.$goLogin();
-      this.selectItem = item
+      this.selectItem =JSON.parse(JSON.stringify(item))
       const { openDayList, startTime, endTime, isTelephoneCommunication } = this.selectItem
       if (!this.isInTimes()) {
         this.noTimes = this.filterWeek(openDayList) + '，' + startTime + '～' + endTime
@@ -22,6 +23,10 @@ const expertDetail = {
       }
       if (isTelephoneCommunication) {
         this.showContact = true
+        return
+      }
+      if(this.isTalents === 'true'){
+        this.$msg('暂不支持专家给专家留言')
         return
       }
       this.onMessage()
