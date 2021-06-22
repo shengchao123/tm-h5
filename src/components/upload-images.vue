@@ -80,6 +80,11 @@ export default {
       try {
         uploadData = await this.uploadImage(images[0]);
       } catch (err) {
+        uni.hideLoading()
+        uni.showToast({
+          title: '系统连接超时，请稍后再试！',
+          mask: false
+        })
         return;
       }
       if (uploadData.success) {
@@ -120,6 +125,7 @@ export default {
           name: 'files',
           filePath: file,
           fileType: 'image',
+          timeout: 100000,
           header: headers,
           formData,
           success (uploadFileResult) {

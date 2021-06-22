@@ -1,5 +1,6 @@
 <template>
-  <div class='steward-wrap'>
+  <div class='steward-wrap'
+       @click="onMessage">
     <img src="@/static/test/11.png">
     <custom-tabbar></custom-tabbar>
   </div>
@@ -7,7 +8,11 @@
 
 <script>
 export default {
-  name: 'index'
+  methods: {
+    onMessage () {
+      this.$msg('功能开发中')
+    }
+  }
 }
 </script>
 

@@ -1,5 +1,6 @@
 <template>
-  <view class='mall-wrap'>
+  <view class='mall-wrap'
+        @click="onDevelop">
     <img src="@/static/hearts/hearts-mall.png">
   </view>
 </template>
@@ -7,6 +8,11 @@
 <script>
 export default {
   name: 'Mall',
+  methods: {
+    onDevelop () {
+      this.$msg('功能开发中')
+    }
+  },
   data () {
     return {
 
