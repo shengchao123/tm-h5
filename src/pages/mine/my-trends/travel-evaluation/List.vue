@@ -1,7 +1,13 @@
 <template>
   <view class="find-wrap pl30">
     <view class="note-list">
-      <Waterfall ref="waterfall"
+      <view class="empty-wrap"
+            v-if="isEmpty">
+        <page-empty :imgUrl="this.$imgHost + 'discover/icon-attention.png'"
+                    message="暂无行程评价"></page-empty>
+      </view>
+      <Waterfall v-show="!isEmpty"
+                 ref="waterfall"
                  :waterfallData="waterfallData"
                  top="20"
                  @getListData="getListData">
@@ -10,6 +16,7 @@
   </view>
 </template>
 <script>
+import PageEmpty from 'pages/components/PageEmpty'
 import Waterfall from './slzx_waterfall/index'
 export default {
   methods: {
@@ -23,15 +30,14 @@ export default {
       }
       this.$api.getMyItineraryEvaluationPage(params).then(res => {
         callback && callback()
-        const { mescroll } = this.$refs.waterfall
-        if (res.isError) return mescroll.endErr()
+        if (res.isError) return this.$refs.waterfall.mescroll.endErr()
         const { items, count } = res.content
         if (this.$isEmpty(items)) {
-          mescroll.endBySize(0, 0);
+          this.$refs.waterfall.mescroll.endBySize(0, 0)
           this.waterfallData = []
           return
         }
-        mescroll.endBySize(items.length, count);
+        this.$refs.waterfall.mescroll.endBySize(items.length, count);
         this.waterfallData = params.pageNumber === 1 ? items : this.waterfallData.concat(items)
       })
     },
@@ -41,13 +47,15 @@ export default {
       waterfallData: [],
     }
   },
+  computed: {
+    isEmpty () {
+      return this.waterfallData.length <= 0
+    },
+  },
   components: {
     Waterfall,
+    PageEmpty
   },
-  // 页面周期函数--监听页面初次渲染完成
-  created () {
-    this.getListData()
-  }
 };
 </script>
 <style lang='scss' scoped>

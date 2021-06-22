@@ -2,16 +2,15 @@
   <div class="wrap">
     <mescroll-uni ref="mescrollRef"
                   :top="mescrollTop"
+                  :bottom="mescrollBottom"
                   @init="mescrollInit"
                   :up="upOption"
-                  @up="onreachTop"
-                  class="relative uni mt30">
-      <div class="content"
-           v-if="!$isEmpty(dataList)">
+                  @up="upCallback"
+                  @down="downCallback">
+      <div v-if="!$isEmpty(dataList)">
         <view v-for="(item, index) in dataList"
               :key="index"
               class="relative">
-
           <resource-item entrance="myTrends"
                          :resourceItem="{item, index}"
                          @click="setNotesItem">
@@ -22,7 +21,6 @@
             </view>
           </resource-item>
         </view>
-
       </div>
       <empty v-else></empty>
     </mescroll-uni>
@@ -65,7 +63,6 @@ export default {
       this.$api.getMyJourneyResourceSharingPage(params).then(res => {
         if (res.isError) return
         let { items, count } = res.content
-        console.log(this.dataList)
         this.dataList = params.pageNumber === 1 ? items : this.dataList.concat(items)
         this.mescroll.endBySize(items.length, count)
       })
@@ -80,6 +77,7 @@ export default {
         onScroll: true
       },
       mescrollTop: '20rpx',
+      mescrollBottom: '20rpx',
     }
   }
 }
@@ -88,10 +86,6 @@ export default {
 <style lang='scss' scoped>
 .wrap {
   height: 100%;
-  .content {
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
   .wait-check {
     margin-top: -2rpx;
     margin-right: -30rpx;

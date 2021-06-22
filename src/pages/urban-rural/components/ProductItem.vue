@@ -6,7 +6,7 @@
 
     <div class="content">
       <div class="name ft28 bold">{{name}}</div>
-      <div class="honor ft24 color-999">{{item.honor}}</div>
+      <div class="ft24 color-999">{{item.orgName}}</div>
     </div>
   </div>
 </template>
@@ -44,7 +44,12 @@ export default {
     padding: 16rpx;
     width: 302rpx;
     .name {
-      height: 90rpx;
+      height: 80rpx;
+      display: -webkit-box;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
     }
   }
 }

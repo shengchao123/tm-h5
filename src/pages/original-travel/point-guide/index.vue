@@ -49,10 +49,10 @@ export default {
       this.$amap.clearMap()
       let _pois = JSON.parse(JSON.stringify(this.pois))
       _pois.forEach(poi => {
-        this.drawMarkder({ ...MWH }, poi, poi.typeName ? "guide_mark_red.png" : this.currentPoi.marker)
+        this.drawMarkder({ ...MWH }, poi)
       })
       this.setMapCenter(scenicSpot)
-      this.drawMarkder({ ...LWH }, scenicSpot, "guide_mark_red.png")
+      this.drawMarkder({ ...LWH }, scenicSpot)
     },
     // 显示导航选择框
     showGuideActionSheet (item) {
@@ -95,7 +95,7 @@ export default {
         })
         this.pois = [{ address: scenicSpot.regionsName, ...scenicSpot }].concat(_pois)
         _pois.forEach(poi => {
-          this.drawMarkder({ ...MWH }, poi, this.currentPoi.marker)
+          this.drawMarkder({ ...MWH }, poi)
         })
       })
     },
@@ -176,12 +176,19 @@ export default {
 
     // 绘制 marker
     drawMarkder ({ w, h }, _spot, markerImg) {
+      let markerImgUse = this.currentPoi.marker
+      if (_spot.isTop) {
+        markerImgUse = 'guide_mark_red.png'
+      }
+      if (markerImg) {
+        markerImgUse = markerImg
+      }
       const marker = new AMap.Marker({
         position: getAMapLngLat(_spot),
         map: this.$amap,
         // animation: 'AMAP_ANIMATION_DROP',
         offset: new AMap.Pixel(-w / 2, -h),
-        icon: this.getMarkderIcon(w, h, markerImg),
+        icon: this.getMarkderIcon(w, h, markerImgUse),
         touchZoom: false
       })
 
@@ -215,15 +222,14 @@ export default {
       let _pois = JSON.parse(JSON.stringify(this.pois))
       _pois = _pois.filter((item, index) => index !== this.currentIndex)
       _pois.forEach(poi => {
-        this.drawMarkder({ ...MWH }, poi, this.currentPoi.marker)
+        this.drawMarkder({ ...MWH }, poi)
       })
-
       this.setMapCenter(_poi)
-      this.drawMarkder({ ...LWH }, _poi, "guide_mark_red.png")
+      this.drawMarkder({ ...LWH }, _poi)
     }
   },
   mounted () {
-    scenicSpot = JSON.parse(sessionStorage.getItem('pointData'))
+    scenicSpot = { ...JSON.parse(sessionStorage.getItem('pointData')), isTop: true }
     this.pois = [{ address: scenicSpot.regionsName, ...scenicSpot }]
     this.drawMarkder({ ...LWH }, scenicSpot)
     this.setMapCenter(scenicSpot)

@@ -2,10 +2,12 @@
   <div class="wrap">
     <mescroll-uni ref="mescrollRef"
                   :top="mescrollTop"
+                  :bottom="mescrollBottom"
+                  @scroll="scroll"
                   @init="mescrollInit"
                   :up="upOption"
-                  @up="onreachTop"
-                  class="relative uni">
+                  @down="downCallback"
+                  @up="upCallback">
       <div class="content"
            v-if="!$isEmpty(dataList)">
         <div v-for="(item,index) in dataList"
@@ -39,18 +41,19 @@ export default {
     //     url: '/pages/urban-rural/experience/AddMerchantBooth'
     //   })
     // },
-    // scroll () {
-    //   this.isScroll = true
-    //   if (this.timer) {
-    //     this.timer = null
-    //     clearTimeout(this.timer)
-    //   }
-    //   this.timer = setTimeout(() => {
-    //     this.isScroll = false
-    //   }, 500)
-    // },
+    scroll () {
+      this.isScroll = true
+      if (this.timer) {
+        this.timer = null
+        clearTimeout(this.timer)
+      }
+      this.timer = setTimeout(() => {
+        this.isScroll = false
+      }, 500)
+    },
     // 获取商品列表
     getDataList () {
+      console.log(111);
       const params = {
         ...this.search
       }
@@ -67,6 +70,7 @@ export default {
         })
         this.mescroll.endBySize(items.length, count)
         this.dataList = params.pageNumber === 1 ? items : this.dataList.concat(items)
+        console.log(this.dataList);
       })
     }
   },
@@ -76,10 +80,14 @@ export default {
     return {
       isScroll: false,
       mescrollTop: '20rpx',
+      mescrollBottom: '0rpx',
       upOption: {
         onScroll: true
       },
     }
+  },
+  created () {
+    // this.getDataList()
   }
 }
 </script>

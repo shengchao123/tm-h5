@@ -164,12 +164,6 @@
 			}
 		},
 		{
-			"path": "pages/urban-rural/activity/Detail",
-			"style": {
-				"navigationBarTitleText": "特色活动详情"
-			}
-		},
-		{
 			"path": "pages/urban-rural/experience/AddMerchantBooth",
 			"style": {
 				"navigationBarTitleText": "申请展位"
@@ -275,6 +269,12 @@
 			"path": "pages/mine/my-hearts/index",
 			"style": {
 				"navigationBarTitleText": "我的红心"
+			}
+		},
+		{
+			"path": "pages/mine/my-hearts/Mall",
+			"style": {
+				"navigationBarTitleText": "红心商城"
 			}
 		},
 		{

@@ -6,9 +6,8 @@
         <div class="circle center ft22">{{pointData.index + 1}}</div>
         <div class="line"></div>
       </div>
-
-      <div class="ft30 ml16 name medium"
-           @click="onIntroduction">{{pointData.item.name}}</div>
+      <div class="ft30 ml16 medium"
+           @click="onIntroduction">{{name(pointData.item.name, 11)}}</div>
     </div>
 
     <div class="center-align">
@@ -42,6 +41,8 @@
 </template>
 
 <script>
+import { substringWithL } from '@/utils/tools.js'
+
 export default {
   name: 'NumList',
   methods: {
@@ -61,11 +62,19 @@ export default {
     onGuide () {
       this.onShowNavigationSelect(this.pointData)
     },
+
   },
   inject: ['onShowNavigationSelect'],
   data () {
     return {
       showGuide: false,
+    }
+  },
+  computed: {
+    name () {
+      return function (str, L) {
+        return substringWithL(str, L)
+      }
     }
   },
   props: {
@@ -81,12 +90,6 @@ export default {
     border-left: 1px solid #ffd53d;
     width: 1px;
     height: 40rpx;
-  }
-  .name {
-    width: 29vw;
-    white-space: normal;
-    word-break: break-all;
-    word-wrap: break-word;
   }
   .circle {
     background: #feffff;

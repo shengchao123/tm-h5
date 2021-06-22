@@ -44,7 +44,6 @@ export default {
       this.mescroll.resetUpScroll()
     },
     upCallback (page) {
-      if (this.$isEmpty(this.waterfallData)) return
       this.$emit('getListData', page)
     },
     initData () {
