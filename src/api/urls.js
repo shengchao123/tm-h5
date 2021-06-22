@@ -30,8 +30,8 @@ export const urls = {
   getShowJourneyTalentsPage: '/linanJourney/journeyTalents/getShowJourneyTalentsPage',// 人才分页
   getShowJourneyTalentsDetail: '/linanJourney/journeyTalents/getShowJourneyTalentsDetail',// 人才详情
   leaveMessage: '/linanJourney/journeyTalentsMessage/leaveMessage', // 留言
-  getAgriculturePage:'/linanJourney/journeyAgricultureRelatedProjects/getShowJourneyPolicyPage',//涉农项目分页
-  getAgricultureDetail:'/linanJourney/journeyAgricultureRelatedProjects/getShowJourneyPolicyDetail',//涉农项目详情
+  getShowAgricultureRelatedProjectsPage:'/linanJourney/journeyAgricultureRelatedProjects/getShowAgricultureRelatedProjectsPage',//涉农项目分页
+  getShowAgricultureRelatedProjectsDetail:'/linanJourney/journeyAgricultureRelatedProjects/getShowAgricultureRelatedProjectsDetail',//涉农项目详情
 
   // 初心之旅
   getRecommendJourneyLineList: '/linanJourney/journeyLine/getRecommendJourneyLineList', // 推荐路线

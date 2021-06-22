@@ -74,7 +74,7 @@ export default {
         pageNumber: page && page.num || 1,
         pageSize: page && page.size || 10
       }
-      this.$api.getAgriculturePage(params).then(res => {
+      this.$api.getShowAgricultureRelatedProjectsPage(params).then(res => {
         if (res.isError) {
           this.mescroll.endBySize(0, 0)
           this.$msg(res.message)
