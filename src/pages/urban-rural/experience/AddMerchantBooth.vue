@@ -132,7 +132,6 @@ import { appropriateCrowdOptions, serviceContentOptions } from '@/utils/enum.js'
 import { subStringWithStrlen } from '@/utils/tools'
 import { checkInput } from '@u/validate.js'
 
-
 let appropriateCrowdList = []
 let serviceContentList = []
 export default {
@@ -197,8 +196,15 @@ export default {
       }
       params.appropriateCrowd = appropriateCrowdList.map(item => item.id)
       params.serviceContent = serviceContentList.map(item => item.id)
-      params.lng = params.lngLat.split('，')[0]
-      params.lat = params.lngLat.split('，')[1]
+      if (params.lngLat.includes(',')) {
+        params.lng = params.lngLat.split(',')[0]
+        params.lat = params.lngLat.split(',')[1]
+      }
+      if (params.lngLat.includes('，')) {
+        params.lng = params.lngLat.split('，')[0]
+        params.lat = params.lngLat.split('，')[1]
+      }
+      delete params.lngLat
       params.images = params.images.map(item => {
         const temItem = {
           url: item.url,
