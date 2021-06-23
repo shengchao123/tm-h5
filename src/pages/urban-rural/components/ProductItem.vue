@@ -6,7 +6,7 @@
 
     <div class="content">
       <div class="name ft28 bold">{{name}}</div>
-      <div class="ft24 color-999">{{item.orgName}}</div>
+      <div class="ft24 color-999">{{item.publishingDepartment}}</div>
     </div>
   </div>
 </template>
