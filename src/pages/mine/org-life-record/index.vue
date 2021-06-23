@@ -275,6 +275,14 @@ export default {
         this.formData = res.content
       })
     },
+    getJourneyItineraryById (id) {
+      const params = { id }
+      this.$api.getJourneyItineraryById(params).then(res => {
+        if (res.isError) return this.$msg(res.message)
+        this.formData.shouldNumber = res?.content?.signUpList?.length ?? 0
+        this.formData = JSON.parse(JSON.stringify(this.formData))
+      })
+    },
   },
   data () {
     return {
@@ -352,7 +360,7 @@ export default {
       journeyItineraryId: id
     }
     this.pageType = pageType
-    pageType === 'edit' && this.getJourneyLifeDocumentaryByItineraryId(id)
+    pageType === 'edit' ? this.getJourneyLifeDocumentaryByItineraryId(id) : this.getJourneyItineraryById(id)
   }
 }
 </script>
