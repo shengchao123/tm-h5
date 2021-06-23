@@ -13,7 +13,7 @@
     width: 32rpx;
     height: 32rpx;
     border-radius: 50%;
-    border: solid 1rpx #dedede;
+    border: solid 1px #dedede;
     transition: all 0.3s;
     .round {
       width: 12rpx;
