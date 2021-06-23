@@ -50,9 +50,7 @@ export default {
     },
     onCallPhone () {
       uni.makePhoneCall({
-        phoneNumber: this.item.contactPhone,
-        success: (result) => { },
-        fail: (error) => { }
+        phoneNumber: this.item.contactPhone
       })
     },
     onGoDetail () {
