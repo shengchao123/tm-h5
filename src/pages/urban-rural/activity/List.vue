@@ -54,6 +54,11 @@ export default {
   components: { SubTabs, ActiveItem },
   data () {
     return {
+      upOption: {
+        toTop: {
+          bottom: 18
+        }
+      },
       mescrollTop: '120rpx',
       mescrollBottom: '0rpx',
       subTabs: [
