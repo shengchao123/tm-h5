@@ -52,6 +52,7 @@ export default {
       this.$api[apiName.get(this.type)](params).then(res => {
         if (res.isError) return this.$msg(res.message)
         this.$msg('报名成功')
+        uni.$emit('updateDataList')
         setTimeout(() => {
           uni.navigateBack()
         }, 400)

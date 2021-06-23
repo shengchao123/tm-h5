@@ -114,6 +114,7 @@ export default {
         }
         this.$msg(msg + '成功')
         this.getJourneyActivityDetail()
+        uni.$emit('updateDataList')
       })
     },
     changeSignUpStatus () {
@@ -222,7 +223,7 @@ export default {
   onLoad ({ id, title }) {
     this.id = id
   },
-  created () {
+  onShow () {
     this.getJourneyActivityDetail()
   },
 }

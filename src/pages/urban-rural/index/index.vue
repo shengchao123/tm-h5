@@ -106,7 +106,6 @@ export default {
     }
   },
   data () {
-
     this.guideItem = {}
     return {
       shareData: {},

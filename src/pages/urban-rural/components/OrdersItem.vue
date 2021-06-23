@@ -5,7 +5,7 @@
         <div class="user-head mr16">
           <img :src="$avatarUrl(item.avatar)">
         </div>
-        <div class="center-align column">
+        <div class="column">
           <p class="ft28 mb8">{{item.nick}}</p>
           <p class="ft22 color-999">{{item.time}}</p>
         </div>
@@ -159,17 +159,17 @@ export default {
     }
   }
   .take-info {
-    height: 60rpx;
+    height: 68rpx;
     justify-content: flex-end;
     .take-btn {
       width: 144rpx;
       height: 56rpx;
       line-height: 56rpx;
       border-radius: 30rpx;
-      border: solid 1rpx #e32417;
+      border: solid 1px #e32417;
     }
     .taked {
-      border-left: solid 1rpx #d2d2d2;
+      border-left: solid 1px #d2d2d2;
       line-height: 24rpx;
     }
   }

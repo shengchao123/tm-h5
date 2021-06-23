@@ -27,8 +27,10 @@
       <empty v-else></empty>
     </mescroll-uni>
     <PublishBtn @onPublish="onPublish"
-                :text="currentTab === 1 ? '商家展位' : '我要定制'"
-                :isScroll="isScroll"></PublishBtn>
+                :text="currentTab === 1 ? '申请展位' : '我要定制'"
+                :isScroll="isScroll"
+                right="14rpx"
+                bottom="32rpx"></PublishBtn>
   </div>
 </template>
 <script>
@@ -104,7 +106,10 @@ export default {
       mescrollTop: '120rpx',
       mescrollBottom: '0rpx',
       upOption: {
-        onScroll: true
+        onScroll: true,
+        toTop: {
+          bottom: 138
+        }
       },
       currentTab: 1,
       subTabs: [

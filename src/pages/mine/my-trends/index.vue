@@ -33,6 +33,9 @@
         <List5 v-if="current === 4 || hasLoaded(4)"></List5>
       </swiper-item>
     </swiper>
+    <u-action-sheet :list="actions"
+                    @click="onSelectGuide"
+                    v-model="showGuide"></u-action-sheet>
     <ShareDialog ref="shareDialog"
                  shareBtns="copyLink"
                  :shareData="shareData"></ShareDialog>
@@ -44,10 +47,20 @@ import List2 from './union-note/List.vue'
 import List3 from './resource/List.vue'
 import List4 from './experience/List.vue'
 import List5 from './my-customization/List.vue'
+import { beginGuide } from '@/utils/map.js'
 import ShareDialog from '@/pages/components/ShareDialog'
 export default {
   name: 'index',
   methods: {
+    // 选择地图导航回调
+    onSelectGuide (act) {
+      const { lng, lat, address } = this.guideItem
+      beginGuide(act, {
+        name: address,
+        lng,
+        lat
+      })
+    },
     setShareData (shareData) {
       this.shareData = JSON.parse(JSON.stringify(shareData))
       this.$refs.shareDialog.show()
@@ -79,7 +92,10 @@ export default {
     }
   },
   data () {
+    this.guideItem = {}
     return {
+      actions: Object.freeze([{ text: '高德地图' }, { text: '腾讯地图' }]),
+      showGuide: false,
       shareData: {},
       current: 0,
       swiperCurrent: 0,
@@ -112,6 +128,12 @@ export default {
       this.cacheCurrent.push(val)
     }
   },
+  created () {
+    uni.$on('onOpenGuide', (data) => {
+      this.showGuide = true
+      this.guideItem = data
+    })
+  }
 }
 </script>
 <style lang='scss' scoped>

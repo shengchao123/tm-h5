@@ -33,7 +33,8 @@
               <image :src="imgHost + 'pull-new/invite_icon03.png'" />
               <text class="mt8 ft24">钉钉</text>
             </view> -->
-            <view @click="saveCanvas"
+            <!-- 微信H5 无法直接下载图片 -->
+            <!-- <view @click="saveCanvas"
                   class="center column imgs-item"
                   v-if="savePoster">
               <div class="save-img">
@@ -41,9 +42,9 @@
                           icon="icon_baocundaoxiangce"></svg-icon>
               </div>
               <text class="mt8 ft24 color-666">保存到相册</text>
-            </view>
+            </view> -->
             <view class="center column imgs-item"
-                  v-if="!savePoster && shareBtns.includes('poster')">
+                  v-if="shareBtns.includes('poster')">
               <image :src="imgHost + 'pull-new/invite_icon04.png'"
                      @click="createPoster" />
               <text class="mt8 ft24 color-666">生成图片</text>
@@ -96,7 +97,7 @@
                :src="posterUrl" />
         </div>
         <div v-show="posterCreateEnd"
-             class="tip tc ft24 flex1 center">长按图片保存</div>
+             class="tip tc ft26 flex1 center">长按图片保存</div>
       </div>
     </view>
     <div class="home-btn center"
@@ -119,7 +120,7 @@ export default {
     return {
       guideShare: false,
       showPoster: false,
-      savePoster: false,
+      // savePoster: false,
       posterCreateEnd: false,
       posterUrl: ''
     }
@@ -132,7 +133,7 @@ export default {
     hide () {
       this.guideShare = false
       this.showPoster = false
-      this.savePoster = false
+      // this.savePoster = false
       this.posterCreateEnd = false
       this.posterUrl = ''
       this.$refs.sharePopup.close()
@@ -297,7 +298,7 @@ export default {
       this.$emit('posterDrawStart')
       this.$emit('scrollToTop')
       this.showPoster = true
-      this.savePoster = true
+      // this.savePoster = true
       this.posterCreateEnd = false
       const posterEl = document.getElementById('posterView')
       setTimeout(() => {
@@ -308,13 +309,13 @@ export default {
       }, 200)
     },
     // 保存海报
-    saveCanvas () {
-      let a = document.createElement('a')
-      document.body.appendChild(a);
-      a.setAttribute('download', '海报')
-      a.href = this.posterUrl
-      a.click()
-    },
+    // saveCanvas () {
+    //   let a = document.createElement('a')
+    //   document.body.appendChild(a);
+    //   a.setAttribute('download', '海报')
+    //   a.href = this.posterUrl
+    //   a.click()
+    // },
     linkRender (link) {
       if (!link) return ''
       let shareLink = link
@@ -455,7 +456,7 @@ page {
     box-sizing: border-box;
     padding: 20rpx 20rpx 0 20rpx;
     height: 55vh;
-    margin: 155rpx auto;
+    margin: 50rpx auto;
     border-radius: 6rpx;
     background: #fff;
     .img-box {

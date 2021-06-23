@@ -1,7 +1,8 @@
 <template>
   <div class="publish-btn-wrap white-color center tc"
        :class="isScroll ? 'is-scroll' : ''"
-       @click="onAdd">
+       @click="onAdd"
+       :style="{right,bottom}">
     <div v-if="text"
          class="ft24 white-color center column">
       <span>{{text.slice(0, 2)}}</span>
@@ -25,7 +26,19 @@ export default {
   },
   props: {
     text: String,
-    isScroll: Boolean
+    isScroll: Boolean,
+    right: {
+      type: String,
+      default: (() => {
+        return '32rpx'
+      })
+    },
+    bottom: {
+      type: [Number, String],
+      default: (() => {
+        return '90rpx'
+      })
+    },
   }
 }
 </script>
