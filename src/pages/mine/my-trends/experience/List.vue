@@ -44,11 +44,9 @@ export default {
     },
     // 获取商品列表
     getDataList () {
-      console.log(111);
       const params = {
         ...this.search
       }
-      console.log(2222);
       this.$api.getMyJourneyMerchantBoothInfoPage(params).then(res => {
         if (res.isError) return
         let { items, count } = res.content
@@ -62,7 +60,6 @@ export default {
         })
         this.mescroll.endBySize(items.length, count)
         this.dataList = params.pageNumber === 1 ? items : this.dataList.concat(items)
-        console.log(this.dataList);
       })
     }
   },
