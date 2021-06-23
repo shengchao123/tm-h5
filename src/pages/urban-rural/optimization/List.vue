@@ -55,6 +55,15 @@ export default {
       })
     }
   },
+  data () {
+    return {
+      upOption: {
+        toTop: {
+          bottom: 18
+        }
+      }
+    }
+  },
   mixins: [listMixins],
   components: { ProductItem },
 }
