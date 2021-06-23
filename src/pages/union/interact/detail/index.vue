@@ -222,7 +222,7 @@ export default {
   onLoad ({ id, title }) {
     this.id = id
   },
-  created () {
+  onShow () {
     this.getJourneyActivityDetail()
   },
 }
