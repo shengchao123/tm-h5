@@ -14,14 +14,14 @@ const expertDetail = {
       if (this.$notMember()) return this.$goLogin();
       this.selectItem =JSON.parse(JSON.stringify(item))
       const { openDayList, startTime, endTime, isTelephoneCommunication } = this.selectItem
-      if (!this.isInTimes()) {
-        this.noTimes = this.filterWeek(openDayList) + '，' + startTime + '～' + endTime
-        this.$nextTick(() => {
-          this.noTimeShow = true
-        })
-        return
-      }
       if (isTelephoneCommunication) {
+        if (!this.isInTimes()) {
+          this.noTimes = this.filterWeek(openDayList) + '，' + startTime + '～' + endTime
+          this.$nextTick(() => {
+            this.noTimeShow = true
+          })
+          return
+        }
         this.showContact = true
         return
       }
