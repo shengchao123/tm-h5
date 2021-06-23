@@ -75,6 +75,11 @@ export default {
         }
       ],
     }
+  },
+  created () {
+    uni.$on('updateDataList', () => {
+      this.getDataList()
+    })
   }
 }
 </script>

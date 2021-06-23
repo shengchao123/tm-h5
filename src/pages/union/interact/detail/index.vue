@@ -114,6 +114,7 @@ export default {
         }
         this.$msg(msg + '成功')
         this.getJourneyActivityDetail()
+        uni.$emit('updateDataList')
       })
     },
     changeSignUpStatus () {
