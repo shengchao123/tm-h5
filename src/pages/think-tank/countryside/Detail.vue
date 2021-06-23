@@ -104,11 +104,8 @@ export default {
     border-radius: 8rpx;
   }
   .attachment {
-    width: 686rpx;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
     color: #518cfc;
+    line-height: 1.5;
   }
 }
 </style>
