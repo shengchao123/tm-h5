@@ -5,11 +5,12 @@
 
     <div v-for="subItem in infoItems"
          :key="subItem.title"
-         class="row mt16 ft26">
+         class="row mt16 ft26 relative">
       <div class="color-999"
            style="width:140rpx">{{subItem.title}}</div>
       <div style="max-width:420rpx"
            v-if="subItem.key !== 'contactPhone'">{{item[subItem.key]}}</div>
+
       <div class="center-align"
            @click.stop="onCallPhone"
            v-else>
@@ -18,19 +19,21 @@
                  class="ft32 ml16"
                  style="color: #518CFC;"></SvgIcon>
       </div>
+
+      <div class="guide-btn center"
+           v-if="subItem.key === 'address'"
+           @click.stop="onGuide">
+        <SvgIcon icon="icon_daohang"
+                 style="color:#518CFC "
+                 class="ft20 mr8"></SvgIcon>
+        <span class="color-666 ft24">导航</span>
+      </div>
+
     </div>
 
     <div class="images row mt24"
          v-if="showImgs">
       <ImgGroup :imgList="item.images"></ImgGroup>
-    </div>
-
-    <div class="guide-btn center"
-         @click.stop="onGuide">
-      <SvgIcon icon="icon_daohang"
-               style="color:#518CFC "
-               class="ft20 mr8"></SvgIcon>
-      <span class="color-666 ft24">导航</span>
     </div>
 
   </div>
@@ -106,8 +109,8 @@ export default {
   padding: 24rpx 30rpx 32rpx;
   .guide-btn {
     position: absolute;
-    top: 184rpx;
-    right: 30rpx;
+    top: 0;
+    right: 0;
     margin-left: 16rpx;
     height: 48rpx;
     width: 100rpx;

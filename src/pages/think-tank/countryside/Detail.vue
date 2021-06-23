@@ -22,20 +22,35 @@
       <div v-for="(item,index) in inductiveDetail.attachmentList"
            :key="index"
            class="ft24 attachment mb16"
-           @click="dowmload(item)">
+           @touchstart="downLoad(item,index)"
+           @touchend="onPreview(item)">
         <span>{{index + 1}}.</span>
         <span>{{item.name}}</span>
       </div>
     </div>
+    <u-modal v-model="isDownload"
+             width="540"
+             title=""
+             content="是否要下载当前文件"
+             border-radius="24"
+             :show-cancel-button="true"
+             confirm-text="下载"
+             cancel-text="取消"
+             cancel-color="#333"
+             @confirm="downloadFile"></u-modal>
   </div>
 </template>
 
 <script>
+let allTime = null
 export default {
   name: 'Detail',
   data () {
     return {
-      inductiveDetail: {}
+      inductiveDetail: {},
+      timeOutEvent: 0,
+      isDownload: false,
+      downIndex: null
     }
   },
   methods: {
@@ -49,9 +64,29 @@ export default {
       })
     },
     // 跳转预览文件页面
-    dowmload (row) {
+    onPreview (row) {
       const fileType = row.url.substring(row.url.lastIndexOf('.') + 1)
-      uni.navigateTo({ url: `/pages/think-tank/countryside/attachmentPage?url=${row.url}&fileType=${fileType}` })
+      clearTimeout(allTime);
+      if (this.timeOutEvent === 0) {
+        uni.navigateTo({ url: `/pages/think-tank/countryside/attachmentPage?url=${row.url}&fileType=${fileType}` })
+      }
+    },
+    // 长按下载
+    downLoad (item, index) {
+      this.timeOutEvent = 0;
+      const that = this
+      allTime = setTimeout(function () {
+        that.timeOutEvent = allTime
+        that.downIndex = index
+        that.isDownload = true
+      }, 1000);
+    },
+    downloadFile () {
+      let url = this.$fileHost + this.inductiveDetail.attachmentList[this.downIndex].url
+      let a = document.createElement('a');
+      a.href = url;
+      a.target = '_blank';
+      a.click();
     }
   },
   onLoad (option) {

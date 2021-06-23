@@ -139,7 +139,7 @@ export default {
   data () {
     return {
       appropriateCrowdOptions: JSON.parse(JSON.stringify(appropriateCrowdOptions)),
-      serviceContentOptions: JSON.parse(JSON.stringify(appropriateCrowdOptions)),
+      serviceContentOptions: JSON.parse(JSON.stringify(serviceContentOptions)),
       showAppropriateCrowd: false,
       showServiceContent: false,
       form: {

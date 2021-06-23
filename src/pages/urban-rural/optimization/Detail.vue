@@ -13,12 +13,12 @@
           <text class="ml16 ft26 color-999">{{item.title}}</text>
           <text class="ft26"
                 v-if="!item.url && detailInfo[item.key]">{{detailInfo[item.key]}}</text>
-          <uni-link :href="detailInfo[item.url]"
+          <uni-link :href="linkUrl"
                     v-if="item.url"
                     fontSize="26"
                     color="#518cfc"
                     :showUnderLine="false"
-                    :text="linkUrl"></uni-link>
+                    :text="detailInfo[item.key]"></uni-link>
         </div>
       </template>
 
