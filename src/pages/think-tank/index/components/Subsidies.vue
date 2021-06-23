@@ -12,7 +12,7 @@
                     @down="downCallback"
                     :up="upOption"
                     @up="upCallback"
-                    bottom="100"
+                    bottom="50px"
                     top="88">
         <div v-if="!$isEmpty(noInductiveList)">
           <div v-for="(item,index) in noInductiveList"
