@@ -27,7 +27,7 @@
       <empty v-else></empty>
     </mescroll-uni>
     <PublishBtn @onPublish="onPublish"
-                :text="currentTab === 1 ? '商家展位' : '我要定制'"
+                :text="currentTab === 1 ? '申请展位' : '我要定制'"
                 :isScroll="isScroll"></PublishBtn>
   </div>
 </template>
