@@ -11,6 +11,9 @@
         <swiper class="swiper mt24"
                 :class="swiperClass"
                 :duration="1000"
+                :interval="3000"
+                :autoplay="true"
+                :circular="true"
                 @change="getSwiper">
           <swiper-item v-for="(item, index) in activityList"
                        :key="index"
