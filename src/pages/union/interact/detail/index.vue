@@ -4,7 +4,8 @@
         :style="{paddingBottom: detailInfo && detailInfo.status === '01' ? '120rpx' : ''}">
     <u-swiper v-if="!$isEmpty(images)"
               :list="images"
-              height="562"></u-swiper>
+              :height="swiperHeight"
+              border-radius="0"></u-swiper>
     <view class="pl30 pr30 bg-white">
       <!-- 标题 -->
       <span class="title pt28 pb28 inline-block">
@@ -159,6 +160,7 @@ export default {
   },
   data () {
     return {
+      swiperHeight: (this.$windowWidth * (9 / 16)) * 2,
       images: [],
       formList: Object.freeze([
         {

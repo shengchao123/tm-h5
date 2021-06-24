@@ -1,8 +1,10 @@
 <template>
   <div class='active-item-wrap mb20 relative'
        @click="onGoDetail">
-    <img :src="fileHost + item.picUrl"
-         :style="{width: '100%', height: '388rpx'}" />
+    <image :src="fileHost + item.picUrl"
+           :style="{width: '100%', height: ($windowWidth * (9 / 16)) + 'px'}"
+           mode="aspectFill">
+    </image>
 
     <div class="info mb16">
       <div class="center-align">
