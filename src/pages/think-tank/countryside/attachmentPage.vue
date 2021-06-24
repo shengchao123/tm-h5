@@ -7,7 +7,7 @@
               class="iframe"
               v-if="!showPdf"></iframe>
       <div v-if="showPdf">
-        <pdf v-for="i in numPages"
+        <pdf v-for="i in pageNumbers"
              :key="i"
              :src="$fileHost + file"
              :page="i"
@@ -28,7 +28,7 @@ export default {
     return {
       file: '',
       fileType: '',
-      numPages: []
+      pageNumbers: []
     }
   },
   components: {
@@ -45,7 +45,7 @@ export default {
     },
     getPages (nums) {
       for (let i = 0; i < nums; i++) {
-        this.numPages.push(i + 1)
+        this.pageNumbers.push(i + 1)
       }
     }
   },
@@ -67,7 +67,9 @@ export default {
   onLoad (option) {
     this.file = option.url || ''
     this.fileType = option.fileType || ''
-    this.getNumPages(this.$fileHost + option.url)
+    if (option.fileType === 'pdf') {
+      this.getNumPages(this.$fileHost + option.url)
+    }
   }
 }
 </script>
