@@ -33,6 +33,12 @@ export default {
   methods: {
     onPoi () {
       this.$emit('onPoi', this.info)
+      const { journeyPointId } = this.info.item
+      if (journeyPointId) {
+        uni.navigateTo({
+          url: `/pages/original-travel/introduction/index?journeyPointId=${journeyPointId}`
+        })
+      }
     },
     onGuide () {
       this.$emit('onGuide', this.info)
