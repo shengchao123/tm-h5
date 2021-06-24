@@ -22,7 +22,7 @@
 
     <u-form :model="form"
             class="form ft26"
-            label-width="174"
+            label-width="180"
             ref="uForm">
       <u-form-item label="资源类型">
         <div class="flex1 tr mr16 text-hidden"
@@ -103,10 +103,10 @@ export default {
       this.$api.createJourneyResourceSharing(params).then((res) => {
         if (res.isError) return this.$msg(res.message);
         this.show = true
-      });
+      })
     },
     validateForm () {
-      const { title, content, attachmentDTOList } = this.form;
+      const { title, content, attachmentDTOList, resourceType } = this.form;
       if (!title) {
         this.$msg('请输入标题')
         return false
@@ -117,6 +117,10 @@ export default {
       }
       if (this.$isEmpty(attachmentDTOList)) {
         this.$msg('请至少上传一张照片')
+        return false
+      }
+      if (this.$isEmpty(resourceType) || resourceType === '未选择') {
+        this.$msg('请选择资源类型')
         return false
       }
       return true
@@ -155,8 +159,8 @@ export default {
       return _temStr || '未选择'
     },
     isSubmit () {
-      const { title, content, attachmentDTOList } = this.form;
-      return title && content && !this.$isEmpty(attachmentDTOList) ? 'back' : ''
+      const { title, content, attachmentDTOList, resourceType } = this.form;
+      return title && content && !this.$isEmpty(attachmentDTOList) && resourceType && resourceType !== '未选择' ? 'back' : ''
     },
   },
   components: { UploadImages },
