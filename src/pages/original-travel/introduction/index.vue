@@ -9,7 +9,7 @@
       <div class="between-row">
         <span class="ft40 bold flex1 color-333">{{baseInfo.name}}</span>
         <div class="ml24 center-align"
-             style="color: #F87F00"
+             style="color: #F87F00; height: 52rpx"
              @click="onPeriphery">
           <svg-icon icon="icon_dingwei"
                     class="ft24"></svg-icon>
@@ -19,7 +19,7 @@
       <div class="between-row mt24">
         <span class="ft28 color-666 flex1">{{baseInfo.address}}</span>
         <div class="ml24 center-align"
-             style="color: #0084F6"
+             style="color: #0084F6; height: 36rpx"
              @click="onNavigation">
           <svg-icon icon="icon_ditu"
                     class="ft24"></svg-icon>
@@ -36,7 +36,8 @@
         <span class="label color-999">联系人：</span>
         <span class="color-666">{{baseInfo.contactPerson}}</span>
       </div>
-      <div class="mt24 center-align">
+      <div v-if="baseInfo.phone"
+           class="mt24 center-align">
         <span class="label color-999">联系电话：</span>
         <div class="center-align">
           <span class="ft28 color-666">{{baseInfo.phone}}</span>

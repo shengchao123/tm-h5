@@ -4,6 +4,7 @@
     <div v-else
          class='detail-wrap'>
       <u-swiper :list="images"
+                border-radius=0
                 height="562"></u-swiper>
 
       <ExperienceItem :showImgs="false"
