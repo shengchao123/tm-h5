@@ -8,7 +8,7 @@
         <template v-for="item in infoItems">
           <div v-if="detailInfo[item.key] || detailInfo[item.key1]"
                :key="item.title"
-               class="center-align mt16">
+               class="mt16 row">
             <SvgIcon :icon="item.icon"
                      class="ft26 color-999"></SvgIcon>
             <text class="ml16 ft26 color-999">{{item.title}}</text>
@@ -16,13 +16,14 @@
             <div v-if="item.key2"
                  class="center-align">
               <div>{{detailInfo[item.key1]}}，{{detailInfo[item.key2]}}</div>
-              <div @click="onCallPhone">
-                <SvgIcon :icon='detailInfo[item.icon1]'
+              <div @click="onCallPhone"
+                   class="ml16">
+                <SvgIcon icon='icon_dianhua'
                          style="color:#518CFC;font-size:32rpx"></SvgIcon>
               </div>
             </div>
 
-            <text class="ft26"
+            <text class="ft26 max-width"
                   v-else-if="!item.url && detailInfo[item.key]">{{detailInfo[item.key]}}</text>
 
             <uni-link :href="linkUrl"
@@ -118,7 +119,6 @@ export default {
         },
         {
           icon: 'icon_lianxiren',
-          icon2: 'icon_dianhua',
           title: '联系人：',
           key1: 'contactPerson',
           key2: 'contactPhone'
@@ -140,6 +140,9 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+.max-width {
+  max-width: 500rpx;
+}
 .p32 {
   padding: 32rpx;
 }
