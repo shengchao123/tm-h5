@@ -6,7 +6,7 @@
            @click="onSelectPath(item, index)"
            :ref="'item' + index"
            class="path-item mr32"
-           :class="currentIndex === index ? 'item-active' : 'item-normal'"
+           :class="+currentIndex === +index ? 'item-active' : 'item-normal'"
            :key="index">
         <div class="bold ft32 tc mt16 text-hidden pl8">{{item.name}}</div>
         <div class="ft22 mt8 tc">{{item.scenicSpotQuantity}}个红色地标 {{item.playTimeName}}</div>
@@ -52,6 +52,9 @@ export default {
         if (_item.journeyLineId === journeyLineId) {
           this.currentIndex = i
           this.$emit('onSelectPath', _item)
+          this.$nextTick(() => {
+            this.scroll()
+          })
           break
         }
       }
