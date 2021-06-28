@@ -107,7 +107,7 @@ export default {
     onJourney () {
       uni.$emit('initJourneyLineId', this.baseInfo)
       uni.navigateTo({
-        url: '/pages/original-travel/index/index'
+        url: '/pages/original-travel/index/index?journeyLineId=' + this.baseInfo.journeyLineId
       })
     },
     changeIndex (index) {

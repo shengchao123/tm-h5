@@ -27,7 +27,8 @@
                     @up="upCallback">
         <template>
           <div class="box relative">
-            <PathsList @onSelectPath="onSelectPath"></PathsList>
+            <PathsList @onSelectPath="onSelectPath"
+                       ref="pathList"></PathsList>
             <div>
               <div class="content">
                 <ScenicSpot :points="points"
@@ -135,6 +136,11 @@ export default {
     return {
       onShowNavigationSelect: this.onShowNavigationSelect
     }
+  },
+  onShow () {
+    this.$nextTick(() => {
+      this.$refs.pathList.scroll()
+    })
   },
   data () {
     return {

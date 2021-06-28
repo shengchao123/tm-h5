@@ -19,6 +19,11 @@
 export default {
   name: 'PathsList',
   methods: {
+    scroll () {
+      if (this.currentIndex === 0) return
+      const _scrollItem = this.$refs['item' + this.currentIndex][0]
+      _scrollItem.scrollIntoView({ block: 'center', inline: 'start' })
+    },
     onSelectPath (item, index) {
       this.$emit('onSelectPath', item)
 
@@ -32,16 +37,27 @@ export default {
       this.$api.getRecommendJourneyLineList().then(res => {
         if (res.isError) return
         this.paths = res.content
-        if (res.content && res.content.length > 0) {
+        if (res.content && res.content.length > 0 && !this.$route.query.journeyLineId) {
           this.$emit('onSelectPath', res.content[0])
+          return
         }
+        this.handleJourneyLine()
       })
+    },
+    handleJourneyLine () {
+      const { journeyLineId } = this.$route.query
+      if (!journeyLineId) return
+      for (const i in this.paths) {
+        const _item = this.paths[i]
+        if (_item.journeyLineId === journeyLineId) {
+          this.currentIndex = i
+          this.$emit('onSelectPath', _item)
+          break
+        }
+      }
     }
   },
   created () {
-    uni.$on('initJourneyLineId', (id) => {
-      this.$emit('onSelectPath', id)
-    })
     this.getRecommendJourneyLineList()
   },
   data () {
