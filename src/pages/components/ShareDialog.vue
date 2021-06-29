@@ -94,7 +94,8 @@
              class="img-box">
           <img ref="posterImg"
                class="img"
-               :src="posterUrl" />
+               :src="posterUrl"
+               @touchend="downloadImg" />
         </div>
         <div v-show="posterCreateEnd"
              class="tip tc ft26 flex1 center">长按图片保存</div>
@@ -305,8 +306,17 @@ export default {
         html2canvas(posterEl, { y: isiOS ? 160 : 0 }).then((canvas) => {
           this.posterCreateEnd = true
           this.posterUrl = canvas.toDataURL("image/png");
+          console.log('生成了图片')
         });
       }, 200)
+    },
+    // 下载图片
+    downloadImg () {
+      let a = document.createElement('a');
+      a.download = this.posterUrl;
+      a.href = this.posterUrl;
+      a.target = '_blank';
+      a.click();
     },
     // 保存海报
     // saveCanvas () {
