@@ -35,6 +35,7 @@ export default {
     pdf
   },
   methods: {
+    // 获取pdf的页码
     getNumPages (url) {
       var loadingTask = pdf.createLoadingTask(url)
       loadingTask.promise.then(pdf => {

@@ -83,10 +83,11 @@ export default {
     },
     downloadFile () {
       let url = this.$fileHost + this.inductiveDetail.attachmentList[this.downIndex].url
-      let a = document.createElement('a');
-      a.href = url;
-      a.target = '_blank';
-      a.click();
+      // let a = document.createElement('a');
+      // a.href = url;
+      // a.target = '_blank';
+      // a.click();
+      window.location.href = url
     }
   },
   onLoad (option) {
