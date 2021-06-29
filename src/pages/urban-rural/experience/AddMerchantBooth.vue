@@ -12,7 +12,7 @@
                maxlength="500"
                placeholder-style="color:#999"
                placeholder="做个介绍吧" />
-      <div class="color-999 tr mt8 ft24">{{form.introduction ? form.introduction.length : 0}} / 500</div>
+      <div class="color-999 tr mt8 ft24">{{form.introduction ? form.introduction.length : 0}}/500</div>
       <div class="mt24 flex pb8">
         <upload-images :count="9"
                        :length="9"
@@ -26,7 +26,7 @@
             ref="uForm">
       <u-form-item label="适宜人群"
                    prop="appropriateCrowd">
-        <div class="flex1 tr mr16 text-hidden"
+        <div class="flex1 mr16 text-hidden"
              @click="showAppropriateCrowd = true"
              :style="{color: appropriateCrowdNames === '未选择' ? '#999999' : '#333333'}">
           {{appropriateCrowdNames}}</div>
@@ -35,7 +35,7 @@
       </u-form-item>
       <u-form-item label="服务内容"
                    prop="serviceContent">
-        <div class="flex1 tr mr16 text-hidden"
+        <div class="flex1 mr16 text-hidden"
              @click="showServiceContent = true"
              :style="{color: serviceContentNames === '未选择' ? '#999999' : '#333333'}">
           {{serviceContentNames}}</div>
@@ -46,22 +46,19 @@
                    prop="address">
         <u-input v-model="form.address"
                  placeholder-style="color: #999999"
-                 placeholder="输入地址"
-                 class="tr" />
+                 placeholder="输入地址" />
       </u-form-item>
       <u-form-item label="经纬度">
         <u-input v-model="form.lngLat"
                  placeholder-style="color: #999999"
-                 placeholder="输入经纬度，如：192.743，32.123"
-                 class="tr" />
+                 placeholder="输入经纬度，如：192.743，32.123" />
       </u-form-item>
 
       <u-form-item label="联系电话"
                    prop="contactPhone">
         <u-input v-model="form.contactPhone"
                  placeholder-style="color: #999999"
-                 placeholder="输入电话"
-                 class="tr" />
+                 placeholder="输入电话" />
       </u-form-item>
     </u-form>
 

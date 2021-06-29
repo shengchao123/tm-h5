@@ -12,7 +12,7 @@
                maxlength="500"
                placeholder-style="color:#999"
                placeholder="做个介绍吧" />
-      <div class="color-999 tr mt8 ft24">{{form.introduction ? form.introduction.length : 0}} / 500</div>
+      <div class="color-999 tr mt8 ft24">{{form.introduction ? form.introduction.length : 0}}/500</div>
       <div class="mt24 flex pb8">
         <upload-images :count="9"
                        :length="9"
@@ -25,7 +25,7 @@
             label-width="180"
             ref="uForm">
       <u-form-item label="资源类型">
-        <div class="flex1 tr mr16 text-hidden"
+        <div class="flex1 mr16 text-hidden"
              @click="showActionSheet = true"
              :style="{color: resourceType === '未选择' ? '#999999' : '#333333'}">
           {{resourceType}}</div>
@@ -36,22 +36,19 @@
                    prop="contactPerson">
         <u-input v-model="form.contactPerson"
                  placeholder-style="color: #999999"
-                 placeholder="输入联系人姓名"
-                 class="tr" />
+                 placeholder="输入联系人姓名" />
       </u-form-item>
       <u-form-item label="联系电话"
                    prop="contactPhone">
         <u-input v-model="form.contactPhone"
                  placeholder-style="color: #999999"
-                 placeholder="输入联系电话"
-                 class="tr" />
+                 placeholder="输入联系电话" />
       </u-form-item>
       <u-form-item label="微信号(选填)"
                    prop="weChatNumber">
         <u-input v-model="form.weChatNumber"
                  placeholder-style="color: #999999"
-                 placeholder="输入内容"
-                 class="tr" />
+                 placeholder="输入内容" />
       </u-form-item>
     </u-form>
 
