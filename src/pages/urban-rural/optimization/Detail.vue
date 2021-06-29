@@ -9,9 +9,11 @@
           <div v-if="detailInfo[item.key] || detailInfo[item.key1]"
                :key="item.title"
                class="mt16 row">
-            <SvgIcon :icon="item.icon"
-                     class="ft26 color-999"></SvgIcon>
-            <text class="ml16 ft26 color-999">{{item.title}}</text>
+            <div>
+              <SvgIcon :icon="item.icon"
+                       class="ft26 color-999"></SvgIcon>
+              <text class="ml16 ft26 color-999">{{item.title}}</text>
+            </div>
 
             <div v-if="item.key2"
                  class="center-align">
