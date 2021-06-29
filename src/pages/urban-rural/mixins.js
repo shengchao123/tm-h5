@@ -5,7 +5,7 @@ const map = {
   data () {
     return {
       search: {
-        pageNumber: 1,
+        pageNumbe: 1,
         keyword: ''
       },
       mescrollBottom: '0',
@@ -38,3 +38,10 @@ const map = {
 }
 
 export default map
+
+
+
+
+
+
+
