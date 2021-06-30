@@ -312,6 +312,19 @@ export default {
     },
     // 下载图片
     downloadImg () {
+      // #ifdef APP-PLUS
+      let dtask = null;
+      dtask = plus.downloader.createDownload(this.posterUrl, {}, function (d, status) {
+        // 下载完成
+        if (status == 200) {
+          console.log("Download success: " + d.filename);
+        } else {
+          console.log("Download failed: " + status);
+        }
+      });
+      //dtask.addEventListener("statechanged", onStateChanged, false);
+      dtask.start();
+      // #endif
       let a = document.createElement('a');
       a.download = this.posterUrl;
       a.href = this.posterUrl;
