@@ -5,8 +5,6 @@ export const imgHost = 'https://hzslzx.oss-cn-hangzhou.aliyuncs.com/system/h5-ma
 
 export const urls = {
 
-
-
   // 城乡融合
   getJourneyProductInfoPage: '/linanJourney/journeyProduct/getJourneyProductInfoPage', // 城乡产品列表
   getJourneyProductInfoById: '/linanJourney/journeyProduct/getJourneyProductInfoById', // 城乡产品详情
@@ -36,8 +34,8 @@ export const urls = {
   getShowJourneyTalentsPage: '/linanJourney/journeyTalents/getShowJourneyTalentsPage',// 人才分页
   getShowJourneyTalentsDetail: '/linanJourney/journeyTalents/getShowJourneyTalentsDetail',// 人才详情
   leaveMessage: '/linanJourney/journeyTalentsMessage/leaveMessage', // 留言
-  getShowAgricultureRelatedProjectsPage:'/linanJourney/journeyAgricultureRelatedProjects/getShowAgricultureRelatedProjectsPage',//涉农项目分页
-  getShowAgricultureRelatedProjectsDetail:'/linanJourney/journeyAgricultureRelatedProjects/getShowAgricultureRelatedProjectsDetail',//涉农项目详情
+  getShowAgricultureRelatedProjectsPage: '/linanJourney/journeyAgricultureRelatedProjects/getShowAgricultureRelatedProjectsPage',//涉农项目分页
+  getShowAgricultureRelatedProjectsDetail: '/linanJourney/journeyAgricultureRelatedProjects/getShowAgricultureRelatedProjectsDetail',//涉农项目详情
 
   // 初心之旅
   getRecommendJourneyLineList: '/linanJourney/journeyLine/getRecommendJourneyLineList', // 推荐路线

@@ -23,7 +23,7 @@ export const calcPx2Vh = function (num) {
 
 export const getFullUrl = function (url) {
   /* #ifdef H5 */
-  const host = '/api'
+  const host = '/cb-api'
   /* #endif */
   return host + url
 }
