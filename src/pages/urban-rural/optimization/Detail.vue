@@ -39,22 +39,23 @@
       </div>
 
       <div class="buy ft24 bg-white mt2 p32 mt16">
-        <div class="bold ft28">购买须知</div>
-        <div class="mt24 color-666">1、关于商品，本平台所有商品均来自临安优质农场基地</div>
-        <div class="mt16 color-666">2、本平台仅为联盟优选产品进行推介。产品售后请直接联系微店</div>
+        <div class="bold ft28">买家须知</div>
       </div>
-
-      <div class="mt16 ">
-        <u-divider color="#999999"
-                   half-width="280"
-                   bg-color="transparent"
-                   border-color="#eaeaea">商品详情</u-divider>
-        <div class="p32 bg-white mt16">
-          <u-parse :html="detailInfo.content"></u-parse>
-        </div>
-      </div>
-
+      <div class="mt24 color-666">1.本平台所有商品均来自临安优质农场基地</div>
+      <div class="mt16 color-666">2. 本平台仅为联盟优选产品进行推介，产品售后请直接联系微店</div>
     </div>
+
+    <div class="mt16 ">
+      <u-divider color="#999999"
+                 half-width="280"
+                 bg-color="transparent"
+                 border-color="#eaeaea">商品详情</u-divider>
+      <div class="p32 bg-white mt16">
+        <u-parse :html="detailInfo.content"></u-parse>
+      </div>
+    </div>
+
+  </div>
   </div>
 </template>
 
