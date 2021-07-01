@@ -17,6 +17,9 @@
              :class="(index + 1) % 3 === 0?'img':'img mr24'">
       </div>
     </div>
+    <!-- #ifdef APP-PLUS -->
+    <a :href="$fileHost + inductiveDetail.attachmentList[0].url">附件地址下载:{{inductiveDetail.attachmentList[0].name}}</a>
+    <!-- #endif -->
     <div v-if="inductiveDetail.attachmentList.length > 0">
       <div class="bold ft28 mb24 mt48">附件</div>
       <div v-for="(item,index) in inductiveDetail.attachmentList"
