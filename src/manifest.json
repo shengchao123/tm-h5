@@ -14,11 +14,11 @@
         "devServer": {
             "port": 8888,
             "proxy": {
-            "/api": {
+            "/cb-api": {
                 "target" : "http://172.168.102.2:9032",
                 "changeOrigin": true,
                 "pathRewrite": {
-                    "^/api": ""
+                    "^/cb-api": ""
                 }
             }
         },
