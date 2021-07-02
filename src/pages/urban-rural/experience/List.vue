@@ -5,7 +5,7 @@
              :tabs="subTabs"></SubTabs>
 
     <mescroll-uni ref="mescrollRef"
-                  :top="mescrollTop"
+                  top="410rpx"
                   :bottom="mescrollBottom"
                   @scroll="scroll"
                   @init="mescrollInit"
@@ -103,7 +103,6 @@ export default {
   data () {
     return {
       isScroll: false,
-      mescrollTop: '120rpx',
       mescrollBottom: '0rpx',
       upOption: {
         onScroll: true,

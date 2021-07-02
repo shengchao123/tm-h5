@@ -5,7 +5,7 @@
              :tabs="subTabs"></SubTabs>
 
     <mescroll-uni ref="mescrollRef"
-                  :top="mescrollTop"
+                  top="420rpx"
                   :bottom="mescrollBottom"
                   @init="mescrollInit"
                   :up="upOption"
@@ -59,7 +59,6 @@ export default {
           bottom: 18
         }
       },
-      mescrollTop: '120rpx',
       mescrollBottom: '0rpx',
       subTabs: [
         {
