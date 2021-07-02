@@ -30,7 +30,7 @@
                 :text="currentTab === 1 ? '申请展位' : '我要定制'"
                 :isScroll="isScroll"
                 right="14rpx"
-                bottom="32rpx"></PublishBtn>
+                bottom="134rpx"></PublishBtn>
   </div>
 </template>
 <script>
@@ -78,7 +78,6 @@ export default {
 
       this.$api[apiNameMap.get(this.currentTab)](params).then(res => {
         if (res.isError) return
-
         let { items, count } = res.content
         if (this.currentTab === 1) {
           items = items.map(item => {
@@ -107,7 +106,7 @@ export default {
       upOption: {
         onScroll: true,
         toTop: {
-          bottom: 138
+          bottom: 240
         }
       },
       currentTab: 1,

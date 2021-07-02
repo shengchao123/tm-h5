@@ -59,7 +59,7 @@ export default {
     return {
       upOption: {
         toTop: {
-          bottom: 18
+          bottom: 120
         }
       }
     }
