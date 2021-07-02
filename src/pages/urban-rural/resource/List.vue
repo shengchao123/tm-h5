@@ -3,7 +3,7 @@
     <SubTabs @change="changeSubTab"
              :tabs="subTabs"></SubTabs>
     <mescroll-uni ref="mescrollRef"
-                  :top="mescrollTop"
+                  top="410rpx"
                   :bottom="mescrollBottom"
                   @scroll="scroll"
                   @init="mescrollInit"
@@ -83,7 +83,6 @@ export default {
       upOption: {
         onScroll: true
       },
-      mescrollTop: '120rpx',
       mescrollBottom: '20rpx',
       subTabs: [
         {

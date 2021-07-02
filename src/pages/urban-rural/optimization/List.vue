@@ -12,7 +12,7 @@
     </div>
 
     <mescroll-uni ref="mescrollRef"
-                  top="150rpx"
+                  top="440rpx"
                   @init="mescrollInit"
                   :up="upOption"
                   @down="downCallback"
@@ -71,6 +71,7 @@ export default {
 
 <style lang='scss' scoped>
 .wrap {
+  height: calc(100vh - 80rpx - 50px - 200rpx);
   .search-wrap {
     background: #ffffff;
   }
