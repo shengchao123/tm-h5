@@ -54,8 +54,6 @@
         <u-parse :html="detailInfo.content"></u-parse>
       </div>
     </div>
-
-  </div>
   </div>
 </template>
 
