@@ -40,6 +40,7 @@
               </div>
             </div>
             <agricultural-product :journeyLineId="selectJourneyLineId"></agricultural-product>
+            <one-click-service @onShowContact="onShowContact"></one-click-service>
             <activity-swiper></activity-swiper>
             <evaluation-list ref="evaluationList"
                              @endBySize="endBySize"
@@ -54,6 +55,8 @@
     <btn-dialog :isScroll="isScroll"></btn-dialog>
 
     <custom-tabbar></custom-tabbar>
+    <call-popup :showContact.sync="showContact"
+                :itemConfig="callInfo"></call-popup>
   </div>
 </template>
 
@@ -67,11 +70,16 @@ import ActivitySwiper from "./components/ActivitySwiper";
 import MescrollMixin from "@/components/mescroll-uni/mescroll-mixins.js";
 import MescrollUni from "@/components/mescroll-uni/mescroll-uni.vue";
 import EvaluationList from './components/EvaluationList.vue';
+import OneClickService from './components/OneClickService.vue';
 import { beginGuide } from '@/utils/map.js'
 import AgriculturalProduct from './components/AgriculturalProduct.vue';
+import CallPopup from '@/pages/components/CallPopup'
 export default {
   name: "index",
   methods: {
+    onShowContact () {
+      this.showContact = true
+    },
     // 下拉刷新
     downCallback () {
       // console.log('下拉刷新')
@@ -144,6 +152,11 @@ export default {
   },
   data () {
     return {
+      callInfo: {
+        title: '杭州市临安公共交通有限公司',
+        phoneList: ['0571-61081012', '13805769876']
+      },
+      showContact: false,
       isScroll: false,
       points: [],
       currentPath: {},
@@ -178,6 +191,8 @@ export default {
     MescrollUni,
     EvaluationList,
     AgriculturalProduct,
+    OneClickService,
+    CallPopup
   },
   onLoad (option) {
     if (option.masterOrgId) {
