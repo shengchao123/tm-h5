@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "联盟互动",
+  "usingComponents": {
+    "u-subsection": "/node-modules/uview-ui/components/u-subsection/u-subsection",
+    "custom-tabbar": "/components/custom-tabbar/custom-tabbar",
+    "activity": "/pages/components/Activity",
+    "forum": "/pages/union/interact/components/Forum"
+  }
+}

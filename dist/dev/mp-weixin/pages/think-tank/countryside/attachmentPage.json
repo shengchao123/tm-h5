@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "",
+  "usingComponents": {
+    "pdf": "/node-modules/vue-pdf/src/vuePdfNoSss"
+  }
+}

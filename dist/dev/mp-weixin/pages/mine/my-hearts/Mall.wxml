@@ -1,0 +1,1 @@
+<view data-event-opts="{{[['tap',[['onDevelop',['$event']]]]]}}" class="mall-wrap data-v-43725948" bindtap="__e"><image src="{{$root.m0}}" class="_img data-v-43725948"></image></view>

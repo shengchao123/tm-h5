@@ -1,0 +1,62 @@
+@charset "UTF-8";
+/* uni.scss */
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+/* 边框颜色 */
+.color-primary.data-v-7c183fea {
+  color: #3049C0;
+}
+.color-333.data-v-7c183fea {
+  color: #333333;
+}
+.color-666.data-v-7c183fea {
+  color: #666666;
+}
+.color-999.data-v-7c183fea {
+  color: #999999;
+}
+.bg-color.data-v-7c183fea {
+  background-color: #f7f7f7;
+}
+.bg-white.data-v-7c183fea {
+  background-color: #ffffff;
+}
+.white-color.data-v-7c183fea {
+  color: #ffffff;
+}
+.primary-color.data-v-7c183fea {
+  color: #F54400;
+}
+.success-color.data-v-7c183fea {
+  color: #0e130f;
+}
+.warning-color.data-v-7c183fea {
+  color: #f0ad4e;
+}
+.error-color.data-v-7c183fea {
+  color: #dd524d;
+}
+.primary-text.data-v-7c183fea {
+  color: #333333;
+}
+.secondary-text.data-v-7c183fea {
+  color: #666666;
+}
+.tip-text.data-v-7c183fea {
+  color: #999999;
+}
+.color-e32417.data-v-7c183fea {
+  color: #E32417;
+}
+.sign-up-list-wrap .line.data-v-7c183fea {
+  width: 100%;
+  height: 19rpx;
+  background: #f7f7f7;
+}
+.sign-up-list-wrap .list .item.data-v-7c183fea {
+  border-bottom: solid 1rpx rgba(225, 225, 255, 0.5);
+}
+

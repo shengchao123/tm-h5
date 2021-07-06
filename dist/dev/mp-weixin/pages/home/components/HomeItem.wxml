@@ -1,0 +1,1 @@
+<view class="item-wrap column center _div data-v-a11c6f58"><image style="{{'width:'+(item.imgW+'rpx')+';'}}" src="{{item.img}}" object-fit="contain" class="_img data-v-a11c6f58"></image><view class="title mt16 _div data-v-a11c6f58">{{item.text1}}</view><view class="title _div data-v-a11c6f58">{{item.text2}}</view></view>

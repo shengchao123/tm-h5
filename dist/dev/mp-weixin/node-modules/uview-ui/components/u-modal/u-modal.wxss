@@ -1,0 +1,97 @@
+@charset "UTF-8";
+/* uni.scss */
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+/* 边框颜色 */
+.color-primary.data-v-713d0fd3 {
+  color: #3049C0;
+}
+.color-333.data-v-713d0fd3 {
+  color: #333333;
+}
+.color-666.data-v-713d0fd3 {
+  color: #666666;
+}
+.color-999.data-v-713d0fd3 {
+  color: #999999;
+}
+.bg-color.data-v-713d0fd3 {
+  background-color: #f7f7f7;
+}
+.bg-white.data-v-713d0fd3 {
+  background-color: #ffffff;
+}
+.white-color.data-v-713d0fd3 {
+  color: #ffffff;
+}
+.primary-color.data-v-713d0fd3 {
+  color: #F54400;
+}
+.success-color.data-v-713d0fd3 {
+  color: #0e130f;
+}
+.warning-color.data-v-713d0fd3 {
+  color: #f0ad4e;
+}
+.error-color.data-v-713d0fd3 {
+  color: #dd524d;
+}
+.primary-text.data-v-713d0fd3 {
+  color: #333333;
+}
+.secondary-text.data-v-713d0fd3 {
+  color: #666666;
+}
+.tip-text.data-v-713d0fd3 {
+  color: #999999;
+}
+.color-e32417.data-v-713d0fd3 {
+  color: #E32417;
+}
+.u-model.data-v-713d0fd3 {
+  height: auto;
+  overflow: hidden;
+  font-size: 32rpx;
+  background-color: #fff;
+}
+.u-model__btn--hover.data-v-713d0fd3 {
+  background-color: #e6e6e6;
+}
+.u-model__title.data-v-713d0fd3 {
+  padding-top: 48rpx;
+  font-weight: 500;
+  text-align: center;
+  color: #303133;
+}
+.u-model__content__message.data-v-713d0fd3 {
+  padding: 48rpx;
+  font-size: 30rpx;
+  text-align: center;
+  color: #606266;
+}
+.u-model__footer.data-v-713d0fd3 {
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+          flex-direction: row;
+}
+.u-model__footer__button.data-v-713d0fd3 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 32rpx;
+  box-sizing: border-box;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 4rpx;
+}
+

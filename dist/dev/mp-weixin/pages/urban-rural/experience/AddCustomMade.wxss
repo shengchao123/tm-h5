@@ -1,0 +1,81 @@
+
+page {
+  background: #f7f7f7;
+}
+
+@charset "UTF-8";
+/* uni.scss */
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+/* 边框颜色 */
+.color-primary.data-v-05fd36eb {
+  color: #3049C0;
+}
+.color-333.data-v-05fd36eb {
+  color: #333333;
+}
+.color-666.data-v-05fd36eb {
+  color: #666666;
+}
+.color-999.data-v-05fd36eb {
+  color: #999999;
+}
+.bg-color.data-v-05fd36eb {
+  background-color: #f7f7f7;
+}
+.bg-white.data-v-05fd36eb {
+  background-color: #ffffff;
+}
+.white-color.data-v-05fd36eb {
+  color: #ffffff;
+}
+.primary-color.data-v-05fd36eb {
+  color: #F54400;
+}
+.success-color.data-v-05fd36eb {
+  color: #0e130f;
+}
+.warning-color.data-v-05fd36eb {
+  color: #f0ad4e;
+}
+.error-color.data-v-05fd36eb {
+  color: #dd524d;
+}
+.primary-text.data-v-05fd36eb {
+  color: #333333;
+}
+.secondary-text.data-v-05fd36eb {
+  color: #666666;
+}
+.tip-text.data-v-05fd36eb {
+  color: #999999;
+}
+.color-e32417.data-v-05fd36eb {
+  color: #E32417;
+}
+.wrap .footer-btn.data-v-05fd36eb {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 128rpx;
+  background: #fff;
+}
+.wrap .footer-btn .submit.data-v-05fd36eb {
+  width: 100%;
+  height: 98rpx;
+  line-height: 98rpx;
+  border-radius: 50rpx;
+  background: #e32417;
+  color: #fff;
+}
+.wrap .footer-btn .disabled.data-v-05fd36eb {
+  background: #ccc;
+}
+.wrap.data-v-05fd36eb .uni-textarea-placeholder {
+  overflow: inherit;
+}
+

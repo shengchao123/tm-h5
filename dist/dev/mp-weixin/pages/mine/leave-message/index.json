@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "留言回复",
+  "usingComponents": {
+    "u-tabs": "/node-modules/uview-ui/components/u-tabs/u-tabs",
+    "mescroll-uni": "/components/mescroll-uni/mescroll-uni",
+    "page-empty": "/pages/components/PageEmpty",
+    "message-list": "/pages/mine/leave-message/components/MessageList"
+  }
+}

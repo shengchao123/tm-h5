@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "send-message": "/pages/mine/leave-message/components/SendMessage"
+  }
+}

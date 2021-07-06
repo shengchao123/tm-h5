@@ -1,0 +1,16 @@
+{
+  "navigationBarTitleText": "初心之旅",
+  "usingComponents": {
+    "mescroll-uni": "/components/mescroll-uni/mescroll-uni",
+    "u-action-sheet": "/node-modules/uview-ui/components/u-action-sheet/u-action-sheet",
+    "custom-tabbar": "/components/custom-tabbar/custom-tabbar",
+    "map": "/pages/components/Map",
+    "drag-popover": "/components/DragPopover",
+    "paths-list": "/pages/original-travel/index/components/PathsList",
+    "scenic-spot": "/pages/original-travel/index/components/ScenicSpot",
+    "btn-dialog": "/pages/original-travel/index/components/BtnDialog",
+    "activity-swiper": "/pages/original-travel/index/components/ActivitySwiper",
+    "evaluation-list": "/pages/original-travel/index/components/EvaluationList",
+    "agricultural-product": "/pages/original-travel/index/components/AgriculturalProduct"
+  }
+}

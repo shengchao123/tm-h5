@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "mescroll-uni": "/components/mescroll-uni/mescroll-uni",
+    "empty": "/components/empty/empty",
+    "sub-tabs": "/pages/urban-rural/components/SubTabs",
+    "select-pop": "/pages/think-tank/index/components/SelectPop"
+  }
+}

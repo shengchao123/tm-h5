@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "mescroll-uni": "/components/mescroll-uni/mescroll-uni",
+    "empty": "/components/empty/empty",
+    "orders-item": "/pages/urban-rural/components/OrdersItem"
+  }
+}

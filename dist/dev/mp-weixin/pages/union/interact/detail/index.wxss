@@ -1,0 +1,100 @@
+
+page {
+  background: #f7f7f7;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+
+@charset "UTF-8";
+/* uni.scss */
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+/* 边框颜色 */
+.color-primary.data-v-566f7db8 {
+  color: #3049C0;
+}
+.color-333.data-v-566f7db8 {
+  color: #333333;
+}
+.color-666.data-v-566f7db8 {
+  color: #666666;
+}
+.color-999.data-v-566f7db8 {
+  color: #999999;
+}
+.bg-color.data-v-566f7db8 {
+  background-color: #f7f7f7;
+}
+.bg-white.data-v-566f7db8 {
+  background-color: #ffffff;
+}
+.white-color.data-v-566f7db8 {
+  color: #ffffff;
+}
+.primary-color.data-v-566f7db8 {
+  color: #F54400;
+}
+.success-color.data-v-566f7db8 {
+  color: #0e130f;
+}
+.warning-color.data-v-566f7db8 {
+  color: #f0ad4e;
+}
+.error-color.data-v-566f7db8 {
+  color: #dd524d;
+}
+.primary-text.data-v-566f7db8 {
+  color: #333333;
+}
+.secondary-text.data-v-566f7db8 {
+  color: #666666;
+}
+.tip-text.data-v-566f7db8 {
+  color: #999999;
+}
+.color-e32417.data-v-566f7db8 {
+  color: #E32417;
+}
+.detail-wrap .title .status-info.data-v-566f7db8 {
+  vertical-align: top;
+  margin-top: 6rpx;
+  border: 1px solid transparent;
+  border-radius: 0 16rpx 0 16rpx;
+  height: 32rpx;
+  line-height: 32rpx;
+  text-align: center;
+  width: 88rpx;
+}
+.detail-wrap .form-list .form-item.data-v-566f7db8 {
+  border-top: 1rpx solid #eaeaea;
+}
+.detail-wrap .form-list .form-item .ding-wei.data-v-566f7db8 {
+  color: #0084f6;
+}
+.detail-wrap .activity-style .imgs.data-v-566f7db8 {
+  display: grid;
+  grid-gap: 18rpx;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.detail-wrap .activity-style .imgs .img.data-v-566f7db8 {
+  width: 218rpx;
+  height: 218rpx;
+}
+.detail-wrap .footer.data-v-566f7db8 {
+  width: 100%;
+  height: 120rpx;
+  position: fixed;
+  bottom: 0;
+}
+.detail-wrap .footer .btn.data-v-566f7db8 {
+  width: calc(100% - 60rpx);
+  height: 88rpx;
+  border: 1rpx solid #e32417;
+  border-radius: 49rpx;
+  color: #e32417;
+}
+

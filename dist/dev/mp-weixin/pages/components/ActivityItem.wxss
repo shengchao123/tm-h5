@@ -1,0 +1,106 @@
+@charset "UTF-8";
+/* uni.scss */
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+/* 边框颜色 */
+.color-primary.data-v-0fd79d52 {
+  color: #3049C0;
+}
+.color-333.data-v-0fd79d52 {
+  color: #333333;
+}
+.color-666.data-v-0fd79d52 {
+  color: #666666;
+}
+.color-999.data-v-0fd79d52 {
+  color: #999999;
+}
+.bg-color.data-v-0fd79d52 {
+  background-color: #f7f7f7;
+}
+.bg-white.data-v-0fd79d52 {
+  background-color: #ffffff;
+}
+.white-color.data-v-0fd79d52 {
+  color: #ffffff;
+}
+.primary-color.data-v-0fd79d52 {
+  color: #F54400;
+}
+.success-color.data-v-0fd79d52 {
+  color: #0e130f;
+}
+.warning-color.data-v-0fd79d52 {
+  color: #f0ad4e;
+}
+.error-color.data-v-0fd79d52 {
+  color: #dd524d;
+}
+.primary-text.data-v-0fd79d52 {
+  color: #333333;
+}
+.secondary-text.data-v-0fd79d52 {
+  color: #666666;
+}
+.tip-text.data-v-0fd79d52 {
+  color: #999999;
+}
+.color-e32417.data-v-0fd79d52 {
+  color: #E32417;
+}
+.item-wrap.data-v-0fd79d52 {
+  width: calc(100% - 60rpx);
+  margin: 0 auto 20rpx;
+  box-shadow: 3rpx 2rpx 12rpx 8rpx rgba(17, 17, 17, 0.03);
+  border-radius: 8rpx;
+  padding: 30rpx;
+}
+.item-wrap .top.data-v-0fd79d52 {
+  height: 32rpx;
+  line-height: 1.5;
+}
+.item-wrap .top .title.data-v-0fd79d52 {
+  max-width: 482rpx;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.item-wrap .top .status-info.data-v-0fd79d52 {
+  border: 1px solid transparent;
+  border-radius: 0 16rpx 0 16rpx;
+  height: 32rpx;
+  line-height: 32rpx;
+  text-align: center;
+  width: 88rpx;
+}
+.item-wrap .form-list.data-v-0fd79d52 {
+  line-height: 1;
+}
+.item-wrap .form-list .form-item + .form-item.data-v-0fd79d52 {
+  margin-top: 24rpx;
+}
+.item-wrap .btn-box.data-v-0fd79d52 {
+  position: absolute;
+  right: 30rpx;
+  bottom: 20rpx;
+  text-align: right;
+}
+.item-wrap .btn.data-v-0fd79d52 {
+  display: inline-block;
+  width: 144rpx;
+  height: 56rpx;
+  border: 1rpx solid #e32417;
+  border-radius: 28rpx;
+  color: #e32417;
+  text-align: center;
+  line-height: 55rpx;
+}
+.item-wrap .cancel-btn.data-v-0fd79d52 {
+  border: none;
+  color: #999;
+}
+

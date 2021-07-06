@@ -1,0 +1,91 @@
+@charset "UTF-8";
+/* uni.scss */
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+/* 边框颜色 */
+.color-primary.data-v-04f3f579 {
+  color: #3049C0;
+}
+.color-333.data-v-04f3f579 {
+  color: #333333;
+}
+.color-666.data-v-04f3f579 {
+  color: #666666;
+}
+.color-999.data-v-04f3f579 {
+  color: #999999;
+}
+.bg-color.data-v-04f3f579 {
+  background-color: #f7f7f7;
+}
+.bg-white.data-v-04f3f579 {
+  background-color: #ffffff;
+}
+.white-color.data-v-04f3f579 {
+  color: #ffffff;
+}
+.primary-color.data-v-04f3f579 {
+  color: #F54400;
+}
+.success-color.data-v-04f3f579 {
+  color: #0e130f;
+}
+.warning-color.data-v-04f3f579 {
+  color: #f0ad4e;
+}
+.error-color.data-v-04f3f579 {
+  color: #dd524d;
+}
+.primary-text.data-v-04f3f579 {
+  color: #333333;
+}
+.secondary-text.data-v-04f3f579 {
+  color: #666666;
+}
+.tip-text.data-v-04f3f579 {
+  color: #999999;
+}
+.color-e32417.data-v-04f3f579 {
+  color: #E32417;
+}
+.active-item-wrap.data-v-04f3f579 {
+  background: #ffffff;
+  border-radius: 8rpx;
+  overflow: hidden;
+  box-shadow: 3rpx 2rpx 12rpx 8rpx rgba(17, 17, 17, 0.03);
+}
+.active-item-wrap .info.data-v-04f3f579 {
+  padding: 16rpx 30rpx;
+}
+.active-item-wrap .status-info.data-v-04f3f579 {
+  border: 1px solid transparent;
+  border-radius: 0 16rpx 0 16rpx;
+  height: 32rpx;
+  line-height: 32rpx;
+  text-align: center;
+  width: 88rpx;
+}
+.active-item-wrap .join.data-v-04f3f579 {
+  position: absolute;
+  right: 30rpx;
+  bottom: 20rpx;
+  -webkit-box-align: end;
+  -webkit-align-items: flex-end;
+          align-items: flex-end;
+}
+.active-item-wrap .join .btn.data-v-04f3f579 {
+  padding: 0 24rpx;
+  height: 56rpx;
+  border: 1rpx solid #e32417;
+  border-radius: 28rpx;
+  color: #e32417;
+  line-height: 56rpx;
+}
+.active-item-wrap .join .cancel-btn.data-v-04f3f579 {
+  border: none;
+  color: #999;
+}
+

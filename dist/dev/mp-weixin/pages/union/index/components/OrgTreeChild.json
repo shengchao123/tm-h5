@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "org-tree-child": "/pages/union/index/components/OrgTreeChild"
+  }
+}

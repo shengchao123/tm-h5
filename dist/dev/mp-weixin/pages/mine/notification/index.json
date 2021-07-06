@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "我的消息",
+  "usingComponents": {
+    "awesome": "/pages/mine/notification/components/Awesome",
+    "announcement": "/pages/mine/notification/components/Announcement",
+    "comment": "/pages/mine/notification/components/Comment"
+  }
+}

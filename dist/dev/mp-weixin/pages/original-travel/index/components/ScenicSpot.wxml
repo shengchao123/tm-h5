@@ -1,0 +1,1 @@
+<view class="scenic-spot-wrap flex1 _div data-v-715d30cf"><block wx:for="{{pagePoints}}" wx:for-item="item" wx:for-index="index" wx:key="index"><num-list vue-id="{{'8b6d2bd2-1-'+index}}" pointData="{{({item,index})}}" data-event-opts="{{[['^onPlayer',[['onPlayer']]]]}}" bind:onPlayer="__e" class="data-v-715d30cf" bind:__l="__l"></num-list></block></view>

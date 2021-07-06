@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "img-group": "/pages/union/interact/components/ImgGroup"
+  }
+}

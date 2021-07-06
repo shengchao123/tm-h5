@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "帖子详情",
+  "usingComponents": {
+    "carousel": "/pages/components/Carousel",
+    "comments": "/pages/components/Comments",
+    "share-dialog": "/pages/components/ShareDialog"
+  }
+}

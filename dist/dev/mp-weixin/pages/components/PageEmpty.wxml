@@ -1,0 +1,1 @@
+<view class="empty center-flex _div data-v-8f8bfcc4"><view class="box _div data-v-8f8bfcc4"><image class="image _img data-v-8f8bfcc4" src="{{imgUrl}}"></image><block wx:if="{{message}}"><view class="message mt20 ft28 tip-text _p data-v-8f8bfcc4">{{message}}</view></block></view></view>

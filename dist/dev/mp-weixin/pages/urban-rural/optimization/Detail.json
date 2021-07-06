@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "商品详情",
+  "usingComponents": {
+    "u-swiper": "/node-modules/uview-ui/components/u-swiper/u-swiper",
+    "uni-link": "/components/uni-link/uni-link",
+    "u-divider": "/node-modules/uview-ui/components/u-divider/u-divider",
+    "u-parse": "/node-modules/uview-ui/components/u-parse/u-parse"
+  }
+}

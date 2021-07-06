@@ -1,0 +1,1 @@
+<view class="item-wrap bg-white pl30 pr30 pt24 pb32 data-v-27b71a04"><text class="ft34 medium color-333 data-v-27b71a04">{{itemInfo.title}}</text><view class="color-999 ft24 pt24 data-v-27b71a04"><text class="time data-v-27b71a04">{{$root.g0}}</text><text class="data-v-27b71a04">{{itemInfo.publishingDepartment}}</text></view></view>

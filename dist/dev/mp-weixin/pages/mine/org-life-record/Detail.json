@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "组织生活记录",
+  "usingComponents": {
+    "u-button": "/node-modules/uview-ui/components/u-button/u-button",
+    "u-modal": "/node-modules/uview-ui/components/u-modal/u-modal",
+    "line-clock": "/pages/mine/org-life-record/LineClock",
+    "share-dialog": "/pages/components/ShareDialog"
+  }
+}

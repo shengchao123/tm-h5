@@ -1,0 +1,10 @@
+{
+  "component": true,
+  "usingComponents": {
+    "mescroll-uni": "/components/mescroll-uni/mescroll-uni",
+    "empty": "/components/empty/empty",
+    "sub-tabs": "/pages/urban-rural/components/SubTabs",
+    "resource-item": "/pages/urban-rural/components/ResourceItem",
+    "publish-btn": "/pages/urban-rural/components/PublishBtn"
+  }
+}

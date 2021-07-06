@@ -1,0 +1,11 @@
+{
+  "component": true,
+  "usingComponents": {
+    "mescroll-uni": "/components/mescroll-uni/mescroll-uni",
+    "page-empty": "/pages/components/PageEmpty",
+    "item": "/pages/union/interact/components/Item",
+    "share-dialog": "/pages/components/ShareDialog",
+    "comment-list-popup": "/pages/union/interact/components/CommentListPopup",
+    "send-comment-popup": "/pages/union/interact/components/SendCommentPopup"
+  }
+}

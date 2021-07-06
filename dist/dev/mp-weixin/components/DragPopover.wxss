@@ -1,0 +1,90 @@
+@charset "UTF-8";
+/* uni.scss */
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+/* 边框颜色 */
+.color-primary.data-v-4e581846 {
+  color: #3049C0;
+}
+.color-333.data-v-4e581846 {
+  color: #333333;
+}
+.color-666.data-v-4e581846 {
+  color: #666666;
+}
+.color-999.data-v-4e581846 {
+  color: #999999;
+}
+.bg-color.data-v-4e581846 {
+  background-color: #f7f7f7;
+}
+.bg-white.data-v-4e581846 {
+  background-color: #ffffff;
+}
+.white-color.data-v-4e581846 {
+  color: #ffffff;
+}
+.primary-color.data-v-4e581846 {
+  color: #F54400;
+}
+.success-color.data-v-4e581846 {
+  color: #0e130f;
+}
+.warning-color.data-v-4e581846 {
+  color: #f0ad4e;
+}
+.error-color.data-v-4e581846 {
+  color: #dd524d;
+}
+.primary-text.data-v-4e581846 {
+  color: #333333;
+}
+.secondary-text.data-v-4e581846 {
+  color: #666666;
+}
+.tip-text.data-v-4e581846 {
+  color: #999999;
+}
+.color-e32417.data-v-4e581846 {
+  color: #E32417;
+}
+.drag-popover-wrap.data-v-4e581846 {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #ffffff;
+  box-shadow: 0 -6rpx 17rpx 0 rgba(0, 0, 0, 0.1);
+  border-radius: 30rpx 30rpx 0 0;
+  z-index: 99;
+}
+.drag-popover-wrap .location.data-v-4e581846 {
+  position: absolute;
+  top: -120rpx;
+  right: 20rpx;
+  border-radius: 20rpx;
+  height: 88rpx;
+  width: 88rpx;
+  background: #ffffff;
+  box-shadow: 0 -12rpx 34rpx 0 rgba(0, 0, 0, 0.1);
+}
+.drag-popover-wrap .drag_control_wrap.data-v-4e581846 {
+  height: 38rpx;
+}
+.drag-popover-wrap .drag_control_wrap .drag_control.data-v-4e581846 {
+  background: #eaeaea;
+  border-radius: 3rpx;
+  height: 6rpx;
+  width: 48rpx;
+}
+.drag-popover-wrap .container.data-v-4e581846 {
+  position: absolute;
+  top: 40rpx;
+}
+.drag-popover-wrap .content.data-v-4e581846 {
+  height: 50%;
+}
+

@@ -1,0 +1,76 @@
+@charset "UTF-8";
+/* uni.scss */
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+/* 边框颜色 */
+.color-primary.data-v-03187cec {
+  color: #3049C0;
+}
+.color-333.data-v-03187cec {
+  color: #333333;
+}
+.color-666.data-v-03187cec {
+  color: #666666;
+}
+.color-999.data-v-03187cec {
+  color: #999999;
+}
+.bg-color.data-v-03187cec {
+  background-color: #f7f7f7;
+}
+.bg-white.data-v-03187cec {
+  background-color: #ffffff;
+}
+.white-color.data-v-03187cec {
+  color: #ffffff;
+}
+.primary-color.data-v-03187cec {
+  color: #F54400;
+}
+.success-color.data-v-03187cec {
+  color: #0e130f;
+}
+.warning-color.data-v-03187cec {
+  color: #f0ad4e;
+}
+.error-color.data-v-03187cec {
+  color: #dd524d;
+}
+.primary-text.data-v-03187cec {
+  color: #333333;
+}
+.secondary-text.data-v-03187cec {
+  color: #666666;
+}
+.tip-text.data-v-03187cec {
+  color: #999999;
+}
+.color-e32417.data-v-03187cec {
+  color: #E32417;
+}
+.radio-wrap .my-radio.data-v-03187cec {
+  width: 32rpx;
+  height: 32rpx;
+  border-radius: 50%;
+  border: solid 1px #dedede;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.radio-wrap .my-radio .round.data-v-03187cec {
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  background: #fff;
+}
+.radio-wrap:active .my-radio.data-v-03187cec {
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+}
+.radio-wrap .selected.data-v-03187cec {
+  background: #e32417;
+  border-color: #e32417;
+}
+

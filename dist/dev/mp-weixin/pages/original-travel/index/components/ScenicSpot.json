@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "num-list": "/pages/original-travel/index/components/NumList"
+  }
+}

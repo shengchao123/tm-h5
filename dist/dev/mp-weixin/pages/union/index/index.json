@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "党建联盟",
+  "usingComponents": {
+    "custom-tabbar": "/components/custom-tabbar/custom-tabbar",
+    "contact-person": "/pages/union/components/ContactPerson",
+    "org-tree": "/pages/union/index/components/OrgTree",
+    "map": "/pages/union/index/components/Map"
+  }
+}

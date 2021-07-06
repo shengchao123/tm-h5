@@ -1,0 +1,112 @@
+@charset "UTF-8";
+/* uni.scss */
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+/* 边框颜色 */
+.color-primary.data-v-51143d26 {
+  color: #3049C0;
+}
+.color-333.data-v-51143d26 {
+  color: #333333;
+}
+.color-666.data-v-51143d26 {
+  color: #666666;
+}
+.color-999.data-v-51143d26 {
+  color: #999999;
+}
+.bg-color.data-v-51143d26 {
+  background-color: #f7f7f7;
+}
+.bg-white.data-v-51143d26 {
+  background-color: #ffffff;
+}
+.white-color.data-v-51143d26 {
+  color: #ffffff;
+}
+.primary-color.data-v-51143d26 {
+  color: #F54400;
+}
+.success-color.data-v-51143d26 {
+  color: #0e130f;
+}
+.warning-color.data-v-51143d26 {
+  color: #f0ad4e;
+}
+.error-color.data-v-51143d26 {
+  color: #dd524d;
+}
+.primary-text.data-v-51143d26 {
+  color: #333333;
+}
+.secondary-text.data-v-51143d26 {
+  color: #666666;
+}
+.tip-text.data-v-51143d26 {
+  color: #999999;
+}
+.color-e32417.data-v-51143d26 {
+  color: #E32417;
+}
+.lineh1-5.data-v-51143d26 {
+  line-height: 1.5;
+}
+.line1.data-v-51143d26 {
+  line-height: 1;
+}
+.no-time .btn.data-v-51143d26 {
+  width: 240rpx;
+  margin: 44rpx auto 32rpx;
+  height: 70rpx;
+  border: 1rpx solid #d2d2d2;
+  border-radius: 49rpx;
+}
+.item-wrap.data-v-51143d26 {
+  width: 100%;
+  padding: 24rpx;
+  padding-bottom: 40rpx;
+  box-shadow: 3rpx 2rpx 12rpx 8rpx rgba(17, 17, 17, 0.03);
+  border-radius: 8rpx;
+}
+.item-wrap .user-img.data-v-51143d26 {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: 50% 50%;
+  /*图片上下左右居中*/
+  background-repeat: no-repeat;
+}
+.item-wrap .list-skilled.data-v-51143d26 {
+  width: 500rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.item-wrap .skilled.data-v-51143d26 {
+  text-align: justify;
+  text-align-last: left;
+}
+.item-wrap .contact-btn.data-v-51143d26 {
+  right: 24rpx;
+  bottom: 32rpx;
+  position: absolute;
+  border: 2rpx solid #dedede;
+  border-radius: 26rpx;
+  width: 128rpx;
+  height: 52rpx;
+}
+.item-wrap .label.data-v-51143d26 {
+  right: 0;
+  top: 20rpx;
+  position: absolute;
+  padding: 0 16rpx;
+  height: 40rpx;
+  border-radius: 6rpx 0 0 6rpx;
+  background: #ddf9d7;
+  color: #51ac3d;
+}
+

@@ -1,0 +1,118 @@
+@charset "UTF-8";
+/* uni.scss */
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+/* 边框颜色 */
+.color-primary.data-v-1f55dea8 {
+  color: #3049C0;
+}
+.color-333.data-v-1f55dea8 {
+  color: #333333;
+}
+.color-666.data-v-1f55dea8 {
+  color: #666666;
+}
+.color-999.data-v-1f55dea8 {
+  color: #999999;
+}
+.bg-color.data-v-1f55dea8 {
+  background-color: #f7f7f7;
+}
+.bg-white.data-v-1f55dea8 {
+  background-color: #ffffff;
+}
+.white-color.data-v-1f55dea8 {
+  color: #ffffff;
+}
+.primary-color.data-v-1f55dea8 {
+  color: #F54400;
+}
+.success-color.data-v-1f55dea8 {
+  color: #0e130f;
+}
+.warning-color.data-v-1f55dea8 {
+  color: #f0ad4e;
+}
+.error-color.data-v-1f55dea8 {
+  color: #dd524d;
+}
+.primary-text.data-v-1f55dea8 {
+  color: #333333;
+}
+.secondary-text.data-v-1f55dea8 {
+  color: #666666;
+}
+.tip-text.data-v-1f55dea8 {
+  color: #999999;
+}
+.color-e32417.data-v-1f55dea8 {
+  color: #E32417;
+}
+.evaluate-box.data-v-1f55dea8 {
+  padding: 0 30rpx;
+}
+.evaluate-box .title-style.data-v-1f55dea8 {
+  height: 100rpx;
+  border-bottom: 1rpx solid #eaeaea;
+}
+.evaluate-box .text-area.data-v-1f55dea8 {
+  height: 360rpx !important;
+  padding: 0 !important;
+  width: 100%;
+  font-size: 28rpx;
+  overflow-y: scroll;
+}
+.evaluate-box .trips.data-v-1f55dea8 {
+  height: 100rpx;
+  border-top: 1rpx solid #eaeaea;
+}
+.pb120.data-v-1f55dea8 {
+  padding-bottom: 120rpx;
+}
+.back.data-v-1f55dea8 {
+  background: #e32417 !important;
+}
+.bt.data-v-1f55dea8 {
+  width: 100%;
+  position: fixed;
+  bottom: 16rpx;
+  border-top: 1rpx solid #eaeaea;
+  padding-top: 16rpx;
+}
+.bt .submit.data-v-1f55dea8 {
+  width: 690rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  border-radius: 49rpx;
+  color: #ffffff;
+  background: #cccccc;
+}
+.ft88.data-v-1f55dea8 {
+  font-size: 88rpx;
+}
+.ft26.data-v-1f55dea8 {
+  font-size: 26rpx;
+}
+.know-btn.data-v-1f55dea8 {
+  width: 240rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  border-radius: 49rpx;
+  border: 1rpx solid #d2d2d2;
+  margin: 0 auto;
+  margin-top: 32rpx;
+}
+.pop-box.data-v-1f55dea8 {
+  width: 540rpx;
+  height: 416rpx;
+}
+.pop-box .icon-style.data-v-1f55dea8 {
+  color: #67c23a;
+}
+.mt64.data-v-1f55dea8 {
+  margin-top: 64rpx;
+}
+

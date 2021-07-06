@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "waterfall": "/pages/mine/my-trends/travel-evaluation/slzx_waterfall/index",
+    "page-empty": "/pages/components/PageEmpty"
+  }
+}

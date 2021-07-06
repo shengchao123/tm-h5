@@ -1,0 +1,77 @@
+@charset "UTF-8";
+/* uni.scss */
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+/* 边框颜色 */
+.color-primary.data-v-b5b61434 {
+  color: #3049C0;
+}
+.color-333.data-v-b5b61434 {
+  color: #333333;
+}
+.color-666.data-v-b5b61434 {
+  color: #666666;
+}
+.color-999.data-v-b5b61434 {
+  color: #999999;
+}
+.bg-color.data-v-b5b61434 {
+  background-color: #f7f7f7;
+}
+.bg-white.data-v-b5b61434 {
+  background-color: #ffffff;
+}
+.white-color.data-v-b5b61434 {
+  color: #ffffff;
+}
+.primary-color.data-v-b5b61434 {
+  color: #F54400;
+}
+.success-color.data-v-b5b61434 {
+  color: #0e130f;
+}
+.warning-color.data-v-b5b61434 {
+  color: #f0ad4e;
+}
+.error-color.data-v-b5b61434 {
+  color: #dd524d;
+}
+.primary-text.data-v-b5b61434 {
+  color: #333333;
+}
+.secondary-text.data-v-b5b61434 {
+  color: #666666;
+}
+.tip-text.data-v-b5b61434 {
+  color: #999999;
+}
+.color-e32417.data-v-b5b61434 {
+  color: #E32417;
+}
+.user-img.data-v-b5b61434 {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+}
+.w91.data-v-b5b61434 {
+  width: 91%;
+}
+.author.data-v-b5b61434 {
+  padding: 8rpx 20rpx;
+  background: #eeeeee;
+  border-radius: 20rpx;
+}
+.w520.data-v-b5b61434 {
+  width: 520rpx;
+  white-space: pre-wrap;
+}
+.f518.data-v-b5b61434 {
+  color: #518cfc;
+}
+.ml64.data-v-b5b61434 {
+  margin-left: 64rpx;
+}
+
