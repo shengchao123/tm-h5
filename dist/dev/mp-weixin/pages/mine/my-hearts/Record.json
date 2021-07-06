@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "mescroll-uni": "/components/mescroll-uni/mescroll-uni",
+    "page-empty": "/pages/components/PageEmpty",
+    "record-item": "/pages/mine/my-hearts/RecordItem"
+  }
+}

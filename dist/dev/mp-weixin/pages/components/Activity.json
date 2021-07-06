@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "u-tabs": "/node-modules/uview-ui/components/u-tabs/u-tabs",
+    "mescroll-uni": "/components/mescroll-uni/mescroll-uni",
+    "activity-item": "/pages/components/ActivityItem",
+    "page-empty": "/pages/components/PageEmpty"
+  }
+}

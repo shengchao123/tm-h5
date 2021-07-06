@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "u-search": "/node-modules/uview-ui/components/u-search/u-search",
+    "mescroll-uni": "/components/mescroll-uni/mescroll-uni",
+    "empty": "/components/empty/empty",
+    "product-item": "/pages/urban-rural/components/ProductItem"
+  }
+}

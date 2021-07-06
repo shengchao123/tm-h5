@@ -1,0 +1,99 @@
+@charset "UTF-8";
+/* uni.scss */
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+/* 边框颜色 */
+.color-primary.data-v-93c2c332 {
+  color: #3049C0;
+}
+.color-333.data-v-93c2c332 {
+  color: #333333;
+}
+.color-666.data-v-93c2c332 {
+  color: #666666;
+}
+.color-999.data-v-93c2c332 {
+  color: #999999;
+}
+.bg-color.data-v-93c2c332 {
+  background-color: #f7f7f7;
+}
+.bg-white.data-v-93c2c332 {
+  background-color: #ffffff;
+}
+.white-color.data-v-93c2c332 {
+  color: #ffffff;
+}
+.primary-color.data-v-93c2c332 {
+  color: #F54400;
+}
+.success-color.data-v-93c2c332 {
+  color: #0e130f;
+}
+.warning-color.data-v-93c2c332 {
+  color: #f0ad4e;
+}
+.error-color.data-v-93c2c332 {
+  color: #dd524d;
+}
+.primary-text.data-v-93c2c332 {
+  color: #333333;
+}
+.secondary-text.data-v-93c2c332 {
+  color: #666666;
+}
+.tip-text.data-v-93c2c332 {
+  color: #999999;
+}
+.color-e32417.data-v-93c2c332 {
+  color: #E32417;
+}
+.color-d2d2d2.data-v-93c2c332 {
+  color: #d2d2d2;
+}
+.item-footer-wrap.data-v-93c2c332 {
+  color: #333;
+}
+.item-footer-wrap .trigger-area.data-v-93c2c332 {
+  height: 72rpx;
+}
+.item-footer-wrap .comment-list.data-v-93c2c332 {
+  background: #f2f2f2;
+  border-radius: 10rpx;
+  padding: 20rpx 24rpx;
+}
+.item-footer-wrap .comment-box.data-v-93c2c332 {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 6;
+}
+.item-footer-wrap .comment-box .mask.data-v-93c2c332 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+}
+.item-footer-wrap .comment-box .input-box.data-v-93c2c332 {
+  position: absolute;
+  bottom: 0rpx;
+  left: 0rpx;
+  right: 0rpx;
+  height: 98rpx;
+  box-sizing: border-box;
+  background: #fff;
+}
+.item-footer-wrap .comment-box .input-box .input.data-v-93c2c332 {
+  width: 100%;
+  height: 98rpx;
+  padding: 30rpx;
+  box-sizing: border-box;
+}
+

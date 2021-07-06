@@ -1,0 +1,106 @@
+@charset "UTF-8";
+/* uni.scss */
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+/* 边框颜色 */
+.color-primary.data-v-0b7a11ef {
+  color: #3049C0;
+}
+.color-333.data-v-0b7a11ef {
+  color: #333333;
+}
+.color-666.data-v-0b7a11ef {
+  color: #666666;
+}
+.color-999.data-v-0b7a11ef {
+  color: #999999;
+}
+.bg-color.data-v-0b7a11ef {
+  background-color: #f7f7f7;
+}
+.bg-white.data-v-0b7a11ef {
+  background-color: #ffffff;
+}
+.white-color.data-v-0b7a11ef {
+  color: #ffffff;
+}
+.primary-color.data-v-0b7a11ef {
+  color: #F54400;
+}
+.success-color.data-v-0b7a11ef {
+  color: #0e130f;
+}
+.warning-color.data-v-0b7a11ef {
+  color: #f0ad4e;
+}
+.error-color.data-v-0b7a11ef {
+  color: #dd524d;
+}
+.primary-text.data-v-0b7a11ef {
+  color: #333333;
+}
+.secondary-text.data-v-0b7a11ef {
+  color: #666666;
+}
+.tip-text.data-v-0b7a11ef {
+  color: #999999;
+}
+.color-e32417.data-v-0b7a11ef {
+  color: #E32417;
+}
+.introduction-wrap.data-v-0b7a11ef {
+  color: #333;
+}
+.introduction-wrap .join-user .user-img.data-v-0b7a11ef {
+  width: 32rpx;
+  height: 32rpx;
+  border-radius: 16rpx;
+  border: solid 1rpx #fff;
+  overflow: hidden;
+  margin-left: -8rpx;
+}
+.introduction-wrap .join-user .user-img ._img.data-v-0b7a11ef {
+  width: 100%;
+  height: 100%;
+}
+.introduction-wrap .goods-list.data-v-0b7a11ef {
+  -webkit-flex-wrap: wrap;
+          flex-wrap: wrap;
+}
+.introduction-wrap .goods-list .goods.data-v-0b7a11ef {
+  width: 214rpx;
+  border-radius: 6rpx;
+  background: #ffffff;
+  box-shadow: 3px 2px 12px 8px rgba(17, 17, 17, 0.03);
+}
+.introduction-wrap .goods-list .goods .name.data-v-0b7a11ef {
+  width: 100%;
+  padding: 0 5rpx 0 12rpx;
+  height: 52rpx;
+  line-height: 52rpx;
+}
+.introduction-wrap .goods-list .goods .img.data-v-0b7a11ef {
+  width: 214rpx;
+  height: 214rpx;
+  border-radius: 6rpx;
+}
+.introduction-wrap .title.data-v-0b7a11ef {
+  padding: 30rpx;
+}
+.introduction-wrap .title .label.data-v-0b7a11ef {
+  display: inline-block;
+  width: 140rpx;
+}
+.introduction-wrap .content.data-v-0b7a11ef {
+  line-height: 42rpx;
+}
+.introduction-wrap .ellipsis.data-v-0b7a11ef {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+

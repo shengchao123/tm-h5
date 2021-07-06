@@ -1,0 +1,90 @@
+@charset "UTF-8";
+/* uni.scss */
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+/* 边框颜色 */
+.color-primary.data-v-15ac4881 {
+  color: #3049C0;
+}
+.color-333.data-v-15ac4881 {
+  color: #333333;
+}
+.color-666.data-v-15ac4881 {
+  color: #666666;
+}
+.color-999.data-v-15ac4881 {
+  color: #999999;
+}
+.bg-color.data-v-15ac4881 {
+  background-color: #f7f7f7;
+}
+.bg-white.data-v-15ac4881 {
+  background-color: #ffffff;
+}
+.white-color.data-v-15ac4881 {
+  color: #ffffff;
+}
+.primary-color.data-v-15ac4881 {
+  color: #F54400;
+}
+.success-color.data-v-15ac4881 {
+  color: #0e130f;
+}
+.warning-color.data-v-15ac4881 {
+  color: #f0ad4e;
+}
+.error-color.data-v-15ac4881 {
+  color: #dd524d;
+}
+.primary-text.data-v-15ac4881 {
+  color: #333333;
+}
+.secondary-text.data-v-15ac4881 {
+  color: #666666;
+}
+.tip-text.data-v-15ac4881 {
+  color: #999999;
+}
+.color-e32417.data-v-15ac4881 {
+  color: #E32417;
+}
+.resource-item-wrap.data-v-15ac4881 {
+  background: #ffffff;
+}
+.resource-item-wrap .click-wrap.data-v-15ac4881 {
+  position: absolute;
+  top: 0;
+  right: 100rpx;
+  left: 0;
+  bottom: 0;
+}
+.resource-item-wrap .wrap.data-v-15ac4881 {
+  padding: 30rpx;
+}
+.resource-item-wrap .info .avatar.data-v-15ac4881 {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50rpx;
+}
+.resource-item-wrap .contact.data-v-15ac4881 {
+  -webkit-flex-wrap: wrap;
+          flex-wrap: wrap;
+}
+.resource-item-wrap .contact .item.data-v-15ac4881 {
+  width: 50%;
+}
+.resource-item-wrap.data-v-15ac4881 .u-content {
+  color: #333333;
+  font-size: 26rpx;
+}
+.resource-item-wrap.data-v-15ac4881 .u-content__showmore-wrap {
+  position: absolute;
+  right: 0;
+  top: 56rpx;
+  background: #ffffff;
+  width: 114rpx;
+}
+

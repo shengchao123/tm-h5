@@ -1,0 +1,120 @@
+@charset "UTF-8";
+/* uni.scss */
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+/* 边框颜色 */
+.color-primary.data-v-27f177da {
+  color: #3049C0;
+}
+.color-333.data-v-27f177da {
+  color: #333333;
+}
+.color-666.data-v-27f177da {
+  color: #666666;
+}
+.color-999.data-v-27f177da {
+  color: #999999;
+}
+.bg-color.data-v-27f177da {
+  background-color: #f7f7f7;
+}
+.bg-white.data-v-27f177da {
+  background-color: #ffffff;
+}
+.white-color.data-v-27f177da {
+  color: #ffffff;
+}
+.primary-color.data-v-27f177da {
+  color: #F54400;
+}
+.success-color.data-v-27f177da {
+  color: #0e130f;
+}
+.warning-color.data-v-27f177da {
+  color: #f0ad4e;
+}
+.error-color.data-v-27f177da {
+  color: #dd524d;
+}
+.primary-text.data-v-27f177da {
+  color: #333333;
+}
+.secondary-text.data-v-27f177da {
+  color: #666666;
+}
+.tip-text.data-v-27f177da {
+  color: #999999;
+}
+.color-e32417.data-v-27f177da {
+  color: #E32417;
+}
+.publish.data-v-27f177da {
+  position: absolute;
+  right: 0rpx;
+  width: 105rpx;
+  height: 105rpx;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 4rpx 6rpx 8rpx 0 rgba(14, 2, 2, 0.25);
+  z-index: 100;
+  background: #e32417;
+  bottom: 150rpx;
+  font-size: 56rpx;
+  right: 14rpx;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  opacity: 1;
+}
+.is-scroll.data-v-27f177da {
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  right: -80rpx !important;
+  opacity: 0.4 !important;
+}
+.btn-list.data-v-27f177da {
+  position: fixed;
+  right: 8rpx;
+  bottom: -16rpx;
+}
+.evaluates.data-v-27f177da {
+  position: absolute;
+  right: 72rpx;
+  bottom: 137rpx;
+}
+.evaluate-btn.data-v-27f177da {
+  width: 105rpx;
+  height: 105rpx;
+  line-height: 105rpx;
+  text-align: center;
+  color: #ffffff;
+  border-radius: 50%;
+}
+.comment-style.data-v-27f177da {
+  background-image: -webkit-linear-gradient(352deg, #0083f5 0%, #3093ff 72%);
+  background-image: linear-gradient(98deg, #0083f5 0%, #3093ff 72%);
+}
+.comment-position.data-v-27f177da {
+  position: absolute;
+  right: 72rpx;
+  bottom: 290rpx;
+}
+.evaluate-position.data-v-27f177da {
+  position: absolute;
+  right: 170rpx;
+  bottom: 124rpx;
+}
+.evaluate-style.data-v-27f177da {
+  background-image: -webkit-linear-gradient(352deg, #f54400 0%, #ff6630 72%);
+  background-image: linear-gradient(98deg, #f54400 0%, #ff6630 72%);
+}
+.close-style.data-v-27f177da {
+  background: rgba(51, 51, 51, 0.93);
+  position: absolute;
+  right: 8rpx;
+  bottom: 165rpx;
+  z-index: 0;
+}
+

@@ -1,0 +1,92 @@
+@charset "UTF-8";
+/* uni.scss */
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+/* 边框颜色 */
+.color-primary {
+  color: #3049C0;
+}
+.color-333 {
+  color: #333333;
+}
+.color-666 {
+  color: #666666;
+}
+.color-999 {
+  color: #999999;
+}
+.bg-color {
+  background-color: #f7f7f7;
+}
+.bg-white {
+  background-color: #ffffff;
+}
+.white-color {
+  color: #ffffff;
+}
+.primary-color {
+  color: #F54400;
+}
+.success-color {
+  color: #0e130f;
+}
+.warning-color {
+  color: #f0ad4e;
+}
+.error-color {
+  color: #dd524d;
+}
+.primary-text {
+  color: #333333;
+}
+.secondary-text {
+  color: #666666;
+}
+.tip-text {
+  color: #999999;
+}
+.color-e32417 {
+  color: #E32417;
+}
+.ft76 {
+  font-size: 76rpx;
+}
+.flex-wrap {
+  -webkit-box-flex: wrap;
+  -webkit-flex: wrap;
+          flex: wrap;
+}
+.border-ea {
+  border: 2rpx solid #eaeaea;
+}
+.upload-item {
+  position: relative;
+  width: 214rpx;
+  height: 214rpx;
+  border-radius: 10rpx;
+  margin-right: 24rpx;
+  margin-bottom: 24rpx;
+  box-sizing: border-box;
+}
+.upload-item .upload-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10rpx;
+}
+.upload-item .upload-del-btn {
+  position: absolute;
+  right: -16rpx;
+  top: -16rpx;
+  width: 32rpx;
+  height: 32rpx;
+  color: #c7c7c7;
+  background: #ffffff;
+  border-radius: 100%;
+}
+.upload-wrap .upload-item:nth-of-type(3n) {
+  margin-right: 0;
+}
+

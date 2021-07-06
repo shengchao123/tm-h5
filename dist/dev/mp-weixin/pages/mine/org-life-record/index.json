@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "填写组织生活记录",
+  "usingComponents": {
+    "u-form": "/node-modules/uview-ui/components/u-form/u-form",
+    "u-form-item": "/node-modules/uview-ui/components/u-form-item/u-form-item",
+    "u-input": "/node-modules/uview-ui/components/u-input/u-input",
+    "u-button": "/node-modules/uview-ui/components/u-button/u-button",
+    "u-picker": "/node-modules/uview-ui/components/u-picker/u-picker",
+    "line-clock": "/pages/mine/org-life-record/LineClock",
+    "type-popup": "/pages/mine/org-life-record/TypePopup"
+  }
+}

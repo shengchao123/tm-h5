@@ -1,0 +1,73 @@
+@charset "UTF-8";
+/* uni.scss */
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+/* 边框颜色 */
+.color-primary.data-v-199d74b7 {
+  color: #3049C0;
+}
+.color-333.data-v-199d74b7 {
+  color: #333333;
+}
+.color-666.data-v-199d74b7 {
+  color: #666666;
+}
+.color-999.data-v-199d74b7 {
+  color: #999999;
+}
+.bg-color.data-v-199d74b7 {
+  background-color: #f7f7f7;
+}
+.bg-white.data-v-199d74b7 {
+  background-color: #ffffff;
+}
+.white-color.data-v-199d74b7 {
+  color: #ffffff;
+}
+.primary-color.data-v-199d74b7 {
+  color: #F54400;
+}
+.success-color.data-v-199d74b7 {
+  color: #0e130f;
+}
+.warning-color.data-v-199d74b7 {
+  color: #f0ad4e;
+}
+.error-color.data-v-199d74b7 {
+  color: #dd524d;
+}
+.primary-text.data-v-199d74b7 {
+  color: #333333;
+}
+.secondary-text.data-v-199d74b7 {
+  color: #666666;
+}
+.tip-text.data-v-199d74b7 {
+  color: #999999;
+}
+.color-e32417.data-v-199d74b7 {
+  color: #E32417;
+}
+.head-map-from.data-v-199d74b7 {
+  background: #fff;
+}
+.head-map-from .route-select.data-v-199d74b7 {
+  height: 74rpx;
+}
+.head-map-from .name.data-v-199d74b7 {
+  width: 480rpx;
+}
+.head-map-from .map .reset-btn.data-v-199d74b7 {
+  position: absolute;
+  bottom: 15rpx;
+  left: 15rpx;
+  width: 64rpx;
+  height: 64rpx;
+  background: #ffffff;
+  box-shadow: 0 -6rpx 17rpx 0 rgba(0, 0, 0, 0.1);
+  border-radius: 12rpx;
+}
+

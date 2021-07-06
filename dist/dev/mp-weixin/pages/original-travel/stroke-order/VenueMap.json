@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "选择集合点",
+  "usingComponents": {
+    "u-input": "/node-modules/uview-ui/components/u-input/u-input",
+    "location-item": "/pages/original-travel/stroke-order/components/LocationItem"
+  }
+}

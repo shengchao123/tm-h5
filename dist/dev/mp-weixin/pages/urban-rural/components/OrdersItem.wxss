@@ -1,0 +1,109 @@
+@charset "UTF-8";
+/* uni.scss */
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+/* 边框颜色 */
+.color-primary.data-v-56a4eb50 {
+  color: #3049C0;
+}
+.color-333.data-v-56a4eb50 {
+  color: #333333;
+}
+.color-666.data-v-56a4eb50 {
+  color: #666666;
+}
+.color-999.data-v-56a4eb50 {
+  color: #999999;
+}
+.bg-color.data-v-56a4eb50 {
+  background-color: #f7f7f7;
+}
+.bg-white.data-v-56a4eb50 {
+  background-color: #ffffff;
+}
+.white-color.data-v-56a4eb50 {
+  color: #ffffff;
+}
+.primary-color.data-v-56a4eb50 {
+  color: #F54400;
+}
+.success-color.data-v-56a4eb50 {
+  color: #0e130f;
+}
+.warning-color.data-v-56a4eb50 {
+  color: #f0ad4e;
+}
+.error-color.data-v-56a4eb50 {
+  color: #dd524d;
+}
+.primary-text.data-v-56a4eb50 {
+  color: #333333;
+}
+.secondary-text.data-v-56a4eb50 {
+  color: #666666;
+}
+.tip-text.data-v-56a4eb50 {
+  color: #999999;
+}
+.color-e32417.data-v-56a4eb50 {
+  color: #E32417;
+}
+.orders-item-wrap.data-v-56a4eb50 {
+  background: #fff;
+}
+.orders-item-wrap .user-head.data-v-56a4eb50 {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.orders-item-wrap .user-head ._img.data-v-56a4eb50 {
+  width: 100%;
+  height: 100%;
+}
+.orders-item-wrap .take-info.data-v-56a4eb50 {
+  height: 68rpx;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+          justify-content: flex-end;
+}
+.orders-item-wrap .take-info .take-btn.data-v-56a4eb50 {
+  width: 144rpx;
+  height: 56rpx;
+  line-height: 56rpx;
+  border-radius: 30rpx;
+  border: solid 1px #e32417;
+}
+.orders-item-wrap .take-info .taked.data-v-56a4eb50 {
+  border-left: solid 1px #d2d2d2;
+  line-height: 24rpx;
+}
+.orders-item-wrap .content.data-v-56a4eb50 {
+  position: relative;
+}
+.orders-item-wrap .content .content-box.data-v-56a4eb50 {
+  width: 100%;
+}
+.orders-item-wrap .content .content-box .content-text.data-v-56a4eb50 {
+  line-height: 38rpx;
+}
+.orders-item-wrap .content .hide-content.data-v-56a4eb50 {
+  max-height: 80rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.orders-item-wrap .content .expand.data-v-56a4eb50 {
+  position: absolute;
+  right: 0;
+  bottom: 2rpx;
+  width: 90rpx;
+  height: 35rpx;
+  background: white;
+  letter-spacing: 2rpx;
+}
+

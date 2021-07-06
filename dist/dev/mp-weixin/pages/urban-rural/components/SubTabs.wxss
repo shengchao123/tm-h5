@@ -1,0 +1,71 @@
+@charset "UTF-8";
+/* uni.scss */
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+/* 边框颜色 */
+.color-primary.data-v-50970364 {
+  color: #3049C0;
+}
+.color-333.data-v-50970364 {
+  color: #333333;
+}
+.color-666.data-v-50970364 {
+  color: #666666;
+}
+.color-999.data-v-50970364 {
+  color: #999999;
+}
+.bg-color.data-v-50970364 {
+  background-color: #f7f7f7;
+}
+.bg-white.data-v-50970364 {
+  background-color: #ffffff;
+}
+.white-color.data-v-50970364 {
+  color: #ffffff;
+}
+.primary-color.data-v-50970364 {
+  color: #F54400;
+}
+.success-color.data-v-50970364 {
+  color: #0e130f;
+}
+.warning-color.data-v-50970364 {
+  color: #f0ad4e;
+}
+.error-color.data-v-50970364 {
+  color: #dd524d;
+}
+.primary-text.data-v-50970364 {
+  color: #333333;
+}
+.secondary-text.data-v-50970364 {
+  color: #666666;
+}
+.tip-text.data-v-50970364 {
+  color: #999999;
+}
+.color-e32417.data-v-50970364 {
+  color: #E32417;
+}
+.c-tabs.data-v-50970364 {
+  height: 105rpx;
+  padding: 0 16rpx;
+  background: #ffffff;
+}
+.c-tabs .tab-item.data-v-50970364 {
+  height: 60rpx;
+  width: 160rpx;
+  font-size: 26rpx;
+  border-radius: 28rpx;
+  background: #a6a6a610;
+  color: #666666;
+}
+.c-tabs .active.data-v-50970364 {
+  background: #f5440010;
+  color: #e32417;
+}
+

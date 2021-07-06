@@ -1,0 +1,67 @@
+@charset "UTF-8";
+/* uni.scss */
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+/* 边框颜色 */
+.color-primary {
+  color: #3049C0;
+}
+.color-333 {
+  color: #333333;
+}
+.color-666 {
+  color: #666666;
+}
+.color-999 {
+  color: #999999;
+}
+.bg-color {
+  background-color: #f7f7f7;
+}
+.bg-white {
+  background-color: #ffffff;
+}
+.white-color {
+  color: #ffffff;
+}
+.primary-color {
+  color: #F54400;
+}
+.success-color {
+  color: #0e130f;
+}
+.warning-color {
+  color: #f0ad4e;
+}
+.error-color {
+  color: #dd524d;
+}
+.primary-text {
+  color: #333333;
+}
+.secondary-text {
+  color: #666666;
+}
+.tip-text {
+  color: #999999;
+}
+.color-e32417 {
+  color: #E32417;
+}
+.left {
+  float: left;
+}
+.wait-check {
+  position: absolute;
+  right: 0rpx;
+  width: 96rpx;
+  height: 42rpx;
+  line-height: 42rpx;
+  background: #ff8800;
+  border-radius: 0 6rpx 0 6rpx;
+  z-index: 9;
+}
+

@@ -1,0 +1,10 @@
+{
+  "component": true,
+  "usingComponents": {
+    "u-read-more": "/node-modules/uview-ui/components/u-read-more/u-read-more",
+    "img-group": "/pages/union/interact/components/ImgGroup",
+    "item-footer": "/pages/union/interact/components/ItemFooter",
+    "send-comment-popup": "/pages/union/interact/components/SendCommentPopup",
+    "comment-list-popup": "/pages/union/interact/components/CommentListPopup"
+  }
+}

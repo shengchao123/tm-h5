@@ -97,7 +97,7 @@ export default {
         }, {
           name: '资源共享'
         }
-      ],
+      ]
     }
   }
 }

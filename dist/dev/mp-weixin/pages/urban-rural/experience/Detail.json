@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "商家展位详情",
+  "usingComponents": {
+    "empty": "/components/empty/empty",
+    "u-swiper": "/node-modules/uview-ui/components/u-swiper/u-swiper",
+    "u-action-sheet": "/node-modules/uview-ui/components/u-action-sheet/u-action-sheet",
+    "experience-item": "/pages/urban-rural/components/ExperienceItem"
+  }
+}

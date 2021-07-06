@@ -1,0 +1,99 @@
+@charset "UTF-8";
+/* uni.scss */
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+/* 边框颜色 */
+.color-primary.data-v-8be6dda8 {
+  color: #3049C0;
+}
+.color-333.data-v-8be6dda8 {
+  color: #333333;
+}
+.color-666.data-v-8be6dda8 {
+  color: #666666;
+}
+.color-999.data-v-8be6dda8 {
+  color: #999999;
+}
+.bg-color.data-v-8be6dda8 {
+  background-color: #f7f7f7;
+}
+.bg-white.data-v-8be6dda8 {
+  background-color: #ffffff;
+}
+.white-color.data-v-8be6dda8 {
+  color: #ffffff;
+}
+.primary-color.data-v-8be6dda8 {
+  color: #F54400;
+}
+.success-color.data-v-8be6dda8 {
+  color: #0e130f;
+}
+.warning-color.data-v-8be6dda8 {
+  color: #f0ad4e;
+}
+.error-color.data-v-8be6dda8 {
+  color: #dd524d;
+}
+.primary-text.data-v-8be6dda8 {
+  color: #333333;
+}
+.secondary-text.data-v-8be6dda8 {
+  color: #666666;
+}
+.tip-text.data-v-8be6dda8 {
+  color: #999999;
+}
+.color-e32417.data-v-8be6dda8 {
+  color: #E32417;
+}
+.notes-list-item-wrap.data-v-8be6dda8 {
+  color: #333;
+  width: 100%;
+  padding-top: 30rpx;
+  background: #fff;
+}
+.notes-list-item-wrap .head .head-img.data-v-8be6dda8 {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 40rpx;
+  overflow: hidden;
+  background: #eee;
+}
+.notes-list-item-wrap .head .label.data-v-8be6dda8 {
+  height: 36rpx;
+  border-radius: 18rpx;
+  padding: 0 16rpx;
+  border: 1px solid #ff9708;
+  color: #ff9708;
+}
+.notes-list-item-wrap .content.data-v-8be6dda8 {
+  position: relative;
+}
+.notes-list-item-wrap .content .content-box.data-v-8be6dda8 {
+  width: 100%;
+}
+.notes-list-item-wrap .content .content-box .content-text.data-v-8be6dda8 {
+  line-height: 38rpx;
+}
+.notes-list-item-wrap .content .hide-content.data-v-8be6dda8 {
+  height: 80rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.notes-list-item-wrap .content .expand.data-v-8be6dda8 {
+  position: absolute;
+  right: 0;
+  bottom: 8rpx;
+  width: 90rpx;
+  height: 35rpx;
+  background: white;
+  letter-spacing: 2rpx;
+}
+

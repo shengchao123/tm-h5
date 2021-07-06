@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "recursive-comments": "/pages/components/RecursiveComments"
+  }
+}

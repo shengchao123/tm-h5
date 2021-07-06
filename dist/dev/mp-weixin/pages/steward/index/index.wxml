@@ -1,0 +1,1 @@
+<view class="steward-wrap _div data-v-78de2a7d"><image src="{{$root.m0}}" data-event-opts="{{[['tap',[['onMessage',['$event']]]]]}}" bindtap="__e" class="_img data-v-78de2a7d"></image><custom-tabbar vue-id="ba30b3ae-1" class="data-v-78de2a7d" bind:__l="__l"></custom-tabbar></view>

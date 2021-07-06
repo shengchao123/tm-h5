@@ -20,7 +20,9 @@
     </mescroll-uni>
 
     <PublishBtn @onPublish="onPublish"
-                :isScroll="isScroll"></PublishBtn>
+                :isScroll="isScroll"
+                right="14rpx"
+                bottom="134rpx"></PublishBtn>
   </div>
 </template>
 
@@ -81,7 +83,10 @@ export default {
       },
       isScroll: false,
       upOption: {
-        onScroll: true
+        onScroll: true,
+        toTop: {
+          bottom: 240
+        }
       },
       mescrollBottom: '20rpx',
       subTabs: [

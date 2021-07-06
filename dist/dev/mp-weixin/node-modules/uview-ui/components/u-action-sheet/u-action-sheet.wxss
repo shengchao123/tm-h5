@@ -1,0 +1,95 @@
+@charset "UTF-8";
+/* uni.scss */
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+/* 边框颜色 */
+.color-primary.data-v-6766c527 {
+  color: #3049C0;
+}
+.color-333.data-v-6766c527 {
+  color: #333333;
+}
+.color-666.data-v-6766c527 {
+  color: #666666;
+}
+.color-999.data-v-6766c527 {
+  color: #999999;
+}
+.bg-color.data-v-6766c527 {
+  background-color: #f7f7f7;
+}
+.bg-white.data-v-6766c527 {
+  background-color: #ffffff;
+}
+.white-color.data-v-6766c527 {
+  color: #ffffff;
+}
+.primary-color.data-v-6766c527 {
+  color: #F54400;
+}
+.success-color.data-v-6766c527 {
+  color: #0e130f;
+}
+.warning-color.data-v-6766c527 {
+  color: #f0ad4e;
+}
+.error-color.data-v-6766c527 {
+  color: #dd524d;
+}
+.primary-text.data-v-6766c527 {
+  color: #333333;
+}
+.secondary-text.data-v-6766c527 {
+  color: #666666;
+}
+.tip-text.data-v-6766c527 {
+  color: #999999;
+}
+.color-e32417.data-v-6766c527 {
+  color: #E32417;
+}
+.u-tips.data-v-6766c527 {
+  font-size: 26rpx;
+  text-align: center;
+  padding: 34rpx 0;
+  line-height: 1;
+  color: #909399;
+}
+.u-action-sheet-item.data-v-6766c527 {
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+          flex-direction: row;
+
+  line-height: 1;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  font-size: 32rpx;
+  padding: 34rpx 0;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+}
+.u-action-sheet-item__subtext.data-v-6766c527 {
+  font-size: 24rpx;
+  color: #909399;
+  margin-top: 20rpx;
+}
+.u-gab.data-v-6766c527 {
+  height: 12rpx;
+  background-color: #eaeaec;
+}
+.u-actionsheet-cancel.data-v-6766c527 {
+  color: #303133;
+}
+

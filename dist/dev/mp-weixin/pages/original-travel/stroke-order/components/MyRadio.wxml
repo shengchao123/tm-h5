@@ -1,0 +1,1 @@
+<view class="center-align radio-wrap _div data-v-03187cec"><view class="{{['my-radio center _div data-v-03187cec',props.selected&&'selected']}}"><view class="round _div data-v-03187cec"></view></view><slot name="text"></slot></view>

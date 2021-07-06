@@ -1,0 +1,75 @@
+@charset "UTF-8";
+/* uni.scss */
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+/* 边框颜色 */
+.color-primary.data-v-b2940cb4 {
+  color: #3049C0;
+}
+.color-333.data-v-b2940cb4 {
+  color: #333333;
+}
+.color-666.data-v-b2940cb4 {
+  color: #666666;
+}
+.color-999.data-v-b2940cb4 {
+  color: #999999;
+}
+.bg-color.data-v-b2940cb4 {
+  background-color: #f7f7f7;
+}
+.bg-white.data-v-b2940cb4 {
+  background-color: #ffffff;
+}
+.white-color.data-v-b2940cb4 {
+  color: #ffffff;
+}
+.primary-color.data-v-b2940cb4 {
+  color: #F54400;
+}
+.success-color.data-v-b2940cb4 {
+  color: #0e130f;
+}
+.warning-color.data-v-b2940cb4 {
+  color: #f0ad4e;
+}
+.error-color.data-v-b2940cb4 {
+  color: #dd524d;
+}
+.primary-text.data-v-b2940cb4 {
+  color: #333333;
+}
+.secondary-text.data-v-b2940cb4 {
+  color: #666666;
+}
+.tip-text.data-v-b2940cb4 {
+  color: #999999;
+}
+.color-e32417.data-v-b2940cb4 {
+  color: #E32417;
+}
+.agricultural-product-wrap.data-v-b2940cb4 {
+  color: #333;
+}
+.agricultural-product-wrap .line.data-v-b2940cb4 {
+  width: 100%;
+  height: 20rpx;
+  background: #f7f7f7;
+}
+.agricultural-product-wrap .goods-list .goods.data-v-b2940cb4 {
+  border-bottom: solid 1rpx #eaeaea;
+}
+.agricultural-product-wrap .goods-list .goods .btn.data-v-b2940cb4 {
+  border: 1px solid #dcdcdc;
+  border-radius: 28rpx;
+  width: 120rpx;
+  height: 56rpx;
+  font-size: 26rpx;
+}
+.agricultural-product-wrap .goods-list .goods .btn .icon.data-v-b2940cb4 {
+  font-size: 18rpx;
+}
+

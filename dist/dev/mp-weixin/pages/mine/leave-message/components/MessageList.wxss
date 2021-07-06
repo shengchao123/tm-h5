@@ -1,0 +1,113 @@
+@charset "UTF-8";
+/* uni.scss */
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+/* 边框颜色 */
+.color-primary.data-v-c83a14c6 {
+  color: #3049C0;
+}
+.color-333.data-v-c83a14c6 {
+  color: #333333;
+}
+.color-666.data-v-c83a14c6 {
+  color: #666666;
+}
+.color-999.data-v-c83a14c6 {
+  color: #999999;
+}
+.bg-color.data-v-c83a14c6 {
+  background-color: #f7f7f7;
+}
+.bg-white.data-v-c83a14c6 {
+  background-color: #ffffff;
+}
+.white-color.data-v-c83a14c6 {
+  color: #ffffff;
+}
+.primary-color.data-v-c83a14c6 {
+  color: #F54400;
+}
+.success-color.data-v-c83a14c6 {
+  color: #0e130f;
+}
+.warning-color.data-v-c83a14c6 {
+  color: #f0ad4e;
+}
+.error-color.data-v-c83a14c6 {
+  color: #dd524d;
+}
+.primary-text.data-v-c83a14c6 {
+  color: #333333;
+}
+.secondary-text.data-v-c83a14c6 {
+  color: #666666;
+}
+.tip-text.data-v-c83a14c6 {
+  color: #999999;
+}
+.color-e32417.data-v-c83a14c6 {
+  color: #E32417;
+}
+.leave-msg.data-v-c83a14c6 {
+  background: #ffffff;
+  padding: 32rpx 30rpx 0 30rpx;
+}
+.head-img.data-v-c83a14c6 {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+.msg-status.data-v-c83a14c6 {
+  display: block;
+  width: 56rpx;
+  height: 26rpx;
+  text-align: center;
+  line-height: 26rpx;
+  border-radius: 4rpx;
+  font-size: 20rpx;
+  color: #ffffff;
+  position: absolute;
+  top: 62rpx;
+  left: 12rpx;
+}
+.ask-color.data-v-c83a14c6 {
+  background: #74a3fd;
+}
+.answer-color.data-v-c83a14c6 {
+  background: #63d35d;
+}
+.msg-cont.data-v-c83a14c6 {
+  width: 100%;
+  padding-bottom: 32rpx;
+  border-bottom: 1rpx solid #e1e1e1;
+}
+.msg-cont .replay.data-v-c83a14c6 {
+  width: 128rpx;
+  height: 52rpx;
+  line-height: 52rpx;
+  text-align: center;
+  border: 1rpx solid #dedede;
+  border-radius: 26rpx;
+  font-size: 24rpx;
+  color: #666666;
+}
+.msg-cont .user-name.data-v-c83a14c6 {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #333333;
+}
+.msg-cont .user-time.data-v-c83a14c6 {
+  font-size: 24rpx;
+  color: #999999;
+  margin-top: 12rpx;
+}
+.msg-cont .content.data-v-c83a14c6 {
+  margin-top: 24rpx;
+  font-size: 28rpx;
+  font-weight: 550;
+  color: #333333;
+}
+

@@ -77,7 +77,7 @@ export default {
         onScroll: true
       },
       mescrollTop: '20rpx',
-      mescrollBottom: '20rpx',
+      mescrollBottom: '0rpx',
     }
   }
 }

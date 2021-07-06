@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "评价详情",
+  "usingComponents": {
+    "carousel": "/pages/components/Carousel",
+    "share-dialog": "/pages/components/ShareDialog"
+  }
+}

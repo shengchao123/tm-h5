@@ -1,0 +1,115 @@
+@charset "UTF-8";
+/* uni.scss */
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+/* 边框颜色 */
+.color-primary.data-v-072523e7 {
+  color: #3049C0;
+}
+.color-333.data-v-072523e7 {
+  color: #333333;
+}
+.color-666.data-v-072523e7 {
+  color: #666666;
+}
+.color-999.data-v-072523e7 {
+  color: #999999;
+}
+.bg-color.data-v-072523e7 {
+  background-color: #f7f7f7;
+}
+.bg-white.data-v-072523e7 {
+  background-color: #ffffff;
+}
+.white-color.data-v-072523e7 {
+  color: #ffffff;
+}
+.primary-color.data-v-072523e7 {
+  color: #F54400;
+}
+.success-color.data-v-072523e7 {
+  color: #0e130f;
+}
+.warning-color.data-v-072523e7 {
+  color: #f0ad4e;
+}
+.error-color.data-v-072523e7 {
+  color: #dd524d;
+}
+.primary-text.data-v-072523e7 {
+  color: #333333;
+}
+.secondary-text.data-v-072523e7 {
+  color: #666666;
+}
+.tip-text.data-v-072523e7 {
+  color: #999999;
+}
+.color-e32417.data-v-072523e7 {
+  color: #E32417;
+}
+.u-countdown.data-v-072523e7 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: inline-flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+.u-countdown-item.data-v-072523e7 {
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+          flex-direction: row;
+
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  padding: 2rpx;
+  border-radius: 6rpx;
+  white-space: nowrap;
+  -webkit-transform: translateZ(0);
+          transform: translateZ(0);
+}
+.u-countdown-time.data-v-072523e7 {
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}
+.u-countdown-colon.data-v-072523e7 {
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+          flex-direction: row;
+
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  padding: 0 5rpx;
+  line-height: 1;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  padding-bottom: 4rpx;
+}
+.u-countdown-scale.data-v-072523e7 {
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+  -webkit-transform-origin: center center;
+          transform-origin: center center;
+}
+

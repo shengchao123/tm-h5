@@ -1,0 +1,85 @@
+@charset "UTF-8";
+/* uni.scss */
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+/* 边框颜色 */
+.color-primary.data-v-47280139 {
+  color: #3049C0;
+}
+.color-333.data-v-47280139 {
+  color: #333333;
+}
+.color-666.data-v-47280139 {
+  color: #666666;
+}
+.color-999.data-v-47280139 {
+  color: #999999;
+}
+.bg-color.data-v-47280139 {
+  background-color: #f7f7f7;
+}
+.bg-white.data-v-47280139 {
+  background-color: #ffffff;
+}
+.white-color.data-v-47280139 {
+  color: #ffffff;
+}
+.primary-color.data-v-47280139 {
+  color: #F54400;
+}
+.success-color.data-v-47280139 {
+  color: #0e130f;
+}
+.warning-color.data-v-47280139 {
+  color: #f0ad4e;
+}
+.error-color.data-v-47280139 {
+  color: #dd524d;
+}
+.primary-text.data-v-47280139 {
+  color: #333333;
+}
+.secondary-text.data-v-47280139 {
+  color: #666666;
+}
+.tip-text.data-v-47280139 {
+  color: #999999;
+}
+.color-e32417.data-v-47280139 {
+  color: #E32417;
+}
+.list-item-wrap.data-v-47280139 {
+  width: 100%;
+  border-bottom: solid 1px #f0eff0;
+  color: #333;
+}
+.list-item-wrap .head-img.data-v-47280139 {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 40rpx;
+  overflow: hidden;
+}
+.list-item-wrap .cover-img.data-v-47280139 {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 8rpx;
+  overflow: hidden;
+}
+.list-item-wrap .follow-btn .primary-btn.data-v-47280139 {
+  width: 112rpx;
+  height: 48rpx;
+  line-height: 48rpx;
+  border-radius: 24rpx;
+  background: #F54400;
+}
+.list-item-wrap .follow-btn .cancel-btn.data-v-47280139 {
+  width: 140rpx;
+  height: 48rpx;
+  line-height: 48rpx;
+  border-radius: 24rpx;
+  border: 1px solid #d1d1d1;
+}
+

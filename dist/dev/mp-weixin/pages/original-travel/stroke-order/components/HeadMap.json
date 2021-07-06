@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "map": "/pages/original-travel/stroke-order/components/Map",
+    "select-route-pop": "/pages/original-travel/stroke-order/components/SelectRoutePop"
+  }
+}

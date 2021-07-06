@@ -1,0 +1,71 @@
+@charset "UTF-8";
+/* uni.scss */
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+/* 边框颜色 */
+.color-primary.data-v-48eece8c {
+  color: #3049C0;
+}
+.color-333.data-v-48eece8c {
+  color: #333333;
+}
+.color-666.data-v-48eece8c {
+  color: #666666;
+}
+.color-999.data-v-48eece8c {
+  color: #999999;
+}
+.bg-color.data-v-48eece8c {
+  background-color: #f7f7f7;
+}
+.bg-white.data-v-48eece8c {
+  background-color: #ffffff;
+}
+.white-color.data-v-48eece8c {
+  color: #ffffff;
+}
+.primary-color.data-v-48eece8c {
+  color: #F54400;
+}
+.success-color.data-v-48eece8c {
+  color: #0e130f;
+}
+.warning-color.data-v-48eece8c {
+  color: #f0ad4e;
+}
+.error-color.data-v-48eece8c {
+  color: #dd524d;
+}
+.primary-text.data-v-48eece8c {
+  color: #333333;
+}
+.secondary-text.data-v-48eece8c {
+  color: #666666;
+}
+.tip-text.data-v-48eece8c {
+  color: #999999;
+}
+.color-e32417.data-v-48eece8c {
+  color: #E32417;
+}
+.custom-tabbar-wrap.data-v-48eece8c {
+  height: 50px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  z-index: 999;
+}
+.custom-tabbar-wrap .item.data-v-48eece8c {
+  width: 50%;
+  padding-top: 5px;
+}
+.custom-tabbar-wrap .item ._img.data-v-48eece8c {
+  width: 20px;
+  height: 20px;
+}
+

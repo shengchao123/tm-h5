@@ -1,0 +1,1 @@
+<label class="ft24 color-999 ml4 _span">{{modelData.length+"/"+maxLength}}</label>

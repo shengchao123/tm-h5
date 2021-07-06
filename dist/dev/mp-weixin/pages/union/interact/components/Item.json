@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "img-group": "/pages/union/interact/components/ImgGroup",
+    "item-footer": "/pages/union/interact/components/ItemFooter"
+  }
+}

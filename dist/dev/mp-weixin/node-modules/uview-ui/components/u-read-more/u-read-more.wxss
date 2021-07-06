@@ -1,0 +1,107 @@
+@charset "UTF-8";
+/* uni.scss */
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+/* 边框颜色 */
+.color-primary.data-v-35272c51 {
+  color: #3049C0;
+}
+.color-333.data-v-35272c51 {
+  color: #333333;
+}
+.color-666.data-v-35272c51 {
+  color: #666666;
+}
+.color-999.data-v-35272c51 {
+  color: #999999;
+}
+.bg-color.data-v-35272c51 {
+  background-color: #f7f7f7;
+}
+.bg-white.data-v-35272c51 {
+  background-color: #ffffff;
+}
+.white-color.data-v-35272c51 {
+  color: #ffffff;
+}
+.primary-color.data-v-35272c51 {
+  color: #F54400;
+}
+.success-color.data-v-35272c51 {
+  color: #0e130f;
+}
+.warning-color.data-v-35272c51 {
+  color: #f0ad4e;
+}
+.error-color.data-v-35272c51 {
+  color: #dd524d;
+}
+.primary-text.data-v-35272c51 {
+  color: #333333;
+}
+.secondary-text.data-v-35272c51 {
+  color: #666666;
+}
+.tip-text.data-v-35272c51 {
+  color: #999999;
+}
+.color-e32417.data-v-35272c51 {
+  color: #E32417;
+}
+.u-content.data-v-35272c51 {
+  font-size: 30rpx;
+  color: #606266;
+  line-height: 1.8;
+  text-align: left;
+  overflow: hidden;
+}
+.u-content__show-more.data-v-35272c51 {
+  padding-top: 0;
+  background: none;
+  margin-top: 20rpx;
+}
+.u-content__showmore-wrap.data-v-35272c51 {
+  position: relative;
+  width: 100%;
+  padding-bottom: 26rpx;
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+          flex-direction: row;
+
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+}
+.u-content__showmore-wrap__readmore-btn.data-v-35272c51 {
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+          flex-direction: row;
+
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  line-height: 1;
+}
+.u-content__showmore-wrap__readmore-btn__icon.data-v-35272c51 {
+  margin-left: 14rpx;
+}
+

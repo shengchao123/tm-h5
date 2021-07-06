@@ -1,0 +1,84 @@
+@charset "UTF-8";
+/* uni.scss */
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+/* 边框颜色 */
+.color-primary.data-v-74b68446 {
+  color: #3049C0;
+}
+.color-333.data-v-74b68446 {
+  color: #333333;
+}
+.color-666.data-v-74b68446 {
+  color: #666666;
+}
+.color-999.data-v-74b68446 {
+  color: #999999;
+}
+.bg-color.data-v-74b68446 {
+  background-color: #f7f7f7;
+}
+.bg-white.data-v-74b68446 {
+  background-color: #ffffff;
+}
+.white-color.data-v-74b68446 {
+  color: #ffffff;
+}
+.primary-color.data-v-74b68446 {
+  color: #F54400;
+}
+.success-color.data-v-74b68446 {
+  color: #0e130f;
+}
+.warning-color.data-v-74b68446 {
+  color: #f0ad4e;
+}
+.error-color.data-v-74b68446 {
+  color: #dd524d;
+}
+.primary-text.data-v-74b68446 {
+  color: #333333;
+}
+.secondary-text.data-v-74b68446 {
+  color: #666666;
+}
+.tip-text.data-v-74b68446 {
+  color: #999999;
+}
+.color-e32417.data-v-74b68446 {
+  color: #E32417;
+}
+.point-guide-item-wrap.data-v-74b68446 {
+  padding: 0 16px;
+}
+.point-guide-item-wrap .btn.data-v-74b68446 {
+  height: 56rpx;
+  width: 120rpx;
+  border: 1px solid #dcdcdc;
+  border-radius: 28rpx;
+}
+.point-guide-item-wrap .item.data-v-74b68446 {
+  padding: 28rpx 0;
+}
+.point-guide-item-wrap .item .tag.data-v-74b68446 {
+  display: inline-block;
+  height: 36rpx;
+  line-height: 36rpx;
+  border-radius: 20rpx;
+  padding: 0 15rpx;
+  vertical-align: middle;
+}
+.point-guide-item-wrap .item .tag-card.data-v-74b68446 {
+  color: #ff9708;
+  border: 1px solid #ffdfb4;
+  background: #fff3e2;
+}
+.point-guide-item-wrap .item .tag-03.data-v-74b68446 {
+  color: #0ebb06;
+  border: 1px solid #b6eab4;
+  background: #f0fff0;
+}
+

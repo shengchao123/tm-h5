@@ -1,0 +1,121 @@
+@charset "UTF-8";
+/* uni.scss */
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+/* 边框颜色 */
+.color-primary.data-v-14fb0499 {
+  color: #3049C0;
+}
+.color-333.data-v-14fb0499 {
+  color: #333333;
+}
+.color-666.data-v-14fb0499 {
+  color: #666666;
+}
+.color-999.data-v-14fb0499 {
+  color: #999999;
+}
+.bg-color.data-v-14fb0499 {
+  background-color: #f7f7f7;
+}
+.bg-white.data-v-14fb0499 {
+  background-color: #ffffff;
+}
+.white-color.data-v-14fb0499 {
+  color: #ffffff;
+}
+.primary-color.data-v-14fb0499 {
+  color: #F54400;
+}
+.success-color.data-v-14fb0499 {
+  color: #0e130f;
+}
+.warning-color.data-v-14fb0499 {
+  color: #f0ad4e;
+}
+.error-color.data-v-14fb0499 {
+  color: #dd524d;
+}
+.primary-text.data-v-14fb0499 {
+  color: #333333;
+}
+.secondary-text.data-v-14fb0499 {
+  color: #666666;
+}
+.tip-text.data-v-14fb0499 {
+  color: #999999;
+}
+.color-e32417.data-v-14fb0499 {
+  color: #E32417;
+}
+page.data-v-14fb0499 {
+  background: #f7f7f7;
+  height: 100%;
+}
+.p10-0.data-v-14fb0499 {
+  padding: 10rpx 0;
+}
+.p24.data-v-14fb0499 {
+  padding: 24rpx 0 !important;
+}
+.h28.data-v-14fb0499 {
+  height: 28rpx;
+  line-height: 28rpx;
+}
+.data-v-14fb0499 .u-form-item--left__content {
+  padding-right: 24rpx;
+}
+.life-wrap.data-v-14fb0499 {
+  padding-bottom: 152rpx;
+  overflow: auto;
+}
+.address-textarea.data-v-14fb0499 {
+  overflow: hidden;
+  width: 420rpx;
+}
+.address-textarea.data-v-14fb0499 textarea {
+  padding: 0 !important;
+  width: 100%;
+  font-size: 28rpx;
+}
+.name-textarea.data-v-14fb0499 {
+  overflow: hidden;
+  width: 100%;
+}
+.name-textarea.data-v-14fb0499 textarea {
+  min-height: 78rpx !important;
+  padding: 0 !important;
+  width: 100%;
+  font-size: 28rpx;
+}
+.content-textarea.data-v-14fb0499 {
+  overflow: hidden;
+  height: 200rpx;
+  width: 100%;
+}
+.content-textarea.data-v-14fb0499 textarea {
+  height: 170rpx !important;
+  padding: 0 !important;
+  width: 100%;
+  font-size: 28rpx;
+  overflow-y: scroll;
+}
+.content-textarea .experience-count.data-v-14fb0499 {
+  height: 22rpx;
+  line-height: 22rpx;
+  float: right;
+}
+.save-btn.data-v-14fb0499 {
+  height: 120rpx;
+  position: fixed;
+  bottom: 0;
+  z-index: 100;
+}
+.data-v-14fb0499 .u-datetime-picker {
+  border-radius: 30rpx 30rpx 0 0;
+  overflow: hidden;
+}
+
