@@ -13,7 +13,8 @@
               inactive-color="#666666"
               @change="tabChange"></u-tabs>
     </div>
-    <div v-if="current !== 2">
+    <!-- 政策、专家 -->
+    <div v-if="current === 0 || current === 1">
       <empty v-if="isEmpty"></empty>
       <mescroll-uni v-else
                     ref="mescrollRef"
@@ -43,12 +44,14 @@
         </view>
       </mescroll-uni>
     </div>
-    <div v-else>
+    <!-- 联盟纳贤 -->
+    <div v-if="current === 2">
+      <union-reinforce></union-reinforce>
+    </div>
+    <!-- 无感直补 -->
+    <div v-if="current === 3">
       <subsidies></subsidies>
     </div>
-    <!-- <img v-else
-         :src="imgs[current]"
-         @click="onToDetail"> -->
     <contact-popup :showContact.sync="showContact"
                    :noTimeShow.sync="noTimeShow"
                    :selectItem="selectItem"
@@ -65,6 +68,7 @@ import MescrollMixin from "@/components/mescroll-uni/mescroll-mixins.js";
 import MescrollUni from "@/components/mescroll-uni/mescroll-uni.vue";
 import PolicyInfoItem from './components/PolicyInfoItem.vue'
 import ExpertServicesItem from './components/ExpertServicesItem.vue'
+import UnionReinforce from './components/UnionReinforce.vue'
 import Subsidies from './components/Subsidies.vue'
 import ExpertMixin from '@/mixins/expert-detail.js'
 import ContactPopup from '../components/ContactPopup.vue'
@@ -108,7 +112,7 @@ export default {
       if (this.current === 1) {
         uni.navigateTo({ url: `/pages/think-tank/expert/Detail?id=${id}` })
       }
-      if (this.current === 2) {
+      if (this.current === 3) {
         uni.navigateTo({ url: '/pages/think-tank/countryside/Detail' })
       }
     },
@@ -144,6 +148,9 @@ export default {
             name: '专家服务'
           },
           {
+            name: '联盟纳贤'
+          },
+          {
             name: '无感直补'
           },
         ]
@@ -159,6 +166,7 @@ export default {
     PolicyInfoItem,
     ExpertServicesItem,
     MescrollUni,
+    UnionReinforce,
     Subsidies,
     ContactPopup
   }

@@ -64,3 +64,21 @@ export function getShowAgricultureRelatedProjectsDetail (params) { // 涉农项�
     }
   })
 }
+
+export function getJourneyPostShowPage (params) { // 岗位分页
+  return request({
+    url: urls.getJourneyPostShowPage,
+    data: {
+      ...params
+    }
+  })
+}
+
+export function getJourneyPostDetail (params) { // 岗位详情
+  return request({
+    url: urls.getJourneyPostDetail,
+    data: {
+      ...params
+    }
+  })
+}

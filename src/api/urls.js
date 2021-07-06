@@ -36,6 +36,8 @@ export const urls = {
   leaveMessage: '/linanJourney/journeyTalentsMessage/leaveMessage', // 留言
   getShowAgricultureRelatedProjectsPage: '/linanJourney/journeyAgricultureRelatedProjects/getShowAgricultureRelatedProjectsPage',//涉农项目分页
   getShowAgricultureRelatedProjectsDetail: '/linanJourney/journeyAgricultureRelatedProjects/getShowAgricultureRelatedProjectsDetail',//涉农项目详情
+  getJourneyPostShowPage:'/linanJourney/journeyPost/getJourneyPostShowPage',//岗位分页
+  getJourneyPostDetail:'/linanJourney/journeyPost/getJourneyPostDetail',//岗位详情
 
   // 初心之旅
   getRecommendJourneyLineList: '/linanJourney/journeyLine/getRecommendJourneyLineList', // 推荐路线
