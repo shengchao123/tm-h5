@@ -154,7 +154,7 @@ export default {
     return {
       callInfo: {
         title: '杭州市临安公共交通有限公司',
-        phoneList: ['0571-61081012', '13805769876']
+        phoneList: ['0571-61081012']
       },
       showContact: false,
       isScroll: false,
