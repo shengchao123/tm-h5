@@ -67,6 +67,10 @@ export default {
       this.current = index;
     }
   },
+  onLoad ({ current }) {
+    if (!current) return
+    this.current = 1 * current
+  },
   created () {
     uni.$on('onOpenGuide', (data) => {
       this.showGuide = true
