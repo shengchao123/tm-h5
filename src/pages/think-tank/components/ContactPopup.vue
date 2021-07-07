@@ -4,7 +4,8 @@
              v-model="showContact"
              mode="center"
              border-radius="24"
-             width="540">
+             width="540"
+             :mask-close-able="false">
       <view class="container column">
         <text class="color-999 ft28 line1">即将拨打专家电话</text>
         <text class="color-333 ft34 medium line1 mt36">{{selectItem.contactPhone}}</text>
@@ -36,7 +37,8 @@
              v-model="noTimeShow"
              mode="center"
              border-radius="24"
-             width="540">
+             width="540"
+             :mask-close-able="false">
       <view class="container column">
         <view class="column center-align color-333 ft32 medium">
           <text class="line1">不在电话服务时间内</text>

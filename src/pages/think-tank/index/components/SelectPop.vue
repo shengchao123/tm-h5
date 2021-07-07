@@ -44,7 +44,7 @@ export default {
     },
   },
   props: {
-    selectedId: Number || String,
+    selectedId: [Number, String],
   },
   data () {
     return {
