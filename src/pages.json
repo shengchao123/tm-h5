@@ -52,6 +52,12 @@
 			}
 		},
 		{
+			"path": "pages/original-travel/travel-list/index",
+			"style": {
+				"navigationBarTitleText": "临安星级旅行社"
+			}
+		},
+		{
 			"path": "pages/original-travel/stroke-order/signUp",
 			"style": {
 				"navigationBarTitleText": "报名"
