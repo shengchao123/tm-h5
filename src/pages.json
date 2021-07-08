@@ -160,6 +160,18 @@
 			}
 		},
 		{
+			"path": "pages/steward/good-helper/project-detail/index",
+			"style": {
+				"navigationBarTitleText": "项目详情"
+			}
+		},
+		{
+			"path": "pages/steward/good-helper/add-record/index",
+			"style": {
+				"navigationBarTitleText": "添加记录"
+			}
+		},
+		{
 			"path": "pages/urban-rural/index/index",
 			"style": {
 				"navigationBarTitleText": "城乡融合",

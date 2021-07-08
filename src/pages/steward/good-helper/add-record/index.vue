@@ -1,40 +1,19 @@
 <template>
-  <div class='wrap'>
+  <div class='record-wrap'>
     <u-form ref="form"
             :model="form.data">
       <div class="pl32 pr32 bg-white">
-        <u-form-item label="人数"
+        <u-form-item label="跟进状态"
                      label-width="192"
                      prop="peopleQuantity">
-          <u-input v-model="form.data.peopleQuantity"
-                   type="number"
-                   placeholder="输入人数" />
+
         </u-form-item>
-        <u-form-item label="游玩天数"
+        <u-form-item label="记录时间"
                      label-width="192"
                      prop="playDays">
-          <div class="between-row flex1">
-            <u-input v-model="form.data.playDays"
-                     type="number"
-                     placeholder="输入游玩天数" />
-            <span class="ft24 color-999 ml8">天</span>
-          </div>
+
         </u-form-item>
-        <u-form-item label="联系电话"
-                     label-width="192"
-                     :border-bottom="false"
-                     prop="contactPhone">
-          <u-input v-model="form.data.contactPhone"
-                   type="number"
-                   placeholder="输入电话" />
-        </u-form-item>
-      </div>
-      <div class="pl32 pr32 ft22 color-999"
-           style="height: 62rpx; line-height: 62rpx">
-        *只有符合条件商家接单后才能看到您的联系方式，以做进一步沟通
-      </div>
-      <div class="pl32 pr32 bg-white">
-        <u-form-item label="定制需求"
+        <u-form-item label="记录内容"
                      label-position="top"
                      :border-bottom="false"
                      prop="demand">
@@ -43,10 +22,21 @@
                      type="textarea"
                      height="160"
                      maxlength="200"
-                     placeholder="说说您的需求，比如您的出行方式，需要体验哪些活动等，以获取更合适的服务" />
+                     placeholder="输入内容，记录项目的服务进度" />
             <div class="ft22 color-999"
                  style="text-align: right; line-height: 24rpx">{{form.data.demand.length}}/200</div>
           </div>
+        </u-form-item>
+
+      </div>
+      <div class="mt24 pl32 bg-white">
+        <u-form-item label="图片上传（非必填）"
+                     label-width="192"
+                     label-position="top"
+                     prop="playDays">
+          <upload-images :count="3"
+                         :length="3"
+                         :imageData.sync="form.data.attachmentDTOList"></upload-images>
         </u-form-item>
       </div>
     </u-form>
@@ -58,6 +48,8 @@
   </div>
 </template>
 <script>
+import UploadImages from "@/components/upload-images";
+
 export default {
   methods: {
     onSubmit () {
@@ -117,24 +109,19 @@ export default {
     }
   },
   data () {
-    const contactPhoneVal = (rule, value, callback) => {
-      if (!value) return callback(new Error('输入电话'))
-      if (!this.$u.test.mobile(value)) return callback(new Error('手机号不正确'))
-      callback()
-    }
     return {
-      journeyPlayCustomizationId: null,
       form: {
         data: {
           peopleQuantity: null,
           playDays: null,
           contactPhone: null,
           demand: '',
+          attachmentDTOList: []
         },
         rules: {
           peopleQuantity: [{ required: true, message: '输入人数', trigger: ['change', 'blur'] }],
           playDays: [{ required: true, message: '输入游玩天数', trigger: ['change', 'blur'] }],
-          contactPhone: [{ required: true, trigger: ['change', 'blur'], validator: contactPhoneVal }],
+          contactPhone: [{ required: true, trigger: ['change', 'blur'] }],
           demand: [{ required: true, message: '输入定制需求', trigger: ['change', 'blur'] }],
         }
       }
@@ -151,19 +138,24 @@ export default {
   },
   onLoad ({ id }) {
     if (id) {
+      uni.setNavigationBarTitle({
+        title: '编辑记录'
+      });
       this.journeyPlayCustomizationId = id
       this.getJourneyPlayCustomizationInfoById(id)
     }
-  }
+  },
+  components: { UploadImages }
 }
 </script>
-<style >
+<style>
 page {
+  height: 100%;
   background: #f7f7f7;
 }
 </style>
 <style lang='scss' scoped>
-.wrap {
+.record-wrap {
   .footer-btn {
     position: fixed;
     bottom: 0;
@@ -182,9 +174,6 @@ page {
     .disabled {
       background: #ccc;
     }
-  }
-  /deep/.uni-textarea-placeholder {
-    overflow: inherit;
   }
 }
 </style>
