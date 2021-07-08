@@ -18,10 +18,11 @@ export const needLifeDocumentaryOptions = Object.freeze([
 ])
 
 export const transportationOptions = Object.freeze([
+  { id: '07', name: '初心之旅·共富巴士', hasIcon: true },
   { id: '01', name: '包车' },
-  { id: '02', name: '公共交通' },
-  { id: '03', name: '自行前往' },
   { id: '04', name: '自驾' },
+  { id: '02', name: '公共交通', hasIcon: true },
+  { id: '03', name: '自行前往' },
   { id: '05', name: '骑行' },
   { id: '06', name: '步行' },
 ])
