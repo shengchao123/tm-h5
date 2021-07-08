@@ -18,7 +18,7 @@
           <status-tabs @changeCurrent="changeCurrent"></status-tabs>
           <div class="list">
             <project-item v-for="(item, index) in listData"
-                          :item="item"
+                          :project-item="item"
                           :key="index"></project-item>
           </div>
         </div>
@@ -66,7 +66,7 @@ export default {
           use: false, // 是否显示空布局
         },
       },
-      listData: [1, 2, 3, 4, 5]
+      listData: [{}, {}, {}]
     }
   },
   computed: {
