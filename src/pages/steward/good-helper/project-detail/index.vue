@@ -14,7 +14,8 @@
     <div class="line-block"></div>
     <div class="bg-white pt28">
       <div class="ft32 medium pl32 pr32">跟进记录</div>
-      <div class="record pt32 pl40 pr48">
+      <div v-if="recordList.length > 0"
+           class="record pt32 pl40 pr48">
         <div v-for="(item, index) in recordList"
              :key="index"
              class="record-item flex">
@@ -53,6 +54,13 @@
           </div>
         </div>
       </div>
+      <div v-else
+           class="center column"
+           style="padding-top: 100rpx">
+        <img src="@/static/empty/no_data.png"
+             style="width: 332rpx;height: 256rpx;">
+        <div class="color-999 ft28 mt16">暂无跟进记录</div>
+      </div>
     </div>
     <publish-btn v-if="isUnitUser"
                  text="添加记录"
@@ -88,36 +96,36 @@ export default {
     return {
       isScroll: false,
       recordList: [
-        {
-          status: 1,
-          content: "过改造的地下车库，地面平整、车位分布有序，还新",
-          time: 12231254131,
-          imgs: [
-            'material/image/2021032121040637586675219770368.jpg',
-            'material/image/2021032121040637586675219770368.jpg',
-            'material/image/2021032121040637586675219770368.jpg'
-          ]
-        },
-        {
-          content: "过改造的地下车库，地面平整、车位分布有序，还新",
-          time: 12231254131
-        },
-        {
-          content: "过改造的地下车库，地面平整、车位分布有序，还新",
-          time: 12231254131
-        },
-        {
-          content: "过改造的地下车库，地面平整、车位分布有序，还新",
-          time: 12231254131
-        },
-        {
-          content: "过改造的地下车库，地面平整、车位分布有序，还新",
-          time: 12231254131
-        },
-        {
-          content: "过改造的地下车库，地面平整、车位分布有序，还新",
-          time: 12231254131
-        }
+        // {
+        //   status: 1,
+        //   content: "过改造的地下车库，地面平整、车位分布有序，还新",
+        //   time: 12231254131,
+        //   imgs: [
+        //     'material/image/2021032121040637586675219770368.jpg',
+        //     'material/image/2021032121040637586675219770368.jpg',
+        //     'material/image/2021032121040637586675219770368.jpg'
+        //   ]
+        // },
+        // {
+        //   content: "过改造的地下车库，地面平整、车位分布有序，还新",
+        //   time: 12231254131
+        // },
+        // {
+        //   content: "过改造的地下车库，地面平整、车位分布有序，还新",
+        //   time: 12231254131
+        // },
+        // {
+        //   content: "过改造的地下车库，地面平整、车位分布有序，还新",
+        //   time: 12231254131
+        // },
+        // {
+        //   content: "过改造的地下车库，地面平整、车位分布有序，还新",
+        //   time: 12231254131
+        // },
+        // {
+        //   content: "过改造的地下车库，地面平整、车位分布有序，还新",
+        //   time: 12231254131
+        // }
       ]
     }
   },

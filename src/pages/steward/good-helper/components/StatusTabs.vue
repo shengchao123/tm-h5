@@ -26,17 +26,17 @@ export default {
       current: 0,
       tabs: [
         {
-          id: '01',
+          id: 2,
           name: '待认领',
           count: 0
         },
         {
-          id: '02',
+          id: 3,
           name: '领办中',
           count: 2
         },
         {
-          id: '03',
+          id: 4,
           name: '已办结',
           count: 0
         }
