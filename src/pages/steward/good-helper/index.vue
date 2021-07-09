@@ -8,9 +8,16 @@
                   @up="upCallback">
       <template>
         <div class="between-row bg-white header pl16 pr16 pb16 pt28">
-          <div class="link ft30 white-color center-align link-jointly">临安区社区共建单位联系表</div>
-          <div class="link ft30 white-color center-align link-hall"
-               style="padding-left: 54rpx">领办大厅</div>
+          <div class="link center-justify link-jointly column">
+            <span class="ft30 white-color pl16">共建单位联系表</span>
+            <span class="ft26 pt16 pl16 pb8"
+                  style="color: #C8E5FF">临安区社区</span>
+          </div>
+          <div class="link center-justify link-hall column">
+            <span class="ft30 white-color pl16">领办大厅</span>
+            <span class="ft26 pt16 pl16 pb8"
+                  style="color: #FDD3C5">{{isUnitUser ? '领办项目享积分加成' : '项目供更多单位认领'}}</span>
+          </div>
         </div>
         <div class="bg-white pl32 pr32 pb16">
           <div class="address pl24 pr24 center-align"
@@ -29,7 +36,9 @@
             <project-item v-for="(item, index) in listData"
                           :project-item="item"
                           :key="index"
-                          :show-border="index < listData.length - 1"></project-item>
+                          :show-border="index < listData.length - 1"
+                          :isHome="true"
+                          :isUnitUser="isUnitUser"></project-item>
           </div>
         </div>
       </template>
@@ -50,9 +59,9 @@ export default {
   methods: {
     changeCurrent (index, type) {
       this.projectType = type
+      this.downCallback()
     },
     onSelectCommunit () {
-
     },
     upCallback (page) {
       this.getJourneyHelperProjectShowPage(page)
@@ -86,7 +95,7 @@ export default {
       },
       communityOrgId: null,
       projectType: 2,
-      listData: [{}, {}, {}]
+      listData: []
     }
   },
   computed: {
