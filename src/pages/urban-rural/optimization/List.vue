@@ -69,12 +69,17 @@ export default {
     findProductClassification () {
       this.$api.findProductClassification().then(res => {
         if (res.isError) return
-        this.subTabs = res.content.map(item => {
+        let _temArr = res.content.map(item => {
           return {
             status: item.id,
             text: item.name
           }
         })
+        _temArr.unshift({
+          status: '',
+          text: '综合推荐'
+        })
+        this.subTabs = _temArr
       })
     }
   },
