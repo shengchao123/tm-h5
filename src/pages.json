@@ -178,6 +178,12 @@
 			}
 		},
 		{
+			"path": "pages/steward/good-helper/reception-hall/index",
+			"style": {
+				"navigationBarTitleText": "领办大厅"
+			}
+		},
+		{
 			"path": "pages/urban-rural/index/index",
 			"style": {
 				"navigationBarTitleText": "城乡融合",
