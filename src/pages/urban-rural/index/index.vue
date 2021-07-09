@@ -68,6 +68,7 @@ export default {
     },
     tabsChange (index) {
       this.current = index;
+      this.showImg = true
     }
   },
   onLoad ({ current }) {
