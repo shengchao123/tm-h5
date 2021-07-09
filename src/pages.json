@@ -184,6 +184,18 @@
 			}
 		},
 		{
+			"path": "pages/steward/good-helper/contact-list/index",
+			"style": {
+				"navigationBarTitleText": "共建单位联系表"
+			}
+		},
+		{
+			"path": "pages/steward/good-helper/integral-rule/index",
+			"style": {
+				"navigationBarTitleText": "积分规则"
+			}
+		},
+		{
 			"path": "pages/urban-rural/index/index",
 			"style": {
 				"navigationBarTitleText": "城乡融合",

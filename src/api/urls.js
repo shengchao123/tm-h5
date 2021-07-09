@@ -5,6 +5,9 @@ export const imgHost = 'https://hzslzx.oss-cn-hangzhou.aliyuncs.com/system/h5-ma
 
 export const urls = {
 
+  // 共建单位联系表
+  getJourneyCoConstructionUnitTablePage: '/linanJourney/journeyCoConstructionUnit/getJourneyCoConstructionUnitTablePage', // 共建单位联系表分页
+  getUnitListByCommunity: '/linanJourney/journeyCoConstructionUnit/getUnitListByCommunity', // 根据社区id获取单位列表
   // 城乡融合
   getJourneyProductInfoPage: '/linanJourney/journeyProduct/getJourneyProductInfoPage', // 城乡产品列表
   getJourneyProductInfoById: '/linanJourney/journeyProduct/getJourneyProductInfoById', // 城乡产品详情
@@ -36,8 +39,8 @@ export const urls = {
   leaveMessage: '/linanJourney/journeyTalentsMessage/leaveMessage', // 留言
   getShowAgricultureRelatedProjectsPage: '/linanJourney/journeyAgricultureRelatedProjects/getShowAgricultureRelatedProjectsPage',//涉农项目分页
   getShowAgricultureRelatedProjectsDetail: '/linanJourney/journeyAgricultureRelatedProjects/getShowAgricultureRelatedProjectsDetail',//涉农项目详情
-  getJourneyPostShowPage:'/linanJourney/journeyPost/getJourneyPostShowPage',//岗位分页
-  getJourneyPostDetail:'/linanJourney/journeyPost/getJourneyPostDetail',//岗位详情
+  getJourneyPostShowPage: '/linanJourney/journeyPost/getJourneyPostShowPage',//岗位分页
+  getJourneyPostDetail: '/linanJourney/journeyPost/getJourneyPostDetail',//岗位详情
 
   // 初心之旅
   getRecommendJourneyLineList: '/linanJourney/journeyLine/getRecommendJourneyLineList', // 推荐路线

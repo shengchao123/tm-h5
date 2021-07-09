@@ -20,3 +20,22 @@ export function findCommunityOrganizationTree (params) { // 获取街道社区�
     }
   })
 }
+
+export function getJourneyCoConstructionUnitTablePage (params) { // 共建单位联系表
+  return request({
+    url: urls.getJourneyCoConstructionUnitTablePage,
+    needlessToken: true,
+    data: {
+      ...params
+    }
+  })
+}
+export function getUnitListByCommunity (params) { // 根据社区id获取单位列表
+  return request({
+    url: urls.getUnitListByCommunity,
+    needlessToken: true,
+    data: {
+      ...params
+    }
+  })
+}
