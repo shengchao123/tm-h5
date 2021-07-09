@@ -48,7 +48,7 @@ export default {
       uni.$emit('changeImgStatus', this.mescroll.isScrollUp)
     },
     changeSubTab (item) {
-      this.search.resourceType = item.status
+      this.search.classification = item.status
       this.search.pageNumber = 1
       this.getDataList()
     },
@@ -64,6 +64,18 @@ export default {
         this.mescroll.endBySize(items.length, count)
         this.dataList = params.pageNumber === 1 ? items : this.dataList.concat(items)
       })
+    },
+    // 获取商品列表
+    findProductClassification () {
+      this.$api.findProductClassification().then(res => {
+        if (res.isError) return
+        this.subTabs = res.content.map(item => {
+          return {
+            status: item.id,
+            text: item.name
+          }
+        })
+      })
     }
   },
   data () {
@@ -76,13 +88,11 @@ export default {
           bottom: 120
         }
       },
-      subTabs: [
-        {
-          status: '01',
-          text: '房产商铺'
-        }
-      ]
+      subTabs: []
     }
+  },
+  created () {
+    this.findProductClassification()
   },
   mixins: [listMixins],
   components: { ProductItem, SubTabs },

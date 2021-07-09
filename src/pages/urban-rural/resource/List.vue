@@ -1,7 +1,7 @@
 <template>
   <div class="wrap">
     <SubTabs @change="changeSubTab"
-             :tabs="subTabs"></SubTabs>
+             :tabs="resourceSubTabs"></SubTabs>
     <mescroll-uni ref="mescrollRef"
                   top="410rpx"
                   :bottom="mescrollBottom"
@@ -31,6 +31,7 @@ import SubTabs from '@/pages/urban-rural/components/SubTabs'
 import ResourceItem from '@/pages/urban-rural/components/ResourceItem'
 import PublishBtn from '@/pages/urban-rural/components/PublishBtn'
 import listMixins from '../mixins'
+import { resourceSubTabs } from '@/utils/enum.js'
 
 export default {
   name: 'List',
@@ -71,7 +72,8 @@ export default {
         this.dataList = params.pageNumber === 1 ? items : this.dataList.concat(items)
         this.mescroll.endBySize(items.length, count)
       })
-    }
+    },
+
   },
   components: { SubTabs, ResourceItem, PublishBtn },
   mixins: [listMixins],
@@ -89,24 +91,7 @@ export default {
         }
       },
       mescrollBottom: '20rpx',
-      subTabs: [
-        {
-          status: '01',
-          text: '房产商铺'
-        },
-        {
-          status: '02',
-          text: '土地林地'
-        },
-        {
-          status: '03',
-          text: '农产品'
-        },
-        {
-          status: '04',
-          text: '其它'
-        }
-      ]
+      resourceSubTabs
     }
   }
 }

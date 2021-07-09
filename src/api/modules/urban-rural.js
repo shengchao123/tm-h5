@@ -1,6 +1,12 @@
 import request from '../request'
 import { urls } from '../urls'
 
+export function findProductClassification (params) { // '/setting/district/findProductClassification', // 城乡融合分类
+  return request({
+    url: urls.findProductClassification,
+    needlessToken: true
+  })
+}
 export function getJourneyProductInfoPage (params) { // '/linanJourney/journeyProduct/getJourneyProductInfoPage', // 城乡产品列表
   return request({
     url: urls.getJourneyProductInfoPage,
