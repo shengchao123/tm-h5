@@ -24,6 +24,7 @@
                           :project-item="item"
                           :key="index"
                           :show-border="false"
+                          :isUnitUser="isUnitUser"
                           @onReceive="onReceive">
             </project-item>
           </view>
