@@ -5,7 +5,7 @@
            :mask-close-able="false">
     <view class="pl32 pr32 pb32">
       <div class="title ft30 tc">选择联办单位</div>
-      <div class="tip ft24 tc"></div>
+      <div class="tip ft24 tc pt8 pb8">*最多选择2个联办单位</div>
       <div class="close-btn"
            @click="hide">
         <svg-icon class="ft24 color-999 bold mt8"
@@ -23,10 +23,10 @@
                 class="iconfont icon_duihao ft28 mt4"></text>
         </view>
       </scroll-view>
-      <div class="pt8">
-        <div class="confirm-btn white-color ft30 tc"
+      <div class="pt8 between-row">
+        <div class="other-btn white-color ft30 tc"
              @click="hide">取消</div>
-        <div class="confirm-btn white-color ft30 tc"
+        <div class="confirm-btn white-color ft30 tc ml24"
              @click="onConfirm">确定</div>
       </div>
     </view>
@@ -52,7 +52,11 @@ export default {
           return
         }
       }
-      selectList.push(item)
+      if (selectList.length >= 2) {
+        return this.$msg('最多选择2个')
+      }
+      this.selectList.push(item)
+
     },
     onConfirm () {
       this.$emit('onConfirm', this.selectList)
@@ -94,7 +98,7 @@ export default {
   color: #ff9400;
 }
 .list {
-  max-height: 680rpx;
+  max-height: 702rpx;
   overflow: scroll;
   .item {
     height: 97rpx;
@@ -120,7 +124,7 @@ export default {
   width: 331rpx;
   height: 88rpx;
   line-height: 88rpx;
-  border-radius: 45;
+  border-radius: 45rpx;
   border: solid 1px #e32417;
   color: #e32417;
 }
