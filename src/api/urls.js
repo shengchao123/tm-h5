@@ -91,6 +91,10 @@ export const urls = {
   getGraphicInfoById: '/partyWebsite/partyGraphic/getGraphicInfoById', // 获取风采图文详情
   findOrgTreeByOrgId: '/organization/orgConsumer/findOrgTreeByOrgId', // 根据组织id获取组织树
 
+  // 基层治理
+  getJourneyHelperProjectShowPage: '/linanJourney/journeyHelperProject/getJourneyHelperProjectShowPage', // 社区项目分页
+  findCommunityOrganizationTree: '/organization/org/findCommunityOrganizationTree', // 获取街道社区组织树
+
   // 我的页面
   getMemberPersonalInfo: '/crm/member/getMemberPersonalInfo', // 我的信息获取
   getMyJourneyItineraryPage: '/linanJourney/journeyItinerary/getMyJourneyItineraryPage', // 我的行程单

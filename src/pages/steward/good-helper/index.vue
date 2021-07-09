@@ -12,18 +12,29 @@
           <div class="link ft30 white-color center-align link-hall"
                style="padding-left: 54rpx">领办大厅</div>
         </div>
-        <div class="bg-white mt24">对口社区</div>
-        <div class="bg-white mt24">领办大厅</div>
-        <div class="tb">
+        <div class="bg-white pl32 pr32 pb16">
+          <div class="address pl24 pr24 center-align"
+               @click="onSelectCommunit">
+            <span class="ft28 color-666">xxxxxxxx</span>
+            <svg-icon icon="icon_xiangxia"
+                      class="ft16 ml8"></svg-icon>
+          </div>
+          <div class="tr pt16">
+            <span class="ft22 color-999">共建单位：宣传部 妇联 司法局</span>
+          </div>
+        </div>
+        <div class="bb mt24">
           <status-tabs @changeCurrent="changeCurrent"></status-tabs>
           <div class="list">
             <project-item v-for="(item, index) in listData"
                           :project-item="item"
-                          :key="index"></project-item>
+                          :key="index"
+                          :show-border="index < listData.length - 1"></project-item>
           </div>
         </div>
       </template>
     </mescroll-uni>
+    <selection-communit></selection-communit>
   </div>
 </template>
 <script>
@@ -32,26 +43,33 @@ import MescrollUni from "@/components/mescroll-uni/mescroll-uni.vue";
 
 import StatusTabs from './components/StatusTabs.vue'
 import ProjectItem from './components/ProjectItem.vue';
+import SelectionCommunit from './components/SelectionCommunit.vue';
 export default {
   mixins: [MescrollMixin],
-  components: { StatusTabs, ProjectItem },
+  components: { StatusTabs, ProjectItem, SelectionCommunit },
   methods: {
-    changeCurrent (index, status) {
-      console.log(index, status)
+    changeCurrent (index, type) {
+      this.projectType = type
+    },
+    onSelectCommunit () {
+
     },
     upCallback (page) {
-      // this.getListData(page)
+      this.getJourneyHelperProjectShowPage(page)
       this.mescroll.endErr()
     },
     downCallback () {
       this.mescroll.resetUpScroll(); // 重置列表为第一页
     },
-    getListData (page) {
+    getJourneyHelperProjectShowPage (page) {
+      const userCommunityOrgId = this.memberPersonalInfo.communityOrgId
       const params = {
         pageNumber: page && page.num || 1,
-        pageSize: page && page.size || 10
+        pageSize: page && page.size || 10,
+        communityOrgId: userCommunityOrgId || this.communityOrgId,
+        type: this.projectType
       }
-      this.$api.xxxxxxxxxxxxxxxxxxxxxxx(params).then(res => {
+      this.$api.getJourneyHelperProjectShowPage(params).then(res => {
         if (res.isError) return this.mescroll.endErr()
         const { items, count } = res.content
         this.mescroll.endBySize(items.length, count)
@@ -66,11 +84,19 @@ export default {
           use: false, // 是否显示空布局
         },
       },
+      communityOrgId: null,
+      projectType: 2,
       listData: [{}, {}, {}]
     }
   },
   computed: {
-
+    memberPersonalInfo () {
+      return this.$store.state.user.memberPersonalInfo
+    },
+    // 是否共建单位用户
+    isUnitUser () {
+      return this.memberPersonalInfo.isUnitUser
+    }
   },
 }
 </script>
@@ -98,6 +124,11 @@ page {
       background: url("@/static/steward/bg-hall.png") no-repeat 0 0;
       background-size: 100% 100%;
     }
+  }
+  .address {
+    height: 79rpx;
+    border-radius: 16rpx;
+    background: #e8f0ff;
   }
 }
 </style>
