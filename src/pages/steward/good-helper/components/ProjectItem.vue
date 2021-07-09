@@ -1,5 +1,6 @@
 <template>
-  <div class='porject-item-wrap bg-white pl32 pr32'>
+  <div class='porject-item-wrap bg-white pl32 pr32'
+       @click="onDetail">
     <div class="pt32 pb32"
          :class="showBorder && 'bb'">
       <div class="center-align between-row">
@@ -15,7 +16,8 @@
           </div>
         </div>
         <div v-if="isShowReceiveBtn"
-             class="receive-btn tc ft24 color-e32417">认领</div>
+             class="receive-btn tc ft24 color-e32417"
+             @click="onReceive">认领</div>
       </div>
       <div class="between-row center-align ft24 color-999 pt16 pb16">
         <div>
@@ -46,6 +48,14 @@
 export default {
   name: 'projectItem',
   methods: {
+    onDetail () {
+      uni.navigateTo({
+        url: `/pages/steward/good-helper/project-detail/index?id=${this.projectItem.id}`
+      })
+    },
+    onReceive () {
+
+    },
     onExpandContent () {
       this.isShowExpand = false
       this.isHideContent = false
@@ -72,10 +82,11 @@ export default {
     isShowReceiveBtn () {
       // 1:待认领; 2:领办中; 3:已办结
       const { status } = this.projectItem
-      return this.isUnitUser && status === 2
+      return this.isUnitUser && status === 1
     },
     projectLeadName () {
       const { journeyHelperProjectLeadRecordList } = this.projectItem
+      if (!journeyHelperProjectLeadRecordList) return ''
       if (journeyHelperProjectLeadRecordList.length > 1) {
         return '由共建单位联合领办'
       }
@@ -110,7 +121,7 @@ export default {
     },
     statusIcon () {
       const { journeyHelperProjectScheduleList } = this.projectItem
-      if (journeyHelperProjectScheduleList.length === 0) return {
+      if (!journeyHelperProjectScheduleList || journeyHelperProjectScheduleList.length === 0) return {
         icon: 'icon_zanwujindu',
         color: '#999999'
       }

@@ -2,17 +2,18 @@
   <div class='project-detail-wrap'
        @scroll="scroll">
     <div class="pt28 pb28 pl32 pr32 bg-white">
-      <div class="ft40 bold">吴越人家地下车库改造</div>
+      <div class="ft40 bold">{{baseInfo.name}}</div>
       <div class="ft26 color-666 pt24 pb24">
-        <span>2021年4月26日</span>
-        <span class="ml48">杭州市临安区农业农村局</span>
+        <span>{{startTime}}</span>
+        <span v-if="baseInfo.status !== 1"
+              class="ml48">{{projectLeadName}}</span>
       </div>
-      <div class="ft30 content">
-        锦北街道平山社区吴越人家小区是保障性住房，建成已10余年，当前的车位配比才1：0.35，停车难问题突出。地下车库也因年久失修，导致居民不愿意入库停车，小区内乱停车现象严重，居民因抢占车位引发矛盾的现象时有发生。
-      </div>
+      <div class="ft30 content">{{baseInfo.description}}</div>
     </div>
-    <div class="line-block"></div>
-    <div class="bg-white pt28">
+    <div v-if="baseInfo.status !== 1"
+         class="line-block"></div>
+    <div v-if="baseInfo.status !== 1"
+         class="bg-white pt28">
       <div class="ft32 medium pl32 pr32">跟进记录</div>
       <div v-if="recordList.length > 0"
            class="record pt32 pl40 pr48">
@@ -22,9 +23,9 @@
           <div class="step relative center-justify mr16">
             <div v-if="index === 0"
                  class="step-first">
-              <svg-icon :icon="item.status ? 'icon_yiwancheng' : 'icon_shijian'"
+              <svg-icon :icon="item.status === 3 ? 'icon_yiwancheng' : 'icon_shijian'"
                         class="ft40"
-                        :style="{color: item.status ? '#F58200' : '#999'}"></svg-icon>
+                        :class="item.status === 3 ? 'color-F58200' : 'color-999'"></svg-icon>
             </div>
             <div v-else
                  class="step-point"></div>
@@ -33,23 +34,26 @@
           </div>
           <div class="flex1">
             <div class="between-row">
-              <div class="ft30 medium">跟进中</div>
-              <div v-if="isUnitUser"
+              <div class="ft30 medium"
+                   :class="item.status === 3 && 'color-F58200'">
+                {{item.status === 3 ? '已办结' : '跟进中'}}
+              </div>
+              <div v-if="isCanEdit"
                    class="edit-btn"
                    @click="onEdit(item)">
                 <svg-icon icon="icon_bianji"
                           class="ft28 color-666"></svg-icon>
               </div>
             </div>
-            <div class="ft26 pt16 pb16">{{item.content}}</div>
-            <div class="ft24 color-999 pb24">{{$moment(item.time).format('YYYY-MM-DD hh:mm:ss')}}</div>
-            <div v-if="item.imgs && item.imgs.length > 0"
+            <div class="ft26 pt16 pb16">{{item.description}}</div>
+            <div class="ft24 color-999 pb24">{{$moment(item.recordTime).format('YYYY-MM-DD hh:mm:ss')}}</div>
+            <div v-if="item.attachmentDTOList && item.attachmentDTOList.length > 0"
                  class="img-list flex pb28">
-              <image v-for="(img, imgIndex) in item.imgs"
+              <image v-for="(img, imgIndex) in item.attachmentDTOList"
                      :key="imgIndex"
                      mode="aspectFill"
                      class="img-item mr20"
-                     :src="$fileHost + img"></image>
+                     :src="$fileHost + img.url"></image>
             </div>
           </div>
         </div>
@@ -62,12 +66,17 @@
         <div class="color-999 ft28 mt16">暂无跟进记录</div>
       </div>
     </div>
-    <publish-btn v-if="isUnitUser"
+    <publish-btn v-if="isCanEdit"
                  text="添加记录"
                  :isScroll="isScroll"
                  right="14rpx"
                  bottom="134rpx"
                  @onPublish="onPublish"></publish-btn>
+    <div v-if="baseInfo.status === 1"
+         class="footer-btn pl32 pr32 center">
+      <div class="receive-btn tc ft32"
+           @click="onReceive">认领</div>
+    </div>
   </div>
 </template>
 <script>
@@ -76,10 +85,40 @@ let timer = null
 export default {
   components: { PublishBtn },
   methods: {
-    onPublish () {
-    },
-    onEdit (item) {
+    // 认领
+    onReceive () {
 
+    },
+    // 新增跟进
+    onPublish () {
+      uni.navigateTo({
+        url: `/pages/steward/good-helper/add-record/index?projectId=${this.id}`
+      })
+    },
+    // 编辑跟进
+    onEdit (item) {
+      uni.setStorageSync('journeyHelperProjectSchedule', JSON.stringify(item))
+      uni.navigateTo({
+        url: `/pages/steward/good-helper/add-record/index?projectId=${this.id}&scheduleId=${item.id}`
+      })
+    },
+    getJourneyHelperProjectDetail () {
+      const params = {
+        id: this.id
+      }
+      this.$api.getJourneyHelperProjectDetail(params).then(res => {
+        if (res.isError) return this.$msg(res.message)
+        this.baseInfo = res.content
+        this.recordList = this.baseInfo.journeyHelperProjectScheduleList || []
+      })
+    },
+    setEvent () {
+      uni.$on('helperProjectOver', () => {
+        this.getJourneyHelperProjectDetail()
+      })
+    },
+    clearEvent () {
+      uni.$off('helperProjectOver')
     },
     scroll () {
       this.isScroll = true
@@ -94,39 +133,10 @@ export default {
   },
   data () {
     return {
+      id: null,
       isScroll: false,
-      recordList: [
-        // {
-        //   status: 1,
-        //   content: "过改造的地下车库，地面平整、车位分布有序，还新",
-        //   time: 12231254131,
-        //   imgs: [
-        //     'material/image/2021032121040637586675219770368.jpg',
-        //     'material/image/2021032121040637586675219770368.jpg',
-        //     'material/image/2021032121040637586675219770368.jpg'
-        //   ]
-        // },
-        // {
-        //   content: "过改造的地下车库，地面平整、车位分布有序，还新",
-        //   time: 12231254131
-        // },
-        // {
-        //   content: "过改造的地下车库，地面平整、车位分布有序，还新",
-        //   time: 12231254131
-        // },
-        // {
-        //   content: "过改造的地下车库，地面平整、车位分布有序，还新",
-        //   time: 12231254131
-        // },
-        // {
-        //   content: "过改造的地下车库，地面平整、车位分布有序，还新",
-        //   time: 12231254131
-        // },
-        // {
-        //   content: "过改造的地下车库，地面平整、车位分布有序，还新",
-        //   time: 12231254131
-        // }
-      ]
+      baseInfo: {},
+      recordList: []
     }
   },
   computed: {
@@ -136,12 +146,33 @@ export default {
     // 是否共建单位用户
     isUnitUser () {
       return this.memberPersonalInfo.isUnitUser
+    },
+    startTime () {
+      const { status, createTime, leadTime } = this.baseInfo
+      let time = status === 1 ? createTime : leadTime
+      let text = status === 1 ? '发布' : '领办'
+      return this.$moment(time).format('YYYY年MM月DD日') + text
+    },
+    projectLeadName () {
+      const { journeyHelperProjectLeadRecordList } = this.baseInfo
+      if (!journeyHelperProjectLeadRecordList) return ''
+      if (journeyHelperProjectLeadRecordList.length > 1) {
+        return '由共建单位联合领办'
+      }
+      return journeyHelperProjectLeadRecordList[0].journeyCoConstructionUnitName
+    },
+    isCanEdit () {
+      return this.isUnitUser && this.baseInfo.status === 2
     }
   },
   destroyed () {
+    this.clearEvent()
     window.removeEventListener('scroll', this.scroll)
   },
-  created () {
+  onLoad (option) {
+    this.id = option.id
+    this.getJourneyHelperProjectDetail()
+    this.setEvent()
     window.addEventListener('scroll', this.scroll)
   }
 }
@@ -203,6 +234,25 @@ page {
         }
       }
     }
+  }
+  .footer-btn {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 128rpx;
+    background: #fff;
+    .receive-btn {
+      height: 98rpx;
+      line-height: 98rpx;
+      background: #e32417;
+      border-radius: 50rpx;
+      color: #fff;
+      width: 100%;
+    }
+  }
+  .color-F58200 {
+    color: #f58200;
   }
 }
 </style>

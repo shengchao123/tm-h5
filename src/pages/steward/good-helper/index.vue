@@ -30,9 +30,11 @@
             <span class="ft22 color-999">共建单位：宣传部 妇联 司法局</span>
           </div>
         </div>
-        <div class="bb mt24">
-          <status-tabs @changeCurrent="changeCurrent"></status-tabs>
-          <div class="list">
+        <div class="mt24">
+          <status-tabs :communityOrgId="memberPersonalInfo.communityOrgId || communityOrgId"
+                       @changeCurrent="changeCurrent"></status-tabs>
+          <div v-show="listData.length > 0"
+               class="list">
             <project-item v-for="(item, index) in listData"
                           :project-item="item"
                           :key="index"
@@ -40,6 +42,7 @@
                           :isHome="true"
                           :isUnitUser="isUnitUser"></project-item>
           </div>
+          <empty v-show="listData.length === 0"></empty>
         </div>
       </template>
     </mescroll-uni>
@@ -62,6 +65,7 @@ export default {
       this.downCallback()
     },
     onSelectCommunit () {
+      if (isUnitUser) return
     },
     upCallback (page) {
       this.getJourneyHelperProjectShowPage(page)
