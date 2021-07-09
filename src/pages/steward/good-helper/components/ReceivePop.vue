@@ -1,45 +1,57 @@
 <template>
-  <u-popup v-model="isShow"
-           class="contact-dialog tc"
-           mode="center"
-           border-radius="24"
-           width="540"
-           :mask-close-able="false">
-    <view class="pl32 pr32 pb32">
-      <div class="title ft30 tc">认领</div>
-      <div class="close-btn"
-           @click="hide">
-        <svg-icon class="ft24 color-999 bold mt8"
-                  icon="icon_cha"></svg-icon>
-      </div>
-      <div v-for="(item, index) in selectList"
-           :key="index"
-           class="option mb24 pl24 center-justify column"
-           :class="item.type === selectedType ? 'option-selected' : ''"
-           @click="onSelect(item)">
-        <div class="center-align mb8">
-          <div class="mr16 radio center">
-            <svg-icon v-if="item.type === selectedType"
-                      icon="icon_duihao"
-                      class="ft20 white-color"></svg-icon>
-          </div>
-          <span class="ft32 name">{{item.name}}</span>
+  <div>
+    <u-popup v-model="isShow"
+             mode="bottom"
+             border-radius="30"
+             :mask-close-able="false">
+      <view class="pl32 pr32 pb32">
+        <div class="title ft30 tc">认领</div>
+        <div class="close-btn"
+             @click="hide">
+          <svg-icon class="ft24 color-999 bold mt8"
+                    icon="icon_cha"></svg-icon>
         </div>
-        <span class="ft24 description">{{item.description}}</span>
-      </div>
-      <div class="confirm-btn white-color ft30 tc mt32"
-           @click="onConfirm">确定</div>
-    </view>
-  </u-popup>
+        <div v-for="(item, index) in selectList"
+             :key="index"
+             class="option mb24 pl24 pt32 pb32 center-justify column"
+             :class="item.type === selectedType ? 'option-selected' : ''"
+             @click="onSelect(item)">
+          <div class="center-align mb8">
+            <div class="mr16 radio center">
+              <svg-icon v-if="item.type === selectedType"
+                        icon="icon_duihao"
+                        class="ft20 white-color"></svg-icon>
+            </div>
+            <span class="ft32 name">{{item.name}}</span>
+          </div>
+          <span class="ft24 description">{{item.description}}</span>
+          <div v-if="item.type === 1 && isHall"
+               class="pt24">
+            <div class="select-btn ft24 tc"
+                 style="color: #E32417"
+                 @click="onJointUnitShow">选择联办单位</div>
+            <div class="ft24 color-999 pt16">{{unitNameText}}</div>
+          </div>
+        </div>
+        <div class="confirm-btn white-color ft30 tc mt32"
+             @click="onConfirm">确定</div>
+      </view>
+    </u-popup>
+    <joint-unit-pop v-if="isHall"
+                    ref="jointUnitPop"
+                    @onConfirm="jointUnitConfirm"></joint-unit-pop>
+  </div>
 </template>
 <script>
+import JointUnitPop from './JointUnitPop.vue'
 export default {
+  components: { JointUnitPop },
   name: 'ReceivePop',
   methods: {
-    // 打电话
-    show ({ projectId, communityOrgId }) {
+    show ({ projectId, unitIds, communityOrgId }) {
       this.isShow = true
       this.projectId = projectId
+      this.unitIds = unitIds
       this.communityOrgId = communityOrgId
     },
     hide () {
@@ -48,17 +60,39 @@ export default {
     onSelect (item) {
       this.selectedType = item.type
       this.projectId = null
-      this.communityOrgId = null
+    },
+    onJointUnitShow () {
+      this.$refs.jointUnitPop.show(this.communityOrgId)
+    },
+    jointUnitConfirm (list) {
+      this.selectUnits = [...list]
     },
     onConfirm () {
-      this.hide()
+      this.leadJourneyHelperProjectSchedule()
+    },
+    leadJourneyHelperProjectSchedule () {
+      const selectedType = this.selectedType
+      if (selectedType === 1 && this.selectUnits.length === 0) {
+        return this.$msg('请先选择联办单位')
+      }
+      const params = {
+        id: this.projectId,
+        journeyCoConstructionUnitIds: selectedType === 1 ? this.selectUnits.map(el => el.id) : this.unitIds
+      }
+      this.$api.leadJourneyHelperProjectSchedule(params).then(res => {
+        if (res.isError) return this.$msg(res.message)
+        this.$msg('认领成功')
+        this.hide()
+      })
     }
   },
   data () {
     return {
       isShow: false,
       projectId: null,  // 项目id
-      communityOrgId: null, //  社区id
+      communityOrgId: null,
+      unitIds: [],
+      selectUnits: [],
       selectedType: 1,
       selectList: [
         {
@@ -74,7 +108,16 @@ export default {
       ]
     }
   },
+  computed: {
+    unitNameText () {
+      const selectUnits = this.selectUnits
+      if (selectUnits.length === 0) return ''
+      const nameList = selectUnits.map(el => el.name)
+      return `(已选：${nameList.join('、')})`
+    }
+  },
   props: {
+    isHall: Boolean,
     itemConfig: Object,
     showContact: {
       type: Boolean,
@@ -98,11 +141,9 @@ export default {
 }
 .option {
   width: 100%;
-  height: 144rpx;
   background: #f3f3f3;
   border-radius: 8rpx;
   box-sizing: border-box;
-  text-align: left;
   .radio {
     width: 32rpx;
     height: 32rpx;
@@ -132,5 +173,12 @@ export default {
   line-height: 80rpx;
   background: #e32417;
   border-radius: 40rpx;
+}
+.select-btn {
+  width: 186rpx;
+  height: 56rpx;
+  line-height: 56rpx;
+  border: solid 1px #e32417;
+  border-radius: 30rpx;
 }
 </style>

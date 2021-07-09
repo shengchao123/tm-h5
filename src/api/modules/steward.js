@@ -78,3 +78,12 @@ export function getUnitListByCommunity (params) { // 根据社区id获取单位�
     }
   })
 }
+
+export function leadJourneyHelperProjectSchedule (params) { // 认领社区项目
+  return request({
+    url: urls.leadJourneyHelperProjectSchedule,
+    data: {
+      ...params
+    }
+  })
+}

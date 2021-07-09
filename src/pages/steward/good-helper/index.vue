@@ -49,8 +49,9 @@
         </div>
       </template>
     </mescroll-uni>
-    <selection-communit></selection-communit>
-    <receive-pop ref="receivePop"></receive-pop>
+    <selection-communit ref="selectionCommunit"></selection-communit>
+    <receive-pop ref="receivePop"
+                 :isHall="true"></receive-pop>
   </div>
 </template>
 <script>
@@ -69,7 +70,7 @@ export default {
       if (this.$notMember()) return this.$goLogin();
       this.$refs.receivePop.show({
         projectId,
-        communityOrgId: this.memberPersonalInfo.communityOrgId || this.communityOrgId
+        unitIds: this.unitIds
       })
     },
     changeCurrent (index, type) {
@@ -77,7 +78,8 @@ export default {
       this.downCallback()
     },
     onSelectCommunit () {
-      if (isUnitUser) return
+      // if (this.isUnitUser) return
+      this.$refs.selectionCommunit.show()
     },
     // 共建单位联系表
     onContactList () {
@@ -123,6 +125,7 @@ export default {
       },
       communityOrgId: null,
       projectType: 2,
+      unitIds: [],
       listData: []
     }
   },

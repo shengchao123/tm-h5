@@ -102,6 +102,7 @@ export const urls = {
   getJourneyHelperProjectDetail: '/linanJourney/journeyHelperProject/getJourneyHelperProjectDetail', // 社区项目详情
   createJourneyHelperProjectSchedule: '/linanJourney/journeyHelperProject/createJourneyHelperProjectSchedule', // 新增社区项目进度
   modifyJourneyHelperProjectSchedule: '/linanJourney/journeyHelperProject/modifyJourneyHelperProjectSchedule', // 修改社区项目进度
+  leadJourneyHelperProjectSchedule: '/linanJourney/journeyHelperProject/leadJourneyHelperProjectSchedule', // 认领社区项目
 
   // 我的页面
   getMemberPersonalInfo: '/crm/member/getMemberPersonalInfo', // 我的信息获取

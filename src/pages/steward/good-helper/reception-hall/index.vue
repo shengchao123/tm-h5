@@ -23,21 +23,33 @@
                           v-for="(item, index) in listData"
                           :project-item="item"
                           :key="index"
-                          :show-border="false">
+                          :show-border="false"
+                          @onReceive="onReceive">
             </project-item>
           </view>
         </view>
       </template>
     </mescroll-uni>
+
+    <receive-pop ref="receivePop"
+                 :isHall="true"></receive-pop>
   </view>
 </template>
 <script>
 import ProjectItem from '../components/ProjectItem.vue';
 import MescrollMixin from "@/components/mescroll-uni/mescroll-mixins.js";
 import MescrollUni from "@/components/mescroll-uni/mescroll-uni.vue";
+import ReceivePop from '../components/ReceivePop.vue';
 export default {
   name: 'ReceptionHall',
   methods: {
+    onReceive (projectId) {
+      if (this.$notMember()) return this.$goLogin();
+      this.$refs.receivePop.show({
+        projectId,
+        communityOrgId,
+      })
+    },
     getJourneyHelperProjectShowPage (page) {
       const userCommunityOrgId = this.memberPersonalInfo.communityOrgId
       const params = {
@@ -84,7 +96,7 @@ export default {
   },
   created () { },
   mixins: [MescrollMixin],
-  components: { ProjectItem, MescrollUni },
+  components: { ProjectItem, MescrollUni, ReceivePop },
 }
 </script>
 <style scoped>
