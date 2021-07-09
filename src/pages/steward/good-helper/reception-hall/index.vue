@@ -48,7 +48,7 @@ export default {
       if (this.$notMember()) return this.$goLogin();
       this.$refs.receivePop.show({
         projectId,
-        communityOrgId,
+        communityOrgId: this.communityOrgId,
       })
     },
     getJourneyHelperProjectShowPage (page) {
