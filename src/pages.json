@@ -136,6 +136,12 @@
 			}
 		},
 		{
+			"path": "pages/think-tank/unionreinforce/Detail",
+			"style": {
+				"navigationBarTitleText": "职位详情"
+			}
+		},
+		{
 			"path": "pages/think-tank/countryside/Detail",
 			"style": {
 				"navigationBarTitleText": "无感直补"
