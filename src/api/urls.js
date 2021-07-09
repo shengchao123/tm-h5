@@ -5,7 +5,12 @@ export const imgHost = 'https://hzslzx.oss-cn-hangzhou.aliyuncs.com/system/h5-ma
 
 export const urls = {
 
+  // 共建单位联系表
+  getJourneyCoConstructionUnitTablePage: '/linanJourney/journeyCoConstructionUnit/getJourneyCoConstructionUnitTablePage', // 共建单位联系表分页
+  getUnitListByCommunity: '/linanJourney/journeyCoConstructionUnit/getUnitListByCommunity', // 根据社区id获取单位列表
+  findUnitOrganizationList: '/organization/org/findUnitOrganizationList', // 获取共建单位组织列表
   // 城乡融合
+  findProductClassification: '/setting/district/findProductClassification', // 城乡融合分类
   getJourneyProductInfoPage: '/linanJourney/journeyProduct/getJourneyProductInfoPage', // 城乡产品列表
   getJourneyProductInfoById: '/linanJourney/journeyProduct/getJourneyProductInfoById', // 城乡产品详情
   getJourneyMerchantBoothInfoPage: '/linanJourney/journeyMerchantBooth/getJourneyMerchantBoothInfoPage', // 分页获取商家展位
@@ -36,8 +41,8 @@ export const urls = {
   leaveMessage: '/linanJourney/journeyTalentsMessage/leaveMessage', // 留言
   getShowAgricultureRelatedProjectsPage: '/linanJourney/journeyAgricultureRelatedProjects/getShowAgricultureRelatedProjectsPage',//涉农项目分页
   getShowAgricultureRelatedProjectsDetail: '/linanJourney/journeyAgricultureRelatedProjects/getShowAgricultureRelatedProjectsDetail',//涉农项目详情
-  getJourneyPostShowPage:'/linanJourney/journeyPost/getJourneyPostShowPage',//岗位分页
-  getJourneyPostDetail:'/linanJourney/journeyPost/getJourneyPostDetail',//岗位详情
+  getJourneyPostShowPage: '/linanJourney/journeyPost/getJourneyPostShowPage',//岗位分页
+  getJourneyPostDetail: '/linanJourney/journeyPost/getJourneyPostDetail',//岗位详情
 
   // 初心之旅
   getRecommendJourneyLineList: '/linanJourney/journeyLine/getRecommendJourneyLineList', // 推荐路线
@@ -90,6 +95,15 @@ export const urls = {
   getGraphicInfoPage: '/partyWebsite/partyGraphic/getGraphicInfoPage', // 分页获取风采图文信息
   getGraphicInfoById: '/partyWebsite/partyGraphic/getGraphicInfoById', // 获取风采图文详情
   findOrgTreeByOrgId: '/organization/orgConsumer/findOrgTreeByOrgId', // 根据组织id获取组织树
+
+  // 基层治理
+  getJourneyHelperProjectShowPage: '/linanJourney/journeyHelperProject/getJourneyHelperProjectShowPage', // 社区项目分页
+  getJourneyHelperProjectCount: 'linanJourney/journeyHelperProject/getJourneyHelperProjectCount', // 社区项目数量
+  findCommunityOrganizationTree: '/organization/org/findCommunityOrganizationTree', // 获取街道社区组织树
+  getJourneyHelperProjectDetail: '/linanJourney/journeyHelperProject/getJourneyHelperProjectDetail', // 社区项目详情
+  createJourneyHelperProjectSchedule: '/linanJourney/journeyHelperProject/createJourneyHelperProjectSchedule', // 新增社区项目进度
+  modifyJourneyHelperProjectSchedule: '/linanJourney/journeyHelperProject/modifyJourneyHelperProjectSchedule', // 修改社区项目进度
+  leadJourneyHelperProjectSchedule: '/linanJourney/journeyHelperProject/leadJourneyHelperProjectSchedule', // 认领社区项目
 
   // 我的页面
   getMemberPersonalInfo: '/crm/member/getMemberPersonalInfo', // 我的信息获取

@@ -1,11 +1,14 @@
 <template>
   <div class='urban-rural-wrap'>
     <img src="@/static/banner.png"
-         style="width:100vw;height:200rpx"
+         class="banner"
+         :class="!showImg && 'hide-img'"
          @click="onImg">
     <u-tabs ref="uTabs"
             :list="list"
             :current="current"
+            class="tabs"
+            :class="showImg && 'margin-tabs'"
             @change="tabsChange"
             :is-scroll="false"
             bar-width="32"
@@ -65,6 +68,7 @@ export default {
     },
     tabsChange (index) {
       this.current = index;
+      this.showImg = true
     }
   },
   onLoad ({ current }) {
@@ -72,6 +76,9 @@ export default {
     this.current = 1 * current
   },
   created () {
+    uni.$on('changeImgStatus', () => {
+      this.showImg = false
+    })
     uni.$on('onOpenGuide', (data) => {
       this.showGuide = true
       this.guideItem = data
@@ -86,6 +93,7 @@ export default {
   data () {
     this.guideItem = {}
     return {
+      showImg: true,
       shareData: {},
       current: 0,
       cacheCurrent: [0],
@@ -113,6 +121,27 @@ page {
   height: 100%;
   overflow: hidden;
 }
+.banner {
+  width: 100vw;
+  height: 200rpx;
+  position: absolute;
+  top: 0;
+  transition: 0.5s all;
+}
+
+.hide-img {
+  top: -200rpx;
+}
+
+.tabs {
+  margin-top: 0;
+  transition: 0.5s all;
+}
+
+.margin-tabs {
+  margin-top: 200rpx;
+}
+
 .urban-rural-wrap {
   background: #f7f7f7;
   padding-bottom: 50px;

@@ -38,7 +38,7 @@ export default {
     },
     imageData: {
       type: Array,
-      default: () => { [] }
+      default: () => []
     },
     imageTypeName: {
       type: String,

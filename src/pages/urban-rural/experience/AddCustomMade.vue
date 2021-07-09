@@ -61,7 +61,6 @@
 export default {
   methods: {
     onSubmit () {
-      console.log(this.form.data)
       this.$refs.form.validate(valid => {
         if (valid) {
           if (this.journeyPlayCustomizationId) {
