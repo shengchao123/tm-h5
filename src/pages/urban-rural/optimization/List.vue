@@ -1,6 +1,7 @@
 <template>
   <div class="wrap">
-
+    <SubTabs @change="changeSubTab"
+             :tabs="subTabs"></SubTabs>
     <div class="search-wrap mt16"
          style="padding:20rpx;30rpx">
       <u-search placeholder="输入产品名称搜索"
@@ -12,7 +13,8 @@
     </div>
 
     <mescroll-uni ref="mescrollRef"
-                  top="440rpx"
+                  :top="mescrollTop"
+                  @scroll="pageScroll"
                   @init="mescrollInit"
                   :up="upOption"
                   @down="downCallback"
@@ -31,6 +33,7 @@
 </template>
 
 <script>
+import SubTabs from '@/pages/urban-rural/components/SubTabs'
 import ProductItem from '@/pages/urban-rural/components/ProductItem'
 import listMixins from '../mixins'
 export default {
@@ -40,7 +43,15 @@ export default {
       this.search.pageNumber = 1
       this.getDataList()
     },
-
+    pageScroll () {
+      this.mescrollTop = this.mescroll.isScrollUp ? '330rpx' : '530rpx'
+      uni.$emit('changeImgStatus', this.mescroll.isScrollUp)
+    },
+    changeSubTab (item) {
+      this.search.classification = item.status
+      this.search.pageNumber = 1
+      this.getDataList()
+    },
     // 获取商品列表
     getDataList () {
       const params = {
@@ -53,19 +64,43 @@ export default {
         this.mescroll.endBySize(items.length, count)
         this.dataList = params.pageNumber === 1 ? items : this.dataList.concat(items)
       })
+    },
+    // 获取商品列表
+    findProductClassification () {
+      this.$api.findProductClassification().then(res => {
+        if (res.isError) return
+        let _temArr = res.content.map(item => {
+          return {
+            status: item.id,
+            text: item.name
+          }
+        })
+        _temArr.unshift({
+          status: '',
+          text: '综合推荐'
+        })
+        this.subTabs = _temArr
+      })
     }
   },
   data () {
     return {
+      isFixed: false,
+      mescrollTop: '530rpx',
       upOption: {
+        onScroll: true,
         toTop: {
           bottom: 120
         }
-      }
+      },
+      subTabs: []
     }
   },
+  created () {
+    this.findProductClassification()
+  },
   mixins: [listMixins],
-  components: { ProductItem },
+  components: { ProductItem, SubTabs },
 }
 </script>
 

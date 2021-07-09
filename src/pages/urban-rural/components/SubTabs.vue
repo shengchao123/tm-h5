@@ -1,14 +1,15 @@
 <template>
-  <div class="c-tabs center-align">
-    <div class="tab-item center mr24"
-         :class="index === current && 'active'"
-         v-for="(item, index) in tabs"
-         :style="{width: item.width ? item.width + 'rpx' : '160rpx'}"
-         @click="onTab(index, item)"
-         :key="index">
-      {{item.text}}
-    </div>
-  </div>
+
+  <scroll-view scroll-x="true"
+               class="c-tabs">
+    <block v-for="(item, index) in tabs"
+           :key="index">
+      <div class="tab-item center mr24"
+           :style="{width: item.width ? item.width + 'rpx' : '160rpx'}"
+           @click="onTab(index, item)"
+           :class="index === current && 'active'">{{item.text}}</div>
+    </block>
+  </scroll-view>
 </template>
 
 <script>
@@ -34,10 +35,17 @@ export default {
 
 <style lang='scss' scoped>
 .c-tabs {
+  width: 100vw;
+  overflow: hidden;
+  white-space: nowrap;
   height: 105rpx;
+  line-height: 105rpx;
   padding: 0 16rpx;
   background: #ffffff;
   .tab-item {
+    display: inline-block;
+    line-height: 60rpx;
+    text-align: center;
     height: 60rpx;
     width: 160rpx;
     font-size: 26rpx;
