@@ -39,3 +39,12 @@ export function getUnitListByCommunity (params) { // 根据社区id获取单位�
     }
   })
 }
+export function findUnitOrganizationList (params) { // 获取共建单位组织列表
+  return request({
+    url: urls.findUnitOrganizationList,
+    needlessToken: true,
+    data: {
+      ...params
+    }
+  })
+}
