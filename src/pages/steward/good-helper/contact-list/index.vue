@@ -18,7 +18,7 @@
             <svg-icon icon="icon_xiangxia"
                       class="ft18 ml16 color-999"></svg-icon>
           </view>
-          <view class="color-primary ft24 center-align"
+          <view class="point-rules ft24 center-align"
                 @click="onToRules">
             <svg-icon icon="icon_wenhao"></svg-icon>
             <text class="ml8">积分规则</text>
@@ -43,7 +43,7 @@
                     title="选择共建单位"
                     @onRouteItem="(item)=>onRouteItem(item)"></select-pop>
         <selection-communit ref="selectionCommunit"
-                            @onConfirm="onConfirm"></selection-communit>
+                            @onConfirm="onConfirmCommunit"></selection-communit>
       </template>
     </mescroll-uni>
   </view>
@@ -54,34 +54,32 @@ import MescrollUni from "@/components/mescroll-uni/mescroll-uni.vue";
 import Item from './components/Item.vue';
 import SelectPop from 'pages/components/SelectPop'
 import SelectionCommunit from '../components/SelectionCommunit.vue'
+import { replaceString } from '@u/tools.js'
 export default {
   name: 'ContactList',
   methods: {
-    onConfirm (info) {
-      console.log(info);
+    onConfirmCommunit (info) {
+      this.communityOrgId = info.communityInfo.id
+      this.$nextTick(() => {
+        this.getJourneyCoConstructionUnitTablePage()
+      })
     },
-    // 根据社区id获取单位列表
-    getUnitListByCommunity () {
-      const userCommunityOrgId = this.memberPersonalInfo.communityOrgId
-      const params = {
-        communityOrgId: '47512535492954112', // TODO: 暂时调数据 记得改成下面
-        // communityOrgId: userCommunityOrgId || this.communityOrgId,
-      }
-      this.$api.getUnitListByCommunity(params).then(res => {
+    // 获取共建单位组织列表
+    findUnitOrganizationList () {
+      this.$api.findUnitOrganizationList().then(res => {
         if (res.isError) {
           this.$msg(res.message)
           return
         }
-        this.companyList = res.content
+        this.companyList = replaceString(res.content, [{ key: 'orgId', value: 'id' }, { key: 'orgName', value: 'name' }])
       })
     },
     onRouteItem (item) {
-
+      this.companyId = item.id
+      this.$nextTick(() => {
+        this.getJourneyCoConstructionUnitTablePage()
+      })
     },
-    // closePop () {
-    //   const { selectKey } = this
-    //   this[`${selectKey}PopIsShow`] = false
-    // },
     onToRules () {
       uni.navigateTo({
         url: '/pages/steward/good-helper/integral-rule/index'
@@ -95,12 +93,12 @@ export default {
       this.mescroll.resetUpScroll(); // 重置列表为第一页
     },
     getJourneyCoConstructionUnitTablePage (page) {
-      const userCommunityOrgId = this.memberPersonalInfo.communityOrgId
+      if (!this.communityOrgId) return
       const params = {
         pageNumber: page && page.num || 1,
         pageSize: page && page.size || 10,
-        communityOrgId: '47511592656406528', // TODO: 暂时调数据 记得改成下面
-        // communityOrgId: userCommunityOrgId || this.communityOrgId,
+        communityOrgId: this.communityOrgId,
+        id: this.companyId
       }
       this.$api.getJourneyCoConstructionUnitTablePage(params).then(res => {
         if (res.isError) return this.mescroll.endErr()
@@ -120,10 +118,12 @@ export default {
         },
       },
       communityOrgId: null,
+      companyId: null,
       listData: [],
       titleList: ['街道社区/共建单位', '接单', '抢单', '办结率', '积分']
     }
   },
+
   computed: {
     memberPersonalInfo () {
       return this.$store.state.user.memberPersonalInfo
@@ -134,7 +134,7 @@ export default {
     }
   },
   created () {
-    this.getUnitListByCommunity()
+    this.findUnitOrganizationList()
   },
   mixins: [MescrollMixin],
   components: {
@@ -149,6 +149,9 @@ export default {
 .contact-list-wrap {
   .filter-select {
     height: 88rpx;
+    .point-rules {
+      color: #518cfc;
+    }
   }
   .title-list {
     height: 80rpx;

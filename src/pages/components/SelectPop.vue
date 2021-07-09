@@ -21,8 +21,9 @@
               :class="item.id === selectedId && 'selected'"
               @click="onItem(item)">
           <text class="ft28">{{item.name}}</text>
-          <text v-if="item.id === selectedId"
-                class="iconfont icon_duihao ft28 mt4"></text>
+          <svg-icon v-if="item.id === selectedId"
+                    icon="icon_duihao"
+                    class="iconfont icon_duihao ft28 mt4"></svg-icon>
         </view>
       </scroll-view>
     </view>

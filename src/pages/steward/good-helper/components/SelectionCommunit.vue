@@ -62,6 +62,16 @@
 <script>
 export default {
   methods: {
+    // 默认选中第一个街道第一个社区
+    initData () {
+      const firstList = this.tabsList[0].list[0]
+      this.changeTopOrg(firstList)
+      this.onChildrenOrg(firstList)
+      this.$nextTick(() => {
+        this.changeTopOrg(firstList.child[0])
+        this.onConfirm()
+      })
+    },
     // 确定
     onConfirm () {
       const { streetInfo, communityInfo } = this
@@ -88,7 +98,7 @@ export default {
       let objKey = this.tabsCurrent === 0 ? 'streetInfo' : 'communityInfo'
       this[objKey] = { id, name }
       this.tabsList[this.tabsCurrent] = { ...this.tabsList[this.tabsCurrent], id, name }
-      this.tabsCurrent === 0 && this.findCommunityOrganizationTree()
+      // this.tabsCurrent === 0 && this.findCommunityOrganizationTree()
       this.tabsList = JSON.parse(JSON.stringify(this.tabsList))
     },
     // 选中某一组织
@@ -105,24 +115,31 @@ export default {
     },
     findCommunityOrganizationTree () {
       this.$api.findCommunityOrganizationTree().then(res => {
-        if (res.isError) return this.$msg(res.message)
+        if (res.isError) {
+          this.isHaveTabsList = false
+          return this.$msg(res.message)
+        }
+        if (!res && !res.content) {
+          this.isHaveTabsList = false
+          return
+        }
         this.tabsList[0].list = res.content
-        // this.handleTopOrganization(res.content)
+        this.isHaveTabsList = true
       })
     },
-    // // 处理组织结构
-    // handleOrganizationTree (content) {
-    //   this.tabsList[0].list && this.tabsList[0].list.forEach(item => {
-    //     if (content && (item.id === content.id)) {
-    //       item.child = content.child
-    //     }
-    //   })
-    //   this.tabsList = JSON.parse(JSON.stringify(this.tabsList))
-    //   console.log(this.tabsList);
-    // },
+  },
+  watch: {
+    isHaveTabsList: {
+      handler: function (val) {
+        if (!val) return
+        this.initData()
+      },
+      immediate: true
+    }
   },
   data () {
     return {
+      isHaveTabsList: false,
       tabsCurrent: 0,
       navbarOrg: {}, // 导航栏数据
       streetInfo: {}, // 选中的街道数据
