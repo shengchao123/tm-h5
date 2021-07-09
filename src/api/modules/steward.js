@@ -41,6 +41,16 @@ export function getJourneyHelperProjectDetail (params) { // 社区项目详情
   })
 }
 
+export function getJourneyCoConstructionUnitTablePage (params) { // 共建单位联系表
+  return request({
+    url: urls.getJourneyCoConstructionUnitTablePage,
+    needlessToken: true,
+    data: {
+      ...params
+    }
+  })
+}
+
 export function createJourneyHelperProjectSchedule (params) { // 新增社区项目进度
   return request({
     url: urls.createJourneyHelperProjectSchedule,
@@ -53,6 +63,16 @@ export function createJourneyHelperProjectSchedule (params) { // 新增社区项
 export function modifyJourneyHelperProjectSchedule (params) { // 修改社区项目进度
   return request({
     url: urls.modifyJourneyHelperProjectSchedule,
+    data: {
+      ...params
+    }
+  })
+}
+
+export function getUnitListByCommunity (params) { // 根据社区id获取单位列表
+  return request({
+    url: urls.getUnitListByCommunity,
+    needlessToken: true,
     data: {
       ...params
     }
