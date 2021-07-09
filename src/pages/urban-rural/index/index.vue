@@ -68,6 +68,7 @@ export default {
     },
     tabsChange (index) {
       this.current = index;
+      this.showImg = true
     }
   },
   onLoad ({ current }) {
@@ -75,8 +76,8 @@ export default {
     this.current = 1 * current
   },
   created () {
-    uni.$on('changeImgStatus', (status) => {
-      this.showImg = !status
+    uni.$on('changeImgStatus', () => {
+      this.showImg = false
     })
     uni.$on('onOpenGuide', (data) => {
       this.showGuide = true

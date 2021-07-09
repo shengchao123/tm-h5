@@ -36,6 +36,8 @@
 import SubTabs from '@/pages/urban-rural/components/SubTabs'
 import ProductItem from '@/pages/urban-rural/components/ProductItem'
 import listMixins from '../mixins'
+// import { debounce } from '@/utils/tools.js'
+
 export default {
   name: 'List',
   methods: {
@@ -44,8 +46,12 @@ export default {
       this.getDataList()
     },
     pageScroll () {
-      this.mescrollTop = this.mescroll.isScrollUp ? '330rpx' : '530rpx'
-      uni.$emit('changeImgStatus', this.mescroll.isScrollUp)
+
+      this.mescrollTop = '330rpx'
+      uni.$emit('changeImgStatus')
+
+      // this.mescrollTop = this.mescroll.isScrollUp ? '330rpx' : '530rpx'
+      // uni.$emit('changeImgStatus', this.mescroll.isScrollUp)
     },
     changeSubTab (item) {
       this.search.classification = item.status

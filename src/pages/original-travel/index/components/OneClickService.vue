@@ -63,6 +63,7 @@ export default {
       grid-template-columns: repeat(2, 1fr);
       .list-item {
         height: 88rpx;
+        border-radius: 6rpx;
       }
     }
   }
