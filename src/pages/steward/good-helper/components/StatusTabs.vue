@@ -20,6 +20,23 @@ export default {
       this.current = index
       this.$emit('changeCurrent', index, type)
     },
+    getJourneyHelperProjectCount () {
+      const params = {
+        communityOrgId: this.communityOrgId
+      }
+      this.$api.getJourneyHelperProjectCount(params).then(res => {
+        if (res.isError) return this.$msg(res.message)
+        const tabs = this.tabs
+        res.content.forEach(el => {
+          const { status, count } = el
+          tabs[status - 1].count = count
+        });
+        this.tabs = tabs
+      })
+    }
+  },
+  props: {
+    communityOrgId: [String, Number]
   },
   data () {
     return {
@@ -33,7 +50,7 @@ export default {
         {
           id: 3,
           name: '领办中',
-          count: 2
+          count: 0
         },
         {
           id: 4,
@@ -51,6 +68,9 @@ export default {
       let left = this.current * itemWidth + leftGap
       return `left: ${left}rpx`
     }
+  },
+  created () {
+    this.getJourneyHelperProjectCount()
   }
 }
 </script>

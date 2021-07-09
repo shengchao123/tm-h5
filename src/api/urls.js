@@ -10,6 +10,7 @@ export const urls = {
   getUnitListByCommunity: '/linanJourney/journeyCoConstructionUnit/getUnitListByCommunity', // 根据社区id获取单位列表
   findUnitOrganizationList: '/organization/org/findUnitOrganizationList', // 获取共建单位组织列表
   // 城乡融合
+  findProductClassification: '/setting/district/findProductClassification', // 城乡融合分类
   getJourneyProductInfoPage: '/linanJourney/journeyProduct/getJourneyProductInfoPage', // 城乡产品列表
   getJourneyProductInfoById: '/linanJourney/journeyProduct/getJourneyProductInfoById', // 城乡产品详情
   getJourneyMerchantBoothInfoPage: '/linanJourney/journeyMerchantBooth/getJourneyMerchantBoothInfoPage', // 分页获取商家展位
@@ -97,7 +98,12 @@ export const urls = {
 
   // 基层治理
   getJourneyHelperProjectShowPage: '/linanJourney/journeyHelperProject/getJourneyHelperProjectShowPage', // 社区项目分页
+  getJourneyHelperProjectCount: 'linanJourney/journeyHelperProject/getJourneyHelperProjectCount', // 社区项目数量
   findCommunityOrganizationTree: '/organization/org/findCommunityOrganizationTree', // 获取街道社区组织树
+  getJourneyHelperProjectDetail: '/linanJourney/journeyHelperProject/getJourneyHelperProjectDetail', // 社区项目详情
+  createJourneyHelperProjectSchedule: '/linanJourney/journeyHelperProject/createJourneyHelperProjectSchedule', // 新增社区项目进度
+  modifyJourneyHelperProjectSchedule: '/linanJourney/journeyHelperProject/modifyJourneyHelperProjectSchedule', // 修改社区项目进度
+  leadJourneyHelperProjectSchedule: '/linanJourney/journeyHelperProject/leadJourneyHelperProjectSchedule', // 认领社区项目
 
   // 我的页面
   getMemberPersonalInfo: '/crm/member/getMemberPersonalInfo', // 我的信息获取

@@ -75,3 +75,22 @@ export const statusMap = Object.freeze(new Map([
   ['02', { text: '进行中', color: '#FFB319' }],
   ['03', { text: '已结束', color: '#999999' }],
 ]))
+
+export const resourceSubTabs = Object.freeze([
+  {
+    status: '01',
+    text: '房产商铺'
+  },
+  {
+    status: '02',
+    text: '土地林地'
+  },
+  {
+    status: '03',
+    text: '农产品'
+  },
+  {
+    status: '04',
+    text: '其它'
+  }
+])

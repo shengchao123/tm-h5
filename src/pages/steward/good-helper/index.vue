@@ -8,12 +8,14 @@
                   @up="upCallback">
       <template>
         <div class="between-row bg-white header pl16 pr16 pb16 pt28">
-          <div class="link center-justify link-jointly column">
+          <div class="link center-justify link-jointly column"
+               @click="onContactList">
             <span class="ft30 white-color pl16">共建单位联系表</span>
             <span class="ft26 pt16 pl16 pb8"
                   style="color: #C8E5FF">临安区社区</span>
           </div>
-          <div class="link center-justify link-hall column">
+          <div class="link center-justify link-hall column"
+               @click="onReceptionHall">
             <span class="ft30 white-color pl16">领办大厅</span>
             <span class="ft26 pt16 pl16 pb8"
                   style="color: #FDD3C5">{{isUnitUser ? '领办项目享积分加成' : '项目供更多单位认领'}}</span>
@@ -30,20 +32,26 @@
             <span class="ft22 color-999">共建单位：宣传部 妇联 司法局</span>
           </div>
         </div>
-        <div class="bb mt24">
-          <status-tabs @changeCurrent="changeCurrent"></status-tabs>
-          <div class="list">
+        <div class="mt24">
+          <status-tabs :communityOrgId="memberPersonalInfo.communityOrgId || communityOrgId"
+                       @changeCurrent="changeCurrent"></status-tabs>
+          <div v-show="listData.length > 0"
+               class="list">
             <project-item v-for="(item, index) in listData"
                           :project-item="item"
                           :key="index"
                           :show-border="index < listData.length - 1"
                           :isHome="true"
-                          :isUnitUser="isUnitUser"></project-item>
+                          :isUnitUser="isUnitUser"
+                          @onReceive="onReceive"></project-item>
           </div>
+          <empty v-show="listData.length === 0"></empty>
         </div>
       </template>
     </mescroll-uni>
-    <selection-communit></selection-communit>
+    <selection-communit ref="selectionCommunit"></selection-communit>
+    <receive-pop ref="receivePop"
+                 :isHall="true"></receive-pop>
   </div>
 </template>
 <script>
@@ -53,15 +61,37 @@ import MescrollUni from "@/components/mescroll-uni/mescroll-uni.vue";
 import StatusTabs from './components/StatusTabs.vue'
 import ProjectItem from './components/ProjectItem.vue';
 import SelectionCommunit from './components/SelectionCommunit.vue';
+import ReceivePop from './components/ReceivePop.vue';
 export default {
   mixins: [MescrollMixin],
-  components: { StatusTabs, ProjectItem, SelectionCommunit },
+  components: { StatusTabs, ProjectItem, SelectionCommunit, ReceivePop },
   methods: {
+    onReceive (projectId) {
+      if (this.$notMember()) return this.$goLogin();
+      this.$refs.receivePop.show({
+        projectId,
+        unitIds: this.unitIds
+      })
+    },
     changeCurrent (index, type) {
       this.projectType = type
       this.downCallback()
     },
     onSelectCommunit () {
+      // if (this.isUnitUser) return
+      this.$refs.selectionCommunit.show()
+    },
+    // 共建单位联系表
+    onContactList () {
+      uni.navigateTo({
+        url: '/pages/steward/good-helper/contact-list/index'
+      })
+    },
+    // 领办大厅
+    onReceptionHall () {
+      uni.navigateTo({
+        url: '/pages/steward/good-helper/reception-hall/index'
+      })
     },
     upCallback (page) {
       this.getJourneyHelperProjectShowPage(page)
@@ -95,6 +125,7 @@ export default {
       },
       communityOrgId: null,
       projectType: 2,
+      unitIds: [],
       listData: []
     }
   },
