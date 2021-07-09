@@ -43,7 +43,7 @@
                     title="选择共建单位"
                     @onRouteItem="(item)=>onRouteItem(item)"></select-pop>
         <selection-communit ref="selectionCommunit"
-                            @onConfirm="onConfirm"></selection-communit>
+                            @onConfirm="onConfirmCommunit"></selection-communit>
       </template>
     </mescroll-uni>
   </view>
@@ -58,7 +58,7 @@ import { replaceString } from '@u/tools.js'
 export default {
   name: 'ContactList',
   methods: {
-    onConfirm (info) {
+    onConfirmCommunit (info) {
       this.communityOrgId = info.communityInfo.id
       this.$nextTick(() => {
         this.getJourneyCoConstructionUnitTablePage()

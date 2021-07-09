@@ -24,7 +24,7 @@
         <div class="bg-white pl32 pr32 pb16">
           <div class="address pl24 pr24 center-align"
                @click="onSelectCommunit">
-            <span class="ft28 color-666">xxxxxxxx</span>
+            <span class="ft28 color-666">{{this.communityInfo.name}}</span>
             <svg-icon icon="icon_xiangxia"
                       class="ft16 ml8"></svg-icon>
           </div>
@@ -49,7 +49,8 @@
         </div>
       </template>
     </mescroll-uni>
-    <selection-communit ref="selectionCommunit"></selection-communit>
+    <selection-communit ref="selectionCommunit"
+                        @onConfirm="onConfirmCommunit"></selection-communit>
     <receive-pop ref="receivePop"
                  :isHall="true"></receive-pop>
   </div>
@@ -57,15 +58,21 @@
 <script>
 import MescrollMixin from "@/components/mescroll-uni/mescroll-mixins.js";
 import MescrollUni from "@/components/mescroll-uni/mescroll-uni.vue";
-
 import StatusTabs from './components/StatusTabs.vue'
 import ProjectItem from './components/ProjectItem.vue';
 import SelectionCommunit from './components/SelectionCommunit.vue';
 import ReceivePop from './components/ReceivePop.vue';
 export default {
   mixins: [MescrollMixin],
-  components: { StatusTabs, ProjectItem, SelectionCommunit, ReceivePop },
+  components: { StatusTabs, ProjectItem, SelectionCommunit, ReceivePop, MescrollUni },
   methods: {
+    onConfirmCommunit (item) {
+      this.communityInfo = item.communityInfo
+      this.communityOrgId = item.communityInfo.id
+      this.$nextTick(() => {
+        this.getJourneyHelperProjectShowPage()
+      })
+    },
     onReceive (projectId) {
       if (this.$notMember()) return this.$goLogin();
       this.$refs.receivePop.show({
@@ -118,6 +125,7 @@ export default {
   },
   data () {
     return {
+      communityInfo: {},
       upOption: {
         empty: {
           use: false, // 是否显示空布局
