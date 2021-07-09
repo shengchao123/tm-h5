@@ -1,6 +1,7 @@
 <template>
   <div class="wrap">
-
+    <SubTabs @change="changeSubTab"
+             :tabs="subTabs"></SubTabs>
     <div class="search-wrap mt16"
          style="padding:20rpx;30rpx">
       <u-search placeholder="输入产品名称搜索"
@@ -12,7 +13,8 @@
     </div>
 
     <mescroll-uni ref="mescrollRef"
-                  top="440rpx"
+                  :top="mescrollTop"
+                  @scroll="pageScroll"
                   @init="mescrollInit"
                   :up="upOption"
                   @down="downCallback"
@@ -31,6 +33,7 @@
 </template>
 
 <script>
+import SubTabs from '@/pages/urban-rural/components/SubTabs'
 import ProductItem from '@/pages/urban-rural/components/ProductItem'
 import listMixins from '../mixins'
 export default {
@@ -40,7 +43,15 @@ export default {
       this.search.pageNumber = 1
       this.getDataList()
     },
-
+    pageScroll () {
+      this.mescrollTop = this.mescroll.isScrollUp ? '330rpx' : '530rpx'
+      uni.$emit('changeImgStatus', this.mescroll.isScrollUp)
+    },
+    changeSubTab (item) {
+      this.search.resourceType = item.status
+      this.search.pageNumber = 1
+      this.getDataList()
+    },
     // 获取商品列表
     getDataList () {
       const params = {
@@ -57,15 +68,24 @@ export default {
   },
   data () {
     return {
+      isFixed: false,
+      mescrollTop: '530rpx',
       upOption: {
+        onScroll: true,
         toTop: {
           bottom: 120
         }
-      }
+      },
+      subTabs: [
+        {
+          status: '01',
+          text: '房产商铺'
+        }
+      ]
     }
   },
   mixins: [listMixins],
-  components: { ProductItem },
+  components: { ProductItem, SubTabs },
 }
 </script>
 

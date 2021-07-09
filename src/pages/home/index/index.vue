@@ -18,6 +18,18 @@
           </div>
         </template>
       </div>
+
+      <div class="center">
+        <div class="qr-code-wrap mt32 row">
+          <img src="@/static/home/qrcode.jpeg"
+               alt="">
+          <div class="right column ml16 ft26">
+            <div>长按识别，关注「天目先锋」</div>
+            <div class="mt16">“天目红盟”与您相约“云之家”</div>
+          </div>
+        </div>
+      </div>
+
     </div>
 
   </div>
@@ -37,10 +49,7 @@ export default {
     return {
       swiperList: Object.freeze([
         {
-          image: require('@/static/test/banner.png'),
-        },
-        {
-          image: require('@/static/test/banner2.png'),
+          image: require('@/static/home/banner.png'),
         }
       ]),
       cardList: Object.freeze([
@@ -49,7 +58,7 @@ export default {
           text1: '初心之旅',
           text2: '一张图',
           imgW: 45,
-          style: { left: '30rpx', top: '205rpx' },
+          style: { left: '30rpx', top: '173rpx' },
           url: '/pages/original-travel/index/index'
         },
         {
@@ -57,7 +66,7 @@ export default {
           text1: '组团发展',
           text2: '一联盟',
           imgW: 50,
-          style: { left: '172rpx', top: '285rpx' },
+          style: { left: '172rpx', top: '253rpx' },
           url: '/pages/union/index/index'
         },
         {
@@ -65,7 +74,7 @@ export default {
           text1: '城乡融合',
           text2: '一社区',
           imgW: 50,
-          style: { left: '312rpx', top: '365rpx' },
+          style: { left: '312rpx', top: '333rpx' },
           url: '/pages/urban-rural/index/index'
         },
         {
@@ -73,7 +82,7 @@ export default {
           text1: '乡村人才',
           text2: '一智库',
           imgW: 60,
-          style: { right: '172rpx', top: '285rpx' },
+          style: { right: '172rpx', top: '253rpx' },
           url: '/pages/think-tank/index/index'
         },
         {
@@ -81,7 +90,7 @@ export default {
           text1: '基层治理',
           text2: '一管家',
           imgW: 50,
-          style: { right: '30rpx', top: '205rpx' },
+          style: { right: '30rpx', top: '173rpx' },
           url: '/pages/steward/index/index'
         },
       ])
@@ -108,15 +117,32 @@ export default {
     bottom: 0;
     overflow: hidden;
     .swiper {
-      margin: 50rpx 30rpx 0;
+      margin: 24rpx 30rpx 0;
     }
     .main-card {
       height: 334rpx;
-      margin-top: 50rpx;
+      margin-top: 32rpx;
     }
     .card {
       position: absolute;
       width: 128rpx;
+    }
+    .qr-code-wrap {
+      position: absolute;
+      bottom: calc(50px + 32rpx);
+      text-align: center;
+      padding: 12rpx;
+      background: #ffffff20;
+      border-radius: 8px;
+      color: #ffffff;
+      img {
+        width: 110rpx;
+        height: 110rpx;
+      }
+
+      .right {
+        justify-content: center;
+      }
     }
   }
 }
