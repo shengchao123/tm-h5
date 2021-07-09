@@ -24,16 +24,17 @@
         <div class="bg-white pl32 pr32 pb16">
           <div class="address pl24 pr24 center-align"
                @click="onSelectCommunit">
-            <span class="ft28 color-666">{{this.communityInfo.name}}</span>
+            <span class="ft28 color-666">{{communityText}}</span>
             <svg-icon icon="icon_xiangxia"
                       class="ft16 ml8"></svg-icon>
           </div>
           <div class="tr pt16">
-            <span class="ft22 color-999">共建单位：宣传部 妇联 司法局</span>
+            <span class="ft22 color-999">共建单位：{{unitNameText}}</span>
           </div>
         </div>
         <div class="mt24">
-          <status-tabs :communityOrgId="memberPersonalInfo.communityOrgId || communityOrgId"
+          <status-tabs ref="statusTabs"
+                       :communityOrgId="memberPersonalInfo.communityOrgId || communityOrgId"
                        @changeCurrent="changeCurrent"></status-tabs>
           <div v-show="listData.length > 0"
                class="list">
@@ -49,10 +50,10 @@
         </div>
       </template>
     </mescroll-uni>
-    <selection-communit ref="selectionCommunit"
+    <selection-communit v-if="!isUnitUser && !isLoading"
+                        ref="selectionCommunit"
                         @onConfirm="onConfirmCommunit"></selection-communit>
-    <receive-pop ref="receivePop"
-                 :isHall="true"></receive-pop>
+    <receive-pop ref="receivePop"></receive-pop>
   </div>
 </template>
 <script>
@@ -85,7 +86,7 @@ export default {
       this.downCallback()
     },
     onSelectCommunit () {
-      // if (this.isUnitUser) return
+      if (this.isUnitUser) return
       this.$refs.selectionCommunit.show()
     },
     // 共建单位联系表
@@ -106,25 +107,39 @@ export default {
     },
     downCallback () {
       this.mescroll.resetUpScroll(); // 重置列表为第一页
+      const statusTabsEl = this.$refs.statusTabs
+      if (statusTabsEl) {
+        statusTabsEl.getJourneyHelperProjectCount()
+      }
     },
     getJourneyHelperProjectShowPage (page) {
-      const userCommunityOrgId = this.memberPersonalInfo.communityOrgId
       const params = {
         pageNumber: page && page.num || 1,
         pageSize: page && page.size || 10,
-        communityOrgId: userCommunityOrgId || this.communityOrgId,
+        communityOrgId: this.communityOrgId,
         type: this.projectType
       }
       this.$api.getJourneyHelperProjectShowPage(params).then(res => {
+        this.isLoading = false
         if (res.isError) return this.mescroll.endErr()
         const { items, count } = res.content
         this.mescroll.endBySize(items.length, count)
         this.listData = params.pageNumber === 1 ? items : this.listData.concat(items)
       })
     },
+    getUnitListByCommunity () {
+      const params = {
+        communityOrgId: this.communityOrgId
+      }
+      this.$api.getUnitListByCommunity(params).then(res => {
+        if (res.isError) return this.$msg(res.message)
+        this.unitIds = res.content || []
+      })
+    }
   },
   data () {
     return {
+      isLoading: true,
       communityInfo: {},
       upOption: {
         empty: {
@@ -137,6 +152,21 @@ export default {
       listData: []
     }
   },
+  watch: {
+    communityOrgId (val) {
+      if (val) {
+        this.getUnitListByCommunity()
+      }
+    },
+    memberPersonalInfo: {
+      handler: function (val) {
+        if (val.communityOrgId) {
+          this.communityOrgId = this.memberPersonalInfo.communityOrgId
+        }
+      },
+      immediate: true
+    }
+  },
   computed: {
     memberPersonalInfo () {
       return this.$store.state.user.memberPersonalInfo
@@ -144,6 +174,19 @@ export default {
     // 是否共建单位用户
     isUnitUser () {
       return this.memberPersonalInfo.isUnitUser
+    },
+    communityText () {
+      if (this.isUnitUser) {
+        const { parentCommunityOrgName, communityOrgName } = this.memberPersonalInfo
+        return parentCommunityOrgName + communityOrgName
+      }
+      if (!communityInfo) return ''
+      const { streetInfo, communityInfo } = this.communityInfo
+      return streetInfo.name + communityInfo.name
+    },
+    unitNameText () {
+      const unitNames = this.unitIds.map(el => el.name)
+      return unitNames.join(' ')
     }
   },
 }

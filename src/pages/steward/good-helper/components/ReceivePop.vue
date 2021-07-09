@@ -56,10 +56,12 @@ export default {
     },
     hide () {
       this.isShow = false
+      this.projectId = null
+      this.communityOrgId = null
+      this.unitIds = []
     },
     onSelect (item) {
       this.selectedType = item.type
-      this.projectId = null
     },
     onJointUnitShow () {
       this.$refs.jointUnitPop.show(this.communityOrgId)
@@ -72,12 +74,13 @@ export default {
     },
     leadJourneyHelperProjectSchedule () {
       const selectedType = this.selectedType
-      if (selectedType === 1 && this.selectUnits.length === 0) {
+      if (this.isHall && selectedType === 1 && this.selectUnits.length === 0) {
         return this.$msg('请先选择联办单位')
       }
+      const chooseUnitList = this.isHall ? this.selectUnits : this.unitIds
       const params = {
         id: this.projectId,
-        journeyCoConstructionUnitIds: selectedType === 1 ? this.selectUnits.map(el => el.id) : this.unitIds
+        journeyCoConstructionUnitIds: selectedType === 1 ? chooseUnitList.map(el => el.id) : [this.memberPersonalInfo.unitOrgId]
       }
       this.$api.leadJourneyHelperProjectSchedule(params).then(res => {
         if (res.isError) return this.$msg(res.message)
@@ -114,7 +117,10 @@ export default {
       if (selectUnits.length === 0) return ''
       const nameList = selectUnits.map(el => el.name)
       return `(已选：${nameList.join('、')})`
-    }
+    },
+    memberPersonalInfo () {
+      return this.$store.state.user.memberPersonalInfo
+    },
   },
   props: {
     isHall: Boolean,
