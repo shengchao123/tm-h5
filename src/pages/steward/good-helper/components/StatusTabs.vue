@@ -29,7 +29,7 @@ export default {
         const tabs = this.tabs
         res.content.forEach(el => {
           const { status, count } = el
-          tabs[status - 1] = count
+          tabs[status - 1].count = count
         });
         this.tabs = tabs
       })

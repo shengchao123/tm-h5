@@ -17,7 +17,7 @@
         </div>
         <div v-if="isShowReceiveBtn"
              class="receive-btn tc ft24 color-e32417"
-             @click="onReceive">认领</div>
+             @click.stop="onReceive">认领</div>
       </div>
       <div class="between-row center-align ft24 color-999 pt16 pb16">
         <div>
@@ -54,7 +54,8 @@ export default {
       })
     },
     onReceive () {
-
+      const projectId = this.projectItem.id
+      this.$emit('onReceive', projectId)
     },
     onExpandContent () {
       this.isShowExpand = false
