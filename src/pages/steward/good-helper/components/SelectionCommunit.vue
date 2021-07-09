@@ -15,7 +15,6 @@
           </view>
         </view>
         <view class="pl30 pr30">
-          <!-- TODO: tabs-bar未滑动 -->
           <view class="mt32 flex">
             <view v-for="(item,index) in tabsList"
                   :key="index"
