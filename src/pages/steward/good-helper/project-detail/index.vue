@@ -78,8 +78,7 @@
            @click="onReceive">认领</div>
     </div>
 
-    <receive-pop ref="receivePop"
-                 :isHall="true"></receive-pop>
+    <receive-pop ref="receivePop"></receive-pop>
   </div>
 </template>
 <script>
