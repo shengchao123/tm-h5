@@ -91,7 +91,6 @@ export default {
     // 认领
     onReceive () {
       if (this.$notMember()) return this.$goLogin();
-      console.log(this.baseInfo)
       this.$refs.receivePop.show({
         projectId: this.baseInfo.id,
         communityOrgId: this.baseInfo.communityOrgId
