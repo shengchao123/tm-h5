@@ -80,7 +80,7 @@ export default {
       const chooseUnitList = this.isHall ? this.selectUnits : this.unitIds
       const params = {
         id: this.projectId,
-        journeyCoConstructionUnitIds: selectedType === 1 ? chooseUnitList.map(el => el.id) : [this.memberPersonalInfo.unitOrgId]
+        unitOrgIds: selectedType === 1 ? chooseUnitList.map(el => el.id) : [this.memberPersonalInfo.unitOrgId]
       }
       this.$api.leadJourneyHelperProjectSchedule(params).then(res => {
         if (res.isError) return this.$msg(res.message)
