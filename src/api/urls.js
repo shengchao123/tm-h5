@@ -98,7 +98,7 @@ export const urls = {
 
   // 基层治理
   getJourneyHelperProjectShowPage: '/linanJourney/journeyHelperProject/getJourneyHelperProjectShowPage', // 社区项目分页
-  getJourneyHelperProjectCount: 'linanJourney/journeyHelperProject/getJourneyHelperProjectCount', // 社区项目数量
+  getJourneyHelperProjectCount: '/linanJourney/journeyHelperProject/getJourneyHelperProjectCount', // 社区项目数量
   findCommunityOrganizationTree: '/organization/org/findCommunityOrganizationTree', // 获取街道社区组织树
   getJourneyHelperProjectDetail: '/linanJourney/journeyHelperProject/getJourneyHelperProjectDetail', // 社区项目详情
   createJourneyHelperProjectSchedule: '/linanJourney/journeyHelperProject/createJourneyHelperProjectSchedule', // 新增社区项目进度

@@ -10,7 +10,7 @@ import AMap from 'AMap'
 
 const LWH = { W: 80, H: 75 }
 const MWH = { W: 20, H: 28 }
-
+let overlays = new AMap.OverlayGroup()
 export default {
   name: 'index',
   methods: {
@@ -49,6 +49,7 @@ export default {
         icon: Icon,
         touchZoom: false
       })
+      overlays.addOverlay(marker)
       // 设置 marker 绑定的数据
       marker.setExtData(index)
       // 点击方法绑定
@@ -63,15 +64,16 @@ export default {
       this.$emit('changeIndex', index)
 
       this.$nextTick(() => {
-        this.$amap.clearMap()
-        this.drawDistrict()
+        overlays.hide()
+        overlays.clearOverlays()
         this.drawMarkers()
       })
     },
   },
   watch: {
     points () {
-      this.$amap.clearMap()
+      overlays.hide()
+      overlays.clearOverlays()
       this.drawMarkers()
     }
   },
