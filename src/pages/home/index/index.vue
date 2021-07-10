@@ -129,7 +129,7 @@ export default {
 
     .wrap {
       position: absolute;
-      bottom: calc(50px + 32rpx + var(--window-bottom));
+      bottom: calc(32rpx + var(--window-bottom));
       left: 0;
       right: 0;
       .qr-code-wrap {
