@@ -14,7 +14,7 @@
 
     <mescroll-uni ref="mescrollRef"
                   :top="mescrollTop"
-                  @scroll="pageScroll"
+                  @scroll="listScroll"
                   @init="mescrollInit"
                   :up="upOption"
                   @down="downCallback"
@@ -45,13 +45,9 @@ export default {
       this.search.pageNumber = 1
       this.getDataList()
     },
-    pageScroll () {
-
+    listScroll () {
       this.mescrollTop = '330rpx'
       uni.$emit('changeImgStatus')
-
-      // this.mescrollTop = this.mescroll.isScrollUp ? '330rpx' : '530rpx'
-      // uni.$emit('changeImgStatus', this.mescroll.isScrollUp)
     },
     changeSubTab (item) {
       this.search.classification = item.status
@@ -94,7 +90,6 @@ export default {
       isFixed: false,
       mescrollTop: '530rpx',
       upOption: {
-        onScroll: true,
         toTop: {
           bottom: 120
         }

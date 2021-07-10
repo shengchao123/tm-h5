@@ -5,9 +5,9 @@
              :tabs="subTabs"></SubTabs>
 
     <mescroll-uni ref="mescrollRef"
-                  top="410rpx"
+                  :top="mescrollTop"
                   :bottom="mescrollBottom"
-                  @scroll="scroll"
+                  @scroll="listScroll"
                   @init="mescrollInit"
                   :up="upOption"
                   @down="downCallback"
@@ -60,7 +60,10 @@ export default {
       this.dataList = []
       this.getDataList()
     },
-    scroll () {
+    listScroll () {
+      this.mescrollTop = '200rpx'
+      uni.$emit('changeImgStatus')
+
       this.isScroll = true
       if (this.timer) {
         this.timer = null
@@ -103,6 +106,7 @@ export default {
     return {
       isScroll: false,
       mescrollBottom: '0rpx',
+      mescrollTop: '400rpx',
       upOption: {
         onScroll: true,
         toTop: {

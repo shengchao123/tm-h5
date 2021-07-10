@@ -3,9 +3,9 @@
     <SubTabs @change="changeSubTab"
              :tabs="resourceSubTabs"></SubTabs>
     <mescroll-uni ref="mescrollRef"
-                  top="410rpx"
+                  :top="mescrollTop"
                   :bottom="mescrollBottom"
-                  @scroll="scroll"
+                  @scroll="listScroll"
                   @init="mescrollInit"
                   :up="upOption"
                   @up="upCallback"
@@ -51,7 +51,10 @@ export default {
       this.search.pageNumber = 1
       this.getDataList()
     },
-    scroll () {
+    listScroll () {
+      this.mescrollTop = '210rpx'
+      uni.$emit('changeImgStatus')
+
       this.isScroll = true
       if (this.timer) {
         this.timer = null
@@ -79,13 +82,13 @@ export default {
   mixins: [listMixins],
   data () {
     return {
+      mescrollTop: '410rpx',
       search: {
         pageNumber: 1,
         resourceType: '01'
       },
       isScroll: false,
       upOption: {
-        onScroll: true,
         toTop: {
           bottom: 240
         }

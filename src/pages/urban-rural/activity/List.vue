@@ -5,7 +5,8 @@
              :tabs="subTabs"></SubTabs>
 
     <mescroll-uni ref="mescrollRef"
-                  top="420rpx"
+                  :top="mescrollTop"
+                  @scroll="listScroll"
                   :bottom="mescrollBottom"
                   @init="mescrollInit"
                   :up="upOption"
@@ -37,6 +38,10 @@ export default {
       this.search.pageNumber = 1
       this.getDataList()
     },
+    listScroll () {
+      this.mescrollTop = '220rpx'
+      uni.$emit('changeImgStatus')
+    },
     // 获取商品列表
     getDataList () {
       const params = {
@@ -54,6 +59,7 @@ export default {
   components: { SubTabs, ActiveItem },
   data () {
     return {
+      mescrollTop: '420rpx',
       upOption: {
         toTop: {
           bottom: 120

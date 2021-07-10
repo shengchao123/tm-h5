@@ -10,6 +10,7 @@ const map = {
       },
       mescrollBottom: '0',
       upOption: {
+        onScroll: true,
         empty: {
           use: false
         },
@@ -23,6 +24,7 @@ const map = {
     }
   },
   methods: {
+
     upCallback (page) {
       this.search.pageNumber = page.num
       this.getDataList()

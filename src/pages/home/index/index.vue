@@ -19,7 +19,7 @@
         </template>
       </div>
 
-      <div class="center">
+      <div class="center wrap">
         <div class="qr-code-wrap mt32 row">
           <img src="@/static/home/qrcode.jpeg"
                alt="">
@@ -29,7 +29,6 @@
           </div>
         </div>
       </div>
-
     </div>
 
   </div>
@@ -127,21 +126,26 @@ export default {
       position: absolute;
       width: 128rpx;
     }
-    .qr-code-wrap {
-      position: absolute;
-      bottom: calc(50px + 32rpx);
-      text-align: center;
-      padding: 12rpx;
-      background: #ffffff20;
-      border-radius: 8px;
-      color: #ffffff;
-      img {
-        width: 110rpx;
-        height: 110rpx;
-      }
 
-      .right {
-        justify-content: center;
+    .wrap {
+      position: absolute;
+      bottom: calc(50px + 32rpx + var(--window-bottom));
+      left: 0;
+      right: 0;
+      .qr-code-wrap {
+        text-align: center;
+        padding: 12rpx;
+        background: #ffffff20;
+        border-radius: 8px;
+        color: #ffffff;
+        img {
+          width: 110rpx;
+          height: 110rpx;
+        }
+
+        .right {
+          justify-content: center;
+        }
       }
     }
   }
