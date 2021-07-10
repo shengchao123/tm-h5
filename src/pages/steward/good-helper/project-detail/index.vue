@@ -93,10 +93,10 @@ export default {
     onReceive () {
       if (this.$notMember()) return this.$goLogin();
       console.log(this.baseInfo)
-      // this.$refs.receivePop.show({
-      //   projectId: this.baseInfo.projectId,
-      //   communityOrgId: this.communityOrgId,
-      // })
+      this.$refs.receivePop.show({
+        projectId: this.baseInfo.id,
+        communityOrgId: this.baseInfo.communityOrgId
+      })
     },
     // 新增跟进
     onPublish () {
