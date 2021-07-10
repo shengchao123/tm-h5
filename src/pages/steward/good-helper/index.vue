@@ -180,8 +180,8 @@ export default {
         const { parentCommunityOrgName, communityOrgName } = this.memberPersonalInfo
         return parentCommunityOrgName + communityOrgName
       }
-      if (!communityInfo) return ''
       const { streetInfo, communityInfo } = this.communityInfo
+      if (!communityInfo) return ''
       return streetInfo.name + communityInfo.name
     },
     unitNameText () {

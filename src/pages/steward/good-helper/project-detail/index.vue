@@ -72,7 +72,7 @@
                  right="14rpx"
                  bottom="134rpx"
                  @onPublish="onPublish"></publish-btn>
-    <div v-if="baseInfo.status === 1"
+    <div v-if="isUnitUser && baseInfo.status === 1"
          class="footer-btn pl32 pr32 center">
       <div class="receive-btn tc ft32"
            @click="onReceive">认领</div>
