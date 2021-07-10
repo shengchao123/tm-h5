@@ -77,17 +77,26 @@
       <div class="receive-btn tc ft32"
            @click="onReceive">认领</div>
     </div>
+
+    <receive-pop ref="receivePop"
+                 :isHall="true"></receive-pop>
   </div>
 </template>
 <script>
 import PublishBtn from '@/pages/urban-rural/components/PublishBtn.vue'
+import ReceivePop from '../components/ReceivePop.vue';
 let timer = null
 export default {
   components: { PublishBtn },
   methods: {
     // 认领
     onReceive () {
-
+      if (this.$notMember()) return this.$goLogin();
+      console.log(this.baseInfo)
+      // this.$refs.receivePop.show({
+      //   projectId: this.baseInfo.projectId,
+      //   communityOrgId: this.communityOrgId,
+      // })
     },
     // 新增跟进
     onPublish () {
@@ -138,6 +147,9 @@ export default {
       baseInfo: {},
       recordList: []
     }
+  },
+  components: {
+    ReceivePop
   },
   computed: {
     memberPersonalInfo () {

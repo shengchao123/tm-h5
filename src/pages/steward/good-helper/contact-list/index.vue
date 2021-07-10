@@ -98,7 +98,7 @@ export default {
         pageNumber: page && page.num || 1,
         pageSize: page && page.size || 10,
         communityOrgId: this.communityOrgId,
-        id: this.companyId
+        unitOrgId: this.companyId
       }
       this.$api.getJourneyCoConstructionUnitTablePage(params).then(res => {
         if (res.isError) return this.mescroll.endErr()
