@@ -162,7 +162,7 @@ export default {
     },
     memberPersonalInfo: {
       handler: function (val) {
-        if (val.communityOrgId) {
+        if (val.communityOrgId && val.communityOrgId !== '0') {
           this.communityOrgId = this.memberPersonalInfo.communityOrgId
         }
       },
@@ -190,7 +190,7 @@ export default {
       const unitNames = this.unitIds.map(el => el.name)
       return unitNames.join(' ')
     }
-  },
+  }
 }
 </script>
 <style>

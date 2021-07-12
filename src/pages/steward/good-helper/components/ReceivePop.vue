@@ -77,16 +77,14 @@ export default {
       if (this.isHall && selectedType === 1 && this.selectUnits.length === 0) {
         return this.$msg('请先选择联办单位')
       }
-      const chooseUnitList = this.isHall ? this.selectUnits : this.unitIds
-      // const params = {
-      //   id: this.projectId,
-      //   unitOrgIds: selectedType === 1 ? chooseUnitList.map(el => el.unitOrgId) : [this.memberPersonalInfo.unitOrgId]
-      // }
 
+      const memberUnitOrgId = this.memberPersonalInfo.unitOrgId
+      let chooseUnitList = this.isHall ? this.selectUnits : this.unitIds
+      chooseUnitList = chooseUnitList.filter(el => el.id !== memberUnitOrgId)
       const params = {
         id: this.projectId,
+        journeyCoConstructionUnitIds: selectedType === 1 ? chooseUnitList.map(el => el.id) : [memberUnitOrgId]
       }
-      if (selectedType === 1) params.unitOrgIds = chooseUnitList.map(el => el.unitOrgId)
 
       this.$api.leadJourneyHelperProjectSchedule(params).then(res => {
         if (res.isError) return this.$msg(res.message)

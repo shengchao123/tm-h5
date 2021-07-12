@@ -40,6 +40,9 @@ export default {
   name: 'index',
   methods: {
     onItem (item) {
+      if (item.needMember) {
+        if (this.$notMember()) return this.$goLogin()
+      }
       uni.navigateTo({ url: item.url })
     },
   },
@@ -90,7 +93,8 @@ export default {
           text2: '一管家',
           imgW: 50,
           style: { right: '30rpx', top: '173rpx' },
-          url: '/pages/steward/index/index'
+          url: '/pages/steward/index/index',
+          needMember: true
         },
       ])
     }
