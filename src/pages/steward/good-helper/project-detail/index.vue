@@ -88,6 +88,7 @@ let timer = null
 export default {
   methods: {
     // 认领
+    // TODO: 功能缺失
     onReceive () {
       if (this.$notMember()) return this.$goLogin();
       this.$refs.receivePop.show({

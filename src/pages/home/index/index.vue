@@ -6,7 +6,7 @@
                 height='388'
                 class="swiper"></u-swiper>
 
-      <div class="tc relative">
+      <div class="tc relative content-wrap">
         <img src="@/static/home/00.png"
              class="main-card">
 
@@ -17,15 +17,15 @@
                       :style="item.style"></HomeItem>
           </div>
         </template>
-      </div>
 
-      <div class="center wrap">
-        <div class="qr-code-wrap mt32 row">
-          <img src="@/static/home/qrcode.jpeg"
-               alt="">
-          <div class="right column ml16 ft26">
-            <div>长按识别，关注「天目先锋」</div>
-            <div class="mt16">“天目红盟”与您相约“云之家”</div>
+        <div class="center wrap">
+          <div class="qr-code-wrap mt32 row">
+            <img src="@/static/home/qrcode.jpeg"
+                 alt="">
+            <div class="right column ml16 ft26">
+              <div>长按识别，关注「天目先锋」</div>
+              <div class="mt16">“天目红盟”与您相约“云之家”</div>
+            </div>
           </div>
         </div>
       </div>
@@ -127,11 +127,14 @@ export default {
       width: 128rpx;
     }
 
+    .content-wrap {
+      height: 720rpx;
+    }
     .wrap {
       position: absolute;
-      bottom: calc(32rpx + var(--window-bottom));
       left: 0;
       right: 0;
+      bottom: 0;
       .qr-code-wrap {
         text-align: center;
         padding: 12rpx;
