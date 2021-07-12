@@ -69,6 +69,7 @@ export default {
   methods: {
     onConfirmCommunit (item) {
       this.communityInfo = item.communityInfo
+      this.streetInfo = item.streetInfo
       this.communityOrgId = item.communityInfo.id
       this.$nextTick(() => {
         this.getJourneyHelperProjectShowPage()
@@ -141,6 +142,7 @@ export default {
     return {
       isLoading: true,
       communityInfo: {},
+      streetInfo: {},
       upOption: {
         empty: {
           use: false, // 是否显示空布局
@@ -180,7 +182,7 @@ export default {
         const { parentCommunityOrgName, communityOrgName } = this.memberPersonalInfo
         return parentCommunityOrgName + communityOrgName
       }
-      const { streetInfo, communityInfo } = this.communityInfo
+      const { streetInfo, communityInfo } = this
       if (!communityInfo) return ''
       return streetInfo.name + communityInfo.name
     },
