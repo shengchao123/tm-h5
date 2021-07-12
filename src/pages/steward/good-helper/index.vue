@@ -117,7 +117,6 @@ export default {
       this.updateTabsCount()
     },
     getJourneyHelperProjectShowPage (page) {
-      if (!this.communityOrgId) return
       const params = {
         pageNumber: page && page.num || 1,
         pageSize: page && page.size || 10,

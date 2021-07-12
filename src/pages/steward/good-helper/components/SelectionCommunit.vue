@@ -97,7 +97,6 @@ export default {
       let objKey = this.tabsCurrent === 0 ? 'streetInfo' : 'communityInfo'
       this[objKey] = { id, name }
       this.tabsList[this.tabsCurrent] = { ...this.tabsList[this.tabsCurrent], id, name }
-      // this.tabsCurrent === 0 && this.findCommunityOrganizationTree()
       this.tabsList = JSON.parse(JSON.stringify(this.tabsList))
     },
     // 选中某一组织
