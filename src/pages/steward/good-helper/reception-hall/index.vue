@@ -63,11 +63,10 @@ export default {
       })
     },
     getJourneyHelperProjectShowPage (page) {
-      const userCommunityOrgId = this.memberPersonalInfo.communityOrgId
       const params = {
         pageNumber: page && page.num || 1,
         pageSize: page && page.size || 10,
-        communityOrgId: userCommunityOrgId || this.communityOrgId,
+        communityOrgId: this.communityOrgId,
         type: 1
       }
       this.$api.getJourneyHelperProjectShowPage(params).then(res => {
