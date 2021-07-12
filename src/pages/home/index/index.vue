@@ -57,7 +57,7 @@ export default {
           text1: '初心之旅',
           text2: '一张图',
           imgW: 45,
-          style: { left: '30rpx', top: '173rpx' },
+          style: { left: '30rpx', top: '153rpx' },
           url: '/pages/original-travel/index/index'
         },
         {
@@ -65,7 +65,7 @@ export default {
           text1: '组团发展',
           text2: '一联盟',
           imgW: 50,
-          style: { left: '172rpx', top: '253rpx' },
+          style: { left: '172rpx', top: '233rpx' },
           url: '/pages/union/index/index'
         },
         {
@@ -73,7 +73,7 @@ export default {
           text1: '城乡融合',
           text2: '一社区',
           imgW: 50,
-          style: { left: '312rpx', top: '333rpx' },
+          style: { left: '312rpx', top: '313rpx' },
           url: '/pages/urban-rural/index/index'
         },
         {
@@ -81,7 +81,7 @@ export default {
           text1: '乡村人才',
           text2: '一智库',
           imgW: 60,
-          style: { right: '172rpx', top: '253rpx' },
+          style: { right: '172rpx', top: '233rpx' },
           url: '/pages/think-tank/index/index'
         },
         {
@@ -89,7 +89,7 @@ export default {
           text1: '基层治理',
           text2: '一管家',
           imgW: 50,
-          style: { right: '30rpx', top: '173rpx' },
+          style: { right: '30rpx', top: '153rpx' },
           url: '/pages/steward/index/index'
         },
       ])
@@ -109,9 +109,9 @@ export default {
   .content {
     background: url("@/static/home/bg.jpg") no-repeat 0 0;
     background-size: 100% 100%;
+    height: calc(100vh - 50px);
     position: absolute;
     width: 100vw;
-    height: 100vh;
     top: 0;
     bottom: 0;
     overflow: hidden;
