@@ -53,6 +53,10 @@ export default {
       this.projectId = projectId
       this.unitIds = unitIds
       this.communityOrgId = communityOrgId
+      if (unitIds.length === 1) { // 若当前联合单位为 1 默认单独领办
+        this.selectedType = 2
+        this.selectList.splice(0, 1)
+      }
     },
     hide () {
       this.isShow = false
