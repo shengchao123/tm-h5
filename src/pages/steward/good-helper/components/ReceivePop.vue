@@ -44,6 +44,7 @@
 </template>
 <script>
 import JointUnitPop from './JointUnitPop.vue'
+let cacheSelectList = null
 export default {
   components: { JointUnitPop },
   name: 'ReceivePop',
@@ -51,18 +52,23 @@ export default {
     show ({ projectId, unitIds, communityOrgId }) {
       this.isShow = true
       this.projectId = projectId
-      this.unitIds = unitIds
-      this.communityOrgId = communityOrgId
-      if (unitIds.length === 1) { // 若当前联合单位为 1 默认单独领办
+      this.unitIds = unitIds || []
+      this.communityOrgId = communityOrgId || null
+      if (unitIds && unitIds.length === 1) { // 若当前联合单位为 1 默认单独领办
         this.selectedType = 2
         this.selectList.splice(0, 1)
       }
     },
     hide () {
       this.isShow = false
+      this.resetData()
+    },
+    resetData () {
       this.projectId = null
       this.communityOrgId = null
       this.unitIds = []
+      this.selectedType = 1
+      this.selectList = [...cacheSelectList]
     },
     onSelect (item) {
       this.selectedType = item.type
@@ -140,7 +146,9 @@ export default {
       }
     }
   },
-  created () { },
+  created () {
+    cacheSelectList = [...this.selectList]
+  },
 }
 </script>
 <style lang='scss' scoped>
