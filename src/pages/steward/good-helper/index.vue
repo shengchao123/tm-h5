@@ -160,10 +160,13 @@ export default {
     }
   },
   watch: {
-    communityOrgId (val) {
-      if (val.communityOrgId && val.communityOrgId !== '0') {
-        this.getUnitListByCommunity()
-      }
+    communityOrgId: {
+      handler: function (val) {
+        if (val && val !== '0') {
+          this.getUnitListByCommunity()
+        }
+      },
+      immediate: true
     },
     memberPersonalInfo: {
       handler: function (val) {

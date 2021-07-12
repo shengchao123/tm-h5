@@ -93,7 +93,10 @@ export default {
       chooseUnitList = chooseUnitList.filter(el => el.id !== memberUnitOrgId)
       const params = {
         id: this.projectId,
-        journeyCoConstructionUnitIds: selectedType === 1 ? chooseUnitList.map(el => el.id) : [memberUnitOrgId]
+      }
+
+      if (selectedType === 1) {
+        params.journeyCoConstructionUnitIds = chooseUnitList.map(el => el.id)
       }
 
       this.$api.leadJourneyHelperProjectSchedule(params).then(res => {
