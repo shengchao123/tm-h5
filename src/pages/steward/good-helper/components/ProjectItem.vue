@@ -49,8 +49,9 @@ export default {
   name: 'projectItem',
   methods: {
     onDetail () {
+      const entrance = this.isHome ? 'helper' : 'hall'
       uni.navigateTo({
-        url: `/pages/steward/good-helper/project-detail/index?id=${this.projectItem.id}`
+        url: `/pages/steward/good-helper/project-detail/index?id=${this.projectItem.id}&entrance=${entrance}`
       })
     },
     onReceive () {

@@ -86,7 +86,6 @@ import PublishBtn from '@/pages/urban-rural/components/PublishBtn.vue'
 import ReceivePop from '../components/ReceivePop.vue';
 let timer = null
 export default {
-  components: { PublishBtn },
   methods: {
     // 认领
     onReceive () {
@@ -117,6 +116,19 @@ export default {
         if (res.isError) return this.$msg(res.message)
         this.baseInfo = res.content
         this.recordList = this.baseInfo.journeyHelperProjectScheduleList || []
+        // 从好帮手页面进入 认领方式不同
+        if (this.entrance === 'helper') {
+          this.getUnitListByCommunity()
+        }
+      })
+    },
+    getUnitListByCommunity () {
+      const params = {
+        communityOrgId: this.baseInfo.communityOrgId
+      }
+      this.$api.getUnitListByCommunity(params).then(res => {
+        if (res.isError) return this.$msg(res.message)
+        this.unitIds = res.content || []
       })
     },
     setEvent () {
@@ -142,12 +154,10 @@ export default {
     return {
       id: null,
       isScroll: false,
+      entrance: null,
       baseInfo: {},
       recordList: []
     }
-  },
-  components: {
-    ReceivePop
   },
   computed: {
     memberPersonalInfo () {
@@ -179,12 +189,17 @@ export default {
     this.clearEvent()
     window.removeEventListener('scroll', this.scroll)
   },
-  onLoad (option) {
-    this.id = option.id
+  onLoad ({ id, entrance }) {
+    this.id = id
+    this.entrance = entrance // helper | hall
     this.getJourneyHelperProjectDetail()
     this.setEvent()
     window.addEventListener('scroll', this.scroll)
-  }
+  },
+  components: {
+    ReceivePop,
+    PublishBtn
+  },
 }
 </script>
 <style>
