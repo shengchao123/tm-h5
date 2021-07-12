@@ -15,8 +15,8 @@
             "port": 8888,
             "proxy": {
                 "/cb-api": {
-                    "target": "http://172.168.102.2:9032",
-                    // "target": "https://release.hzslonline.com.cn/cb-api",
+                    // "target": "http://172.168.102.2:9032",
+                    "target": "https://release.hzslonline.com.cn/cb-api",
                     "changeOrigin": true,
                     "pathRewrite": {
                         "^/cb-api": ""
