@@ -34,7 +34,7 @@
         </div>
         <div class="mt24">
           <status-tabs ref="statusTabs"
-                       :communityOrgId="memberPersonalInfo.communityOrgId || communityOrgId"
+                       :communityOrgId="communityOrgId"
                        @changeCurrent="changeCurrent"></status-tabs>
           <div v-show="listData.length > 0"
                class="list">
@@ -50,7 +50,7 @@
         </div>
       </template>
     </mescroll-uni>
-    <selection-communit v-if="!isUnitUser && !isLoading"
+    <selection-communit v-if="!isUnitUser && !isFirstLoading"
                         ref="selectionCommunit"
                         @onConfirm="onConfirmCommunit"></selection-communit>
     <receive-pop ref="receivePop"></receive-pop>
@@ -73,7 +73,7 @@ export default {
       this.communityOrgId = item.communityInfo.id
       this.$nextTick(() => {
         this.getJourneyHelperProjectShowPage()
-        this.updateTabsCount()
+        !this.isFirstLoading && this.updateTabsCount()
       })
     },
     onReceive (projectId) {
@@ -126,7 +126,7 @@ export default {
         type: this.projectType
       }
       this.$api.getJourneyHelperProjectShowPage(params).then(res => {
-        this.isLoading = false
+        this.isFirstLoading = false
         if (res.isError) return this.mescroll.endErr()
         const { items, count } = res.content
         this.mescroll.endBySize(items.length, count)
@@ -145,7 +145,7 @@ export default {
   },
   data () {
     return {
-      isLoading: true,
+      isFirstLoading: true,
       communityInfo: {},
       streetInfo: {},
       upOption: {
