@@ -192,7 +192,7 @@ export default {
     }
   },
   destroyed () {
-    uni.clearStorageSync('journeyHelperProjectSchedule')
+    uni.removeStorageSync('journeyHelperProjectSchedule')
   },
   onLoad ({ projectId, scheduleId }) {
     this.projectId = projectId

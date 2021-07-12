@@ -160,7 +160,7 @@ export default {
   },
   watch: {
     communityOrgId (val) {
-      if (val) {
+      if (val.communityOrgId && val.communityOrgId !== '0') {
         this.getUnitListByCommunity()
       }
     },
