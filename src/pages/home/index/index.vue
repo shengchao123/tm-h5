@@ -1,36 +1,33 @@
 <template>
   <div class='home-index-wrap relative'>
 
-    <div class="content">
-      <u-swiper :list="swiperList"
-                height='388'
-                class="swiper"></u-swiper>
+    <u-swiper :list="swiperList"
+              height='388'
+              class="swiper"></u-swiper>
 
-      <div class="tc relative content-wrap">
-        <img src="@/static/home/00.png"
-             class="main-card">
+    <div class="tc relative content-wrap">
+      <img src="@/static/home/00.png"
+           class="main-card">
 
-        <template v-for="(item, index) in cardList">
-          <div @click="onItem(item)"
-               :key="index">
-            <HomeItem :item="item"
-                      :style="item.style"></HomeItem>
-          </div>
-        </template>
+      <template v-for="(item, index) in cardList">
+        <div @click="onItem(item)"
+             :key="index">
+          <HomeItem :item="item"
+                    :style="item.style"></HomeItem>
+        </div>
+      </template>
 
-        <div class="center wrap">
-          <div class="qr-code-wrap mt32 row">
-            <img src="@/static/home/qrcode.jpeg"
-                 alt="">
-            <div class="right column ml16 ft26">
-              <div>长按识别，关注「天目先锋」</div>
-              <div class="mt16">“天目红盟”与您相约“云之家”</div>
-            </div>
+      <div class="center wrap">
+        <div class="qr-code-wrap mt32 row">
+          <img src="@/static/home/qrcode.jpeg"
+               alt="">
+          <div class="right column ml16 ft26">
+            <div>长按识别，关注「天目先锋」</div>
+            <div class="mt16">“天目红盟”与您相约“云之家”</div>
           </div>
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -106,49 +103,47 @@ export default {
 
 <style lang='scss' scoped>
 .home-index-wrap {
-  .content {
-    background: url("@/static/home/bg.jpg") no-repeat 0 0;
-    background-size: 100% 100%;
-    height: calc(100vh - 50px);
+  background: url("@/static/home/bg.jpg") no-repeat 0 0;
+  background-size: 100% 100%;
+  height: calc(100vh - 50px);
+  position: absolute;
+  width: 100vw;
+  top: 0;
+  bottom: 0;
+  overflow-y: scroll;
+  .swiper {
+    margin: 24rpx 30rpx 0;
+  }
+  .main-card {
+    height: 334rpx;
+    margin-top: 32rpx;
+  }
+  .card {
     position: absolute;
-    width: 100vw;
-    top: 0;
-    bottom: 0;
-    overflow: hidden;
-    .swiper {
-      margin: 24rpx 30rpx 0;
-    }
-    .main-card {
-      height: 334rpx;
-      margin-top: 32rpx;
-    }
-    .card {
-      position: absolute;
-      width: 128rpx;
-    }
+    width: 128rpx;
+  }
 
-    .content-wrap {
-      height: 720rpx;
-    }
-    .wrap {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      .qr-code-wrap {
-        text-align: center;
-        padding: 12rpx;
-        background: #ffffff20;
-        border-radius: 8px;
-        color: #ffffff;
-        img {
-          width: 110rpx;
-          height: 110rpx;
-        }
+  .content-wrap {
+    height: 752rpx;
+  }
+  .wrap {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 32rpx;
+    .qr-code-wrap {
+      text-align: center;
+      padding: 12rpx;
+      background: #ffffff20;
+      border-radius: 8px;
+      color: #ffffff;
+      img {
+        width: 110rpx;
+        height: 110rpx;
+      }
 
-        .right {
-          justify-content: center;
-        }
+      .right {
+        justify-content: center;
       }
     }
   }
