@@ -50,7 +50,7 @@
         </div>
       </template>
     </mescroll-uni>
-    <selection-communit v-if="!isUnitUser && !isFirstLoading"
+    <selection-communit v-if="isShowSelectionCommunit"
                         ref="selectionCommunit"
                         @onConfirm="onConfirmCommunit"></selection-communit>
     <receive-pop ref="receivePop"></receive-pop>
@@ -71,9 +71,6 @@ export default {
       this.communityInfo = item.communityInfo
       this.streetInfo = item.streetInfo
       this.communityOrgId = item.communityInfo.id
-      this.$nextTick(() => {
-        !this.isFirstLoading && this.updateTabsCount()
-      })
     },
     onReceive (projectId) {
       if (this.$notMember()) return this.$goLogin();
@@ -104,9 +101,11 @@ export default {
     },
     updateTabsCount () {
       const statusTabsEl = this.$refs.statusTabs
-      if (statusTabsEl) {
-        statusTabsEl.getJourneyHelperProjectCount()
-      }
+      this.$nextTick(() => {
+        if (statusTabsEl) {
+          statusTabsEl.getJourneyHelperProjectCount()
+        }
+      })
     },
     upCallback (page) {
       this.getJourneyHelperProjectShowPage(page)
@@ -117,6 +116,7 @@ export default {
       this.updateTabsCount()
     },
     getJourneyHelperProjectShowPage (page) {
+      if (!this.communityOrgId) return
       const params = {
         pageNumber: page && page.num || 1,
         pageSize: page && page.size || 10,
@@ -124,7 +124,6 @@ export default {
         type: this.projectType
       }
       this.$api.getJourneyHelperProjectShowPage(params).then(res => {
-        this.isFirstLoading = false
         if (res.isError) return this.mescroll.endErr()
         const { items, count } = res.content
         this.mescroll.endBySize(items.length, count)
@@ -143,7 +142,6 @@ export default {
   },
   data () {
     return {
-      isFirstLoading: true,
       communityInfo: {},
       streetInfo: {},
       upOption: {
@@ -162,6 +160,9 @@ export default {
       handler: function (val) {
         if (val && val !== '0') {
           this.getUnitListByCommunity()
+        }
+        if (this.isShowSelectionCommunit) {
+          this.updateTabsCount()
           this.getJourneyHelperProjectShowPage()
         }
       },
@@ -196,6 +197,10 @@ export default {
     unitNameText () {
       const unitNames = this.unitIds.map(el => el.name)
       return unitNames.join(' ')
+    },
+    isShowSelectionCommunit () {
+      const isUnitUser = this.isUnitUser
+      return !isUnitUser && typeof (isUnitUser) !== 'undefined'
     }
   }
 }

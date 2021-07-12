@@ -21,6 +21,7 @@ export default {
       this.$emit('changeCurrent', index, type)
     },
     getJourneyHelperProjectCount () {
+      if (!this.communityOrgId) return
       const params = {
         communityOrgId: this.communityOrgId
       }
