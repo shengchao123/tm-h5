@@ -17,10 +17,11 @@
               :key="index"
               class="item between-row center-align"
               :class="isSelected(item) && 'selected'"
-              @click="onItem(item)">
+              @click="onSelect(item)">
           <text class="ft28">{{item.name}}</text>
-          <text v-if="isSelected(item)"
-                class="iconfont icon_duihao ft28 mt4"></text>
+          <svg-icon v-if="isSelected(item)"
+                    icon="icon_duihao"
+                    class="ft28 mt4"></svg-icon>
         </view>
       </scroll-view>
       <div class="pt8 between-row">
