@@ -2,11 +2,23 @@
   <div class='project-detail-wrap'
        @scroll="scroll">
     <div class="pt28 pb28 pl32 pr32 bg-white">
-      <div class="ft40 bold">{{baseInfo.name}}</div>
+      <div>
+        <svg-icon v-if="baseInfo.status !== 1 && baseInfo.isGrab && entrance === 'helper'"
+                  icon="icon_qiangdan"
+                  class="ft48 mr8"
+                  style="color: #FA5A12"></svg-icon>
+        <span class="flex1 ft40 bold">{{baseInfo.name}}</span>
+      </div>
       <div class="ft26 color-666 pt24 pb24">
-        <span>{{startTime}}</span>
-        <span v-if="baseInfo.status !== 1"
-              class="ml48">{{projectLeadName}}</span>
+        <div class="pb8">
+          <span>{{baseInfo.createTime && $moment(baseInfo.createTime).format('YYYY年MM月DD日')}}发布</span>
+          <span v-if="baseInfo.status !== 1"
+                class="ml48">{{baseInfo.communityParentOrgName}}{{baseInfo.communityOrgName}}发布</span>
+        </div>
+        <div v-if="baseInfo.status !== 1">
+          <span>{{baseInfo.leadTime && $moment(baseInfo.leadTime).format('YYYY年MM月DD日')}}领办</span>
+          <span class="ml48">{{projectLeadName}}</span>
+        </div>
       </div>
       <div class="ft30 content">{{baseInfo.description}}</div>
     </div>
@@ -183,7 +195,7 @@ export default {
       if (journeyHelperProjectLeadRecordList.length > 1) {
         return '由共建单位联合领办'
       }
-      return journeyHelperProjectLeadRecordList[0].journeyCoConstructionUnitName
+      return `由${journeyHelperProjectLeadRecordList[0].journeyCoConstructionUnitName}领办`
     },
     isCanEdit () {
       return this.isUnitUser && this.baseInfo.status === 2
