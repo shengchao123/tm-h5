@@ -34,7 +34,7 @@
         </div>
         <div class="mt24">
           <status-tabs ref="statusTabs"
-                       :communityOrgId="memberPersonalInfo.communityOrgId || communityOrgId"
+                       :communityOrgId="communityOrgId"
                        @changeCurrent="changeCurrent"></status-tabs>
           <div v-show="listData.length > 0"
                class="list">
@@ -50,7 +50,7 @@
         </div>
       </template>
     </mescroll-uni>
-    <selection-communit v-if="!isUnitUser && !isLoading"
+    <selection-communit v-if="!isUnitUser && !isFirstLoading"
                         ref="selectionCommunit"
                         @onConfirm="onConfirmCommunit"></selection-communit>
     <receive-pop ref="receivePop"></receive-pop>
@@ -73,6 +73,7 @@ export default {
       this.communityOrgId = item.communityInfo.id
       this.$nextTick(() => {
         this.getJourneyHelperProjectShowPage()
+        !this.isFirstLoading && this.updateTabsCount()
       })
     },
     onReceive (projectId) {
@@ -102,18 +103,22 @@ export default {
         url: '/pages/steward/good-helper/reception-hall/index'
       })
     },
+    updateTabsCount () {
+      const statusTabsEl = this.$refs.statusTabs
+      if (statusTabsEl) {
+        statusTabsEl.getJourneyHelperProjectCount()
+      }
+    },
     upCallback (page) {
       this.getJourneyHelperProjectShowPage(page)
       this.mescroll.endErr()
     },
     downCallback () {
       this.mescroll.resetUpScroll(); // 重置列表为第一页
-      const statusTabsEl = this.$refs.statusTabs
-      if (statusTabsEl) {
-        statusTabsEl.getJourneyHelperProjectCount()
-      }
+      this.updateTabsCount()
     },
     getJourneyHelperProjectShowPage (page) {
+      if (!this.communityOrgId) return
       const params = {
         pageNumber: page && page.num || 1,
         pageSize: page && page.size || 10,
@@ -121,7 +126,7 @@ export default {
         type: this.projectType
       }
       this.$api.getJourneyHelperProjectShowPage(params).then(res => {
-        this.isLoading = false
+        this.isFirstLoading = false
         if (res.isError) return this.mescroll.endErr()
         const { items, count } = res.content
         this.mescroll.endBySize(items.length, count)
@@ -136,11 +141,11 @@ export default {
         if (res.isError) return this.$msg(res.message)
         this.unitIds = res.content || []
       })
-    }
+    },
   },
   data () {
     return {
-      isLoading: true,
+      isFirstLoading: true,
       communityInfo: {},
       streetInfo: {},
       upOption: {
@@ -155,14 +160,17 @@ export default {
     }
   },
   watch: {
-    communityOrgId (val) {
-      if (val) {
-        this.getUnitListByCommunity()
-      }
+    communityOrgId: {
+      handler: function (val) {
+        if (val && val !== '0') {
+          this.getUnitListByCommunity()
+        }
+      },
+      immediate: true
     },
     memberPersonalInfo: {
       handler: function (val) {
-        if (val.communityOrgId) {
+        if (val.communityOrgId && val.communityOrgId !== '0') {
           this.communityOrgId = this.memberPersonalInfo.communityOrgId
         }
       },
@@ -190,7 +198,7 @@ export default {
       const unitNames = this.unitIds.map(el => el.name)
       return unitNames.join(' ')
     }
-  },
+  }
 }
 </script>
 <style>

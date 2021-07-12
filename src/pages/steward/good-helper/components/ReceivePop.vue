@@ -44,6 +44,7 @@
 </template>
 <script>
 import JointUnitPop from './JointUnitPop.vue'
+let cacheSelectList = null
 export default {
   components: { JointUnitPop },
   name: 'ReceivePop',
@@ -51,14 +52,23 @@ export default {
     show ({ projectId, unitIds, communityOrgId }) {
       this.isShow = true
       this.projectId = projectId
-      this.unitIds = unitIds
-      this.communityOrgId = communityOrgId
+      this.unitIds = unitIds || []
+      this.communityOrgId = communityOrgId || null
+      if (unitIds && unitIds.length === 1) { // 若当前联合单位为 1 默认单独领办
+        this.selectedType = 2
+        this.selectList.splice(0, 1)
+      }
     },
     hide () {
       this.isShow = false
+      this.resetData()
+    },
+    resetData () {
       this.projectId = null
       this.communityOrgId = null
       this.unitIds = []
+      this.selectedType = 1
+      this.selectList = [...cacheSelectList]
     },
     onSelect (item) {
       this.selectedType = item.type
@@ -77,16 +87,17 @@ export default {
       if (this.isHall && selectedType === 1 && this.selectUnits.length === 0) {
         return this.$msg('请先选择联办单位')
       }
-      const chooseUnitList = this.isHall ? this.selectUnits : this.unitIds
-      // const params = {
-      //   id: this.projectId,
-      //   unitOrgIds: selectedType === 1 ? chooseUnitList.map(el => el.unitOrgId) : [this.memberPersonalInfo.unitOrgId]
-      // }
 
+      const memberUnitOrgId = this.memberPersonalInfo.unitOrgId
+      let chooseUnitList = this.isHall ? this.selectUnits : this.unitIds
+      chooseUnitList = chooseUnitList.filter(el => el.id !== memberUnitOrgId)
       const params = {
         id: this.projectId,
       }
-      if (selectedType === 1) params.unitOrgIds = chooseUnitList.map(el => el.unitOrgId)
+
+      if (selectedType === 1) {
+        params.journeyCoConstructionUnitIds = chooseUnitList.map(el => el.id)
+      }
 
       this.$api.leadJourneyHelperProjectSchedule(params).then(res => {
         if (res.isError) return this.$msg(res.message)
@@ -138,7 +149,9 @@ export default {
       }
     }
   },
-  created () { },
+  created () {
+    cacheSelectList = [...this.selectList]
+  },
 }
 </script>
 <style lang='scss' scoped>

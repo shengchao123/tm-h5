@@ -78,7 +78,9 @@
            @click="onReceive">认领</div>
     </div>
 
-    <receive-pop ref="receivePop"></receive-pop>
+    <receive-pop ref="receivePop"
+                 v-if="isUnitUser && baseInfo.status === 1"
+                 :isHall="entrance === 'hall'"></receive-pop>
   </div>
 </template>
 <script>
@@ -88,12 +90,13 @@ let timer = null
 export default {
   methods: {
     // 认领
-    // TODO: 功能缺失
     onReceive () {
-      if (this.$notMember()) return this.$goLogin();
+      if (this.$notMember()) return this.$goLogin()
+      const entrance = this.entrance
       this.$refs.receivePop.show({
         projectId: this.baseInfo.id,
-        communityOrgId: this.baseInfo.communityOrgId
+        communityOrgId: entrance === 'helper' && this.baseInfo.communityOrgId,
+        unitIds: entrance === 'hall' && this.unitIds
       })
     },
     // 新增跟进
