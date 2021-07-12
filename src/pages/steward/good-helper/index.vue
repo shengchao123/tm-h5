@@ -72,7 +72,6 @@ export default {
       this.streetInfo = item.streetInfo
       this.communityOrgId = item.communityInfo.id
       this.$nextTick(() => {
-        this.getJourneyHelperProjectShowPage()
         !this.isFirstLoading && this.updateTabsCount()
       })
     },
@@ -164,6 +163,7 @@ export default {
       handler: function (val) {
         if (val && val !== '0') {
           this.getUnitListByCommunity()
+          this.getJourneyHelperProjectShowPage()
         }
       },
       immediate: true
