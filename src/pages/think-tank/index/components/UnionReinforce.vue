@@ -13,13 +13,13 @@
              class="pl32 pr32 mt24"
              @click="onToDetail(item.id)">
           <div class="cont-box">
-            <div class="between-row">
+            <div class="between-row center-align">
               <div class="bold ft34">{{item.name}}</div>
               <div class="delivery"
                    @click.stop="openDelivery(item)">我要投递</div>
             </div>
             <div class="ft26 mt12">{{item.companyName}}</div>
-            <div class="flex-wrap">
+            <div class="flex-wrap ft24">
               <div class="ask-style mr16 mt24 color-666">经验:{{item.workExperienceName}}</div>
               <div class="ask-style mr16 mt24 color-666">学历:{{item.educationName}}</div>
               <div class="ask-style mr16 mt24 color-666">待遇:{{item.isNegotiableSalary?'面议薪资':item.annualSalary+'万/年'}}
@@ -160,7 +160,10 @@ export default {
     font-size: 24rpx;
   }
   .ask-style {
-    padding: 12rpx 16rpx;
+    // padding: 12rpx 16rpx;
+    padding: 0 16rpx;
+    height: 48rpx;
+    line-height: 48rpx;
     background: #f0f0f0;
     border-radius: 6rpx;
   }
