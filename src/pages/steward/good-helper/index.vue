@@ -73,6 +73,7 @@ export default {
       this.communityOrgId = item.communityInfo.id
       this.$nextTick(() => {
         this.getJourneyHelperProjectShowPage()
+        this.updateTabsCount()
       })
     },
     onReceive (projectId) {
@@ -102,16 +103,19 @@ export default {
         url: '/pages/steward/good-helper/reception-hall/index'
       })
     },
+    updateTabsCount () {
+      const statusTabsEl = this.$refs.statusTabs
+      if (statusTabsEl) {
+        statusTabsEl.getJourneyHelperProjectCount()
+      }
+    },
     upCallback (page) {
       this.getJourneyHelperProjectShowPage(page)
       this.mescroll.endErr()
     },
     downCallback () {
       this.mescroll.resetUpScroll(); // 重置列表为第一页
-      const statusTabsEl = this.$refs.statusTabs
-      if (statusTabsEl) {
-        statusTabsEl.getJourneyHelperProjectCount()
-      }
+      this.updateTabsCount()
     },
     getJourneyHelperProjectShowPage (page) {
       const params = {
@@ -136,7 +140,7 @@ export default {
         if (res.isError) return this.$msg(res.message)
         this.unitIds = res.content || []
       })
-    }
+    },
   },
   data () {
     return {
