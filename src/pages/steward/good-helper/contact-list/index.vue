@@ -8,13 +8,15 @@
                   @up="upCallback">
       <template>
         <view class="filter-select center-align between-row pl32 pr32 color-666 ft28">
-          <view @click="$refs.selectionCommunit.show()">
-            <text>街道社区</text>
+          <view @click="$refs.selectionCommunit.show()"
+                class="center-align">
+            <text class="street-community inline-block">{{streetCommunity}}</text>
             <svg-icon icon="icon_xiangxia"
                       class="ft18 ml16 color-999"></svg-icon>
           </view>
-          <view @click="$refs.selectPop.show()">
-            <text>共建单位</text>
+          <view @click="$refs.selectPop.show()"
+                class="center-align">
+            <text class="street-community inline-block">{{unitName}}</text>
             <svg-icon icon="icon_xiangxia"
                       class="ft18 ml16 color-999"></svg-icon>
           </view>
@@ -31,7 +33,9 @@
             {{item}}
           </view>
         </view>
-        <view class="content-list pl32 pr32">
+        <empty v-if="$isEmpty(listData)"></empty>
+        <view v-else
+              class="content-list pl32 pr32">
           <item v-for="(item,index) in listData"
                 :key="index"
                 :itemInfo="{...item,index}">
@@ -59,6 +63,8 @@ export default {
   name: 'ContactList',
   methods: {
     onConfirmCommunit (info) {
+      this.streetInfo = info.streetInfo
+      this.communityInfo = info.communityInfo
       this.communityOrgId = info.communityInfo.id
       this.$nextTick(() => {
         this.getJourneyCoConstructionUnitTablePage()
@@ -75,7 +81,7 @@ export default {
       })
     },
     onRouteItem (item) {
-      this.companyId = item.id
+      this.unitInfo = item
       this.$nextTick(() => {
         this.getJourneyCoConstructionUnitTablePage()
       })
@@ -98,7 +104,7 @@ export default {
         pageNumber: page && page.num || 1,
         pageSize: page && page.size || 10,
         communityOrgId: this.communityOrgId,
-        unitOrgId: this.companyId
+        unitOrgId: this.unitInfo.id
       }
       this.$api.getJourneyCoConstructionUnitTablePage(params).then(res => {
         if (res.isError) return this.mescroll.endErr()
@@ -110,6 +116,8 @@ export default {
   },
   data () {
     return {
+      streetInfo: {},
+      communityInfo: {},
       selectedId: '',
       companyList: [],
       upOption: {
@@ -118,13 +126,22 @@ export default {
         },
       },
       communityOrgId: null,
-      companyId: null,
+      unitInfo: {},
       listData: [],
       titleList: ['街道社区/共建单位', '接单', '抢单', '办结率', '积分']
     }
   },
-
   computed: {
+    unitName () {
+      const { unitInfo } = this
+      if (this.$isEmpty(unitInfo)) return '共建单位'
+      return unitInfo.name
+    },
+    streetCommunity () {
+      const { streetInfo, communityInfo } = this
+      if (this.$isEmpty(streetInfo)) return '街道社区'
+      return streetInfo.name + communityInfo.name
+    },
     memberPersonalInfo () {
       return this.$store.state.user.memberPersonalInfo
     },
@@ -149,6 +166,12 @@ export default {
 .contact-list-wrap {
   .filter-select {
     height: 88rpx;
+    .street-community {
+      max-width: 224rpx;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
     .point-rules {
       color: #518cfc;
     }
