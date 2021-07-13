@@ -30,7 +30,7 @@
           <span v-if="projectItem.status !== 1"
                 class="ml48">{{projectLeadName}}</span>
         </div>
-        <span v-if="isHome && isUnitUser"
+        <span v-if="isHome && isUnitUser && projectItem.status === 1"
               class="ft20 color-999">{{endTime}}</span>
       </div>
       <div class="content">
