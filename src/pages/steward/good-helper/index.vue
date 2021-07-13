@@ -55,6 +55,7 @@
         <div class="mt24">
           <status-tabs ref="statusTabs"
                        :communityOrgId="communityOrgId"
+                       :isUnitUser="isUnitUser"
                        @changeCurrent="changeCurrent"></status-tabs>
           <div v-show="listData.length > 0"
                class="list">
