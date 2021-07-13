@@ -1,13 +1,13 @@
 <template>
-  <view class="reception-hall-wrap flex1">
+  <view class="reception-hall-wrap flex1 flex">
     <mescroll-uni ref="mescrollRef"
-                  class="mescroll-wrap"
+                  class="mescroll-wrap flex1"
                   :up="upOption"
                   @init="mescrollInit"
                   @down="downCallback"
                   @up="upCallback">
       <template>
-        <view class="hall-container">
+        <view class="hall-container flex column">
           <view class="box-bg">
             <text class="ft28 white-color">
               社区发布的项目若一定时间内无共建单位认领会流转到领办大厅，此时将允许所有单位认领，原共建单位认领不享受分数加成，其余单位享受。办结后进行分数结算
@@ -19,7 +19,9 @@
             <svg-icon icon="icon_xiangxia"
                       class="ft18 ml16 color-999"></svg-icon>
           </view>
-          <view>
+          <empty class="bg-white flex1"
+                 v-if="$isEmpty(listData)"></empty>
+          <view v-else>
             <project-item class="mt24 project-item"
                           v-for="(item, index) in listData"
                           :project-item="item"
@@ -126,15 +128,18 @@ page {
 </style>
 <style lang='scss' scoped>
 .reception-hall-wrap {
+  /deep/ .mescroll-wxs-content {
+    height: 100%;
+  }
   .hall-container {
-    height: 182rpx;
-    box-sizing: border-box;
-    background: url("@/static/steward/bg-hall-text.png") no-repeat 0 0;
-    background-size: 100% 100%;
+    height: 100%;
     .box-bg {
+      height: 182rpx;
       text-align: justify;
       text-align-last: left;
       padding: 32rpx;
+      background: url("@/static/steward/bg-hall-text.png") no-repeat 0 0;
+      background-size: 100% 100%;
     }
     .community-select {
       width: 100%;
