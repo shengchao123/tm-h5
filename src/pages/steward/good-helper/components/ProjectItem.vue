@@ -28,7 +28,7 @@
         <div>
           <span class="mr48">{{startTime}}</span>
           <span v-if="projectItem.status !== 1"
-                class="ml48">{{projectLeadName}}</span>
+                style="margin-left: 56rpx">{{projectLeadName}}</span>
         </div>
         <span v-if="isHome && isUnitUser && projectItem.status === 1"
               class="ft20 color-999">{{endTime}}</span>
