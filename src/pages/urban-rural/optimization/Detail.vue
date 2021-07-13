@@ -93,12 +93,15 @@ export default {
     linkUrl () {
       let { secondStoreUrl, firstStoreUrl } = this.detailInfo
       if (!secondStoreUrl) return firstStoreUrl
-      let _host = secondStoreUrl.split('?')[0]
-      let _query = secondStoreUrl.split('?')[1]
-      _query = 'from=tmhm&' + _query
-      const _timestamp = '&timestamp=' + new Date().getTime()
-      const _md5 = md5(_query + SLAT)
-      const result = _host + '?' + _query + '&sign=' + _md5 + _timestamp
+      let host = secondStoreUrl.split('?')[0]
+      let query = secondStoreUrl.split('?')[1]
+
+      query = 'from=tmhm&' + query
+
+      query += '&timestamp=' + new Date().getTime()
+      const _md5 = md5(query + SLAT)
+
+      const result = host + '?' + query + '&sign=' + _md5
       return result
     }
 
