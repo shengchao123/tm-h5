@@ -140,8 +140,10 @@ export default {
       const params = {
         pageNumber: page && page.num || 1,
         pageSize: page && page.size || 10,
-        communityOrgId: this.communityOrgId,
         type: this.projectType
+      }
+      if (!this.isUnitUser) {
+        params.communityOrgId = this.communityOrgId
       }
       this.$api.getJourneyHelperProjectShowPage(params).then(res => {
         if (res.isError) return this.mescroll.endErr()
