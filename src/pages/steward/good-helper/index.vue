@@ -140,8 +140,10 @@ export default {
       const params = {
         pageNumber: page && page.num || 1,
         pageSize: page && page.size || 10,
-        communityOrgId: this.communityOrgId,
         type: this.projectType
+      }
+      if (!this.isUnitUser) {
+        params.communityOrgId = this.communityOrgId
       }
       this.$api.getJourneyHelperProjectShowPage(params).then(res => {
         if (res.isError) return this.mescroll.endErr()
@@ -250,6 +252,7 @@ page {
       border-radius: 16rpx;
       box-sizing: border-box;
       padding: 26rpx;
+      box-shadow: 0 5rpx 15rpx 0 rgba(0, 0, 0, 0.1);
     }
     .link-jointly {
       background: url("@/static/steward/bg-jointly.png") no-repeat 0 0;
