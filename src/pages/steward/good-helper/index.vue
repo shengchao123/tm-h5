@@ -252,6 +252,7 @@ page {
       border-radius: 16rpx;
       box-sizing: border-box;
       padding: 26rpx;
+      box-shadow: 0 5rpx 15rpx 0 rgba(0, 0, 0, 0.1);
     }
     .link-jointly {
       background: url("@/static/steward/bg-jointly.png") no-repeat 0 0;
