@@ -1,5 +1,5 @@
 <template>
-  <div class="tabs-wrap relative row">
+  <div class="tabs-wrap relative row bb">
     <div class="tab-item secondary-text"
          v-for="(item, index) in tabs"
          :key="index"
