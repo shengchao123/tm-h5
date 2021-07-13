@@ -43,11 +43,6 @@
         <div class="mt24 ft28">
           <div v-html="unionData.responsibilities"
                class="pre-line"></div>
-          <!-- <div v-for="(item,index) in unionData.responsibilities"
-               :key="index"
-               class="ft28">
-            {{index + 1}}、{{item}}
-          </div> -->
         </div>
       </div>
       <div class="pb32"
@@ -56,11 +51,6 @@
         <div class="mt24 ft28">
           <div v-html="unionData.qualifications"
                class="pre-line"></div>
-          <!-- <div v-for="(item,index) in unionData.obligation"
-               :key="index"
-               class="ft28">
-            {{index + 1}}、{{item}}
-          </div> -->
         </div>
       </div>
     </div>
