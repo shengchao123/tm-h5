@@ -28,7 +28,9 @@
               </view>
             </view>
           </view>
-          <view class="mt24 h376">
+          <scroll-view scroll-y="true"
+                       :scroll-top="scrollTop"
+                       class="mt24 h376">
             <view v-for="(item,index) in tabsList[tabsCurrent].list"
                   :key="index"
                   class="column b-border org-item center-justify">
@@ -50,7 +52,7 @@
               </view>
 
             </view>
-          </view>
+          </scroll-view>
           <u-button @click="onConfirm"
                     :custom-style="btnStyle">确定</u-button>
         </view>
@@ -137,6 +139,7 @@ export default {
   },
   data () {
     return {
+      scrollTop: 0,
       isHaveTabsList: false,
       tabsCurrent: 0,
       navbarOrg: {}, // 导航栏数据
@@ -209,7 +212,6 @@ export default {
   }
   .h376 {
     height: 376rpx;
-    overflow: auto;
   }
   .color-c4 {
     color: #c4c4c4;
