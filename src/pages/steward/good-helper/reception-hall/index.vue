@@ -7,7 +7,7 @@
                   @down="downCallback"
                   @up="upCallback">
       <template>
-        <view class="hall-container column">
+        <view class="hall-container flex column">
           <view class="box-bg">
             <text class="ft28 white-color">
               社区发布的项目若一定时间内无共建单位认领会流转到领办大厅，此时将允许所有单位认领，原共建单位认领不享受分数加成，其余单位享受。办结后进行分数结算
