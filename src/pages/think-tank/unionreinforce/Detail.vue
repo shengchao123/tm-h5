@@ -2,7 +2,7 @@
   <div>
     <div class="p32">
       <div class="ft40 bold">{{unionData.name}}</div>
-      <div class="flex-wrap">
+      <div class="flex-wrap ft24">
         <div class="ask-style mr16 mt24 color-666">经验:{{unionData.workExperienceName}}</div>
         <div class="ask-style mr16 mt24 color-666">学历:{{unionData.educationName}}</div>
         <div class="ask-style mr16 mt24 color-666">
@@ -114,7 +114,9 @@ export default {
 </script>
 <style lang="scss" scoped>
 .ask-style {
-  padding: 12rpx 16rpx;
+  padding: 0 16rpx;
+  height: 48rpx;
+  line-height: 48rpx;
   background: #f0f0f0;
   border-radius: 6rpx;
 }

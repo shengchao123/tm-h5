@@ -36,6 +36,7 @@
                      :is-center="true"
                      v-if="userInfo.messageQuantity"
                      size="mini"
+                     class="badge-count"
                      :count="userInfo.messageQuantity"></u-badge>
             <SvgIcon icon="icon_dibudaohanglan-"
                      class="ft40"></SvgIcon>
@@ -205,5 +206,8 @@ page {
   .scroll-Y {
     height: 100%;
   }
+}
+.badge-count {
+  border-radius: 50%;
 }
 </style>
