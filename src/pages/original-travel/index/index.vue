@@ -78,6 +78,13 @@ export default {
   name: "index",
   methods: {
     onShowContact () {
+      const { phoneList } = this.callInfo
+      if (phoneList.length === 1) {
+        uni.makePhoneCall({
+          phoneNumber: phoneList[0]
+        })
+        return
+      }
       this.showContact = true
     },
     // 下拉刷新

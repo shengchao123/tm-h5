@@ -13,14 +13,15 @@
       </div>
       <scroll-view class="list pl30 pr30"
                    scroll-y>
-        <view v-for="(item, index) in list"
+        <view v-for="(item, index) in unitList"
               :key="index"
               class="item between-row center-align"
-              :class="item.id === selectedId && 'selected'"
-              @click="onItem(item)">
+              :class="isSelected(item) && 'selected'"
+              @click="onSelect(item)">
           <text class="ft28">{{item.name}}</text>
-          <text v-if="item.id === selectedId"
-                class="iconfont icon_duihao ft28 mt4"></text>
+          <svg-icon v-if="isSelected(item)"
+                    icon="icon_duihao"
+                    class="ft28 mt4"></svg-icon>
         </view>
       </scroll-view>
       <div class="pt8 between-row">
@@ -46,29 +47,35 @@ export default {
     onSelect (item) {
       const selectList = this.selectList
       const { id } = item
-      for (let i = 0; i < selectList.length; i++) {
-        if (selectList[i].id === id) {
-          selectList.splice(i, 1)
-          return
-        }
+      const selectedIndex = this.findTargetIndexOnObjectList(selectList, 'id', id)
+      if (selectedIndex !== null) {
+        selectList.splice(selectedIndex, 1)
+        return
       }
+
       if (selectList.length >= 2) {
         return this.$msg('最多选择2个')
       }
       this.selectList.push(item)
-
     },
     onConfirm () {
       this.$emit('onConfirm', this.selectList)
       this.hide()
     },
-    getUnitListByCommunity () {
-      const params = {
-        communityOrgId: this.communityOrgId
+    findTargetIndexOnObjectList (list, key, target) {
+      for (let i = 0; i < list.length; i++) {
+        if (list[i][key] === target) {
+          return i
+        }
       }
-      this.$api.getUnitListByCommunity(params).then(res => {
+      return null
+    },
+    getUnitListByCommunity () {
+      this.$api.getUnitListByCommunity().then(res => {
         if (res.isError) return this.$msg(res.message)
-        this.list = res.content || []
+        const unitList = res.content || []
+        const memberUnitOrgId = this.memberPersonalInfo.unitOrgId
+        this.unitList = unitList.filter(el => el.id !== memberUnitOrgId)
       })
     }
   },
@@ -76,9 +83,19 @@ export default {
     return {
       isShow: false,
       communityOrgId: null,  // 社区id
-      list: [],
+      unitList: [],
       selectList: []
     }
+  },
+  computed: {
+    isSelected () {
+      return (item) => {
+        return this.findTargetIndexOnObjectList(this.selectList, 'id', item.id) !== null
+      }
+    },
+    memberPersonalInfo () {
+      return this.$store.state.user.memberPersonalInfo
+    },
   },
   watch: {
     communityOrgId (val) {

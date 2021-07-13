@@ -1,23 +1,21 @@
 <template>
   <div class='home-index-wrap relative'>
 
-    <div class="content">
-      <u-swiper :list="swiperList"
-                height='388'
-                class="swiper"></u-swiper>
+    <u-swiper :list="swiperList"
+              height='388'
+              class="swiper"></u-swiper>
 
-      <div class="tc relative">
-        <img src="@/static/home/00.png"
-             class="main-card">
+    <div class="tc relative content-wrap">
+      <img src="@/static/home/00.png"
+           class="main-card">
 
-        <template v-for="(item, index) in cardList">
-          <div @click="onItem(item)"
-               :key="index">
-            <HomeItem :item="item"
-                      :style="item.style"></HomeItem>
-          </div>
-        </template>
-      </div>
+      <template v-for="(item, index) in cardList">
+        <div @click="onItem(item)"
+             :key="index">
+          <HomeItem :item="item"
+                    :style="item.style"></HomeItem>
+        </div>
+      </template>
 
       <div class="center wrap">
         <div class="qr-code-wrap mt32 row">
@@ -30,7 +28,6 @@
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -40,6 +37,9 @@ export default {
   name: 'index',
   methods: {
     onItem (item) {
+      if (item.needMember) {
+        if (this.$notMember()) return this.$goLogin()
+      }
       uni.navigateTo({ url: item.url })
     },
   },
@@ -57,7 +57,7 @@ export default {
           text1: '初心之旅',
           text2: '一张图',
           imgW: 45,
-          style: { left: '30rpx', top: '173rpx' },
+          style: { left: '30rpx', top: '153rpx' },
           url: '/pages/original-travel/index/index'
         },
         {
@@ -65,7 +65,7 @@ export default {
           text1: '组团发展',
           text2: '一联盟',
           imgW: 50,
-          style: { left: '172rpx', top: '253rpx' },
+          style: { left: '172rpx', top: '233rpx' },
           url: '/pages/union/index/index'
         },
         {
@@ -73,7 +73,7 @@ export default {
           text1: '城乡融合',
           text2: '一社区',
           imgW: 50,
-          style: { left: '312rpx', top: '333rpx' },
+          style: { left: '312rpx', top: '313rpx' },
           url: '/pages/urban-rural/index/index'
         },
         {
@@ -81,7 +81,7 @@ export default {
           text1: '乡村人才',
           text2: '一智库',
           imgW: 60,
-          style: { right: '172rpx', top: '253rpx' },
+          style: { right: '172rpx', top: '233rpx' },
           url: '/pages/think-tank/index/index'
         },
         {
@@ -89,8 +89,9 @@ export default {
           text1: '基层治理',
           text2: '一管家',
           imgW: 50,
-          style: { right: '30rpx', top: '173rpx' },
-          url: '/pages/steward/index/index'
+          style: { right: '30rpx', top: '153rpx' },
+          url: '/pages/steward/index/index',
+          needMember: true
         },
       ])
     }
@@ -106,46 +107,47 @@ export default {
 
 <style lang='scss' scoped>
 .home-index-wrap {
-  .content {
-    background: url("@/static/home/bg.jpg") no-repeat 0 0;
-    background-size: 100% 100%;
+  background: url("@/static/home/bg.jpg") no-repeat 0 0;
+  background-size: 100% 100%;
+  height: calc(100vh - 50px);
+  position: absolute;
+  width: 100vw;
+  top: 0;
+  bottom: 0;
+  overflow-y: scroll;
+  .swiper {
+    margin: 24rpx 30rpx 0;
+  }
+  .main-card {
+    height: 334rpx;
+    margin-top: 32rpx;
+  }
+  .card {
     position: absolute;
-    width: 100vw;
-    height: 100vh;
-    top: 0;
-    bottom: 0;
-    overflow: hidden;
-    .swiper {
-      margin: 24rpx 30rpx 0;
-    }
-    .main-card {
-      height: 334rpx;
-      margin-top: 32rpx;
-    }
-    .card {
-      position: absolute;
-      width: 128rpx;
-    }
+    width: 128rpx;
+  }
 
-    .wrap {
-      position: absolute;
-      bottom: calc(32rpx + var(--window-bottom));
-      left: 0;
-      right: 0;
-      .qr-code-wrap {
-        text-align: center;
-        padding: 12rpx;
-        background: #ffffff20;
-        border-radius: 8px;
-        color: #ffffff;
-        img {
-          width: 110rpx;
-          height: 110rpx;
-        }
+  .content-wrap {
+    height: 752rpx;
+  }
+  .wrap {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 32rpx;
+    .qr-code-wrap {
+      text-align: center;
+      padding: 12rpx;
+      background: #ffffff20;
+      border-radius: 8px;
+      color: #ffffff;
+      img {
+        width: 110rpx;
+        height: 110rpx;
+      }
 
-        .right {
-          justify-content: center;
-        }
+      .right {
+        justify-content: center;
       }
     }
   }

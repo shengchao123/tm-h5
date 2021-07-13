@@ -2,11 +2,23 @@
   <div class='project-detail-wrap'
        @scroll="scroll">
     <div class="pt28 pb28 pl32 pr32 bg-white">
-      <div class="ft40 bold">{{baseInfo.name}}</div>
+      <div>
+        <svg-icon v-if="baseInfo.status !== 1 && baseInfo.isGrab && entrance === 'helper'"
+                  icon="icon_qiangdan"
+                  class="ft48 mr8"
+                  style="color: #FA5A12"></svg-icon>
+        <span class="flex1 ft40 bold">{{baseInfo.name}}</span>
+      </div>
       <div class="ft26 color-666 pt24 pb24">
-        <span>{{startTime}}</span>
-        <span v-if="baseInfo.status !== 1"
-              class="ml48">{{projectLeadName}}</span>
+        <div class="pb8">
+          <span>{{baseInfo.createTime && $moment(baseInfo.createTime).format('YYYY年MM月DD日')}}发布</span>
+          <span v-if="baseInfo.status !== 1"
+                class="ml48">{{baseInfo.communityParentOrgName}}{{baseInfo.communityOrgName}}发布</span>
+        </div>
+        <div v-if="baseInfo.status !== 1">
+          <span>{{baseInfo.leadTime && $moment(baseInfo.leadTime).format('YYYY年MM月DD日')}}领办</span>
+          <span class="ml48">{{projectLeadName}}</span>
+        </div>
       </div>
       <div class="ft30 content">{{baseInfo.description}}</div>
     </div>
@@ -78,7 +90,9 @@
            @click="onReceive">认领</div>
     </div>
 
-    <receive-pop ref="receivePop"></receive-pop>
+    <receive-pop ref="receivePop"
+                 v-if="isUnitUser && baseInfo.status === 1"
+                 :isHall="entrance === 'hall'"></receive-pop>
   </div>
 </template>
 <script>
@@ -86,14 +100,15 @@ import PublishBtn from '@/pages/urban-rural/components/PublishBtn.vue'
 import ReceivePop from '../components/ReceivePop.vue';
 let timer = null
 export default {
-  components: { PublishBtn },
   methods: {
     // 认领
     onReceive () {
-      if (this.$notMember()) return this.$goLogin();
+      if (this.$notMember()) return this.$goLogin()
+      const entrance = this.entrance
       this.$refs.receivePop.show({
         projectId: this.baseInfo.id,
-        communityOrgId: this.baseInfo.communityOrgId
+        communityOrgId: entrance === 'helper' && this.baseInfo.communityOrgId,
+        unitIds: entrance === 'hall' && this.unitIds
       })
     },
     // 新增跟进
@@ -117,6 +132,19 @@ export default {
         if (res.isError) return this.$msg(res.message)
         this.baseInfo = res.content
         this.recordList = this.baseInfo.journeyHelperProjectScheduleList || []
+        // 从好帮手页面进入 认领方式不同
+        if (this.entrance === 'helper') {
+          this.getUnitListByCommunity()
+        }
+      })
+    },
+    getUnitListByCommunity () {
+      const params = {
+        communityOrgId: this.baseInfo.communityOrgId
+      }
+      this.$api.getUnitListByCommunity(params).then(res => {
+        if (res.isError) return this.$msg(res.message)
+        this.unitIds = res.content || []
       })
     },
     setEvent () {
@@ -142,12 +170,10 @@ export default {
     return {
       id: null,
       isScroll: false,
+      entrance: null,
       baseInfo: {},
       recordList: []
     }
-  },
-  components: {
-    ReceivePop
   },
   computed: {
     memberPersonalInfo () {
@@ -169,7 +195,7 @@ export default {
       if (journeyHelperProjectLeadRecordList.length > 1) {
         return '由共建单位联合领办'
       }
-      return journeyHelperProjectLeadRecordList[0].journeyCoConstructionUnitName
+      return `由${journeyHelperProjectLeadRecordList[0].journeyCoConstructionUnitName}领办`
     },
     isCanEdit () {
       return this.isUnitUser && this.baseInfo.status === 2
@@ -179,12 +205,17 @@ export default {
     this.clearEvent()
     window.removeEventListener('scroll', this.scroll)
   },
-  onLoad (option) {
-    this.id = option.id
+  onLoad ({ id, entrance }) {
+    this.id = id
+    this.entrance = entrance // helper | hall
     this.getJourneyHelperProjectDetail()
     this.setEvent()
     window.addEventListener('scroll', this.scroll)
-  }
+  },
+  components: {
+    ReceivePop,
+    PublishBtn
+  },
 }
 </script>
 <style>
