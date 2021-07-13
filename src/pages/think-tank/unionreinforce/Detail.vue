@@ -41,7 +41,8 @@
            v-if="unionData.responsibilities">
         <div class="ft30 bold mt32">岗位职责</div>
         <div class="mt24 ft28">
-          <div v-html="unionData.responsibilities"></div>
+          <div v-html="unionData.responsibilities"
+               class="pre-line"></div>
           <!-- <div v-for="(item,index) in unionData.responsibilities"
                :key="index"
                class="ft28">
@@ -53,7 +54,8 @@
            v-if="unionData.qualifications">
         <div class="ft30 bold mt32">任职资格</div>
         <div class="mt24 ft28">
-          <div v-html="unionData.qualifications"></div>
+          <div v-html="unionData.qualifications"
+               class="pre-line"></div>
           <!-- <div v-for="(item,index) in unionData.obligation"
                :key="index"
                class="ft28">
@@ -149,5 +151,8 @@ export default {
     font-size: 32rpx;
     font-weight: 600;
   }
+}
+.pre-line {
+  white-space: pre-line;
 }
 </style>
