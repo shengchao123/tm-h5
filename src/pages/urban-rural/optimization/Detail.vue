@@ -95,9 +95,12 @@ export default {
       if (!secondStoreUrl) return firstStoreUrl
       let host = secondStoreUrl.split('?')[0]
       let query = secondStoreUrl.split('?')[1]
+
       query = 'from=tmhm&' + query
+
       query += '&timestamp=' + new Date().getTime()
       const _md5 = md5(query + SLAT)
+
       const result = host + '?' + query + '&sign=' + _md5
       return result
     }
