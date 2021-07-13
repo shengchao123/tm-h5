@@ -22,9 +22,12 @@ export default {
     },
     getJourneyHelperProjectCount () {
       if (!this.communityOrgId) return
-      const params = {
-        communityOrgId: this.communityOrgId
+
+      const params = {}
+      if (!this.isUnitUser) {
+        params.communityOrgId = this.communityOrgId
       }
+
       this.$api.getJourneyHelperProjectCount(params).then(res => {
         if (res.isError) return this.$msg(res.message)
         const tabs = this.tabs
@@ -37,7 +40,8 @@ export default {
     }
   },
   props: {
-    communityOrgId: [String, Number]
+    communityOrgId: [String, Number],
+    isUnitUser: Boolean
   },
   data () {
     return {

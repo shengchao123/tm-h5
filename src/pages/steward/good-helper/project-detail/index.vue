@@ -65,7 +65,8 @@
                      :key="imgIndex"
                      mode="aspectFill"
                      class="img-item mr20"
-                     :src="$fileHost + img.url"></image>
+                     :src="$fileHost + img.url"
+                     @click="onShowBigImgView(imgIndex, item.attachmentDTOList)"></image>
             </div>
           </div>
         </div>
@@ -122,6 +123,14 @@ export default {
       uni.setStorageSync('journeyHelperProjectSchedule', JSON.stringify(item))
       uni.navigateTo({
         url: `/pages/steward/good-helper/add-record/index?projectId=${this.id}&scheduleId=${item.id}`
+      })
+    },
+    // 查看大图
+    onShowBigImgView (index, imgList) {
+      const urls = imgList.map(({ url }) => this.$fileHost + url)
+      uni.previewImage({
+        urls: urls,
+        current: index,
       })
     },
     getJourneyHelperProjectDetail () {

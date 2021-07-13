@@ -7,7 +7,7 @@
                   @down="downCallback"
                   @up="upCallback">
       <template>
-        <div class="between-row bg-white header pl16 pr16 pb16 pt28">
+        <div class="between-row bg-white header pl32 pr32 pb32 pt28">
           <div class="link center-justify link-jointly column"
                @click="onContactList">
             <span class="ft30 white-color pl16">共建单位联系表</span>
@@ -55,6 +55,7 @@
         <div class="mt24">
           <status-tabs ref="statusTabs"
                        :communityOrgId="communityOrgId"
+                       :isUnitUser="isUnitUser"
                        @changeCurrent="changeCurrent"></status-tabs>
           <div v-show="listData.length > 0"
                class="list">
@@ -140,8 +141,10 @@ export default {
       const params = {
         pageNumber: page && page.num || 1,
         pageSize: page && page.size || 10,
-        communityOrgId: this.communityOrgId,
         type: this.projectType
+      }
+      if (!this.isUnitUser) {
+        params.communityOrgId = this.communityOrgId
       }
       this.$api.getJourneyHelperProjectShowPage(params).then(res => {
         if (res.isError) return this.mescroll.endErr()
@@ -250,6 +253,7 @@ page {
       border-radius: 16rpx;
       box-sizing: border-box;
       padding: 26rpx;
+      box-shadow: 0 5rpx 15rpx 0 rgba(0, 0, 0, 0.1);
     }
     .link-jointly {
       background: url("@/static/steward/bg-jointly.png") no-repeat 0 0;

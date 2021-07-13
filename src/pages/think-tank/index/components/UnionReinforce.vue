@@ -160,7 +160,6 @@ export default {
     font-size: 24rpx;
   }
   .ask-style {
-    // padding: 12rpx 16rpx;
     padding: 0 16rpx;
     height: 48rpx;
     line-height: 48rpx;
