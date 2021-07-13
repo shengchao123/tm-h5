@@ -4,8 +4,13 @@
     <div class="pt32 pb32"
          :class="showBorder && 'bb'">
       <div class="center-align between-row">
-        <div class="center-align name">
-          <div class="ft34 medium">{{projectItem.name}}</div>
+        <div class="center-align">
+          <div v-if="projectItem.status !== 1 && projectItem.isGrab && this.isHome"
+               class="center mr8"
+               style="width: 40rpx; height: 40rpx; background: #FA5A12; border-radius: 6rpx;">
+            <span class="ft24 white-color">抢</span>
+          </div>
+          <div class="ft34 medium name ellipsis">{{projectItem.name}}</div>
           <div v-if="projectItem.status !== 1"
                class="center"
                style="height: 38rpx;">
@@ -23,9 +28,9 @@
         <div>
           <span class="mr48">{{startTime}}</span>
           <span v-if="projectItem.status !== 1"
-                class="ml48">{{projectLeadName}}</span>
+                style="margin-left: 56rpx">{{projectLeadName}}</span>
         </div>
-        <span v-if="isHome && isUnitUser"
+        <span v-if="isHome && isUnitUser && projectItem.status === 1"
               class="ft20 color-999">{{endTime}}</span>
       </div>
       <div class="content">
@@ -92,7 +97,7 @@ export default {
       if (journeyHelperProjectLeadRecordList.length > 1) {
         return '由共建单位联合领办'
       }
-      return journeyHelperProjectLeadRecordList[0].journeyCoConstructionUnitName
+      return `由${journeyHelperProjectLeadRecordList[0].journeyCoConstructionUnitName}领办`
     },
     startTime () {
       const { status, createTime, leadTime } = this.projectItem
@@ -158,6 +163,9 @@ export default {
     line-height: 56rpx;
     border-radius: 30rpx;
     border: solid 1px #e32417;
+  }
+  .name {
+    max-width: 520rpx;
   }
   .content {
     position: relative;
