@@ -7,7 +7,7 @@
                   @down="downCallback"
                   @up="upCallback">
       <template>
-        <div class="between-row bg-white header pl16 pr16 pb16 pt28">
+        <div class="between-row bg-white header pl32 pr32 pb32 pt28">
           <div class="link center-justify link-jointly column"
                @click="onContactList">
             <span class="ft30 white-color pl16">共建单位联系表</span>
