@@ -13,12 +13,12 @@
               社区发布的项目若一定时间内无共建单位认领会流转到领办大厅，此时将允许所有单位认领，原共建单位认领不享受分数加成，其余单位享受。办结后进行分数结算
             </text>
           </view>
-          <view class="community-select bg-white center-align pl32"
+          <!-- <view class="community-select bg-white center-align pl32"
                 @click="$refs.selectionCommunit.show()">
             <text class="ft28 color-666">{{communityText}}</text>
             <svg-icon icon="icon_xiangxia"
                       class="ft18 ml16 color-999"></svg-icon>
-          </view>
+          </view> -->
           <empty class="bg-white flex1"
                  v-if="$isEmpty(listData)"></empty>
           <view v-else>
@@ -34,8 +34,8 @@
         </view>
       </template>
     </mescroll-uni>
-    <selection-communit ref="selectionCommunit"
-                        @onConfirm="onConfirmCommunit"></selection-communit>
+    <!-- <selection-communit ref="selectionCommunit"
+                        @onConfirm="onConfirmCommunit"></selection-communit> -->
     <receive-pop ref="receivePop"
                  :isHall="true"></receive-pop>
   </view>
@@ -49,27 +49,27 @@ import SelectionCommunit from '../components/SelectionCommunit.vue';
 export default {
   name: 'ReceptionHall',
   methods: {
-    onConfirmCommunit (item) {
-      this.streetInfo = item.streetInfo
-      this.communityInfo = item.communityInfo
-      this.communityOrgId = item.communityInfo.id
-      this.$nextTick(() => {
-        this.getJourneyHelperProjectShowPage()
-      })
-    },
+    // onConfirmCommunit (item) {
+    //   this.streetInfo = item.streetInfo
+    //   this.communityInfo = item.communityInfo
+    //   this.communityOrgId = item.communityInfo.id
+    //   this.$nextTick(() => {
+    //     this.getJourneyHelperProjectShowPage()
+    //   })
+    // },
     onReceive (projectId) {
       if (this.$notMember()) return this.$goLogin();
       this.$refs.receivePop.show({
         projectId,
-        communityOrgId: this.communityOrgId,
+        // communityOrgId: this.communityOrgId,
       })
     },
     getJourneyHelperProjectShowPage (page) {
-      if (!this.communityOrgId) return
+      // if (!this.communityOrgId) return
       const params = {
         pageNumber: page && page.num || 1,
         pageSize: page && page.size || 10,
-        communityOrgId: this.communityOrgId,
+        // communityOrgId: this.communityOrgId,
         type: 1
       }
       this.$api.getJourneyHelperProjectShowPage(params).then(res => {
@@ -94,17 +94,17 @@ export default {
           use: false, // 是否显示空布局
         },
       },
-      streetInfo: {},
-      communityInfo: {},
-      communityOrgId: null,
+      // streetInfo: {},
+      // communityInfo: {},
+      // communityOrgId: null,
       listData: []
     }
   },
   computed: {
-    communityText () {
-      const { streetInfo, communityInfo } = this
-      return streetInfo.name + communityInfo.name
-    },
+    // communityText () {
+    //   const { streetInfo, communityInfo } = this
+    //   return streetInfo.name + communityInfo.name
+    // },
     memberPersonalInfo () {
       return this.$store.state.user.memberPersonalInfo
     },
