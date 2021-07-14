@@ -12,8 +12,6 @@
   </div>
 </template>
 <script>
-const pdfTypes = ['pdf']
-const wordTypes = ['xls', 'xlsx', 'doc', 'docx']
 import pdf from 'vue-pdf'
 export default {
   data () {
