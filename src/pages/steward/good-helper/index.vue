@@ -74,7 +74,8 @@
     <selection-communit v-if="isShowSelectionCommunit"
                         ref="selectionCommunit"
                         @onConfirm="onConfirmCommunit"></selection-communit>
-    <receive-pop ref="receivePop"></receive-pop>
+    <receive-pop v-if="isUnitUser"
+                 ref="receivePop"></receive-pop>
   </div>
 </template>
 <script>
