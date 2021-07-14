@@ -1,19 +1,11 @@
 <template>
   <div>
     <div v-if="file">
-      <iframe :src="fileUrl"
-              width='100%'
-              height='800rpx'
-              class="iframe"
-              v-if="!showPdf"></iframe>
-      <div v-if="showPdf">
-        <pdf v-for="i in pageNumbers"
-             :key="i"
-             :src="$fileHost + file"
-             :page="i"
-             class="demo"></pdf>
-      </div>
-
+      <pdf v-for="i in pageNumbers"
+           :key="i"
+           :src="$fileHost + file"
+           :page="i"
+           class="demo"></pdf>
     </div>
     <div v-else
          class="center mt32 bold">文件不存在</div>
@@ -48,21 +40,6 @@ export default {
       for (let i = 0; i < nums; i++) {
         this.pageNumbers.push(i + 1)
       }
-    }
-  },
-  computed: {
-    fileUrl () {
-      const file = this.file
-      const fileType = this.fileType
-      const fileHost = this.$fileHost
-      if (wordTypes.includes(fileType)) {
-        return '//www.xdocin.com/xdoc?_func=to&_format=html&_cache=1&_xdoc=' + fileHost + file
-      }
-    },
-    showPdf () {
-      const fileType = this.fileType
-      if (pdfTypes.includes(fileType)) return true
-      return false
     }
   },
   onLoad (option) {
