@@ -6,6 +6,18 @@
     <DragPopover showLocation="true"
                  max-top="79.3"
                  @onLocation="onLocation">
+      <!-- 生活馆 搜索框 -->
+      <div v-if="currentPoi.type === '01'"
+           class="search-wrap">
+        <div class="search center-align color-999 ft26">
+          <SvgIcon icon="icon_hanhan-01-01"
+                   class="mr16"></SvgIcon>
+          <u-input v-model="keyword"
+                   @input="poiSearch"
+                   placeholder="搜索地点"
+                   type="text" />
+        </div>
+      </div>
       <div class="content-box">
         <PointGuideItem v-for="(item, index) in pois"
                         @onGuide="showGuideActionSheet"
@@ -71,6 +83,7 @@ export default {
     },
     // 兴趣点名字
     changePois (poi) {
+      this.keyword = ''
       this.currentPoi = poi
       this.currentIndex = 0
       this.pois = [{ address: scenicSpot.regionsName, ...scenicSpot }]
@@ -83,8 +96,14 @@ export default {
 
       this.getPoisWithLngLat(poi.name)
     },
+    // 生活馆 搜索地点
+    poiSearch () {
+      const type = '01'
+      this.getJourneyPointListByRegionsCode(type)
+    },
     getJourneyPointListByRegionsCode (type) {
       const params = {
+        keyword: this.keyword,
         type,
       }
       this.$api.getJourneyPointListByRegionsCode(params).then(res => {
@@ -244,6 +263,7 @@ export default {
     return {
       currentIndex: 1,
       showGuide: false,
+      keyword: '',
       guidePoint: {},
       actions: Object.freeze([{ text: '高德地图' }, { text: '腾讯地图' }]),
       pois: [],
@@ -279,6 +299,15 @@ page {
   .content-box {
     height: 100%;
     overflow: scroll;
+  }
+  .search-wrap {
+    padding: 0rpx 30rpx 2rpx;
+    .search {
+      height: 66rpx;
+      padding: 0 20rpx;
+      border-radius: 33rpx;
+      background: #f4f5f7;
+    }
   }
 }
 </style>
