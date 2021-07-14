@@ -67,11 +67,22 @@ export default {
     initData () {
       const firstList = this.tabsList[0].list[0]
       this.changeTopOrg(firstList, 0)
+      this.$nextTick(() => {
+        this.onConfirm()
+      })
     },
     setInfo () {
       const { streetInfo, communityInfo } = this
-      const obj = {
-        streetInfo, communityInfo
+      let obj = {}
+      if (streetInfo.name === '全部街道') {
+        obj = {
+          streetInfo,
+          communityInfo: {}
+        }
+      } else {
+        obj = {
+          streetInfo, communityInfo
+        }
       }
       this.$emit('onConfirm', obj)
     },
@@ -103,12 +114,10 @@ export default {
             this.onChildrenOrg(currentStreetList)
             this.$nextTick(() => {
               this.changeTopOrg(currentStreetList.child[0])
-              this.setInfo()
             })
           } else {
-            this.$nextTick(() => {
-              this.setInfo()
-            })
+            // 删除社区数据
+            this.tabsList.splice(1, 1)
           }
         }
       } else {
