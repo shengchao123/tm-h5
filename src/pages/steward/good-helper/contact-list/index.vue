@@ -14,12 +14,12 @@
             <svg-icon icon="icon_xiangxia"
                       class="ft18 ml16 color-999"></svg-icon>
           </view>
-          <view @click="$refs.selectPop.show()"
+          <!-- <view @click="$refs.selectPop.show()"
                 class="center-align">
             <text class="street-community inline-block">{{unitName}}</text>
             <svg-icon icon="icon_xiangxia"
                       class="ft18 ml16 color-999"></svg-icon>
-          </view>
+          </view> -->
           <view class="point-rules ft24 center-align"
                 @click="onToRules">
             <svg-icon icon="icon_wenhao"></svg-icon>
@@ -47,7 +47,8 @@
                     title="选择共建单位"
                     @onRouteItem="(item)=>onRouteItem(item)"></select-pop>
         <selection-communit ref="selectionCommunit"
-                            @onConfirm="onConfirmCommunit"></selection-communit>
+                            @onConfirm="onConfirmCommunit"
+                            :isHaveAll="true"></selection-communit>
       </template>
     </mescroll-uni>
   </view>
@@ -99,7 +100,6 @@ export default {
       this.mescroll.resetUpScroll(); // 重置列表为第一页
     },
     getJourneyCoConstructionUnitTablePage (page) {
-      if (!this.communityOrgId) return
       const params = {
         pageNumber: page && page.num || 1,
         pageSize: page && page.size || 10,
@@ -140,6 +140,7 @@ export default {
     streetCommunity () {
       const { streetInfo, communityInfo } = this
       if (this.$isEmpty(streetInfo)) return '街道社区'
+      if (this.$isEmpty(communityInfo)) return streetInfo.name
       return streetInfo.name + communityInfo.name
     },
     memberPersonalInfo () {
