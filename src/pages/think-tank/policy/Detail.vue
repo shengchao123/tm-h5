@@ -50,7 +50,11 @@ export default {
       const fileType = row.url.substring(row.url.lastIndexOf('.') + 1)
       clearTimeout(allTime);
       if (this.timeOutEvent === 0) {
-        uni.navigateTo({ url: `/pages/think-tank/countryside/attachmentPage?url=${row.url}&fileType=${fileType}` })
+        if (fileType === 'pdf') {
+          uni.navigateTo({ url: `/pages/think-tank/countryside/attachmentPage?url=${row.url}&fileType=${fileType}` })
+        } else {
+          window.location.replace('https://view.officeapps.live.com/op/view.aspx?src=' + this.$fileHost + row.url)
+        }
       }
     },
     // 长按下载
