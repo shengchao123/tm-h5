@@ -37,9 +37,11 @@
 export default {
   name: 'JointUnitPop',
   methods: {
-    show (communityOrgId) {
+    show () {
       this.isShow = true
-      this.communityOrgId = communityOrgId
+      if (this.unitList.length <= 0) {
+        this.getUnitListByCommunity()
+      }
     },
     hide () {
       this.isShow = false
@@ -82,7 +84,6 @@ export default {
   data () {
     return {
       isShow: false,
-      communityOrgId: null,  // 社区id
       unitList: [],
       selectList: []
     }
@@ -96,14 +97,7 @@ export default {
     memberPersonalInfo () {
       return this.$store.state.user.memberPersonalInfo
     },
-  },
-  watch: {
-    communityOrgId (val) {
-      if (val) {
-        this.getUnitListByCommunity()
-      }
-    }
-  },
+  }
 }
 </script>
 <style lang='scss' scoped>

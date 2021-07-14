@@ -15,14 +15,62 @@
       <view class="mt12">
         <text>{{detailInfo.content}}</text>
       </view>
+      <div v-if="!$isEmpty(fileList)">
+        <div class="bold ft28 mb24 mt48">附件</div>
+        <div v-for="(item,index) in fileList"
+             :key="index"
+             class="ft24 attachment mb16"
+             @touchstart="downLoad(item,index)"
+             @touchend="onPreview(item)">
+          <span>{{index + 1}}.</span>
+          <span>{{item.name}}</span>
+        </div>
+      </div>
+      <u-modal v-model="isDownload"
+               width="540"
+               title=""
+               content="是否要下载当前文件"
+               border-radius="24"
+               :show-cancel-button="true"
+               confirm-text="下载"
+               cancel-text="取消"
+               cancel-color="#333"
+               @confirm="downloadFile"></u-modal>
     </view>
   </div>
 </template>
 <script>
 import Carousel from '@/pages/components/Carousel.vue'
+let allTime = null
 export default {
   name: 'Detail',
   methods: {
+    // 跳转预览文件页面
+    onPreview (row) {
+      const fileType = row.url.substring(row.url.lastIndexOf('.') + 1)
+      clearTimeout(allTime);
+      if (this.timeOutEvent === 0) {
+        uni.navigateTo({ url: `/pages/think-tank/countryside/attachmentPage?url=${row.url}&fileType=${fileType}` })
+      }
+    },
+    // 长按下载
+    downLoad (item, index) {
+      this.timeOutEvent = 0;
+      const that = this
+      allTime = setTimeout(function () {
+        that.timeOutEvent = allTime
+        that.downIndex = index
+        that.isDownload = true
+      }, 1000);
+    },
+    downloadFile () {
+      let url = this.$fileHost + this.inductiveDetail.attachmentList[this.downIndex].url
+      let a = document.createElement('a');
+      a.download = this.inductiveDetail.attachmentList[this.downIndex].name;
+      a.href = url;
+      a.target = '_blank';
+      a.click();
+    },
     getDetail () {
       const params = {
         id: this.id
@@ -38,14 +86,23 @@ export default {
   },
   data () {
     return {
-      detailInfo: {}
+      detailInfo: {},
+      timeOutEvent: 0,
+      isDownload: false,
+      downIndex: null
     }
   },
   computed: {
+    fileList () {
+      if (this.$isEmpty(this.detailInfo.attachmentList)) return []
+      return this.detailInfo.attachmentList.filter(item => item.sourceType === '04')
+    },
     imgList () {
       const { attachmentList } = this.detailInfo
       if (this.$isEmpty(attachmentList)) return []
-      return attachmentList.map(item => item.url)
+      const list = attachmentList.filter(item => item.sourceType === '01')
+      if (this.$isEmpty(list)) return []
+      return list.map(item => item.url)
     }
   },
   onLoad ({ id }) {
@@ -69,8 +126,9 @@ page {
   line-height: 1;
 }
 .detail-wrap {
-  // img {
-  //   width: 100vw;
-  // }
+  .attachment {
+    color: #518cfc;
+    line-height: 1.5;
+  }
 }
 </style>

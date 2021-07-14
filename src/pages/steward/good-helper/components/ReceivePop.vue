@@ -49,11 +49,10 @@ export default {
   components: { JointUnitPop },
   name: 'ReceivePop',
   methods: {
-    show ({ projectId, unitIds, communityOrgId }) {
+    show ({ projectId, unitIds }) {
       this.isShow = true
       this.projectId = projectId
       this.unitIds = unitIds || []
-      this.communityOrgId = communityOrgId || null
       if (unitIds && unitIds.length === 1) { // 若当前联合单位为 1 默认单独领办
         this.selectedType = 2
         this.selectList.splice(0, 1)
@@ -65,7 +64,6 @@ export default {
     },
     resetData () {
       this.projectId = null
-      this.communityOrgId = null
       this.unitIds = []
       this.selectedType = 1
       this.selectList = [...cacheSelectList]
@@ -74,7 +72,7 @@ export default {
       this.selectedType = item.type
     },
     onJointUnitShow () {
-      this.$refs.jointUnitPop.show(this.communityOrgId)
+      this.$refs.jointUnitPop.show()
     },
     jointUnitConfirm (list) {
       this.selectUnits = [...list]
@@ -110,7 +108,6 @@ export default {
     return {
       isShow: false,
       projectId: null,  // 项目id
-      communityOrgId: null,
       unitIds: [],
       selectUnits: [],
       selectedType: 1,

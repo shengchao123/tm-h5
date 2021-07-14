@@ -45,7 +45,7 @@
                 </view>
                 <view class="item-icon"
                       @click="onChildrenOrg(item)"
-                      v-if="item.child">
+                      v-if="!$isEmpty(item.child)">
                   <svg-icon icon="icon_xiangyoujiantou"
                             class="ft20 color-c4 bold mt8 "></svg-icon>
                 </view>
@@ -67,11 +67,22 @@ export default {
     initData () {
       const firstList = this.tabsList[0].list[0]
       this.changeTopOrg(firstList, 0)
+      this.$nextTick(() => {
+        this.onConfirm()
+      })
     },
     setInfo () {
       const { streetInfo, communityInfo } = this
-      const obj = {
-        streetInfo, communityInfo
+      let obj = {}
+      if (streetInfo.name === '全部街道') {
+        obj = {
+          streetInfo,
+          communityInfo: {}
+        }
+      } else {
+        obj = {
+          streetInfo, communityInfo
+        }
       }
       this.$emit('onConfirm', obj)
     },
@@ -99,11 +110,15 @@ export default {
         objKey = 'streetInfo'
         if (!this.$isEmpty(index + '')) {
           const currentStreetList = this.tabsList[0].list[index]
-          this.onChildrenOrg(currentStreetList)
-          this.$nextTick(() => {
-            this.changeTopOrg(currentStreetList.child[0])
-            this.setInfo()
-          })
+          if (name !== '全部街道') {
+            this.onChildrenOrg(currentStreetList)
+            this.$nextTick(() => {
+              this.changeTopOrg(currentStreetList.child[0])
+            })
+          } else {
+            // 删除社区数据
+            this.tabsList.splice(1, 1)
+          }
         }
       } else {
         objKey = 'communityInfo'
@@ -134,7 +149,11 @@ export default {
           this.isHaveTabsList = false
           return
         }
-        this.tabsList[0].list = res.content
+        const content = JSON.parse(JSON.stringify(res.content))
+        if (this.isHaveAll) {
+          content.unshift({ child: [], id: '', name: '全部街道' })
+        }
+        this.tabsList[0].list = content
         this.isHaveTabsList = true
       })
     },
@@ -146,6 +165,14 @@ export default {
         this.initData()
       },
       immediate: true
+    }
+  },
+  props: {
+    isHaveAll: {
+      type: Boolean,
+      default: () => {
+        return false
+      }
     }
   },
   data () {
@@ -186,14 +213,14 @@ export default {
       }
     },
     btnStyle () { // 自定义按钮样式
-      const btnBgColor = this.$isEmpty(this.communityInfo) ? '#ccc' : '#E32417'
+      // const btnBgColor = this.$isEmpty(this.communityInfo) ? '#ccc' : '#E32417'
       const temStyle = {
         fontSize: '32rpx',
         color: '#fff',
         height: '98rpx',
         borderRadius: '49rpx',
         fontWeight: 'bold',
-        background: btnBgColor,
+        background: '#E32417',
         marginTop: '66rpx'
       }
       return temStyle

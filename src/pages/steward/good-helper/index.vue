@@ -7,7 +7,7 @@
                   @down="downCallback"
                   @up="upCallback">
       <template>
-        <div class="between-row bg-white header pl16 pr16 pb16 pt28">
+        <div class="between-row bg-white header pl32 pr32 pb32 pt28">
           <div class="link center-justify link-jointly column"
                @click="onContactList">
             <span class="ft30 white-color pl16">共建单位联系表</span>
@@ -55,6 +55,7 @@
         <div class="mt24">
           <status-tabs ref="statusTabs"
                        :communityOrgId="communityOrgId"
+                       :isUnitUser="isUnitUser"
                        @changeCurrent="changeCurrent"></status-tabs>
           <div v-show="listData.length > 0"
                class="list">
@@ -73,7 +74,8 @@
     <selection-communit v-if="isShowSelectionCommunit"
                         ref="selectionCommunit"
                         @onConfirm="onConfirmCommunit"></selection-communit>
-    <receive-pop ref="receivePop"></receive-pop>
+    <receive-pop v-if="isUnitUser"
+                 ref="receivePop"></receive-pop>
   </div>
 </template>
 <script>
