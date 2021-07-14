@@ -1,5 +1,31 @@
 <template>
   <view class="contact-list-wrap">
+    <view class="filter-select center-align between-row pl32 pr32 color-666 ft28">
+      <view @click="$refs.selectionCommunit.show()"
+            class="center-align">
+        <text class="street-community inline-block">{{streetCommunity}}</text>
+        <svg-icon icon="icon_xiangxia"
+                  class="ft18 ml16 color-999"></svg-icon>
+      </view>
+      <!-- <view @click="$refs.selectPop.show()"
+                class="center-align">
+            <text class="street-community inline-block">{{unitName}}</text>
+            <svg-icon icon="icon_xiangxia"
+                      class="ft18 ml16 color-999"></svg-icon>
+          </view> -->
+      <view class="point-rules ft24 center-align"
+            @click="onToRules">
+        <svg-icon icon="icon_wenhao"></svg-icon>
+        <text class="ml8">积分规则</text>
+      </view>
+    </view>
+    <view class="title-list color-666 ft26 medium center-align pl32 pr32 ">
+      <view v-for="(item,index) in titleList"
+            :key="index"
+            class="title-item">
+        {{item}}
+      </view>
+    </view>
     <mescroll-uni ref="mescrollRef"
                   class="mescroll-wrap"
                   :up="upOption"
@@ -8,32 +34,7 @@
                   @up="upCallback"
                   top="168rpx">
       <template>
-        <view class="filter-select center-align between-row pl32 pr32 color-666 ft28">
-          <view @click="$refs.selectionCommunit.show()"
-                class="center-align">
-            <text class="street-community inline-block">{{streetCommunity}}</text>
-            <svg-icon icon="icon_xiangxia"
-                      class="ft18 ml16 color-999"></svg-icon>
-          </view>
-          <!-- <view @click="$refs.selectPop.show()"
-                class="center-align">
-            <text class="street-community inline-block">{{unitName}}</text>
-            <svg-icon icon="icon_xiangxia"
-                      class="ft18 ml16 color-999"></svg-icon>
-          </view> -->
-          <view class="point-rules ft24 center-align"
-                @click="onToRules">
-            <svg-icon icon="icon_wenhao"></svg-icon>
-            <text class="ml8">积分规则</text>
-          </view>
-        </view>
-        <view class="title-list color-666 ft26 medium center-align pl32 pr32 ">
-          <view v-for="(item,index) in titleList"
-                :key="index"
-                class="title-item">
-            {{item}}
-          </view>
-        </view>
+
         <empty v-if="$isEmpty(listData)"></empty>
         <view v-else
               class="content-list pl32 pr32">
