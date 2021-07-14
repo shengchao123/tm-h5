@@ -68,9 +68,9 @@ export default {
       }, 1000);
     },
     downloadFile () {
-      let url = this.$fileHost + this.inductiveDetail.attachmentList[this.downIndex].url
+      let url = this.$fileHost + this.detailInfo.attachmentList[this.downIndex].url
       let a = document.createElement('a');
-      a.download = this.inductiveDetail.attachmentList[this.downIndex].name;
+      a.download = this.detailInfo.attachmentList[this.downIndex].name;
       a.href = url;
       a.target = '_blank';
       a.click();
@@ -102,9 +102,9 @@ export default {
       return this.detailInfo.attachmentList.filter(item => item.sourceType === '04')
     },
     imgList () {
-      const { attachmentList } = this.detailInfo
-      if (this.$isEmpty(attachmentList)) return []
-      const list = attachmentList.filter(item => item.sourceType === '01')
+      const { picList } = this.detailInfo
+      if (this.$isEmpty(picList)) return []
+      const list = picList.filter(item => item.sourceType === '01')
       if (this.$isEmpty(list)) return []
       return list.map(item => item.url)
     }
