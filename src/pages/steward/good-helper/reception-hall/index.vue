@@ -92,6 +92,9 @@ export default {
         empty: {
           use: false, // 是否显示空布局
         },
+        toTop: {
+          bottom: 120
+        }
       },
       // streetInfo: {},
       // communityInfo: {},
