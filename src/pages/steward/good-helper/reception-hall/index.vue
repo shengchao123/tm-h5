@@ -5,7 +5,8 @@
                   :up="upOption"
                   @init="mescrollInit"
                   @down="downCallback"
-                  @up="upCallback">
+                  @up="upCallback"
+                  top="182rpx">
       <template>
         <view class="hall-container flex column">
           <view class="box-bg">
@@ -80,7 +81,6 @@ export default {
     },
     upCallback (page) {
       this.getJourneyHelperProjectShowPage(page)
-      this.mescroll.endErr()
     },
     downCallback () {
       this.mescroll.resetUpScroll(); // 重置列表为第一页
@@ -134,6 +134,8 @@ page {
     height: 100%;
     .box-bg {
       height: 182rpx;
+      position: fixed;
+      top: 0;
       text-align: justify;
       text-align-last: left;
       padding: 32rpx;
