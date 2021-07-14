@@ -45,7 +45,9 @@ export default {
     imgList () {
       const { attachmentList } = this.detailInfo
       if (this.$isEmpty(attachmentList)) return []
-      return attachmentList.map(item => item.url)
+      const list = attachmentList.filter(item => item.sourceType === '01')
+      if (this.$isEmpty(list)) return []
+      return list.map(item => item.url)
     }
   },
   onLoad ({ id }) {
