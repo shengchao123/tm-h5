@@ -102,7 +102,7 @@ export default {
     projectReleaseName () {
       const { communityParentOrgName, communityOrgName } = this.projectItem
 
-      return `由${communityParentOrgName}${communityOrgName}发布`
+      return `${communityParentOrgName}${communityOrgName}`
     },
     startTime () {
       const { status, createTime, leadTime } = this.projectItem

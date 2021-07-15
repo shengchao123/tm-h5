@@ -100,6 +100,7 @@ export default {
       this.$api.leadJourneyHelperProjectSchedule(params).then(res => {
         if (res.isError) return this.$msg(res.message)
         this.$msg('认领成功')
+        this.$emit('receiveSuccess')
         this.hide()
       })
     }

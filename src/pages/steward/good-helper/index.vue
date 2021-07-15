@@ -71,11 +71,12 @@
         </div>
       </template>
     </mescroll-uni>
-    <selection-communit v-if="isShowSelectionCommunit"
-                        ref="selectionCommunit"
+    <selection-communit ref="selectionCommunit"
+                        v-if="isShowSelectionCommunit"
                         @onConfirm="onConfirmCommunit"></selection-communit>
-    <receive-pop v-if="isUnitUser"
-                 ref="receivePop"></receive-pop>
+    <receive-pop ref="receivePop"
+                 v-if="isUnitUser"
+                 @receiveSuccess="receiveSuccess"></receive-pop>
   </div>
 </template>
 <script>
@@ -100,6 +101,9 @@ export default {
         projectId,
         unitIds: this.unitIds
       })
+    },
+    receiveSuccess () {
+      this.downCallback()
     },
     changeCurrent (index, type) {
       this.projectType = type

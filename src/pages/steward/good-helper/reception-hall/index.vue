@@ -39,7 +39,8 @@
     <!-- <selection-communit ref="selectionCommunit"
                         @onConfirm="onConfirmCommunit"></selection-communit> -->
     <receive-pop ref="receivePop"
-                 :isHall="true"></receive-pop>
+                 :isHall="true"
+                 @receiveSuccess="receiveSuccess"></receive-pop>
   </view>
 </template>
 <script>
@@ -64,6 +65,9 @@ export default {
       this.$refs.receivePop.show({
         projectId,
       })
+    },
+    receiveSuccess () {
+      this.downCallback()
     },
     getJourneyHelperProjectShowPage (page) {
       // if (!this.communityOrgId) return
@@ -95,7 +99,8 @@ export default {
         },
         toTop: {
           bottom: 120
-        }
+        },
+        textNoMore: '',
       },
       // streetInfo: {},
       // communityInfo: {},
