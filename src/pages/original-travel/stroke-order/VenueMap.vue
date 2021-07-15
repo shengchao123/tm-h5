@@ -47,10 +47,10 @@ export default {
   methods: {
     onConfirmBtn () {
       uni.navigateBack({ delta: 1 })
-      const { address } = this.selectPoi
+      const { name } = this.selectPoi
       const { lat, lng } = this.selectPoi.location
       uni.$emit('setMeetingPlaceEvent', {
-        meetingPlace: address,
+        meetingPlace: name,
         meetingPlaceLat: lat,
         meetingPlaceLng: lng
       })
