@@ -125,9 +125,11 @@ export default {
         empty: {
           use: false, // 是否显示空布局
         },
+        textNoMore: '',
+        noMoreSize: 10,
         toTop: {
           bottom: 120
-        }
+        },
       },
       communityOrgId: null,
       unitInfo: {},
