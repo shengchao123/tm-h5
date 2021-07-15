@@ -26,9 +26,9 @@
       </div>
       <div class="between-row center-align ft24 color-999 pt16 pb16">
         <div>
-          <span class="mr48">{{startTime}}</span>
-          <span v-if="projectItem.status !== 1"
-                style="margin-left: 56rpx">{{projectLeadName}}</span>
+          <span style="margin-right: 56rpx">{{startTime}}</span>
+          <span v-if="projectItem.status !== 1">{{projectLeadName}}</span>
+          <span v-else-if="!isHome">{{projectReleaseName}}</span>
         </div>
         <span v-if="isHome && isUnitUser && projectItem.status === 1"
               class="ft20 color-999">{{endTime}}</span>
@@ -98,6 +98,11 @@ export default {
         return '由共建单位联合领办'
       }
       return `由${journeyHelperProjectLeadRecordList[0].journeyCoConstructionUnitName}领办`
+    },
+    projectReleaseName () {
+      const { communityParentOrgName, communityOrgName } = this.projectItem
+
+      return `由${communityParentOrgName}${communityOrgName}发布`
     },
     startTime () {
       const { status, createTime, leadTime } = this.projectItem

@@ -172,6 +172,7 @@ export default {
         empty: {
           use: false, // 是否显示空布局
         },
+        textNoMore: '',
       },
       communityOrgId: null,
       projectType: 2,
