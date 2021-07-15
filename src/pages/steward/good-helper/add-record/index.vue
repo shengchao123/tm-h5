@@ -148,7 +148,7 @@ export default {
         status,
         recordTime,
         description,
-        attachmentList: attachmentDTOList,
+        attachmentList: attachmentDTOList || [],
       }
       this.form.statusName = status === 2 ? '跟进中' : '已办结'
       this.form.recordTimeName = this.$moment(recordTime).format('YYYY-MM-DD HH:mm')
