@@ -40,7 +40,7 @@
 
       <div class="buy ft24 bg-white mt2 p32 mt16">
         <div class="bold ft28">买家须知</div>
-        <div class="mt24 color-666">1.本平台仅为联盟优选产品进行推介，产品售后请直接联系店铺客服</div>
+        <div class="mt24 color-666">本平台仅为联盟优选产品进行推介，产品售后请直接联系店铺客服</div>
       </div>
     </div>
 
