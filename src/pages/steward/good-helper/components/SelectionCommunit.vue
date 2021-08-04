@@ -28,13 +28,15 @@
               </view>
             </view>
           </view>
-          <view class="mt24 h376">
+          <scroll-view scroll-y="true"
+                       :scroll-top="scrollTop"
+                       class="mt24 h376">
             <view v-for="(item,index) in tabsList[tabsCurrent].list"
                   :key="index"
                   class="column b-border org-item center-justify">
               <view class="center-align between-row">
                 <view class="flex flex1"
-                      @click="changeTopOrg(item)">
+                      @click="changeTopOrg(item,index)">
                   <svg-icon :icon="selectIconStatus(item)"
                             class="ft36 "
                             :class="selectClassStatus(item)">
@@ -43,14 +45,14 @@
                 </view>
                 <view class="item-icon"
                       @click="onChildrenOrg(item)"
-                      v-if="item.child">
+                      v-if="!$isEmpty(item.child)">
                   <svg-icon icon="icon_xiangyoujiantou"
                             class="ft20 color-c4 bold mt8 "></svg-icon>
                 </view>
               </view>
 
             </view>
-          </view>
+          </scroll-view>
           <u-button @click="onConfirm"
                     :custom-style="btnStyle">确定</u-button>
         </view>
@@ -64,21 +66,30 @@ export default {
     // 默认选中第一个街道第一个社区
     initData () {
       const firstList = this.tabsList[0].list[0]
-      this.changeTopOrg(firstList)
-      this.onChildrenOrg(firstList)
+      this.changeTopOrg(firstList, 0)
       this.$nextTick(() => {
-        this.changeTopOrg(firstList.child[0])
         this.onConfirm()
       })
     },
+    setInfo () {
+      const { streetInfo, communityInfo } = this
+      let obj = {}
+      if (streetInfo.name === '全部街道') {
+        obj = {
+          streetInfo,
+          communityInfo: {}
+        }
+      } else {
+        obj = {
+          streetInfo, communityInfo
+        }
+      }
+      this.$emit('onConfirm', obj)
+    },
     // 确定
     onConfirm () {
-      const { streetInfo, communityInfo } = this
-      const obj = {
-        streetInfo, communityInfo
-      }
+      this.setInfo()
       this.isOrgShow = false
-      this.$emit('onConfirm', obj)
     },
     // 选择下一级
     onChildrenOrg (item) {
@@ -92,17 +103,33 @@ export default {
       this.tabsList[this.tabsCurrent] = temItem
     },
     // 设置组织信息
-    setOrgInfo (item) {
+    setOrgInfo (item, index) {
       const { name, id } = item
-      let objKey = this.tabsCurrent === 0 ? 'streetInfo' : 'communityInfo'
+      let objKey = ''
+      if (this.tabsCurrent === 0) {
+        objKey = 'streetInfo'
+        if (!this.$isEmpty(index + '')) {
+          const currentStreetList = this.tabsList[0].list[index]
+          if (name !== '全部街道') {
+            this.onChildrenOrg(currentStreetList)
+            this.$nextTick(() => {
+              this.changeTopOrg(currentStreetList.child[0])
+            })
+          } else {
+            // 删除社区数据
+            this.tabsList.splice(1, 1)
+          }
+        }
+      } else {
+        objKey = 'communityInfo'
+      }
       this[objKey] = { id, name }
       this.tabsList[this.tabsCurrent] = { ...this.tabsList[this.tabsCurrent], id, name }
-      // this.tabsCurrent === 0 && this.findCommunityOrganizationTree()
       this.tabsList = JSON.parse(JSON.stringify(this.tabsList))
     },
     // 选中某一组织
-    changeTopOrg (item) {
-      this.setOrgInfo(item)
+    changeTopOrg (item, index) {
+      this.setOrgInfo(item, index)
     },
     // 切换tabs
     changeTabs (index) {
@@ -122,7 +149,11 @@ export default {
           this.isHaveTabsList = false
           return
         }
-        this.tabsList[0].list = res.content
+        const content = JSON.parse(JSON.stringify(res.content))
+        if (this.isHaveAll) {
+          content.unshift({ child: [], id: '', name: '全部街道' })
+        }
+        this.tabsList[0].list = content
         this.isHaveTabsList = true
       })
     },
@@ -136,8 +167,17 @@ export default {
       immediate: true
     }
   },
+  props: {
+    isHaveAll: {
+      type: Boolean,
+      default: () => {
+        return false
+      }
+    }
+  },
   data () {
     return {
+      scrollTop: 0,
       isHaveTabsList: false,
       tabsCurrent: 0,
       navbarOrg: {}, // 导航栏数据
@@ -173,14 +213,14 @@ export default {
       }
     },
     btnStyle () { // 自定义按钮样式
-      const btnBgColor = this.$isEmpty(this.communityInfo) ? '#ccc' : '#E32417'
+      // const btnBgColor = this.$isEmpty(this.communityInfo) ? '#ccc' : '#E32417'
       const temStyle = {
         fontSize: '32rpx',
         color: '#fff',
         height: '98rpx',
         borderRadius: '49rpx',
         fontWeight: 'bold',
-        background: btnBgColor,
+        background: '#E32417',
         marginTop: '66rpx'
       }
       return temStyle
@@ -210,7 +250,6 @@ export default {
   }
   .h376 {
     height: 376rpx;
-    overflow: auto;
   }
   .color-c4 {
     color: #c4c4c4;

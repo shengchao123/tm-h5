@@ -11,7 +11,7 @@
     </view>
     <text class="text orders">{{itemInfo.ordersNumber}}</text>
     <text class="text grab-orders">{{itemInfo.grabOrdersNumber}}</text>
-    <text class="text rate">{{itemInfo.rate}}%</text>
+    <text class="text rate">{{itemInfo.rate * 100}}%</text>
     <text class="text">{{itemInfo.point}}</text>
   </view>
 </template>

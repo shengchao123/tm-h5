@@ -1,5 +1,5 @@
 <template>
-  <div class="tabs-wrap relative row">
+  <div class="tabs-wrap relative row bb">
     <div class="tab-item secondary-text"
          v-for="(item, index) in tabs"
          :key="index"
@@ -21,9 +21,13 @@ export default {
       this.$emit('changeCurrent', index, type)
     },
     getJourneyHelperProjectCount () {
-      const params = {
-        communityOrgId: this.communityOrgId
+      if (!this.communityOrgId) return
+
+      const params = {}
+      if (!this.isUnitUser) {
+        params.communityOrgId = this.communityOrgId
       }
+
       this.$api.getJourneyHelperProjectCount(params).then(res => {
         if (res.isError) return this.$msg(res.message)
         const tabs = this.tabs
@@ -36,7 +40,8 @@ export default {
     }
   },
   props: {
-    communityOrgId: [String, Number]
+    communityOrgId: [String, Number],
+    isUnitUser: Boolean
   },
   data () {
     return {

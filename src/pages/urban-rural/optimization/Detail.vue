@@ -40,8 +40,7 @@
 
       <div class="buy ft24 bg-white mt2 p32 mt16">
         <div class="bold ft28">买家须知</div>
-        <div class="mt24 color-666">1. 本平台所有商品均来自临安优质农场基地</div>
-        <div class="mt16 color-666">2. 本平台仅为联盟优选产品进行推介，产品售后请直接联系微店</div>
+        <div class="mt24 color-666">本平台仅为联盟优选产品进行推介，产品售后请直接联系店铺客服</div>
       </div>
     </div>
 
@@ -58,6 +57,9 @@
 </template>
 
 <script>
+import md5 from 'js-md5';
+const SLAT = 'ZcQCDCnitcGsljKVHwUvgOKZWfMkkgNh'
+
 export default {
   name: 'Detail',
   methods: {
@@ -84,13 +86,22 @@ export default {
       })
     }
   },
+
   computed: {
+    // firstStoreUrl 来源于微店，secondStoreUrl 来源于新鲜买小程序，需要配置加密，优惠
     linkUrl () {
-      const { secondStoreUrl, firstStoreUrl } = this.detailInfo
+      let { secondStoreUrl, firstStoreUrl } = this.detailInfo
       if (!secondStoreUrl) return firstStoreUrl
-      const _paltform = uni.getSystemInfoSync().platform
-      const _temUrl = _paltform === 'ios' ? firstStoreUrl : firstStoreUrl
-      return _temUrl
+      let host = secondStoreUrl.split('?')[0]
+      let query = secondStoreUrl.split('?')[1]
+
+      query = 'from=tmhm&' + query
+
+      query += '&timestamp=' + new Date().getTime()
+      const _md5 = md5(query + SLAT)
+
+      const result = host + '?' + query + '&sign=' + _md5
+      return result
     }
 
   },
@@ -138,6 +149,7 @@ export default {
     this.getJourneyProductInfoById(options.id)
   }
 }
+
 </script>
 
 <style lang='scss' scoped>

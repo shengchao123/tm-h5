@@ -2,11 +2,23 @@
   <div class='project-detail-wrap'
        @scroll="scroll">
     <div class="pt28 pb28 pl32 pr32 bg-white">
-      <div class="ft40 bold">{{baseInfo.name}}</div>
+      <div>
+        <svg-icon v-if="baseInfo.status !== 1 && baseInfo.isGrab && entrance === 'helper'"
+                  icon="icon_qiangdan"
+                  class="ft48 mr8"
+                  style="color: #FA5A12"></svg-icon>
+        <span class="flex1 ft40 bold">{{baseInfo.name}}</span>
+      </div>
       <div class="ft26 color-666 pt24 pb24">
-        <span>{{startTime}}</span>
-        <span v-if="baseInfo.status !== 1"
-              class="ml48">{{projectLeadName}}</span>
+        <div class="pb8">
+          <span>{{baseInfo.createTime && $moment(baseInfo.createTime).format('YYYY年MM月DD日')}}发布</span>
+          <span v-if="baseInfo.status !== 1"
+                class="ml48">{{baseInfo.communityParentOrgName}}{{baseInfo.communityOrgName}}发布</span>
+        </div>
+        <div v-if="baseInfo.status !== 1">
+          <span>{{baseInfo.leadTime && $moment(baseInfo.leadTime).format('YYYY年MM月DD日')}}领办</span>
+          <span class="ml48">{{projectLeadName}}</span>
+        </div>
       </div>
       <div class="ft30 content">{{baseInfo.description}}</div>
     </div>
@@ -53,7 +65,8 @@
                      :key="imgIndex"
                      mode="aspectFill"
                      class="img-item mr20"
-                     :src="$fileHost + img.url"></image>
+                     :src="$fileHost + img.url"
+                     @click="onShowBigImgView(imgIndex, item.attachmentDTOList)"></image>
             </div>
           </div>
         </div>
@@ -78,7 +91,9 @@
            @click="onReceive">认领</div>
     </div>
 
-    <receive-pop ref="receivePop"></receive-pop>
+    <receive-pop ref="receivePop"
+                 v-if="isUnitUser && baseInfo.status === 1"
+                 :isHall="entrance === 'hall'"></receive-pop>
   </div>
 </template>
 <script>
@@ -88,12 +103,13 @@ let timer = null
 export default {
   methods: {
     // 认领
-    // TODO: 功能缺失
     onReceive () {
-      if (this.$notMember()) return this.$goLogin();
+      if (this.$notMember()) return this.$goLogin()
+      const entrance = this.entrance
       this.$refs.receivePop.show({
         projectId: this.baseInfo.id,
-        communityOrgId: this.baseInfo.communityOrgId
+        communityOrgId: entrance === 'helper' && this.baseInfo.communityOrgId,
+        unitIds: entrance === 'hall' && this.unitIds
       })
     },
     // 新增跟进
@@ -107,6 +123,14 @@ export default {
       uni.setStorageSync('journeyHelperProjectSchedule', JSON.stringify(item))
       uni.navigateTo({
         url: `/pages/steward/good-helper/add-record/index?projectId=${this.id}&scheduleId=${item.id}`
+      })
+    },
+    // 查看大图
+    onShowBigImgView (index, imgList) {
+      const urls = imgList.map(({ url }) => this.$fileHost + url)
+      uni.previewImage({
+        urls: urls,
+        current: index,
       })
     },
     getJourneyHelperProjectDetail () {
@@ -180,7 +204,7 @@ export default {
       if (journeyHelperProjectLeadRecordList.length > 1) {
         return '由共建单位联合领办'
       }
-      return journeyHelperProjectLeadRecordList[0].journeyCoConstructionUnitName
+      return `由${journeyHelperProjectLeadRecordList[0].journeyCoConstructionUnitName}领办`
     },
     isCanEdit () {
       return this.isUnitUser && this.baseInfo.status === 2

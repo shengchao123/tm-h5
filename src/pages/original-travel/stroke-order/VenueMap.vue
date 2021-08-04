@@ -47,10 +47,10 @@ export default {
   methods: {
     onConfirmBtn () {
       uni.navigateBack({ delta: 1 })
-      const { address } = this.selectPoi
+      const { name } = this.selectPoi
       const { lat, lng } = this.selectPoi.location
       uni.$emit('setMeetingPlaceEvent', {
-        meetingPlace: address,
+        meetingPlace: name,
         meetingPlaceLat: lat,
         meetingPlaceLng: lng
       })
@@ -81,13 +81,18 @@ export default {
               const _pois = result.poiList.pois
 
               that.poi.list = _pois
-              that.selectPoi = _pois[0]
+
               that.locationResult = _pois[0]
 
               that.drawLocation()
 
               that.$amap.setCenter(_pois[0].location)
-              that.$marker = that.drawLocationMarker()
+              if (!that.$marker) {
+                that.selectPoi = _pois[0]
+                that.$marker = that.drawLocationMarker()
+              } else {
+                that.$marker.setPosition(_pois[0].location)
+              }
 
               that.onEvent()
             })
@@ -99,7 +104,6 @@ export default {
     // 地图事件监听
     onEvent () {
       this.$amap.on('dragging', this.mapDragging)
-      this.$amap.on('moveend', this.mapMoveend)
     },
     // 绘制进来定位点 marker
     drawLocationMarker () {
@@ -147,29 +151,6 @@ export default {
     mapDragging (e) {
       const _lnglat = this.$amap.getCenter()
       this.$marker.setPosition(_lnglat)
-    },
-    // 地图拖动完成，重新绘制定位点
-    mapMoveend (e) {
-      const _position = this.$amap.getCenter()
-      this.$marker.setPosition(_position)
-    },
-    // 根据选择点，搜索 poi 点
-    getPoisByMoveend () {
-      const that = this
-      const lnglat = this.$amap.getCenter()
-      AMap.plugin('AMap.PlaceSearch', function () {
-        var autoOptions = {
-          pageSize: 50,
-        }
-        var placeSearch = new AMap.PlaceSearch(autoOptions)
-        placeSearch.searchNearBy('', lnglat, 5000, function (status, result) {
-          if (!result || !result.poiList) return
-          const _pois = result.poiList.pois
-          that.poi.list = _pois
-          that.selectPoi = _pois[0]
-          that.$refs.list.scrollTop = 0
-        })
-      })
     },
     onLocation () {
       this.poi.keyword = ''

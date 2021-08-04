@@ -32,7 +32,7 @@ export default {
           icon: 'icon_dibiao',
           marker: 'guide_mark_1.png',
           type: '01',
-          name: '红色地标'
+          name: '生活馆'
         },
         {
           icon: 'icon_nongchanpin',

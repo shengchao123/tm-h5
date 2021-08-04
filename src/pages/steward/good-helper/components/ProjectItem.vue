@@ -4,8 +4,13 @@
     <div class="pt32 pb32"
          :class="showBorder && 'bb'">
       <div class="center-align between-row">
-        <div class="center-align name">
-          <div class="ft34 medium">{{projectItem.name}}</div>
+        <div class="center-align">
+          <div v-if="projectItem.status !== 1 && projectItem.isGrab && this.isHome"
+               class="center mr8"
+               style="width: 40rpx; height: 40rpx; background: #FA5A12; border-radius: 6rpx;">
+            <span class="ft24 white-color">抢</span>
+          </div>
+          <div class="ft34 medium name ellipsis">{{projectItem.name}}</div>
           <div v-if="projectItem.status !== 1"
                class="center"
                style="height: 38rpx;">
@@ -21,11 +26,11 @@
       </div>
       <div class="between-row center-align ft24 color-999 pt16 pb16">
         <div>
-          <span class="mr48">{{startTime}}</span>
-          <span v-if="projectItem.status !== 1"
-                class="ml48">{{projectLeadName}}</span>
+          <span style="margin-right: 56rpx">{{startTime}}</span>
+          <span v-if="projectItem.status !== 1">{{projectLeadName}}</span>
+          <span v-else-if="!isHome">{{projectReleaseName}}</span>
         </div>
-        <span v-if="isHome && isUnitUser"
+        <span v-if="isHome && isUnitUser && projectItem.status === 1"
               class="ft20 color-999">{{endTime}}</span>
       </div>
       <div class="content">
@@ -92,7 +97,12 @@ export default {
       if (journeyHelperProjectLeadRecordList.length > 1) {
         return '由共建单位联合领办'
       }
-      return journeyHelperProjectLeadRecordList[0].journeyCoConstructionUnitName
+      return `由${journeyHelperProjectLeadRecordList[0].journeyCoConstructionUnitName}领办`
+    },
+    projectReleaseName () {
+      const { communityParentOrgName, communityOrgName } = this.projectItem
+
+      return `${communityParentOrgName}${communityOrgName}`
     },
     startTime () {
       const { status, createTime, leadTime } = this.projectItem
@@ -158,6 +168,9 @@ export default {
     line-height: 56rpx;
     border-radius: 30rpx;
     border: solid 1px #e32417;
+  }
+  .name {
+    max-width: 520rpx;
   }
   .content {
     position: relative;
