@@ -184,6 +184,18 @@
 			}
 		},
 		{
+			"path": "pages/steward/2steward/Steward",
+			"style": {
+				"navigationBarTitleText": "管家风采"
+			}
+		},
+		{
+			"path": "pages/steward/2steward/List",
+			"style": {
+				"navigationBarTitleText": "联盟介绍"
+			}
+		},
+		{
 			"path": "pages/steward/3helper/index",
 			"style": {
 				"navigationBarTitleText": "好帮手"

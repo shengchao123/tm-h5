@@ -39,28 +39,7 @@ export default {
   },
   data () {
     return {
-      list: [
-        {
-          name: '山水好支部',
-          address: '玲珑街道',
-        },
-        {
-          name: '山水好支部',
-          address: '玲珑街道',
-        },
-        {
-          name: '山水好支部',
-          address: '玲珑街道',
-        },
-        {
-          name: '山水好支部',
-          address: '玲珑街道',
-        },
-        {
-          name: '山水好支部',
-          address: '玲珑街道',
-        },
-      ]
+      list: []
     }
   },
   onLoad () {

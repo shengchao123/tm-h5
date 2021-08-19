@@ -7,6 +7,11 @@ export const urls = {
 
   // 社区认证
   communityCertification: '/crm/member/communityCertification', // 社区认证
+  findJourneyCommunityAllianceDetail: '/linanJourney/journeyCommunityAlliance/findJourneyCommunityAllianceDetail', // 社区认证
+  findJourneyGoodCommunityStewardList: '/linanJourney/journeyCommunitySteward/findJourneyGoodCommunityStewardList', // 社区认证
+  findJourneyCommunityAllianceListByCommunityOrgId: '/linanJourney/journeyCommunityAlliance/findJourneyCommunityAllianceListByCommunityOrgId', // 社区认证
+  findJourneyCommunityStewardDetail: '/linanJourney/journeyCommunitySteward/findJourneyCommunityStewardDetail', // 社区认证
+  findJourneyCommunityStewardListByCommunityOrgId: '/linanJourney/journeyCommunitySteward/findJourneyCommunityStewardListByCommunityOrgId', // 社区认证
   findJourneyGoodCommunityPartyList: '/linanJourney/journeyCommunityParty/findJourneyGoodCommunityPartyList',
   findJourneyCommunityPartyListByCommunityOrgId: '/linanJourney/journeyCommunityParty/findJourneyCommunityPartyListByCommunityOrgId',
   findJourneyCommunityPartyContactByPartyId: '/linanJourney/journeyCommunityParty/findJourneyCommunityPartyContactByPartyId',

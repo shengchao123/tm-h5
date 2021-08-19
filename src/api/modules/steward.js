@@ -1,5 +1,50 @@
 import request from '../request'
 import { urls } from '../urls'
+export function findJourneyCommunityAllianceDetail (params) {
+  return request({
+    url: urls.findJourneyCommunityAllianceDetail,
+    needlessToken: true,
+    data: {
+      ...params
+    }
+  })
+}
+export function findJourneyCommunityAllianceListByCommunityOrgId (params) {
+  return request({
+    url: urls.findJourneyCommunityAllianceListByCommunityOrgId,
+    needlessToken: true,
+    data: {
+      ...params
+    }
+  })
+}
+export function findJourneyGoodCommunityStewardList (params) {
+  return request({
+    url: urls.findJourneyGoodCommunityStewardList,
+    needlessToken: true,
+    data: {
+      ...params
+    }
+  })
+}
+export function findJourneyCommunityStewardDetail (params) {
+  return request({
+    url: urls.findJourneyCommunityStewardDetail,
+    needlessToken: true,
+    data: {
+      ...params
+    }
+  })
+}
+export function findJourneyCommunityStewardListByCommunityOrgId (params) {
+  return request({
+    url: urls.findJourneyCommunityStewardListByCommunityOrgId,
+    needlessToken: true,
+    data: {
+      ...params
+    }
+  })
+}
 export function findJourneyGoodCommunityPartyList (params) { // 社区项目分页
   return request({
     url: urls.findJourneyGoodCommunityPartyList,

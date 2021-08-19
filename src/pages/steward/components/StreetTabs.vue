@@ -51,10 +51,12 @@
 
 <script>
 const apiNames = new Map([
-  ['1', 'findJourneyCommunityPartyListByCommunityOrgId']
+  ['1', 'findJourneyCommunityPartyListByCommunityOrgId'],
+  ['2', 'findJourneyCommunityAllianceListByCommunityOrgId']
 ])
 const headerTexts = new Map([
-  ['1', '党支部']
+  ['1', '党支部'],
+  ['2', '党建联盟']
 ])
 export default {
   name: 'StreetTabs',
@@ -66,16 +68,10 @@ export default {
     onSecondItem (i) {
       this.secondIndex = i
       const apiName = apiNames.get(this.type)
-      this[apiName]()
-    },
-    onThirdItem (item) {
-      this.$emit('onThirdItem', item, this.secondList[this.secondIndex].id)
-    },
-    findJourneyCommunityPartyListByCommunityOrgId () {
       const params = {
         communityOrgId: this.secondList[this.secondIndex].id
       }
-      this.$api.findJourneyCommunityPartyListByCommunityOrgId(params).then(res => {
+      this.$api[apiName](params).then(res => {
         if (res.isError) {
           this.$message.error(res.message)
           return
@@ -83,13 +79,16 @@ export default {
         this.thirdList = res.content
       })
     },
+    onThirdItem (item) {
+      this.$emit('onThirdItem', item, this.secondList[this.secondIndex].id)
+    },
     findCommunityOrganizationTree () {
       this.$api.findCommunityOrganizationTree().then(res => {
         if (res.isError) return this.$msg(res.message)
         if (!res && !res.content) return
         const content = JSON.parse(JSON.stringify(res.content))
         this.tabsList = content
-        this.findJourneyCommunityPartyListByCommunityOrgId()
+        this.onSecondItem(0)
       })
     }
   },

@@ -1,8 +1,8 @@
 <template>
   <div class='card-item-wrap'>
     <div class="center-align">
-      <div class="ft34 bold">{{item.name}}</div>
-      <div class="ft22 color-666 ml24">书记</div>
+      <div class="ft34 bold">{{item.headName}}</div>
+      <div class="ft22 color-666 ml24">联盟主任</div>
     </div>
 
     <div class="center-align ft26 mt32">
@@ -16,8 +16,13 @@
     </div>
 
     <div class="center-align ft26 mt24">
-      <span class="color-999">分工：</span>
-      <span>{{item.position}}</span>
+      <span class="color-999">共建单位：</span>
+      <span>{{item.unitOrgName}}</span>
+    </div>
+
+    <div class="center-align ft26 mt24">
+      <span class="color-999">覆盖小区：</span>
+      <span>{{plotOrgNames}}</span>
     </div>
   </div>
 </template>
@@ -34,6 +39,13 @@ export default {
   },
   props: {
     item: Object
+  },
+  computed: {
+    plotOrgNames () {
+      if (this.$isEmpty(this.item.plots)) return ''
+      const temArray = this.item.plots.map(item => item.plotOrgName)
+      return temArray.join('、')
+    }
   }
 }
 </script>

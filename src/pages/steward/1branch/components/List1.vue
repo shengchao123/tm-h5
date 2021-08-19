@@ -14,7 +14,7 @@
 <script>
 import listMixins from './mixins'
 // import { debounce } from '@/utils/tools.js'
-import PeopleCardItem from '@/pages/steward/components/PeopleCardItem'
+import PeopleCardItem from './PeopleCardItem'
 
 export default {
   name: 'List',
@@ -71,14 +71,8 @@ export default {
 page {
   background-color: #f6f6f6;
 }
-.list1-wrap {
-  .search-wrap {
-    background: #ffffff;
-  }
-  .content {
-    padding: 0 30rpx;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
+
+.content {
+  padding: 0 30rpx;
 }
 </style>

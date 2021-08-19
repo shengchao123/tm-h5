@@ -37,10 +37,13 @@ export default {
 }
 </script>
 
+
+
 <style lang='scss' scoped>
 div {
   box-sizing: border-box;
 }
+
 .block-item-wrap {
   padding: 30rpx;
   .item-wrap {
@@ -51,5 +54,15 @@ div {
       border-radius: 8rpx;
     }
   }
+}
+
+.block1 {
+  background-image: linear-gradient(46deg, #ff7f2b 0%, #ff721a 87%);
+  color: #ffb88c;
+}
+
+.block2 {
+  background-image: linear-gradient(225deg, #0079ff 0%, #2ea5ff 87%);
+  color: #8dc9ff;
 }
 </style>

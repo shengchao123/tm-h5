@@ -12,36 +12,38 @@
               font-size="28"
               active-color="#E32417"
               inactive-color="#666666"></u-tabs>
-
-      <SubTabs :tabs="subTabs"
-               @change="e => currentSubTab = e.id"></SubTabs>
     </div>
-
-    <div class="list">
-      <List1 v-if="currentSubTab === 0"
-             :communityOrgId="communityOrgId"></List1>
-      <List2 v-if="currentSubTab === 1"
-             :communityOrgId="communityOrgId"></List2>
-    </div>
+    <StewardInfo :detail="detail"
+                 class="mt32"></StewardInfo>
   </div>
 </template>
 
 <script>
-import SubTabs from '@/pages/urban-rural/components/SubTabs'
-import List1 from './components/List1.vue'
-import List2 from './components/List2.vue'
 
+import StewardInfo from './components/StewardInfo'
 export default {
   name: 'list',
   methods: {
     tabsChange (index) {
       this.currentTab = index;
     },
+    findJourneyCommunityStewardDetail () {
+      const params = {
+        id: this.tabs[this.currentTab].id
+      }
+      this.$api.findJourneyCommunityStewardDetail(params).then(res => {
+        if (res.isError) {
+          this.$message.error(res.message)
+          return
+        }
+        this.detail = res.content
+      })
+    },
     getTabs (communityOrgId, id) {
       const params = {
         communityOrgId
       }
-      this.$api.findJourneyCommunityPartyListByCommunityOrgId(params).then(res => {
+      this.$api.findJourneyCommunityStewardListByCommunityOrgId(params).then(res => {
         if (res.isError) {
           this.$message.error(res.message)
           return
@@ -49,38 +51,26 @@ export default {
         this.tabs = res.content
         const temIds = res.content.map(item => item.id)
         this.currentTab = temIds.indexOf(id)
+        this.findJourneyCommunityStewardDetail()
       })
     },
   },
   onLoad ({ communityOrgId, id }) {
     this.getTabs(communityOrgId, id)
   },
-  computed: {
-    communityOrgId () {
-      if (this.$isEmpty(this.tabs)) return ''
-      return this.tabs[this.currentTab].id
-    }
-  },
-  components: { SubTabs, List1, List2 },
+  components: { StewardInfo },
   data () {
     return {
       tabs: [],
-      currentSubTab: 0,
-      currentTab: 0,
-      subTabs: [
-        {
-          id: 0,
-          text: '党组织架构'
-        },
-        // {
-        //   id: 1,
-        //   text: '支部风采'
-        // }
-      ]
+      detail: {},
+      currentTab: 0
     }
   }
 }
 </script>
 
 <style lang='scss' scoped>
+page {
+  background-color: #f6f6f6;
+}
 </style>
