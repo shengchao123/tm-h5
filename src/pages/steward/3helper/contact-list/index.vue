@@ -60,7 +60,7 @@ import MescrollMixin from "@/components/mescroll-uni/mescroll-mixins.js";
 import MescrollUni from "@/components/mescroll-uni/mescroll-uni.vue";
 import Item from './components/Item.vue';
 import SelectPop from 'pages/components/SelectPop'
-import SelectionCommunit from '../components/SelectionCommunit.vue'
+import SelectionCommunit from '../../components/SelectionCommunit.vue'
 import { replaceString } from '@u/tools.js'
 export default {
   name: 'ContactList',

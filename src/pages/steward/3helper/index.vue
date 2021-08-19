@@ -84,7 +84,7 @@ import MescrollMixin from "@/components/mescroll-uni/mescroll-mixins.js";
 import MescrollUni from "@/components/mescroll-uni/mescroll-uni.vue";
 import StatusTabs from './components/StatusTabs.vue'
 import ProjectItem from './components/ProjectItem.vue';
-import SelectionCommunit from './components/SelectionCommunit.vue';
+import SelectionCommunit from '../components/SelectionCommunit.vue';
 import ReceivePop from './components/ReceivePop.vue';
 export default {
   mixins: [MescrollMixin],

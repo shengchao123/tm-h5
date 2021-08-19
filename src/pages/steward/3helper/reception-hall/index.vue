@@ -48,7 +48,7 @@ import ProjectItem from '../components/ProjectItem.vue';
 import MescrollMixin from "@/components/mescroll-uni/mescroll-mixins.js";
 import MescrollUni from "@/components/mescroll-uni/mescroll-uni.vue";
 import ReceivePop from '../components/ReceivePop.vue';
-import SelectionCommunit from '../components/SelectionCommunit.vue';
+import SelectionCommunit from '../../components/SelectionCommunit.vue';
 export default {
   name: 'ReceptionHall',
   methods: {

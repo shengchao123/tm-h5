@@ -25,7 +25,10 @@
           </div>
           <div class="ft24 row line-h1">
             <div :class="userInfo.name ? '': 'color-999'">{{userInfo.name || '暂未实名'}}</div>
-            <div class="color-999 ml32">{{userInfo.orgName}}</div>
+            <div class="color-999 ml32 ft24">
+              <span class="mr24">{{userInfo.authAllianceOrgName}}</span>
+              <span>{{userInfo.authCommunityOrgName}}</span>
+            </div>
           </div>
         </div>
 
@@ -57,17 +60,22 @@
         <div class="item center column"
              @click="onOtherPage('hearts')">
           <div class="count ft34 bold">{{userInfo.redHeartBalance || 0}}</div>
-          <div class="count ft24 color-666 mt12">我的红心</div>
+          <div class="count ft24 color-666 mt12">红心</div>
         </div>
         <div class="item center column"
              @click="onOtherPage('activity')">
           <div class="count ft34 bold">{{userInfo.activeQuantity || 0}}</div>
-          <div class="count ft24 color-666 mt12">我的活动</div>
+          <div class="count ft24 color-666 mt12">活动</div>
         </div>
         <div class="item center column"
              @click="onOtherPage('reply')">
           <div class="count ft34 bold">{{userInfo.talentsMessageQuantity || 0}}</div>
           <div class="count ft24 color-666 mt12">留言回复</div>
+        </div>
+        <div class="item center column"
+             @click="onOtherPage('reply')">
+          <div class="count ft34 bold">{{userInfo.talentsMessageQuantity || 0}}</div>
+          <div class="count ft24 color-666 mt12">我的报事</div>
         </div>
       </div>
     </div>

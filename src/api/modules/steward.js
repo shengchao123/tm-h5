@@ -1,5 +1,41 @@
 import request from '../request'
 import { urls } from '../urls'
+export function findJourneyGoodCommunityPartyList (params) { // 社区项目分页
+  return request({
+    url: urls.findJourneyGoodCommunityPartyList,
+    needlessToken: true,
+    data: {
+      ...params
+    }
+  })
+}
+export function findJourneyCommunityPartyContactByPartyId (params) { // 社区项目分页
+  return request({
+    url: urls.findJourneyCommunityPartyContactByPartyId,
+    needlessToken: true,
+    data: {
+      ...params
+    }
+  })
+}
+export function findJourneyCommunityPartyListByCommunityOrgId (params) { // 社区项目分页
+  return request({
+    url: urls.findJourneyCommunityPartyListByCommunityOrgId,
+    needlessToken: true,
+    data: {
+      ...params
+    }
+  })
+}
+
+export function communityCertification (params) { // 社区项目分页
+  return request({
+    url: urls.communityCertification,
+    data: {
+      ...params
+    }
+  })
+}
 
 export function getJourneyHelperProjectShowPage (params) { // 社区项目分页
   return request({

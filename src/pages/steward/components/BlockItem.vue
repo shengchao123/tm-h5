@@ -1,0 +1,55 @@
+<template>
+  <div class='block-item-wrap'>
+    <div class="ft32 bold mb24"
+         v-if="!$isEmpty(list)">{{title}}</div>
+    <div class="item-wrap between-row">
+      <div class="item "
+           @click="onItem(item)"
+           :class="bgClass"
+           v-for="(item, index) in list"
+           :key="index">
+        <div class="center-align between-row">
+          <div class="ft28"
+               style="color: #fff">{{item.name}}</div>
+          <svg-icon icon="icon_xiangyoujiantou"
+                    class="ft20"></svg-icon>
+        </div>
+        <div class="address ft24 mt16">{{item.tip}}</div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'BlockItem',
+  methods: {
+    onItem (item) {
+      this.$emit('onBlockItem', item)
+    }
+  },
+  props: {
+    title: String,
+    list: Array,
+    bgClass: String,
+    type: [String, Number]
+  }
+}
+</script>
+
+<style lang='scss' scoped>
+div {
+  box-sizing: border-box;
+}
+.block-item-wrap {
+  padding: 30rpx;
+  .item-wrap {
+    flex-wrap: wrap;
+    .item {
+      width: 334rpx;
+      padding: 24rpx;
+      border-radius: 8rpx;
+    }
+  }
+}
+</style>

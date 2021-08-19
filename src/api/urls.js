@@ -5,6 +5,11 @@ export const imgHost = 'https://hzslzx.oss-cn-hangzhou.aliyuncs.com/system/h5-ma
 
 export const urls = {
 
+  // 社区认证
+  communityCertification: '/crm/member/communityCertification', // 社区认证
+  findJourneyGoodCommunityPartyList: '/linanJourney/journeyCommunityParty/findJourneyGoodCommunityPartyList',
+  findJourneyCommunityPartyListByCommunityOrgId: '/linanJourney/journeyCommunityParty/findJourneyCommunityPartyListByCommunityOrgId',
+  findJourneyCommunityPartyContactByPartyId: '/linanJourney/journeyCommunityParty/findJourneyCommunityPartyContactByPartyId',
   // 共建单位联系表
   getJourneyCoConstructionUnitTablePage: '/linanJourney/journeyCoConstructionUnit/getJourneyCoConstructionUnitTablePage', // 共建单位联系表分页
   getUnitListByCommunity: '/linanJourney/journeyCoConstructionUnit/getUnitListByCommunity', // 根据社区id获取单位列表

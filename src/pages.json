@@ -160,41 +160,92 @@
 			}
 		},
 		{
-			"path": "pages/steward/good-helper/index",
+			"path": "pages/steward/auth/index",
+			"style": {
+				"navigationBarTitleText": "社区认证"
+			}
+		},
+		{
+			"path": "pages/steward/1branch/index",
+			"style": {
+				"navigationBarTitleText": "好支部"
+			}
+		},
+		{
+			"path": "pages/steward/1branch/List",
+			"style": {
+				"navigationBarTitleText": "支部介绍"
+			}
+		},
+		{
+			"path": "pages/steward/2steward/index",
+			"style": {
+				"navigationBarTitleText": "好管家"
+			}
+		},
+		{
+			"path": "pages/steward/3helper/index",
 			"style": {
 				"navigationBarTitleText": "好帮手"
 			}
 		},
 		{
-			"path": "pages/steward/good-helper/project-detail/index",
+			"path": "pages/steward/4neighbours/index",
+			"style": {
+				"navigationBarTitleText": "好邻里"
+			}
+		},
+		{
+			"path": "pages/steward/5case/index",
+			"style": {
+				"navigationBarTitleText": "好案例"
+			}
+		},
+		{
+			"path": "pages/steward/matter/index",
+			"style": {
+				"navigationBarBackgroundColor": "#0066ED",
+				"navigationBarTitleText": "议事厅",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/steward/wish/index",
+			"style": {
+				"navigationBarTitleText": "志愿汇"
+			}
+		},
+		{
+			"path": "pages/steward/3helper/project-detail/index",
 			"style": {
 				"navigationBarTitleText": "项目详情"
 			}
 		},
 		{
-			"path": "pages/steward/good-helper/add-record/index",
+			"path": "pages/steward/3helper/add-record/index",
 			"style": {
 				"navigationBarTitleText": "添加记录"
 			}
 		},
 		{
-			"path": "pages/steward/good-helper/reception-hall/index",
+			"path": "pages/steward/3helper/reception-hall/index",
 			"style": {
 				"navigationBarTitleText": "领办大厅"
 			}
 		},
 		{
-			"path": "pages/steward/good-helper/contact-list/index",
+			"path": "pages/steward/3helper/contact-list/index",
 			"style": {
 				"navigationBarTitleText": "共建单位联系表"
 			}
 		},
 		{
-			"path": "pages/steward/good-helper/integral-rule/index",
+			"path": "pages/steward/3helper/integral-rule/index",
 			"style": {
 				"navigationBarTitleText": "积分规则"
 			}
 		},
+
 		{
 			"path": "pages/urban-rural/index/index",
 			"style": {

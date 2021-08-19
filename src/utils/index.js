@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import { isEmpty } from './validate'
-import { msg, calcRpx2px, sourceUrl, avatarUrl,actionIconClass } from './tools'
-import { login, notMember, goLogin } from './login'
+import { msg, calcRpx2px, sourceUrl, avatarUrl, actionIconClass } from './tools'
+import { login, notMember, goLogin, isCommunityAuth } from './login'
 
 Vue.prototype.$isEmpty = isEmpty
 Vue.prototype.$calcRpx2px = calcRpx2px
@@ -9,6 +9,7 @@ Vue.prototype.$msg = msg
 Vue.prototype.$login = login
 Vue.prototype.$avatarUrl = avatarUrl
 Vue.prototype.$notMember = notMember
+Vue.prototype.$isCommunityAuth = isCommunityAuth
 Vue.prototype.$goLogin = goLogin
 Vue.prototype.$sourceUrl = sourceUrl
 Vue.prototype.$avatarUrl = avatarUrl

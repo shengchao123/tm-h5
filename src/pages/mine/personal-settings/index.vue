@@ -43,6 +43,18 @@
             <text class="color-333">{{formData[item.prop]}}</text>
           </view>
         </template>
+        <div>
+          <div class="mt16"
+               v-if="formData.authAllianceOrgName">
+            <span>党建联盟：</span>
+            <span class="color-333">{{formData.authAllianceOrgName}}</span>
+          </div>
+          <div class="mt16"
+               v-if="formData.authCommunityOrgName">
+            <span>所在社区：</span>
+            <span class="color-333">{{formData.authCommunityOrgName}}</span>
+          </div>
+        </div>
       </view>
     </view>
     <u-mask :show="isShowBigAvatar"
