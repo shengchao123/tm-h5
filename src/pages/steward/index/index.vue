@@ -64,6 +64,11 @@
 </template>
 
 <script>
+const Pages = new Map([
+  [1, '/pages/steward/service/index'],
+  [2, '/pages/steward/matter/index'],
+  [3, '/pages/steward/wish/index']
+])
 export default {
   methods: {
     // 跳转
@@ -73,10 +78,10 @@ export default {
       })
     },
     onAuthPart (type) {
-      console.log(this.$isCommunityAuth)
       if (this.$notMember()) return this.$goLogin();
-      if (!this.$isCommunityAuth) return uni.navigateTo({ url: '/pages/steward/auth/index' })
+      if (!this.$isAuthCommunity) return uni.navigateTo({ url: '/pages/steward/auth/index' })
 
+      uni.navigateTo({ url: Pages.get(type) })
     }
   },
   data () {

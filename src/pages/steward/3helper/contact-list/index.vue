@@ -91,7 +91,7 @@ export default {
     },
     onToRules () {
       uni.navigateTo({
-        url: '/pages/steward/good-helper/integral-rule/index'
+        url: '/pages/steward/3helper/integral-rule/index'
       })
     },
     upCallback (page) {

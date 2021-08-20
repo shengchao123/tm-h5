@@ -124,6 +124,7 @@ export default {
       this.$api.getMemberPersonalInfo().then(res => {
         if (res.isError) return this.$msg(res.message)
         this.formData = res?.content ?? {}
+        uni.setStorageSync('isAuthCommunity', res.content.isAuthCommunity)
       })
     }
   },
@@ -153,10 +154,6 @@ export default {
         {
           name: '姓名',
           prop: 'name'
-        },
-        {
-          name: '党建联盟',
-          prop: 'orgName'
         }
       ]),
       avatarUrl

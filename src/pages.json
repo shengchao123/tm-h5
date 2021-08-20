@@ -208,9 +208,21 @@
 			}
 		},
 		{
+			"path": "pages/steward/4neighbours/List",
+			"style": {
+				"navigationBarTitleText": "邻里介绍"
+			}
+		},
+		{
 			"path": "pages/steward/5case/index",
 			"style": {
 				"navigationBarTitleText": "好案例"
+			}
+		},
+		{
+			"path": "pages/steward/5case/Detail",
+			"style": {
+				"navigationBarTitleText": "项目详情"
 			}
 		},
 		{
@@ -222,9 +234,39 @@
 			}
 		},
 		{
+			"path": "pages/steward/matter/Success",
+			"style": {
+				"navigationBarTitleText": "我要报事"
+			}
+		},
+		{
+			"path": "pages/steward/matter/my-matter/index",
+			"style": {
+				"navigationBarTitleText": "我的报事"
+			}
+		},
+		{
+			"path": "pages/steward/service/index",
+			"style": {
+				"navigationBarTitleText": "服务站"
+			}
+		},
+		{
+			"path": "pages/steward/service/LeaveMessage",
+			"style": {
+				"navigationBarTitleText": "留言"
+			}
+		},
+		{
 			"path": "pages/steward/wish/index",
 			"style": {
 				"navigationBarTitleText": "志愿汇"
+			}
+		},
+		{
+			"path": "pages/steward/wish/wish-detail/index",
+			"style": {
+				"navigationBarTitleText": "心愿详情"
 			}
 		},
 		{
@@ -339,6 +381,7 @@
 				"navigationBarTitleText": "我的"
 			}
 		},
+		
 		{
 			"path": "pages/mine/notification/index",
 			"style": {

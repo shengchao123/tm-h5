@@ -6,14 +6,26 @@
         <img :src="$fileHost + userInfo.avatar"
              v-if="userInfo.avatar">
 
-        <div class="name-wrap ml20 column between-row flex1">
-          <div class="ft32 bold mb16 line-h1">
+        <div class="name-wrap ml20 column  flex1">
+          <div class="ft32 bold mb16 line-h1 between-row">
             {{userInfo.nick}}
-            <!-- <template v-for="(item, index) in userInfo.labelList">
-              <div class="label ft22 center ml16"
-                   v-if="index < 3"
-                   :key="index">{{item}}</div>
-            </template> -->
+            <div class="flex color-666 ft40">
+              <div class="relative badge ft22 mr48"
+                   @click="onOtherPage('message')">
+                <u-badge type="error"
+                         :is-center="true"
+                         v-if="userInfo.messageQuantity"
+                         size="mini"
+                         class="badge-count"
+                         :count="userInfo.messageQuantity"></u-badge>
+                <SvgIcon icon="icon_dibudaohanglan-"
+                         class="ft40"></SvgIcon>
+              </div>
+              <div @click="onOtherPage('setting')"
+                   style="display:inherit">
+                <SvgIcon icon="icon_shezhi"></SvgIcon>
+              </div>
+            </div>
           </div>
           <div class="center-align">
             <div v-if="userInfo.isMerchant"
@@ -23,32 +35,16 @@
             <div v-if="!$isEmpty(userInfo.labelList)"
                  class="label ft20 ml8 bg-74a3fd mb16">{{userInfo.labelList[0]}}</div>
           </div>
-          <div class="ft24 row line-h1">
-            <div :class="userInfo.name ? '': 'color-999'">{{userInfo.name || '暂未实名'}}</div>
-            <div class="color-999 ml32 ft24">
-              <span class="mr24">{{userInfo.authAllianceOrgName}}</span>
+          <div class="ft24 row flex1">
+            <div :class="userInfo.name ? '': 'color-999'"
+                 style="min-width:80rpx">{{userInfo.name || '暂未实名'}}</div>
+            <div class="color-999 ml24 ft24 flex1 text-hidden">
+              <span class="mr16">{{userInfo.authAllianceOrgName}}</span>
               <span>{{userInfo.authCommunityOrgName}}</span>
             </div>
           </div>
         </div>
 
-        <div class="flex color-666 ft40">
-          <div class="relative badge ft22 mr48"
-               @click="onOtherPage('message')">
-            <u-badge type="error"
-                     :is-center="true"
-                     v-if="userInfo.messageQuantity"
-                     size="mini"
-                     class="badge-count"
-                     :count="userInfo.messageQuantity"></u-badge>
-            <SvgIcon icon="icon_dibudaohanglan-"
-                     class="ft40"></SvgIcon>
-          </div>
-          <div @click="onOtherPage('setting')"
-               style="display:inherit">
-            <SvgIcon icon="icon_shezhi"></SvgIcon>
-          </div>
-        </div>
       </div>
 
       <div class="count-wrap between-row">
@@ -73,8 +69,8 @@
           <div class="count ft24 color-666 mt12">留言回复</div>
         </div>
         <div class="item center column"
-             @click="onOtherPage('reply')">
-          <div class="count ft34 bold">{{userInfo.talentsMessageQuantity || 0}}</div>
+             @click="onOtherPage('matter')">
+          <div class="count ft34 bold">{{userInfo.problemQuantity || 0}}</div>
           <div class="count ft24 color-666 mt12">我的报事</div>
         </div>
       </div>
@@ -110,7 +106,8 @@ const pageUrlMap = Object.freeze(new Map([
   ['hearts', '/pages/mine/my-hearts/index'],
   ['activity', '/pages/mine/my-activity/index'],
   ['trends', '/pages/mine/my-trends/index'],
-  ['reply', '/pages/mine/leave-message/index']
+  ['reply', '/pages/mine/leave-message/index'],
+  ['matter', '/pages/steward/matter/my-matter/index']
 ]))
 export default {
   name: 'index',
@@ -120,6 +117,7 @@ export default {
       this.$api.getMemberPersonalInfo().then(res => {
         if (res.isError) return
         this.userInfo = res.content
+        uni.setStorageSync('isAuthCommunity', res.content.isAuthCommunity)
         uni.setTabBarBadge({
           index: 1,
           text: this.userInfo.messageQuantity

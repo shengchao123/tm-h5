@@ -5,35 +5,26 @@
     <div class="form">
       <div class="form-item p30 ft30 center-align">
         <text class="w120 medium">姓名</text>
-        <input type="text"
-               v-model="evaluate.title"
-               class="flex1"
-               placeholder="请输入姓名" />
+        <text>{{userInfo.name}}</text>
       </div>
 
       <div class="form-item p30 ft30 center-align">
         <text class="w120 medium">联系电话</text>
-        <input type="text"
-               v-model="evaluate.title"
-               class="flex1"
-               placeholder="请输入联系电话" />
+        <text>{{userInfo.phone}}</text>
       </div>
 
       <div class="form-item p30 ft30 center-align">
         <text class="w120 medium">身份证号</text>
-        <input type="text"
-               v-model="evaluate.title"
-               class="flex1"
-               placeholder="请输入身份证号" />
+        <text>{{userInfo.idCardNo}}</text>
       </div>
 
       <div class="form-item p30 ft30">
         <text class="w120 medium">问题描述</text>
         <div>
           <textarea placeholder="添加正文"
-                    v-model="evaluate.content"
+                    v-model="evaluate.problemDesc"
                     placeholder-style="color:#999"
-                    maxlength="-1"
+                    maxlength="500"
                     class="text-area mt36 ft30">
             </textarea>
         </div>
@@ -44,12 +35,11 @@
           <view class="mt24 flex pb8">
             <upload-images :count="9"
                            :length="9"
-                           :imageData.sync="evaluate.attachmentDTOList"></upload-images>
+                           :imageData.sync="evaluate.attachments"></upload-images>
           </view>
         </view>
         <view class="bt">
-          <button class="submit tc ft32 bold"
-                  :class="isSubmit"
+          <button class="submit tc ft32 bold back"
                   @click="submit">
             提交
           </button>
@@ -68,63 +58,45 @@ export default {
     // 提交按钮
     submit () {
       this.show = true;
-      const { title, content, attachmentDTOList } = this.evaluate;
-      if (!title || !content || !attachmentDTOList.length === 0) {
+      const { problemDesc, attachments } = this.evaluate;
+      if (!problemDesc || !attachments.length === 0) {
         return this.$msg("请填写完整信息");
       }
       const params = {
         ...this.evaluate,
       };
-      let apiName = "createCommunityNote";
-      if (this.communityNoteId) {
-        apiName = "modifyCommunityNote";
-      }
-      this.$api[apiName](params).then((res) => {
+      this.$api.submitProblem(params).then((res) => {
         if (res.isError) return this.$msg(res.message);
-        this.show = true
+        this.evaluate = {}
+        uni.navigateTo({ url: '/pages/steward/matter/Success' })
       });
     },
-    // 获取帖子详情数据
-    getEvaluateData (id) {
-      const params = {
-        communityNoteId: id,
-      };
-      this.$api.getCommunityNoteInfoById(params).then((res) => {
-        if (res.isError) return this.$msg(res.message);
-        this.evaluate = { ...res.content };
-      });
+    getMemberPersonalInfo () {
+      this.$api.getMemberPersonalInfo().then(res => {
+        if (res.isError) return
+        this.userInfo = res.content
+      })
     },
-    // 我知道了
-    onKnow () {
-      this.show = false;
-      uni.navigateBack({ delta: 1 });
-    }
   },
   data () {
     return {
+      userInfo: {},
       evaluate: {
-        title: "",
-        content: "",
-        attachmentDTOList: [],
-      },
-      communityNoteId: "",
-      show: false
-    };
-  },
-  computed: {
-    isSubmit () {
-      const { title, content, attachmentDTOList } = this.evaluate;
-      if (title && content && attachmentDTOList.length > 0) {
-        return "back";
+        problemDesc: "",
+        attachments: [],
       }
-      return "";
-    },
-  },
-  onLoad (option) {
-    if (option.id) {
-      this.communityNoteId = option.id;
-      this.getEvaluateData(option.id);
     }
+  },
+  onLoad () {
+    uni.setNavigationBarColor({
+      frontColor: '#ffffff',
+      backgroundColor: '#0066ED',
+      animation: {
+        duration: 400,
+        timingFunc: 'easeIn'
+      }
+    })
+    this.getMemberPersonalInfo()
   },
   components: { UploadImages },
 }

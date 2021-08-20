@@ -1,5 +1,145 @@
 import request from '../request'
 import { urls } from '../urls'
+export function findJourneyCommunityPropertyInfoList (params) {
+  return request({
+    url: urls.findJourneyCommunityPropertyInfoList,
+    data: {
+      ...params
+    }
+  })
+}
+
+export function findJourneyCommunityPropertyAttachmentList (params) {
+  return request({
+    url: urls.findJourneyCommunityPropertyAttachmentList,
+    data: {
+      ...params
+    }
+  })
+}
+
+export function leaveMessage (params) {
+  return request({
+    url: urls.leaveMessage,
+    data: {
+      ...params
+    }
+  })
+}
+
+export function findMyJourneyCommunityWishPage (params) {
+  return request({
+    url: urls.findMyJourneyCommunityWishPage,
+    data: {
+      ...params
+    }
+  })
+}
+
+export function submitProblem (params) {
+  return request({
+    url: urls.submitProblem,
+    data: {
+      ...params
+    }
+  })
+}
+
+export function findMyJourneyCommunityProblemPage (params) {
+  return request({
+    url: urls.findMyJourneyCommunityProblemPage,
+    data: {
+      ...params
+    }
+  })
+}
+
+export function findCanClaimedJourneyCommunityWishPage (params) {
+  return request({
+    url: urls.findCanClaimedJourneyCommunityWishPage,
+    needlessToken: true,
+    data: {
+      ...params
+    }
+  })
+}
+
+export function claimedJourneyCommunityWish (params) {
+  return request({
+    url: urls.claimedJourneyCommunityWish,
+    needlessToken: true,
+    data: {
+      ...params
+    }
+  })
+}
+
+export function getJourneyHelperProjectShowPage (params) {
+  return request({
+    url: urls.getJourneyHelperProjectShowPage,
+    needlessToken: true,
+    data: {
+      ...params
+    }
+  })
+}
+
+export function findJourneyGoodHelperProjectList (params) {
+  return request({
+    url: urls.findJourneyGoodHelperProjectList,
+    needlessToken: true,
+    data: {
+      ...params
+    }
+  })
+}
+export function getJourneyHelperProjectDetail (params) {
+  return request({
+    url: urls.getJourneyHelperProjectDetail,
+    needlessToken: true,
+    data: {
+      ...params
+    }
+  })
+}
+
+export function findPlotOrganizationList (params) {
+  return request({
+    url: urls.findPlotOrganizationList,
+    needlessToken: true,
+    data: {
+      ...params
+    }
+  })
+}
+
+export function findJourneyCommunityBuildingByPlotOrgId (params) {
+  return request({
+    url: urls.findJourneyCommunityBuildingByPlotOrgId,
+    needlessToken: true,
+    data: {
+      ...params
+    }
+  })
+}
+export function findJourneyCommunityOwnerByPlotOrgId (params) {
+  return request({
+    url: urls.findJourneyCommunityOwnerByPlotOrgId,
+    needlessToken: true,
+    data: {
+      ...params
+    }
+  })
+}
+export function findJourneyGoodCommunityNeighborhoodList (params) {
+  return request({
+    url: urls.findJourneyGoodCommunityNeighborhoodList,
+    needlessToken: true,
+    data: {
+      ...params
+    }
+  })
+}
 export function findJourneyCommunityAllianceDetail (params) {
   return request({
     url: urls.findJourneyCommunityAllianceDetail,
@@ -82,15 +222,6 @@ export function communityCertification (params) { // 社区项目分页
   })
 }
 
-export function getJourneyHelperProjectShowPage (params) { // 社区项目分页
-  return request({
-    url: urls.getJourneyHelperProjectShowPage,
-    needlessToken: true,
-    data: {
-      ...params
-    }
-  })
-}
 
 export function getJourneyHelperProjectCount (params) { // 社区项目数量
   return request({
@@ -107,20 +238,12 @@ export function findCommunityOrganizationTree (params) { // 获取街道社区�
     url: urls.findCommunityOrganizationTree,
     needlessToken: true,
     data: {
+
       ...params
     }
   })
 }
 
-export function getJourneyHelperProjectDetail (params) { // 社区项目详情
-  return request({
-    url: urls.getJourneyHelperProjectDetail,
-    needlessToken: true,
-    data: {
-      ...params
-    }
-  })
-}
 
 export function getJourneyCoConstructionUnitTablePage (params) { // 共建单位联系表
   return request({

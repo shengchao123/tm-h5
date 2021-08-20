@@ -17,11 +17,15 @@ export default {
   name: 'index',
   methods: {
     onBlockItem ({ id, communityOrgId }) {
-      uni.navigateTo({ url: '/pages/steward/1branch/List?id=' + id + '&communityOrgId=' + communityOrgId })
+      this.navigateTo(id, communityOrgId)
     },
     onThirdItem ({ id }, communityOrgId) {
+      this.navigateTo(id, communityOrgId)
+    },
+    navigateTo (id, communityOrgId) {
       uni.navigateTo({ url: '/pages/steward/1branch/List?id=' + id + '&communityOrgId=' + communityOrgId })
     },
+
     findJourneyGoodCommunityPartyList () {
       this.$api.findJourneyGoodCommunityPartyList().then(res => {
         if (res.isError) {

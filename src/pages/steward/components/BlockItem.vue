@@ -65,4 +65,14 @@ div {
   background-image: linear-gradient(225deg, #0079ff 0%, #2ea5ff 87%);
   color: #8dc9ff;
 }
+
+.block4 {
+  background-image: linear-gradient(142deg, #fbae29 0%, #fca213 100%);
+  color: #fddba3;
+}
+
+.block5 {
+  background-image: linear-gradient(46deg, #fd6616 0%, #f5450c 100%);
+  color: #fba987;
+}
 </style>

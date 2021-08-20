@@ -57,7 +57,9 @@ export default {
         pageSize: page && page.size || 10,
         status: this.isTalents === 'true' ? this.tabsCurrent + 1 : null
       }
-      this.$api.getMyJourneyTalentsMessagePage(params).then(res => {
+      const apiName = this.isTalents ? 'getMyJourneyTalentsMessagePage' : 'getMyJourneyMessagePage'
+
+      this.$api[apiName](params).then(res => {
         if (res.isError) return this.$msg(res.message)
         const { items, count } = res.content
         this.mescroll.endBySize(items.length, count)

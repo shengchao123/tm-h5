@@ -52,11 +52,13 @@
 <script>
 const apiNames = new Map([
   ['1', 'findJourneyCommunityPartyListByCommunityOrgId'],
-  ['2', 'findJourneyCommunityAllianceListByCommunityOrgId']
+  ['2', 'findJourneyCommunityAllianceListByCommunityOrgId'],
+  ['4', 'findPlotOrganizationList']
 ])
 const headerTexts = new Map([
   ['1', '党支部'],
-  ['2', '党建联盟']
+  ['2', '党建联盟'],
+  ['4', '小区']
 ])
 export default {
   name: 'StreetTabs',

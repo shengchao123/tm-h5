@@ -115,14 +115,14 @@ export default {
     // 新增跟进
     onPublish () {
       uni.navigateTo({
-        url: `/pages/steward/good-helper/add-record/index?projectId=${this.id}`
+        url: `/pages/steward/3helper/add-record/index?projectId=${this.id}`
       })
     },
     // 编辑跟进
     onEdit (item) {
       uni.setStorageSync('journeyHelperProjectSchedule', JSON.stringify(item))
       uni.navigateTo({
-        url: `/pages/steward/good-helper/add-record/index?projectId=${this.id}&scheduleId=${item.id}`
+        url: `/pages/steward/3helper/add-record/index?projectId=${this.id}&scheduleId=${item.id}`
       })
     },
     // 查看大图

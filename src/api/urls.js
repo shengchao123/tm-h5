@@ -7,6 +7,23 @@ export const urls = {
 
   // 社区认证
   communityCertification: '/crm/member/communityCertification', // 社区认证
+
+  findJourneyCommunityPropertyInfoList: '/linanJourney/journeyCommunityProperty/findJourneyCommunityPropertyInfoList',
+  findJourneyCommunityPropertyAttachmentList: '/linanJourney/journeyCommunityProperty/findJourneyCommunityPropertyAttachmentList',
+
+  leaveMessage: '/linanJourney/journeyCommunityMessage/leaveMessage',
+  submitProblem: '/linanJourney/journeyCommunityProblem/submitProblem',
+  findMyJourneyCommunityWishPage: '/linanJourney/journeyCommunityWish/findMyJourneyCommunityWishPage',
+  findMyJourneyCommunityProblemPage: '/linanJourney/journeyCommunityProblem/findMyJourneyCommunityProblemPage',
+
+  findJourneyGoodHelperProjectList: '/linanJourney/journeyHelperProject/findJourneyGoodHelperProjectList',
+  findCanClaimedJourneyCommunityWishPage: '/linanJourney/journeyCommunityWish/findCanClaimedJourneyCommunityWishPage',
+  claimedJourneyCommunityWish: '/linanJourney/journeyCommunityWish/claimedJourneyCommunityWish',
+
+  findPlotOrganizationList: '/organization/org/findPlotOrganizationList',
+  findJourneyCommunityBuildingByPlotOrgId: '/linanJourney/journeyCommunityNeighborhood/findJourneyCommunityBuildingByPlotOrgId', // 社区认证
+  findJourneyCommunityOwnerByPlotOrgId: '/linanJourney/journeyCommunityNeighborhood/findJourneyCommunityOwnerByPlotOrgId', // 社区认证
+  findJourneyGoodCommunityNeighborhoodList: '/linanJourney/journeyCommunityNeighborhood/findJourneyGoodCommunityNeighborhoodList', // 社区认证
   findJourneyCommunityAllianceDetail: '/linanJourney/journeyCommunityAlliance/findJourneyCommunityAllianceDetail', // 社区认证
   findJourneyGoodCommunityStewardList: '/linanJourney/journeyCommunitySteward/findJourneyGoodCommunityStewardList', // 社区认证
   findJourneyCommunityAllianceListByCommunityOrgId: '/linanJourney/journeyCommunityAlliance/findJourneyCommunityAllianceListByCommunityOrgId', // 社区认证
@@ -166,6 +183,7 @@ export const urls = {
 
   //留言
   getMyJourneyTalentsMessagePage: '/linanJourney/journeyTalentsMessage/getMyJourneyTalentsMessagePage',//我的留言分页
+  getMyJourneyMessagePage: '/linanJourney/journeyTalentsMessage/getMyJourneyMessagePage',//我的留言分页
   respondMessage: '/linanJourney/journeyTalentsMessage/respondMessage'//回复留言
 
 }

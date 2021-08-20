@@ -12,23 +12,22 @@
     <div class="content ft28 mt16">
       {{detail.evaluate}}
     </div>
-
-    <div class="imgs mt16 between-row">
-      <!-- <img src=""  v-for="item in list"> -->
+    <!-- TODO: 图片 -->
+    <div class="mt24">
+      <ImgGroup :imgList="detail.attachments"></ImgGroup>
     </div>
   </div>
 </template>
 
 <script>
+import ImgGroup from '@/pages/union/interact/components/ImgGroup'
 export default {
   name: 'StewardInfo',
-  data () {
-    return {
-
-    }
-  },
   props: {
     detail: Object
+  },
+  components: {
+    ImgGroup
   }
 }
 </script>

@@ -80,7 +80,6 @@ export default {
         complete: function (res) { },
       })
     },
-    // TODO: 调用第三方地图
     onToMap () {
       uni.getLocation({
         type: 'gcj02', //返回可以用于uni.openLocation的经纬度

@@ -83,7 +83,23 @@ export default {
           point: 10
         },
         {
-          name: '实名认证',
+          name: '实名认证(联盟)',
+          point: 5
+        },
+        {
+          name: '实名认证(社区)',
+          point: 5
+        },
+        {
+          name: '认领微心愿',
+          point: 5
+        },
+        {
+          name: '报名参加志愿活动',
+          point: 5
+        },
+        {
+          name: '参与报事',
           point: 5
         },
         {

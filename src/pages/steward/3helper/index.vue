@@ -116,13 +116,13 @@ export default {
     // 共建单位联系表
     onContactList () {
       uni.navigateTo({
-        url: '/pages/steward/good-helper/contact-list/index'
+        url: '/pages/steward/3helper/contact-list/index'
       })
     },
     // 领办大厅
     onReceptionHall () {
       uni.navigateTo({
-        url: '/pages/steward/good-helper/reception-hall/index'
+        url: '/pages/steward/3helper/reception-hall/index'
       })
     },
     updateTabsCount () {

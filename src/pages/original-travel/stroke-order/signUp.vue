@@ -53,6 +53,7 @@ export default {
         if (res.isError) return this.$msg(res.message)
         this.$msg('报名成功')
         uni.$emit('updateDataList')
+        uni.$emit('claimSuccess', this.id)
         setTimeout(() => {
           uni.navigateBack()
         }, 400)
