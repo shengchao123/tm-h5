@@ -38,6 +38,9 @@ export default {
     // 获取用户信息
     this.$api.getMemberPersonalInfo().then(res => {
       if (res.isError) return
+
+
+      uni.setStorageSync('isAuthCommunity', res.content.isAuthCommunity)
       const { communityOrgId, authCommunityOrgName } = res.content
       this.communityOrgId = communityOrgId
       this.orgName = authCommunityOrgName

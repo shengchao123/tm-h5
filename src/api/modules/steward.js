@@ -1,5 +1,21 @@
 import request from '../request'
 import { urls } from '../urls'
+export function findJourneyAdvertisementList (params) {
+  return request({
+    url: urls.findJourneyAdvertisementList,
+    data: {
+      ...params
+    }
+  })
+}
+export function communityLeaveMessage (params) {
+  return request({
+    url: urls.communityLeaveMessage,
+    data: {
+      ...params
+    }
+  })
+}
 export function findJourneyCommunityPropertyInfoList (params) {
   return request({
     url: urls.findJourneyCommunityPropertyInfoList,

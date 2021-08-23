@@ -48,10 +48,11 @@
               :interval="2000"
               next-margin="30rpx"
               :duration="500">
-        <swiper-item>
+        <swiper-item v-for="(item, index) in imgList"
+                     :key="index">
           <div class="swiper-item">
-            <img src="">
-            <div class="title ft32 bold">我是标题</div>
+            <img :src="$fileHost + item.imgUrl">
+            <div class="title ft32 bold">{{item.content}}</div>
           </div>
         </swiper-item>
       </swiper>
@@ -71,6 +72,12 @@ const Pages = new Map([
 ])
 export default {
   methods: {
+    findJourneyAdvertisementList () {
+      this.$api.findJourneyAdvertisementList().then(res => {
+        if (res.isError) return this.$message.error(res.message)
+        this.imgList = res.content
+      })
+    },
     // 跳转
     onJump (item) {
       uni.navigateTo({
@@ -79,13 +86,21 @@ export default {
     },
     onAuthPart (type) {
       if (this.$notMember()) return this.$goLogin();
-      if (!this.$isAuthCommunity) return uni.navigateTo({ url: '/pages/steward/auth/index' })
-
+      if (!this.isAuthCommunity) return uni.navigateTo({ url: '/pages/steward/auth/index' })
       uni.navigateTo({ url: Pages.get(type) })
+    }
+  },
+  created () {
+    this.findJourneyAdvertisementList()
+  },
+  computed: {
+    isAuthCommunity () {
+      return this.$store.state.user.memberPersonalInfo.isAuthCommunity
     }
   },
   data () {
     return {
+      imgList: [],
       iconsOptions: Object.freeze([
         {
           imgUrl: require('@/static/steward/icon1.png'),
@@ -191,7 +206,6 @@ div {
     height: 390rpx;
   }
   .swiper-item {
-    margin-right: 32rpx;
     margin-left: 32rpx;
     border-radius: 8rpx;
     box-shadow: 3px 2px 12px 8px rgba(17, 17, 17, 0.03);

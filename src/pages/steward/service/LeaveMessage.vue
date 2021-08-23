@@ -26,9 +26,9 @@ export default {
       const params = {
         ...this.form
       }
-      this.$api.leaveMessage(params).then(res => {
+      this.$api.communityLeaveMessage(params).then(res => {
         if (res.isError) return this.$message.error(res.message)
-        this.$message('提交成功')
+        this.$msg('提交成功')
         setTimeout(() => {
           uni.navigateBack({ delta: 1 })
         }, 1000);
@@ -41,9 +41,6 @@ export default {
         content: ''
       }
     }
-  },
-  onLoad ({ communityOrgId }) {
-    this.form.communityOrgId = communityOrgId
   },
   computed: {
     btnStyle () { // 自定义按钮样式

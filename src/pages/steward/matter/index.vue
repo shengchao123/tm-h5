@@ -74,6 +74,8 @@ export default {
     getMemberPersonalInfo () {
       this.$api.getMemberPersonalInfo().then(res => {
         if (res.isError) return
+
+        uni.setStorageSync('isAuthCommunity', res.content.isAuthCommunity)
         this.userInfo = res.content
       })
     },

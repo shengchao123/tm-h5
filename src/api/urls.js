@@ -8,10 +8,11 @@ export const urls = {
   // 社区认证
   communityCertification: '/crm/member/communityCertification', // 社区认证
 
+  findJourneyAdvertisementList: '/linanJourney/journeyAdvertisement/findJourneyAdvertisementList',
   findJourneyCommunityPropertyInfoList: '/linanJourney/journeyCommunityProperty/findJourneyCommunityPropertyInfoList',
   findJourneyCommunityPropertyAttachmentList: '/linanJourney/journeyCommunityProperty/findJourneyCommunityPropertyAttachmentList',
 
-  leaveMessage: '/linanJourney/journeyCommunityMessage/leaveMessage',
+  communityLeaveMessage: '/linanJourney/journeyCommunityMessage/leaveMessage',
   submitProblem: '/linanJourney/journeyCommunityProblem/submitProblem',
   findMyJourneyCommunityWishPage: '/linanJourney/journeyCommunityWish/findMyJourneyCommunityWishPage',
   findMyJourneyCommunityProblemPage: '/linanJourney/journeyCommunityProblem/findMyJourneyCommunityProblemPage',
