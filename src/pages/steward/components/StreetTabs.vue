@@ -65,7 +65,7 @@ export default {
   methods: {
     onFirstItem (i) {
       this.firstIndex = i
-      this.secondIndex = 0
+      this.onSecondItem(0)
     },
     onSecondItem (i) {
       this.secondIndex = i

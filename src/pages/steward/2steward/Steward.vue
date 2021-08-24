@@ -26,6 +26,7 @@ export default {
   methods: {
     tabsChange (index) {
       this.currentTab = index;
+      this.findJourneyCommunityStewardDetail()
     },
     findJourneyCommunityStewardDetail () {
       const params = {

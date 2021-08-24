@@ -26,6 +26,7 @@ export default {
       uni.navigateTo({ url: '/pages/steward/4neighbours/List?id=' + plotOrgId + '&communityOrgId=' + communityOrgId })
     },
     handleListTop () {
+      console.log(this.$refs.list.$el)
       this.listTop = this.$refs.list.$el.offsetTop + 'px'
     },
     getList () {
@@ -34,12 +35,14 @@ export default {
           this.$message.error(res.message)
           return
         }
-        this.list = res.content.map(item => {
-          return {
-            tip: item.streetOrgName,
-            ...item
-          }
-        })
+        if (res.content && res.content[0]) {
+          this.list = res.content.map(item => {
+            return {
+              tip: item.streetOrgName,
+              ...item
+            }
+          })
+        }
         this.$nextTick(() => {
           this.handleListTop()
         })

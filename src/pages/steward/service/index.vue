@@ -49,9 +49,10 @@ export default {
           name: '社区服务'
         }, {
           name: '物业服务'
-        }, {
-          name: '家政服务'
-        }
+        },
+        //  {
+        //   name: '家政服务'
+        // }
       ],
       currentTab: 0
     }

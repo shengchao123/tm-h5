@@ -14,7 +14,7 @@
     </div>
     <!-- TODO: 图片 -->
     <div class="mt24">
-      <ImgGroup :imgList="detail.attachments"></ImgGroup>
+      <ImgGroup :imgList="attachments"></ImgGroup>
     </div>
   </div>
 </template>
@@ -25,6 +25,12 @@ export default {
   name: 'StewardInfo',
   props: {
     detail: Object
+  },
+  computed: {
+    attachments () {
+      if (!this.detail.attachments) return []
+      return this.detail.attachments.map(item => item.url)
+    }
   },
   components: {
     ImgGroup
