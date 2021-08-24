@@ -135,7 +135,7 @@ video {
   height: 0;
   content: "";
   transform: scaleY(0.5);
-  border-bottom: 1rpx solid $borderColor;
+  border-bottom: 1px solid $borderColor;
 }
 
 .b-b:after {

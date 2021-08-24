@@ -117,13 +117,13 @@ export default {
 .msg-cont {
   width: 100%;
   padding-bottom: 32rpx;
-  border-bottom: 1rpx solid #e1e1e1;
+  border-bottom: 1px solid #e1e1e1;
   .replay {
     width: 128rpx;
     height: 52rpx;
     line-height: 52rpx;
     text-align: center;
-    border: 1rpx solid #dedede;
+    border: 1px solid #dedede;
     border-radius: 26rpx;
     font-size: 24rpx;
     color: #666666;

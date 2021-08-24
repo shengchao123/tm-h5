@@ -155,7 +155,7 @@ export default {
     text-align: center;
     line-height: 56rpx;
     border-radius: 44rpx;
-    border: 1rpx solid #e32417;
+    border: 1px solid #e32417;
     color: #e32417;
     font-size: 24rpx;
   }

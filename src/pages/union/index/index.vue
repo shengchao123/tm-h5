@@ -256,7 +256,7 @@ page {
         bottom: 0;
         height: 120%;
         left: 10rpx;
-        width: 1rpx;
+        width: 1px;
         background: #eaeaea;
       }
     }

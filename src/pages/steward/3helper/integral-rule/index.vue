@@ -57,7 +57,7 @@ export default {
 .integral-rule-wrap {
   .list-item {
     height: 142rpx;
-    border-bottom: 1rpx solid rgba($color: #e1e1e1, $alpha: 0.5);
+    border-bottom: 1px solid rgba($color: #e1e1e1, $alpha: 0.5);
   }
 }
 </style>

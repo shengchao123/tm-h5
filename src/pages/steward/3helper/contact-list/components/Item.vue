@@ -35,7 +35,7 @@ export default {
 .item-wrap {
   height: 132rpx;
   box-sizing: border-box;
-  border-bottom: 1rpx solid rgba($color: #e1e1e1, $alpha: 0.5);
+  border-bottom: 1px solid rgba($color: #e1e1e1, $alpha: 0.5);
   .community-org-name {
     width: 248rpx;
     overflow: hidden;

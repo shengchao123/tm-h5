@@ -108,7 +108,7 @@ export default {
   color: #d2d2d2;
 }
 .bt {
-  border-bottom: 1rpx solid #eaeaea;
+  border-bottom: 1px solid #eaeaea;
 }
 .user-img {
   width: 48rpx;

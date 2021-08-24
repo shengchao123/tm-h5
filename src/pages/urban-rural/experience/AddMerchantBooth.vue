@@ -331,7 +331,7 @@ const formValidateMap = new Map([
 
   .title-style {
     height: 100rpx;
-    border-bottom: 1rpx solid #eaeaea;
+    border-bottom: 1px solid #eaeaea;
   }
   .text-area {
     height: 360rpx !important;
@@ -342,7 +342,7 @@ const formValidateMap = new Map([
   }
   .trips {
     height: 100rpx;
-    border-top: 1rpx solid #eaeaea;
+    border-top: 1px solid #eaeaea;
   }
 }
 .pb120 {
@@ -355,7 +355,7 @@ const formValidateMap = new Map([
   width: 100%;
   position: fixed;
   bottom: 0;
-  border-top: 1rpx solid #eaeaea;
+  border-top: 1px solid #eaeaea;
   padding: 16rpx 0;
   background: #ffffff;
   z-index: 99;
@@ -379,7 +379,7 @@ const formValidateMap = new Map([
   height: 70rpx;
   line-height: 70rpx;
   border-radius: 49rpx;
-  border: 1rpx solid #d2d2d2;
+  border: 1px solid #d2d2d2;
   margin: 0 auto;
   margin-top: 32rpx;
 }

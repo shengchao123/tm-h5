@@ -201,7 +201,7 @@ export default {
       width: 32rpx;
       height: 32rpx;
       border-radius: 16rpx;
-      border: solid 1rpx #fff;
+      border: solid 1px #fff;
       overflow: hidden;
       margin-left: -8rpx;
       img {

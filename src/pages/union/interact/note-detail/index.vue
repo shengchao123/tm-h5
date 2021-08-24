@@ -287,7 +287,7 @@ export default {
     .community-title {
       width: 120rpx;
       height: 36rpx;
-      border: 1rpx solid #ff9708;
+      border: 1px solid #ff9708;
       border-radius: 18rpx;
       color: #ff9708;
     }
@@ -329,7 +329,7 @@ export default {
     }
   }
   .note-content {
-    border-bottom: 1rpx solid #eaeaea;
+    border-bottom: 1px solid #eaeaea;
     .content {
       line-height: 1.6;
     }
@@ -359,7 +359,7 @@ export default {
     bottom: 0;
     width: 100%;
     height: 98rpx;
-    border-top: 1rpx solid #eaeaea;
+    border-top: 1px solid #eaeaea;
     .input {
       width: 330rpx;
       height: 64rpx;

@@ -133,7 +133,7 @@ export default {
         width: 240rpx;
         margin: 44rpx auto 32rpx;
         height: 70rpx;
-        border: 1rpx solid #d2d2d2;
+        border: 1px solid #d2d2d2;
         border-radius: 49rpx;
       }
     }

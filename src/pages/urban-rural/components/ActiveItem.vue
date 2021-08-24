@@ -140,7 +140,7 @@ export default {
     .btn {
       padding: 0 24rpx;
       height: 56rpx;
-      border: 1rpx solid #e32417;
+      border: 1px solid #e32417;
       border-radius: 28rpx;
       color: #e32417;
       line-height: 56rpx;

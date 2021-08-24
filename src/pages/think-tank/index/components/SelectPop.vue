@@ -72,7 +72,7 @@ export default {
   .title {
     position: relative;
     line-height: 84rpx;
-    border-bottom: solid 1rpx #ddd;
+    border-bottom: solid 1px #ddd;
     .close {
       position: absolute;
       top: 32rpx;

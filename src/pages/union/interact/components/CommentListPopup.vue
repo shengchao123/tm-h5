@@ -128,7 +128,7 @@ export default {
   .title {
     position: relative;
     line-height: 84rpx;
-    border-bottom: solid 1rpx #eaeaea;
+    border-bottom: solid 1px #eaeaea;
     .close {
       width: 40rpx;
       height: 40rpx;

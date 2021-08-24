@@ -121,7 +121,7 @@ export default {
   }
   .trips {
     height: 100rpx;
-    border-top: 1rpx solid #eaeaea;
+    border-top: 1px solid #eaeaea;
   }
 }
 .form {
@@ -135,7 +135,7 @@ export default {
 }
 .form-item {
   padding: 30rpx;
-  border-bottom: 1rpx solid #eaeaea;
+  border-bottom: 1px solid #eaeaea;
   .w120 {
     width: 160rpx;
   }
@@ -153,7 +153,7 @@ export default {
   position: fixed;
   bottom: 0;
   padding-bottom: 16rpx;
-  border-top: 1rpx solid #eaeaea;
+  border-top: 1px solid #eaeaea;
   padding-top: 16rpx;
   .submit {
     width: 690rpx;

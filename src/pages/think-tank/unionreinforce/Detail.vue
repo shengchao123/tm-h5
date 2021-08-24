@@ -130,7 +130,7 @@ export default {
   height: 120rpx;
   position: fixed;
   bottom: 0;
-  border-top: 1rpx solid #eaeaea;
+  border-top: 1px solid #eaeaea;
   background: #ffffff;
   .pop-btn {
     width: 331rpx;

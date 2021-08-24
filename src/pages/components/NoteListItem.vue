@@ -107,7 +107,7 @@ export default {
         height: 48rpx;
         line-height: 48rpx;
         text-align: center;
-        border: 1rpx solid #ffffff;
+        border: 1px solid #ffffff;
         border-radius: 24rpx;
         &:first-child {
           background: transparent;

@@ -113,7 +113,7 @@ export default {
   overflow: scroll;
   .item {
     height: 97rpx;
-    border-bottom: solid 1rpx #eaeaea;
+    border-bottom: solid 1px #eaeaea;
   }
   .selected {
     color: #e32417;

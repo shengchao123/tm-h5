@@ -219,7 +219,7 @@ export default {
 
   .title-style {
     height: 100rpx;
-    border-bottom: 1rpx solid #eaeaea;
+    border-bottom: 1px solid #eaeaea;
   }
   .text-area {
     height: 360rpx !important;
@@ -230,7 +230,7 @@ export default {
   }
   .trips {
     height: 100rpx;
-    border-top: 1rpx solid #eaeaea;
+    border-top: 1px solid #eaeaea;
   }
 }
 .pb120 {
@@ -243,7 +243,7 @@ export default {
   width: 100%;
   position: fixed;
   bottom: 0;
-  border-top: 1rpx solid #eaeaea;
+  border-top: 1px solid #eaeaea;
   padding: 16rpx 0;
   background: #ffffff;
   z-index: 99;
@@ -267,7 +267,7 @@ export default {
   height: 70rpx;
   line-height: 70rpx;
   border-radius: 49rpx;
-  border: 1rpx solid #d2d2d2;
+  border: 1px solid #d2d2d2;
   margin: 0 auto;
   margin-top: 32rpx;
 }

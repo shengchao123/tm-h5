@@ -18,8 +18,8 @@
     </div>
 
     <div class="list">
-      <Activity v-if="currentTab === 0"></Activity>
-      <Property v-if="currentTab === 1"></Property>
+      <Activity v-show="currentTab === 0"></Activity>
+      <Property v-show="currentTab === 1"></Property>
     </div>
   </div>
 </template>
