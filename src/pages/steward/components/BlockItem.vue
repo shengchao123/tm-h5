@@ -3,7 +3,7 @@
     <div class="ft32 bold mb24"
          v-if="!$isEmpty(list)">{{title}}</div>
     <div class="item-wrap between-row">
-      <div class="item "
+      <div class="item mb16"
            @click="onItem(item)"
            :class="bgClass"
            v-for="(item, index) in list"

@@ -6,7 +6,7 @@
               :current="currentTab"
               class="tabs"
               @change="tabsChange"
-              :is-scroll="false"
+              :is-scroll="tabs.length > 4"
               bar-width="32"
               bar-height="4"
               font-size="28"
