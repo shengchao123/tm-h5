@@ -19,8 +19,8 @@ export default {
     onBlockItem ({ plotOrgId, communityOrgId }) {
       this.navigateTo(plotOrgId, communityOrgId)
     },
-    onThirdItem ({ plotOrgId }, communityOrgId) {
-      this.navigateTo(plotOrgId, communityOrgId)
+    onThirdItem ({ orgId }, communityOrgId) {
+      this.navigateTo(orgId, communityOrgId)
     },
     navigateTo (plotOrgId, communityOrgId) {
       uni.navigateTo({ url: '/pages/steward/4neighbours/List?id=' + plotOrgId + '&communityOrgId=' + communityOrgId })

@@ -38,7 +38,7 @@
                @click="onThirdItem(item)"
                :key="index">
             <div class="text-hidden "
-                 style="width:240rpx">{{item.name}}</div>
+                 style="width:240rpx">{{item.name || item.orgName}}</div>
             <svg-icon icon="icon_xiangyoujiantou"
                       class="ft20"></svg-icon>
           </div>
