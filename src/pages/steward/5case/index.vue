@@ -19,14 +19,13 @@ import ProjectList from '@/pages/steward/5case/ProjectList'
 export default {
   name: 'index',
   methods: {
-    onBlockItem ({ plotOrgId, communityOrgId }) {
-      this.navigateTo(plotOrgId, communityOrgId)
+    onBlockItem ({ id, communityOrgId }) {
+      url: `/pages/steward/3helper/project-detail/index?id=${id}&entrance=helper`
     },
     navigateTo (plotOrgId, communityOrgId) {
-      uni.navigateTo({ url: '/pages/steward/4neighbours/List?id=' + plotOrgId + '&communityOrgId=' + communityOrgId })
+
     },
     handleListTop () {
-      console.log(this.$refs.list.$el)
       this.listTop = this.$refs.list.$el.offsetTop + 'px'
     },
     getList () {
