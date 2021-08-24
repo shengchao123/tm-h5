@@ -50,7 +50,7 @@
               :duration="500">
         <swiper-item v-for="(item, index) in imgList"
                      :key="index">
-          <div class="swiper-item">
+          <div class="swiper-item relative">
             <img :src="$fileHost + item.imgUrl">
             <div class="title ft32 bold">{{item.content}}</div>
           </div>
@@ -211,9 +211,19 @@ div {
     box-shadow: 3px 2px 12px 8px rgba(17, 17, 17, 0.03);
     img {
       width: 654rpx;
-      height: 240rpx;
+      height: 340rpx;
     }
     .title {
+      color: #fff;
+      position: absolute;
+      left: 0;
+      right: 36rpx;
+      bottom: 8rpx;
+      background-image: linear-gradient(
+        180deg,
+        rgba(47, 46, 46, 0) 0%,
+        rgba(0, 0, 0, 0.76) 99%
+      );
       padding: 32rpx;
     }
   }
