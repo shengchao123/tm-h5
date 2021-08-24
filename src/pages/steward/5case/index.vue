@@ -20,10 +20,9 @@ export default {
   name: 'index',
   methods: {
     onBlockItem ({ id, communityOrgId }) {
-      url: `/pages/steward/3helper/project-detail/index?id=${id}&entrance=helper`
-    },
-    navigateTo (plotOrgId, communityOrgId) {
-
+      uni.navigateTo({
+        url: `/pages/steward/3helper/project-detail/index?id=${id}&entrance=helper`
+      })
     },
     handleListTop () {
       this.listTop = this.$refs.list.$el.offsetTop + 'px'

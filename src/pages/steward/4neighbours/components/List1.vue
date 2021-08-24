@@ -55,9 +55,7 @@ export default {
   watch: {
     plotOrgId: {
       handler: function (n, o) {
-        if (n) {
-          this.getDataList()
-        }
+        this.getDataList()
       },
       immediate: true
     }
