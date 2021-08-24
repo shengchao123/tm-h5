@@ -42,20 +42,22 @@
         </div>
       </div>
 
-      <swiper class="swiper"
-              :indicator-dots="false"
-              :autoplay="true"
-              :interval="2000"
-              next-margin="30rpx"
-              :duration="500">
-        <swiper-item v-for="(item, index) in imgList"
-                     :key="index">
-          <div class="swiper-item relative">
-            <img :src="$fileHost + item.imgUrl">
-            <div class="title ft32 bold">{{item.content}}</div>
-          </div>
-        </swiper-item>
-      </swiper>
+      <div class="pl32">
+        <swiper class="swiper"
+                :indicator-dots="false"
+                :autoplay="true"
+                next-margin="16rpx"
+                :interval="2000"
+                :duration="500">
+          <swiper-item v-for="(item, index) in imgList"
+                       :key="index">
+            <div class="swiper-item relative">
+              <img :src="$fileHost + item.imgUrl">
+              <div class="title ft32 bold">{{item.content}}</div>
+            </div>
+          </swiper-item>
+        </swiper>
+      </div>
 
     </div>
 
@@ -202,23 +204,22 @@ div {
       }
     }
   }
-  .swiper {
-    height: 390rpx;
-  }
+
   .swiper-item {
-    margin-left: 32rpx;
-    border-radius: 8rpx;
+    width: 686rpx;
+    height: 340rpx;
     box-shadow: 3px 2px 12px 8px rgba(17, 17, 17, 0.03);
     img {
-      width: 654rpx;
+      width: 686rpx;
+      border-radius: 8rpx;
       height: 340rpx;
     }
     .title {
       color: #fff;
       position: absolute;
       left: 0;
-      right: 36rpx;
-      bottom: 8rpx;
+      right: 0;
+      bottom: 0;
       background-image: linear-gradient(
         180deg,
         rgba(47, 46, 46, 0) 0%,

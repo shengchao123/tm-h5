@@ -3,7 +3,7 @@
     <SubTabs :tabs="subTabs"
              @change="changeSubTab"></SubTabs>
     <mescroll-uni ref="mescrollRef"
-                  top="620rpx"
+                  top="640rpx"
                   @init="mescrollInit"
                   @down="downCallback"
                   :up="upOption"

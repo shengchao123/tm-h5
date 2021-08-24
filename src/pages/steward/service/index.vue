@@ -15,7 +15,6 @@
       <Divider></Divider>
       <Blocks v-if="currentTab === 0"></Blocks>
       <Divider v-if="currentTab === 0"></Divider>
-
     </div>
 
     <div class="list">
