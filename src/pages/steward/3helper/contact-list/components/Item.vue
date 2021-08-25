@@ -6,10 +6,10 @@
         <text>{{itemInfo.communityOrgName}}</text>
       </view>
       <view class="mt16 color-999 ft24 lineh1">
-        {{itemInfo.unitOrgName}}
+        {{unitOrgName}}
       </view>
     </view>
-    <text class="text orders">{{itemInfo.ordersNumber}}</text>
+    <text class="text orders ">{{itemInfo.ordersNumber}}</text>
     <text class="text grab-orders">{{itemInfo.grabOrdersNumber}}</text>
     <text class="text rate">{{itemInfo.rate * 100}}%</text>
     <text class="text">{{itemInfo.point}}</text>
@@ -22,10 +22,12 @@ export default {
   props: {
     itemInfo: Object
   },
-  data () {
-    return {}
-  },
-  created () { },
+  computed: {
+    unitOrgName () {
+      const { unitOrgName } = this.itemInfo
+      return unitOrgName.length > 10 ? unitOrgName.substring(0, 9) + '...' : unitOrgName
+    }
+  }
 }
 </script>
 <style lang='scss' scoped>
