@@ -20,9 +20,9 @@
           <text class="color-333 medium">{{item.name}}</text>
           <view class="pl32 flex1 color-666">
             <text
-                  v-if="item.keyName === 'createTime'">{{$moment(detailInfo.createTime).format('YYYY-MM-DD HH:mm')}}</text>
+                  v-if="item.keyName === 'createTime'">{{$moment(detailInfo.createTime).format('YYYY-MM-DD HH:mm:ss')}}</text>
             <text
-                  v-if="item.keyName === 'endTime'">{{$moment(detailInfo.endTime).format('YYYY-MM-DD HH:mm') + '截止'}}</text>
+                  v-else-if="item.keyName === 'endTime'">{{$moment(detailInfo.endTime).format('YYYY-MM-DD HH:mm') + '截止'}}</text>
             <text
                   v-else-if="item.keyName === 'numberLimit'">{{detailInfo.numberLimit === -1 ? '不限制' : detailInfo.numberLimit}}</text>
             <text v-else>{{detailInfo[item.keyName]}}</text>
@@ -117,11 +117,13 @@ export default {
         },
         {
           name: '活动时间',
-          keyName: 'createTime'
+          keyName: 'createTime',
+          type: 'time'
         },
         {
           name: '报名截止',
-          keyName: 'endTime'
+          keyName: 'endTime',
+          type: 'time'
         },
         {
           name: '活动地点',
