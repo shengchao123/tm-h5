@@ -115,10 +115,5 @@ export default {
 </script>
 <style lang="scss" scoped>
 .activity-wrap {
-  .box {
-    width: 100%;
-    position: fixed;
-    z-index: 8;
-  }
 }
 </style>

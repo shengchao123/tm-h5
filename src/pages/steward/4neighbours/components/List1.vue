@@ -32,9 +32,8 @@ export default {
       const apiName = this.currentSubTab === 0 ? 'findJourneyCommunityOwnerByPlotOrgId' : 'findJourneyCommunityBuildingByPlotOrgId'
       this.$api[apiName](params).then(res => {
         if (res.isError) return
-        const { items, count } = res.content
-        // this.mescroll.endBySize(items.length, count)
-        this.dataList = res.content
+        this.dataList = res.content || []
+        console.log(this.dataList)
       })
     }
   },

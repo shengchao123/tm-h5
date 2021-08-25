@@ -14,7 +14,8 @@
 
     <div class="message center-align mt32 between-row">
       <div style="color:#fff">
-        <div class="ft26">社区服务热线：0571-323434</div>
+        <div class="ft26"
+             @click="onCall">社区服务热线：{{memberPersonalInfo.serviceHotline || '--'}}</div>
         <div class="ft24"
              style="opacity:0.8">您的贴心社区管家</div>
       </div>
@@ -32,6 +33,11 @@ export default {
   methods: {
     onLeaveMessage () {
       uni.navigateTo({ url: '/pages/steward/service/LeaveMessage?communityOrgId=' + this.communityOrgId })
+    },
+    onCall () {
+      uni.makePhoneCall({
+        phoneNumber: this.memberPersonalInfo.serviceHotline
+      })
     }
   },
   created () {
@@ -39,12 +45,16 @@ export default {
     this.$api.getMemberPersonalInfo().then(res => {
       if (res.isError) return
 
-
       uni.setStorageSync('isAuthCommunity', res.content.isAuthCommunity)
       const { communityOrgId, authCommunityOrgName } = res.content
       this.communityOrgId = communityOrgId
       this.orgName = authCommunityOrgName
     })
+  },
+  computed: {
+    memberPersonalInfo () {
+      return this.$store.state.user.memberPersonalInfo
+    }
   },
   data () {
     return {

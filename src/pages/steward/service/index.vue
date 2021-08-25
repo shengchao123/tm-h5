@@ -13,11 +13,11 @@
               active-color="#E32417"
               inactive-color="#666666"></u-tabs>
       <Divider></Divider>
-      <Blocks v-if="currentTab === 0"></Blocks>
-      <Divider v-if="currentTab === 0"></Divider>
+      <Blocks v-show="currentTab === 0"></Blocks>
     </div>
 
     <div class="list">
+      <Divider v-show="currentTab === 0"></Divider>
       <Activity v-show="currentTab === 0"></Activity>
       <Property v-show="currentTab === 1"></Property>
     </div>

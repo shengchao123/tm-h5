@@ -43,7 +43,7 @@
       </div>
 
       <div class="pl32">
-        <swiper class="swiper"
+        <swiper class="swiper "
                 :indicator-dots="false"
                 :autoplay="true"
                 next-margin="16rpx"
@@ -164,6 +164,7 @@ div {
     overflow-y: scroll;
     border-radius: 40rpx 40rpx 0 0;
     position: fixed;
+    padding-bottom: 16rpx;
     top: 300rpx;
     left: 0;
     right: 0;
@@ -204,10 +205,10 @@ div {
       }
     }
   }
-
+  .swiper {
+    height: 360rpx;
+  }
   .swiper-item {
-    width: 686rpx;
-    height: 340rpx;
     box-shadow: 3px 2px 12px 8px rgba(17, 17, 17, 0.03);
     img {
       width: 686rpx;
@@ -218,8 +219,9 @@ div {
       color: #fff;
       position: absolute;
       left: 0;
-      right: 0;
-      bottom: 0;
+      right: 22rpx;
+      border-radius: 0 0 8rpx 8rpx;
+      bottom: 10rpx;
       background-image: linear-gradient(
         180deg,
         rgba(47, 46, 46, 0) 0%,
