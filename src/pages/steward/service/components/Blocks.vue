@@ -15,7 +15,7 @@
     <div class="message center-align mt32 between-row">
       <div style="color:#fff">
         <div class="ft26"
-             @click="onCall">社区服务热线：{{memberPersonalInfo.serviceHotline || '--'}}</div>
+             @click="onCall">社区服务热线：{{memberPersonalInfo.authCommunityOrgServiceHotline || '--'}}</div>
         <div class="ft24"
              style="opacity:0.8">您的贴心社区管家</div>
       </div>
