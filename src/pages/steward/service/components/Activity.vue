@@ -1,13 +1,13 @@
 <template>
   <div class='activity-wrap'>
-    <SubTabs :tabs="subTabs"
-             @change="changeSubTab"></SubTabs>
     <mescroll-uni ref="mescrollRef"
-                  top="640rpx"
+                  top="520rpx"
                   @init="mescrollInit"
                   @down="downCallback"
                   :up="upOption"
                   @up="upCallback">
+      <SubTabs :tabs="subTabs"
+               @change="changeSubTab"></SubTabs>
       <empty v-if="$isEmpty(this.dataList)"></empty>
       <view class="pt20"
             v-else>
