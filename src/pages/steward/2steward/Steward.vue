@@ -6,7 +6,7 @@
               :current="currentTab"
               class="tabs"
               @change="tabsChange"
-              :is-scroll="false"
+              :is-scroll="tabs.length>4 "
               bar-width="32"
               bar-height="4"
               font-size="28"
@@ -40,11 +40,12 @@ export default {
         this.detail = res.content
       })
     },
+
     getTabs (communityOrgId, id) {
       const params = {
         communityOrgId
       }
-      this.$api.findJourneyCommunityStewardListByCommunityOrgId(params).then(res => {
+      this.$api.findJourneyGoodCommunityStewardList(params).then(res => {
         if (res.isError) {
           this.$message.error(res.message)
           return
