@@ -21,23 +21,23 @@
         </div>
       </div>
       <!-- 三块 -->
-      <div class="part between-row ft24">
+      <div class="part between-row ft22">
         <div class="part1"
              @click="onAuthPart(1)">
           <div class="ft30 medium">服务站</div>
-          <div class="color-999 mt16">社区服务、物业服务、家政服务，社保补贴、就业服务等</div>
+          <div class="color-999 mt16">一键办事、社区热线、物业服务、家政服务、活动报名；</div>
         </div>
 
         <div class="right">
           <div class="part2"
                @click="onAuthPart(2)">
             <div class="ft30 medium">议事厅</div>
-            <div class="color-999 mt16">问题反馈与解决</div>
+            <div class="color-999 mt16">问题反馈、热门话题；</div>
           </div>
           <div class="part3 mt20"
                @click="onAuthPart(3)">
             <div class="ft30 medium">志愿汇</div>
-            <div class="color-999 mt16">献爱心、志愿服务</div>
+            <div class="color-999 mt16">微心愿认领、志愿服务报名；</div>
           </div>
         </div>
       </div>
