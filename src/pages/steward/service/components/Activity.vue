@@ -1,13 +1,18 @@
 <template>
   <div class='activity-wrap'>
     <mescroll-uni ref="mescrollRef"
-                  top="520rpx"
+                  top="80rpx"
+                  @scroll="listScroll"
                   @init="mescrollInit"
                   @down="downCallback"
                   :up="upOption"
                   @up="upCallback">
-      <SubTabs :tabs="subTabs"
-               @change="changeSubTab"></SubTabs>
+      <Blocks></Blocks>
+      <div :class="scrollTop >= 195 && 'fixd_wrap'">
+        <SubTabs :tabs="subTabs"
+                 @change="changeSubTab"></SubTabs>
+      </div>
+
       <empty v-if="$isEmpty(this.dataList)"></empty>
       <view class="pt20"
             v-else>
@@ -26,12 +31,16 @@ import MescrollUni from "@/components/mescroll-uni/mescroll-uni.vue";
 import pageEmpty from 'pages/components/PageEmpty'
 import SubTabs from '@/pages/urban-rural/components/SubTabs'
 import ActivityItem from './ActivityItem.vue'
+import Blocks from '../components/Blocks'
 export default {
   name: 'Activity',
   methods: {
     changeSubTab (e) {
       this.currentSubTab = e.id
       this.getListData()
+    },
+    listScroll (e) {
+      this.scrollTop = e.scrollTop
     },
     upCallback (page) {
       this.getListData(page)
@@ -76,8 +85,10 @@ export default {
   },
   data () {
     return {
+      scrollTop: 0,
       dataList: Array,
       upOption: {
+        onScroll: true,
         empty: {
           use: false
         },
@@ -108,6 +119,7 @@ export default {
     ActivityItem,
     pageEmpty,
     SubTabs,
+    Blocks,
     MescrollUni
   },
   mixins: [MescrollMixin],
@@ -115,5 +127,13 @@ export default {
 </script>
 <style lang="scss" scoped>
 .activity-wrap {
+  .fixd_wrap {
+    border-top: 24rpx solid #f7f7f7;
+    position: fixed;
+    top: 80rpx;
+    left: 0;
+    right: 0;
+    z-index: 200;
+  }
 }
 </style>

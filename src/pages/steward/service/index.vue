@@ -12,8 +12,7 @@
               font-size="28"
               active-color="#E32417"
               inactive-color="#666666"></u-tabs>
-      <Divider></Divider>
-      <Blocks v-show="currentTab === 0"></Blocks>
+
     </div>
 
     <div class="list">
@@ -27,7 +26,7 @@
 <script>
 
 import Divider from '@/components/Divider'
-import Blocks from './components/Blocks'
+
 import Activity from './components/Activity'
 import Property from './Property'
 
@@ -40,7 +39,7 @@ export default {
   },
   onLoad () {
   },
-  components: { Divider, Blocks, Activity, Property },
+  components: { Divider, Activity, Property },
   data () {
     return {
       tabs: [

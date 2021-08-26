@@ -90,6 +90,9 @@ export default {
 <style lang='scss' scoped>
 .blocks-wrap {
   padding: 32rpx;
+  border-bottom: 24rpx solid #f7f7f7;
+  border-top: 24rpx solid #f7f7f7;
+  background: #fff;
   .item {
     width: 160rpx;
     height: 160rpx;
