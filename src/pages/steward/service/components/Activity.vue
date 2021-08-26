@@ -7,8 +7,8 @@
                   @down="downCallback"
                   :up="upOption"
                   @up="upCallback">
-      <Blocks></Blocks>
-      <div :class="scrollTop >= 195 && 'fixd_wrap'">
+      <Blocks ref="blocks"></Blocks>
+      <div :class="isFixed && 'fixd_wrap'">
         <SubTabs :tabs="subTabs"
                  @change="changeSubTab"></SubTabs>
       </div>
@@ -40,7 +40,7 @@ export default {
       this.getListData()
     },
     listScroll (e) {
-      this.scrollTop = e.scrollTop
+      this.isFixed = e.scrollTop >= this.$refs.blocks.$el.offsetHeight
     },
     upCallback (page) {
       this.getListData(page)
@@ -87,6 +87,7 @@ export default {
     return {
       scrollTop: 0,
       dataList: Array,
+      isFixed: false,
       upOption: {
         onScroll: true,
         empty: {
