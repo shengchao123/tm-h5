@@ -147,6 +147,8 @@ div {
   box-sizing: border-box;
 }
 .steward-wrap {
+  height: calc(100vh - 50px);
+  overflow-y: scroll;
   .top {
     background-image: url("@/static/steward/top_bg.png");
     background-size: 100% 100%;
@@ -168,14 +170,8 @@ div {
   }
   .content {
     background: #fff;
-    overflow-y: scroll;
     border-radius: 40rpx 40rpx 0 0;
-    position: fixed;
-    padding-bottom: 16rpx;
-    top: 300rpx;
-    left: 0;
-    right: 0;
-    bottom: 50px;
+    margin-top: -40rpx;
     .icons {
       padding: 32rpx;
     }

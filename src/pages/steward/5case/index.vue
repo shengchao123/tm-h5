@@ -1,14 +1,15 @@
 <template>
   <div class='branch-wrap'>
-    <BlockItem title="好案例"
-               :list="list"
-               @onBlockItem="onBlockItem"
-               type="5"
-               bgClass="block5"></BlockItem>
 
-    <div class="ft32 bold pl32 pb28 bb">已办结项目</div>
-    <ProjectList :top="listTop"
-                 ref="list"></ProjectList>
+    <ProjectList ref="list">
+      <BlockItem title="好案例"
+                 :list="list"
+                 @onBlockItem="onBlockItem"
+                 type="5"
+                 bgClass="block5"></BlockItem>
+
+      <div class="ft32 bold pl32 pb28 bb">已办结项目</div>
+    </ProjectList>
   </div>
 </template>
 
@@ -24,9 +25,6 @@ export default {
         url: `/pages/steward/3helper/project-detail/index?id=${id}&entrance=helper`
       })
     },
-    handleListTop () {
-      this.listTop = this.$refs.list.$el.offsetTop + 'px'
-    },
     getList () {
       this.$api.findJourneyGoodHelperProjectList().then(res => {
         if (res.isError) {
@@ -41,9 +39,6 @@ export default {
             }
           })
         }
-        this.$nextTick(() => {
-          this.handleListTop()
-        })
       })
     }
   },

@@ -3,10 +3,10 @@
     <mescroll-uni ref="mescrollRef"
                   class="mescroll-wrap"
                   :up="upOption"
-                  :top="top"
                   @init="mescrollInit"
                   @down="downCallback"
                   @up="upCallback">
+      <slot></slot>
       <template>
         <div v-show="listData.length > 0"
              class="list">
@@ -59,9 +59,6 @@ export default {
         this.listData = params.pageNumber === 1 ? items : this.listData.concat(items)
       })
     }
-  },
-  props: {
-    top: String
   },
   created () {
     this.getJourneyHelperProjectShowPage()
