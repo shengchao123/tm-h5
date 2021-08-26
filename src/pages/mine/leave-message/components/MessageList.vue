@@ -10,7 +10,9 @@
       <view class="msg-cont">
         <view class="between-row">
           <view>
-            <view class="user-name">{{msgData.memberNick}}</view>
+            <view class="user-name">{{msgData.memberNick}}
+              <span v-if="!isTalents">{{msgData.messageType==='02' ? '（社区）' : '（人才）'}}</span>
+            </view>
             <view class="user-time">{{$moment(msgData.contentTime).format('YYYY-MM-DD HH:mm:ss')}}</view>
           </view>
           <view class="replay"
@@ -29,7 +31,7 @@
         <span class="msg-status answer-color">答</span>
       </view>
       <view class="msg-cont">
-        <view class="user-name">{{msgData.journeyTalentsName}}</view>
+        <view class="user-name">{{msgData.journeyTalentsName || '社区'}}</view>
         <view class="user-time">{{$moment(msgData.replyTime).format('YYYY-MM-DD HH:mm:ss')}}</view>
         <view class="content">{{msgData.replyContent}}</view>
       </view>
@@ -54,7 +56,8 @@ export default {
     msgData: {
       type: Object,
       default: {}
-    }
+    },
+    isTalents: Boolean
   },
   computed: {
     // 文字颜色

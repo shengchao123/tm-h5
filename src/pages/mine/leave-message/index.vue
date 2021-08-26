@@ -19,6 +19,7 @@
       <view v-for="(item,index) in messageList"
             :key="index">
         <message-list :msgData="item"
+                      :isTalents="isTalents"
                       @getMsgStatus="resetGetList"></message-list>
       </view>
     </mescroll-uni>
@@ -55,7 +56,7 @@ export default {
       const params = {
         pageNumber: page && page.num || 1,
         pageSize: page && page.size || 10,
-        status: this.isTalents === 'true' ? this.tabsCurrent + 1 : null
+        status: this.isTalents ? this.tabsCurrent + 1 : null
       }
       const apiName = this.isTalents ? 'getMyJourneyTalentsMessagePage' : 'getMyJourneyMessagePage'
 
@@ -85,7 +86,7 @@ export default {
         textNoMore: "",
         noMoreSize: 10, // 配置列表的总数量要大于等于10条才显示'-- END --'的提示
       },
-      isTalents: uni.getStorageSync('isTalents'), //是否为专家身份
+      isTalents: uni.getStorageSync('isTalents') === 'true', //是否为专家身份
       messageList: []
     }
   },
