@@ -51,7 +51,8 @@
                 :duration="500">
           <swiper-item v-for="(item, index) in imgList"
                        :key="index">
-            <div class="swiper-item relative">
+            <div class="swiper-item relative"
+                 @click="onAdDetail(item)">
               <img :src="$fileHost + item.imgUrl">
               <div class="title ft32 bold">{{item.content}}</div>
             </div>
@@ -74,6 +75,12 @@ const Pages = new Map([
 ])
 export default {
   methods: {
+    onAdDetail (item) {
+      uni.setStorageSync('detail', JSON.stringify(item))
+      uni.navigateTo({
+        url: '/pages/steward/index/AdDetail'
+      })
+    },
     findJourneyAdvertisementList () {
       this.$api.findJourneyAdvertisementList().then(res => {
         if (res.isError) return this.$message.error(res.message)

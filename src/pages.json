@@ -160,6 +160,12 @@
 			}
 		},
 		{
+			"path": "pages/steward/index/AdDetail",
+			"style": {
+				"navigationBarTitleText": "公告详情"
+			}
+		},
+		{
 			"path": "pages/steward/auth/index",
 			"style": {
 				"navigationBarTitleText": "社区认证"
