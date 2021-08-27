@@ -7,6 +7,7 @@ export const urls = {
 
   // 社区认证
   communityCertification: '/crm/member/communityCertification', // 社区认证
+  getCompletedJourneyHelperProjectPage: '/linanJourney/journeyHelperProject/getCompletedJourneyHelperProjectPage', // 社区认证
 
   findJourneyAdvertisementList: '/linanJourney/journeyAdvertisement/findJourneyAdvertisementList',
   findJourneyCommunityPropertyInfoList: '/linanJourney/journeyCommunityProperty/findJourneyCommunityPropertyInfoList',

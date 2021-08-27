@@ -35,7 +35,7 @@ export default {
         if (res.isError) return
         const { items, count } = res.content
         // this.mescroll.endBySize(items.length, count)
-        this.dataList = res.content
+        this.dataList = res.content || []
       })
     }
   },

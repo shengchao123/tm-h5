@@ -1,5 +1,13 @@
 import request from '../request'
 import { urls } from '../urls'
+export function getCompletedJourneyHelperProjectPage (params) {
+  return request({
+    url: urls.getCompletedJourneyHelperProjectPage,
+    data: {
+      ...params
+    }
+  })
+}
 export function findJourneyAdvertisementList (params) {
   return request({
     url: urls.findJourneyAdvertisementList,

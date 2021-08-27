@@ -52,7 +52,7 @@ export default {
         pageSize: page && page.size || 10,
         type: 4
       }
-      this.$api.getJourneyHelperProjectShowPage(params).then(res => {
+      this.$api.getCompletedJourneyHelperProjectPage(params).then(res => {
         if (res.isError) return this.mescroll.endErr()
         const { items, count } = res.content
         this.mescroll.endBySize(items.length, count)
