@@ -31,8 +31,8 @@
       <ImgGroup :imgList="attachments"></ImgGroup>
     </view>
 
-    <Record :itemData="resourceItem"
-            v-if="resourceItem.dealTime"></Record>
+    <Record :itemData="resourceItem.item"
+            v-if="resourceItem.item.status !== 0"></Record>
     <Divider></Divider>
   </div>
 </template>

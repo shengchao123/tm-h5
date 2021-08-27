@@ -36,7 +36,7 @@ export default {
     },
     onCall () {
       uni.makePhoneCall({
-        phoneNumber: this.memberPersonalInfo.serviceHotline
+        phoneNumber: this.memberPersonalInfo.authCommunityOrgServiceHotline
       })
     }
   },

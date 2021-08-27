@@ -31,7 +31,7 @@
         <span class="msg-status answer-color">答</span>
       </view>
       <view class="msg-cont">
-        <view class="user-name">{{msgData.journeyTalentsName || '社区'}}</view>
+        <view class="user-name">{{msgData.journeyTalentsName || msgData.replyerName + '社区'}}</view>
         <view class="user-time">{{$moment(msgData.replyTime).format('YYYY-MM-DD HH:mm:ss')}}</view>
         <view class="content">{{msgData.replyContent}}</view>
       </view>

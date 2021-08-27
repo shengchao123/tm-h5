@@ -12,7 +12,6 @@ export default {
     // 跳转预览文件页面
     onPreview () {
       const fileType = this.item.url.substring(this.item.url.lastIndexOf('.') + 1)
-      clearTimeout(allTime);
       if (this.timeOutEvent === 0) {
         if (fileType === 'pdf') {
           uni.navigateTo({ url: `/pages/think-tank/countryside/attachmentPage?url=${this.item.url}&fileType=${fileType}` })
