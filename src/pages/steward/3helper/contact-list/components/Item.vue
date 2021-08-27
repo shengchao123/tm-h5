@@ -3,10 +3,10 @@
     <view>
       <view class="lineh1 community-org-name">
         <text>{{itemInfo.index + 1}}.</text>
-        <text>{{itemInfo.communityOrgName}}</text>
+        {{unitOrgName}}
       </view>
       <view class="mt16 color-999 ft24 lineh1">
-        {{unitOrgName}}
+        <text>{{itemInfo.parentCommunityOrgName}} {{itemInfo.communityOrgName}}</text>
       </view>
     </view>
     <text class="text orders ">{{itemInfo.ordersNumber}}</text>

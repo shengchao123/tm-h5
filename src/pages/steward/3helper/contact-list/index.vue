@@ -134,7 +134,7 @@ export default {
       communityOrgId: null,
       unitInfo: {},
       listData: [],
-      titleList: ['街道社区/共建单位', '接单', '抢单', '办结率', '积分']
+      titleList: ['共建单位/街道社区', '接单', '抢单', '办结率', '积分']
     }
   },
   computed: {

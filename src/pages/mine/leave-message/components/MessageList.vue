@@ -1,32 +1,38 @@
 <template>
-  <view class="pt20">
+  <view class="pt20 relative">
     <view class="flex leave-msg">
+
+      <div class="ft22"
+           :class="isTalents ? 'type1' : 'type2'">{{isTalents ? '专家服务' : '社区服务'}}</div>
+
       <view class="mr16 relative">
         <img :src="avatar(msgData.memberAvatar)"
-             alt=""
              class="head-img">
         <span class="msg-status ask-color">问</span>
       </view>
       <view class="msg-cont">
         <view class="between-row">
           <view>
-            <view class="user-name">{{msgData.memberNick}}
-              <span v-if="!isTalents">{{msgData.messageType==='02' ? '（社区）' : '（人才）'}}</span>
-            </view>
+            <view class="user-name">{{msgData.memberNick}}</view>
             <view class="user-time">{{$moment(msgData.contentTime).format('YYYY-MM-DD HH:mm:ss')}}</view>
           </view>
           <view class="replay"
                 v-if="msgData.status === 1 && isTalents === 'true'"
                 @click="replayMsg(msgData.id)">回复TA</view>
+
         </view>
         <view class="content">{{msgData.content}}</view>
       </view>
+
     </view>
     <view class="flex leave-msg"
           v-if="msgData.status !== 1">
       <view class="mr16 relative">
         <img :src="avatar(msgData.journeyTalentsPhoto)"
-             alt=""
+             v-if="isTalents"
+             class="head-img">
+        <img src="@/static/steward/logo1.png"
+             v-else
              class="head-img">
         <span class="msg-status answer-color">答</span>
       </view>
@@ -38,6 +44,7 @@
     </view>
     <send-message ref="sendMessage"
                   @sendMsg="sendMsg"></send-message>
+
   </view>
 </template>
 <script>
@@ -147,5 +154,23 @@ export default {
     font-weight: 550;
     color: #333333;
   }
+}
+.type1 {
+  position: absolute;
+  right: 0;
+  top: 64rpx;
+  background: #74a3fd;
+  color: "#2671FF";
+  padding: 8rpx 12rpx;
+  border-radius: 4rpx 0 0 2rpx;
+}
+.type2 {
+  position: absolute;
+  right: 0;
+  top: 64rpx;
+  background: #ddf9d7;
+  color: "#51AC3D";
+  padding: 8rpx 12rpx;
+  border-radius: 4rpx 0 0 2rpx;
 }
 </style>

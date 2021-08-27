@@ -28,17 +28,15 @@
           <div class="color-999 mt16">一键办事、社区热线、物业服务、家政服务、活动报名</div>
         </div>
 
-        <div class="right">
-          <div class="part2"
-               @click="onAuthPart(2)">
-            <div class="ft30 medium">议事厅</div>
-            <div class="color-999 mt16">问题反馈、热门话题</div>
-          </div>
-          <div class="part3 mt20"
-               @click="onAuthPart(3)">
-            <div class="ft30 medium">志愿汇</div>
-            <div class="color-999 mt16">微心愿认领、志愿报名</div>
-          </div>
+        <div class="part2"
+             @click="onAuthPart(2)">
+          <div class="ft30 medium">议事厅</div>
+          <div class="color-999 mt16">问题反馈、热门话题</div>
+        </div>
+        <div class="part3"
+             @click="onAuthPart(3)">
+          <div class="ft30 medium">志愿汇</div>
+          <div class="color-999 mt16">微心愿认领、志愿报名</div>
         </div>
       </div>
 
@@ -190,20 +188,20 @@ div {
       }
       .part1 {
         background-image: url("@/static/steward/bg1.png");
-        height: 282rpx;
-        line-height: 1.5;
+        height: 262rpx;
+        width: 31%;
         @extend .common;
       }
       .part2 {
         background-image: url("@/static/steward/bg2.png");
-        height: 131rpx;
-        line-height: 1;
+        height: 262rpx;
+        width: 31%;
         @extend .common;
       }
       .part3 {
         background-image: url("@/static/steward/bg3.png");
-        height: 131rpx;
-        line-height: 1;
+        height: 262rpx;
+        width: 31%;
         @extend .common;
       }
     }

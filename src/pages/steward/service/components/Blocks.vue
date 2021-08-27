@@ -6,16 +6,22 @@
            :key="index">
         <img :src="item.bg"
              class="bg">
-        <img :src="item.icon"
-             class="icon">
-        <div class="ft26 mt8">{{item.text}}</div>
+        <SvgIcon :icon="item.icon"
+                 class="ft40 icon"></SvgIcon>
+        <div class="ft26 mt16">{{item.text}}</div>
       </div>
     </div>
 
     <div class="message center-align mt32 between-row">
       <div style="color:#fff">
-        <div class="ft26"
-             @click="onCall">社区服务热线：{{memberPersonalInfo.authCommunityOrgServiceHotline || '--'}}</div>
+        <div class="ft26 center-align"
+             @click="onCall">
+          社区服务热线：{{memberPersonalInfo.authCommunityOrgServiceHotline || '--'}}
+
+          <SvgIcon icon="icon_dianhuahover"
+                   class="ft28 ml8 white-color"
+                   style="color:#fff"></SvgIcon>
+        </div>
         <div class="ft24"
              style="opacity:0.8">您的贴心社区管家</div>
       </div>
@@ -63,23 +69,23 @@ export default {
       blocks: Object.freeze([
         {
           bg: require('@/static/steward/service/block1.png'),
-          icon: require('@/static/steward/service/block1-i.png'),
-          text: '社保补贴'
+          icon: 'icon_jiuxuebuzhu',
+          text: '就学补助'
         },
         {
           bg: require('@/static/steward/service/block2.png'),
-          icon: require('@/static/steward/service/block2-i.png'),
-          text: '创业就业'
+          icon: 'icon_chunfenghangdong',
+          text: '春风行动'
         },
         {
           bg: require('@/static/steward/service/block3.png'),
-          icon: require('@/static/steward/service/block3-i.png'),
-          text: '殡葬服务'
+          icon: 'icon_hongshizihuijiuzhu',
+          text: '红十字救助'
         },
         {
           bg: require('@/static/steward/service/block4.png'),
-          icon: require('@/static/steward/service/block4-i.png'),
-          text: '残疾认证'
+          icon: 'icon_fuxubuzhu',
+          text: '抚恤补助'
         }
       ])
     }
@@ -106,8 +112,6 @@ export default {
     }
     .icon {
       z-index: 1;
-      width: 46rpx;
-      height: 48rpx;
     }
     div {
       z-index: 1;
