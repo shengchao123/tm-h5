@@ -35,7 +35,7 @@
                   v-model="search.keyword"></u-search>
         <div class="ml32"
              @click="onShowSearchType">
-          <span class="color-666 ft28">{{searchTypeName}}</span>
+          <span class="color-666 ft28">{{search.type}}</span>
           <SvgIcon icon="icon_xiangxia"
                    class="ft24 color-999 ml8"></SvgIcon>
         </div>
@@ -104,8 +104,8 @@
                v-for="(item, index) in popupOptions"
                :key="index"
                @click="onPopupItem(item, index)"
-               :class="[(index + 1) % 4 !== 0 && 'mr16', item.isSelected ? 'active' : '' ]">
-            <div>{{item.name}}</div>
+               :class="[(index + 1) % 4 !== 0 && 'mr16', item === search.type ? 'active' : '' ]">
+            <div>{{item}}</div>
           </div>
         </div>
       </div>
@@ -131,8 +131,10 @@ export default {
     closePopup () {
       this.showSearchType = false
     },
-    onPopupItem () {
-
+    onPopupItem (item) {
+      this.search.type = item
+      this.closePopup()
+      this.getListData()
     },
     changeSearchKeyword () {
       this.search.pageNumber = 1
@@ -148,10 +150,17 @@ export default {
     downCallback () {
       this.mescroll.resetUpScroll(); // 重置列表为第一页
     },
+    findJourneyTalentsTpyeList () {
+      this.$api.findJourneyTalentsTpyeList().then(res => {
+        if (res.isError) return this.$message.error(res.message)
+        this.popupOptions = ['全部类型', ...res.content]
+      })
+    },
     getListData () {
       const params = {
         ...this.search
       }
+      if (params.type === '全部类型') delete params.type
       const apiName = this.current === 0 ? 'getShowJourneyPolicyPage' : 'getShowJourneyTalentsPage'
       this.$api[apiName](params).then(res => {
         if (res.isError) {
@@ -186,13 +195,12 @@ export default {
   },
   data () {
     return {
-      searchTypeName: '全部类型',
       showSearchType: false,
       popupOptions: [],
-      searchType: '',
       search: {
         pageNumber: 1,
-        pageSize: 10
+        pageSize: 10,
+        type: '全部类型'
       },
       policyDataList: [],
       expertDataList: [],
@@ -229,6 +237,7 @@ export default {
     }
   },
   onLoad ({ current }) {
+    this.findJourneyTalentsTpyeList()
     if (!current) return
     this.current = +current
   },

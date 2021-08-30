@@ -7,12 +7,21 @@
     </carousel>
     <!-- 用户信息 -->
     <view class="user between-row pl30 pr30 pt24 pb24">
+
       <view class="center-align">
         <img class="user-avatar"
+             v-if="detailInfo.avatar && detailInfo.nick"
              :src="avatarUrl(detailInfo.avatar)"
              alt="">
         <view class="ml16">
-          <view class="flex">
+          <view class="center-align mb10"
+                v-if="!detailInfo.avatar && !detailInfo.nick">
+            <div class="center ft24"
+                 style="height:36rpx;width:36rpx;border-radius:50%;background:#518cfc;color:#fff;">#</div>
+            <text class="ft28 medium ml16">{{detailInfo.title}}</text>
+          </view>
+          <view class="flex"
+                v-else>
             <text class="ft28">{{detailInfo.nick}}</text>
           </view>
           <view class="ft22 color-999">

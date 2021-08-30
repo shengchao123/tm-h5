@@ -4,13 +4,11 @@
     <!-- 头像/昵称 -->
     <view class="head pl30 pr30 mb16">
       <view class="center-align">
-        <view class="head-img mr16">
-          <image style="width: 100%; height: 100%"
-                 :src="$avatarUrl(notesItem.avatar)"></image>
-        </view>
         <view class="column">
           <view class="center-align mb10">
-            <text class="ft28 medium">{{notesItem.nick}}</text>
+            <div class="center ft24"
+                 style="height:36rpx;width:36rpx;border-radius:50%;background:#518cfc;color:#fff;">#</div>
+            <text class="ft28 medium ml16">{{notesItem.title}}</text>
           </view>
           <view>
             <text class="ft22 color-999"
@@ -110,6 +108,7 @@ export default {
 </script>
 <style lang='scss' scoped>
 .notes-list-item-wrap {
+  border-top: 16rpx solid #f7f7f7;
   color: #333;
   width: 100%;
   padding-top: 30rpx;

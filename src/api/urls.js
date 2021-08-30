@@ -7,6 +7,7 @@ export const urls = {
 
   // 社区认证
 
+  findJourneyTalentsTpyeList: '/linanJourney/journeyTalents/findJourneyTalentsTpyeList', // 社区认证
   getCommunityTopicPage: '/community/communityNote/getCommunityTopicPage', // 社区认证
   getNoteCommentDetailPage: '/community/communityNoteComment/getNoteCommentDetailPage', // 社区认证
   getJourneyCommunityMessagePage: '/linanJourney/journeyCommunityMessageManagement/getJourneyCommunityMessagePage', // 社区认证

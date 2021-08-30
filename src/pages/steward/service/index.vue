@@ -19,6 +19,7 @@
       <Divider v-show="currentTab === 0"></Divider>
       <Activity v-show="currentTab === 0"></Activity>
       <Property v-show="currentTab === 1"></Property>
+      <HouseKeep v-if="currentTab === 2"></HouseKeep>
     </div>
   </div>
 </template>
@@ -26,6 +27,7 @@
 <script>
 
 import Divider from '@/components/Divider'
+import HouseKeep from '@/pages/steward/service/components/HouseKeep'
 
 import Activity from './components/Activity'
 import Property from './Property'
@@ -39,7 +41,7 @@ export default {
   },
   onLoad () {
   },
-  components: { Divider, Activity, Property },
+  components: { Divider, Activity, Property, HouseKeep },
   data () {
     return {
       tabs: [
@@ -48,9 +50,9 @@ export default {
         }, {
           name: '物业服务'
         },
-        //  {
-        //   name: '家政服务'
-        // }
+        {
+          name: '家政服务'
+        }
       ],
       currentTab: 0
     }

@@ -1,6 +1,15 @@
 import request from '../request'
 import { urls } from '../urls'
 
+export function findJourneyTalentsTpyeList (params) {
+  return request({
+    url: urls.findJourneyTalentsTpyeList,
+    data: {
+      ...params
+    }
+  })
+}
+
 export function getCommunityTopicPage (params) {
   return request({
     url: urls.getCommunityTopicPage,
