@@ -7,12 +7,10 @@
           <div class="ft30 mr24 bold">行程路线</div>
         </div>
         <div v-if="!isDetail"
-             class="center-align">
-          <span class="ft24"
-                style="color: #518CFC;">{{usePoints.length > 0 ? '切换行程' : '自定义行程'}}</span>
+             class="center-align change mt12">
+          <span class="ft24">{{usePoints.length > 0 ? '切换行程' : '自定义行程'}}</span>
           <svg-icon icon="icon_xiangyoujiantou"
-                    class="ft20 ml8"
-                    style="color:  #C4C4C4"></svg-icon>
+                    class="ft20 ml8 medium"></svg-icon>
         </div>
         <span v-else></span>
       </div>
@@ -127,6 +125,13 @@ export default {
       box-shadow: 0 -6rpx 17rpx 0 rgba(0, 0, 0, 0.1);
       border-radius: 12rpx;
     }
+  }
+  .change {
+    border: 1px solid #f54400;
+    height: 56rpx;
+    padding: 0 16rpx;
+    border-radius: 28rpx;
+    color: #f54400;
   }
 }
 </style>

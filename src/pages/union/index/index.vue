@@ -4,8 +4,7 @@
     <div class="map relative">
       <Map ref="map"
            :points="partyList"
-           :currentIndex="selectPoint"
-           @changeIndex="changeIndex"></Map>
+           :currentIndex.sync="selectPoint"></Map>
       <div class="reset-btn center"
            @click="resetMap">
         <svg-icon class="ft40 color-666"
@@ -13,9 +12,17 @@
       </div>
     </div>
     <div class="pt24 pl30 pr30 bg-white pb20">
-      <div class="title center-align">
-        <div class="ft34 bold">{{baseInfo.name}}</div>
-        <div class="tip ft20 ml16">{{baseInfo.regionsName}}</div>
+      <div class="title center-align between-row">
+        <div class="center-align">
+          <div class="ft34 bold">{{baseInfo.name}}</div>
+          <div class="tip ft20 ml16">{{baseInfo.regionsName}}</div>
+        </div>
+        <div class="center-align change"
+             @click="onchange">
+          <span class="ft24">切换</span>
+          <svg-icon icon="icon_xiangyoujiantou"
+                    class="ft20 ml8 medium"></svg-icon>
+        </div>
       </div>
       <div class="ft30 mt8"
            style="line-height: 42rpx">{{baseInfo.introduction}}</div>
@@ -80,6 +87,11 @@
     </div>
     <div style="width: 100%; height: 250rpx;"></div>
     <custom-tabbar></custom-tabbar>
+    <SelectPop :partyList="partyList"
+               ref="selectRoutePop"
+               :index.sync="selectPoint"
+               :selectedId.sync="selectPointId"
+               @onRouteItem="onRouteItem"></SelectPop>
   </div>
 </template>
 
@@ -87,9 +99,13 @@
 import ContactPerson from '../components/ContactPerson.vue'
 import OrgTree from './components/OrgTree.vue'
 import Map from './components/Map'
+import SelectPop from './components/SelectPop'
 let timer = null
 export default {
   methods: {
+    onchange () {
+      this.$refs.selectRoutePop.show()
+    },
     resetMap () {
       const mapEl = this.$refs.map
       mapEl && mapEl.resetMap()
@@ -110,7 +126,7 @@ export default {
         url: '/pages/original-travel/index/index?journeyLineId=' + this.baseInfo.journeyLineId
       })
     },
-    changeIndex (index) {
+    onRouteItem (item, index) {
       this.selectPoint = index
     },
     scroll (e) {
@@ -138,6 +154,7 @@ export default {
   },
   data () {
     return {
+      selectPointId: '',
       selectPoint: 0,
       partyList: [],
       orgTree: [],
@@ -182,7 +199,7 @@ export default {
   onLoad () {
     this.getJourneyAllianceDetailList()
   },
-  components: { ContactPerson, OrgTree, Map }
+  components: { ContactPerson, OrgTree, Map, SelectPop }
 }
 </script>
 <style>
@@ -276,6 +293,13 @@ page {
     transition: all 0.5s ease-in-out;
     right: -80rpx !important;
     opacity: 0.4 !important;
+  }
+  .change {
+    border: 1px solid #f54400;
+    height: 56rpx;
+    padding: 0 16rpx;
+    border-radius: 28rpx;
+    color: #f54400;
   }
 }
 </style>

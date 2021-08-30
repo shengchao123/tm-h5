@@ -22,6 +22,9 @@
 
         </view>
         <view class="content">{{msgData.content}}</view>
+        <ImgGroup v-if="msgData.attachments"
+                  class="mt16"
+                  :imgList="attachments"></ImgGroup>
       </view>
 
     </view>
@@ -49,6 +52,7 @@
 </template>
 <script>
 import SendMessage from './SendMessage'
+import ImgGroup from './ImgGroup'
 
 export default {
   methods: {
@@ -67,6 +71,10 @@ export default {
     isTalents: Boolean
   },
   computed: {
+    attachments () {
+      if (!this.msgData.attachments) return []
+      return this.msgData.attachments.map(item => item.url)
+    },
     // 文字颜色
     msgColor () {
       if (this.msgData.status === 1) return 'msg-status ask-color'
@@ -92,7 +100,7 @@ export default {
       isTalents: uni.getStorageSync('isTalents') //是否为专家身份
     }
   },
-  components: { SendMessage },
+  components: { SendMessage, ImgGroup },
 }
 </script>
 <style lang='scss' scoped>

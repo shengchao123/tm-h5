@@ -20,8 +20,8 @@
     <div class="list">
       <List1 v-if="currentSubTab === 0"
              :communityOrgId="communityOrgId"></List1>
-      <List2 v-if="currentSubTab === 1"
-             :communityOrgId="communityOrgId"></List2>
+      <Show v-if="currentSubTab === 1"
+            :communityOrgId="communityOrgId"></Show>
     </div>
   </div>
 </template>
@@ -29,7 +29,7 @@
 <script>
 import SubTabs from '@/pages/urban-rural/components/SubTabs'
 import List1 from './components/List1.vue'
-import List2 from './components/List2.vue'
+import Show from './components/Show'
 
 export default {
   name: 'list',
@@ -61,7 +61,7 @@ export default {
       return this.tabs[this.currentTab].id
     }
   },
-  components: { SubTabs, List1, List2 },
+  components: { SubTabs, List1, Show },
   data () {
     return {
       tabs: [],
@@ -72,10 +72,10 @@ export default {
           id: 0,
           text: '党组织架构'
         },
-        // {
-        //   id: 1,
-        //   text: '支部风采'
-        // }
+        {
+          id: 1,
+          text: '支部风采'
+        }
       ]
     }
   }

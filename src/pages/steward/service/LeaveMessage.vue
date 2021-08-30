@@ -11,6 +11,16 @@
       </div>
       <div class="tr ft24 color-999 mt16">{{form.content.length || 0}}/500</div>
     </div>
+    <div class="pl32 bg-white mt24 pt24 pr32">
+      <div class="between-row mb16">
+        <span class="mediumn ft28">图片上传（非必填）</span>
+        <span class="ft22 color-999">{{form.attachments.length}}/3</span>
+      </div>
+      <upload-images :count="3"
+                     :length="3"
+                     imageTypeName='sourceType'
+                     :imageData.sync="form.attachments"></upload-images>
+    </div>
     <u-button @click="onConfirm"
               class="ml32 mr32"
               :custom-style="btnStyle"
@@ -19,6 +29,7 @@
 </template>
 
 <script>
+import UploadImages from "@/components/upload-images";
 export default {
   name: 'LeaveMessage',
   methods: {
@@ -38,7 +49,8 @@ export default {
   data () {
     return {
       form: {
-        content: ''
+        content: '',
+        attachments: []
       }
     }
   },

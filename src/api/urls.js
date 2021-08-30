@@ -6,6 +6,11 @@ export const imgHost = 'https://hzslzx.oss-cn-hangzhou.aliyuncs.com/system/h5-ma
 export const urls = {
 
   // 社区认证
+
+  getCommunityTopicPage: '/community/communityNote/getCommunityTopicPage', // 社区认证
+  getNoteCommentDetailPage: '/community/communityNoteComment/getNoteCommentDetailPage', // 社区认证
+  getJourneyCommunityMessagePage: '/linanJourney/journeyCommunityMessageManagement/getJourneyCommunityMessagePage', // 社区认证
+  findJourneyCommunityPartyGraphicByPartyId: '/linanJourney/journeyCommunityParty/findJourneyCommunityPartyGraphicByPartyId', // 社区认证
   communityCertification: '/crm/member/communityCertification', // 社区认证
   getCompletedJourneyHelperProjectPage: '/linanJourney/journeyHelperProject/getCompletedJourneyHelperProjectPage', // 社区认证
 

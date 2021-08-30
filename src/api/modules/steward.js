@@ -1,5 +1,38 @@
 import request from '../request'
 import { urls } from '../urls'
+
+export function getCommunityTopicPage (params) {
+  return request({
+    url: urls.getCommunityTopicPage,
+    data: {
+      ...params
+    }
+  })
+}
+export function getNoteCommentDetailPage (params) {
+  return request({
+    url: urls.getNoteCommentDetailPage,
+    data: {
+      ...params
+    }
+  })
+}
+export function getJourneyCommunityMessagePage (params) {
+  return request({
+    url: urls.getJourneyCommunityMessagePage,
+    data: {
+      ...params
+    }
+  })
+}
+export function findJourneyCommunityPartyGraphicByPartyId (params) {
+  return request({
+    url: urls.findJourneyCommunityPartyGraphicByPartyId,
+    data: {
+      ...params
+    }
+  })
+}
 export function getCompletedJourneyHelperProjectPage (params) {
   return request({
     url: urls.getCompletedJourneyHelperProjectPage,

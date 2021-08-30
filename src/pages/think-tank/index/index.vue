@@ -12,10 +12,40 @@
               active-color="#E32417"
               inactive-color="#666666"
               @change="tabChange"></u-tabs>
+
+      <div class="search-wrap mt16 "
+           v-if="current === 0"
+           style="padding:20rpx 30rpx;background: #fff">
+        <u-search placeholder="输入发布单位或标题搜索"
+                  :show-action="false"
+                  @change="changeSearchKeyword"
+                  search-icon-color="#999999"
+                  placeholder-color="#999999"
+                  v-model="search.keyword"></u-search>
+      </div>
+
+      <div class="search-wrap mt16 center-align"
+           v-if="current === 1"
+           style="padding:20rpx 30rpx;background: #fff">
+        <u-search placeholder="请输入专家姓名搜索"
+                  :show-action="false"
+                  @change="changeSearchKeyword"
+                  search-icon-color="#999999"
+                  placeholder-color="#999999"
+                  v-model="search.keyword"></u-search>
+        <div class="ml32"
+             @click="onShowSearchType">
+          <span class="color-666 ft28">{{searchTypeName}}</span>
+          <SvgIcon icon="icon_xiangxia"
+                   class="ft24 color-999 ml8"></SvgIcon>
+        </div>
+      </div>
     </div>
     <!-- 政策、专家 -->
     <div v-if="current === 0 || current === 1">
-      <empty v-if="isEmpty"></empty>
+
+      <empty v-if="isEmpty"
+             style="margin-top:200rpx"></empty>
       <mescroll-uni v-else
                     ref="mescrollRef"
                     @init="mescrollInit"
@@ -23,11 +53,12 @@
                     :up="upOption"
                     @up="upCallback"
                     bottom="50px"
-                    top="88">
-        <view v-if="current === 0">
+                    top="200">
+        <view v-if="current === 0"
+              class="pb30">
           <view v-for="(item,index) in policyDataList"
                 :key="index"
-                class="list-item mt20 pl30 pr30"
+                class="list-item mt20 pl30 pr30 "
                 @click="onToDetail(item.id)">
             <policy-info-item :itemInfo="item"></policy-info-item>
           </view>
@@ -61,6 +92,24 @@
                    @onMessage="onMessage">
     </contact-popup>
     <custom-tabbar></custom-tabbar>
+
+    <u-popup v-model="showSearchType"
+             @close="closePopup"
+             :closeable="true"
+             mode="bottom">
+      <div class="popup">
+        <div class="title">类型</div>
+        <div class="tags row">
+          <div class="tag ft28 tc mb16"
+               v-for="(item, index) in popupOptions"
+               :key="index"
+               @click="onPopupItem(item, index)"
+               :class="[(index + 1) % 4 !== 0 && 'mr16', item.isSelected ? 'active' : '' ]">
+            <div>{{item.name}}</div>
+          </div>
+        </div>
+      </div>
+    </u-popup>
   </div>
 </template>
 <script>
@@ -76,18 +125,32 @@ import { filterWeek } from './components/filter.js'
 export default {
   name: 'index',
   methods: {
+    onShowSearchType () {
+      this.showSearchType = true
+    },
+    closePopup () {
+      this.showSearchType = false
+    },
+    onPopupItem () {
+
+    },
+    changeSearchKeyword () {
+      this.search.pageNumber = 1
+      this.getListData()
+    },
     filterWeek,
     upCallback (page) {
-      this.getListData(page)
+      this.search.pageNumber = page.num || 1
+      this.search.pageSize = page.size || 1
+      this.getListData()
     },
     // 下拉刷新
     downCallback () {
       this.mescroll.resetUpScroll(); // 重置列表为第一页
     },
-    getListData (page) {
+    getListData () {
       const params = {
-        pageNumber: page && page.num || 1,
-        pageSize: page && page.size || 10
+        ...this.search
       }
       const apiName = this.current === 0 ? 'getShowJourneyPolicyPage' : 'getShowJourneyTalentsPage'
       this.$api[apiName](params).then(res => {
@@ -123,6 +186,14 @@ export default {
   },
   data () {
     return {
+      searchTypeName: '全部类型',
+      showSearchType: false,
+      popupOptions: [],
+      searchType: '',
+      search: {
+        pageNumber: 1,
+        pageSize: 10
+      },
       policyDataList: [],
       expertDataList: [],
       isEmpty: false,
@@ -194,6 +265,41 @@ page {
   img {
     margin-top: -10rpx;
     width: 100vw;
+  }
+  .popup {
+    padding: 24rpx 30rpx;
+    .title {
+      font-size: 34rpx;
+      color: #000000;
+      text-align: center;
+      margin-bottom: 64rpx;
+    }
+    .tags {
+      flex-wrap: wrap;
+      width: calc(100vw - 60rpx);
+    }
+    .tag {
+      width: 155rpx;
+      height: 66rpx;
+      line-height: 66rpx;
+      background: #f7f7f7;
+      border-radius: 33px;
+      border: 1px solid transparent;
+    }
+    .active {
+      border-color: #fa9a75;
+      background: #fff1eb;
+      color: #e32417;
+    }
+    .btn {
+      margin-top: 80rpx;
+      background: #e32417;
+      font-size: 34rpx;
+      color: #ffffff;
+      border-radius: 49rpx;
+      height: 98rpx;
+      line-height: 98rpx;
+    }
   }
 }
 </style>
