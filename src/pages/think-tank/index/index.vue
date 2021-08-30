@@ -190,7 +190,9 @@ export default {
     },
     tabChange (index) {
       this.current = index
-      this.getListData()
+      if (index === 0 || index === 1) {
+        this.getListData()
+      }
     },
   },
   data () {
