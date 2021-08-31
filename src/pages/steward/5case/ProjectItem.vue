@@ -27,11 +27,21 @@
       <div class="between-row center-align ft24 color-999 pt16 pb16">
         <div>
           <span style="margin-right: 56rpx">{{startTime}}</span>
-          <span v-if="projectItem.status !== 1">{{projectLeadName}}</span>
-          <span v-else-if="!isHome">{{projectReleaseName}}</span>
         </div>
         <span v-if="isHome && isUnitUser && projectItem.status === 1"
               class="ft20 color-999">{{endTime}}</span>
+      </div>
+      <div class="between-row ft20 color-999">
+        <span v-if="projectItem.status !== 1">{{projectLeadName}}</span>
+        <span v-else-if="!isHome">{{projectReleaseName}}</span>
+        <view class="trigger-area relative center-align pl32"
+              @click.stop="onLike">
+          <svg-icon :icon="projectItem.isLike ? 'icon_shoucang' : 'icon_weishoucang'"
+                    class="ft28 color-999 mr8"
+                    :class="$actionIconClass(projectItem)"></svg-icon>
+          <text class="ft26"
+                :class="projectItem.isLike ? 'primary-color' : 'color-666'">{{projectItem.likeQuantity}}</text>
+        </view>
       </div>
       <div class="content">
         <div ref="contentBox"
@@ -53,6 +63,24 @@
 export default {
   name: 'projectItem',
   methods: {
+    // 点赞
+    onLike () {
+      if (this.$notMember()) return this.$goLogin()
+      if (this.entrance === 'myTrends' && this.projectItem.status === 2) return
+      const projectItem = this.projectItem
+      let { id, isLike, likeQuantity } = projectItem
+      const params = {
+        journeyHelperProjectId: id,
+      }
+      projectItem.isLike = !isLike
+      const apiName = isLike ? 'cancelLikeGoodHelperProject' : 'likeGoodHelperProject'
+      this.$api[apiName](params).then(res => {
+        if (res.isError) return this.$msg(res.message)
+        projectItem.isLike = !isLike
+        projectItem.likeQuantity = isLike ? likeQuantity - 1 : likeQuantity + 1
+        this.$emit('setProjectItem', projectItem, this.notesIndex)
+      })
+    },
     onDetail () {
       uni.navigateTo({
         url: `/pages/steward/3helper/project-detail/index?id=${this.projectItem.id}&entrance=helper`
@@ -76,6 +104,7 @@ export default {
     isHome: Boolean,
     isUnitUser: Boolean,
     projectItem: Object,
+    notesIndex: Number,
     showBorder: Boolean
   },
   data () {

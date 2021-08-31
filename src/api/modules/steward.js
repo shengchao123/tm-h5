@@ -3,6 +3,15 @@ import { urls } from '../urls'
 
 
 
+export function cancelLikeGoodHelperProject (params) {
+  return request({
+    url: urls.cancelLikeGoodHelperProject,
+    data: {
+      ...params
+    }
+  })
+}
+
 export function likeGoodHelperProject (params) {
   return request({
     url: urls.likeGoodHelperProject,

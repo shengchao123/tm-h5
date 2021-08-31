@@ -8,6 +8,7 @@ export const urls = {
   // 社区认证
 
   findJourneyGoodCommunityNeighborhoodList: '/linanJourney/journeyCommunityNeighborhood/findJourneyGoodCommunityNeighborhoodList', // 社区认证
+  cancelLikeGoodHelperProject: '/linanJourney/journeyHelperProject/cancelLikeGoodHelperProject', // 社区认证
   likeGoodHelperProject: '/linanJourney/journeyHelperProject/likeGoodHelperProject', // 社区认证
   findJourneyTalentsTpyeList: '/linanJourney/journeyTalents/findJourneyTalentsTpyeList', // 社区认证
   getCommunityTopicPage: '/community/communityNote/getCommunityTopicPage', // 社区认证

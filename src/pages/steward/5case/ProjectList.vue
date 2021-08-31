@@ -15,6 +15,8 @@
                         :key="index"
                         :show-border="index < listData.length - 1"
                         :isHome="true"
+                        :notesIndex="index"
+                        @setProjectItem="setProjectItem"
                         @onReceive="onReceive"></project-item>
         </div>
         <empty v-show="listData.length === 0"></empty>
@@ -32,6 +34,11 @@ export default {
   mixins: [MescrollMixin],
   components: { ProjectItem, MescrollUni },
   methods: {
+    setProjectItem (item, index) {
+      let temArr = JSON.parse(JSON.stringify(this.listData))
+      temArr.index = item
+      this.listData = temArr
+    },
     onReceive (projectId) {
       if (this.$notMember()) return this.$goLogin();
       this.$refs.receivePop.show({

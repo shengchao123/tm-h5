@@ -91,9 +91,22 @@
            @click="onReceive">认领</div>
     </div>
 
+    <div class="bg-white btn-wrap tb center"
+         v-if="baseInfo.status === 3">
+      <view class="trigger-area relative center-align pl32"
+            @click.stop="onLike">
+        <svg-icon :icon="baseInfo.isLike ? 'icon_shoucang' : 'icon_weishoucang'"
+                  class="ft28 color-999 mr8"
+                  :class="$actionIconClass(baseInfo)"></svg-icon>
+        <text class="ft26"
+              :class="baseInfo.isLike ? 'primary-color' : 'color-666'">{{baseInfo.likeQuantity}}</text>
+      </view>
+    </div>
+
     <receive-pop ref="receivePop"
                  v-if="isUnitUser && baseInfo.status === 1"
                  :isHall="entrance === 'hall'"></receive-pop>
+
   </div>
 </template>
 <script>
@@ -102,6 +115,23 @@ import ReceivePop from '../components/ReceivePop.vue';
 let timer = null
 export default {
   methods: {
+    // 点赞
+    onLike () {
+      if (this.$notMember()) return this.$goLogin()
+      if (this.entrance === 'myTrends' && this.baseInfo.status === 2) return
+      const baseInfo = this.baseInfo
+      let { id, isLike, likeQuantity } = baseInfo
+      const params = {
+        journeyHelperProjectId: id,
+      }
+      baseInfo.isLike = !isLike
+      const apiName = isLike ? 'cancelLikeGoodHelperProject' : 'likeGoodHelperProject'
+      this.$api[apiName](params).then(res => {
+        if (res.isError) return this.$msg(res.message)
+        this.baseInfo.isLike = !isLike
+        this.baseInfo.likeQuantity = isLike ? likeQuantity - 1 : likeQuantity + 1
+      })
+    },
     // 认领
     onReceive () {
       if (this.$notMember()) return this.$goLogin()
@@ -233,6 +263,13 @@ page {
 }
 </style>
 <style lang='scss' scoped>
+.btn-wrap {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 98rpx;
+}
 .project-detail-wrap {
   padding-bottom: 150rpx;
   .content {

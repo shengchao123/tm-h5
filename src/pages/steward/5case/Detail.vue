@@ -94,6 +94,7 @@
     <receive-pop ref="receivePop"
                  v-if="isUnitUser && baseInfo.status === 1"
                  :isHall="entrance === 'hall'"></receive-pop>
+
   </div>
 </template>
 <script>
