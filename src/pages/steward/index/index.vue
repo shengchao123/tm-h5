@@ -65,7 +65,7 @@
           <div class="swiper-item relative"
                @click="onAdDetail(item)">
             <img :src="$fileHost + item.imgUrl">
-            <div class="title ft32 bold">{{item.content}}</div>
+            <div class="title ft32 bold">{{item.title}}</div>
           </div>
         </swiper-item>
       </swiper>
@@ -234,7 +234,7 @@ div {
       left: 0;
       right: 22rpx;
       border-radius: 0 0 8rpx 8rpx;
-      bottom: 10rpx;
+      bottom: 0;
       background-image: linear-gradient(
         180deg,
         rgba(47, 46, 46, 0) 0%,
