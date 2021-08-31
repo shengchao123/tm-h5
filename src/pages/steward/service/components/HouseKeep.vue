@@ -28,7 +28,7 @@ export default {
           name: '依享乐',
           text: '匠心服务，乐享生活',
           img: require('@/static/steward/keep1.png'),
-          link: 'http://shop10000264.daojiahulian.com/app/index.php?i=264&c=entry&m=ewei_shopv2&do=mobile&r=commission.myshop&mid=167890'
+          link: 'http://shop10000264.daojiahulian.com/app/index.php?i=264&c=entry&m=ewei_shopv2&do=mobile&mid=167890&v=163039'
         },
         {
           name: '钱王易万家',

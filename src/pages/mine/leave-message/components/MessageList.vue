@@ -48,7 +48,7 @@
           {{msgData.messageType === '02' ? msgData.replyerName + '社区' : msgData.replyerName}}</view>
         <view class="user-name"
               v-else>
-          {{msgData.journeyTalentsPhoto ? msgData.journeyTalentsName : msgData.replyerName + '社区'}}</view>
+          {{msgData.journeyTalentsName}}</view>
         <view class="user-time">{{$moment(msgData.replyTime).format('YYYY-MM-DD HH:mm:ss')}}</view>
         <view class="content">{{msgData.replyContent}}</view>
       </view>
