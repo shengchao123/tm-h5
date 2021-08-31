@@ -12,12 +12,10 @@ export default {
     // 跳转预览文件页面
     onPreview () {
       const fileType = this.item.url.substring(this.item.url.lastIndexOf('.') + 1)
-      if (this.timeOutEvent === 0) {
-        if (fileType === 'pdf') {
-          uni.navigateTo({ url: `/pages/think-tank/countryside/attachmentPage?url=${this.item.url}&fileType=${fileType}` })
-        } else {
-          window.location.replace('https://view.officeapps.live.com/op/view.aspx?src=' + this.$fileHost + this.item.url)
-        }
+      if (fileType === 'pdf') {
+        uni.navigateTo({ url: `/pages/think-tank/countryside/attachmentPage?url=${this.item.url}&fileType=${fileType}` })
+      } else {
+        window.location.replace('https://view.officeapps.live.com/op/view.aspx?src=' + this.$fileHost + this.item.url)
       }
     },
   },
