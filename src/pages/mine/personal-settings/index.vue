@@ -39,8 +39,17 @@
           <view v-for="(item,index) in realNameProp"
                 :key="index"
                 :class="index === 0 && 'mb20'">
-            <text>{{item.name}}：</text>
-            <text class="color-333">{{formData[item.prop]}}</text>
+            <template v-if="index === 0">
+              <text>{{item.name}}：</text>
+              <text class="color-333">
+                {{formData[item.prop]}}
+                <span v-if="formData.isParty">(党员)</span>
+              </text>
+            </template>
+            <template v-else>
+              <text>{{item.name}}：</text>
+              <text class="color-333">{{formData[item.prop]}}</text>
+            </template>
           </view>
         </template>
         <div>

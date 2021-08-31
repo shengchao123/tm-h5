@@ -69,6 +69,13 @@
           <div class="color-999 ml8">{{form.address.length}}/20</div>
         </div>
       </view>
+      <view class=" h100 center-align">
+        <div class="ft30 bold mr32"
+             style="width: 130rpx">党员</div>
+        <MyRadioBox :options="radioOptions"
+                    :value.sync="form.isParty"></MyRadioBox>
+      </view>
+
     </view>
 
     <div class="bg-white btn-wrap tb">
@@ -85,9 +92,10 @@
 <script>
 import SelectionCommunit from '../components/SelectionCommunit.vue'
 import { checkInput } from '@/utils/validate.js'
+import MyRadioBox from '@/pages/original-travel/stroke-order/components/MyRadioBox'
 
 export default {
-  components: { SelectionCommunit },
+  components: { SelectionCommunit, MyRadioBox },
   name: 'index',
   methods: {
     onConfirmCommunit (info) {
@@ -122,12 +130,18 @@ export default {
   },
   data () {
     return {
+      radioOptions: Object.freeze([
+        { id: true, name: '是' },
+        { id: false, name: '否' }
+      ]),
+
       form: {
         name: '',
         address: '',
         idCardNo: '',
         communityOrgId: '',
         plotName: '',
+        isParty: true,
       },
       phone: '',
       streetInfo: {},

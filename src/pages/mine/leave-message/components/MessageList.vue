@@ -40,7 +40,8 @@
              class="head-img">
         <span class="msg-status answer-color">答</span>
       </view>
-      <view class="msg-cont">
+      <view class="msg-cont"
+            style="border:none">
         <view class="user-name">{{msgData.journeyTalentsName || msgData.replyerName + '社区'}}</view>
         <view class="user-time">{{$moment(msgData.replyTime).format('YYYY-MM-DD HH:mm:ss')}}</view>
         <view class="content">{{msgData.replyContent}}</view>
@@ -160,7 +161,6 @@ export default {
   .content {
     margin-top: 24rpx;
     font-size: 28rpx;
-    font-weight: 550;
     color: #333333;
   }
 }
@@ -168,7 +168,7 @@ export default {
   position: absolute;
   right: 0;
   top: 64rpx;
-  background: #74a3fd;
+  background: #e3edff;
   color: #2671ff;
   padding: 8rpx 12rpx;
   border-radius: 4rpx 0 0 2rpx;
