@@ -91,6 +91,9 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+page {
+  background: #f7f7f7;
+}
 .wrap {
   height: 100%;
 }
