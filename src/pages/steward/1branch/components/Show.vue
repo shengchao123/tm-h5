@@ -58,7 +58,6 @@ export default {
 .show-wrap {
   padding: 32rpx;
   background: #fff;
-  height: calc(100vh - 270rpx);
   border-top: 20rpx solid #f7f7f7;
   .content {
     line-height: 48rpx;

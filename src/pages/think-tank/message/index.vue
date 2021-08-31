@@ -9,6 +9,16 @@
                 @input="changeInput" />
       <text class="number ft24 color-999">{{content.split('').length}}/500</text>
     </view>
+    <div class="pl32 bg-white mt24 pt24 pr32">
+      <div class="between-row mb16">
+        <span class="mediumn ft28">图片上传（非必填）</span>
+        <span class="ft22 color-999">{{attachments.length}}/3</span>
+      </div>
+      <upload-images :count="3"
+                     :length="3"
+                     imageTypeName='sourceType'
+                     :imageData.sync="attachments"></upload-images>
+    </div>
     <view class="btn pl30 pr30 white-color"
           @click="onMessage">
       <text class="btn-text center"
@@ -21,10 +31,10 @@ export default {
   name: 'Message',
   methods: {
     onMessage () {
-      const { id, content } = this
+      const { id, content, attachments } = this
       const params = {
         id,
-        content
+        content, attachments
       }
       this.$api.leaveMessage(params).then(res => {
         if (res.isError) {
@@ -46,7 +56,8 @@ export default {
   data () {
     return {
       content: '',
-      id: ''
+      id: '',
+      attachments: []
     }
   },
   onLoad ({ id }) {

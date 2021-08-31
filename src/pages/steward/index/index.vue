@@ -25,38 +25,50 @@
         <div class="part1"
              @click="onAuthPart(1)">
           <div class="ft30 medium">服务站</div>
-          <div class="color-999 mt16">一键办事、社区热线、物业服务、家政服务、活动报名</div>
+          <div class="color-999 ">
+            <div>一键办事</div>
+            <div>社区热线</div>
+            <div>物业服务</div>
+            <div>家政服务</div>
+            <div>活动报名</div>
+          </div>
         </div>
 
         <div class="part2"
              @click="onAuthPart(2)">
           <div class="ft30 medium">议事厅</div>
-          <div class="color-999 mt16">问题反馈、热门话题</div>
+          <div class="color-999 ">
+            <div>热门话题</div>
+            <div>我要报事</div>
+          </div>
         </div>
         <div class="part3"
              @click="onAuthPart(3)">
           <div class="ft30 medium">志愿汇</div>
-          <div class="color-999 mt16">微心愿认领、志愿报名</div>
+          <div class="color-999 ">
+            <div>微心愿认领</div>
+            <div>志愿活动</div>
+          </div>
         </div>
       </div>
+    </div>
 
-      <div class="pl32">
-        <swiper class="swiper "
-                :indicator-dots="false"
-                :autoplay="true"
-                next-margin="16rpx"
-                :interval="2000"
-                :duration="500">
-          <swiper-item v-for="(item, index) in imgList"
-                       :key="index">
-            <div class="swiper-item relative"
-                 @click="onAdDetail(item)">
-              <img :src="$fileHost + item.imgUrl">
-              <div class="title ft32 bold">{{item.content}}</div>
-            </div>
-          </swiper-item>
-        </swiper>
-      </div>
+    <div class="pl32">
+      <swiper class="swiper "
+              :indicator-dots="false"
+              :autoplay="true"
+              next-margin="16rpx"
+              :interval="2000"
+              :duration="500">
+        <swiper-item v-for="(item, index) in imgList"
+                     :key="index">
+          <div class="swiper-item relative"
+               @click="onAdDetail(item)">
+            <img :src="$fileHost + item.imgUrl">
+            <div class="title ft32 bold">{{item.content}}</div>
+          </div>
+        </swiper-item>
+      </swiper>
 
     </div>
 

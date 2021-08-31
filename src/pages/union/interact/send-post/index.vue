@@ -58,7 +58,6 @@ export default {
   methods: {
     // 提交按钮
     submit () {
-      this.show = true;
       const { title, content, attachmentDTOList } = this.evaluate;
       if (!title || !content || !attachmentDTOList.length === 0) {
         return this.$msg("请填写完整信息");

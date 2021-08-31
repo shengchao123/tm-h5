@@ -3,7 +3,8 @@
     <view class="flex leave-msg">
 
       <div class="ft22"
-           :class="isTalents ? 'type1' : 'type2'">{{isTalents ? '专家服务' : '社区服务'}}</div>
+           :class="msgData.messageType === '01' ? 'type1' : 'type2'">{{msgData.messageType === '01' ? '专家服务' : '社区服务'}}
+      </div>
 
       <view class="mr16 relative">
         <img :src="avatar(msgData.memberAvatar)"
@@ -168,7 +169,7 @@ export default {
   right: 0;
   top: 64rpx;
   background: #74a3fd;
-  color: "#2671FF";
+  color: #2671ff;
   padding: 8rpx 12rpx;
   border-radius: 4rpx 0 0 2rpx;
 }
@@ -177,7 +178,7 @@ export default {
   right: 0;
   top: 64rpx;
   background: #ddf9d7;
-  color: "#51AC3D";
+  color: #51ac3d;
   padding: 8rpx 12rpx;
   border-radius: 4rpx 0 0 2rpx;
 }
