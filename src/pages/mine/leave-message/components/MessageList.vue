@@ -3,7 +3,8 @@
     <view class="flex leave-msg">
 
       <div class="ft22"
-           :class="msgData.messageType === '01' ? 'type1' : 'type2'">{{msgData.messageType === '01' ? '专家服务' : '社区服务'}}
+           :class="msgData.messageType === '01' ? 'type1' : 'type2'"
+           v-if="!isTalents">{{msgData.messageType === '01' ? '专家服务' : '社区服务'}}
       </div>
 
       <view class="mr16 relative">
@@ -18,7 +19,7 @@
             <view class="user-time">{{$moment(msgData.contentTime).format('YYYY-MM-DD HH:mm:ss')}}</view>
           </view>
           <view class="replay"
-                v-if="msgData.status === 1 && isTalents === 'true'"
+                v-if="msgData.status === 1 && isTalents"
                 @click="replayMsg(msgData.id)">回复TA</view>
 
         </view>
@@ -42,7 +43,11 @@
       </view>
       <view class="msg-cont"
             style="border:none">
-        <view class="user-name">
+        <view class="user-name"
+              v-if="!isTalents">
+          {{msgData.messageType === '02' ? msgData.replyerName + '社区' : msgData.replyerName}}</view>
+        <view class="user-name"
+              v-else>
           {{msgData.journeyTalentsPhoto ? msgData.journeyTalentsName : msgData.replyerName + '社区'}}</view>
         <view class="user-time">{{$moment(msgData.replyTime).format('YYYY-MM-DD HH:mm:ss')}}</view>
         <view class="content">{{msgData.replyContent}}</view>
