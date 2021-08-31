@@ -25,7 +25,7 @@ export default {
     return {
       list: Object.freeze([
         {
-          name: '依享乐',
+          name: '依乐享管家',
           text: '匠心服务，乐享生活',
           img: require('@/static/steward/keep1.png'),
           link: 'http://shop10000264.daojiahulian.com/app/index.php?i=264&c=entry&m=ewei_shopv2&do=mobile&mid=167890&v=163039'
