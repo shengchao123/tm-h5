@@ -33,7 +33,7 @@
           v-if="msgData.status !== 1">
       <view class="mr16 relative">
         <img :src="avatar(msgData.journeyTalentsPhoto)"
-             v-if="isTalents"
+             v-if="msgData.journeyTalentsPhoto"
              class="head-img">
         <img src="@/static/steward/logo1.png"
              v-else
@@ -42,7 +42,8 @@
       </view>
       <view class="msg-cont"
             style="border:none">
-        <view class="user-name">{{msgData.journeyTalentsName || msgData.replyerName + '社区'}}</view>
+        <view class="user-name">
+          {{msgData.journeyTalentsPhoto ? msgData.journeyTalentsName : msgData.replyerName + '社区'}}</view>
         <view class="user-time">{{$moment(msgData.replyTime).format('YYYY-MM-DD HH:mm:ss')}}</view>
         <view class="content">{{msgData.replyContent}}</view>
       </view>
@@ -95,11 +96,6 @@ export default {
         if (avatar) return fileHost + avatar
         return require('@/static/home/default-avatar.png')
       }
-    }
-  },
-  data () {
-    return {
-      isTalents: uni.getStorageSync('isTalents') //是否为专家身份
     }
   },
   components: { SendMessage, ImgGroup },
