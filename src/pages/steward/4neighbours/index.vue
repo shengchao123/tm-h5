@@ -2,6 +2,7 @@
   <div class='branch-wrap'>
     <BlockItem title="好邻里"
                :list="list"
+               :list1="list1"
                @onBlockItem="onBlockItem"
                type="4"
                bgClass="block4"></BlockItem>
@@ -11,7 +12,7 @@
 </template>
 
 <script>
-import BlockItem from '../components/BlockItem'
+import BlockItem from './components/BlockItem'
 import StreetTabs from '@/pages/steward/components/StreetTabs'
 export default {
   name: 'index',
@@ -31,7 +32,13 @@ export default {
           this.$message.error(res.message)
           return
         }
-        this.list = res.content.map(item => {
+        this.list = res.content.owners.map(item => {
+          return {
+            tip: item.streetOrgName,
+            ...item
+          }
+        })
+        this.list1 = res.content.buildingContacts.map(item => {
           return {
             tip: item.streetOrgName,
             ...item
@@ -42,7 +49,8 @@ export default {
   },
   data () {
     return {
-      list: []
+      list: [],
+      list1: []
     }
   },
   onLoad () {

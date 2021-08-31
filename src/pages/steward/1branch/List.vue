@@ -37,11 +37,12 @@ export default {
     tabsChange (index) {
       this.currentTab = index;
     },
-    getTabs (communityOrgId, id) {
+    getTabs (communityOrgId, id, type) {
       const params = {
         communityOrgId
       }
-      this.$api.findJourneyCommunityPartyListByCommunityOrgId(params).then(res => {
+      const apiName = type !== 'undefined' ? 'findJourneyGoodCommunityPartyList' : 'findJourneyCommunityPartyListByCommunityOrgId'
+      this.$api[apiName](params).then(res => {
         if (res.isError) {
           this.$message.error(res.message)
           return
@@ -52,8 +53,8 @@ export default {
       })
     },
   },
-  onLoad ({ communityOrgId, id }) {
-    this.getTabs(communityOrgId, id)
+  onLoad ({ communityOrgId, id, type }) {
+    this.getTabs(communityOrgId, id, type)
   },
   computed: {
     communityOrgId () {

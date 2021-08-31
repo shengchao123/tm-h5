@@ -1,6 +1,17 @@
 import request from '../request'
 import { urls } from '../urls'
 
+
+
+export function likeGoodHelperProject (params) {
+  return request({
+    url: urls.likeGoodHelperProject,
+    data: {
+      ...params
+    }
+  })
+}
+
 export function findJourneyTalentsTpyeList (params) {
   return request({
     url: urls.findJourneyTalentsTpyeList,

@@ -17,13 +17,13 @@ export default {
   name: 'index',
   methods: {
     onBlockItem ({ id, communityOrgId }) {
-      this.navigateTo(id, communityOrgId)
+      this.navigateTo(id, communityOrgId, 'good')
     },
     onThirdItem ({ id }, communityOrgId) {
       this.navigateTo(id, communityOrgId)
     },
-    navigateTo (id, communityOrgId) {
-      uni.navigateTo({ url: '/pages/steward/1branch/List?id=' + id + '&communityOrgId=' + communityOrgId })
+    navigateTo (id, communityOrgId, type) {
+      uni.navigateTo({ url: '/pages/steward/1branch/List?id=' + id + '&communityOrgId=' + communityOrgId + '&type=' + type })
     },
 
     findJourneyGoodCommunityPartyList () {
