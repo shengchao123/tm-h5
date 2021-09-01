@@ -17,12 +17,12 @@
 
     <div class="center-align ft26 mt24">
       <span class="color-999">共建单位：</span>
-      <span>{{item.unitOrgName}}</span>
+      <span class="flex1">{{unitOrgName}}</span>
     </div>
 
     <div class="center-align ft26 mt24">
       <span class="color-999">覆盖小区：</span>
-      <span>{{plotOrgNames}}</span>
+      <span class="flex1">{{plotOrgNames}}</span>
     </div>
   </div>
 </template>
@@ -42,8 +42,13 @@ export default {
   },
   computed: {
     plotOrgNames () {
-      if (this.$isEmpty(this.item.plots)) return ''
+      if (this.$isEmpty(this.item.plots)) return '--'
       const temArray = this.item.plots.map(item => item.plotOrgName)
+      return temArray.join('、')
+    },
+    unitOrgName () {
+      if (this.$isEmpty(this.item.units)) return '--'
+      const temArray = this.item.units.map(item => item.unitOrgName)
       return temArray.join('、')
     }
   }

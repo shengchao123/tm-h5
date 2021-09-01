@@ -23,9 +23,9 @@
       <img-group :imgList="notesItem.attachments"></img-group>
     </view>
     <!-- 标题 -->
-    <view class="mb10 pl30 pr30">
+    <!-- <view class="mb10 pl30 pr30">
       <text class="ft30 medium">{{notesItem.title}}</text>
-    </view>
+    </view> -->
     <!-- 内容 -->
     <view class="content ml30 mr30">
       <div ref="contentBox"

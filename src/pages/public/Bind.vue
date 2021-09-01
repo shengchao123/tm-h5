@@ -94,7 +94,8 @@ export default {
       }
       this.$api.bindPhone(params).then(res => {
         if (res.isError) {
-          if (res.subCode === 'ERROR') this.$msg('验证码不正确')
+          if (res.subCode === 'ERROR') return this.$msg('验证码不正确')
+          this.$msg(res.message)
           return
         }
         saveLoginInfo(res.content)
@@ -111,6 +112,7 @@ export default {
       const params = {
         phone: this.submitData.phone
       }
+      this.$msg('验证码已发送')
       this.$api.sendVerificationCode(params)
     },
     // 倒计时
