@@ -3,6 +3,16 @@ import { urls } from '../urls'
 
 
 
+export function accumulationCallsNumber (params) {
+  return request({
+    url: urls.accumulationCallsNumber,
+    data: {
+      ...params
+    }
+  })
+}
+
+
 export function cancelLikeGoodHelperProject (params) {
   return request({
     url: urls.cancelLikeGoodHelperProject,

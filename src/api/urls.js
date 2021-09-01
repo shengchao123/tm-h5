@@ -7,6 +7,7 @@ export const urls = {
 
   // 社区认证
 
+  accumulationCallsNumber: '/linanJourney/journeyTalents/accumulationCallsNumber', // 社区认证
   findJourneyGoodCommunityNeighborhoodList: '/linanJourney/journeyCommunityNeighborhood/findJourneyGoodCommunityNeighborhoodList', // 社区认证
   cancelLikeGoodHelperProject: '/linanJourney/journeyHelperProject/cancelLikeGoodHelperProject', // 社区认证
   likeGoodHelperProject: '/linanJourney/journeyHelperProject/likeGoodHelperProject', // 社区认证
