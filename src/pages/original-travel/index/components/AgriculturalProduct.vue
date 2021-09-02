@@ -91,7 +91,7 @@ export default {
   }
   .goods-list {
     .goods {
-      border-bottom: solid 1rpx #eaeaea;
+      border-bottom: solid 1px #eaeaea;
       .btn {
         border: 1px solid #dcdcdc;
         border-radius: 28rpx;

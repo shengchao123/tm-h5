@@ -35,6 +35,7 @@ export default {
     },
 
     drawMarker (_img, _WH, index, item) {
+      if (!item) return
       const Icon = new AMap.Icon({
         size: new AMap.Size(_WH.W, _WH.H),
         image: require(`@/static/map/${_img}`),
@@ -58,11 +59,8 @@ export default {
 
     markerClick (e) {
       const index = e.target.getExtData()
-
       if (this.currentIndex === index) return
-
-      this.$emit('changeIndex', index)
-
+      this.$emit('update:changeIndex', index)
       this.$nextTick(() => {
         overlays.hide()
         overlays.clearOverlays()
@@ -75,6 +73,13 @@ export default {
       overlays.hide()
       overlays.clearOverlays()
       this.drawMarkers()
+    },
+    currentIndex (n) {
+      if (n) {
+        overlays.hide()
+        overlays.clearOverlays()
+        this.drawMarkers()
+      }
     }
   },
   props: {

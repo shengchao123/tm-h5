@@ -74,7 +74,7 @@ page {
 .personnel-wrap {
   color: #333;
   .item {
-    border-bottom: solid 1rpx #e1e1e1;
+    border-bottom: solid 1px #e1e1e1;
     align-items: flex-end;
   }
   .no-line {

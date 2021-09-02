@@ -84,7 +84,7 @@ export default {
     .multiple {
       .multiple-item {
         height: 120rpx;
-        border-bottom: 1rpx solid #eaeaea;
+        border-bottom: 1px solid #eaeaea;
         color: #518cfc;
       }
       .cancel-btn {

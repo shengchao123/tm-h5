@@ -1,11 +1,15 @@
 <template>
   <div class="subsidies-wrap">
-    <!-- <SubTabs class="tabs"
-             @change="changeSubTab"
-             :tabs="subTabs"></SubTabs> -->
-    <!-- <img class="img"
-         :src="imgs[current]"
-         @click="onToDetail"> -->
+    <div class="search-wrap"
+         v-if="current === 0"
+         style="padding:20rpx 30rpx;background: #fff;margin-top: 1px">
+      <u-search placeholder="输入发布单位或标题搜索"
+                :show-action="false"
+                @change="changeSearchKeyword"
+                search-icon-color="#999999"
+                placeholder-color="#999999"
+                v-model="search.keyword"></u-search>
+    </div>
     <div>
       <mescroll-uni ref="mescrollRef"
                     @init="mescrollInit"
@@ -13,7 +17,7 @@
                     :up="upOption"
                     @up="upCallback"
                     bottom="50px"
-                    top="88">
+                    top="200">
         <div v-if="!$isEmpty(noInductiveList)">
           <div v-for="(item,index) in noInductiveList"
                :key="index"
@@ -51,6 +55,10 @@ import MescrollUni from "@/components/mescroll-uni/mescroll-uni.vue";
 export default {
   name: 'Subsidies',
   methods: {
+    changeSearchKeyword () {
+      this.search.pageNumber = 1
+      this.getShowAgricultureRelatedProjectsPage()
+    },
     onRouteItem () {
       window.open('http://cdn.sy315.cn/html/%E6%97%A0%E6%84%9F%E8%A1%A5%E8%B4%B4/farmer/submit.html')
     },
@@ -62,7 +70,9 @@ export default {
       uni.navigateTo({ url: `/pages/think-tank/countryside/Detail?id=${id}` })
     },
     upCallback (page) {
-      this.getShowAgricultureRelatedProjectsPage(page)
+      this.search.pageNumber = page.num || 1
+      this.search.pageSize = page.size || 1
+      this.getShowAgricultureRelatedProjectsPage()
     },
     // 下拉刷新
     downCallback () {
@@ -71,8 +81,7 @@ export default {
     // 获取无感直补数据
     getShowAgricultureRelatedProjectsPage (page) {
       const params = {
-        pageNumber: page && page.num || 1,
-        pageSize: page && page.size || 10
+        ...this.search
       }
       this.$api.getShowAgricultureRelatedProjectsPage(params).then(res => {
         if (res.isError) {
@@ -95,6 +104,10 @@ export default {
         require('@/static/test/subsidies02.png'),
         require('@/static/test/subsidies03.png'),
       ]),
+      search: {
+        pageNumber: 1,
+        pageSize: 10
+      },
       subTabs: [
         {
           status: 0,
@@ -138,7 +151,7 @@ export default {
   line-height: 1;
 }
 .subsidies-wrap {
-  padding-top: 200rpx;
+  padding-top: 88rpx;
   .img {
     margin-top: -10rpx;
     width: 100vw;

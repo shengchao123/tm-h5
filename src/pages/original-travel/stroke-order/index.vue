@@ -14,6 +14,7 @@
           <my-radio-box :options="playTimeOptions"
                         :value.sync="form.data.playTime"></my-radio-box>
         </u-form-item>
+
         <u-form-item label="活动类型"
                      label-width="144">
           <my-radio-box :options="activityTypeOptions"

@@ -1,5 +1,7 @@
 @charset "utf-8";
-
+.p30 {
+  padding: 30rpx;
+}
 .relative {
   position: relative;
 }
@@ -16,19 +18,19 @@
 }
 
 .b {
-  border: 1rpx solid $borderColor;
+  border: 1px solid $borderColor;
 }
 .bb {
-  border-bottom: 1rpx solid $borderColor;
+  border-bottom: 1px solid $borderColor;
 }
 .tb {
-  border-top: 1rpx solid $borderColor;
+  border-top: 1px solid $borderColor;
 }
 .rb {
-  border-right: 1rpx solid $borderColor;
+  border-right: 1px solid $borderColor;
 }
 .lb {
-  border-left: 1rpx solid $borderColor;
+  border-left: 1px solid $borderColor;
 }
 .pointer {
   cursor: pointer;

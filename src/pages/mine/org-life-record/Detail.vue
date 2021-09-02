@@ -236,7 +236,7 @@ export default {
         height: '88rpx',
         borderRadius: '44rpx',
         fontWeight: 'bold',
-        border: '1rpx solid #E32417',
+        border: '1px solid #E32417',
         background: '#fff'
       }
       return temStyle
@@ -261,7 +261,7 @@ export default {
     maskCancelStyle () { // 自定义modal-cancel样式
       const temStyle = {
         fontSize: '32rpx',
-        borderRight: '1rpx solid #EAEAEA'
+        borderRight: '1px solid #EAEAEA'
       }
       return temStyle
     },

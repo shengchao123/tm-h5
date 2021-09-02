@@ -1,35 +1,33 @@
 <template>
-  <u-popup v-model="isShow" border-radius="30" height="834" mode="bottom">
+  <u-popup v-model="isShow"
+           border-radius="30"
+           height="834"
+           mode="bottom">
     <view class="popup">
       <view class="tc title">
         <text class="ft34 medium">选择行程</text>
         <view @click="hide">
-          <svg-icon icon="icon_cha" class="color-999 ft24 close"></svg-icon>
+          <svg-icon icon="icon_cha"
+                    class="color-999 ft24 close"></svg-icon>
         </view>
       </view>
-      <mescroll-uni
-        ref="mescrollRef"
-        class="mescroll-wrap"
-        top="100"
-        :up="upOption"
-        @init="mescrollInit"
-        @down="downCallback"
-        @up="upCallback"
-      >
+      <mescroll-uni ref="mescrollRef"
+                    class="mescroll-wrap"
+                    top="100"
+                    :up="upOption"
+                    @init="mescrollInit"
+                    @down="downCallback"
+                    @up="upCallback">
         <view class="list pl30 pr30">
-          <view
-            v-for="(item, index) in list"
-            :key="index"
-            class="item between-row center-align"
-            :class="item.id === selectedId && 'selected'"
-            @click="onItem(item)"
-          >
+          <view v-for="(item, index) in list"
+                :key="index"
+                class="item between-row center-align"
+                :class="item.id === selectedId && 'selected'"
+                @click="onItem(item)">
             <text class="ft28">{{ item.name }}</text>
-            <svg-icon
-              v-if="item.id === selectedId"
-              icon="icon_duihao"
-              class="ft28 mt4"
-            ></svg-icon>
+            <svg-icon v-if="item.id === selectedId"
+                      icon="icon_duihao"
+                      class="ft28 mt4"></svg-icon>
           </view>
         </view>
       </mescroll-uni>
@@ -41,25 +39,25 @@ import MescrollMixin from "@/components/mescroll-uni/mescroll-mixins.js";
 import MescrollUni from "@/components/mescroll-uni/mescroll-uni.vue";
 export default {
   methods: {
-    show() {
+    show () {
       this.isShow = true;
     },
-    hide() {
+    hide () {
       this.isShow = false;
     },
-    onItem(item) {
+    onItem (item) {
       this.$emit("onEvaluateItem", item);
       this.hide();
     },
     // 下拉刷新
-    downCallback() {
+    downCallback () {
       this.mescroll.resetUpScroll(); // 重置列表为第一页
     },
     // 加载更多
-    upCallback(page) {
+    upCallback (page) {
       this.getRecommendJourneyLineList(page);
     },
-    getRecommendJourneyLineList(page) {
+    getRecommendJourneyLineList (page) {
       const params = {
         pageNumber: (page && page.num) || 1,
         pageSize: (page && page.size) || 10,
@@ -79,7 +77,7 @@ export default {
       default: "",
     },
   },
-  data() {
+  data () {
     return {
       isShow: false,
       list: [],
@@ -103,7 +101,7 @@ export default {
   .title {
     position: relative;
     line-height: 84rpx;
-    border-bottom: solid 1rpx #ddd;
+    border-bottom: solid 1px #ddd;
     .close {
       position: absolute;
       top: 32rpx;

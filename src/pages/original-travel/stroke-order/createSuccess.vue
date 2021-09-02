@@ -62,7 +62,7 @@ export default {
       height: 80rpx;
       line-height: 80rpx;
       border-radius: 40rpx;
-      border: solid 1rpx #d2d2d2;
+      border: solid 1px #d2d2d2;
     }
     .share-btn {
       color: #e32417;

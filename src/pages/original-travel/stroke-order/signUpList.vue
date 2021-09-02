@@ -34,7 +34,7 @@ export default {
   }
   .list {
     .item {
-      border-bottom: solid 1rpx rgba(225, 225, 255, 0.5);
+      border-bottom: solid 1px rgba(225, 225, 255, 0.5);
     }
   }
 }

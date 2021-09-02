@@ -33,8 +33,8 @@ export default {
 
 <style lang='scss' scoped>
 .border-top {
-  height: 1rpx;
-  border-top: 1rpx solid #fbafa3;
+  height: 1px;
+  border-top: 1px solid #fbafa3;
 }
 .w16 {
   width: 16rpx;
@@ -52,8 +52,8 @@ export default {
   top: 0;
   left: 0;
   height: 100%;
-  width: 1rpx;
-  border-left: 1rpx solid #fbafa3;
+  width: 1px;
+  border-left: 1px solid #fbafa3;
 }
 .list-item:first-child::before {
   top: calc(50% - 8rpx);

@@ -1,7 +1,7 @@
 .u-form-item {
   &::after {
     border: 0 solid #EAEAEA;
-    border-bottom-width: 1rpx;
+    border-bottom-width: 1px;
   }
   .u-form-item--left {
     font-size: 30rpx;
@@ -19,7 +19,7 @@
 
 .uni-tabbar__badge{
   background: #fff !important;
-  border: 1rpx solid #F54400;
+  border: 1px solid #F54400;
   color: #F54400 !important;
   height: 26rpx !important;
   line-height: 26rpx !important;

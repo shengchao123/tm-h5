@@ -23,7 +23,7 @@ export default {
 .info {
   background: #fff;
   .info-item {
-    border-bottom: solid 1rpx #eaeaea;
+    border-bottom: solid 1px #eaeaea;
     .label {
       width: 220rpx;
     }

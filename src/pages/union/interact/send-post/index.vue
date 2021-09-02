@@ -58,7 +58,6 @@ export default {
   methods: {
     // 提交按钮
     submit () {
-      this.show = true;
       const { title, content, attachmentDTOList } = this.evaluate;
       if (!title || !content || !attachmentDTOList.length === 0) {
         return this.$msg("请填写完整信息");
@@ -116,7 +115,7 @@ export default {
   }
   .title-style {
     height: 100rpx;
-    border-bottom: 1rpx solid #eaeaea;
+    border-bottom: 1px solid #eaeaea;
   }
   .text-area {
     height: 360rpx !important;
@@ -127,7 +126,7 @@ export default {
   }
   .trips {
     height: 100rpx;
-    border-top: 1rpx solid #eaeaea;
+    border-top: 1px solid #eaeaea;
   }
 }
 .pb120 {
@@ -140,7 +139,7 @@ export default {
   width: 100%;
   position: fixed;
   bottom: 16rpx;
-  border-top: 1rpx solid #eaeaea;
+  border-top: 1px solid #eaeaea;
   padding-top: 16rpx;
   .submit {
     width: 690rpx;
@@ -162,7 +161,7 @@ export default {
   height: 70rpx;
   line-height: 70rpx;
   border-radius: 49rpx;
-  border: 1rpx solid #d2d2d2;
+  border: 1px solid #d2d2d2;
   margin: 0 auto;
   margin-top: 32rpx;
 }

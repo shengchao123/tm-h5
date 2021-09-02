@@ -1,24 +1,36 @@
 <template>
   <view>
+    <u-tabs :list="tabsOptions"
+            font-size="28"
+            :current="currentTab"
+            :bar-style="{width: '32rpx', height:'4rpx', bottom: '10rpx'}"
+            active-color="#E32417"
+            inactive-color="#666666"
+            @change="tabChange"></u-tabs>
     <activity ref="activity"
               :isEmpty="isEmpty"
               :dataList="dataList"
-              :current.sync="current"
+              :current.sync="currentTab"
               @getListData="getListData"></activity>
   </view>
 </template>
 <script>
-import Activity from '@/pages/components/Activity.vue'
+import Activity from './Activity.vue'
 export default {
   name: 'MyActivity',
   methods: {
+    tabChange (index) {
+      this.currentTab = index
+      this.getListData()
+    },
     getListData (page) {
       const params = {
-        status: this.current !== 0 ? "0" + this.current : '',
+        type: this.tabsOptions[this.currentTab].id,
         pageNumber: page && page.num || 1,
         pageSize: page && page.size || 10
       }
-      this.$api.getMyJourneyActivityPage(params).then(res => {
+      const apiName = this.currentTab === 4 ? 'findMyJourneyCommunityWishPage' : 'getMyJourneyActivityPage'
+      this.$api[apiName](params).then(res => {
         if (res.isError || !res.content) {
           this.$refs.activity.mescroll.endBySize(0, 0)
           this.dataList = []
@@ -33,17 +45,34 @@ export default {
       })
     },
   },
-  data () {
-    return {
-      isEmpty: false,
-      dataList: [],
-      current: 0,
-    }
-  },
   onShow () {
     this.getListData()
   },
-  created () { },
+  data () {
+    return {
+      dataList: [],
+      isEmpty: false,
+      tabsOptions: Object.freeze([
+        {
+          id: '01',
+          name: '联盟活动'
+        }, {
+          id: '02',
+          name: '特色活动'
+        }, {
+          id: '03',
+          name: '社区活动',
+        }, {
+          id: '04',
+          name: '志愿活动'
+        }, {
+          id: '05',
+          name: '微心愿'
+        }
+      ]),
+      currentTab: 0
+    }
+  },
   components: { Activity },
 }
 </script>

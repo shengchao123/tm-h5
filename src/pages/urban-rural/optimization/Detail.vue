@@ -53,6 +53,22 @@
         <u-parse :html="detailInfo.content"></u-parse>
       </div>
     </div>
+
+    <div class="buy-btn tb">
+      <!-- <div class="ft32 center"
+           @click="onBuy">购买下单</div> -->
+
+      <div class="ft32 center"
+           @click="onBuy">
+        <uni-link :href="linkUrl"
+                  v-if="linkUrl"
+                  fontSize="32"
+                  color="#fff"
+                  :showUnderLine="false"
+                  text="立即下单"></uni-link>
+      </div>
+
+    </div>
   </div>
 </template>
 
@@ -63,6 +79,9 @@ const SLAT = 'ZcQCDCnitcGsljKVHwUvgOKZWfMkkgNh'
 export default {
   name: 'Detail',
   methods: {
+    onBuy () {
+      window.location.replace(this.linkUrl)
+    },
     onCallPhone () {
       uni.makePhoneCall({
         phoneNumber: this.detailInfo.contactPhone,
@@ -160,9 +179,24 @@ export default {
   padding: 32rpx;
 }
 .detail-wrap {
+  padding-bottom: 88rpx;
   background: #f7f7f7;
   .content {
     padding: 32rpx;
+  }
+}
+.buy-btn {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  padding: 16rpx 30rpx;
+  div {
+    background: #e32417;
+    height: 88rpx;
+    border-radius: 44rpx;
+    color: #fff;
   }
 }
 </style>

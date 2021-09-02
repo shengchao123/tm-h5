@@ -287,7 +287,7 @@ export default {
     background: #fff;
     height: 112rpx;
     z-index: 2;
-    border-top: solid 1rpx #eaeaea;
+    border-top: solid 1px #eaeaea;
     .left-btns {
       max-width: 220rpx;
       .icon-btn {
@@ -299,7 +299,7 @@ export default {
       height: 80rpx;
       line-height: 80rpx;
       border-radius: 44rpx;
-      border: solid 1rpx #e32417;
+      border: solid 1px #e32417;
       color: #e32417;
     }
     .confirm-btn {

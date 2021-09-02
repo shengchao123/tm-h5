@@ -58,7 +58,7 @@ export default {
     height: 78rpx;
   }
   .item {
-    border-top: solid 1rpx #eaeaea;
+    border-top: solid 1px #eaeaea;
     align-items: flex-end;
   }
 }

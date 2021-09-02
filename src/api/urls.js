@@ -5,6 +5,45 @@ export const imgHost = 'https://hzslzx.oss-cn-hangzhou.aliyuncs.com/system/h5-ma
 
 export const urls = {
 
+  // 社区认证
+
+  accumulationCallsNumber: '/linanJourney/journeyTalents/accumulationCallsNumber', // 社区认证
+  findJourneyGoodCommunityNeighborhoodList: '/linanJourney/journeyCommunityNeighborhood/findJourneyGoodCommunityNeighborhoodList', // 社区认证
+  cancelLikeGoodHelperProject: '/linanJourney/journeyHelperProject/cancelLikeGoodHelperProject', // 社区认证
+  likeGoodHelperProject: '/linanJourney/journeyHelperProject/likeGoodHelperProject', // 社区认证
+  findJourneyTalentsTpyeList: '/linanJourney/journeyTalents/findJourneyTalentsTpyeList', // 社区认证
+  getCommunityTopicPage: '/community/communityNote/getCommunityTopicPage', // 社区认证
+  getNoteCommentDetailPage: '/community/communityNoteComment/getNoteCommentDetailPage', // 社区认证
+  getJourneyCommunityMessagePage: '/linanJourney/journeyCommunityMessageManagement/getJourneyCommunityMessagePage', // 社区认证
+  findJourneyCommunityPartyGraphicByPartyId: '/linanJourney/journeyCommunityParty/findJourneyCommunityPartyGraphicByPartyId', // 社区认证
+  communityCertification: '/crm/member/communityCertification', // 社区认证
+  getCompletedJourneyHelperProjectPage: '/linanJourney/journeyHelperProject/getCompletedJourneyHelperProjectPage', // 社区认证
+
+  findJourneyAdvertisementList: '/linanJourney/journeyAdvertisement/findJourneyAdvertisementList',
+  findJourneyCommunityPropertyInfoList: '/linanJourney/journeyCommunityProperty/findJourneyCommunityPropertyInfoList',
+  findJourneyCommunityPropertyAttachmentList: '/linanJourney/journeyCommunityProperty/findJourneyCommunityPropertyAttachmentList',
+
+  communityLeaveMessage: '/linanJourney/journeyCommunityMessage/leaveMessage',
+  submitProblem: '/linanJourney/journeyCommunityProblem/submitProblem',
+  findMyJourneyCommunityWishPage: '/linanJourney/journeyCommunityWish/findMyJourneyCommunityWishPage',
+  findMyJourneyCommunityProblemPage: '/linanJourney/journeyCommunityProblem/findMyJourneyCommunityProblemPage',
+
+  findJourneyGoodHelperProjectList: '/linanJourney/journeyHelperProject/findJourneyGoodHelperProjectList',
+  findCanClaimedJourneyCommunityWishPage: '/linanJourney/journeyCommunityWish/findCanClaimedJourneyCommunityWishPage',
+  claimedJourneyCommunityWish: '/linanJourney/journeyCommunityWish/claimedJourneyCommunityWish',
+
+  findPlotOrganizationList: '/organization/org/findPlotOrganizationList',
+  findJourneyCommunityBuildingByPlotOrgId: '/linanJourney/journeyCommunityNeighborhood/findJourneyCommunityBuildingByPlotOrgId', // 社区认证
+  findJourneyCommunityOwnerByPlotOrgId: '/linanJourney/journeyCommunityNeighborhood/findJourneyCommunityOwnerByPlotOrgId', // 社区认证
+  findJourneyGoodCommunityNeighborhoodList: '/linanJourney/journeyCommunityNeighborhood/findJourneyGoodCommunityNeighborhoodList', // 社区认证
+  findJourneyCommunityAllianceDetail: '/linanJourney/journeyCommunityAlliance/findJourneyCommunityAllianceDetail', // 社区认证
+  findJourneyGoodCommunityStewardList: '/linanJourney/journeyCommunitySteward/findJourneyGoodCommunityStewardList', // 社区认证
+  findJourneyCommunityAllianceListByCommunityOrgId: '/linanJourney/journeyCommunityAlliance/findJourneyCommunityAllianceListByCommunityOrgId', // 社区认证
+  findJourneyCommunityStewardDetail: '/linanJourney/journeyCommunitySteward/findJourneyCommunityStewardDetail', // 社区认证
+  findJourneyCommunityStewardListByCommunityOrgId: '/linanJourney/journeyCommunitySteward/findJourneyCommunityStewardListByCommunityOrgId', // 社区认证
+  findJourneyGoodCommunityPartyList: '/linanJourney/journeyCommunityParty/findJourneyGoodCommunityPartyList',
+  findJourneyCommunityPartyListByCommunityOrgId: '/linanJourney/journeyCommunityParty/findJourneyCommunityPartyListByCommunityOrgId',
+  findJourneyCommunityPartyContactByPartyId: '/linanJourney/journeyCommunityParty/findJourneyCommunityPartyContactByPartyId',
   // 共建单位联系表
   getJourneyCoConstructionUnitTablePage: '/linanJourney/journeyCoConstructionUnit/getJourneyCoConstructionUnitTablePage', // 共建单位联系表分页
   getUnitListByCommunity: '/linanJourney/journeyCoConstructionUnit/getUnitListByCommunity', // 根据社区id获取单位列表
@@ -156,6 +195,7 @@ export const urls = {
 
   //留言
   getMyJourneyTalentsMessagePage: '/linanJourney/journeyTalentsMessage/getMyJourneyTalentsMessagePage',//我的留言分页
+  getMyJourneyMessagePage: '/linanJourney/journeyTalentsMessage/getMyJourneyMessagePage',//我的留言分页
   respondMessage: '/linanJourney/journeyTalentsMessage/respondMessage'//回复留言
 
 }

@@ -1,6 +1,6 @@
 import store from '@/store'
 import { getFullUrl } from '@/utils/tools.js'
-const loginErrorSubCode = ['TOKEN_EXPIRED', 'TOKEN_NULL', 'SESSION_KEY_FAIL']
+const loginErrorSubCode = ['TOKEN_EXPIRED', 'TOKEN_NULL', 'SESSION_KEY_FAIL', 'NOT_LOGIN']
 const loginErrorCode = [40001, 40002]
 // 报错锁
 let LOGIN_LOCK = false

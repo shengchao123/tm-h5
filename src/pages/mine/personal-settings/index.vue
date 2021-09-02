@@ -39,10 +39,31 @@
           <view v-for="(item,index) in realNameProp"
                 :key="index"
                 :class="index === 0 && 'mb20'">
-            <text>{{item.name}}：</text>
-            <text class="color-333">{{formData[item.prop]}}</text>
+            <template v-if="index === 0">
+              <text>{{item.name}}：</text>
+              <text class="color-333">
+                {{formData[item.prop]}}
+                <span v-if="formData.isParty">(党员)</span>
+              </text>
+            </template>
+            <template v-else>
+              <text>{{item.name}}：</text>
+              <text class="color-333">{{formData[item.prop]}}</text>
+            </template>
           </view>
         </template>
+        <div>
+          <div class="mt16"
+               v-if="formData.authAllianceOrgName">
+            <span>党建联盟：</span>
+            <span class="color-333">{{formData.authAllianceOrgName}}</span>
+          </div>
+          <div class="mt16"
+               v-if="formData.authCommunityOrgName">
+            <span>所在社区：</span>
+            <span class="color-333">{{formData.authCommunityOrgName}}</span>
+          </div>
+        </div>
       </view>
     </view>
     <u-mask :show="isShowBigAvatar"
@@ -112,6 +133,7 @@ export default {
       this.$api.getMemberPersonalInfo().then(res => {
         if (res.isError) return this.$msg(res.message)
         this.formData = res?.content ?? {}
+        uni.setStorageSync('isAuthCommunity', res.content.isAuthCommunity)
       })
     }
   },
@@ -141,10 +163,6 @@ export default {
         {
           name: '姓名',
           prop: 'name'
-        },
-        {
-          name: '党建联盟',
-          prop: 'orgName'
         }
       ]),
       avatarUrl

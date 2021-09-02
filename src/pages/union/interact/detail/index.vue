@@ -80,7 +80,6 @@ export default {
         complete: function (res) { },
       })
     },
-    // TODO: 调用第三方地图
     onToMap () {
       uni.getLocation({
         type: 'gcj02', //返回可以用于uni.openLocation的经纬度
@@ -252,7 +251,7 @@ page {
   }
   .form-list {
     .form-item {
-      border-top: 1rpx solid #eaeaea;
+      border-top: 1px solid #eaeaea;
       .ding-wei {
         color: #0084f6;
       }
@@ -277,7 +276,7 @@ page {
     .btn {
       width: calc(100% - 60rpx);
       height: 88rpx;
-      border: 1rpx solid #e32417;
+      border: 1px solid #e32417;
       border-radius: 49rpx;
       color: #e32417;
     }

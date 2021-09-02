@@ -166,7 +166,7 @@ export default {
     width: 100%;
     position: fixed;
     bottom: 0;
-    border-top: 1rpx solid #eaeaea;
+    border-top: 1px solid #eaeaea;
     padding: 0 102rpx;
     height: 98rpx;
   }

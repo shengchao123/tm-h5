@@ -209,14 +209,14 @@ export default {
         height: 48rpx;
         line-height: 48rpx;
         border-radius: 26rpx;
-        border: solid 1rpx #e1b406;
+        border: solid 1px #e1b406;
         color: #e1b406;
       }
       .card-btn {
         min-width: 160rpx;
         height: 100%;
         padding: 0 8rpx;
-        border-left: solid 1rpx #eaeaea;
+        border-left: solid 1px #eaeaea;
       }
       .color-E32417 {
         color: #e32417;

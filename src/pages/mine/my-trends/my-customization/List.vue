@@ -123,7 +123,7 @@ export default {
 <style lang='scss' scoped>
 .my-customization-wrap {
   .footer {
-    border-top: solid 1rpx #eaeaea;
+    border-top: solid 1px #eaeaea;
     .icon-btn-room {
       width: 60rpx;
       height: 56rpx;
@@ -133,7 +133,7 @@ export default {
       width: 132rpx;
       height: 56rpx;
       line-height: 56rpx;
-      border: solid 1rpx #d2d2d2;
+      border: solid 1px #d2d2d2;
       border-radius: 30rpx;
     }
   }
