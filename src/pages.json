@@ -493,27 +493,27 @@
 		"app-plus": {
 			"titleNView": false
 		}
+	},
+	"tabBar": {
+		"color": "#666666",
+		"selectedColor": "#f54400",
+		"fontSize": "12px",
+		"iconWidth": "20px",
+		"borderStyle": "#00000010",
+		"backgroundColor": "#ffffff",
+		"list": [
+			{
+				"pagePath": "pages/home/index/index",
+				"iconPath": "static/tabbar/home.png",
+				"selectedIconPath": "static/tabbar/home_l.png",
+				"text": "首页"
+			},
+			{
+				"pagePath": "pages/mine/index/index",
+				"iconPath": "static/tabbar/mine.png",
+				"selectedIconPath": "static/tabbar/mine_l.png",
+				"text": "我的"
+			}
+		]
 	}
-	// "tabBar": {
-	// 	"color": "#666666",
-	// 	"selectedColor": "#f54400",
-	// 	"fontSize": "12px",
-	// 	"iconWidth": "20px",
-	// 	"borderStyle": "#00000010",
-	// 	"backgroundColor": "#ffffff",
-	// 	"list": [
-	// 		{
-	// 			"pagePath": "pages/home/index/index",
-	// 			"iconPath": "static/tabbar/home.png",
-	// 			"selectedIconPath": "static/tabbar/home_l.png",
-	// 			"text": "首页"
-	// 		},
-	// 		{
-	// 			"pagePath": "pages/mine/index/index",
-	// 			"iconPath": "static/tabbar/mine.png",
-	// 			"selectedIconPath": "static/tabbar/mine_l.png",
-	// 			"text": "我的"
-	// 		}
-	// 	]
-	// }
 }
