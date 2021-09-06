@@ -55,7 +55,7 @@ export default {
       })
     },
     onImg () {
-      window.location.href = 'https://loan.jztdata.com:18085/html/index.html'
+      window.location.href = 'https://gfd.larcb.net/html/index_e.html?channel=hm'
     },
     setShareData (shareData) {
       this.shareData = JSON.parse(JSON.stringify(shareData))
