@@ -1,8 +1,3 @@
 {
-  "navigationBarTitleText": "我的红心",
-  "usingComponents": {
-    "u-tabs": "/node-modules/uview-ui/components/u-tabs/u-tabs",
-    "access-rules": "/pages/mine/my-hearts/AccessRules",
-    "record": "/pages/mine/my-hearts/Record"
-  }
+  "navigationBarTitleText": "我的红心"
 }

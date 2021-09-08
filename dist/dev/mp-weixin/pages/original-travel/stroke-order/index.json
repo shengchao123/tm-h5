@@ -1,13 +1,3 @@
 {
-  "navigationBarTitleText": "创建行程单",
-  "usingComponents": {
-    "u-form": "/node-modules/uview-ui/components/u-form/u-form",
-    "u-form-item": "/node-modules/uview-ui/components/u-form-item/u-form-item",
-    "u-input": "/node-modules/uview-ui/components/u-input/u-input",
-    "u-picker": "/node-modules/uview-ui/components/u-picker/u-picker",
-    "my-radio": "/pages/original-travel/stroke-order/components/MyRadio",
-    "my-radio-box": "/pages/original-travel/stroke-order/components/MyRadioBox",
-    "head-map": "/pages/original-travel/stroke-order/components/HeadMap",
-    "input-length-word": "/pages/original-travel/stroke-order/components/InputLengthWord"
-  }
+  "navigationBarTitleText": "创建行程单"
 }

@@ -1,7 +1,3 @@
 {
-  "navigationBarTitleText": "个人信息设置",
-  "usingComponents": {
-    "u-mask": "/node-modules/uview-ui/components/u-mask/u-mask",
-    "avatar": "/components/yq-avatar/yq-avatar"
-  }
+  "navigationBarTitleText": "个人信息设置"
 }

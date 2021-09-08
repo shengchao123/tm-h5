@@ -1,9 +1,3 @@
 {
-  "navigationBarTitleText": "地标周边",
-  "usingComponents": {
-    "u-action-sheet": "/node-modules/uview-ui/components/u-action-sheet/u-action-sheet",
-    "poi-keywords": "/pages/original-travel/point-guide/components/PoiKeywords",
-    "drag-popover": "/components/DragPopover",
-    "point-guide-item": "/pages/original-travel/point-guide/components/PointGuideItem"
-  }
+  "navigationBarTitleText": "地标周边"
 }

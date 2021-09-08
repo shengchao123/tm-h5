@@ -3350,6 +3350,9 @@ u-dropdown {
 
 
 /* end-头条小程序编译后页面有组件名的元素，特别处理--end */
+.p30 {
+  padding: 30rpx;
+}
 .relative {
   position: relative;
 }
@@ -3365,19 +3368,19 @@ u-dropdown {
   text-overflow: ellipsis;
 }
 .b {
-  border: 1rpx solid #EAEAEA;
+  border: 1px solid #EAEAEA;
 }
 .bb {
-  border-bottom: 1rpx solid #EAEAEA;
+  border-bottom: 1px solid #EAEAEA;
 }
 .tb {
-  border-top: 1rpx solid #EAEAEA;
+  border-top: 1px solid #EAEAEA;
 }
 .rb {
-  border-right: 1rpx solid #EAEAEA;
+  border-right: 1px solid #EAEAEA;
 }
 .lb {
-  border-left: 1rpx solid #EAEAEA;
+  border-left: 1px solid #EAEAEA;
 }
 .pointer {
   cursor: pointer;
@@ -4058,7 +4061,7 @@ video {
   content: "";
   -webkit-transform: scaleY(0.5);
           transform: scaleY(0.5);
-  border-bottom: 1rpx solid #EAEAEA;
+  border-bottom: 1px solid #EAEAEA;
 }
 .b-b:after {
   bottom: 0;
@@ -4083,7 +4086,7 @@ button[type="default"] {
 }
 .u-form-item::after {
   border: 0 solid #EAEAEA;
-  border-bottom-width: 1rpx;
+  border-bottom-width: 1px;
 }
 .u-form-item .u-form-item--left {
   font-size: 30rpx;
@@ -4097,7 +4100,7 @@ button[type="default"] {
 }
 .uni-tabbar__badge {
   background: #fff !important;
-  border: 1rpx solid #F54400;
+  border: 1px solid #F54400;
   color: #F54400 !important;
   height: 26rpx !important;
   line-height: 26rpx !important;
@@ -4110,6 +4113,63 @@ button[type="default"] {
   height: 3px;
 }
 /*每个页面公共css */
+
+@charset "UTF-8";
+/* uni.scss */
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+/* 边框颜色 */
+.color-primary.data-v-c00e91e4 {
+  color: #3049C0;
+}
+.color-333.data-v-c00e91e4 {
+  color: #333333;
+}
+.color-666.data-v-c00e91e4 {
+  color: #666666;
+}
+.color-999.data-v-c00e91e4 {
+  color: #999999;
+}
+.bg-color.data-v-c00e91e4 {
+  background-color: #f7f7f7;
+}
+.bg-white.data-v-c00e91e4 {
+  background-color: #ffffff;
+}
+.white-color.data-v-c00e91e4 {
+  color: #ffffff;
+}
+.primary-color.data-v-c00e91e4 {
+  color: #F54400;
+}
+.success-color.data-v-c00e91e4 {
+  color: #0e130f;
+}
+.warning-color.data-v-c00e91e4 {
+  color: #f0ad4e;
+}
+.error-color.data-v-c00e91e4 {
+  color: #dd524d;
+}
+.primary-text.data-v-c00e91e4 {
+  color: #333333;
+}
+.secondary-text.data-v-c00e91e4 {
+  color: #666666;
+}
+.tip-text.data-v-c00e91e4 {
+  color: #999999;
+}
+.color-e32417.data-v-c00e91e4 {
+  color: #E32417;
+}
+.divider-wrap.data-v-c00e91e4 {
+  width: 100%;
+}
 
 @charset "UTF-8";
 /* uni.scss */
@@ -4457,40 +4517,50 @@ button[type="default"] {
 
 
 
+
+
+
+
+
+
+
+
+
+
 /* 无任何数据的空布局 */
 .mescroll-empty {
-	box-sizing: border-box;
-	width: 100%;
-	padding: 100rpx 50rpx;
-	text-align: center;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 100rpx 50rpx;
+  text-align: center;
 }
 .mescroll-empty.empty-fixed {
-	z-index: 99;
-	position: absolute; /*transform会使fixed失效,最终会降级为absolute */
-	top: 100rpx;
-	left: 0;
+  z-index: 99;
+  position: absolute; /*transform会使fixed失效,最终会降级为absolute */
+  top: 100rpx;
+  left: 0;
 }
 .mescroll-empty .empty-icon {
-	width: 280rpx;
-	height: 280rpx;
+  width: 280rpx;
+  height: 280rpx;
 }
 .mescroll-empty .empty-tip {
-	margin-top: 20rpx;
-	font-size: 24rpx;
-	color: gray;
+  margin-top: 20rpx;
+  font-size: 24rpx;
+  color: gray;
 }
 .mescroll-empty .empty-btn {
-	display: inline-block;
-	margin-top: 40rpx;
-	min-width: 200rpx;
-	padding: 18rpx;
-	font-size: 28rpx;
-	border: 1rpx solid #e04b28;
-	border-radius: 60rpx;
-	color: #e04b28;
+  display: inline-block;
+  margin-top: 40rpx;
+  min-width: 200rpx;
+  padding: 18rpx;
+  font-size: 28rpx;
+  border: 1px solid #e04b28;
+  border-radius: 60rpx;
+  color: #e04b28;
 }
 .mescroll-empty .empty-btn:active {
-	opacity: 0.75;
+  opacity: 0.75;
 }
 
 

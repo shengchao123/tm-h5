@@ -60,7 +60,7 @@
   background: #f7f7f7;
 }
 .agricultural-product-wrap .goods-list .goods.data-v-b2940cb4 {
-  border-bottom: solid 1rpx #eaeaea;
+  border-bottom: solid 1px #eaeaea;
 }
 .agricultural-product-wrap .goods-list .goods .btn.data-v-b2940cb4 {
   border: 1px solid #dcdcdc;

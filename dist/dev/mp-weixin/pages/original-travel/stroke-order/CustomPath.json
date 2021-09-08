@@ -1,7 +1,3 @@
 {
-  "navigationBarTitleText": "自定义路线",
-  "usingComponents": {
-    "map": "/pages/original-travel/stroke-order/components/Map",
-    "num-list": "/pages/original-travel/stroke-order/components/NumList"
-  }
+  "navigationBarTitleText": "自定义路线"
 }

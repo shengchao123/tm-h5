@@ -1,9 +1,3 @@
 {
-  "navigationBarTitleText": "联盟风采",
-  "usingComponents": {
-    "u-tabs": "/node-modules/uview-ui/components/u-tabs/u-tabs",
-    "mescroll-uni": "/components/mescroll-uni/mescroll-uni",
-    "empty": "/components/empty/empty",
-    "contact-person": "/pages/union/components/ContactPerson"
-  }
+  "navigationBarTitleText": "联盟风采"
 }

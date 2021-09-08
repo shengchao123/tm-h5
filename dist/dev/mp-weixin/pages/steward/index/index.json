@@ -1,6 +1,3 @@
 {
-  "navigationBarTitleText": "基层治理",
-  "usingComponents": {
-    "custom-tabbar": "/components/custom-tabbar/custom-tabbar"
-  }
+  "navigationBarTitleText": "基层治理"
 }

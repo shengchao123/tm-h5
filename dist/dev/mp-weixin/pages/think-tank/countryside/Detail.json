@@ -1,6 +1,3 @@
 {
-  "navigationBarTitleText": "无感直补",
-  "usingComponents": {
-    "u-modal": "/node-modules/uview-ui/components/u-modal/u-modal"
-  }
+  "navigationBarTitleText": "无感直补"
 }

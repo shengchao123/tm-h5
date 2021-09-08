@@ -1,6 +1,3 @@
 {
-  "navigationBarTitleText": "活动详情",
-  "usingComponents": {
-    "u-swiper": "/node-modules/uview-ui/components/u-swiper/u-swiper"
-  }
+  "navigationBarTitleText": "活动详情"
 }

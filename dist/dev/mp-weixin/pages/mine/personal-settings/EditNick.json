@@ -1,7 +1,3 @@
 {
-  "navigationBarTitleText": "修改昵称",
-  "usingComponents": {
-    "u-input": "/node-modules/uview-ui/components/u-input/u-input",
-    "u-button": "/node-modules/uview-ui/components/u-button/u-button"
-  }
+  "navigationBarTitleText": "修改昵称"
 }

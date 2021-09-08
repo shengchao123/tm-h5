@@ -98,4 +98,7 @@ page {
 .tabbar-mine .scroll-Y.data-v-7d32d592 {
   height: 100%;
 }
+.badge-count.data-v-7d32d592 {
+  border-radius: 50%;
+}
 
