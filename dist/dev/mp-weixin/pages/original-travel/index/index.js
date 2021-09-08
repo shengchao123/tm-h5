@@ -181,7 +181,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var Map = function Map() {
   Promise.all(/*! require.ensure | pages/components/Map */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/components/Map")]).then((function () {
-    return resolve(__webpack_require__(/*! @/pages/components/Map.vue */ 545));
+    return resolve(__webpack_require__(/*! @/pages/components/Map.vue */ 312));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 

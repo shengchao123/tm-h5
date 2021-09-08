@@ -182,7 +182,7 @@ exports.default = void 0;
 
 var HomeItem = function HomeItem() {
   __webpack_require__.e(/*! require.ensure | pages/home/components/HomeItem */ "pages/home/components/HomeItem").then((function () {
-    return resolve(__webpack_require__(/*! @/pages/home/components/HomeItem */ 538));
+    return resolve(__webpack_require__(/*! @/pages/home/components/HomeItem */ 222));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 
