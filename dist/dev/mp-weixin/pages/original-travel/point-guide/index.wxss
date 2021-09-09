@@ -1,17 +1,3 @@
-
-.svg-icon {
-  width: 1em;
-  height: 1em;
-  vertical-align: -0.15em;
-  fill: currentColor;
-  overflow: hidden;
-}
-
-
-page {
-  height: 100%;
-}
-
 @charset "UTF-8";
 /* uni.scss */
 /* 页面左右间距 */
@@ -68,10 +54,6 @@ page {
 .point-guide-wrap.data-v-e2605b40 {
   height: 100%;
 }
-.point-guide-wrap #map.data-v-e2605b40 {
-  width: 100vw;
-  height: 93vh;
-}
 .point-guide-wrap .poi-keywords.data-v-e2605b40 {
   position: absolute;
   z-index: 98;
@@ -81,5 +63,14 @@ page {
 .point-guide-wrap .content-box.data-v-e2605b40 {
   height: 100%;
   overflow: scroll;
+}
+.point-guide-wrap .search-wrap.data-v-e2605b40 {
+  padding: 0rpx 30rpx 2rpx;
+}
+.point-guide-wrap .search-wrap .search.data-v-e2605b40 {
+  height: 66rpx;
+  padding: 0 20rpx;
+  border-radius: 33rpx;
+  background: #f4f5f7;
 }
 

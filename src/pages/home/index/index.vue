@@ -23,7 +23,7 @@
                alt="">
           <div class="right column ml16 ft26">
             <div>长按识别，关注「天目先锋」</div>
-            <div class="mt16">“天目红盟”与您相约“云之家”</div>
+            <!-- <div class="mt16">“天目红盟”与您相约“云之家”</div> -->
           </div>
         </div>
       </div>

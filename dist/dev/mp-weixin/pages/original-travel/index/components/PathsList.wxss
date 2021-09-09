@@ -56,8 +56,6 @@
   overflow-x: hidden;
 }
 .paths-list-wrap .path-container.data-v-26a82fc2 {
-  box-sizing: border-box;
-  overflow: scroll;
   white-space: nowrap;
 }
 .paths-list-wrap .path-container.data-v-26a82fc2::-webkit-scrollbar {

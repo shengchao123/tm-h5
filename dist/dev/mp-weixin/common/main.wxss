@@ -6,26 +6,6 @@
 /* 图片加载中颜色 */
 /* 行为相关颜色 */
 /* 边框颜色 */
-@font-face {font-family: "iconfont";
-  src: url('//at.alicdn.com/t/font_2522170_om2cuppnega.ttf') format('truetype');
-  /* iOS 4.1- */
-}
-.iconfont {
-  font-family: "iconfont" !important;
-  font-size: 16px;
-  font-style: normal;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-.icon_suoding:before {
-  content: "\e615";
-}
-.icon_xiangshangjiantou:before {
-  content: "\e649";
-}
-.icon_xiangxia:before {
-  content: "\e64b";
-}
 .color-primary {
   color: #3049C0;
 }
@@ -71,6 +51,7 @@
 .color-e32417 {
   color: #E32417;
 }
+/*每个页面公共css */
 .u-relative,
 .u-rela {
   position: relative;
@@ -4112,7 +4093,63 @@ button[type="default"] {
   background-color: #eaeaea !important;
   height: 3px;
 }
-/*每个页面公共css */
+
+@charset "UTF-8";
+/* uni.scss */
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+/* 边框颜色 */
+.color-primary.data-v-c00e91e4 {
+  color: #3049C0;
+}
+.color-333.data-v-c00e91e4 {
+  color: #333333;
+}
+.color-666.data-v-c00e91e4 {
+  color: #666666;
+}
+.color-999.data-v-c00e91e4 {
+  color: #999999;
+}
+.bg-color.data-v-c00e91e4 {
+  background-color: #f7f7f7;
+}
+.bg-white.data-v-c00e91e4 {
+  background-color: #ffffff;
+}
+.white-color.data-v-c00e91e4 {
+  color: #ffffff;
+}
+.primary-color.data-v-c00e91e4 {
+  color: #F54400;
+}
+.success-color.data-v-c00e91e4 {
+  color: #0e130f;
+}
+.warning-color.data-v-c00e91e4 {
+  color: #f0ad4e;
+}
+.error-color.data-v-c00e91e4 {
+  color: #dd524d;
+}
+.primary-text.data-v-c00e91e4 {
+  color: #333333;
+}
+.secondary-text.data-v-c00e91e4 {
+  color: #666666;
+}
+.tip-text.data-v-c00e91e4 {
+  color: #999999;
+}
+.color-e32417.data-v-c00e91e4 {
+  color: #E32417;
+}
+.divider-wrap.data-v-c00e91e4 {
+  width: 100%;
+}
 
 @charset "UTF-8";
 /* uni.scss */
@@ -4259,15 +4296,7 @@ button[type="default"] {
 }
 .drag-popover-wrap .content.data-v-4e581846 {
   height: 50%;
-}
-
-
-.svg-icon {
-  width: 1em;
-  height: 1em;
-  vertical-align: -0.15em;
-  fill: currentColor;
-  overflow: hidden;
+  padding-top: 30rpx;
 }
 
 @charset "UTF-8";
@@ -4326,7 +4355,7 @@ button[type="default"] {
 .custom-tabbar-wrap.data-v-48eece8c {
   height: 50px;
   position: fixed;
-  bottom: 0;
+  bottom: 0px;
   left: 0;
   right: 0;
   background: #ffffff;
@@ -4337,8 +4366,8 @@ button[type="default"] {
   padding-top: 5px;
 }
 .custom-tabbar-wrap .item ._img.data-v-48eece8c {
-  width: 20px;
-  height: 20px;
+  width: 27px;
+  height: 27px;
 }
 
 @charset "UTF-8";

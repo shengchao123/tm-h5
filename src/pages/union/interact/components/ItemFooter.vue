@@ -66,7 +66,7 @@ export default {
     onComment () {
       if (this.$notMember()) return this.$goLogin()
       if (this.entrance === 'myTrends' && this.notesItem.status === 2) return
-      if (!this.memberPersonalInfo.isRealName) {
+      if (!this.memberPersonalInfo.authAllianceOrgName) {
         uni.showModal({
           title: '请先实名认证',
           content: '认证后，即可发布帖子，评论',

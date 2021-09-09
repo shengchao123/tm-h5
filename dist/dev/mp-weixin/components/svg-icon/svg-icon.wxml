@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 <text data-event-opts="{{[['tap',[['$emit',['click','$event']]]]]}}" class="{{['iconfont','data-v-9926d778',icon]}}" style="{{'color:'+(color)+';'}}" bindtap="__e"></text>
+=======
+<text data-event-opts="{{[['tap',[['$emit',['click','$event']]]]]}}" class="{{['iconfont data-v-9926d778',icon]}}" style="{{'color:'+(color)+';'}}" bindtap="__e"></text>
+>>>>>>> master

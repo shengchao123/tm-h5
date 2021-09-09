@@ -53,15 +53,13 @@
           </view>
         </template>
         <div>
-          <div class="mt16"
-               v-if="formData.authAllianceOrgName">
+          <div class="mt16">
             <span>党建联盟：</span>
-            <span class="color-333">{{formData.authAllianceOrgName}}</span>
+            <span class="color-333">{{formData.authAllianceOrgName || '--'}}</span>
           </div>
-          <div class="mt16"
-               v-if="formData.authCommunityOrgName">
+          <div class="mt16">
             <span>所在社区：</span>
-            <span class="color-333">{{formData.authCommunityOrgName}}</span>
+            <span class="color-333">{{formData.authCommunityOrgName || '--'}}</span>
           </div>
         </div>
       </view>
@@ -192,7 +190,7 @@ export default {
     },
     infoText () {
       return (val) => {
-        const { isRealName, labelList } = this.formData
+        const { isRealName, labelList, authAllianceOrgName, authCommunityOrgName } = this.formData
         if (val === 'orgName') return isRealName ? '已认证' : '未认证'
         if (val === 'labelList') labelList.splice(0, 2).join('、')
         return this.formData[val]

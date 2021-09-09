@@ -1,6 +1,10 @@
 (global["webpackJsonp"] = global["webpackJsonp"] || []).push([["pages/original-travel/index/components/Map"],{
 
+<<<<<<< HEAD
 /***/ 411:
+=======
+/***/ 423:
+>>>>>>> master
 /*!************************************************************!*\
   !*** ./src/pages/original-travel/index/components/Map.vue ***!
   \************************************************************/
@@ -17,7 +21,11 @@ throw new Error("Module build failed (from ./node_modules/@dcloudio/webpack-uni-
     'pages/original-travel/index/components/Map-create-component',
     {
         'pages/original-travel/index/components/Map-create-component':(function(module, exports, __webpack_require__){
+<<<<<<< HEAD
             __webpack_require__('1')['createComponent'](__webpack_require__(411))
+=======
+            __webpack_require__('1')['createComponent'](__webpack_require__(423))
+>>>>>>> master
         })
     },
     [['pages/original-travel/index/components/Map-create-component']]
