@@ -109,10 +109,6 @@
       }
     ]
   },
-<<<<<<< HEAD
-=======
   "permission": {},
->>>>>>> master
-  "usingComponents": {},
-  "sitemapLocation": "sitemap.json"
+  "usingComponents": {}
 }

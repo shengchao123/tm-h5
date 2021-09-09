@@ -1,10 +1,6 @@
 (global["webpackJsonp"] = global["webpackJsonp"] || []).push([["components/svg-icon/svg-icon"],{
 
-<<<<<<< HEAD
-/***/ 309:
-=======
 /***/ 315:
->>>>>>> master
 /*!**********************************************!*\
   !*** ./src/components/svg-icon/svg-icon.vue ***!
   \**********************************************/
@@ -21,11 +17,7 @@ throw new Error("Module build failed (from ./node_modules/@dcloudio/webpack-uni-
     'components/svg-icon/svg-icon-create-component',
     {
         'components/svg-icon/svg-icon-create-component':(function(module, exports, __webpack_require__){
-<<<<<<< HEAD
-            __webpack_require__('1')['createComponent'](__webpack_require__(309))
-=======
             __webpack_require__('1')['createComponent'](__webpack_require__(315))
->>>>>>> master
         })
     },
     [['components/svg-icon/svg-icon-create-component']]

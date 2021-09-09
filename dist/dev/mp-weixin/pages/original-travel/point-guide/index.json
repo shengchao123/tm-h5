@@ -1,7 +1,4 @@
 {
-<<<<<<< HEAD
-  "navigationBarTitleText": "地标周边"
-=======
   "navigationBarTitleText": "地标周边",
   "usingComponents": {
     "u-input": "/node-modules/uview-ui/components/u-input/u-input",
@@ -10,5 +7,4 @@
     "drag-popover": "/components/DragPopover",
     "point-guide-item": "/pages/original-travel/point-guide/components/PointGuideItem"
   }
->>>>>>> master
 }
