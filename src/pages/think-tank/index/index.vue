@@ -215,11 +215,6 @@ export default {
         noMoreSize: 10, // 配置列表的总数量要大于等于10条才显示'-- END --'的提示
       },
       current: 0,
-      imgs: Object.freeze([
-        require('@/static/test/081.png'),
-        require('@/static/test/082.png'),
-        require('@/static/test/083.png'),
-      ]),
       tab: {
         list: [
           {
