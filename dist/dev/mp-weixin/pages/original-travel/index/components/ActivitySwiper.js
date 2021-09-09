@@ -79,8 +79,11 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
+    svgIcon: function() {
+      return __webpack_require__.e(/*! import() | components/svg-icon/svg-icon */ "components/svg-icon/svg-icon").then(__webpack_require__.bind(null, /*! @/components/svg-icon/svg-icon.vue */ 315))
+    },
     uCountDown: function() {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-count-down/u-count-down */ "node-modules/uview-ui/components/u-count-down/u-count-down").then(__webpack_require__.bind(null, /*! uview-ui/components/u-count-down/u-count-down.vue */ 529))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-count-down/u-count-down */ "node-modules/uview-ui/components/u-count-down/u-count-down").then(__webpack_require__.bind(null, /*! uview-ui/components/u-count-down/u-count-down.vue */ 544))
     }
   }
 } catch (e) {
@@ -173,6 +176,10 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 
 var _enum = __webpack_require__(/*! @/utils/enum.js */ 456);
+
+var _moment = _interopRequireDefault(__webpack_require__(/*! moment */ 36));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //
 //
@@ -293,11 +300,11 @@ var _default = {
       return function (item) {
         var startTime = item.startTime,
             endTime = item.endTime;
-        var sDay = moment(startTime).format('YYYY-MM-DD');
-        var eDay = moment(endTime).format('YYYY-MM-DD');
-        var eTime = moment(endTime).format('HH:mm');
-        var newStartTime = moment(startTime).format('YYYY-MM-DD HH:mm');
-        var newEndTime = moment(endTime).format('YYYY-MM-DD HH:mm');
+        var sDay = (0, _moment.default)(startTime).format('YYYY-MM-DD');
+        var eDay = (0, _moment.default)(endTime).format('YYYY-MM-DD');
+        var eTime = (0, _moment.default)(endTime).format('HH:mm');
+        var newStartTime = (0, _moment.default)(startTime).format('YYYY-MM-DD HH:mm');
+        var newEndTime = (0, _moment.default)(endTime).format('YYYY-MM-DD HH:mm');
 
         if (sDay === eDay) {
           return newStartTime + '~' + eTime;

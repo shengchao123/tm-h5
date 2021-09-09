@@ -135,7 +135,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 var NumList = function NumList() {
   Promise.all(/*! require.ensure | pages/original-travel/index/components/NumList */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/original-travel/index/components/NumList")]).then((function () {
-    return resolve(__webpack_require__(/*! @/pages/original-travel/index/components/NumList */ 515));
+    return resolve(__webpack_require__(/*! @/pages/original-travel/index/components/NumList */ 530));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 

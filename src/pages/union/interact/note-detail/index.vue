@@ -107,7 +107,7 @@ export default {
         this.isFocus = false
         uni.hideKeyboard(); // 隐藏键盘
       }
-      if (!this.memberPersonalInfo.isRealName) {
+      if (!this.memberPersonalInfo.authAllianceOrgName) {
         this.isFocus = false
         uni.hideKeyboard(); // 隐藏键盘
         uni.showModal({

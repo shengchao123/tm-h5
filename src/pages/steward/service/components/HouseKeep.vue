@@ -1,20 +1,31 @@
 <template>
   <div class='house-keep-wrap'>
-    <div class="item row mb16"
-         @click="onItem(item)"
-         v-for="(item, index) in list"
-         :key="index">
-      <img :src="item.img">
-      <div class="column ml24 mt12">
-        <div class="ft32 medium">{{item.name}}</div>
-        <div class="mt24 ft26 color-666">{{item.text}}</div>
+    <div class="tip">
+      <svg-icon icon='icon_tishi1'
+                class="mr8"></svg-icon>
+      本平台仅为家政公司推介，相关售后问题请直接联系店铺客服
+    </div>
+
+    <div style="padding: 30rpx;">
+      <div class="item row mb16"
+           @click="onItem(item)"
+           v-for="(item, index) in list"
+           :key="index">
+        <img :src="item.img">
+        <div class="column ml24 mt12">
+          <div class="ft32 medium">{{item.name}}</div>
+          <div class="mt24 ft26 color-666">{{item.text}}</div>
+        </div>
       </div>
     </div>
+
   </div>
 </template>
 
 <script>
+import SvgIcon from '../../../../components/SvgIcon.vue'
 export default {
+  components: { SvgIcon },
   name: 'HouseKeep',
   methods: {
     onItem (item) {
@@ -50,7 +61,6 @@ export default {
 
 <style lang='scss' scoped>
 .house-keep-wrap {
-  padding: 30rpx;
   .item {
     box-shadow: 3rpx 2rpx 12rpx 8rpx rgba(17, 17, 17, 0.03);
     border-radius: 8rpx;
@@ -60,6 +70,12 @@ export default {
       height: 120rpx;
       width: 120rpx;
     }
+  }
+  .tip {
+    padding: 16rpx 30rpx;
+    background: rgba($color: #518cfc, $alpha: 0.2);
+    font-size: 25rpx;
+    color: #518cfc;
   }
 }
 </style>

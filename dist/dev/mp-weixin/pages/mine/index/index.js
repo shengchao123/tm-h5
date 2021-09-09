@@ -238,7 +238,9 @@ var _default = {
   },
   data: function data() {
     return {
-      userInfo: {},
+      userInfo: {
+        nick: ''
+      },
       journeies: [],
       showNull: false
     };

@@ -1,6 +1,6 @@
 (global["webpackJsonp"] = global["webpackJsonp"] || []).push([["pages/original-travel/point-guide/components/Map"],{
 
-/***/ 494:
+/***/ 509:
 /*!******************************************************************!*\
   !*** ./src/pages/original-travel/point-guide/components/Map.vue ***!
   \******************************************************************/
@@ -17,7 +17,7 @@ throw new Error("Module build failed (from ./node_modules/@dcloudio/webpack-uni-
     'pages/original-travel/point-guide/components/Map-create-component',
     {
         'pages/original-travel/point-guide/components/Map-create-component':(function(module, exports, __webpack_require__){
-            __webpack_require__('1')['createComponent'](__webpack_require__(494))
+            __webpack_require__('1')['createComponent'](__webpack_require__(509))
         })
     },
     [['pages/original-travel/point-guide/components/Map-create-component']]

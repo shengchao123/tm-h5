@@ -83,7 +83,7 @@ try {
       return __webpack_require__.e(/*! import() | components/svg-icon/svg-icon */ "components/svg-icon/svg-icon").then(__webpack_require__.bind(null, /*! @/components/svg-icon/svg-icon.vue */ 315))
     },
     uMask: function() {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-mask/u-mask */ "node-modules/uview-ui/components/u-mask/u-mask").then(__webpack_require__.bind(null, /*! uview-ui/components/u-mask/u-mask.vue */ 522))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-mask/u-mask */ "node-modules/uview-ui/components/u-mask/u-mask").then(__webpack_require__.bind(null, /*! uview-ui/components/u-mask/u-mask.vue */ 537))
     }
   }
 } catch (e) {

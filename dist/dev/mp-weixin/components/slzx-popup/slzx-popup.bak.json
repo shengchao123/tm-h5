@@ -1,6 +1,4 @@
 {
-  "usingComponents": {
-    "svg-icon": "/components/svg-icon/svg-icon"
-  },
-  "component": true
+  "component": true,
+  "usingComponents": {}
 }

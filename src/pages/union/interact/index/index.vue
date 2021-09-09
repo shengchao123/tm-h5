@@ -45,7 +45,7 @@ export default {
     onPublish () {
       // 判断是否登录逻辑
       if (this.$notMember()) return this.$goLogin();
-      if (this.memberPersonalInfo.isRealName) {
+      if (this.memberPersonalInfo.authAllianceOrgName) {
         uni.navigateTo({
           url: '/pages/union/interact/send-post/index'
         });

@@ -76,10 +76,62 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
-var render = function () {}
-var staticRenderFns = []
-var recyclableRender
 var components
+try {
+  components = {
+    svgIcon: function() {
+      return __webpack_require__.e(/*! import() | components/svg-icon/svg-icon */ "components/svg-icon/svg-icon").then(__webpack_require__.bind(null, /*! @/components/svg-icon/svg-icon.vue */ 315))
+    }
+  }
+} catch (e) {
+  if (
+    e.message.indexOf("Cannot find module") !== -1 &&
+    e.message.indexOf(".vue") !== -1
+  ) {
+    console.error(e.message)
+    console.error("1. 排查组件名称拼写是否正确")
+    console.error(
+      "2. 排查组件是否符合 easycom 规范，文档：https://uniapp.dcloud.net.cn/collocation/pages?id=easycom"
+    )
+    console.error(
+      "3. 若组件不符合 easycom 规范，需手动引入，并在 components 中注册该组件"
+    )
+  } else {
+    throw e
+  }
+}
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  var l0 =
+    _vm.evaluationCount > 0
+      ? _vm.__map(_vm.evaluationList, function(item, index) {
+          var $orig = _vm.__get_orig(item)
+
+          var m0 = _vm.$avatarUrl(item.avatar)
+          return {
+            $orig: $orig,
+            m0: m0
+          }
+        })
+      : null
+  var m1 = !(_vm.evaluationCount > 0)
+    ? __webpack_require__(/*! @/static/empty/no_data.png */ 252)
+    : null
+  _vm.$mp.data = Object.assign(
+    {},
+    {
+      $root: {
+        l0: l0,
+        m1: m1
+      }
+    }
+  )
+}
+var recyclableRender = false
+var staticRenderFns = []
+render._withStripped = true
 
 
 
@@ -130,7 +182,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 var PageEmpty = function PageEmpty() {
   __webpack_require__.e(/*! require.ensure | pages/components/PageEmpty */ "pages/components/PageEmpty").then((function () {
-    return resolve(__webpack_require__(/*! @/pages/components/PageEmpty.vue */ 536));
+    return resolve(__webpack_require__(/*! @/pages/components/PageEmpty.vue */ 551));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 

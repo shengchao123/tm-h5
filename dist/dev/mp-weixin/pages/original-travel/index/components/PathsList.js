@@ -138,29 +138,22 @@ exports.default = void 0;
 //
 //
 //
+//
+//
+//
+//
+//
 var _default = {
   name: 'PathsList',
   methods: {
     scroll: function scroll() {
       if (this.currentIndex === 0) return;
-      var _scrollItem = this.$refs['item' + this.currentIndex][0];
-
-      _scrollItem.scrollIntoView({
-        block: 'center',
-        inline: 'start'
-      });
+      this.scrollIntoView = 'item' + this.currentIndex;
     },
     onSelectPath: function onSelectPath(item, index) {
-      this.$emit('onSelectPath', item);
-      var _scrollItem = this.$refs['item' + index][0];
-
-      _scrollItem.scrollIntoView({
-        behavior: 'smooth',
-        block: 'center',
-        inline: 'start'
-      });
-
       this.currentIndex = index;
+      this.scrollIntoView = 'item' + index;
+      this.$emit('onSelectPath', item);
     },
     // 根据 orgId 获取路线
     getRecommendJourneyLineList: function getRecommendJourneyLineList() {
@@ -170,7 +163,7 @@ var _default = {
         if (res.isError) return;
         _this.paths = res.content;
 
-        if (res.content && res.content.length > 0 && !_this.$route.query.journeyLineId) {
+        if (res.content && res.content.length > 0 && !_this.journeyLineId) {
           _this.$emit('onSelectPath', res.content[0]);
 
           return;
@@ -182,13 +175,12 @@ var _default = {
     handleJourneyLine: function handleJourneyLine() {
       var _this2 = this;
 
-      var journeyLineId = this.$route.query.journeyLineId;
-      if (!journeyLineId) return;
+      if (!this.journeyLineId) return;
 
       for (var i in this.paths) {
         var _item = this.paths[i];
 
-        if (_item.journeyLineId === journeyLineId) {
+        if (_item.journeyLineId === this.journeyLineId) {
           this.currentIndex = i;
           this.$emit('onSelectPath', _item);
           this.$nextTick(function () {
@@ -202,8 +194,13 @@ var _default = {
   created: function created() {
     this.getRecommendJourneyLineList();
   },
+  onLoad: function onLoad(options) {
+    this.journeyLineId = options.journeyLineId;
+  },
   data: function data() {
     return {
+      scrollIntoView: '',
+      journeyLineId: "",
       currentIndex: 0,
       paths: []
     };
