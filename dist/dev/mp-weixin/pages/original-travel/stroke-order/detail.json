@@ -1,9 +1,3 @@
 {
-  "navigationBarTitleText": "行程单",
-  "usingComponents": {
-    "u-modal": "/node-modules/uview-ui/components/u-modal/u-modal",
-    "head-map": "/pages/original-travel/stroke-order/components/HeadMap",
-    "detail-info": "/pages/original-travel/stroke-order/components/DetailInfo",
-    "share-dialog": "/pages/components/ShareDialog"
-  }
+  "navigationBarTitleText": "行程单"
 }

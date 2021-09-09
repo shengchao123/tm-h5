@@ -1,0 +1,1 @@
+<map class="map data-v-555194f2" latitude="{{30.18}}" longitude="{{119.20}}" scale="9.5" markers="{{pointsMarkers}}" polyline="{{polylines}}" show-location="{{true}}" data-event-opts="{{[['markertap',[['markertap',['$event']]]]]}}" bindmarkertap="__e"></map>

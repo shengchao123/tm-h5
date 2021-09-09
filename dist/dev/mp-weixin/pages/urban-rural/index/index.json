@@ -1,13 +1,3 @@
 {
-  "navigationBarTitleText": "城乡融合",
-  "usingComponents": {
-    "u-tabs": "/node-modules/uview-ui/components/u-tabs/u-tabs",
-    "custom-tabbar": "/components/custom-tabbar/custom-tabbar",
-    "u-action-sheet": "/node-modules/uview-ui/components/u-action-sheet/u-action-sheet",
-    "list1": "/pages/urban-rural/optimization/List",
-    "list2": "/pages/urban-rural/activity/List",
-    "list3": "/pages/urban-rural/experience/List",
-    "list4": "/pages/urban-rural/resource/List",
-    "share-dialog": "/pages/components/ShareDialog"
-  }
+  "navigationBarTitleText": "城乡融合"
 }

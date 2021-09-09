@@ -11,6 +11,8 @@
     "btn-dialog": "/pages/original-travel/index/components/BtnDialog",
     "activity-swiper": "/pages/original-travel/index/components/ActivitySwiper",
     "evaluation-list": "/pages/original-travel/index/components/EvaluationList",
-    "agricultural-product": "/pages/original-travel/index/components/AgriculturalProduct"
+    "agricultural-product": "/pages/original-travel/index/components/AgriculturalProduct",
+    "one-click-service": "/pages/original-travel/index/components/OneClickService",
+    "call-popup": "/pages/components/CallPopup"
   }
 }

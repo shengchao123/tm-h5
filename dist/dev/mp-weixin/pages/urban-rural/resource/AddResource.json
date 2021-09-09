@@ -1,11 +1,3 @@
 {
-  "navigationBarTitleText": "发布资源",
-  "usingComponents": {
-    "u-input": "/node-modules/uview-ui/components/u-input/u-input",
-    "u-form": "/node-modules/uview-ui/components/u-form/u-form",
-    "u-form-item": "/node-modules/uview-ui/components/u-form-item/u-form-item",
-    "u-popup": "/node-modules/uview-ui/components/u-popup/u-popup",
-    "u-action-sheet": "/node-modules/uview-ui/components/u-action-sheet/u-action-sheet",
-    "upload-images": "/components/upload-images"
-  }
+  "navigationBarTitleText": "发布资源"
 }

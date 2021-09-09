@@ -1,6 +1,3 @@
 {
-  "navigationBarTitleText": "打卡记录",
-  "usingComponents": {
-    "u-loading": "/node-modules/uview-ui/components/u-loading/u-loading"
-  }
+  "navigationBarTitleText": "打卡记录"
 }

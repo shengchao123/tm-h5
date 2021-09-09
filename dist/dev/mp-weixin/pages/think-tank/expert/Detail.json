@@ -1,7 +1,3 @@
 {
-  "navigationBarTitleText": "专家详情",
-  "usingComponents": {
-    "expert-services-item": "/pages/think-tank/index/components/ExpertServicesItem",
-    "contact-popup": "/pages/think-tank/components/ContactPopup"
-  }
+  "navigationBarTitleText": "专家详情"
 }

@@ -82,4 +82,13 @@ page {
   height: 100%;
   overflow: scroll;
 }
+.point-guide-wrap .search-wrap.data-v-e2605b40 {
+  padding: 0rpx 30rpx 2rpx;
+}
+.point-guide-wrap .search-wrap .search.data-v-e2605b40 {
+  height: 66rpx;
+  padding: 0 20rpx;
+  border-radius: 33rpx;
+  background: #f4f5f7;
+}
 
