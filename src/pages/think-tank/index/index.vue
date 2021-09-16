@@ -2,6 +2,7 @@
   <div class='think-tank-wrap'>
     <div class="tab">
       <u-tabs :list="tab.list"
+              v-if="showTabs"
               :is-scroll="false"
               bar-width="32"
               bar-height="4"
@@ -53,7 +54,7 @@
                     :up="upOption"
                     @up="upCallback"
                     bottom="50px"
-                    top="200">
+                    :top="showTabs ? 200 : 150">
         <view v-if="current === 0"
               class="pb30">
           <view v-for="(item,index) in policyDataList"
@@ -122,6 +123,7 @@ import Subsidies from './components/Subsidies.vue'
 import ExpertMixin from '@/mixins/expert-detail.js'
 import ContactPopup from '../components/ContactPopup.vue'
 import { filterWeek } from './components/filter.js'
+import { thirdLogin } from '@/utils/login'
 export default {
   name: 'index',
   methods: {
@@ -207,6 +209,7 @@ export default {
       policyDataList: [],
       expertDataList: [],
       isEmpty: false,
+      showTabs: true,
       upOption: {
         empty: {
           use: false
@@ -233,10 +236,22 @@ export default {
       }
     }
   },
-  onLoad ({ current }) {
+  onLoad (option) {
     this.findJourneyTalentsTpyeList()
+    if ((option.accessToken && option.masterOrgId) || uni.getStorageSync('isThird')) {
+      thirdLogin(option)
+      this.showTabs = false
+      this.current = 1
+      uni.$on('thirdLoginSuccess', () => {
+        this.getListData()
+      })
+      return
+    }
     if (!current) return
-    this.current = +current
+    this.current = +option.current
+  },
+  destroyed () {
+    uni.$off('thirdLoginSuccess')
   },
   mixins: [MescrollMixin, ExpertMixin],
   components: {

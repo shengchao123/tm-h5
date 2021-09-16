@@ -32,3 +32,13 @@ export const slzxNavigateBack = function () {
     uni.switchTab({ url: '/pages/home/index/index' })
   }
 }
+
+
+export const thirdLogin = function ({ accessToken, masterOrgId }) {
+  api.getCityCenterUserInfo({ accessToken: accessToken }).then(res => {
+    uni.setStorageSync('isThird', true)
+    uni.setStorageSync('masterOrgId', masterOrgId)
+    uni.setStorageSync('thirdUserId', res.content.thirdUserId)
+    uni.navigateTo({ url: '/pages/public/Login' })
+  })
+}

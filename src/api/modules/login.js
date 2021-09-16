@@ -1,6 +1,16 @@
 import request from '../request'
 import { urls } from '../urls'
 
+export function getCityCenterUserInfo (params) {
+  return request({
+    url: urls.getCityCenterUserInfo,
+    needlessToken: true,
+    data: {
+      ...params
+    }
+  })
+}
+
 export function sendVerificationCode (params) {
   return request({
     url: urls.sendVerificationCode,
@@ -58,8 +68,8 @@ export function bindPhone (params) {
 
 // 获取微信需要的参数 /third/weChat/getJSConfig
 export function getJSConfig (params) {
-return request({
-  url: urls.getJSConfig,
+  return request({
+    url: urls.getJSConfig,
     data: {
       ...params
     }
