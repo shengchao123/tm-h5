@@ -65,6 +65,7 @@ export default {
       uni.navigateTo({ url: `/pages/union/interact/detail/index?id=${this.item.id}` })
     },
     onToRoute (item) {
+      if (this.$notMember()) return this.$goLogin();
       const url = item.status === '01' ? `/pages/original-travel/stroke-order/signUp?id=${item.id}&type=activity` : ''
       uni.navigateTo({
         url
