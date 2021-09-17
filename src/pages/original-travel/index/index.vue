@@ -205,8 +205,9 @@ export default {
     CallPopup
   },
   onLoad (option) {
-    if (option.accessToken && option.masterOrgId) {
+    if (option.accessToken && option.masterOrgId || uni.getStorageSync('isThird')) {
       thirdLogin(option)
+      // uni.setNavigationBarTitle({ title: '潮玩山乡' })
     }
     if (option.masterOrgId) {
       uni.setStorageSync('masterOrgId', option.masterOrgId)

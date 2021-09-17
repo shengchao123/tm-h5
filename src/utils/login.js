@@ -35,6 +35,7 @@ export const slzxNavigateBack = function () {
 
 
 export const thirdLogin = function ({ accessToken, masterOrgId }) {
+  if (!accessToken) return
   api.getCityCenterUserInfo({ accessToken: accessToken }).then(res => {
     uni.setStorageSync('isThird', true)
     uni.setStorageSync('masterOrgId', masterOrgId)
