@@ -52,7 +52,7 @@ export default {
         if (res.isError) return
         saveLoginInfo(res.content)
         const { status } = res.content
-
+        uni.$emit('thirdLoginSuccess')
         // 不是会员，需要绑定手机号
         if (status === 1 || status === 2) {
           uni.redirectTo({ url: '/pages/public/Bind' })
@@ -75,6 +75,12 @@ export default {
   },
 
   onLoad (option) {
+
+    if (uni.getStorageSync('isThird')) {
+      this.getMemberLoginInfo()
+      return
+    }
+
     if (process.env.NODE_ENV === 'development') {
       if (option.masterOrgId) {
         uni.clearStorageSync()

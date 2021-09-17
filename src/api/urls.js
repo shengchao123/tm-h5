@@ -6,7 +6,7 @@ export const imgHost = 'https://hzslzx.oss-cn-hangzhou.aliyuncs.com/system/h5-ma
 export const urls = {
 
   // 社区认证
-
+  getCityCenterUserInfo: '/third/authorization/getCityCenterUserInfo', // 社区认证
   accumulationCallsNumber: '/linanJourney/journeyTalents/accumulationCallsNumber', // 社区认证
   findJourneyGoodCommunityNeighborhoodList: '/linanJourney/journeyCommunityNeighborhood/findJourneyGoodCommunityNeighborhoodList', // 社区认证
   cancelLikeGoodHelperProject: '/linanJourney/journeyHelperProject/cancelLikeGoodHelperProject', // 社区认证

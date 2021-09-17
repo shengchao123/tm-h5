@@ -102,9 +102,6 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
-    svgIcon: function() {
-      return __webpack_require__.e(/*! import() | components/svg-icon/svg-icon */ "components/svg-icon/svg-icon").then(__webpack_require__.bind(null, /*! @/components/svg-icon/svg-icon.vue */ 315))
-    },
     mescrollUni: function() {
       return Promise.all(/*! import() | components/mescroll-uni/mescroll-uni */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/mescroll-uni/mescroll-uni")]).then(__webpack_require__.bind(null, /*! @/components/mescroll-uni/mescroll-uni.vue */ 297))
     },
@@ -183,13 +180,13 @@ var _map = __webpack_require__(/*! @/utils/map.js */ 175);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Map = function Map() {
-  __webpack_require__.e(/*! require.ensure | pages/original-travel/index/components/Map */ "pages/original-travel/index/components/Map").then((function () {
-    return resolve(__webpack_require__(/*! ./components/Map */ 423));
+  Promise.all(/*! require.ensure | pages/components/Map */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/components/Map")]).then((function () {
+    return resolve(__webpack_require__(/*! @/pages/components/Map.vue */ 512));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 
 var DragPopover = function DragPopover() {
-  __webpack_require__.e(/*! require.ensure | components/DragPopover */ "components/DragPopover").then((function () {
+  Promise.all(/*! require.ensure | components/DragPopover */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/DragPopover")]).then((function () {
     return resolve(__webpack_require__(/*! @/components/DragPopover */ 228));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
@@ -225,7 +222,7 @@ var MescrollUni = function MescrollUni() {
 };
 
 var EvaluationList = function EvaluationList() {
-  Promise.all(/*! require.ensure | pages/original-travel/index/components/EvaluationList */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/original-travel/index/components/EvaluationList")]).then((function () {
+  __webpack_require__.e(/*! require.ensure | pages/original-travel/index/components/EvaluationList */ "pages/original-travel/index/components/EvaluationList").then((function () {
     return resolve(__webpack_require__(/*! ./components/EvaluationList.vue */ 459));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
@@ -335,7 +332,10 @@ var _default = {
     };
   },
   onShow: function onShow() {
-    this.$nextTick(function () {// this.$refs.pathList.scroll()
+    var _this3 = this;
+
+    this.$nextTick(function () {
+      _this3.$refs.pathList.scroll();
     });
   },
   data: function data() {
@@ -348,6 +348,13 @@ var _default = {
       isScroll: false,
       points: [],
       currentPath: {},
+      mapInitObj: Object.freeze({
+        resizeEnable: true,
+        zoom: 9,
+        // 级别
+        zooms: [9, 19],
+        center: [119.365056, 30.034302]
+      }),
       upOption: {
         empty: {
           use: false // 是否显示空布局
@@ -383,7 +390,7 @@ var _default = {
     CallPopup: CallPopup
   },
   onLoad: function onLoad(option) {
-    var _this3 = this;
+    var _this4 = this;
 
     if (option.masterOrgId) {
       uni.setStorageSync('masterOrgId', option.masterOrgId);
@@ -391,7 +398,7 @@ var _default = {
     }
 
     uni.$on("discoverBtn", function (res) {
-      _this3.isScroll = !res;
+      _this4.isScroll = !res;
     });
   },
   beforeDestroy: function beforeDestroy() {

@@ -120,6 +120,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+
+var _tools = __webpack_require__(/*! @/utils/tools */ 18);
+
 //
 //
 //
@@ -133,13 +136,56 @@ exports.default = void 0;
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var minTop = 10;
 var _default = {
   name: 'DragPopover',
-  props: {
-    top: {
-      type: [Number, String],
-      default: 413
+  methods: {
+    onLocation: function onLocation() {
+      this.$emit('onLocation');
+    },
+    move: function move(e) {
+      var offsetHeight = this.$refs.targetEl.getBoundingClientRect().height;
+      var _touch = e.touches[0];
+
+      var _clientY = (0, _tools.calcPx2Vh)(_touch.clientY);
+
+      if (_clientY <= minTop || _clientY >= +this.maxTop) return;
+      this.getContentHeight();
+      this.top = _clientY + 'vh';
+      this.$emit('dragTopChange', offsetHeight);
+    },
+    getContentHeight: function getContentHeight() {
+      var _rect = this.$refs.wrap.getBoundingClientRect();
     }
+  },
+  props: {
+    showLocation: {
+      type: [String, Boolean],
+      default: false
+    },
+    maxTop: {
+      type: [Number, String],
+      default: 50
+    }
+  },
+  mounted: function mounted() {
+    this.getContentHeight();
+  },
+  data: function data() {
+    return {
+      slotHeight: 0,
+      top: '50vh'
+    };
   }
 };
 exports.default = _default;

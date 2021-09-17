@@ -6,6 +6,26 @@
 /* 图片加载中颜色 */
 /* 行为相关颜色 */
 /* 边框颜色 */
+@font-face {font-family: "iconfont";
+  src: url('//at.alicdn.com/t/font_2522170_om2cuppnega.ttf') format('truetype');
+  /* iOS 4.1- */
+}
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon_suoding:before {
+  content: "\e615";
+}
+.icon_xiangshangjiantou:before {
+  content: "\e649";
+}
+.icon_xiangxia:before {
+  content: "\e64b";
+}
 .color-primary {
   color: #3049C0;
 }
@@ -51,7 +71,6 @@
 .color-e32417 {
   color: #E32417;
 }
-/*每个页面公共css */
 .u-relative,
 .u-rela {
   position: relative;
@@ -4093,6 +4112,7 @@ button[type="default"] {
   background-color: #eaeaea !important;
   height: 3px;
 }
+/*每个页面公共css */
 
 @charset "UTF-8";
 /* uni.scss */
@@ -4239,7 +4259,15 @@ button[type="default"] {
 }
 .drag-popover-wrap .content.data-v-4e581846 {
   height: 50%;
-  padding-top: 30rpx;
+}
+
+
+.svg-icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
 }
 
 @charset "UTF-8";
@@ -4298,7 +4326,7 @@ button[type="default"] {
 .custom-tabbar-wrap.data-v-48eece8c {
   height: 50px;
   position: fixed;
-  bottom: 0px;
+  bottom: 0;
   left: 0;
   right: 0;
   background: #ffffff;
@@ -4309,8 +4337,8 @@ button[type="default"] {
   padding-top: 5px;
 }
 .custom-tabbar-wrap .item ._img.data-v-48eece8c {
-  width: 27px;
-  height: 27px;
+  width: 20px;
+  height: 20px;
 }
 
 @charset "UTF-8";

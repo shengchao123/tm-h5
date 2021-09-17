@@ -187,7 +187,7 @@ var _default = {
       this.$emit('onPlayer', this.pointData);
     },
     onGuideVisit: function onGuideVisit() {
-      uni.setStorageSync('pointData', JSON.stringify(this.pointData.item));
+      sessionStorage.setItem('pointData', JSON.stringify(this.pointData.item));
       uni.navigateTo({
         url: '/pages/original-travel/point-guide/index'
       });

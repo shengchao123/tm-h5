@@ -179,45 +179,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
+var HomeItem = function HomeItem() {
+  __webpack_require__.e(/*! require.ensure | pages/home/components/HomeItem */ "pages/home/components/HomeItem").then((function () {
+    return resolve(__webpack_require__(/*! @/pages/home/components/HomeItem */ 426));
+  }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
+};
+
 var _default = {
   name: 'index',
   methods: {
@@ -231,50 +199,63 @@ var _default = {
       });
     }
   },
+  components: {
+    HomeItem: HomeItem
+  },
   data: function data() {
     return {
       swiperList: Object.freeze([{
-        image: 'https://hzslzx.oss-cn-hangzhou.aliyuncs.com/system/tianmu/images/banner1.png'
+        image: __webpack_require__(/*! @/static/home/banner.png */ 223)
       }]),
       cardList: Object.freeze([{
         img: __webpack_require__(/*! @/static/home/02.png */ 354),
         text1: '初心之旅',
         text2: '一张图',
         imgW: 45,
-        imgH: 45,
-        class: 'class1',
+        style: {
+          left: '30rpx',
+          top: '153rpx'
+        },
         url: '/pages/original-travel/index/index'
       }, {
         img: __webpack_require__(/*! @/static/home/05.png */ 355),
         text1: '组团发展',
         text2: '一联盟',
         imgW: 50,
-        imgH: 45,
-        class: 'class2',
+        style: {
+          left: '172rpx',
+          top: '233rpx'
+        },
         url: '/pages/union/index/index'
       }, {
         img: __webpack_require__(/*! @/static/home/01.png */ 356),
         text1: '城乡融合',
         text2: '一社区',
         imgW: 50,
-        imgH: 45,
-        class: 'class3',
+        style: {
+          left: '312rpx',
+          top: '313rpx'
+        },
         url: '/pages/urban-rural/index/index'
       }, {
         img: __webpack_require__(/*! @/static/home/04.png */ 357),
         text1: '乡村人才',
         text2: '一智库',
         imgW: 60,
-        imgH: 45,
-        class: 'class4',
+        style: {
+          right: '172rpx',
+          top: '233rpx'
+        },
         url: '/pages/think-tank/index/index'
       }, {
         img: __webpack_require__(/*! @/static/home/03.png */ 358),
         text1: '基层治理',
         text2: '一管家',
         imgW: 50,
-        imgH: 60,
-        class: 'class5',
+        style: {
+          right: '30rpx',
+          top: '153rpx'
+        },
         url: '/pages/steward/index/index',
         needMember: true
       }])

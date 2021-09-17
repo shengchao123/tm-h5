@@ -99,11 +99,6 @@ export default {
     return {
       selectedId: null,
       current: 0,
-      imgs: Object.freeze([
-        require('@/static/test/subsidies01.png'),
-        require('@/static/test/subsidies02.png'),
-        require('@/static/test/subsidies03.png'),
-      ]),
       search: {
         pageNumber: 1,
         pageSize: 10

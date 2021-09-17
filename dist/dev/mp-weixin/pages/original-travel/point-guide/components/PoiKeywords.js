@@ -77,29 +77,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components
-try {
-  components = {
-    svgIcon: function() {
-      return __webpack_require__.e(/*! import() | components/svg-icon/svg-icon */ "components/svg-icon/svg-icon").then(__webpack_require__.bind(null, /*! @/components/svg-icon/svg-icon.vue */ 315))
-    }
-  }
-} catch (e) {
-  if (
-    e.message.indexOf("Cannot find module") !== -1 &&
-    e.message.indexOf(".vue") !== -1
-  ) {
-    console.error(e.message)
-    console.error("1. 排查组件名称拼写是否正确")
-    console.error(
-      "2. 排查组件是否符合 easycom 规范，文档：https://uniapp.dcloud.net.cn/collocation/pages?id=easycom"
-    )
-    console.error(
-      "3. 若组件不符合 easycom 规范，需手动引入，并在 components 中注册该组件"
-    )
-  } else {
-    throw e
-  }
-}
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -171,30 +148,30 @@ var _default = {
     return {
       selectedIndex: 2,
       keywords: Object.freeze([{
-        svgIcon: 'icon_dibiao',
-        icon: 'guide_mark_1.png',
+        icon: 'icon_dibiao',
+        marker: 'guide_mark_1.png',
         type: '01',
         name: '生活馆'
       }, {
-        svgIcon: 'icon_nongchanpin',
-        icon: 'guide_mark_6.png',
+        icon: 'icon_nongchanpin',
+        marker: 'guide_mark_6.png',
         type: '03',
         name: '农产品'
       }, {
-        svgIcon: 'icon_jingdian',
-        icon: 'guide_mark_2.png',
+        icon: 'icon_jingdian',
+        marker: 'guide_mark_2.png',
         name: '风景'
       }, {
-        svgIcon: 'icon_tingchechang',
-        icon: 'guide_mark_3.png',
+        icon: 'icon_tingchechang',
+        marker: 'guide_mark_3.png',
         name: '停车场'
       }, {
-        svgIcon: 'icon_gonggongcesuo',
-        icon: 'guide_mark_4.png',
+        icon: 'icon_gonggongcesuo',
+        marker: 'guide_mark_4.png',
         name: '公共厕所'
       }, {
-        svgIcon: 'icon_meishi',
-        icon: 'guide_mark_5.png',
+        icon: 'icon_meishi',
+        marker: 'guide_mark_5.png',
         name: '餐饮美食'
       }])
     };

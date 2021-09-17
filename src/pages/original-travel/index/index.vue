@@ -74,6 +74,8 @@ import OneClickService from './components/OneClickService.vue';
 import { beginGuide } from '@/utils/map.js'
 import AgriculturalProduct from './components/AgriculturalProduct.vue';
 import CallPopup from '@/pages/components/CallPopup'
+import { thirdLogin } from '@/utils/login'
+
 export default {
   name: "index",
   methods: {
@@ -157,6 +159,7 @@ export default {
       this.$refs.pathList.scroll()
     })
   },
+
   data () {
     return {
       callInfo: {
@@ -202,6 +205,10 @@ export default {
     CallPopup
   },
   onLoad (option) {
+    if (option.accessToken && option.masterOrgId || uni.getStorageSync('isThird')) {
+      thirdLogin(option)
+      // uni.setNavigationBarTitle({ title: '潮玩山乡' })
+    }
     if (option.masterOrgId) {
       uni.setStorageSync('masterOrgId', option.masterOrgId)
       uni.setStorageSync('orgId', option.masterOrgId)
