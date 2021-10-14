@@ -54,6 +54,13 @@
                @click="onShowBigImgView(index)"></image>
       </view>
     </view>
+
+    <div class="link-wrap center mt32"
+         v-show="detailInfo.hrefUrl">
+      <div class="link center ft24"
+           @click="onLink">打开链接 >></div>
+    </div>
+
     <view v-if="detailInfo && detailInfo.status === '01'"
           class="footer bg-white center">
       <text class="btn center ft32 medium"
@@ -69,6 +76,9 @@ import { statusMap } from '@/utils/enum.js'
 export default {
   name: 'Detail',
   methods: {
+    onLink () {
+      location.href = this.detailInfo.hrefUrl
+    },
     moment,
     onShowBigImgView (index) {
       const urls = this.imgList.map(url => this.$sourceUrl(url.url))
@@ -236,6 +246,15 @@ page {
 }
 </style>
 <style lang='scss' scoped>
+.link-wrap {
+  .link {
+    width: 220rpx;
+    height: 56rpx;
+    border-radius: 28rpx;
+    border: 1px solid #f54400;
+    color: #f54400;
+  }
+}
 .detail-wrap {
   .title {
     .status-info {
